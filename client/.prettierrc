@@ -1,4 +1,4 @@
 {
- "singleAttributePerLine": true,
- "tabWidth": 1
+  "singleAttributePerLine": true,
+  "tabWidth": 2
 }
