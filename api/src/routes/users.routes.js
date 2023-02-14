@@ -1,6 +1,8 @@
 const { Router } = require('express');
+const UsersService = require('../services/user.service')
 
 const router = Router();
+const service = new UsersService()
 
 /* Get all users */
 
@@ -8,7 +10,9 @@ router.get('/', (req, res, next) => {
 
   try {
 
-    res.json({message: "Esta ruta debería mostrar todos los usuarios"})
+    const users = service.find()
+
+    res.json(users)
   } catch (error) {
 
     next(error)
@@ -23,7 +27,10 @@ router.get('/:nickName', (req, res, next) => {
   try {
 
     const { nickName } = req.params;
-    res.json({userNickName: nickName})
+
+    const user = service.findOne(nickName)
+
+    res.json(user)
   } catch (error) {
 
     next(error)
@@ -37,18 +44,11 @@ router.post('/', (req, res, next) => {
 
   try {
 
-    const { email, nickName, image, firstName, lastName } = req.body;
+    const body = req.body;
 
-    res.json({
-      message: "post user",
-      data: {
-        email: email,
-        nickName: nickName,
-        firstName: firstName,
-        lastName: lastName,
-        image: image
-      }
-    })
+    const createdUser = service.create(body)
+
+    res.json(createdUser)
   } catch (error) {
 
     next(error)
@@ -63,19 +63,11 @@ router.patch('/:userNickName', (req, res, next) => {
   try {
 
     const { userNickName } = req.params
-    const { email, nickName, image, firstName, lastName } = req.body;
+    const body = req.body;
 
-    res.json({
-      message: "patch user",
-      data: {
-        userNickName: userNickName,
-        email: email,
-        nickName: nickName,
-        firstName: firstName,
-        lastName: lastName,
-        image: image
-      }
-    })
+    const updatedUser = service.update(userNickName, body)
+
+    res.json(updatedUser)
   } catch (error) {
     next(error)
   }
@@ -87,14 +79,12 @@ router.patch('/:userNickName', (req, res, next) => {
 router.delete('/:userNickName', (req, res, next) => {
 
   try {
+
     const { userNickName } = req.params
 
-    res.json({
-      message: "deleted",
-      data: {
-        userNickName: userNickName,
-      }
-    })
+    const deletedUser = service.delete(userNickName)
+
+    res.json(deletedUser)
   } catch (error) {
 
     next(error)
