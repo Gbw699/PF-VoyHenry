@@ -47,6 +47,10 @@ class UsersService {
 
     const user = await usersModel.findByPk(nickName)
 
+    if (user === null) {
+      throw new Error("User not found")
+    }
+
     return user
 
   }
