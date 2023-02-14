@@ -1,4 +1,6 @@
 import React from "react"
+import NavBar from "../../"
+import HomePlansCardList from "../../components/HomePlansComponent/HomePlansCardList"
 
 export default function Home () {
     return (
@@ -11,7 +13,8 @@ export default function Home () {
                 BLOG REVIEW
                 FOOTER
             */}
-            {/* <Plans/> */}
+            <NavBar/>
+            <HomePlansCardList />
         </>
     )
 }
