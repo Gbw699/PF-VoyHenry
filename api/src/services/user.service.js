@@ -57,6 +57,10 @@ class UsersService {
 
     const user = await usersModel.findByPk(userNickName)
 
+    if (user === null) {
+      throw new Error("User not found")
+    }
+
     user.genre = genre || user.genre;
     user.nickName = nickName || user.nickName;
     user.email = email || user.email;

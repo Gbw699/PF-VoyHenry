@@ -32,6 +32,12 @@ const users = sequelize.define('users', {
   },
   lastName: {
     type: DataTypes.STRING(55),
+  },
+  image: {
+    type: DataTypes.TEXT,
+    validate: {
+      isUrl: true
+    }
   }
 
 })
