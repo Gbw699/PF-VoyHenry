@@ -76,13 +76,13 @@ router.patch('/:userNickName', (req, res, next) => {
 
 /* Delete user */
 
-router.delete('/:userNickName', (req, res, next) => {
+router.delete('/:userNickName', async (req, res, next) => {
 
   try {
 
     const { userNickName } = req.params
 
-    const deletedUser = service.delete(userNickName)
+    const deletedUser = await service.delete(userNickName)
 
     res.json(deletedUser)
   } catch (error) {

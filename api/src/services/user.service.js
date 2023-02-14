@@ -70,12 +70,22 @@ class UsersService {
 
   /* Delete user */
 
-  delete (userNickName) {
+  async delete (userNickName) {
 
-    return {
-      message: "deleted",
-      data: {
-        userNickName: userNickName,
+    const deletedUser = await usersModel.destroy({
+      where: {
+        nickName: userNickName
+      }
+    })
+
+    if (deletedUser === 0){
+      throw new Error("User not found")
+    } else {
+      return {
+        message: "deleted",
+        data: {
+          userNickName: userNickName
+        }
       }
     }
 
