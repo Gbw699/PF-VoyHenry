@@ -1,17 +1,12 @@
 const { Router } = require('express')
+const usersRoutes = require("./users.routes")
 const router = Router()
 
 function routesApi(app) {
 
-  app.use('/api/v1', router)
+  app.use("/api/v1", router)
 
-  /* Ruta de prueba borrar cuando se cree una ruta enserio */
-
-  router.use('/', (req, res) => {
-
-    res.send("Esta ruta funciona")
-
-  })
+  router.use("/users", usersRoutes)
 
 }
 
