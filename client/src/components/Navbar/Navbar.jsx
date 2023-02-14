@@ -1,23 +1,24 @@
 import SearchBar from "./SearchBar";
 import AccountMenu from "./AccountMenu";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import img from "../../assets/voyHENRY_title.png";
 
 export default function NavBar() {
+  const location = useLocation();
   return (
     <header>
       <img
         src={img}
         alt="img"
       />
-      <SearchBar />
+      {location.pathname !== "/home" && <SearchBar />}
       <NavLink to={"/home"}>
         <h4>Inicio</h4>
       </NavLink>
       <NavLink to={"/blog"}>
         <h4>Blog</h4>
       </NavLink>
-      <NavLink to={"/planes"}>
+      <NavLink to={"/plans"}>
         <h4>Planes</h4>
       </NavLink>
       <NavLink to={"/marketplace"}>
