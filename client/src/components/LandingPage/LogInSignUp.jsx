@@ -1,12 +1,14 @@
 import { Button } from "@mui/material";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function LoginRegister() {
+export default function LogInSignUp(props) {
+  console.log(props);
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     if (event.target.value === "logIn") {
-      <Navigate />;
+      navigate("/logIn");
     } else {
-      <Navigate />;
+      navigate("/signUp");
     }
   };
   return (
@@ -22,7 +24,7 @@ export default function LoginRegister() {
       <Button
         type="submit"
         variant="contained"
-        value="singUp"
+        value="signUp"
         onClick={(event) => handleSubmit(event)}
       >
         Registrarse
