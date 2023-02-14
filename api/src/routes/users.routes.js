@@ -16,6 +16,21 @@ router.get('/', (req, res, next) => {
 
 });
 
+/* Get user by nickName */
+
+router.get('/:nickName', (req, res, next) => {
+
+  try {
+
+    const { nickName } = req.params;
+    res.json({userNickName: nickName})
+  } catch (error) {
+
+    next(error)
+  }
+
+});
+
 /*  */
 
 module.exports = router;
