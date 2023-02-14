@@ -2,7 +2,6 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 export default function LogInSignUp(props) {
-  console.log(props);
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     if (event.target.value === "logIn") {
