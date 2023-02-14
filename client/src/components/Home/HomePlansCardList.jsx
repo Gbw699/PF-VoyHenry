@@ -1,17 +1,17 @@
-import PlanCard from "../../recycle/PlanCard/PlanCard"
+import PlanCard from "../../recycle/PlanCard/PlanCard";
 
-export default function HomePlansCardList (){
-    // este componente dispatchea la action de traer los planes
+export default function HomePlansCardList() {
+  // este componente dispatchea la action de traer los planes
 
-    return (
-        <>
-            <h1>Planes Destacados</h1>
-            <PlanCard/>
-            <PlanCard/>
-            <PlanCard/>
-            <PlanCard/>
-            <PlanCard/>
-            <PlanCard/>
-        </>
-    )
+  return (
+    <>
+      <h1>Planes Destacados</h1>
+      <PlanCard />
+      <PlanCard />
+      <PlanCard />
+      <PlanCard />
+      <PlanCard />
+      <PlanCard />
+    </>
+  );
 }

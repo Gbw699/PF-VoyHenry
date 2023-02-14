@@ -1,7 +1,3 @@
-export default function BlogReview () {
-    return (
-        <div>
-            Blog Review
-        </div>
-    )
+export default function BlogReview() {
+  return <div>Blog Review</div>;
 }
