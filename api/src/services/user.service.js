@@ -14,17 +14,21 @@ class UsersService {
     dateOfBirth.setHours(dateOfBirth.getHours() + Math.abs(dateOfBirth.getTimezoneOffset() / 60));
 
     const newUser = await usersModel.create({
-      email: email,
       nickName: nickName,
-      dateOfBirth: new Date(dateOfBirth),
-      genre: genre,
+      email: email,
       firstName: firstName,
       lastName: lastName,
+      genre: genre,
+      dateOfBirth: new Date(dateOfBirth),
       image: image
     })
 
-    return newUser;
-
+    return {
+      message: "Create",
+      data: {
+        newUser
+      }
+    };
   }
 
   /* Find all Users */
