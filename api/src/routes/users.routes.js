@@ -56,4 +56,30 @@ router.post('/', (req, res, next) => {
 
 });
 
+/* update user info */
+
+router.patch('/:userNickName', (req, res, next) => {
+
+  try {
+
+    const { userNickName } = req.params
+    const { email, nickName, image, firstName, lastName } = req.body;
+
+    res.json({
+      message: "patch user",
+      data: {
+        userNickName: userNickName,
+        email: email,
+        nickName: nickName,
+        firstName: firstName,
+        lastName: lastName,
+        image: image
+      }
+    })
+  } catch (error) {
+    next(error)
+  }
+
+});
+
 module.exports = router;
