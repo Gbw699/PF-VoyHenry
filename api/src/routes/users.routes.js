@@ -84,7 +84,7 @@ router.patch('/:userNickName', (req, res, next) => {
 
 /* Delete user */
 
-router.delete('/:userNickName', (req, res) => {
+router.delete('/:userNickName', (req, res, next) => {
 
   try {
     const { userNickName } = req.params
@@ -97,7 +97,7 @@ router.delete('/:userNickName', (req, res) => {
     })
   } catch (error) {
 
-    res.status(400).json({error: error.message})
+    next(error)
   }
 
 });
