@@ -7,7 +7,7 @@ const users = sequelize.define('users', {
     type: DataTypes.STRING(15),
     primaryKey: true,
   },
-  mail: {
+  email: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
@@ -20,8 +20,7 @@ const users = sequelize.define('users', {
     allowNull: false
   },
   about: {
-    type: DataTypes.STRING(255),
-    allowNull: false
+    type: DataTypes.STRING(255)
   },
   dateOfBirth: {
     type: DataTypes.DATEONLY,

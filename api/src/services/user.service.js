@@ -8,18 +8,22 @@ class UsersService {
 
   /* Create user */
 
-  create ({ email, nickName, image, firstName, lastName }) {
+  async create ({ genre, email, nickName, image, firstName, lastName, dateOfBirth }) {
 
-    return {
-      message: "post user",
-      data: {
-        email: email,
-        nickName: nickName,
-        firstName: firstName,
-        lastName: lastName,
-        image: image
-      }
-    }
+    dateOfBirth = new Date(dateOfBirth);
+    dateOfBirth.setHours(dateOfBirth.getHours() + Math.abs(dateOfBirth.getTimezoneOffset() / 60));
+
+    const newUser = await usersModel.create({
+      email: email,
+      nickName: nickName,
+      dateOfBirth: new Date(dateOfBirth),
+      genre: genre,
+      firstName: firstName,
+      lastName: lastName,
+      image: image
+    })
+
+    return newUser;
 
   }
 

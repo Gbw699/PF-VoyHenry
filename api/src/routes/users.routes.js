@@ -40,13 +40,13 @@ router.get('/:nickName', (req, res, next) => {
 
 /* Create new user */
 
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
 
   try {
 
     const body = req.body;
 
-    const createdUser = service.create(body)
+    const createdUser = await service.create(body)
 
     res.json(createdUser)
   } catch (error) {
