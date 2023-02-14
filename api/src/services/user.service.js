@@ -1,3 +1,5 @@
+const usersModel = require('../libs/models/users.model')
+
 class UsersService {
 
   constructor(){
@@ -23,9 +25,10 @@ class UsersService {
 
   /* Find all Users */
 
-  find () {
+  async find () {
 
-    return {message: "Esto debería retornar todos los users"}
+    const users = await usersModel.findAll()
+    return {users}
 
   }
 

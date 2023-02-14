@@ -19,6 +19,10 @@ const users = sequelize.define('users', {
     type: DataTypes.STRING,
     allowNull: false
   },
+  about: {
+    type: DataTypes.STRING(255),
+    allowNull: false
+  },
   dateOfBirth: {
     type: DataTypes.DATEONLY,
     allowNull: false

@@ -6,11 +6,11 @@ const service = new UsersService()
 
 /* Get all users */
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
 
   try {
 
-    const users = service.find()
+    const users = await service.find()
 
     res.json(users)
   } catch (error) {
