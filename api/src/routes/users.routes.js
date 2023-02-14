@@ -82,4 +82,24 @@ router.patch('/:userNickName', (req, res, next) => {
 
 });
 
+/* Delete user */
+
+router.delete('/:userNickName', (req, res) => {
+
+  try {
+    const { userNickName } = req.params
+
+    res.json({
+      message: "deleted",
+      data: {
+        userNickName: userNickName,
+      }
+    })
+  } catch (error) {
+
+    res.status(400).json({error: error.message})
+  }
+
+});
+
 module.exports = router;
