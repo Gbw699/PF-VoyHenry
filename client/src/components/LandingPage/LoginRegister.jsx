@@ -1,8 +1,12 @@
 import { Button } from "@mui/material";
 
 export default function LoginRegister() {
-  const handleSubmit = (value) => {
-    console.log(value.target.value);
+  const handleSubmit = (event) => {
+    if (event.target.value === "logIn") {
+      <Navigate />;
+    } else {
+      <Navigate />;
+    }
   };
   return (
     <>
