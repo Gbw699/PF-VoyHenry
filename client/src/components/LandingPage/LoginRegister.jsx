@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import { Navigate } from "react-router-dom";
 
 export default function LoginRegister() {
   const handleSubmit = (event) => {
