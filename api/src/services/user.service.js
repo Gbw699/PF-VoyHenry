@@ -42,9 +42,11 @@ class UsersService {
 
   /* Find one User */
 
-  findOne (nickName) {
+  async findOne (nickName) {
 
-    return {message: `esto deberia mostrar el usuario ${nickName}`}
+    const user = await usersModel.findByPk(nickName)
+
+    return user
 
   }
 

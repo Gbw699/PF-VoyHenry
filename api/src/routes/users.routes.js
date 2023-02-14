@@ -22,13 +22,13 @@ router.get('/', async (req, res, next) => {
 
 /* Get user by nickName */
 
-router.get('/:nickName', (req, res, next) => {
+router.get('/:nickName', async (req, res, next) => {
 
   try {
 
     const { nickName } = req.params;
 
-    const user = service.findOne(nickName)
+    const user = await service.findOne(nickName)
 
     res.json(user)
   } catch (error) {
