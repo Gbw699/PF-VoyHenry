@@ -1,20 +1,20 @@
 import React from "react"
-import NavBar from "../../"
-import HomePlansCardList from "../../components/HomePlansComponent/HomePlansCardList"
+import NavBar from "../../components/Navbar/Navbar"
+import HomePlansCardList from "../../components/Home/HomePlansCardList"
+import HomePlansSections from "../../components/Home/HomePlansSection"
+import ProfileInfo from "../../components/Home/ProfileInfo"
+import Footer from "../../components/Footer/Footer"
+import BlogReview from "../../components/Home/BlogReview"
 
 export default function Home () {
     return (
         <>
-            {/* 
-                NAVBAR
-                PROFILE INFO
-                PLANS
-                SECTIONS (FILTERED-PLANS)
-                BLOG REVIEW
-                FOOTER
-            */}
             <NavBar/>
+            <ProfileInfo/>
             <HomePlansCardList />
+            <HomePlansSections />
+            <BlogReview />
+            <Footer />
         </>
     )
 }
