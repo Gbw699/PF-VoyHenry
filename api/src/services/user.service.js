@@ -1,4 +1,4 @@
-const usersModel = require('../libs/models/users.model')
+const usersModel = require('../libs/models/users.model');
 
 class UsersService {
 
@@ -8,7 +8,7 @@ class UsersService {
 
   /* Create user */
 
-  async create ({ genre, email, nickName, image, firstName, lastName, dateOfBirth }) {
+  async create ({ genre, email, about, nickName, image, firstName, lastName, dateOfBirth }) {
 
     dateOfBirth = new Date(dateOfBirth);
     dateOfBirth.setHours(dateOfBirth.getHours() + Math.abs(dateOfBirth.getTimezoneOffset() / 60));
@@ -16,6 +16,7 @@ class UsersService {
     const newUser = await usersModel.create({
       nickName: nickName,
       email: email,
+      about: about,
       firstName: firstName,
       lastName: lastName,
       genre: genre,
@@ -52,19 +53,22 @@ class UsersService {
 
   /* Update user */
 
-  update (userNickName, { email, nickName, image, firstName, lastName }) {
+  async update (userNickName, { genre, email, nickName, about, image, firstName, lastName, dateOfBirth }) {
 
-    return {
-      message: "patch user",
-      data: {
-        userNickName: userNickName,
-        email: email,
-        nickName: nickName,
-        firstName: firstName,
-        lastName: lastName,
-        image: image
-      }
-    }
+    const user = await usersModel.findByPk(userNickName)
+
+    user.genre = genre || user.genre;
+    user.nickName = nickName || user.nickName;
+    user.email = email || user.email;
+    user.about = about || user.about;
+    user.firstName = firstName || user.firstName;
+    user.lastName = lastName || user.lastName;
+    user.dateOfBirth = dateOfBirth || user.lastName;
+    user.image = image || user.image;
+
+    await user.save()
+
+    return user;
 
   }
 
