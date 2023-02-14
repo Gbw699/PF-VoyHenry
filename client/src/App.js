@@ -1,19 +1,25 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { getUser } from "./redux/slices/userSlice/thunks";
+import { Routes, Route, useLocation } from "react-router";
 import "./App.css";
 import axios from "axios";
+import NavBar from "./components/Navbar/Navbar";
+import Home from "./views/Home";
 
 axios.defaults.baseURL = "";
 
 function App() {
- const dispatch = useDispatch();
- return (
-  <div>
-   <h1>Hola</h1>
-   <button onClick={() => dispatch(getUser(1))}>click</button>
-  </div>
- );
+  const location = useLocation();
+  return (
+    <div>
+      {location.pathname !== "/" && <NavBar />}
+      <Routes>
+        {/* <Route
+          path="/home"
+          element={<Home />}
+        /> */}
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
