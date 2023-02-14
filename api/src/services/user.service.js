@@ -1,3 +1,5 @@
+const usersModel = require('../libs/models/users.model');
+
 class UsersService {
 
   constructor(){
@@ -6,63 +8,96 @@ class UsersService {
 
   /* Create user */
 
-  create ({ email, nickName, image, firstName, lastName }) {
+  async create ({ genre, email, about, nickName, image, firstName, lastName, dateOfBirth }) {
+
+    dateOfBirth = new Date(dateOfBirth);
+    dateOfBirth.setHours(dateOfBirth.getHours() + Math.abs(dateOfBirth.getTimezoneOffset() / 60));
+
+    const newUser = await usersModel.create({
+      nickName: nickName,
+      email: email,
+      about: about,
+      firstName: firstName,
+      lastName: lastName,
+      genre: genre,
+      dateOfBirth: new Date(dateOfBirth),
+      image: image
+    })
 
     return {
-      message: "post user",
+      message: "Create",
       data: {
-        email: email,
-        nickName: nickName,
-        firstName: firstName,
-        lastName: lastName,
-        image: image
+        newUser
       }
-    }
-
+    };
   }
 
   /* Find all Users */
 
-  find () {
+  async find () {
 
-    return {message: "Esto debería retornar todos los users"}
+    const users = await usersModel.findAll()
+    return {users}
 
   }
 
   /* Find one User */
 
-  findOne (nickName) {
+  async findOne (nickName) {
 
-    return {message: `esto deberia mostrar el usuario ${nickName}`}
+    const user = await usersModel.findByPk(nickName)
+
+    if (user === null) {
+      throw new Error("User not found")
+    }
+
+    return user
 
   }
 
   /* Update user */
 
-  update (userNickName, { email, nickName, image, firstName, lastName }) {
+  async update (userNickName, { genre, email, nickName, about, image, firstName, lastName, dateOfBirth }) {
 
-    return {
-      message: "patch user",
-      data: {
-        userNickName: userNickName,
-        email: email,
-        nickName: nickName,
-        firstName: firstName,
-        lastName: lastName,
-        image: image
-      }
+    const user = await usersModel.findByPk(userNickName)
+
+    if (user === null) {
+      throw new Error("User not found")
     }
+
+    user.genre = genre || user.genre;
+    user.nickName = nickName || user.nickName;
+    user.email = email || user.email;
+    user.about = about || user.about;
+    user.firstName = firstName || user.firstName;
+    user.lastName = lastName || user.lastName;
+    user.dateOfBirth = dateOfBirth || user.lastName;
+    user.image = image || user.image;
+
+    await user.save()
+
+    return user;
 
   }
 
   /* Delete user */
 
-  delete (userNickName) {
+  async delete (userNickName) {
 
-    return {
-      message: "deleted",
-      data: {
-        userNickName: userNickName,
+    const deletedUser = await usersModel.destroy({
+      where: {
+        nickName: userNickName
+      }
+    })
+
+    if (deletedUser === 0){
+      throw new Error("User not found")
+    } else {
+      return {
+        message: "deleted",
+        data: {
+          userNickName: userNickName
+        }
       }
     }
 

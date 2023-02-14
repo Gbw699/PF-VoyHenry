@@ -6,11 +6,11 @@ const service = new UsersService()
 
 /* Get all users */
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
 
   try {
 
-    const users = service.find()
+    const users = await service.find()
 
     res.json(users)
   } catch (error) {
@@ -22,13 +22,13 @@ router.get('/', (req, res, next) => {
 
 /* Get user by nickName */
 
-router.get('/:nickName', (req, res, next) => {
+router.get('/:nickName', async (req, res, next) => {
 
   try {
 
     const { nickName } = req.params;
 
-    const user = service.findOne(nickName)
+    const user = await service.findOne(nickName)
 
     res.json(user)
   } catch (error) {
@@ -40,13 +40,13 @@ router.get('/:nickName', (req, res, next) => {
 
 /* Create new user */
 
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
 
   try {
 
     const body = req.body;
 
-    const createdUser = service.create(body)
+    const createdUser = await service.create(body)
 
     res.json(createdUser)
   } catch (error) {
@@ -58,14 +58,14 @@ router.post('/', (req, res, next) => {
 
 /* update user info */
 
-router.patch('/:userNickName', (req, res, next) => {
+router.patch('/:userNickName', async (req, res, next) => {
 
   try {
 
     const { userNickName } = req.params
     const body = req.body;
 
-    const updatedUser = service.update(userNickName, body)
+    const updatedUser = await service.update(userNickName, body)
 
     res.json(updatedUser)
   } catch (error) {
@@ -76,13 +76,13 @@ router.patch('/:userNickName', (req, res, next) => {
 
 /* Delete user */
 
-router.delete('/:userNickName', (req, res, next) => {
+router.delete('/:userNickName', async (req, res, next) => {
 
   try {
 
     const { userNickName } = req.params
 
-    const deletedUser = service.delete(userNickName)
+    const deletedUser = await service.delete(userNickName)
 
     res.json(deletedUser)
   } catch (error) {

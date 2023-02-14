@@ -7,6 +7,7 @@ import NavBar from "./components/Navbar/Navbar";
 import LandingPage from "./views/LandingPage/LandingPage";
 import LogIn from "./views/LogIn/LogIn";
 import SignUp from "./views/SignUp/SignUp";
+import Home from "./views/Home/Home";
 
 axios.defaults.baseURL = "";
 
@@ -19,9 +20,10 @@ function App() {
         location.pathname !== "/logIn" && <NavBar />}
 
       <Routes>
-        {/* <Route
+        <Route
           path="/home"
           element={<Home />}
+
         /> */}
         <Route
           path="/"
