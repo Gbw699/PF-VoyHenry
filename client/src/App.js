@@ -6,11 +6,11 @@ import NavBar from "./components/Navbar/Navbar";
 import LandingPage from "./views/LandingPage/LandingPage";
 import LogIn from "./views/LogIn/LogIn";
 import SignUp from "./views/SignUp/SignUp";
-import { CssBaseline } from "@material-ui/core";
 import MarketPlace from "./views/MarketPlace/MarketPlace";
 import Footer from "./views/Footer/Footer";
 import Profile from "./views/Profile/Profile";
 import Plans from "./views/Plans/Plans";
+import Home from "./views/Home/Home";
 
 axios.defaults.baseURL = "";
 
@@ -18,15 +18,14 @@ function App() {
   const location = useLocation();
   return (
     <div>
-      <CssBaseline />
       {location.pathname !== "/" &&
         location.pathname !== "/signUp" &&
         location.pathname !== "/logIn" && <NavBar />}
       <Routes>
-        {/* <Route
+        <Route
           path="/home"
           element={<Home />}
-        /> */}
+        />
         <Route
           path="/"
           element={<LandingPage />}

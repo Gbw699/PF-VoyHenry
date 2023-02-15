@@ -3,7 +3,7 @@ import { promises as fs } from "fs";
 
 function generatePlans() {
     let plans = [];
-    for (let id = 1; id <= 100; id++) {
+    for (let id = 1; id <= 20; id++) {
 
         const title = faker.lorem.sentence();
         const summary = faker.lorem.paragraph();

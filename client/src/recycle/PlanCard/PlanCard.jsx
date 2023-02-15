@@ -4,7 +4,6 @@ export default function PlanCard(props) {
 
   return (
     <>
-      {/* lado A */}
       <div>
         <img
           src={props.mainImage}
@@ -14,7 +13,6 @@ export default function PlanCard(props) {
         <p>{props.eventDate}</p>
         <p>Location?</p>
       </div>
-      {/* lado B */}
       <Link>
         <div>
           <h1>{props.title}</h1>
