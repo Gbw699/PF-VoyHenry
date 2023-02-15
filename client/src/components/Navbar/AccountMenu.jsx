@@ -79,6 +79,7 @@ export default function AccountMenu() {
         <Divider />
         <MenuItem onClick={handleClose}>Editar perfil</MenuItem>
         <MenuItem onClick={handleClose}>Configuración</MenuItem>
+        <MenuItem onClick={handleClose}> Modo oscuro</MenuItem>
         <Divider />
         <MenuItem onClick={handleClose}>Cerrar sesión</MenuItem>
       </Menu>

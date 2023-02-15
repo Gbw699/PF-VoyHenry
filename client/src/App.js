@@ -41,7 +41,7 @@ function App() {
           element={<Blog />}
         /> */}
         {/* <Route
-          path="/planes"
+          path="/plans"
           element={<Plans />}
         /> */}
         <Route
