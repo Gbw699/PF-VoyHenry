@@ -10,6 +10,7 @@ import { CssBaseline } from "@material-ui/core";
 import MarketPlace from "./views/MarketPlace/MarketPlace";
 import Footer from "./views/Footer/Footer";
 import Profile from "./views/Profile/Profile";
+import Plans from "./views/Plans/Plans";
 
 axios.defaults.baseURL = "";
 
@@ -42,10 +43,10 @@ function App() {
           path="/blog"
           element={<Blog />}
         /> */}
-        {/* <Route
+        <Route
           path="/planes"
           element={<Plans />}
-        /> */}
+        />
         <Route
           path="/profile"
           element={<Profile />}

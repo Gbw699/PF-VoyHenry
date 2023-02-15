@@ -1,5 +1,10 @@
 import axios from "axios";
-import { setPlansSearch, setTopPlans, setAllPlans, setSectionPlans } from "./planSlice";
+import {
+  setPlansSearch,
+  setTopPlans,
+  setAllPlans,
+  setSectionPlans,
+} from "./planSlice";
 
 export const getAllPlans = () => {
   return async (dispatch) => {
@@ -28,18 +33,21 @@ export const getPlansSearch = (user) => {
 export const getTopPlans = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("/api/v1/topPlans/");
+      // AGREGAR QUERY
+      const response = await axios.get("/api/v1/plans/");
       dispatch(setTopPlans(response.data));
     } catch (error) {
       return window.alert("No se pudo realizar la petición");
     }
   };
 };
-
+// section plans tiene 4 filtros, hay que ampliar
+// PRÓXIMOS EVENTOS, EVENTROS EN PROCESO, EVENTOS FINALIZADOS Y EVENTOS ON-LINE.
 export const getSectionPlans = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("/api/v1/sectionPlans/");
+      // AGREGAR QUERY
+      const response = await axios.get("/api/v1/plans/");
       dispatch(setSectionPlans(response.data));
     } catch (error) {
       return window.alert("No se pudo realizar la petición");

@@ -4,7 +4,7 @@ import PlanSection from "./PlanSection";
 import { Link } from "react-router-dom";
 import { Container } from "@material-ui/core";
 
-export default function HomePlansSections() {
+export default function PlansSections() {
   const plans = useSelector((state) => { state.plans.sectionPlans; });
   return (
     <>

@@ -4,7 +4,6 @@ const planSlice = createSlice({
   name: "blog",
   initialState: {
     allPlans: [],
-    topPlans: [],
     renderPlans: [],
     sectionPlans: []
   },
@@ -13,7 +12,7 @@ const planSlice = createSlice({
       state.allPlans = [...action.payload];
     },
     setTopPlans(state,action) {
-      state.topPlans = [...action.payload];
+      state.renderPlans = [...action.payload];
     },
     setPlanssSearch(state, action) {
       state.renderPlans = [...action.payload];

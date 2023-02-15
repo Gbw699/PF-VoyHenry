@@ -1,16 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import PlanCard from "../../recycle/PlanCard/PlanCard";
+import PlanCard from "../PlanCard/PlanCard";
 import Container from "@mui/material/Container";
 import Typography from "@material-ui/core/Typography";
 
-export default function HomePlansCardList() {
+export default function PlansCardList() {
   // este componente dispatchea la action de traer los planes
   const plans = useSelector((state) => state.plan.topPlans);
   return (
     <>
       <Container>
-        <Typography component="h2">
+        <Typography>
           Planes Destacados
         </Typography>
         {plans?.map((plan) => {
