@@ -8,6 +8,7 @@ import LogIn from "./views/LogIn/LogIn";
 import SignUp from "./views/SignUp/SignUp";
 // import Home from "./views/Home/Home";
 import MarketPlace from "./views/MarketPlace/MarketPlace";
+import Footer from "./views/Footer/Footer";
 
 axios.defaults.baseURL = "";
 
@@ -48,6 +49,9 @@ function App() {
           element={<MarketPlace />}
         />
       </Routes>
+      {location.pathname !== "/" &&
+        location.pathname !== "/signUp" &&
+        location.pathname !== "/logIn" && <Footer />}
     </div>
   );
 }
