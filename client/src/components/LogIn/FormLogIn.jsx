@@ -18,8 +18,9 @@ export default function FormLogIn() {
         .required("El e-mail es obligatorio"),
       password: Yup.string().required("La contraseña es obligatoria"),
     }),
+    // !! FALTA LÓGICA DE SI EXISTE QUE INGRESE Y SINO NO.
     onSubmit: (formData) => {
-      console.log(formData);
+      navigate("/home");
     },
   });
 
