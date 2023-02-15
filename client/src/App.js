@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, useLocation } from "react-router";
+import { Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
 import NavBar from "./components/Navbar/Navbar";
@@ -7,6 +7,7 @@ import NavBar from "./components/Navbar/Navbar";
 import LandingPage from "./views/LandingPage/LandingPage";
 import LogIn from "./views/LogIn/LogIn";
 import SignUp from "./views/SignUp/SignUp";
+import Home from "./views/Home/Home";
 
 axios.defaults.baseURL = "";
 
@@ -19,10 +20,10 @@ function App() {
         location.pathname !== "/logIn" && <NavBar />}
 
       <Routes>
-        {/* <Route
+        <Route
           path="/home"
           element={<Home />}
-        /> */}
+        />
         <Route
           path="/"
           element={<LandingPage />}
@@ -35,6 +36,18 @@ function App() {
           path="/signUp"
           element={<SignUp />}
         />
+        {/* <Route
+          path="/blog"
+          element={<Blog />}
+        /> */}
+        {/* <Route
+          path="/planes"
+          element={<Plans />}
+        /> */}
+        {/* <Route
+          path="/marketplace"
+          element={<Marketplace />}
+        /> */}
       </Routes>
     </div>
   );
