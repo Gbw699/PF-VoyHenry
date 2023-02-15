@@ -51,7 +51,25 @@ class ProductsService {
 
   }
 
-  async update () {
+  /* Update product */
+
+  async update ( id, { title, price, detail, mainImage, availability}) {
+
+    const product = await productModel.findByPk(id)
+
+    if (product === null) {
+      throw new CustomError("Product not found", 404)
+    }
+
+    product.title =  title || product.title
+    product.price = price || product.price
+    product.detail = detail || product.detail
+    product.mainImage = mainImage || product.mainImag
+    product.availability = availability || product.availability
+
+    await product.save()
+
+    return product;
 
   }
 
@@ -66,7 +84,7 @@ class ProductsService {
     })
 
     if (deletedProduct === 0){
-      throw new CustomError("User not found", 404)
+      throw new CustomError("Product not found", 404)
     }
 
     return {
