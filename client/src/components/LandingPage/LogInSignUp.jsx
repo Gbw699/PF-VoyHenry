@@ -1,7 +1,7 @@
 import React from "react";
-// import style from "./LogInSignUp.module.css";
-import { Button } from "@mui/material";
+import style from "./LogInSignUp.module.css";
 import { useNavigate } from "react-router-dom";
+import titleImg from "../../assets/voyHENRY_title(white).png";
 
 export default function LogInSignUp() {
   const navigate = useNavigate();
@@ -14,23 +14,27 @@ export default function LogInSignUp() {
     }
   };
   return (
-    <>
-      <Button
-        type="submit"
-        variant="contained"
-        value="logIn"
-        onClick={handleSubmit}
-      >
-        Iniciar sesión
-      </Button>
-      <Button
-        type="submit"
-        variant="contained"
-        value="signUp"
-        onClick={handleSubmit}
-      >
-        Registrarse
-      </Button>
-    </>
+    <div className={style.landing}>
+      <div className={style.blackBg} />
+      <img src={titleImg} className={style.logo} alt="voyHENRY logo" />
+      <div className={style.buttons}>
+        <button
+          className={style.loginSignup}
+          type="submit"
+          value="logIn"
+          onClick={handleSubmit}
+        >
+          Iniciar sesión
+        </button>
+        <button
+          className={style.loginSignup}
+          type="submit"
+          value="signUp"
+          onClick={handleSubmit}
+        >
+          Registrarse
+        </button>
+      </div>
+    </div>
   );
 }
