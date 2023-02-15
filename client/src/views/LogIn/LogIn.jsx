@@ -1,18 +1,6 @@
-import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import FormLogIn from "../../components/LogIn/FormLogIn";
 
 export default function LogIn() {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate("/");
-  };
-  return (
-    <Button
-      variant="contained"
-      onClick={handleClick}
-    >
-      Volver
-    </Button>
-  );
+  return <FormLogIn />;
 }
