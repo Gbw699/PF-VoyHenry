@@ -3,12 +3,13 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
 import NavBar from "./components/Navbar/Navbar";
-// import Home from "./views/Home";
 import LandingPage from "./views/LandingPage/LandingPage";
 import LogIn from "./views/LogIn/LogIn";
 import SignUp from "./views/SignUp/SignUp";
-import Home from "./views/Home/Home";
 import { CssBaseline } from "@material-ui/core";
+import MarketPlace from "./views/MarketPlace/MarketPlace";
+import Footer from "./views/Footer/Footer";
+import Profile from "./views/Profile/Profile";
 
 axios.defaults.baseURL = "";
 
@@ -20,12 +21,11 @@ function App() {
       {location.pathname !== "/" &&
         location.pathname !== "/signUp" &&
         location.pathname !== "/logIn" && <NavBar />}
-
       <Routes>
-        <Route
+        {/* <Route
           path="/home"
           element={<Home />}
-        />
+        /> */}
         <Route
           path="/"
           element={<LandingPage />}
@@ -46,11 +46,18 @@ function App() {
           path="/planes"
           element={<Plans />}
         /> */}
-        {/* <Route
+        <Route
+          path="/profile"
+          element={<Profile />}
+        />
+        <Route
           path="/marketplace"
-          element={<Marketplace />}
-        /> */}
+          element={<MarketPlace />}
+        />
       </Routes>
+      {location.pathname !== "/" &&
+        location.pathname !== "/signUp" &&
+        location.pathname !== "/logIn" && <Footer />}
     </div>
   );
 }
