@@ -43,19 +43,21 @@ router.get('/:nickName',
 
 /* Create new user */
 
-router.post('/', async (req, res, next) => {
+router.post('/',
+  validatorHandler(createUserSchema, "body"),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const body = req.body;
+      const body = req.body;
 
-    const createdUser = await service.create(body)
+      const createdUser = await service.create(body)
 
-    res.json(createdUser)
-  } catch (error) {
+      res.json(createdUser)
+    } catch (error) {
 
-    next(error)
-  }
+      next(error)
+    }
 
 });
 
