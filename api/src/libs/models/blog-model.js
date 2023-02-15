@@ -15,13 +15,13 @@ const blog = sequelize.define("blog", {
 
 
     },
-    titulo: {
+    title: {
       type: DataTypes.TEXT,
       allowNull: true,
 
 
     },
-    contenido: {
+    content: {
       type: DataTypes.TEXT,
       allowNull: true,
 
