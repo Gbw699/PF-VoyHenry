@@ -5,10 +5,7 @@ function validatorHandler(schema, property) {
     const { error } = schema.validate(data);
 
     if(error) {
-      next({
-        status: 400,
-        error: new Error(error)
-      })
+      next(error)
     }
     next()
 

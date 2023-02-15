@@ -71,7 +71,7 @@ class UsersService {
     user.about = about || user.about;
     user.firstName = firstName || user.firstName;
     user.lastName = lastName || user.lastName;
-    user.dateOfBirth = dateOfBirth || user.lastName;
+    user.dateOfBirth = dateOfBirth || user.dateOfBirth;
     user.image = image || user.image;
 
     await user.save()
