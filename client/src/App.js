@@ -48,11 +48,25 @@ function App() {
         <Route
           path="/profile"
           element={<Profile />}
-        />
+        >
+          {/* <Route
+            path="edit"
+            element={<ProfileEdit />}
+          /> */}
+        </Route>
         <Route
           path="/marketplace"
           element={<MarketPlace />}
-        />
+        >
+          {/* <Route
+            path="shoppingcart"
+            element={<ShoppingCart />}
+          /> */}
+        </Route>
+        {/* <Route
+          path="/configuration"
+          element={<Configutration />}
+        /> */}
       </Routes>
       {location.pathname !== "/" &&
         location.pathname !== "/signUp" &&

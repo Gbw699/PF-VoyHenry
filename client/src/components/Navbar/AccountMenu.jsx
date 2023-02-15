@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 //remplazar la imagen por la del usuario
 import img from "../../assets/voyHENRY_logo.png";
+import { NavLink } from "react-router-dom";
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -72,16 +73,25 @@ export default function AccountMenu() {
           Nombre del usuario
         </MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose}>Carrito</MenuItem>
+        <NavLink to={"/marketplace/shoppingcart"}>
+          <MenuItem onClick={handleClose}>Carrito</MenuItem>
+        </NavLink>
         <Divider />
-        <MenuItem onClick={handleClose}>Mi perfil</MenuItem>
-        <MenuItem onClick={handleClose}>Mis planes</MenuItem>
+        <NavLink to={"/profile"}>
+          <MenuItem onClick={handleClose}>Mi perfil</MenuItem>
+        </NavLink>
         <Divider />
-        <MenuItem onClick={handleClose}>Editar perfil</MenuItem>
-        <MenuItem onClick={handleClose}>Configuración</MenuItem>
+        <NavLink to={"/profile/edit"}>
+          <MenuItem onClick={handleClose}>Editar perfil</MenuItem>
+        </NavLink>
+        <NavLink to={"/configuration"}>
+          <MenuItem onClick={handleClose}>Configuración</MenuItem>
+        </NavLink>
         <MenuItem onClick={handleClose}> Modo oscuro</MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose}>Cerrar sesión</MenuItem>
+        <NavLink to={"/"}>
+          <MenuItem onClick={handleClose}>Cerrar sesión</MenuItem>
+        </NavLink>
       </Menu>
     </React.Fragment>
   );
