@@ -1,8 +1,17 @@
 function errorHandler(err, req, res, next) {
-  res.status(400).json({
+  res.status(err.errorCode || 400).json({
     message: err.message,
     stack: err.stack,
   });
 }
 
-module.exports = { errorHandler }
+function CustomError(message, errorCode) {
+  const error = new Error(message);
+  error.errorCode = errorCode;
+  return error;
+}
+
+module.exports = {
+  errorHandler,
+  CustomError
+}
