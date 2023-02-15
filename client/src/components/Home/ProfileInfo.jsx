@@ -1,11 +1,14 @@
+import { useSelector } from "react-redux";
+
 export default function ProfileInfo() {
+  const user = useSelector((state)=>state.user.user);
   return (
     <div>
       <img
-        src="https://via.placeholder.com/150"
-        alt=""
+        src={user?.image}
+        alt={user?.nickName}
       />
-      <p>Nickname</p>
+      <p>{user?.nickName}</p>
     </div>
   );
 }
