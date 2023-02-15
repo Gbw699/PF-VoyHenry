@@ -1,3 +1,5 @@
+const productModel = require('../libs/models/products.model')
+
 class ProductsService {
 
   constructor(){
@@ -6,29 +8,32 @@ class ProductsService {
 
   /* create product */
 
-  create () {
+  async create () {
 
   }
 
   /* find all products */
 
-  find () {
+  async find () {
+
+    const products = await productModel.findAll()
+    return {products}
 
   }
 
   /* find one product */
 
-  findOne () {
+  async findOne () {
 
   }
 
-  update () {
+  async update () {
 
   }
 
   /* delete one product */
 
-  delete () {
+  async delete () {
 
   }
 

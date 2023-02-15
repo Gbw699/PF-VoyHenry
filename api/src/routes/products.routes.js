@@ -1,6 +1,8 @@
 const { Router } = require('express');
+const ProductsService = require('../services/products.service')
 
 const router = Router();
+const service = new ProductsService()
 
 /* Get all products */
 

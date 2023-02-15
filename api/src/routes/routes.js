@@ -15,7 +15,7 @@ function routesApi(app) {
 
   router.use("/blogs", blogsRoutes)
 
-  router.use("products", productsRoutes)
+  router.use("/products", productsRoutes)
 
 }
 
