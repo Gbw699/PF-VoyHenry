@@ -1,4 +1,5 @@
 const productModel = require('../libs/models/products.model')
+const { CustomError } = require('../middlewares/error.handler')
 
 class ProductsService {
 
@@ -8,7 +9,22 @@ class ProductsService {
 
   /* create product */
 
-  async create () {
+  async create ({ title, price, detail, mainImage, availability}) {
+
+    const newProduct = await productModel.create({
+      title: title,
+      price: price,
+      detail: detail,
+      mainImage: mainImage,
+      availability: availability,
+    })
+
+    return {
+      message: "Create",
+      data: {
+        newProduct
+      }
+    }
 
   }
 
@@ -23,7 +39,15 @@ class ProductsService {
 
   /* find one product */
 
-  async findOne () {
+  async findOne (id) {
+
+    const product = await productModel.findByPk(id)
+
+    if (product === null) {
+      throw new CustomError("Product not found", 404)
+    }
+
+    return product
 
   }
 
@@ -33,7 +57,24 @@ class ProductsService {
 
   /* delete one product */
 
-  async delete () {
+  async delete (id) {
+
+    const deletedProduct = await productModel.destroy({
+      where: {
+        id: id
+      }
+    })
+
+    if (deletedProduct === 0){
+      throw new CustomError("User not found", 404)
+    }
+
+    return {
+        message: "deleted",
+        data: {
+          id: id
+        }
+      }
 
   }
 
