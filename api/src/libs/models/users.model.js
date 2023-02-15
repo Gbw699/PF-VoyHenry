@@ -17,7 +17,10 @@ const users = sequelize.define('users', {
   },
   genre: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      isIn: [['Femenino', 'Masculino', 'No binario', 'Prefiero no decirlo', "Otro"]]
+    }
   },
   about: {
     type: DataTypes.STRING(255)

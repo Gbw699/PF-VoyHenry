@@ -1,6 +1,7 @@
 const { Router } = require('express')
 const usersRoutes = require("./users.routes")
 const plansRoutes = require("./plans.routes")
+const blogsRoutes = require("./blog.routes")
 const router = Router()
 
 function routesApi(app) {
@@ -10,6 +11,8 @@ function routesApi(app) {
   router.use("/users", usersRoutes)
 
   router.use("/plans", plansRoutes)
+
+  router.use("/blogs", blogsRoutes)
 
 }
 
