@@ -65,10 +65,10 @@ class blogService {
     if (blog === null) {
       throw new Error("Post not found")
     }
-    blog.userName = userName
-    blog.titulo = titulo
-    blog.contenido = contenido
-    blog.rating = rating
+    blog.userName = userName || blog.userName;
+    blog.titulo = titulo || blog.titulo;
+    blog.contenido = contenido || blog.contenido;
+    blog.rating = rating || blog.rating;
 
       await blog.save()
 
