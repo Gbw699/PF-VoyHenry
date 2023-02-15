@@ -8,6 +8,7 @@ import LandingPage from "./views/LandingPage/LandingPage";
 import LogIn from "./views/LogIn/LogIn";
 import SignUp from "./views/SignUp/SignUp";
 import Home from "./views/Home/Home";
+import { CssBaseline } from "@material-ui/core";
 
 axios.defaults.baseURL = "";
 
@@ -15,6 +16,7 @@ function App() {
   const location = useLocation();
   return (
     <div>
+      <CssBaseline />
       {location.pathname !== "/" &&
         location.pathname !== "/signUp" &&
         location.pathname !== "/logIn" && <NavBar />}
