@@ -63,37 +63,42 @@ router.post('/',
 
 /* update user info */
 
-router.patch('/:userNickName', async (req, res, next) => {
+router.patch('/:nickName',
+  validatorHandler(getUserSchema, 'params'),
+  validatorHandler(updateSchema, "body"),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const { userNickName } = req.params
-    const body = req.body;
+      const { nickName } = req.params
+      const body = req.body;
 
-    const updatedUser = await service.update(userNickName, body)
+      const updatedUser = await service.update(nickName, body)
 
-    res.json(updatedUser)
-  } catch (error) {
-    next(error)
-  }
+      res.json(updatedUser)
+    } catch (error) {
+      next(error)
+    }
 
 });
 
 /* Delete user */
 
-router.delete('/:userNickName', async (req, res, next) => {
+router.delete('/:nickName',
+  validatorHandler(getUserSchema, 'params'),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const { userNickName } = req.params
+      const { nickName } = req.params
 
-    const deletedUser = await service.delete(userNickName)
+      const deletedUser = await service.delete(nickName)
 
-    res.json(deletedUser)
-  } catch (error) {
+      res.json(deletedUser)
+    } catch (error) {
 
-    next(error)
-  }
+      next(error)
+    }
 
 });
 
