@@ -9,13 +9,13 @@ class blogService {
 
     /* Create Blog */
 
-  async create (  userName, titulo , contenido, rating ){
+  async create (  userName, title , content, rating ){
 
 
     const newBlog =  await blogModel.create({
      userName: userName,
-     titulo: titulo,
-     contenido: contenido,
+     title: title,
+     content: content,
      rating: rating
     })
 
@@ -54,7 +54,7 @@ class blogService {
 
   /* Update Blog */
 
-  async update (id, {userName, titulo , contenido, rating }) {
+  async update (id, {userName, title , content, rating }) {
 
 
     const blog = await blogModel.findOne({
@@ -66,8 +66,8 @@ class blogService {
       throw new Error("Post not found")
     }
     blog.userName = userName || blog.userName;
-    blog.titulo = titulo || blog.titulo;
-    blog.contenido = contenido || blog.contenido;
+    blog.title = title || blog.title;
+    blog.content = content || blog.content;
     blog.rating = rating || blog.rating;
 
       await blog.save()
