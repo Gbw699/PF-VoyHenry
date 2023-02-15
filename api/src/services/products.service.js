@@ -64,7 +64,7 @@ class ProductsService {
     product.title =  title || product.title
     product.price = price || product.price
     product.detail = detail || product.detail
-    product.mainImage = mainImage || product.mainImag
+    product.mainImage = mainImage || product.mainImage
     product.availability = availability || product.availability
 
     await product.save()
