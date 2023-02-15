@@ -1,5 +1,7 @@
 const { Router } = require('express');
 const UsersService = require('../services/user.service')
+const validatorHandler = require('../middlewares/validator.handler')
+const { createUserSchema, updateSchema, getUserSchema } = require('../schemas/users.schema')
 
 const router = Router();
 const service = new UsersService()
@@ -22,19 +24,20 @@ router.get('/', async (req, res, next) => {
 
 /* Get user by nickName */
 
-router.get('/:nickName', async (req, res, next) => {
+router.get('/:nickName',
+  validatorHandler(getUserSchema, 'params'),
+  async (req, res, next) => {
+    try {
 
-  try {
+      const { nickName } = req.params;
 
-    const { nickName } = req.params;
+      const user = await service.findOne(nickName)
 
-    const user = await service.findOne(nickName)
+      res.json(user)
+    } catch (error) {
 
-    res.json(user)
-  } catch (error) {
-
-    next(error)
-  }
+      next(error)
+    }
 
 });
 
