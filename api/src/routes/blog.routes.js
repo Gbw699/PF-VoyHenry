@@ -43,9 +43,9 @@ router.get('/:id', async (req, res, next) => {
 
     try {
 
-      const {userName, titulo, contenido, rating} = req.body;
+      const {userName, title, content, rating} = req.body;
 
-      const createdBlog = await service.create(userName,titulo, contenido, rating)
+      const createdBlog = await service.create(userName,title, content, rating)
 
       res.json(createdBlog)
     } catch (error) {
