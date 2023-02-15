@@ -1,8 +1,8 @@
 import React from "react";
 import PlansCardList from "../../recycle/PlanCardList/PlansCardList";
-import PlansSections from "../../recycle/PlansSections/PlansSections";
+// import PlansSections from "../../recycle/PlansSections/PlansSections";
 import ProfileInfo from "../../components/Home/ProfileInfo";
-import Footer from "../Footer/Footer";
+// import Footer from "../Footer/Footer";
 import BlogReview from "../../components/Home/BlogReview";
 // import { useDispatch } from "react-redux";
 // import { getTopPlans, getSelectionPlans } from "../../redux/slices/planSlice/thunk";
