@@ -1,3 +1,5 @@
+const { CustomError } = require('../middlewares/error.handler')
+
 function validatorHandler(schema, property) {
   return (req, res, next) => {
 
@@ -5,7 +7,7 @@ function validatorHandler(schema, property) {
     const { error } = schema.validate(data);
 
     if(error) {
-      next(error)
+      next(new CustomError(error.message, 400))
     }
     next()
 

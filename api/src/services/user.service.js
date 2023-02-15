@@ -1,4 +1,5 @@
 const usersModel = require('../libs/models/users.model');
+const { CustomError } = require('../middlewares/error.handler')
 
 class UsersService {
 
@@ -48,7 +49,7 @@ class UsersService {
     const user = await usersModel.findByPk(nickName)
 
     if (user === null) {
-      throw new Error("User not found")
+      throw new CustomError("User not found", 404)
     }
 
     return user
@@ -62,7 +63,7 @@ class UsersService {
     const user = await usersModel.findByPk(userNickName)
 
     if (user === null) {
-      throw new Error("User not found")
+      throw new CustomError("User not found", 404)
     }
 
     user.genre = genre || user.genre;
@@ -91,7 +92,7 @@ class UsersService {
     })
 
     if (deletedUser === 0){
-      throw new Error("User not found")
+      throw new CustomError("User not found", 404)
     } else {
       return {
         message: "deleted",
