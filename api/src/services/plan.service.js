@@ -109,6 +109,18 @@ class PlansService {
 
   }
 
+  /*Filters */
+
+  async filter (appliedFilter) {
+    
+    if (appliedFilter == 'En planeacion') {
+      
+    } else if (appliedFilter == 'En progreso'){
+      
+    } else if (appliedFilter == 'Finalizado'){
+      
+    }
+  }
 }
 
 module.exports = PlansService;

@@ -10,11 +10,20 @@ const service = new PlansService();
 
 router.get('/', async (req, res, next) => {
 
+  const appliedFilter = req.query
+
   try {
 
-    const plans = await service.find()
+    if (Object.keys(appliedFilter).length == 0){
+      const plans = await service.find()
 
-    res.json(plans)
+      res.json(plans)
+    }else {
+      const plans = await service.filter(appliedFilter)
+
+      res.json(plans)
+    }
+
   } catch (error) {
 
     next(error)
