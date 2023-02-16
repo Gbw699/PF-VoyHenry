@@ -5,8 +5,11 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import "semantic-ui-css/semantic.min.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getUser } from "../../redux/slices/userSlice/thunks";
 
 export default function FormLogIn() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -21,7 +24,15 @@ export default function FormLogIn() {
     }),
     // !! FALTA LÓGICA DE SI EXISTE QUE INGRESE Y SINO NO.
     onSubmit: (formData) => {
-      navigate("/home");
+      const user = [];
+      const userApi = dispatch(getUser(formik.values.email));
+      user.push(userApi);
+      if ("Existe") {
+        localStorage.setItem("login", true);
+        navigate("/home");
+      } else {
+        alert("No existe");
+      }
     },
   });
 
