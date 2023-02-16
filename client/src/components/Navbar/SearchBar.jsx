@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { getBlogsSearch } from "../../redux/slices/blogSlice/thunk";
 import { getPlansSearch } from "../../redux/slices/planSlice/thunk";
 import { useEffect, useState } from "react";
+import style from "./SearchBar.module.css";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -28,13 +29,15 @@ export default function SearchBar() {
   };
 
   return (
-    <div>
+    <div className={style.searchCont}>
       <input
         type="search"
         onChange={(event) => {
           setInput(event.target.value);
         }}
+        className={style.searchInput}
       />
+      <button type="submit" className={style.searchBtn}>Search</button>
     </div>
   );
 }
