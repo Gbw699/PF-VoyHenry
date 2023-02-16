@@ -9,6 +9,7 @@ const title = Joi.string().min(3).max(15)
 const summary = Joi.string().max(125)
 const description = Joi.string().min(3).max(255)
 const mainImage = Joi.string().uri()
+const images = Joi.array()
 const state = Joi.string().valid('En Planeacion', 'En progreso',  'Finalizado')
 const eventDate = Joi.date().greater(greaterDate);
 
@@ -35,9 +36,9 @@ const updateSchema = Joi.object({
   eventDate: eventDate
 })
 
-module.exports = { 
+module.exports = {
   createPlanSchema,
-  updateSchema, 
-  getPlanSchema 
+  updateSchema,
+  getPlanSchema
 }
 
