@@ -10,8 +10,6 @@ const service = new PlansService();
 
 router.get('/', async (req, res, next) => {
 
-  const appliedFilter = req.query
-
   try {
 
     const plans = await service.find(req.query)
