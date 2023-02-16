@@ -6,11 +6,8 @@ import * as Yup from "yup";
 import "semantic-ui-css/semantic.min.css";
 import { useNavigate } from "react-router-dom";
 import titleImg from "../../assets/voyHENRY_title(white).png";
-import { useDispatch } from "react-redux";
-import { getUser } from "../../redux/slices/userSlice/thunks";
 
 export default function FormLogIn() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -24,7 +21,9 @@ export default function FormLogIn() {
       password: Yup.string().required("La contraseña es obligatoria"),
     }),
     // !! FALTA LÓGICA DE SI EXISTE QUE INGRESE Y SINO NO.
-    onSubmit: (formData) => {},
+    onSubmit: (formData) => {
+      navigate("/home"); // fixed
+    },
   });
 
   const backHandler = () => {
