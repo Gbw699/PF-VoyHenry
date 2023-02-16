@@ -1,4 +1,5 @@
 const blogModel = require('../libs/models/blog-model.js');
+const { CustomError } = require('../middlewares/error.handler')
 
 
 class blogService {
@@ -45,7 +46,7 @@ class blogService {
     const blog = await blogModel.findByPk(id)
 
     if (blog === null) {
-      throw new Error("blog not found")
+      throw new CustomError("Blog not found", 404)
     }
 
     return blog
@@ -63,7 +64,7 @@ class blogService {
       }}
     )
     if (blog === null) {
-      throw new Error("Post not found")
+      throw new CustomError("Blog not found", 404)
     }
     blog.userName = userName || blog.userName;
     blog.title = title || blog.title;
@@ -87,7 +88,7 @@ class blogService {
     })
 
   if (deletedblog === 0){
-    throw new Error("blog not found")
+    throw new CustomError("Blog not found", 404)
   } else {
     return {
       message: "deleted",
