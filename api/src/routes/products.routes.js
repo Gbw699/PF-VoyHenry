@@ -78,7 +78,9 @@ router.patch('/:id', async (req, res, next) => {
 
 /* Delete product */
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id',
+validatorHandler(getProductSchema, 'params'),
+  async (req, res, next) => {
 
     try {
 
