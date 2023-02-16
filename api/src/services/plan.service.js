@@ -8,11 +8,42 @@ class PlansService {
 
   /* Find all Plans */
 
-  async find () {
-
-    const plans = await plansModel.findAll()
-    return {plans}
+  async find (query) {
   
+    /*Filters */
+    if (query.state == 'En planeacion') {
+      const plans = await plansModel.findAll({
+        where: {
+          state: 'En planeacion'
+        }
+      })
+
+      return {plans}
+
+    } else if (query.state == 'En progreso'){
+      const plans = await plansModel.findAll({
+        where: {
+          state: 'En progreso'
+        }
+      })
+
+      return {plans}
+
+    } else if (query.state == 'Finalizado'){
+      const plans = await plansModel.findAll({
+        where: {
+          state: 'Finalizado'
+        }
+      })
+
+      return {plans}
+
+    } else {
+
+      const plans = await plansModel.findAll()
+      return {plans}
+    }
+
   }
 
   /* Find one Plan */
@@ -107,40 +138,6 @@ class PlansService {
       }
     } 
 
-  }
-
-  /*Filters */
-
-  async filter (appliedFilter) {
-    
-    if (appliedFilter.state == 'En planeacion') {
-      const plans = await plansModel.findAll({
-        where: {
-          state: 'En planeacion'
-        }
-      })
-
-      return {plans}
-
-    } else if (appliedFilter.state == 'En progreso'){
-      const plans = await plansModel.findAll({
-        where: {
-          state: 'En progreso'
-        }
-      })
-
-      return {plans}
-
-    } else if (appliedFilter.state == 'Finalizado'){
-      const plans = await plansModel.findAll({
-        where: {
-          state: 'Finalizado'
-        }
-      })
-
-      return {plans}
-
-    }
   }
   
 }
