@@ -53,8 +53,8 @@ function App() {
           {/* <Route
             path="edit"
             element={<ProfileEdit />}
-          /> */}
         </Route>
+          /> */}
         <Route
           path="/marketplace"
           element={<MarketPlace />}

@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+
 
 export default function PlanCard(props) {
 
   return (
-    <>
-      <div>
+    <Card>
+      <CardContent>
         <img
           src={props.mainImage}
           alt={props.title}
@@ -12,15 +15,15 @@ export default function PlanCard(props) {
         <h1>{props.title}</h1>
         <p>{props.eventDate}</p>
         <p>Location?</p>
-      </div>
+      </CardContent>
       <Link>
-        <div>
+        <CardContent>
           <h1>{props.title}</h1>
           <p>{props.summary}</p>
           <p>{props.eventDate}</p>
           <p>Detail</p>
-        </div>
+        </CardContent>
       </Link>
-    </>
+    </Card>
   );
 }
