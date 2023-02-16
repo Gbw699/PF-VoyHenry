@@ -14,14 +14,9 @@ router.get('/', async (req, res, next) => {
 
   try {
 
-    if (Object.keys(appliedFilter).length == 0){
-      const plans = await service.find()
-      res.json(plans)
-    }else {
-      const plans = await service.filter(appliedFilter)
-      res.json(plans)
-    }
-
+    const plans = await service.find(req.query)
+    
+    res.json(plans)
   } catch (error) {
 
     next(error)
