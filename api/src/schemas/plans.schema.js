@@ -7,7 +7,7 @@ const greaterDate = `${currentDate.getFullYear() - 99}-${currentDate.getMonth() 
 
 const title = Joi.string().min(3).max(15)
 const summary = Joi.string().max(125)
-const description = Joi.string().min(3).max(15)
+const description = Joi.string().min(3).max(255)
 const mainImage = Joi.string().uri()
 const images = Joi.string().array()
 const state = Joi.string().valid('En Planeacion', 'En progreso',  'Finalizado')
