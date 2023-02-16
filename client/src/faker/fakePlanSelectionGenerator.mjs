@@ -2,8 +2,8 @@ import { faker } from "@faker-js/faker";
 import { promises as fs } from "fs";
 
 function generatePlans() {
-    let plans = [];
-    for (let id = 1; id <= 6; id++) {
+    let plansSelection = [];
+    for (let id = 1; id <= 8; id++) {
 
         const title = faker.lorem.sentence();
         const summary = faker.lorem.paragraph();
@@ -13,7 +13,7 @@ function generatePlans() {
         const eventDate = faker.date.past();
         const state = "Planing";
 
-        plans.push({
+        plansSelection.push({
             id: id,
             title,
             summary, 
@@ -24,9 +24,9 @@ function generatePlans() {
             state,
         });
     }
-    return { data: plans };
+    return { data: plansSelection };
 }
 
 const generatedData = generatePlans();
 
-fs.writeFile("plans.json", JSON.stringify(generatedData, null, "\t"));
+fs.writeFile("plansSelection.json", JSON.stringify(generatedData, null, "\t"));

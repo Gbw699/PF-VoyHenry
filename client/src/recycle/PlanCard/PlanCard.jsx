@@ -1,29 +1,21 @@
-import { Link } from "react-router-dom";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-
+import { ImageListItem, Typography } from "@mui/material";
 
 export default function PlanCard(props) {
 
   return (
-    <Card>
-      <CardContent>
-        <img
-          src={props.mainImage}
-          alt={props.title}
-        />
-        <h1>{props.title}</h1>
-        <p>{props.eventDate}</p>
-        <p>Location?</p>
-      </CardContent>
-      <Link>
-        <CardContent>
-          <h1>{props.title}</h1>
-          <p>{props.summary}</p>
-          <p>{props.eventDate}</p>
-          <p>Detail</p>
-        </CardContent>
-      </Link>
-    </Card>
+    <ImageListItem style={{ height: "200px", width: "100%" }} key={props.id}>
+      <img
+        src={`${props.mainImage}`}
+        alt={props.title}
+        loading="lazy"
+      />
+      <Typography>{props.title}</Typography>
+      <Typography>{props.eventDate}</Typography>
+      <Typography>Location?</Typography>
+      <Typography>{props.title}</Typography>
+      <Typography>{props.summary}</Typography>
+      <Typography>{props.eventDate}</Typography>
+      <Typography>Detail</Typography>
+    </ImageListItem>
   );
 }

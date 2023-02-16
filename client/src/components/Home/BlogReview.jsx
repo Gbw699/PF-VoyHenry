@@ -1,3 +1,4 @@
+import { Card, CardContent, Typography } from "@mui/material";
 import React from "react";
 import blogsData from "../../blogs";
 
@@ -7,21 +8,21 @@ export default function BlogReview() {
   const blog = blogsData.data[0];
 
   return (
-    <>
-    <div>
-      <p>
+    <Card>
+    <CardContent>
+      <Typography>
         Reseñas destacadas
-      </p>
-        <p>
-          {blog?.userName}
-        </p>
-        <p>
-          {blog?.title}
-        </p>
-        <p>
-          {blog?.content}
-        </p>
-    </div>
-    </>
+      </Typography>
+        <Typography>
+          Nombre: {blog?.userName}
+        </Typography>
+        <Typography>
+          Título: {blog?.title}
+        </Typography>
+        <Typography>
+          Contenido: {blog?.content}
+        </Typography>
+    </CardContent>
+    </Card>
   );
 }

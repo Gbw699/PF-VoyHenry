@@ -1,25 +1,21 @@
+import { ImageList } from "@mui/material";
 import React from "react";
 import plansData from "../../plans.json";
 import PlanCard from "../PlanCard/PlanCard";
-
 
 export default function PlansCardList() {
   // este componente dispatchea la action de traer los planes
   const plans = plansData.data;
 
   return (
-    <div>
-      {plans?.map((plan) => {
-        return (
-          <PlanCard
-            key={plan.id}
-            title={plan.title}
-            mainImage={plan.mainImage}
-            summary={plan.summary}
-            eventDate={plan.eventDate}
+    <ImageList sx={{ width: 700, height: 650 }} cols={3}>
+      {plans.map((plan) => (
+          <PlanCard key={plan.id}
+          mainImage={plan.mainImage}
+          title={plan.title}
           />
-        );
-      })}
-    </div>
+      ))}
+    </ImageList>
   );
 }
+
