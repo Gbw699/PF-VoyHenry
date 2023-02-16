@@ -61,7 +61,11 @@ function App() {
           element={<MarketPlace />}
         />
         <Route
-          path="/marketplace/shoppingCart"
+          path="/marketplace/:id"
+          element={<DetailMarketPlace />}
+        />
+        <Route
+          path="/shoppingCart"
           element={<ShoppingCart />}
         />
       </Routes>
