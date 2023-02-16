@@ -1,5 +1,7 @@
 const { Router } = require('express');
 const ProductsService = require('../services/products.service')
+const validatorHandler = require('../middlewares/validator.handler')
+const { getProductSchema } = require('../schemas/products.schema')
 
 const router = Router();
 const service = new ProductsService()
@@ -22,7 +24,9 @@ router.get('/', async (req, res, next) => {
 
 /* Get product by id */
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id',
+  validatorHandler(getProductSchema, 'params'),
+  async (req, res, next) => {
     try {
 
       const { id } = req.params;
@@ -74,7 +78,9 @@ router.patch('/:id', async (req, res, next) => {
 
 /* Delete product */
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id',
+validatorHandler(getProductSchema, 'params'),
+  async (req, res, next) => {
 
     try {
 
