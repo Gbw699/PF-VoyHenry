@@ -10,8 +10,11 @@ import SignUp from "./views/SignUp/SignUp";
 import MarketPlace from "./views/MarketPlace/MarketPlace";
 import Footer from "./views/Footer/Footer";
 import Profile from "./views/Profile/Profile";
+import DetailMarketPlace from "./views/DetailMarketPlace/DetailMarketPlace";
+import ShoppingCart from "./views/ShoppingCart/ShoppingCart";
+import Blog from "./views/Blog/Blog";
 
-axios.defaults.baseURL = "";
+axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   const location = useLocation();
@@ -37,21 +40,34 @@ function App() {
           path="/signUp"
           element={<SignUp />}
         />
-        {/* <Route
+        <Route
           path="/blog"
           element={<Blog />}
-        /> */}
+        /> 
         {/* <Route
-          path="/planes"
+          path="/plans"
           element={<Plans />}
         /> */}
         <Route
           path="/profile"
           element={<Profile />}
-        />
+        >
+          {/* <Route
+            path="edit"
+            element={<ProfileEdit />}
+          /> */}
+        </Route>
         <Route
           path="/marketplace"
           element={<MarketPlace />}
+        />
+        <Route
+          path="/marketplace/:id"
+          element={<DetailMarketPlace />}
+        />
+        <Route
+          path="/shoppingCart"
+          element={<ShoppingCart />}
         />
       </Routes>
       {location.pathname !== "/" &&
