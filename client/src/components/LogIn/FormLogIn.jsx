@@ -22,7 +22,7 @@ export default function FormLogIn() {
     }),
     // !! FALTA LÓGICA DE SI EXISTE QUE INGRESE Y SINO NO.
     onSubmit: (formData) => {
-      navigate("/home");
+      navigate("/home"); // fixed
     },
   });
 
