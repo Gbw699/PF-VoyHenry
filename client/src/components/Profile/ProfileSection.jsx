@@ -6,79 +6,104 @@ import ProfileLatestAssistedPlans from "./ProfileLatestAssistedPlans";
 import ProfileLatestReviews from "./ProfileLatestReviews";
 import { ProfileMyFriendsActivity } from "./ProfileMyFriendsActivity";
 import ProfileMyPlans from "./ProfileMyPlans";
+import profileData from "../../profileData.json";
 // import style from './ProfileSection.module.css'
 
 export default function ProfileSection() {
   return (
     <div>
       <div>
-        {/* //!! Empieza .map */}
-        <div key={element.id}>
-          <ProfileInfo
-            image={element.image}
-            name={element.name}
-            following={element.following}
-            followers={element.followers}
-            assistedPlans={element.assistedPlans}
-            plansCreated={element.plansCreated}
-            reviewsCreated={element.reviewsCreated}
-          />
-        </div>
-        {/* //!! termina .map */}
+        {profileData.data.map((element) => (
+          <div key={element.id}>
+            <ProfileInfo
+              image={element.image}
+              name={element.name}
+              nationality={element.nationality}
+              following={element.following}
+              followers={element.followers}
+              assistedPlans={element.assistedPlans}
+              plansCreated={element.plansCreated}
+              reviewsCreated={element.reviewsCreated}
+            />
+          </div>
+        ))}
       </div>
       <div>
         <div>
           <h6>Actividad de mis amigos</h6>
-          {/* //!! Empieza .map */}
-          <Link to={element.myFriendsActivityId}>
-            <ProfileMyFriendsActivity
-              myFriendsActivityImg={element.myFriendsActivityImg}
-              myFriendsActivityName={element.myFriendsActivityName}
-            />
-          </Link>
-          {/* //!! termina .map */}
+          {profileData.data.map((element) =>
+            element.myFriends.map((element2) => (
+              <Link
+                key={element2.id}
+                to={`/plans/${element2.id}`}
+              >
+                <ProfileMyFriendsActivity
+                  myFriendsActivityImg={element2.latestAssistedPlansImg}
+                  myFriendsActivityName={element2.latestAssistedPlansName}
+                />
+              </Link>
+            ))
+          )}
         </div>
         <div>
           <div>
             <h6>Sobre mí</h6>
-            {/* //!! Empieza .map */}
-            <ProfileAboutMe aboutMe={element.aboutMe} />
-            {/* //!! termina .map */}
+            {profileData.data.map((element, index) => (
+              <ProfileAboutMe
+                key={index}
+                aboutMe={element.profileAboutMe}
+              />
+            ))}
           </div>
           <div>
             <h6>Últimos planes asistidos</h6>
-            {/* //!! Empieza .map */}
-            <Link to={element.latestAssistedPlansId}>
-              <ProfileLatestAssistedPlans
-                latestAssistedPlansImg={element.latestAssistedPlansImg}
-                latestAssistedPlansName={element.latestAssistedPlansName}
-              />
-            </Link>
-            {/* //!! termina .map */}
+            {profileData.data.map((element) =>
+              element.latestAssistedPlans.map((element2) => (
+                <Link
+                  key={element2.id}
+                  to={`/plans/${element2.id}`}
+                >
+                  <ProfileLatestAssistedPlans
+                    latestAssistedPlansImg={element2.latestAssistedPlansImg}
+                    latestAssistedPlansName={element2.latestAssistedPlansName}
+                  />
+                </Link>
+              ))
+            )}
           </div>
           <div>
             <h6>Mis planes</h6>
-            {/* //!! Empieza .map */}
-            <Link to={element.myPlansId}>
-              <ProfileMyPlans
-                myPlansImage={element.myPlansImage}
-                myPlansName={element.myPlansName}
-              />
-            </Link>
-            {/* //!! termina .map */}
+            {profileData.data.map((element) =>
+              element.latestAssistedPlans.map((element2) => (
+                <Link
+                  key={element2.id}
+                  to={`/plans/${element2.id}`}
+                >
+                  <ProfileMyPlans
+                    myPlansImage={element2.latestAssistedPlansImg}
+                    myPlansName={element2.latestAssistedPlansName}
+                  />
+                </Link>
+              ))
+            )}
           </div>
           <div>
             <h6>Últimas reseñas</h6>
-            {/* //!! Empieza .map */}
-            <Link to={element.latestReviewsId}>
-              <ProfileLatestReviews
-                latestReviewsImg={element.latestReviewsImg}
-                latestReviewsName={element.latestReviewsName}
-                latestReviewsDescription={element.latestReviewsDescription}
-                latestReviewsAssessment={element.latestReviewsAssessment}
-              />
-            </Link>
-            {/* //!! termina .map */}
+            {profileData.data.map((element) =>
+              element.latestReview.map((element2) => (
+                <Link
+                  key={element2.id}
+                  to={`/plans/${element2.id}`}
+                >
+                  <ProfileLatestReviews
+                    latestReviewsImg={element2.latestReviewsImg}
+                    latestReviewsName={element2.latestReviewsName}
+                    latestReviewsDescription={element2.latestReviewsDescription}
+                    latestReviewsAssessment={element2.latestReviewsAssessment}
+                  />
+                </Link>
+              ))
+            )}
           </div>
         </div>
       </div>
