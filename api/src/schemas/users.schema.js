@@ -10,6 +10,8 @@ const lessDate = `${currentDate.getFullYear() - 18}-${currentDate.getMonth() + 1
 
 const nickName = Joi.string().alphanum().min(3).max(15)
 const email = Joi.string().email()
+const password = Joi.string().min(8);
+const role = Joi.string.min(3);
 const genre = Joi.string().valid('Femenino', 'Masculino', 'No binario', 'Prefiero no decirlo', 'Otro');
 const about = Joi.string().max(255)
 const dateOfBirth = Joi.date().greater(greaterDate).less(lessDate);
@@ -19,8 +21,10 @@ const image = Joi.string().uri()
 
 const createUserSchema = Joi.object({
   nickName: nickName.required(),
+  password: password.required(),
   email: email.required(),
   genre: genre.required(),
+  role: role,
   about: about,
   dateOfBirth: dateOfBirth.required(),
   firstName: firstName.required(),
@@ -30,9 +34,11 @@ const createUserSchema = Joi.object({
 
 const updateSchema = Joi.object({
   nickName: nickName,
+  password: password,
   email: email,
   genre: genre,
   about: about,
+  role: role,
   dateOfBirth: dateOfBirth,
   firstName: firstName,
   lastName: lastName,
