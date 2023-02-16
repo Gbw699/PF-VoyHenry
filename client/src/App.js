@@ -10,6 +10,7 @@ import SignUp from "./views/SignUp/SignUp";
 import MarketPlace from "./views/MarketPlace/MarketPlace";
 import Footer from "./views/Footer/Footer";
 import Profile from "./views/Profile/Profile";
+import Blog from "./views/Blog/Blog";
 
 axios.defaults.baseURL = "";
 
@@ -37,10 +38,10 @@ function App() {
           path="/signUp"
           element={<SignUp />}
         />
-        {/* <Route
+        <Route
           path="/blog"
           element={<Blog />}
-        /> */}
+        /> 
         {/* <Route
           path="/plans"
           element={<Plans />}
