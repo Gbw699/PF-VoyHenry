@@ -43,20 +43,21 @@ function App() {
           element={<Blog />}
         /> */}
         {/* <Route
-          path="/planes"
+          path="/plans"
           element={<Plans />}
         /> */}
         <Route
           path="/profile"
           element={<Profile />}
-        />
+        >
+          {/* <Route
+            path="edit"
+            element={<ProfileEdit />}
+          /> */}
+        </Route>
         <Route
           path="/marketplace"
           element={<MarketPlace />}
-        />
-        <Route
-          path="/marketplace/:id"
-          element={<DetailMarketPlace />}
         />
       </Routes>
       {location.pathname !== "/" &&
