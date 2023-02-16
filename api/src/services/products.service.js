@@ -28,14 +28,31 @@ class ProductsService {
 
   }
 
-  /* find all products */
+  /* find all products || Filter*/
 
-  async find () {
+  async find (query) {
+
+
+  if (query.price == 'ascendente') {
+    const products = await productModel.findAll({
+      order: [['price', 'ASC']]
+    })
+
+    return {products}
+  } else if (query.price == 'descendente') {
+
+    const products = await productModel.findAll({
+      order: [['price', 'DESC']]
+    })
+
+    return {products}
+  } else {
 
     const products = await productModel.findAll()
     return {products}
+  } 
 
-  }
+  }        
 
   /* find one product */
 
