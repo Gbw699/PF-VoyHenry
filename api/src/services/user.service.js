@@ -1,5 +1,6 @@
 const usersModel = require('../libs/models/users.model');
 const { CustomError } = require('../middlewares/error.handler')
+const bcrypt = require('bcrypt')
 
 class UsersService {
 
@@ -14,8 +15,10 @@ class UsersService {
     dateOfBirth = new Date(dateOfBirth);
     dateOfBirth.setHours(dateOfBirth.getHours() + Math.abs(dateOfBirth.getTimezoneOffset() / 60));
 
+    const hash = await bcrypt.hash(password, 10)
+
     const newUser = await usersModel.create({
-      password: password,
+      password: hash,
       role: role,
       nickName: nickName,
       email: email,
@@ -26,6 +29,8 @@ class UsersService {
       dateOfBirth: new Date(dateOfBirth),
       image: image
     })
+
+    delete newUser.dataValues.password;
 
     return {
       message: "Create",
@@ -39,7 +44,10 @@ class UsersService {
 
   async find () {
 
-    const users = await usersModel.findAll()
+    const users = await usersModel.findAll({
+      attributes: [ "genre", "email", "about", "nickName", "image", "firstName", "lastName", "dateOfBirth", "role", "createdAt", "updatedAt" ]
+    })
+
     return {users}
 
   }
@@ -48,7 +56,9 @@ class UsersService {
 
   async findOne (nickName) {
 
-    const user = await usersModel.findByPk(nickName)
+    const user = await usersModel.findByPk(nickName, {
+      attributes: [ "genre", "email", "about", "nickName", "image", "firstName", "lastName", "dateOfBirth", "role", "createdAt", "updatedAt" ]
+    })
 
     if (user === null) {
       throw new CustomError("User not found", 404)
@@ -68,7 +78,9 @@ class UsersService {
       throw new CustomError("User not found", 404)
     }
 
-    user.password = password || user.password;
+    const hash = password && await bcrypt.hash(password, 10)
+
+    user.password = hash || user.password;
     user.role = role || user.role;
     user.genre = genre || user.genre;
     user.nickName = nickName || user.nickName;
@@ -80,6 +92,8 @@ class UsersService {
     user.image = image || user.image;
 
     await user.save()
+
+    delete user.dataValues.password;
 
     return user;
 
