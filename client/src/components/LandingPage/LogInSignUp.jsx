@@ -16,7 +16,11 @@ export default function LogInSignUp() {
   return (
     <div className={style.landing}>
       <div className={style.blackBg} />
-      <img src={titleImg} className={style.logo} alt="voyHENRY logo" />
+      <img
+        src={titleImg}
+        className={style.logo}
+        alt="voyHENRY logo"
+      />
       <div className={style.buttons}>
         <button
           className={style.loginSignup}

@@ -5,6 +5,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import "semantic-ui-css/semantic.min.css";
 import { useNavigate } from "react-router-dom";
+import titleImg from "../../assets/voyHENRY_title(white).png";
+import style from "./FormLogIn.module.css";
 
 export default function FormLogIn() {
   const navigate = useNavigate();
@@ -30,21 +32,17 @@ export default function FormLogIn() {
   };
 
   return (
-    <Container
-      style={{
-        textAlign: "center",
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-        justifyContent: "center",
-        height: "100vh",
-      }}
-    >
+    <div>
       <h1>Iniciar sesión</h1>
       <Form
         onSubmit={formik.handleSubmit}
         style={{ width: "30%" }}
       >
+        <img
+          src={titleImg}
+          className={style.logo}
+          alt="voyHENRY logo"
+        />
         <Form.Input
           type="text"
           placeholder="E-mail"
@@ -64,6 +62,6 @@ export default function FormLogIn() {
         <Button type="submit">Iniciar sesión</Button>
         <Button onClick={backHandler}>Volver</Button>
       </Form>
-    </Container>
+    </div>
   );
 }
