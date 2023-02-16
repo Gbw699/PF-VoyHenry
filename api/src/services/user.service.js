@@ -68,6 +68,20 @@ class UsersService {
 
   }
 
+  async findByEmail (email) {
+
+    const user = await usersModel.findOne({
+      where: { email }
+    })
+
+    if (user === null) {
+      throw new CustomError("User not found", 404)
+    }
+
+    return user
+
+  }
+
   /* Update user */
 
   async update (userNickName, { genre, email, nickName, about, image, firstName, lastName, dateOfBirth , password, role}) {
