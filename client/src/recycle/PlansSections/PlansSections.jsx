@@ -1,21 +1,20 @@
 import * as React from "react";
-import plansSelectionData from "../../plansSelection.json";
-import { ImageList, ImageListItem } from "@mui/material";
+import CurrentPlans from "../FilteredPlans/CurrentPlans";
+import NextPlans from "../FilteredPlans/NextPlans";
+import CompletedPlans from "../FilteredPlans/CompletedPlans";
+import OnlinePlans from "../FilteredPlans/OnlinePlans";
+import { Container } from "semantic-ui-react";
 
 export default function PlansSections() {
-    const plans = plansSelectionData.data;
     return (
-        <ImageList sx={{ width: 300, height: 500 }} cols={2}>
-            {plans.map((plan) => (
-                <ImageListItem key={plan.mainImage}>
-                    <img
-                        src={`${plan.mainImage}`}
-                        alt={plan.title}
-                        loading="lazy"
-                    />
-                </ImageListItem>
-            ))}
-        </ImageList>
+        <Container
+        style={{width: "300px"}}
+        >
+            <NextPlans />
+            <CurrentPlans />
+            <CompletedPlans />
+            <OnlinePlans />
+        </Container>
     );
 }
 

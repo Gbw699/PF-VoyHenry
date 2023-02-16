@@ -6,6 +6,8 @@ import * as Yup from "yup";
 import "semantic-ui-css/semantic.min.css";
 import { useNavigate } from "react-router-dom";
 import titleImg from "../../assets/voyHENRY_title(white).png";
+import titleImg from "../../assets/voyHENRY_title(white).png";
+import style from "./FormLogIn.module.css";
 
 export default function FormLogIn() {
   const navigate = useNavigate();
