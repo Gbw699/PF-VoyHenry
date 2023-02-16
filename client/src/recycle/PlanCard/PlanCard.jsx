@@ -1,13 +1,13 @@
-import { ImageListItem, Typography } from "@mui/material";
-
+import { CardMedia, Typography } from "@mui/material";
+import React from "react";
+import { CardContent } from "semantic-ui-react";
 export default function PlanCard(props) {
-
   return (
-    <ImageListItem style={{ height: "200px", width: "100%" }} key={props.id}>
-      <img
-        src={`${props.mainImage}`}
+    <CardContent>
+      <CardMedia
+        component="img"
         alt={props.title}
-        loading="lazy"
+        src={props.mainImage}
       />
       <Typography>{props.title}</Typography>
       <Typography>{props.eventDate}</Typography>
@@ -16,6 +16,6 @@ export default function PlanCard(props) {
       <Typography>{props.summary}</Typography>
       <Typography>{props.eventDate}</Typography>
       <Typography>Detail</Typography>
-    </ImageListItem>
+    </CardContent>
   );
 }
