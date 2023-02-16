@@ -1,11 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ShoppingCartCard from "./ShoppingCartCard";
+import productCartData from "../../plans.json";
 // import style from "./ShoppingCartSection.module.css";
 
 export default function ShoppingCartSection() {
   const navigate = useNavigate();
-  const productsShoppingCart = localStorage.getItem("shoppingCart");
+  // const productsShoppingCart = localStorage.getItem("shoppingCart");
   const backHandler = () => {
     navigate("/home");
   };
@@ -13,14 +14,14 @@ export default function ShoppingCartSection() {
     <div>
       <div>
         <h4>Carrito</h4>
-        {productsShoppingCart.localeCompare((element) => (
+        {productCartData.data.map((element) => (
           <div key={element.id}>
             <ShoppingCartCard
               image={element.image}
               title={element.title}
-              unitPrice={element.unitPrice}
-              totalPrice={element.totalPrice}
-              quantity={element.quantity}
+              unitPrice="100"
+              totalPrice="200"
+              quantity="2"
             />
           </div>
         ))}

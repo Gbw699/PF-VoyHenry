@@ -4,6 +4,7 @@ import React from "react";
 export default function ProfileInfo({
   image,
   name,
+  nationality,
   following,
   followers,
   assistedPlans,
@@ -18,6 +19,7 @@ export default function ProfileInfo({
           alt={name}
         />
         <p>{name}</p>
+        <p>{nationality}</p>
       </div>
       <div>
         <div>

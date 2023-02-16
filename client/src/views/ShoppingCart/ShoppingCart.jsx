@@ -3,6 +3,5 @@ import ShoppingCartSection from "../../components/ShoppingCart/ShoppingCartSecti
 // import style from "./ShoppingCart.module.css";
 
 export default function ShoppingCart() {
-  return;
-  /* <ShoppingCartSection /> */
+  return <ShoppingCartSection />;
 }
