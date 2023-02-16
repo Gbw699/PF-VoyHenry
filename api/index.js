@@ -20,7 +20,7 @@ async function main() {
 
   try {
 
-      await sequelize.sync({ force: false });
+      await sequelize.sync({ force: true });
       console.log('Connection has been established successfully.');
       app.listen(PORT, () => {
       console.log(`Server started on port ${PORT}`)

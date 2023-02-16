@@ -113,14 +113,36 @@ class PlansService {
 
   async filter (appliedFilter) {
     
-    if (appliedFilter == 'En planeacion') {
-      
-    } else if (appliedFilter == 'En progreso'){
-      
-    } else if (appliedFilter == 'Finalizado'){
-      
+    if (appliedFilter.state == 'En planeacion') {
+      const plans = await plansModel.findAll({
+        where: {
+          state: 'En planeacion'
+        }
+      })
+
+      return {plans}
+
+    } else if (appliedFilter.state == 'En progreso'){
+      const plans = await plansModel.findAll({
+        where: {
+          state: 'En progreso'
+        }
+      })
+
+      return {plans}
+
+    } else if (appliedFilter.state == 'Finalizado'){
+      const plans = await plansModel.findAll({
+        where: {
+          state: 'Finalizado'
+        }
+      })
+
+      return {plans}
+
     }
   }
+  
 }
 
 module.exports = PlansService;

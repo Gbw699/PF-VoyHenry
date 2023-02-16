@@ -16,11 +16,9 @@ router.get('/', async (req, res, next) => {
 
     if (Object.keys(appliedFilter).length == 0){
       const plans = await service.find()
-
       res.json(plans)
     }else {
       const plans = await service.filter(appliedFilter)
-
       res.json(plans)
     }
 
