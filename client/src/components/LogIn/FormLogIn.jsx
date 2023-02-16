@@ -1,10 +1,11 @@
 import React from "react";
-// import style from "./FormLogIn.module.css";
-import { Container, Form, Button } from "semantic-ui-react";
+import style from "./FormLogIn.module.css";
+import { Form, Button } from "semantic-ui-react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "semantic-ui-css/semantic.min.css";
 import { useNavigate } from "react-router-dom";
+import titleImg from "../../assets/voyHENRY_title(white).png";
 
 export default function FormLogIn() {
   const navigate = useNavigate();
@@ -30,40 +31,55 @@ export default function FormLogIn() {
   };
 
   return (
-    <Container
-      style={{
-        textAlign: "center",
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-        justifyContent: "center",
-        height: "100vh",
-      }}
-    >
-      <h1>Iniciar sesión</h1>
-      <Form
-        onSubmit={formik.handleSubmit}
-        style={{ width: "30%" }}
-      >
-        <Form.Input
-          type="text"
-          placeholder="E-mail"
-          name="email"
-          onChange={formik.handleChange}
-          error={formik.errors.email}
-          value={formik.values.email}
-        />
-        <Form.Input
-          type="password"
-          placeholder="Contraseña"
-          name="password"
-          onChange={formik.handleChange}
-          error={formik.errors.password}
-          value={formik.values.password}
-        />
-        <Button type="submit">Iniciar sesión</Button>
-        <Button onClick={backHandler}>Volver</Button>
-      </Form>
-    </Container>
+    <div className={style.landing}>
+      <img src={titleImg} className={style.logo} alt="voyHENRY logo" />
+      <div className={style.container}>
+        <div className={style.formContainer}>
+          <h1 className={style.formTitle}>INICIAR SESIÓN</h1>
+          <Form
+            onSubmit={formik.handleSubmit}
+            style={{ width: "80%" }}
+          >
+            <div>
+              <h3 className={style.inputTitle}>E-mail</h3>
+              <Form.Input
+                type="text"
+                placeholder="E-mail"
+                name="email"
+                onChange={formik.handleChange}
+                error={formik.errors.email}
+                value={formik.values.email}
+              />
+              <h3 className={style.inputTitle}>Contraseña</h3>
+              <Form.Input
+                type="password"
+                placeholder="Contraseña"
+                name="password"
+                onChange={formik.handleChange}
+                error={formik.errors.password}
+                value={formik.values.password}
+              />
+            </div>
+            <div className={style.buttons}>
+              <Button 
+                type="submit"
+                style={{ 
+                  backgroundColor: "#FFFF01", 
+                  color: "#707070"
+                }}
+              >
+                Iniciar sesión
+              </Button>
+              <Button 
+                onClick={backHandler}
+                style={{ backgroundColor: "#DBDBDB", color: "#707070" }}
+              >
+                Volver
+              </Button>
+            </div>
+          </Form>
+        </div>
+      </div>
+    </div>
   );
 }
