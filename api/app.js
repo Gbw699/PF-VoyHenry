@@ -1,6 +1,6 @@
 const express = require('express')
 const morgan = require('morgan')
-const {errorHandler } = require('./src/middlewares/error.handler')
+const { errorHandler } = require('./src/middlewares/error.handler')
 const routesApi = require('./src/routes/routes')
 const app = express();
 
