@@ -15,12 +15,18 @@ export default function ProfileCard() {
     }
   }, [user]);
 
-  return <div>
-    <img src={user.image} alt="img" />
-    <h1>{user.nickName}</h1>
-    <h4>Nacionalidad</h4>
-    <p>Siguiendo</p><span>300</span>
-    <p>Seguidores</p><span>123</span>
-
-  </div>;
+  return (
+    <div>
+      <img
+        src={user.image}
+        alt="img"
+      />
+      <h1>{user.nickName}</h1>
+      <h4>Nacionalidad</h4>
+      <p>Siguiendo</p>
+      <span>300</span>
+      <p>Seguidores</p>
+      <span>123</span>
+    </div>
+  );
 }
