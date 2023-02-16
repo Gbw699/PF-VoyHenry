@@ -3,5 +3,5 @@ export default function BlogsReviews() {
         <div>
             
         </div>
-    )
+    );
 }
