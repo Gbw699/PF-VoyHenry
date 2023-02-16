@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../database/database')
 
-const plans = sequelize.define('plans', {
+const products = sequelize.define('products', {
 
   id: {
     type: DataTypes.INTEGER,
@@ -9,14 +9,14 @@ const plans = sequelize.define('plans', {
     autoIncrement: true
   },
   title: {
-    type: DataTypes.STRING(50),
+    type: DataTypes.STRING(55),
     allowNull: false
   },
-  summary: {
-    type: DataTypes.STRING(125),
+  price: {
+    type: DataTypes.INTEGER,
     allowNull: false
   },
-  description: {
+  detail: {
     type: DataTypes.STRING(255),
     allowNull: false
   },
@@ -27,21 +27,11 @@ const plans = sequelize.define('plans', {
       isUrl: true
     }
   },
-  images : {
-    type: DataTypes.ARRAY(DataTypes.TEXT),
-  },
-  eventDate: {
-    type: DataTypes.DATEONLY,
+  availability: {
+    type: DataTypes.BOOLEAN,
     allowNull: false
-  },
-  state: {
-    type: DataTypes.STRING(25),
-    allowNull: false,
-    validate: {
-      isIn: [['En planeacion', 'En progreso',  'Finalizado']]
-    }
   }
 
 })
 
-module.exports = plans;
+module.exports = products;

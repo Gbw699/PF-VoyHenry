@@ -1,5 +1,8 @@
 const { Router } = require('express');
 const UsersBlog = require('../services/blog.service')
+const validatorHandler = require('../middlewares/validator.handler')
+const { createBlogSchema, updateSchema, getBlogSchema } = require('../schemas/blog.schema')
+
 const router = Router();
 const service = new UsersBlog()
 
@@ -21,7 +24,9 @@ router.get('/', async (req, res, next) => {
 
   /* Find One Blog */
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id',
+validatorHandler(getBlogSchema, 'params'),
+async (req, res, next) => {
 
   try {
 
@@ -39,7 +44,9 @@ router.get('/:id', async (req, res, next) => {
 
   /* Create new Blog */
 
-  router.post('/', async (req, res, next) => {
+  router.post('/',
+  validatorHandler(createBlogSchema, "body"),
+  async (req, res, next) => {
 
     try {
 
@@ -57,7 +64,10 @@ router.get('/:id', async (req, res, next) => {
 
     /* Update Blog */
 
-router.patch('/:id', async (req, res, next) => {
+router.patch('/:id',
+validatorHandler(getBlogSchema, 'params'),
+validatorHandler(updateSchema, "body"),
+async (req, res, next) => {
 
   try {
 
@@ -76,13 +86,15 @@ router.patch('/:id', async (req, res, next) => {
 
   /* Delete Blog */
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id',
+validatorHandler(getBlogSchema, 'params'),
+async (req, res, next) => {
 
   try {
 
     const { id } = req.params
 
-    const deletedBlog = service.delete(id)
+    const deletedBlog = await service.delete(id)
 
     res.json(deletedBlog)
   } catch (error) {

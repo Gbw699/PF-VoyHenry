@@ -10,6 +10,8 @@ import SignUp from "./views/SignUp/SignUp";
 import MarketPlace from "./views/MarketPlace/MarketPlace";
 import Footer from "./views/Footer/Footer";
 import Profile from "./views/Profile/Profile";
+import DetailMarketPlace from "./views/DetailMarketPlace/DetailMarketPlace";
+import ShoppingCart from "./views/ShoppingCart/ShoppingCart";
 import Blog from "./views/Blog/Blog";
 
 axios.defaults.baseURL = "";
@@ -58,16 +60,15 @@ function App() {
         <Route
           path="/marketplace"
           element={<MarketPlace />}
-        >
-          {/* <Route
-            path="shoppingcart"
-            element={<ShoppingCart />}
-          /> */}
-        </Route>
-        {/* <Route
-          path="/configuration"
-          element={<Configutration />}
-        /> */}
+        />
+        <Route
+          path="/marketplace/:id"
+          element={<DetailMarketPlace />}
+        />
+        <Route
+          path="/shoppingCart"
+          element={<ShoppingCart />}
+        />
       </Routes>
       {location.pathname !== "/" &&
         location.pathname !== "/signUp" &&
