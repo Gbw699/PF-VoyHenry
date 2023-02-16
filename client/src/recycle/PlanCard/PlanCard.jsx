@@ -1,25 +1,21 @@
-import { Link } from "react-router-dom";
+import { ImageListItem, Typography } from "@mui/material";
 
-export default function PlanCard() {
+export default function PlanCard(props) {
+
   return (
-    <>
-      {/* lado A */}
-      <div>
-        <img
-          src="https://via.placeholder.com/150"
-          alt=""
-        />
-        <h1>Title</h1>
-      </div>
-      {/* lado B */}
-      <Link>
-        <div>
-          <h1>Title</h1>
-          <h2>Location</h2>
-          <p>Description</p>
-          <p>Detail</p>
-        </div>
-      </Link>
-    </>
+    <ImageListItem style={{ height: "200px", width: "100%" }} key={props.id}>
+      <img
+        src={`${props.mainImage}`}
+        alt={props.title}
+        loading="lazy"
+      />
+      <Typography>{props.title}</Typography>
+      <Typography>{props.eventDate}</Typography>
+      <Typography>Location?</Typography>
+      <Typography>{props.title}</Typography>
+      <Typography>{props.summary}</Typography>
+      <Typography>{props.eventDate}</Typography>
+      <Typography>Detail</Typography>
+    </ImageListItem>
   );
 }

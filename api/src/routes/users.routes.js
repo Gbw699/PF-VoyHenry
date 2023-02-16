@@ -1,5 +1,7 @@
 const { Router } = require('express');
 const UsersService = require('../services/user.service')
+const validatorHandler = require('../middlewares/validator.handler')
+const { createUserSchema, updateSchema, getUserSchema } = require('../schemas/users.schema')
 
 const router = Router();
 const service = new UsersService()
@@ -22,73 +24,81 @@ router.get('/', async (req, res, next) => {
 
 /* Get user by nickName */
 
-router.get('/:nickName', async (req, res, next) => {
+router.get('/:nickName',
+  validatorHandler(getUserSchema, 'params'),
+  async (req, res, next) => {
+    try {
 
-  try {
+      const { nickName } = req.params;
 
-    const { nickName } = req.params;
+      const user = await service.findOne(nickName)
 
-    const user = await service.findOne(nickName)
+      res.json(user)
+    } catch (error) {
 
-    res.json(user)
-  } catch (error) {
-
-    next(error)
-  }
+      next(error)
+    }
 
 });
 
 /* Create new user */
 
-router.post('/', async (req, res, next) => {
+router.post('/',
+  validatorHandler(createUserSchema, "body"),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const body = req.body;
+      const body = req.body;
 
-    const createdUser = await service.create(body)
+      const createdUser = await service.create(body)
 
-    res.json(createdUser)
-  } catch (error) {
+      res.json(createdUser)
+    } catch (error) {
 
-    next(error)
-  }
+      next(error)
+    }
 
 });
 
 /* update user info */
 
-router.patch('/:userNickName', async (req, res, next) => {
+router.patch('/:nickName',
+  validatorHandler(getUserSchema, 'params'),
+  validatorHandler(updateSchema, "body"),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const { userNickName } = req.params
-    const body = req.body;
+      const { nickName } = req.params
+      const body = req.body;
 
-    const updatedUser = await service.update(userNickName, body)
+      const updatedUser = await service.update(nickName, body)
 
-    res.json(updatedUser)
-  } catch (error) {
-    next(error)
-  }
+      res.json(updatedUser)
+    } catch (error) {
+      next(error)
+    }
 
 });
 
 /* Delete user */
 
-router.delete('/:userNickName', async (req, res, next) => {
+router.delete('/:nickName',
+  validatorHandler(getUserSchema, 'params'),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const { userNickName } = req.params
+      const { nickName } = req.params
 
-    const deletedUser = await service.delete(userNickName)
+      const deletedUser = await service.delete(nickName)
 
-    res.json(deletedUser)
-  } catch (error) {
+      res.json(deletedUser)
+    } catch (error) {
 
-    next(error)
-  }
+      next(error)
+    }
 
 });
 
