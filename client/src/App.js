@@ -12,8 +12,9 @@ import Footer from "./views/Footer/Footer";
 import Profile from "./views/Profile/Profile";
 import DetailMarketPlace from "./views/DetailMarketPlace/DetailMarketPlace";
 import ShoppingCart from "./views/ShoppingCart/ShoppingCart";
+import Blog from "./views/Blog/Blog";
 
-axios.defaults.baseURL = "";
+axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   const location = useLocation();
@@ -39,10 +40,10 @@ function App() {
           path="/signUp"
           element={<SignUp />}
         />
-        {/* <Route
+        <Route
           path="/blog"
           element={<Blog />}
-        /> */}
+        /> 
         {/* <Route
           path="/plans"
           element={<Plans />}
