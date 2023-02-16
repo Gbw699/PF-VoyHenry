@@ -36,7 +36,10 @@ const plans = sequelize.define('plans', {
   },
   state: {
     type: DataTypes.STRING(25),
-    allowNull: false
+    allowNull: false,
+    validate: {
+      isIn: [['En planeacion', 'En progreso',  'Finalizado']]
+    }
   }
 
 })
