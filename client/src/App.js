@@ -13,8 +13,7 @@ import Profile from "./views/Profile/Profile";
 import DetailMarketPlace from "./views/DetailMarketPlace/DetailMarketPlace";
 import ShoppingCart from "./views/ShoppingCart/ShoppingCart";
 import Blog from "./views/Blog/Blog";
-import Plan from "./views/Plan/Plan
-git ";
+import Plan from "./views/Plan/Plan";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 
