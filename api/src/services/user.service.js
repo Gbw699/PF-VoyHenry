@@ -9,12 +9,14 @@ class UsersService {
 
   /* Create user */
 
-  async create ({ genre, email, about, nickName, image, firstName, lastName, dateOfBirth }) {
+  async create ({ genre, email, about, nickName, image, firstName, lastName, dateOfBirth, password, role }) {
 
     dateOfBirth = new Date(dateOfBirth);
     dateOfBirth.setHours(dateOfBirth.getHours() + Math.abs(dateOfBirth.getTimezoneOffset() / 60));
 
     const newUser = await usersModel.create({
+      password: password,
+      role: role,
       nickName: nickName,
       email: email,
       about: about,
@@ -58,7 +60,7 @@ class UsersService {
 
   /* Update user */
 
-  async update (userNickName, { genre, email, nickName, about, image, firstName, lastName, dateOfBirth }) {
+  async update (userNickName, { genre, email, nickName, about, image, firstName, lastName, dateOfBirth , password, role}) {
 
     const user = await usersModel.findByPk(userNickName)
 
@@ -66,6 +68,8 @@ class UsersService {
       throw new CustomError("User not found", 404)
     }
 
+    user.password = password || user.password;
+    user.role = role || user.role;
     user.genre = genre || user.genre;
     user.nickName = nickName || user.nickName;
     user.email = email || user.email;
