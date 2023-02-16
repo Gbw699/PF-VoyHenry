@@ -6,11 +6,10 @@ class PlansService {
 
   }
 
-  /* Find all Plans */
+  /* Find all Plans || Filter*/
 
   async find (query) {
   
-    /*Filters */
     if (query.state == 'En planeacion') {
       const plans = await plansModel.findAll({
         where: {
