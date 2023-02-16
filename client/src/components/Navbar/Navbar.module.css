@@ -1,0 +1,31 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    justify-content: space-between;
+    background-color: white;
+    box-shadow: 0px 0px 9px 2px #222222;
+    padding: 10px 30px;
+    width: 100%;
+}
+
+.linksCont {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 35%;
+}
+
+.linkFont {
+    color: #707070;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+.linkFont:hover {
+    color: #F1E100;
+    font-weight: 300;
+    text-decoration: none;
+}
