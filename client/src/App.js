@@ -67,7 +67,7 @@ function App() {
           element={<DetailMarketPlace />}
         />
         <Route
-          path="/shoppingCart"
+          path="/marketplace/shoppingCart"
           element={<ShoppingCart />}
         />
       </Routes>
