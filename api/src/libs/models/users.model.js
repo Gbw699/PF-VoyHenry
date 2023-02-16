@@ -41,6 +41,15 @@ const users = sequelize.define('users', {
     validate: {
       isUrl: true
     }
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  role: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: 'customer'
   }
 
 })

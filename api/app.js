@@ -1,6 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const { errorHandler } = require('./src/middlewares/error.handler')
+const { checkApiKey } = require('./src/middlewares/auth.handler')
 const routesApi = require('./src/routes/routes')
 const app = express();
 
