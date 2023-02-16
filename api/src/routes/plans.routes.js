@@ -1,5 +1,7 @@
 const { Router } = require('express');
 const PlansService = require('../services/plan.service')
+const validatorHandler = require('../middlewares/validator.handler')
+const { createPlanSchema, updateSchema, getPlanSchema } = require('../schemas/plans.schema')
 
 const router = Router();
 const service = new PlansService();
@@ -22,73 +24,81 @@ router.get('/', async (req, res, next) => {
 
 /* Get plan by title */
 
-router.get('/:title', async (req, res, next) => {
+router.get('/:title',
+  validatorHandler(getPlanSchema, 'params'),
+  async (req, res, next) => {
+    try {
 
-  try {
+      const { title } = req.params;
 
-    const { title } = req.params;
+      const plan = await service.findOne(title)
 
-    const plan = await service.findOne(title)
+      res.json(plan)
+    } catch (error) {
 
-    res.json(plan)
-  } catch (error) {
-
-    next(error)
-  }
+      next(error)
+    }
 
 });
 
 /* Create new plan */
 
-router.post('/', async (req, res, next) => {
+router.post('/', 
+  validatorHandler(createPlanSchema, "body"),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const body = req.body;
+      const body = req.body;
 
-    const createdPlan = await service.create(body)
+      const createdPlan = await service.create(body)
 
-    res.json(createdPlan)
-  } catch (error) {
+      res.json(createdPlan)
+    } catch (error) {
 
-    next(error)
-  }
+      next(error)
+    }
 
 });
 
 /* update plan info */
 
-router.patch('/:planTitle', async (req, res, next) => {
+router.patch('/:planTitle',
+  validatorHandler(getPlanSchema, 'params'),
+  validatorHandler(updateSchema, "body"),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const { planTitle } = req.params
-    const body = req.body;
+      const { planTitle } = req.params
+      const body = req.body;
 
-    const updatedPlan = await service.update(planTitle, body)
+      const updatedPlan = await service.update(planTitle, body)
 
-    res.json(updatedPlan)
-  } catch (error) {
-    next(error)
-  }
+      res.json(updatedPlan)
+    } catch (error) {
+      next(error)
+    }
 
 });
 
 /* Delete plan */
 
-router.delete('/:plan', async (req, res, next) => {
+router.delete('/:plan',
+  validatorHandler(getPlanSchema, 'params'),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const { plan } = req.params
+      const { plan } = req.params
 
-    const deletedPlan = await service.delete(plan)
+      const deletedPlan = await service.delete(plan)
 
-    res.json(deletedPlan)
-  } catch (error) {
+      res.json(deletedPlan)
+    } catch (error) {
 
-    next(error)
-  }
+      next(error)
+    }
 
 });
 
