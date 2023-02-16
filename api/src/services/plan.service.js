@@ -14,7 +14,8 @@ class PlansService {
       const plans = await plansModel.findAll({
         where: {
           state: 'En planeacion'
-        }
+        },
+        order: [['eventDate', 'ASC']]
       })
 
       return {plans}
@@ -23,7 +24,8 @@ class PlansService {
       const plans = await plansModel.findAll({
         where: {
           state: 'En progreso'
-        }
+        },
+        order: [['eventDate', 'ASC']]
       })
 
       return {plans}
@@ -39,7 +41,9 @@ class PlansService {
 
     } else {
 
-      const plans = await plansModel.findAll()
+      const plans = await plansModel.findAll({
+        order: [['eventDate', 'ASC']]
+      })
       return {plans}
     }
 
