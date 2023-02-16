@@ -4,9 +4,13 @@ import Filters from "../../components/MarketPlace/Filters";
 import MarketCards from "../../components/MarketPlace/MarketCards";
 export default function MarketPlace() {
   return (
-    <>
-      <Filters />
-      <MarketCards />
-    </>
+    <div>
+      <div>
+        <Filters />
+      </div>
+      <div>
+        <MarketCards />
+      </div>
+    </div>
   );
 }
