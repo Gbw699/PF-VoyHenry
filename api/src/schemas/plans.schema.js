@@ -2,7 +2,7 @@ const Joi = require('joi')
 
 //no se puede hacer un evento en passasaddo
 const currentDate = new Date();
-const greaterDate = `${currentDate.getFullYear() - 99}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
+const greaterDate = `${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
 
 
 const title = Joi.string().min(3).max(15)
