@@ -15,13 +15,13 @@ export default function MarketPlaceSection() {
         {productMarketPlace.data.map((element) =>
           element.products.map((element2) => (
             <Link
-              to={`marketplace/${element.id}`}
-              key={element.id}
+              to={`marketplace/${element2.id}`}
+              key={element2.id}
             >
               <MarketCard
-                title={element.title}
-                image={element.image}
-                price={element.price}
+                title={element2.title}
+                image={element2.image}
+                price={element2.price}
               />
             </Link>
           ))

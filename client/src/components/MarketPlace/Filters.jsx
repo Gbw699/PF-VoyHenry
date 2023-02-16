@@ -2,14 +2,16 @@ import React from "react";
 // import style from "./Filters.module.css";
 import productMarketPlace from "../../marketPlace.json";
 
-export default function Filters({ category }) {
+export default function Filters() {
   return (
     <>
       <div>
         <h5>Categorías</h5>
-        {category.map((element) => (
-          <p key={element.id}>{element.category}</p>
-        ))}
+        {productMarketPlace.data.map((element) =>
+          element.categories.map((element2) => (
+            <p key={element2.id}>{element2.category}</p>
+          ))
+        )}
       </div>
       <hr />
       <div>
