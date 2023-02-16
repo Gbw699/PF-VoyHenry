@@ -6,13 +6,15 @@ import NavBar from "./components/Navbar/Navbar";
 import LandingPage from "./views/LandingPage/LandingPage";
 import LogIn from "./views/LogIn/LogIn";
 import SignUp from "./views/SignUp/SignUp";
-// import Home from "./views/Home/Home";
+import Home from "./views/Home/Home";
 import MarketPlace from "./views/MarketPlace/MarketPlace";
 import Footer from "./views/Footer/Footer";
 import Profile from "./views/Profile/Profile";
 import DetailMarketPlace from "./views/DetailMarketPlace/DetailMarketPlace";
 import ShoppingCart from "./views/ShoppingCart/ShoppingCart";
 import Blog from "./views/Blog/Blog";
+import Plan from "./views/Plan/Plan
+git ";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 
@@ -24,10 +26,10 @@ function App() {
         location.pathname !== "/signUp" &&
         location.pathname !== "/logIn" && <NavBar />}
       <Routes>
-        {/* <Route
+        <Route
           path="/home"
           element={<Home />}
-        /> */}
+        />
         <Route
           path="/"
           element={<LandingPage />}
@@ -44,10 +46,10 @@ function App() {
           path="/blog"
           element={<Blog />}
         /> 
-        {/* <Route
+        <Route
           path="/plans"
-          element={<Plans />}
-        /> */}
+          element={<Plan />}
+        />
         <Route
           path="/profile"
           element={<Profile />}
