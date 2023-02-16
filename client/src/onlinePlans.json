@@ -1,0 +1,24 @@
+{
+	"data": [
+		{
+			"id": 1,
+			"title": "Velit quibusdam esse.",
+			"summary": "Sunt provident necessitatibus dicta. Odit veritatis asperiores optio quam fugit voluptatem officia. Fugit at magni reprehenderit dolore voluptatem recusandae. Magnam nihil doloremque sunt veniam voluptates nesciunt illo delectus. Sapiente perspiciatis cumque repudiandae exercitationem ex neque aut.",
+			"description": "Ipsum commodi occaecati natus minus. Molestiae iusto quia distinctio similique nihil odit nemo officiis delectus. Porro laboriosam libero harum explicabo recusandae minima facere sint sint. Facere tempore dolorum officiis maxime facere cum. Labore ducimus delectus reiciendis consequuntur maiores consequatur.\nFugit accusantium nisi distinctio rem enim possimus dicta esse adipisci. Expedita tenetur eveniet esse ab dolores earum rerum eligendi. Saepe perspiciatis eum a deserunt cupiditate consectetur. Minima iste atque. Dicta fugiat repellendus consequatur officiis omnis ex recusandae sapiente. Quos est necessitatibus voluptatibus nihil fugiat vero pariatur.\nDolores iure voluptatibus consectetur ipsam fugiat molestias. Eos quasi nemo incidunt corporis reprehenderit pariatur explicabo fuga. Quidem laudantium rem quae quis.",
+			"mainImage": "https://loremflickr.com/640/480/abstract",
+			"image": "https://loremflickr.com/640/480/abstract",
+			"eventDate": "2022-12-15T04:33:33.627Z",
+			"state": "Planing"
+		},
+		{
+			"id": 2,
+			"title": "Animi omnis nostrum aspernatur doloremque nihil aperiam debitis et maxime.",
+			"summary": "Quisquam aut aspernatur atque repudiandae. Fuga distinctio nam corrupti blanditiis ratione voluptate consequatur modi. Eveniet aliquam eligendi officiis repellat. Dolores doloremque provident nulla dicta.",
+			"description": "Est accusantium deleniti mollitia soluta veritatis ut. Rem provident cupiditate eos. Dolorum expedita repudiandae natus doloremque quod. Ullam libero molestiae quisquam recusandae occaecati.\nConsequuntur distinctio nemo. Consequatur voluptates harum dolorem iusto. Culpa blanditiis laudantium illo harum. Asperiores explicabo consequatur rerum. Dolore laboriosam perspiciatis nostrum beatae perspiciatis ipsa ducimus enim ab. Veritatis voluptatibus occaecati adipisci voluptates dolores eos id quidem architecto.\nEligendi sit dolore voluptatem consectetur libero beatae quod sapiente. Et accusamus commodi laboriosam temporibus tempore iusto officia doloribus. Architecto modi est voluptatum quaerat. Corrupti ab accusantium nobis beatae cum ratione.",
+			"mainImage": "https://loremflickr.com/640/480/abstract",
+			"image": "https://loremflickr.com/640/480/abstract",
+			"eventDate": "2022-11-28T07:20:25.006Z",
+			"state": "Planing"
+		}
+	]
+}
