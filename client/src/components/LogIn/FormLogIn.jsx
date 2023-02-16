@@ -23,17 +23,7 @@ export default function FormLogIn() {
       password: Yup.string().required("La contraseña es obligatoria"),
     }),
     // !! FALTA LÓGICA DE SI EXISTE QUE INGRESE Y SINO NO.
-    onSubmit: (formData) => {
-      const user = [];
-      const userApi = dispatch(getUser(formik.values.email));
-      user.push(userApi);
-      if ("Existe") {
-        localStorage.setItem("login", true);
-        navigate("/home");
-      } else {
-        alert("No existe");
-      }
-    },
+    onSubmit: (formData) => {},
   });
 
   const backHandler = () => {
