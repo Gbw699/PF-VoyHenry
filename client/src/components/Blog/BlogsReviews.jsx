@@ -15,6 +15,7 @@ export default function BlogsReviews() {
 
   return (
     <div>
+        {/* acá hay que hace un map para poder renderizar todas las reviews */}
       <BlogReview />
     </div>
   );
