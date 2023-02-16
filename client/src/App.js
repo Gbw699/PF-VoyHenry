@@ -14,7 +14,7 @@ import DetailMarketPlace from "./views/DetailMarketPlace/DetailMarketPlace";
 import ShoppingCart from "./views/ShoppingCart/ShoppingCart";
 import Blog from "./views/Blog/Blog";
 
-axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "http://localhost:3001/";
 
 function App() {
   const location = useLocation();
