@@ -8,6 +8,7 @@ import Tooltip from "@mui/material/Tooltip";
 //remplazar la imagen por la del usuario
 import img from "../../assets/voyHENRY_logo.png";
 import { NavLink } from "react-router-dom";
+import style from "./AccountMenu.module.css";
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -74,23 +75,23 @@ export default function AccountMenu() {
         </MenuItem>
         <Divider />
         <NavLink to={"/marketplace/shoppingcart"}>
-          <MenuItem onClick={handleClose}>Carrito</MenuItem>
+          <MenuItem onClick={handleClose} className={style.menuLinks}>Carrito</MenuItem>
         </NavLink>
         <Divider />
         <NavLink to={"/profile"}>
-          <MenuItem onClick={handleClose}>Mi perfil</MenuItem>
+          <MenuItem onClick={handleClose} className={style.menuLinks}>Mi perfil</MenuItem>
         </NavLink>
         <Divider />
         <NavLink to={"/profile/edit"}>
-          <MenuItem onClick={handleClose}>Editar perfil</MenuItem>
+          <MenuItem onClick={handleClose} className={style.menuLinks}>Editar perfil</MenuItem>
         </NavLink>
         <NavLink to={"/configuration"}>
-          <MenuItem onClick={handleClose}>Configuración</MenuItem>
+          <MenuItem onClick={handleClose} className={style.menuLinks}>Configuración</MenuItem>
         </NavLink>
-        <MenuItem onClick={handleClose}> Modo oscuro</MenuItem>
+        <MenuItem onClick={handleClose} className={style.menuLinks}> Modo oscuro</MenuItem>
         <Divider />
         <NavLink to={"/"}>
-          <MenuItem onClick={handleClose}>Cerrar sesión</MenuItem>
+          <MenuItem onClick={handleClose} className={style.menuLinks}>Cerrar sesión</MenuItem>
         </NavLink>
       </Menu>
     </React.Fragment>
