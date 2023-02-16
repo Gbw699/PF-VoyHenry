@@ -5,9 +5,9 @@ import planSlice from "./slices/planSlice/planSlice";
 
 const store = configureStore({
   reducer: {
-    user: userSlice,
-    blog: blogSlice,
-    plan: planSlice,
+    userStore: userSlice,
+    blogStore: blogSlice,
+    planStore: planSlice,
   },
 });
 

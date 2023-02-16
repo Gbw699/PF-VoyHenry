@@ -7,13 +7,13 @@ export default function ProfileCard() {
   const nickname = "juancito";
 
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.userStore.user);
 
   useEffect(() => {
     if (!user.nickName) {
       dispatch(getUser(nickname));
     }
-  }, [user]);
+  }, []);
 
   return (
     <div>

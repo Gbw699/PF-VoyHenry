@@ -16,7 +16,7 @@ import Blog from "./views/Blog/Blog";
 import Plan from "./views/Plan/Plan
 git ";
 
-axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "http://localhost:3001/";
 
 function App() {
   const location = useLocation();
