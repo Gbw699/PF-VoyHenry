@@ -1,21 +1,25 @@
-import { CardMedia, Typography } from "@mui/material";
+import style from "./PlanCard.module.css";
 import React from "react";
-import { CardContent } from "semantic-ui-react";
+
 export default function PlanCard(props) {
   return (
-    <CardContent>
-      <CardMedia
-        component="img"
-        alt={props.title}
-        src={props.mainImage}
-      />
-      <Typography>{props.title}</Typography>
-      <Typography>{props.eventDate}</Typography>
-      <Typography>Location?</Typography>
-      <Typography>{props.title}</Typography>
-      <Typography>{props.summary}</Typography>
-      <Typography>{props.eventDate}</Typography>
-      <Typography>Detail</Typography>
-    </CardContent>
+    <div className={style.cardCont}>
+      <div className={style.Card}>
+        <img
+          className={style.img}
+          alt={props.title}
+          src={props.mainImage}
+        />
+        <div className={style.details}>
+          <p>{props.title}</p>
+          <p>{props.eventDate}</p>
+          <p>Location?</p>
+          <p>{props.title}</p>
+          <p>{props.summary}</p>
+          <p>{props.eventDate}</p>
+          <p>Detail</p>
+        </div>
+      </div>
+    </div>
   );
 }
