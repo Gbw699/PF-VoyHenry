@@ -3,18 +3,17 @@ import CurrentPlans from "../FilteredPlans/CurrentPlans";
 import NextPlans from "../FilteredPlans/NextPlans";
 import CompletedPlans from "../FilteredPlans/CompletedPlans";
 import OnlinePlans from "../FilteredPlans/OnlinePlans";
-import { Container } from "semantic-ui-react";
+// import { Container } from "semantic-ui-react";
+import style from "./PlansSections.module.css";
 
 export default function PlansSections() {
     return (
-        <Container
-        style={{width: "300px"}}
-        >
+        <div className={style.sectionsCont}>
             <NextPlans />
             <CurrentPlans />
             <CompletedPlans />
             <OnlinePlans />
-        </Container>
+        </div>
     );
 }
 

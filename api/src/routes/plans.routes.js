@@ -13,8 +13,8 @@ router.get('/', async (req, res, next) => {
 
   try {
 
-    const plans = await service.find()
-
+    const plans = await service.find(req.query)
+    
     res.json(plans)
   } catch (error) {
 

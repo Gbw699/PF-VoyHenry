@@ -1,0 +1,25 @@
+.searchCont {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchInput {
+    border: 2px solid #707070;
+    border-radius: 3px;
+}
+
+.searchBtn {
+    background-color: #707070;
+    color: white;
+    border: 2px solid #707070;
+    border-radius: 3px;
+}
+
+.searchBtn:hover {
+    background-color: #F1E100;
+    color: #707070;
+    border: 2px solid #F1E100;
+    border-radius: 3px;
+}

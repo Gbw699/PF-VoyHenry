@@ -10,7 +10,7 @@ const summary = Joi.string().max(125)
 const description = Joi.string().min(3).max(255)
 const mainImage = Joi.string().uri()
 const images = Joi.array()
-const state = Joi.string().valid('En Planeacion', 'En progreso',  'Finalizado')
+const state = Joi.string().valid('En planeacion', 'En progreso',  'Finalizado')
 const eventDate = Joi.date().greater(greaterDate);
 
 const getPlanSchema = Joi.object({
