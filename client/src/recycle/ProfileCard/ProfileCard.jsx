@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../redux/slices/userSlice/thunks";
 import style from "./ProfileCard.module.css";
 
-// BORRAR ESTE IMPORT CUANDO HAYA IMAGEN DE PERFIL PARA CARGAR
-import fakeImg from "../../assets/voyHENRY_logo.png";
+// BORRAR ESTE IMPORT Y LA VARIABLE CUANDO HAYA IMAGEN DE PERFIL PARA CARGAR
+// import fakeImg from "../../assets/voyHENRY_logo.png";
+const fakeImg = "https://www.clarin.com/img/2021/10/07/dPmbdeT7x_1200x630__1.jpg";
+
 
 export default function ProfileCard() {
   //const nickname = localStorage.getItem("login");
@@ -12,6 +14,7 @@ export default function ProfileCard() {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userStore.user);
+  const [backgroundImage, setBackgroundImage] = useState("");
 
   useEffect(() => {
     if (!user.nickName) {
@@ -19,18 +22,23 @@ export default function ProfileCard() {
     }
   }, []);
 
+  // USE EFFECT PARA PODER USAR LA IMAGEN DE PERFIL COMO BG
+  // ARREGLAR PARA CUANDO HAYA IMAGEN DEL BACK
+  useEffect(() => {
+    if (user.image) {
+      setBackgroundImage(`url(${user.image})`);
+    } else {
+      setBackgroundImage(`url(${fakeImg})`);
+    }
+  }, [user]);
+
   return (
     <div className={style.container}>
       <div className={style.profileCont}>
-        <img
-          // src={user.image}
-          src={fakeImg} // BORRAR CUANDO HAYA IMAGEN DE PERFIL
-          alt="img"
-          className={style.profileImg}
-        />
+        <div className={style.imgCont} style={{ backgroundImage: backgroundImage }} />
         <hr width="80%" color="#F1E100" />
         {/* <h1 className={style.profileName}>{user.nickName}</h1> */}
-        <h1 className={style.profileName}>Nombre</h1> {/* BORRAR CUANDO HAYA NOMBRE DE PERFIL */}
+        <h1 className={style.profileName}>{user.nickName}</h1> {/* BORRAR CUANDO HAYA NOMBRE DE PERFIL */}
         <h4 className={style.profileCountry}>Nacionalidad</h4>
         <div className={style.followersCont}>
           <div className={style.followers}>
@@ -43,7 +51,6 @@ export default function ProfileCard() {
           </div>
         </div>
       </div>
-      <button type="submit" className={style.createBtn}>Crea tu evento</button>
     </div>
   );
 }

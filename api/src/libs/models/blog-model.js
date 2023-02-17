@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../database/database')
+const sequelize = require('../database/database');
 
-const blog = sequelize.define("blog", {
+const blogs = sequelize.define("blogs", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -9,10 +9,9 @@ const blog = sequelize.define("blog", {
 
   },
 
-    userName: {
+    usernickName: {
       type: DataTypes.STRING,
       allowNull: true,
-
 
     },
     title: {
@@ -34,13 +33,24 @@ const blog = sequelize.define("blog", {
         max: 10
       }
     },
+    image: {
+      type: DataTypes.TEXT,
+      validate: {
+        isUrl: true
+      }
+    },
+    userimage: {
+      type: DataTypes.TEXT,
+      validate: {
+        isUrl: true
+      }
+    },
 
   },
   {
-    timestamps: false,
     createdAt: true,
     updatedAt: true,
   })
 
 
-module.exports = blog;
+module.exports = blogs;
