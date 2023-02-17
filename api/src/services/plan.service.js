@@ -1,4 +1,5 @@
 const plansModel = require('../libs/models/plans.model');
+const { Op } = require("sequelize");
 
 class PlansService {
 
@@ -9,58 +10,31 @@ class PlansService {
   /* Find all Plans || Filter*/
 
   async find (query) {
+
+    const options = {
+      order: [['eventDate', 'ASC']]
+    }
   
-    if (query.state == 'en planeacion') {
-      const plans = await plansModel.findAll({
-        where: {
-          state: 'En planeacion'
-        },
-        order: [['eventDate', 'ASC']]
-      })
+    if (query.state){
 
-      return {plans}
+      options.where = { state:{ [Op.substring]: query.state }  }
+    } 
 
-    } else if (query.state == 'en progreso'){
-      const plans = await plansModel.findAll({
-        where: {
-          state: 'En progreso'
-        },
-        order: [['eventDate', 'ASC']]
-      })
+    if (query.order) {
+      if (query.order === 'alfabetico') {
 
-      return {plans}
+        options.order = [['title', 'ASC']];
+      } else if (query.order === 'reverso') {
 
-    } else if (query.state == 'finalizado'){
-      const plans = await plansModel.findAll({
-        where: {
-          state: 'Finalizado'
-        }
-      })
+        options.order = [['title', 'DESC']];
+      } else if (query.order === 'antiguos'){
 
-      return {plans}
-
-    } else if (query.order == 'alfabetico'){
-      const plans = await plansModel.findAll({
-        order: [['title', 'ASC']]
-      })
-
-      return {plans}
-
-    } else if (query.order == 'reverso'){
-      const plans = await plansModel.findAll({
-        order: [['title', 'DESC']]
-      })
-
-      return {plans}
-
-    } else {
-
-      const plans = await plansModel.findAll({
-        order: [['eventDate', 'ASC']]
-      })
-      return {plans}
+        options.order = [['eventDate', 'DESC']];
+      }
     }
 
+    const plans = await plansModel.findAll(options)
+    return {plans}
   }
 
   /* Find one Plan */
