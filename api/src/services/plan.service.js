@@ -12,6 +12,7 @@ class PlansService {
   async find (query) {
 
     const options = {
+
       order: [['eventDate', 'ASC']]
     }
   
@@ -22,13 +23,10 @@ class PlansService {
 
     if (query.order) {
       if (query.order === 'alfabetico') {
-
         options.order = [['title', 'ASC']];
       } else if (query.order === 'reverso') {
-
         options.order = [['title', 'DESC']];
       } else if (query.order === 'antiguos'){
-
         options.order = [['eventDate', 'DESC']];
       }
     }
