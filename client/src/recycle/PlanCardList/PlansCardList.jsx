@@ -15,27 +15,21 @@ export default function PlanCardList() {
 
     return (
         <div>
-            <h3>Planes Destacados</h3>
-            <hr
-                width="100%"
-                color="#F1E100"
-            />
-            <Pagination
-                count={Math.ceil(plansData.data.length / plansPerPage)}
-                page={page}
-                onChange={handlePageChange}
-                
-            />
-
             <div className={style.cardCont}>
                 {plans.map((plan) => (
                     <PlanCard
                         key={plan.id}
-                        src={plan.mainImage}
+                        mainImage={plan.mainImage}
                         title={plan.title}
                     />
                 ))}
             </div>
+            <Pagination
+                size="large"
+                count={Math.ceil(plansData.data.length / plansPerPage)}
+                page={page}
+                onChange={handlePageChange}
+            />
         </div>
     );
 }
