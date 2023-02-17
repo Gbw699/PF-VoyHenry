@@ -1,0 +1,9 @@
+.footerCont {
+    width: 100%;
+    background-color: #2C2C2C;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 2%;
+}
