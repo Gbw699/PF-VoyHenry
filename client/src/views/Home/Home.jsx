@@ -12,10 +12,15 @@ export default function Home() {
     <div className={style.container}>
       <ProfileCard />
       <div className={style.featured}>
+        <h3>Planes Destacados</h3>
+        <hr
+          width="100%"
+          color="#F1E100"
+        />
         <PlansCardList />
         <BlogReview />
       </div>
-      <PlansSections /> 
+      <PlansSections />
     </div>
   );
 }
