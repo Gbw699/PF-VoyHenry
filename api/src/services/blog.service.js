@@ -26,8 +26,6 @@ class blogService {
         newBlog
       }
     };
-
-
     }
 
   /* Find All Blogs */
@@ -36,7 +34,7 @@ class blogService {
 
     const options = {
 
-      order: [['id', 'DESC']]
+      order: [['id', 'ASC']]
     }
 
     if (query.order) {
