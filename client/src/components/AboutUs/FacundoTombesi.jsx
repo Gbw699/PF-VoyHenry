@@ -38,7 +38,7 @@ export default function FacundoTombesi() {
         </div>
         <div>
           <h5>Facundo Martín Tombesi</h5>
-          <p>Diseño</p>
+          <p>Full Stack Web Developer</p>
         </div>
       </div>
     </div>

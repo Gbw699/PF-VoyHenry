@@ -38,7 +38,7 @@ export default function MatiasVarela() {
         </div>
         <div>
           <h5>Matías Varela</h5>
-          <p>Back-End</p>
+          <p>Full Stack Web Developer</p>
         </div>
       </div>
     </div>
