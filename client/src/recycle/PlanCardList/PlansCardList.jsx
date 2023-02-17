@@ -1,7 +1,6 @@
 import React from "react";
 import plansData from "../../topPlans.json";
 import PlanCard from "../PlanCard/PlanCard";
-
 import style from "./PlansCardList.module.css";
 
 export default function Plan() {
