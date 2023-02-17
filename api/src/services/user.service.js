@@ -40,34 +40,35 @@ class UsersService {
 
   async find (query) {
 
-    if (query.order == 'alfabetico'){
-      const users = await usersModel.findAll({
-        order: [['firstName', 'ASC']]
-      })
+    const options = {
 
-      return {users}
-    } else if (query.order == 'reverso'){
+      order: [['firstName', 'ASC']]
+    }
+    
+    if (query.order == 'reverso'){
       const users = await usersModel.findAll({
         order: [['firstName', 'DESC']]
       })
 
       return {users}
-    } else if (query.name){
+    }
+
+    if (query.name){
       const users = await usersModel.findAll({
         where: {
           [Op.or]: [
-            { firstName: { [Op.like]: `%${query.name}%` } },
-            { firstName: { [Op.substring]: query.name } }
+            { firstName: { [Op.substring]: query.name } },
+            { lastName: { [Op.substring]: query.name } }
           ]
         }
       })
 
       return {users}
-    } else {
+    }
 
-      const users = await usersModel.findAll()
-      return {users}
-    } 
+    const users = await usersModel.findAll(options)
+    return {users}
+    
 
   }
 
