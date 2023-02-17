@@ -20,11 +20,8 @@ export default function Home() {
         </button>
       </div>
       <div className={style.featured}>
-        <h3>Planes Destacados</h3>
-        <hr
-          width="100%"
-          color="#F1E100"
-        />
+        <h3 className={style.featuredTitle}>Planes Destacados</h3>
+        <hr width="100%" color="#F1E100" />
         <PlansCardList />
         <BlogReview />
       </div>

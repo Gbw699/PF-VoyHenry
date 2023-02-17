@@ -1,5 +1,6 @@
 const usersModel = require('../libs/models/users.model');
 const { CustomError } = require('../middlewares/error.handler')
+const { Op } = require("sequelize");
 
 class UsersService {
 
@@ -37,11 +38,29 @@ class UsersService {
 
   /* Find all Users */
 
-  async find () {
+  async find (query) {
 
-    const users = await usersModel.findAll()
+    const options = {
+
+      order: [['firstName', 'ASC']]
+    }
+    
+    if (query.order == 'reverso'){
+      options.order = [['firstName', 'DESC']]
+    }
+
+    if (query.name){
+      options.where = {
+          [Op.or]: [
+            { firstName: { [Op.substring]: query.name } },
+            { lastName: { [Op.substring]: query.name } }
+          ]
+        }
+    }
+
+    const users = await usersModel.findAll(options)
     return {users}
-
+  
   }
 
   /* Find one User */
@@ -111,3 +130,17 @@ class UsersService {
 }
 
 module.exports = UsersService;
+
+/* 
+{
+    "password": "password",
+    "role": "role",
+    "nickName": "first",
+    "email": "email@test.com",
+    "about": "about",
+    "firstName": "afirstName",
+    "lastName": "alastName",
+    "genre": "No binario",
+    "dateOfBirth":"1999-12-16",
+    "image": "https://es.wikipedia.org/wiki/Roque_S%C3%A1enz_Pe%C3%B1a#/media/Archivo:Roque_Saenz_Pe%C3%B1a_(obituario_1914).jpg"
+} */
