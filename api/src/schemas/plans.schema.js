@@ -22,6 +22,7 @@ const createPlanSchema = Joi.object({
   summary: summary.required(),
   description: description.required(),
   mainImage: mainImage.required(),
+  images: images.required(),
   state: state.required(),
   eventDate: eventDate.required()
 })
