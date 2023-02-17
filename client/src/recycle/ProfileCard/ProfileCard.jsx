@@ -38,7 +38,7 @@ export default function ProfileCard() {
         <div className={style.imgCont} style={{ backgroundImage: backgroundImage }} />
         <hr width="80%" color="#F1E100" />
         {/* <h1 className={style.profileName}>{user.nickName}</h1> */}
-        <h1 className={style.profileName}>Nombre</h1> {/* BORRAR CUANDO HAYA NOMBRE DE PERFIL */}
+        <h1 className={style.profileName}>{user.nickName}</h1> {/* BORRAR CUANDO HAYA NOMBRE DE PERFIL */}
         <h4 className={style.profileCountry}>Nacionalidad</h4>
         <div className={style.followersCont}>
           <div className={style.followers}>

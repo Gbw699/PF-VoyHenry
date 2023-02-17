@@ -7,11 +7,15 @@ const blogSlice = createSlice({
     renderBlogs: [],
   },
   reducers: {
+    setBlogs: (state, action) => {
+      state.allBlogs = [...action.payload];
+      state.renderBlogs = [...action.payload];
+    },
     setBlogsSearch(state, action) {
       state.renderBlogs = [...action.payload];
     },
   },
 });
 
-export const { setBlogsSearch } = blogSlice.actions;
+export const { setBlogs, setBlogsSearch } = blogSlice.actions;
 export default blogSlice.reducer;
