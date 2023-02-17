@@ -3,7 +3,7 @@ import React from "react";
 import { CardContent } from "semantic-ui-react";
 export default function PlanCard(props) {
   return (
-    <CardContent>
+    <CardContent style={{width: "300px"}}>
       <CardMedia
         component="img"
         alt={props.title}
