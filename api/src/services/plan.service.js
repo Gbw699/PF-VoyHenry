@@ -10,7 +10,7 @@ class PlansService {
 
   async find (query) {
   
-    if (query.state == 'En planeacion') {
+    if (query.state == 'en planeacion') {
       const plans = await plansModel.findAll({
         where: {
           state: 'En planeacion'
@@ -20,7 +20,7 @@ class PlansService {
 
       return {plans}
 
-    } else if (query.state == 'En progreso'){
+    } else if (query.state == 'en progreso'){
       const plans = await plansModel.findAll({
         where: {
           state: 'En progreso'
@@ -30,11 +30,25 @@ class PlansService {
 
       return {plans}
 
-    } else if (query.state == 'Finalizado'){
+    } else if (query.state == 'finalizado'){
       const plans = await plansModel.findAll({
         where: {
           state: 'Finalizado'
         }
+      })
+
+      return {plans}
+
+    } else if (query.order == 'alphabetical'){
+      const plans = await plansModel.findAll({
+        order: [['title', 'ASC']]
+      })
+
+      return {plans}
+
+    } else if (query.order == 'reverse'){
+      const plans = await plansModel.findAll({
+        order: [['title', 'DESC']]
       })
 
       return {plans}
