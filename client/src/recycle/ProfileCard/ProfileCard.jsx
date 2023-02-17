@@ -51,7 +51,6 @@ export default function ProfileCard() {
           </div>
         </div>
       </div>
-      <button type="submit" className={style.createBtn}>Crea tu evento</button>
     </div>
   );
 }
