@@ -1,5 +1,5 @@
 import React from "react";
-import mauricioFonsecaImg from "../../assets/lienSanchez.jpg";
+import mauricioFonsecaImg from "../../assets/mauricioFonseca.jpg";
 import gitHubImg from "../../assets/github.png";
 import linkedInImg from "../../assets/linkedin.png";
 // import style from "./Developers.module.css";
@@ -16,7 +16,7 @@ export default function MauricioFonseca() {
       <div>
         <div>
           <a
-            href=""
+            href="https://www.linkedin.com/in/mauricio-fonseca-4a1b5a261/"
             rel="noreferrer"
             target="_blank"
           >
@@ -26,7 +26,7 @@ export default function MauricioFonseca() {
             />
           </a>
           <a
-            href=""
+            href="https://github.com/Ephradrax"
             rel="noreferrer"
             target="_blank"
           >
