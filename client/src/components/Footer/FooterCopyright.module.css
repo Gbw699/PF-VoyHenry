@@ -1,0 +1,11 @@
+.rightsTxt {
+    color: white;
+}
+
+.rightsLink {
+    color: white;
+}
+
+.rightsLink:hover {
+    color: #F1E100;
+}
