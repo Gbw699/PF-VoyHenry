@@ -10,7 +10,10 @@ export default function Home() {
   // const dispatch = useDispatch();
   return (
     <div className={style.container}>
-      <ProfileCard />
+      <div className={style.profileCont}>
+        <ProfileCard />
+        <button type="submit" className={style.createBtn}>Crea tu evento</button>
+      </div>
       <div className={style.featured}>
         <h3>Planes Destacados</h3>
         <hr

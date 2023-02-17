@@ -1,0 +1,27 @@
+.container {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    padding: 40px;
+    height: 100vh;
+}
+
+.profileCont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.writeBtn {
+    margin-top: 20%;
+    background-color: #F1E100;
+    border: 2px solid #F1E100;
+    border-radius: 10px;
+    padding: 6% 15%;
+    color: #707070;
+    cursor: pointer;
+}
+
+.writeBtn:hover {
+    background-color: white;
+}
