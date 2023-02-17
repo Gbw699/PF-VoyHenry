@@ -1,4 +1,5 @@
 const blogModel = require('../libs/models/blog-model.js');
+const users = require('../libs/models/users.model.js');
 const { CustomError } = require('../middlewares/error.handler')
 
 
@@ -10,31 +11,34 @@ class blogService {
 
     /* Create Blog */
 
-  async create (  userName, title , content, rating ){
+    async create (  {usernickName, title , content, rating, image} ){
 
+      const searchname = await users.findOne({where: { nickName: usernickName }  });
 
     const newBlog =  await blogModel.create({
-     userName: userName,
+     usernickName: usernickName,
+     userimage: searchname.image,
+     image: image,
      title: title,
      content: content,
-     rating: rating
-    })
+     rating: rating,
 
+})
     return {
       message: "Create",
       data: {
-        newBlog
-      }
-    };
-
+        newBlog,
+         user: searchname
 
     }
+
+    }}
 
   /* Find All Blogs */
 
   async find () {
-
     const blogs = await blogModel.findAll()
+
     return {blogs}
 
   }
@@ -45,18 +49,26 @@ class blogService {
 
     const blog = await blogModel.findByPk(id)
 
+    const search = await users.findOne({where: { nickName: blog.usernickName }  });
+
+
     if (blog === null) {
       throw new CustomError("Blog not found", 404)
     }
 
-    return blog
+    return {
+      message: "blog",
+      data: {
+         blog,
+         users: search
 
-  }
+    }
+
+  }}
 
   /* Update Blog */
 
-  async update (id, {userName, title , content, rating }) {
-
+  async update (id, { title , content, rating, image }) {
 
     const blog = await blogModel.findOne({
       where: {
@@ -66,7 +78,7 @@ class blogService {
     if (blog === null) {
       throw new CustomError("Blog not found", 404)
     }
-    blog.userName = userName || blog.userName;
+    blog.image = image || blog.image;
     blog.title = title || blog.title;
     blog.content = content || blog.content;
     blog.rating = rating || blog.rating;
@@ -91,9 +103,10 @@ class blogService {
     throw new CustomError("Blog not found", 404)
   } else {
     return {
-      message: "deleted",
+      message: "blog deleted",
       data: {
-        id: id
+        id: id,
+
       }
     }
   }
