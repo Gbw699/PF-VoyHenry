@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const passport = require('passport')
 const PlansService = require('../services/plan.service')
 const validatorHandler = require('../middlewares/validator.handler')
 const { createPlanSchema, updateSchema, getPlanSchema } = require('../schemas/plans.schema')
@@ -43,7 +44,8 @@ router.get('/:title',
 
 /* Create new plan */
 
-router.post('/', 
+router.post('/',
+  /* passport.authenticate('jwt', {session: false}), */
   validatorHandler(createPlanSchema, "body"),
   async (req, res, next) => {
 
