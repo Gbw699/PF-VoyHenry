@@ -14,6 +14,7 @@ import DetailMarketPlace from "./views/DetailMarketPlace/DetailMarketPlace";
 import ShoppingCart from "./views/ShoppingCart/ShoppingCart";
 import Blog from "./views/Blog/Blog";
 import Plan from "./views/Plan/Plan";
+import AboutUs from "./views/AboutUs/AboutUs";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 
@@ -44,7 +45,7 @@ function App() {
         <Route
           path="/blog"
           element={<Blog />}
-        /> 
+        />
         <Route
           path="/plans"
           element={<Plan />}
@@ -67,8 +68,12 @@ function App() {
           element={<DetailMarketPlace />}
         />
         <Route
-          path="/shoppingCart"
+          path="/marketplace/shoppingCart"
           element={<ShoppingCart />}
+        />
+        <Route
+          path="/aboutUs"
+          element={<AboutUs />}
         />
       </Routes>
       {location.pathname !== "/" &&

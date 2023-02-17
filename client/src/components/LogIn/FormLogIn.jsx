@@ -32,7 +32,11 @@ export default function FormLogIn() {
 
   return (
     <div className={style.landing}>
-      <img src={titleImg} className={style.logo} alt="voyHENRY logo" />
+      <img
+        src={titleImg}
+        className={style.logo}
+        alt="voyHENRY logo"
+      />
       <div className={style.container}>
         <div className={style.formContainer}>
           <h1 className={style.formTitle}>INICIAR SESIÓN</h1>
@@ -61,16 +65,16 @@ export default function FormLogIn() {
               />
             </div>
             <div className={style.buttons}>
-              <Button 
+              <Button
                 type="submit"
-                style={{ 
-                  backgroundColor: "#FFFF01", 
-                  color: "#707070"
+                style={{
+                  backgroundColor: "#FFFF01",
+                  color: "#707070",
                 }}
               >
                 Iniciar sesión
               </Button>
-              <Button 
+              <Button
                 onClick={backHandler}
                 style={{ backgroundColor: "#DBDBDB", color: "#707070" }}
               >

@@ -12,7 +12,7 @@ router.get('/', async (req, res, next) => {
 
   try {
 
-    const products = await service.find()
+    const products = await service.find(req.query)
 
     res.json(products)
   } catch (error) {
