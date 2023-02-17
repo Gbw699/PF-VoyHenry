@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllUsers } from "../../redux/slices/userSlice/thunks";
 import UserCard from "../../recycle/UserCard/UserCard";
+import style from "./BlogUsers.module.css";
 
 export default function BlogUsers() {
   const dispatch = useDispatch();
@@ -18,8 +19,9 @@ export default function BlogUsers() {
   }, []);
 
   return (
-    <div>
-      <h3>Usuarios</h3>
+    <div className={style.container}>
+      <h3 className={style.usersTitle}>Usuarios</h3>
+      <hr width="100%" color="#F1E100" />
       {allUsers.users?.map((user) => {
         return (
           <UserCard
@@ -29,7 +31,7 @@ export default function BlogUsers() {
           />
         );
       })}
-      <button>Buscar usuario</button>
+      <button className={style.searchBtn}>Buscar usuario</button>
     </div>
   );
 }
