@@ -63,17 +63,17 @@ router.post('/',
 
 /* update plan info */
 
-router.patch('/:planTitle',
+router.patch('/:planID',
   validatorHandler(getPlanSchema, 'params'),
   validatorHandler(updateSchema, "body"),
   async (req, res, next) => {
 
     try {
 
-      const { planTitle } = req.params
+      const { planID } = req.params
       const body = req.body;
 
-      const updatedPlan = await service.update(planTitle, body)
+      const updatedPlan = await service.update(planID, body)
 
       res.json(updatedPlan)
     } catch (error) {

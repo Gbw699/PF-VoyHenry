@@ -81,11 +81,11 @@ class PlansService {
 
   /* Update user */
 
-  async update (planTitle, { title, summary, description, mainImage, images, eventDate, state }) {
+  async update (id, { title, summary, description, mainImage, images, eventDate, state }) {
 
     const [plan] = await plansModel.findAll({
       where: {
-        title: planTitle
+        title: id
       }
     })
     if (plan === null) {
