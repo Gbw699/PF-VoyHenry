@@ -1,11 +1,11 @@
 import { Container } from "@mui/system";
 import React from "react";
-import PlanCardList from "../../recycle/PlanCardList/PlansCardList";
+import Plan from "../../components/Plan/Plan";
 
 export default function Plans() {
   return (
     <Container>
-      <PlanCardList/>
+      <Plan />
     </Container>
   );
 }
