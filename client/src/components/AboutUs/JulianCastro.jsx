@@ -26,7 +26,7 @@ export default function JulianCastro() {
             />
           </a>
           <a
-            href=""
+            href="https://github.com/JulianCastro130/"
             rel="noreferrer"
             target="_blank"
           >
