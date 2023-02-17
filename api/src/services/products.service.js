@@ -46,6 +46,20 @@ class ProductsService {
     })
 
     return {products}
+  } else if (query.order == 'alphabetical') {
+
+    const products = await productModel.findAll({
+      order: [['title', 'ASC']]
+    })
+
+    return {products}
+  } else if (query.order == 'reverse') {
+
+    const products = await productModel.findAll({
+      order: [['title', 'DESC']]
+    })
+
+    return {products}
   } else {
 
     const products = await productModel.findAll()
