@@ -24,6 +24,7 @@ export default function PlanCardList() {
                 count={Math.ceil(plansData.data.length / plansPerPage)}
                 page={page}
                 onChange={handlePageChange}
+                
             />
 
             <div className={style.cardCont}>
