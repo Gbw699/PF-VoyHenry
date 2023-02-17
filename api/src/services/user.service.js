@@ -46,30 +46,21 @@ class UsersService {
     }
     
     if (query.order == 'reverso'){
-      const users = await usersModel.findAll({
-        order: [['firstName', 'DESC']]
-      })
-
-      return {users}
+      options.order = [['firstName', 'DESC']]
     }
 
     if (query.name){
-      const users = await usersModel.findAll({
-        where: {
+      options.where = {
           [Op.or]: [
             { firstName: { [Op.substring]: query.name } },
             { lastName: { [Op.substring]: query.name } }
           ]
         }
-      })
-
-      return {users}
     }
 
     const users = await usersModel.findAll(options)
     return {users}
-    
-
+  
   }
 
   /* Find one User */
