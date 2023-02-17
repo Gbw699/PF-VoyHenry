@@ -6,13 +6,47 @@ class PlansService {
 
   }
 
-  /* Find all Plans */
+  /* Find all Plans || Filter*/
 
-  async find () {
-
-    const plans = await plansModel.findAll()
-    return {plans}
+  async find (query) {
   
+    if (query.state == 'En planeacion') {
+      const plans = await plansModel.findAll({
+        where: {
+          state: 'En planeacion'
+        },
+        order: [['eventDate', 'ASC']]
+      })
+
+      return {plans}
+
+    } else if (query.state == 'En progreso'){
+      const plans = await plansModel.findAll({
+        where: {
+          state: 'En progreso'
+        },
+        order: [['eventDate', 'ASC']]
+      })
+
+      return {plans}
+
+    } else if (query.state == 'Finalizado'){
+      const plans = await plansModel.findAll({
+        where: {
+          state: 'Finalizado'
+        }
+      })
+
+      return {plans}
+
+    } else {
+
+      const plans = await plansModel.findAll({
+        order: [['eventDate', 'ASC']]
+      })
+      return {plans}
+    }
+
   }
 
   /* Find one Plan */
@@ -108,7 +142,7 @@ class PlansService {
     } 
 
   }
-
+  
 }
 
 module.exports = PlansService;

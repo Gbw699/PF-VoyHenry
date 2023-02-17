@@ -7,7 +7,6 @@ import "semantic-ui-css/semantic.min.css";
 import { useNavigate } from "react-router-dom";
 import titleImg from "../../assets/voyHENRY_title(white).png";
 
-
 export default function FormLogIn() {
   const navigate = useNavigate();
   const formik = useFormik({

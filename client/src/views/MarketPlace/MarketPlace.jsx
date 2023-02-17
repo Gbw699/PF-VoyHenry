@@ -1,16 +1,10 @@
 import React from "react";
+import MarketPlaceSection from "../../components/MarketPlace/MarketPlaceSection";
 // import style from "./MarketPlace.module.css";
-import Filters from "../../components/MarketPlace/Filters";
-import MarketCards from "../../components/MarketPlace/MarketCards";
 export default function MarketPlace() {
   return (
     <div>
-      <div>
-        <Filters />
-      </div>
-      <div>
-        <MarketCards />
-      </div>
+      <MarketPlaceSection />
     </div>
   );
 }

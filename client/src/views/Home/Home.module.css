@@ -1,0 +1,12 @@
+.container {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    padding: 40px;
+}
+
+.featured {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}

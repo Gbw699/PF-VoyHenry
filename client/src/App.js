@@ -44,7 +44,7 @@ function App() {
         <Route
           path="/blog"
           element={<Blog />}
-        /> 
+        />
         <Route
           path="/plans"
           element={<Plan />}
@@ -67,7 +67,7 @@ function App() {
           element={<DetailMarketPlace />}
         />
         <Route
-          path="/shoppingCart"
+          path="/marketplace/shoppingCart"
           element={<ShoppingCart />}
         />
       </Routes>
