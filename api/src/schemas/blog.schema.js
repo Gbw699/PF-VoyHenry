@@ -10,7 +10,7 @@ const image = Joi.string().uri()
 
 
 const createBlogSchema = Joi.object({
-  usernickName: usernickName,
+  usernickName: usernickName.required(),
   image: image.required(),
   title: title.required(),
   content: content.required(),
