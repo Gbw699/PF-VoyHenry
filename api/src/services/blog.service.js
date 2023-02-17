@@ -32,9 +32,26 @@ class blogService {
 
   /* Find All Blogs */
 
-  async find () {
+  async find (query) {
 
-    const blogs = await blogModel.findAll()
+    const options = {
+
+      order: [['id', 'DESC']]
+    }
+
+    if (query.order) {
+      if (query.order === 'ascendente') {
+        options.order = [['rating', 'ASC']];
+      } else if (query.order === 'descendente') {
+        options.order = [['rating', 'DESC']];
+      } else if (query.order === 'alfabetico'){
+        options.order = [['title', 'ASC']];
+      } else if (query.order === 'reverso'){
+        options.order = [['title', 'DESC']];
+      }
+    }
+
+    const blogs = await blogModel.findAll(options)
     return {blogs}
 
   }
