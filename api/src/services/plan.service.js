@@ -39,14 +39,14 @@ class PlansService {
 
       return {plans}
 
-    } else if (query.order == 'alphabetical'){
+    } else if (query.order == 'alfabetico'){
       const plans = await plansModel.findAll({
         order: [['title', 'ASC']]
       })
 
       return {plans}
 
-    } else if (query.order == 'reverse'){
+    } else if (query.order == 'reverso'){
       const plans = await plansModel.findAll({
         order: [['title', 'DESC']]
       })
