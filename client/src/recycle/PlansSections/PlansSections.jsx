@@ -7,13 +7,12 @@ import OnlinePlans from "../FilteredPlans/OnlinePlans";
 import style from "./PlansSections.module.css";
 
 export default function PlansSections() {
-    return (
-        <div className={style.sectionsCont}>
-            <NextPlans />
-            <CurrentPlans />
-            <CompletedPlans />
-            <OnlinePlans />
-        </div>
-    );
+  return (
+    <div className={style.sectionsCont}>
+      <NextPlans />
+      <CurrentPlans />
+      <CompletedPlans />
+      <OnlinePlans />
+    </div>
+  );
 }
-

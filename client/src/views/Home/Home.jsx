@@ -12,7 +12,12 @@ export default function Home() {
     <div className={style.container}>
       <div className={style.profileCont}>
         <ProfileCard />
-        <button type="submit" className={style.createBtn}>Crea tu evento</button>
+        <button
+          type="submit"
+          className={style.createBtn}
+        >
+          Crea tu evento
+        </button>
       </div>
       <div className={style.featured}>
         <h3>Planes Destacados</h3>
@@ -27,4 +32,3 @@ export default function Home() {
     </div>
   );
 }
-

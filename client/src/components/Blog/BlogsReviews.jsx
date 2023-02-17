@@ -16,7 +16,7 @@ export default function BlogsReviews() {
 
   return (
     <div className={style.container}>
-        {/* acá hay que hace un map para poder renderizar todas las reviews */}
+      {/* acá hay que hace un map para poder renderizar todas las reviews */}
       <BlogReview />
     </div>
   );

@@ -2,29 +2,28 @@ import { faker } from "@faker-js/faker";
 import { promises as fs } from "fs";
 
 function generatePlans() {
-    let plans = [];
-    for (let id = 1; id <= 100; id++) {
+  let plans = [];
+  for (let id = 1; id <= 100; id++) {
+    const title = faker.lorem.sentence();
+    const summary = faker.lorem.paragraph();
+    const description = faker.lorem.paragraphs();
+    const mainImage = faker.image.abstract();
+    const image = faker.image.abstract();
+    const eventDate = faker.date.past();
+    const state = "Planing";
 
-        const title = faker.lorem.sentence();
-        const summary = faker.lorem.paragraph();
-        const description = faker.lorem.paragraphs();
-        const mainImage = faker.image.abstract();
-        const image = faker.image.abstract();
-        const eventDate = faker.date.past();
-        const state = "Planing";
-
-        plans.push({
-            id: id,
-            title,
-            summary, 
-            description, 
-            mainImage,
-            image,
-            eventDate,
-            state,
-        });
-    }
-    return { data: plans };
+    plans.push({
+      id: id,
+      title,
+      summary,
+      description,
+      mainImage,
+      image,
+      eventDate,
+      state,
+    });
+  }
+  return { data: plans };
 }
 
 const generatedData = generatePlans();
