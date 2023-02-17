@@ -38,7 +38,7 @@ export default function ThomasLiendo() {
         </div>
         <div>
           <h5>Thomas Federico Liendo</h5>
-          <p>Diseño</p>
+          <p>Full Stack Web Developer</p>
         </div>
       </div>
     </div>

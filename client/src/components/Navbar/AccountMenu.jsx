@@ -74,23 +74,23 @@ export default function AccountMenu() {
           Nombre del usuario
         </MenuItem>
         <Divider />
-        <NavLink to={"/marketplace/shoppingcart"}>
+        <NavLink to={"/marketplace/shoppingcart"} style={{ color: "#707070" }}>
           <MenuItem onClick={handleClose} className={style.menuLinks}>Carrito</MenuItem>
         </NavLink>
         <Divider />
-        <NavLink to={"/profile"}>
+        <NavLink to={"/profile"} style={{ color: "#707070" }}>
           <MenuItem onClick={handleClose} className={style.menuLinks}>Mi perfil</MenuItem>
         </NavLink>
         <Divider />
-        <NavLink to={"/profile/edit"}>
+        <NavLink to={"/profile/edit"} style={{ color: "#707070" }}>
           <MenuItem onClick={handleClose} className={style.menuLinks}>Editar perfil</MenuItem>
         </NavLink>
-        <NavLink to={"/configuration"}>
+        <NavLink to={"/configuration"} style={{ color: "#707070" }}>
           <MenuItem onClick={handleClose} className={style.menuLinks}>Configuración</MenuItem>
         </NavLink>
         <MenuItem onClick={handleClose} className={style.menuLinks}> Modo oscuro</MenuItem>
         <Divider />
-        <NavLink to={"/"}>
+        <NavLink to={"/"} style={{ color: "#707070" }}>
           <MenuItem onClick={handleClose} className={style.menuLinks}>Cerrar sesión</MenuItem>
         </NavLink>
       </Menu>

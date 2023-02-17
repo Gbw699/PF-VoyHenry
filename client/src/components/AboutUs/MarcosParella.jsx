@@ -49,7 +49,7 @@ export default function MarcosParella() {
         </div>
         <div>
           <h5>Marcos Hernan Parella</h5>
-          <p>Front-End</p>
+          <p>Full Stack Web Developer</p>
         </div>
       </div>
     </div>
