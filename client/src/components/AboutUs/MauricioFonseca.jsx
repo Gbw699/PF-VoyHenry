@@ -38,7 +38,7 @@ export default function MauricioFonseca() {
         </div>
         <div>
           <h5>Mauricio Fonseca</h5>
-          <p>Back-End</p>
+          <p>Full Stack Web Developer</p>
         </div>
       </div>
     </div>

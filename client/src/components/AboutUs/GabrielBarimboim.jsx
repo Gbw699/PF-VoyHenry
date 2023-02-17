@@ -38,7 +38,7 @@ export default function GabrielBarimboim() {
         </div>
         <div>
           <h5>Gabriel Barimboim</h5>
-          <p>Front-End</p>
+          <p>Full Stack Web Developer</p>
         </div>
       </div>
     </div>

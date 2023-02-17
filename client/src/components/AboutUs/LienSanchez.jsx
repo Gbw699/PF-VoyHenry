@@ -38,7 +38,7 @@ export default function LienSanchez() {
         </div>
         <div>
           <h5>Lien Silvio Sanchez</h5>
-          <p>Back-End</p>
+          <p>Full Stack Web Developer</p>
         </div>
       </div>
     </div>
