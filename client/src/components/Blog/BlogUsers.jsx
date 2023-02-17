@@ -10,8 +10,6 @@ export default function BlogUsers() {
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.userStore.allUsers);
 
-  console.log(allUsers);
-
   useEffect(() => {
     if (!allUsers.length) {
       dispatch(getAllUsers());
@@ -21,7 +19,10 @@ export default function BlogUsers() {
   return (
     <div className={style.container}>
       <h3 className={style.usersTitle}>Usuarios</h3>
-      <hr width="100%" color="#F1E100" />
+      <hr
+        width="100%"
+        color="#F1E100"
+      />
       {allUsers.users?.map((user) => {
         return (
           <UserCard

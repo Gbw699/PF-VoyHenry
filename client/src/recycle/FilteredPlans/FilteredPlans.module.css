@@ -1,44 +1,44 @@
 .cardCont {
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-    box-shadow: 3px 3px 5px 2px #222222;
-    padding: 10px;
-    margin-bottom: 10%;
-    width: 250px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px 2px #222222;
+  padding: 10px;
+  margin-bottom: 10%;
+  width: 250px;
 }
 
 .cardTitle {
-    color: #707070;
-    font-weight: 300;
-    font-size: 120%;
-    margin-bottom: 0px;
+  color: #707070;
+  font-weight: 300;
+  font-size: 120%;
+  margin-bottom: 0px;
 }
 
 .imgCont {
-    display: flex;
-    flex-direction: row;
-    align-self: center;
-    justify-content: center;
-    margin-bottom: 8%;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content: center;
+  margin-bottom: 8%;
 }
 
 .planImg {
-    height: 110px;
-    width: 110px;
-    margin: 2%;
+  height: 110px;
+  width: 110px;
+  margin: 2%;
 }
 
 .btn {
-    background-color: white;
-    border: 0px;
-    align-self: flex-start;
-    color: #707070;
-    font-weight: 300;
-    cursor: pointer;
+  background-color: white;
+  border: 0px;
+  align-self: flex-start;
+  color: #707070;
+  font-weight: 300;
+  cursor: pointer;
 }
 
 .btn:hover {
-    color: #F1E100;
-    font-weight: 550;
+  color: #f1e100;
+  font-weight: 550;
 }

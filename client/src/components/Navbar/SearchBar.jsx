@@ -37,7 +37,12 @@ export default function SearchBar() {
         }}
         className={style.searchInput}
       />
-      <button type="submit" className={style.searchBtn}>Search</button>
+      <button
+        type="submit"
+        className={style.searchBtn}
+      >
+        Search
+      </button>
     </div>
   );
 }
