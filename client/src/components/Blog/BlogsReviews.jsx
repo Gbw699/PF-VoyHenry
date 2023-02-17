@@ -6,10 +6,10 @@ import style from "./BlogsReviews.module.css";
 
 export default function BlogsReviews() {
   const dispatch = useDispatch();
-  const renderBlogs = useSelector((state) => state.blogStore.renderBlogs);
+  const allBlogs = useSelector((state) => state.blogStore.allBlogs);
 
   useEffect(() => {
-    if (!renderBlogs.length) {
+    if (!allBlogs.length) {
       dispatch(getBlogs());
     }
   }, []);

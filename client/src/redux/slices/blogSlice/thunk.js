@@ -1,4 +1,5 @@
 import axios from "axios";
+import { object } from "yup";
 import { setBlogsSearch, setBlogs } from "./blogSlice";
 
 export const getBlogs = () => {
@@ -19,6 +20,19 @@ export const getBlogsSearch = (user) => {
       dispatch(setBlogsSearch(response.data));
     } catch (error) {
       return window.alert("No se pudo realizar la petición");
+    }
+  };
+};
+
+export const postBlog = (obj) => {
+  return async () => {
+    try {
+      await axios.post("http://localhost:3001/api/v1/blogs", {
+        ...obj,
+      });
+      window.alert("La reseña fue creada");
+    } catch (error) {
+      window.alert(error.message);
     }
   };
 };

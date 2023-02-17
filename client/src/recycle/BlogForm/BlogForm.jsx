@@ -1,7 +1,10 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
+import { postBlog } from "../../redux/slices/blogSlice/thunk";
 
 export default function BlogForm({ open, close }) {
+  const dispatch = useDispatch();
   //const nickname = localStorage.getItem("login");
   const nickname = "juancito";
 
@@ -28,7 +31,7 @@ export default function BlogForm({ open, close }) {
           image: Yup.string().url(),
         })}
         onSubmit={(values) => {
-          alert(JSON.stringify(values));
+          dispatch(postBlog(values));
         }}
       >
         <Form>
