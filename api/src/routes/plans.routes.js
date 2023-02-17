@@ -64,7 +64,6 @@ router.post('/',
 /* update plan info */
 
 router.patch('/:planID',
-  validatorHandler(getPlanSchema, 'params'),
   validatorHandler(updateSchema, "body"),
   async (req, res, next) => {
 

@@ -85,7 +85,7 @@ class PlansService {
 
     const [plan] = await plansModel.findAll({
       where: {
-        title: id
+        id: id
       }
     })
     if (plan === null) {
