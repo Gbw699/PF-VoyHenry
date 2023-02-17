@@ -5,21 +5,28 @@ const UsersService = require('../../../services/user.service')
 
 const service =  new UsersService();
 
-const LocalStrategy = new Strategy( async (email, password, done) => {
+const LocalStrategy = new Strategy({
+  usernameField: 'email',
+  passwordField: 'password'
+  },
+  async (email, password, done) => {
+    try {
 
-  try {
+      const user = await service.findByEmail(email)
 
-    const user = await service.findByEmail(email)
+      const isMatch = await bcrypt.compare(password, user.password)
 
-    const isMatch = await bcrypt.compare(password, user.password)
+      if (!isMatch) {
+        done(new CustomError("unauthorized", 401), false)
+      }
 
-    if (!isMatch) {
-      done(new CustomError("unauthorized", 401), false)
+      delete user.dataValues.password;
+
+      done(null, user)
+    } catch (error) {
+
+      done(error, false)
     }
-    done(null, user)
-  } catch (error) {
-    done(error, false)
-  }
 
 });
 
