@@ -2,8 +2,8 @@ import { faker } from "@faker-js/faker";
 import axios from "axios";
 
 async function dataBaseCreator() {
-function generateUsers() {
-  const nickName = faker.name.middleName();
+  function generateUsers() {
+    const nickName = faker.name.middleName();
     const email = faker.internet.email();
     const genre = "Femenino";
     const about = faker.lorem.sentence();
@@ -48,7 +48,7 @@ function generateUsers() {
       image,
     };
   }
-  
+
   const fakeBlog = generateBlogs();
 
   function generatePlans() {
@@ -59,7 +59,7 @@ function generateUsers() {
     const image = faker.image.abstract();
     const eventDate = faker.date.future();
     const state = "En planeacion";
-    
+
     return {
       title,
       summary,
@@ -72,7 +72,7 @@ function generateUsers() {
   }
 
   const fakePlan = generatePlans();
-  
+
   await axios.post("http://localhost:3001/api/v1/users", fakeUser);
 
   for (let j = 0; j < 10; j++) {
@@ -84,4 +84,27 @@ function generateUsers() {
   }
 }
 
-dataBaseCreator();
+function delay(time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+async function test() {
+  try {
+    console.log("====================================");
+    console.log("Creating user, blogs and post");
+    console.log("====================================");
+    await dataBaseCreator();
+    console.log("====================================");
+    console.log("Finished creating. Wating for next action. (10s)");
+    console.log("====================================");
+    await delay(2000);
+  } catch (error) {
+    console.log("====================================");
+    console.log("Error occurred... Trying again...");
+    console.log("====================================");
+  } finally {
+    await test();
+  }
+}
+
+test();
