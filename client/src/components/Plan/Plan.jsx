@@ -4,12 +4,11 @@ import PlanCardList from "../../recycle/PlanCardList/PlansCardList";
 import PlansSections from "../../recycle/PlansSections/PlansSections";
 
 export default function Plan() {
-
-    return (
-        <div>
-            <GeolocationForm />
-            <PlanCardList />
-            <PlansSections />
-        </div>
-    );
+  return (
+    <div>
+      <GeolocationForm />
+      <PlanCardList />
+      <PlansSections />
+    </div>
+  );
 }

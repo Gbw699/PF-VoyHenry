@@ -1,6 +1,7 @@
 const usersModel = require('../libs/models/users.model');
 const { CustomError } = require('../middlewares/error.handler')
 const bcrypt = require('bcrypt')
+const { Op } = require("sequelize");
 
 class UsersService {
 
@@ -44,10 +45,7 @@ class UsersService {
 
   async find () {
 
-    const users = await usersModel.findAll({
-      attributes: [ "genre", "email", "about", "nickName", "image", "firstName", "lastName", "dateOfBirth", "role", "createdAt", "updatedAt" ]
-    })
-
+    const users = await usersModel.findAll()
     return {users}
 
   }
@@ -139,3 +137,17 @@ class UsersService {
 }
 
 module.exports = UsersService;
+
+/*
+{
+    "password": "password",
+    "role": "role",
+    "nickName": "first",
+    "email": "email@test.com",
+    "about": "about",
+    "firstName": "afirstName",
+    "lastName": "alastName",
+    "genre": "No binario",
+    "dateOfBirth":"1999-12-16",
+    "image": "https://es.wikipedia.org/wiki/Roque_S%C3%A1enz_Pe%C3%B1a#/media/Archivo:Roque_Saenz_Pe%C3%B1a_(obituario_1914).jpg"
+} */
