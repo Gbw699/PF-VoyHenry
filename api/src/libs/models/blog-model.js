@@ -1,13 +1,14 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database/database');
 
-const blogs = sequelize.define("blogs", {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-
-  },
+const blogs = sequelize.define(
+  'blogs',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
 
     usernickName: {
       type: DataTypes.STRING,
@@ -18,7 +19,7 @@ const blogs = sequelize.define("blogs", {
       type: DataTypes.TEXT,
       allowNull: true,
 
-
+      
     },
     content: {
       type: DataTypes.TEXT,
@@ -30,27 +31,26 @@ const blogs = sequelize.define("blogs", {
       allowNull: true,
       validate: {
         min: 0,
-        max: 10
-      }
+        max: 10,
+      },
     },
     image: {
       type: DataTypes.TEXT,
       validate: {
-        isUrl: true
-      }
+        isUrl: true,
+      },
     },
     userimage: {
       type: DataTypes.TEXT,
       validate: {
-        isUrl: true
-      }
+        isUrl: true,
+      },
     },
-
   },
   {
     createdAt: true,
     updatedAt: true,
-  })
-
+  }
+);
 
 module.exports = blogs;
