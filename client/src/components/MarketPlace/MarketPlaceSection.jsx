@@ -8,22 +8,24 @@ import Filters from "./Filters";
 export default function MarketPlaceSection() {
   return (
     <div className={style.container}>
-      <Filters />
-      <div className={style.Card}>
-        {productMarketPlace.data.map((element) =>
-          element.products.map((element2) => (
-            <Link
-              to={`marketplace/${element2.id}`}
-              key={element2.id}
-            >
-              <MarketCard
-                title={element2.title}
-                image={element2.image}
-                price={element2.price}
-              />
-            </Link>
-          ))
-        )}
+      <div className={style.marketCont}>
+        <Filters />
+        <div className={style.cardsCont}>
+          {productMarketPlace.data.map((element) =>
+            element.products.map((element2) => (
+              <Link
+                to={`marketplace/${element2.id}`}
+                key={element2.id}
+              >
+                <MarketCard
+                  title={element2.title}
+                  image={element2.image}
+                  price={element2.price}
+                />
+              </Link>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

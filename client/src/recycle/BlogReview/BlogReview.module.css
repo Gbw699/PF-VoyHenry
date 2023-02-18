@@ -1,0 +1,73 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewCont {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    padding: 20px 30px;
+}
+
+.userCont {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 3%;
+    width: 100%;
+}
+
+.nameDate {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.name {
+    color: #707070;
+    font-size: 120%;
+    font-weight: 300;
+    margin-bottom: 0px;
+}
+
+.date {
+    color: #707070;
+    font-size: 90%;
+    font-weight: 300;
+}
+
+.review {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1%;
+}
+
+.reviewInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.infoName {
+    color: #707070;
+    font-size: 110%;
+    font-weight: 500;
+}
+
+.infoDescription {
+    color: #707070;
+    font-size: 100%;
+    font-weight: 300;
+}
+
+.infoValoration {
+    color: #707070;
+    font-size: 90%;
+    font-weight: 300;
+}
+
+.infoValNum {
+    color: #707070;
+    font-size: 110%;
+    font-weight: 600;
+}
