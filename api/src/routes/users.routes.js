@@ -1,4 +1,6 @@
 const { Router } = require('express');
+const passport = require('passport')
+const { checkRoleClosure } = require('../middlewares/auth.handler')
 const UsersService = require('../services/user.service')
 const validatorHandler = require('../middlewares/validator.handler')
 const { createUserSchema, updateSchema, getUserSchema } = require('../schemas/users.schema')
@@ -66,6 +68,8 @@ router.post('/',
 router.patch('/:nickName',
   validatorHandler(getUserSchema, 'params'),
   validatorHandler(updateSchema, "body"),
+  passport.authenticate('jwt', {session: false}),
+  checkRoleClosure('nickName'),
   async (req, res, next) => {
 
     try {
@@ -86,6 +90,8 @@ router.patch('/:nickName',
 
 router.delete('/:nickName',
   validatorHandler(getUserSchema, 'params'),
+  passport.authenticate('jwt', {session: false}),
+  checkRoleClosure('nickName'),
   async (req, res, next) => {
 
     try {

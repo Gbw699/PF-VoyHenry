@@ -19,7 +19,7 @@ router.post('/login',
       const user = req.user;
 
       const payload = {
-        sub: user.nickName,
+        nick: user.nickName,
         role: user.role
       }
 
