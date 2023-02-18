@@ -63,7 +63,7 @@ class PlansService {
     if (plans === null) {
       throw new CustomError("Plan not found", 404)
     } else {
-      return plans
+      return {plans}
     }
   }
 
