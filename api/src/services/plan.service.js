@@ -10,11 +10,13 @@ class PlansService {
 
   /* Find all Plans || Filter*/
 
-  async find (query) {
+  async find (query, page) {
 
     const options = {
 
-      order: [['eventDate', 'ASC']]
+      order: [['eventDate', 'ASC']],
+      limit: 9,
+      offset: (page - 1) * 9
     }
   
     if (query.state){
@@ -138,6 +140,15 @@ class PlansService {
       }
     } 
 
+  }
+
+  /* Count Pages */
+  async count () {
+    const options = {};
+  
+    const count = await plansModel.count(options);
+  
+    return count;
   }
   
 }
