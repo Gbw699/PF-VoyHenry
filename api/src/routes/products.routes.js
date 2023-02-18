@@ -48,6 +48,7 @@ router.get('/:id',
 router.post('/',
   validatorHandler(createProductSchema, 'body'),
   passport.authenticate('jwt', {session: false}),
+  checkAdminRole,
   async (req, res, next) => {
     try {
 
@@ -69,6 +70,7 @@ router.patch('/:id',
   validatorHandler(getProductSchema, 'params'),
   validatorHandler(updateProductSchema, 'body'),
   passport.authenticate('jwt', {session: false}),
+  checkAdminRole,
   async (req, res, next) => {
     try {
 
@@ -89,6 +91,7 @@ router.patch('/:id',
 router.delete('/:id',
   validatorHandler(getProductSchema, 'params'),
   passport.authenticate('jwt', {session: false}),
+  checkAdminRole,
   async (req, res, next) => {
 
     try {
