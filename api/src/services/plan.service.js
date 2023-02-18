@@ -108,11 +108,11 @@ class PlansService {
 
   /* Delete plan */
 
-  async delete (plan) {
+  async delete (planID) {
 
     const deletedPlan = await plansModel.destroy({
       where: {
-        title: plan
+        id: planID
       }
     })
 
@@ -122,7 +122,7 @@ class PlansService {
       return {
         message: "deleted",
         data: {
-          title: plan
+          id: planID
         }
       }
     } 
