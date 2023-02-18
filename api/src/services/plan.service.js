@@ -1,4 +1,5 @@
 const plansModel = require('../libs/models/plans.model');
+const { CustomError } = require('../middlewares/error.handler');
 const { Op } = require("sequelize");
 
 class PlansService {
@@ -37,19 +38,19 @@ class PlansService {
 
   /* Find one Plan */
 
-  async findOne (title) {
+  async findOne (id) {
 
-    const plan = await plansModel.findAll({
+    const plan = await plansModel.findOne({
       where: {
-        title: title
+        id: id
       }
     })
 
     if (plan === null) {
-      throw new Error("Plan not found")
+      throw new CustomError("Plan not found", 404)
+    } else {
+      return plan
     }
-
-    return plan
 
   }
 
@@ -81,15 +82,15 @@ class PlansService {
 
   /* Update user */
 
-  async update (planTitle, { title, summary, description, mainImage, images, eventDate, state }) {
+  async update (id, { title, summary, description, mainImage, images, eventDate, state }) {
 
-    const [plan] = await plansModel.findAll({
+    const plan = await plansModel.findOne({
       where: {
-        title: planTitle
+        id: id
       }
     })
     if (plan === null) {
-      throw new Error("Plan not found")
+      throw new CustomError("Plan not found", 404)
     }
 
     plan.title =  title || plan.title,
@@ -108,21 +109,21 @@ class PlansService {
 
   /* Delete plan */
 
-  async delete (plan) {
+  async delete (planID) {
 
     const deletedPlan = await plansModel.destroy({
       where: {
-        title: plan
+        id: planID
       }
     })
 
     if (deletedPlan === 0){
-      throw new Error("Plan not found")
+      throw new CustomError("Plan not found", 404)
     } else {
       return {
         message: "deleted",
         data: {
-          title: plan
+          id: planID
         }
       }
     } 

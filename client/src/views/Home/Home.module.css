@@ -1,8 +1,8 @@
 .container {
-    background-color: white;
-    display: flex;
-    flex-direction: row;
-    padding: 40px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  padding: 40px;
 }
 
 .featured {
@@ -19,21 +19,21 @@
 }
 
 .profileCont {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .createBtn {
-    margin-top: 20%;
-    background-color: #F1E100;
-    border: 2px solid #F1E100;
-    border-radius: 10px;
-    padding: 6% 15%;
-    color: #707070;
-    cursor: pointer;
+  margin-top: 20%;
+  background-color: #f1e100;
+  border: 2px solid #f1e100;
+  border-radius: 10px;
+  padding: 6% 15%;
+  color: #707070;
+  cursor: pointer;
 }
 
 .createBtn:hover {
-    background-color: white;
+  background-color: white;
 }

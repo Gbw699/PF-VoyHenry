@@ -74,24 +74,70 @@ export default function AccountMenu() {
           Nombre del usuario
         </MenuItem>
         <Divider />
-        <NavLink to={"/marketplace/shoppingcart"} style={{ color: "#707070" }}>
-          <MenuItem onClick={handleClose} className={style.menuLinks}>Carrito</MenuItem>
+        <NavLink
+          to={"/marketplace/shoppingcart"}
+          style={{ color: "#707070" }}
+        >
+          <MenuItem
+            onClick={handleClose}
+            className={style.menuLinks}
+          >
+            Carrito
+          </MenuItem>
         </NavLink>
         <Divider />
-        <NavLink to={"/profile"} style={{ color: "#707070" }}>
-          <MenuItem onClick={handleClose} className={style.menuLinks}>Mi perfil</MenuItem>
+        <NavLink
+          to={"/profile"}
+          style={{ color: "#707070" }}
+        >
+          <MenuItem
+            onClick={handleClose}
+            className={style.menuLinks}
+          >
+            Mi perfil
+          </MenuItem>
         </NavLink>
         <Divider />
-        <NavLink to={"/profile/edit"} style={{ color: "#707070" }}>
-          <MenuItem onClick={handleClose} className={style.menuLinks}>Editar perfil</MenuItem>
+        <NavLink
+          to={"/profile/edit"}
+          style={{ color: "#707070" }}
+        >
+          <MenuItem
+            onClick={handleClose}
+            className={style.menuLinks}
+          >
+            Editar perfil
+          </MenuItem>
         </NavLink>
-        <NavLink to={"/configuration"} style={{ color: "#707070" }}>
-          <MenuItem onClick={handleClose} className={style.menuLinks}>Configuración</MenuItem>
+        <NavLink
+          to={"/configuration"}
+          style={{ color: "#707070" }}
+        >
+          <MenuItem
+            onClick={handleClose}
+            className={style.menuLinks}
+          >
+            Configuración
+          </MenuItem>
         </NavLink>
-        <MenuItem onClick={handleClose} className={style.menuLinks}> Modo oscuro</MenuItem>
+        <MenuItem
+          onClick={handleClose}
+          className={style.menuLinks}
+        >
+          {" "}
+          Modo oscuro
+        </MenuItem>
         <Divider />
-        <NavLink to={"/"} style={{ color: "#707070" }}>
-          <MenuItem onClick={handleClose} className={style.menuLinks}>Cerrar sesión</MenuItem>
+        <NavLink
+          to={"/"}
+          style={{ color: "#707070" }}
+        >
+          <MenuItem
+            onClick={handleClose}
+            className={style.menuLinks}
+          >
+            Cerrar sesión
+          </MenuItem>
         </NavLink>
       </Menu>
     </React.Fragment>

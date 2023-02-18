@@ -51,11 +51,21 @@ class UsersService {
 
     if (query.name){
       options.where = {
-          [Op.or]: [
-            { firstName: { [Op.substring]: query.name } },
-            { lastName: { [Op.substring]: query.name } }
-          ]
-        }
+        [Op.or]: [
+          {
+            [Op.or]: [
+              { firstName: { [Op.substring]: query.name } },
+              { firstName: { [Op.iLike]: query.name } },
+            ]
+          },
+          {
+            [Op.or]: [
+              { lastName: { [Op.iLike]: query.name } },
+              { lastName: { [Op.substring]: query.name } }
+            ]
+          }
+        ]
+      }
     }
 
     const users = await usersModel.findAll(options)
@@ -131,16 +141,3 @@ class UsersService {
 
 module.exports = UsersService;
 
-/* 
-{
-    "password": "password",
-    "role": "role",
-    "nickName": "first",
-    "email": "email@test.com",
-    "about": "about",
-    "firstName": "afirstName",
-    "lastName": "alastName",
-    "genre": "No binario",
-    "dateOfBirth":"1999-12-16",
-    "image": "https://es.wikipedia.org/wiki/Roque_S%C3%A1enz_Pe%C3%B1a#/media/Archivo:Roque_Saenz_Pe%C3%B1a_(obituario_1914).jpg"
-} */

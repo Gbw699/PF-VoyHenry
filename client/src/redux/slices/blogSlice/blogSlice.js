@@ -4,15 +4,13 @@ const blogSlice = createSlice({
   name: "blog",
   initialState: {
     allBlogs: [],
-    renderBlogs: [],
   },
   reducers: {
     setBlogs: (state, action) => {
       state.allBlogs = [...action.payload];
-      state.renderBlogs = [...action.payload];
     },
     setBlogsSearch(state, action) {
-      state.renderBlogs = [...action.payload];
+      state.allBlogs = [...action.payload];
     },
   },
 });

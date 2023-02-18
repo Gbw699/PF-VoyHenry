@@ -1,9 +1,9 @@
 .aboutUs {
-    color: white;
-    font-size: 110%;
-    font-weight: 400;
+  color: white;
+  font-size: 110%;
+  font-weight: 400;
 }
 
 .aboutUs:hover {
-    color: #F1E100;
+  color: #f1e100;
 }
