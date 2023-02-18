@@ -1,20 +1,26 @@
-export default function BlogReview() {
+export default function BlogReview({
+  usernickName,
+  userimage,
+  title,
+  image,
+  content,
+  rating,
+}) {
   return (
     <div>
       <img
-        src=""
+        src={userimage}
         alt="Imagen de usuario"
       />
-      <h3>Nombre de usuario</h3>
+      <h3>{usernickName}</h3>
       <img
-        src=""
+        src={image}
         alt="Imagen del plan"
       />
-      <h4>Nombre del plan</h4>
-      <p>Fecha de publicación</p>
-      <p>Descripción</p>
+      <h4>{title}</h4>
+      <p>{content}</p>
       <p>
-        Valoración: <span>1</span>
+        Valoración: <span>{rating}</span>
       </p>
     </div>
   );
