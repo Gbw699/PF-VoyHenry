@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-image: url("../../assets/wave-haikei.png");
+  background-attachment: fixed;
+}
+
+.Card {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.411);
+  width: auto;
+  height: auto;
+}
