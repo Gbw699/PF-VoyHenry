@@ -38,11 +38,11 @@ class PlansService {
     }
 
     const plans = await plansModel.findAll(options)
-    
+
     if (plans === null) {
       throw new CustomError("Plan not found", 404)
     } else {
-      return plan
+      return plans
     }
   }
 
