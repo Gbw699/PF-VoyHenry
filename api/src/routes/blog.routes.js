@@ -12,7 +12,7 @@ router.get('/', async (req, res, next) => {
 
   try {
 
-    const blogs = await service.find()
+    const blogs = await service.find(req.query)
 
     res.json(blogs)
   } catch (error) {
@@ -50,9 +50,9 @@ async (req, res, next) => {
 
     try {
 
-      const {userName, title, content, rating} = req.body;
+      const body = req.body;
 
-      const createdBlog = await service.create(userName,title, content, rating)
+      const createdBlog = await service.create(body)
 
       res.json(createdBlog)
     } catch (error) {

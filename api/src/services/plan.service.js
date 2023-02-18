@@ -1,4 +1,6 @@
 const plansModel = require('../libs/models/plans.model');
+const { CustomError } = require('../middlewares/error.handler');
+const { Op } = require("sequelize");
 
 class PlansService {
 
@@ -9,75 +11,46 @@ class PlansService {
   /* Find all Plans || Filter*/
 
   async find (query) {
+
+    const options = {
+
+      order: [['eventDate', 'ASC']]
+    }
   
-    if (query.state == 'en planeacion') {
-      const plans = await plansModel.findAll({
-        where: {
-          state: 'En planeacion'
-        },
-        order: [['eventDate', 'ASC']]
-      })
+    if (query.state){
 
-      return {plans}
+      options.where = { state:{ [Op.substring]: query.state }  }
+    } 
 
-    } else if (query.state == 'en progreso'){
-      const plans = await plansModel.findAll({
-        where: {
-          state: 'En progreso'
-        },
-        order: [['eventDate', 'ASC']]
-      })
-
-      return {plans}
-
-    } else if (query.state == 'finalizado'){
-      const plans = await plansModel.findAll({
-        where: {
-          state: 'Finalizado'
-        }
-      })
-
-      return {plans}
-
-    } else if (query.order == 'alphabetical'){
-      const plans = await plansModel.findAll({
-        order: [['title', 'ASC']]
-      })
-
-      return {plans}
-
-    } else if (query.order == 'reverse'){
-      const plans = await plansModel.findAll({
-        order: [['title', 'DESC']]
-      })
-
-      return {plans}
-
-    } else {
-
-      const plans = await plansModel.findAll({
-        order: [['eventDate', 'ASC']]
-      })
-      return {plans}
+    if (query.order) {
+      if (query.order === 'alfabetico') {
+        options.order = [['title', 'ASC']];
+      } else if (query.order === 'reverso') {
+        options.order = [['title', 'DESC']];
+      } else if (query.order === 'antiguos'){
+        options.order = [['eventDate', 'DESC']];
+      }
     }
 
+    const plans = await plansModel.findAll(options)
+    return {plans}
   }
 
   /* Find one Plan */
 
-  async findOne (title) {
+  async findOne (id) {
 
-    const plan = await plansModel.findAll({
+    const plan = await plansModel.findOne({
       where: {
-        title: title
+        id: id
       }
     })
 
     if (plan === null) {
-      throw new Error("Plan not found")
+      throw new CustomError("Plan not found", 404)
+    } else {
+      return plan
     }
-
-    return plan
 
   }
 
@@ -109,15 +82,15 @@ class PlansService {
 
   /* Update user */
 
-  async update (planTitle, { title, summary, description, mainImage, images, eventDate, state }) {
+  async update (id, { title, summary, description, mainImage, images, eventDate, state }) {
 
-    const [plan] = await plansModel.findAll({
+    const plan = await plansModel.findOne({
       where: {
-        title: planTitle
+        id: id
       }
     })
     if (plan === null) {
-      throw new Error("Plan not found")
+      throw new CustomError("Plan not found", 404)
     }
 
     plan.title =  title || plan.title,
@@ -136,21 +109,21 @@ class PlansService {
 
   /* Delete plan */
 
-  async delete (plan) {
+  async delete (planID) {
 
     const deletedPlan = await plansModel.destroy({
       where: {
-        title: plan
+        id: planID
       }
     })
 
     if (deletedPlan === 0){
-      throw new Error("Plan not found")
+      throw new CustomError("Plan not found", 404)
     } else {
       return {
         message: "deleted",
         data: {
-          title: plan
+          id: planID
         }
       }
     } 

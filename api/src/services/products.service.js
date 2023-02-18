@@ -32,39 +32,34 @@ class ProductsService {
 
   async find (query) {
 
+    const options = {
 
-  if (query.price == 'ascendente') {
-    const products = await productModel.findAll({
-      order: [['price', 'ASC']]
-    })
+      order: [['id', 'ASC']]
+    }
 
+
+    if (query.price) {
+      if (query.price == 'ascendente') {
+
+        options.order = [['price', 'ASC']]
+      } else if (query.price == 'descendente') {
+    
+        options.order = [['price', 'DESC']]
+      }
+    }
+
+    if (query.order){
+      if (query.order == 'alfabetico'){
+        
+        options.order = [['title', 'ASC']]
+      } else if (query.order == 'reverso'){
+
+        options.order = [['title', 'DESC']]
+      }
+    }
+
+    const products = await productModel.findAll(options)
     return {products}
-  } else if (query.price == 'descendente') {
-
-    const products = await productModel.findAll({
-      order: [['price', 'DESC']]
-    })
-
-    return {products}
-  } else if (query.order == 'alphabetical') {
-
-    const products = await productModel.findAll({
-      order: [['title', 'ASC']]
-    })
-
-    return {products}
-  } else if (query.order == 'reverse') {
-
-    const products = await productModel.findAll({
-      order: [['title', 'DESC']]
-    })
-
-    return {products}
-  } else {
-
-    const products = await productModel.findAll()
-    return {products}
-  } 
 
   }        
 

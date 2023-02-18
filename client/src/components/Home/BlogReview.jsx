@@ -1,21 +1,24 @@
-import { Card, CardContent, Typography } from "@mui/material";
 import React from "react";
 import blogsData from "../../blogs";
+import style from "./BlogReview.module.css";
 
 export default function BlogReview() {
   const blog = blogsData.data[0];
 
   return (
-    <div>
+    <div className={style.container}>
       <div>
-        <h3>Reseñas destacadas</h3>
-        <hr
-          width="100%"
-          color="#F1E100"
-        />
-        <p>Nombre: {blog?.userName}</p>
-        <p>Título: {blog?.title}</p>
-        <p>Contenido: {blog?.content}</p>
+        <h3 className={style.title}>Reseñas destacadas</h3>
+        <hr width="100%" color="#F1E100" />
+        <div className={style.reviewHeader}>
+          <p className={style.headerTitle}>Título:&emsp;</p>
+          <p className={style.headerContent}>{blog?.title}</p>
+        </div>
+        <div className={style.reviewHeader}>
+          <p className={style.headerTitle}>Autor:&emsp;</p>
+          <p className={style.headerContent}>{blog?.userName}</p>
+        </div>
+        <p className={style.reviewContent}>Contenido: {blog?.content}</p>
       </div>
     </div>
   );

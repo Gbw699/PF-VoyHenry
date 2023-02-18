@@ -1,70 +1,68 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-left: 40px;
-    padding-right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .profileCont {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    box-shadow: 3px 3px 5px 2px #222222;
-    width: 150%;
-    height: 350px;
-    padding: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px 2px #222222;
+  width: 150%;
+  height: 350px;
+  padding: 2%;
+}
+
+.imgCont {
+  width: 150px;
+  height: 150px;
+  /* background-image: url(https://www.clarin.com/img/2021/10/07/dPmbdeT7x_1200x630__1.jpg); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  margin: 3% auto;
 }
 
 .profileName {
-    color: #707070;
-    font-size: 150%;
-    font-weight: 600;
-    margin-top: 2%;
-    margin-bottom: -20px;
+  color: #707070;
+  font-size: 150%;
+  font-weight: 600;
+  margin-top: 2%;
+  margin-bottom: -20px;
 }
 
 .profileCountry {
-    color: #707070;
-    font-size: 100%;
-    font-weight: 300;
+  color: #707070;
+  font-size: 100%;
+  font-weight: 300;
 }
 
 .followersCont {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    justify-content: center;
-    margin-top: 8%;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  justify-content: center;
+  margin-top: 8%;
 }
 
 .followers {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .followTitle {
-    color: #707070;
-    font-weight: 300;
+  color: #707070;
+  font-weight: 300;
 }
 
 .followNum {
-    color: #707070;
-    font-weight: 700;                
-}
-
-.createBtn {
-    margin-top: 20%;
-    background-color: #F1E100;
-    border: 2px solid #F1E100;
-    border-radius: 10px;
-    padding: 6% 15%;
-    color: #707070;
-}
-
-.createBtn:hover {
-    background-color: white;
+  color: #707070;
+  font-weight: 700;
 }

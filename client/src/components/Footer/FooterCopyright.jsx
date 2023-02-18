@@ -9,7 +9,14 @@ export default function FooterCopyright() {
     <div>
       <p className={style.rightsTxt}>
         Copyright © {currentYear} - Todos los derechos reservados por el{" "}
-        <Link to="/aboutUs" className={style.rightsLink}> Grupo 8</Link> de{" "}
+        <Link
+          to="/aboutUs"
+          className={style.rightsLink}
+        >
+          {" "}
+          Grupo 8
+        </Link>{" "}
+        de{" "}
         <a
           href="https://www.soyhenry.com/"
           rel="noreferrer"

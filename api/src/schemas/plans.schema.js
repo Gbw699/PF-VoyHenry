@@ -4,7 +4,7 @@ const Joi = require('joi')
 const currentDate = new Date();
 const greaterDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
 
-
+const id = Joi.number()
 const title = Joi.string().min(3).max(15)
 const summary = Joi.string().max(125)
 const description = Joi.string().min(3).max(255)
@@ -14,7 +14,7 @@ const state = Joi.string().valid('En planeacion', 'En progreso',  'Finalizado')
 const eventDate = Joi.date().greater(greaterDate);
 
 const getPlanSchema = Joi.object({
-  title: title.required()
+  id: id.required()
 })
 
 const createPlanSchema = Joi.object({
@@ -22,6 +22,7 @@ const createPlanSchema = Joi.object({
   summary: summary.required(),
   description: description.required(),
   mainImage: mainImage.required(),
+  images: images.required(),
   state: state.required(),
   eventDate: eventDate.required()
 })
@@ -36,9 +37,14 @@ const updateSchema = Joi.object({
   eventDate: eventDate
 })
 
+const deletePlanSchema = Joi.object({
+  id: id.required()
+})
+
 module.exports = {
   createPlanSchema,
   updateSchema,
-  getPlanSchema
+  getPlanSchema,
+  deletePlanSchema
 }
 

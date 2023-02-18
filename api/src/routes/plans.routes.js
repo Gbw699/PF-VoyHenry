@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const PlansService = require('../services/plan.service')
 const validatorHandler = require('../middlewares/validator.handler')
-const { createPlanSchema, updateSchema, getPlanSchema } = require('../schemas/plans.schema')
+const { createPlanSchema, updateSchema, getPlanSchema, deletePlanSchema } = require('../schemas/plans.schema')
 
 const router = Router();
 const service = new PlansService();
@@ -22,16 +22,16 @@ router.get('/', async (req, res, next) => {
 
 });
 
-/* Get plan by title */
+/* Get plan by ID */
 
-router.get('/:title',
+router.get('/:id',
   validatorHandler(getPlanSchema, 'params'),
   async (req, res, next) => {
     try {
 
-      const { title } = req.params;
+      const { id } = req.params;
 
-      const plan = await service.findOne(title)
+      const plan = await service.findOne(id)
 
       res.json(plan)
     } catch (error) {
@@ -63,17 +63,16 @@ router.post('/',
 
 /* update plan info */
 
-router.patch('/:planTitle',
-  validatorHandler(getPlanSchema, 'params'),
+router.patch('/:planID',
   validatorHandler(updateSchema, "body"),
   async (req, res, next) => {
 
     try {
 
-      const { planTitle } = req.params
+      const { planID } = req.params
       const body = req.body;
 
-      const updatedPlan = await service.update(planTitle, body)
+      const updatedPlan = await service.update(planID, body)
 
       res.json(updatedPlan)
     } catch (error) {
@@ -84,15 +83,15 @@ router.patch('/:planTitle',
 
 /* Delete plan */
 
-router.delete('/:plan',
-  validatorHandler(getPlanSchema, 'params'),
+router.delete('/:id',
+  validatorHandler(deletePlanSchema, 'params'),
   async (req, res, next) => {
 
     try {
 
-      const { plan } = req.params
+      const { id } = req.params
 
-      const deletedPlan = await service.delete(plan)
+      const deletedPlan = await service.delete(id)
 
       res.json(deletedPlan)
     } catch (error) {

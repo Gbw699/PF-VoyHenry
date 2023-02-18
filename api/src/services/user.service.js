@@ -1,5 +1,6 @@
 const usersModel = require('../libs/models/users.model');
 const { CustomError } = require('../middlewares/error.handler')
+const { Op } = require("sequelize");
 
 class UsersService {
 
@@ -37,11 +38,39 @@ class UsersService {
 
   /* Find all Users */
 
-  async find () {
+  async find (query) {
 
-    const users = await usersModel.findAll()
+    const options = {
+
+      order: [['firstName', 'ASC']]
+    }
+    
+    if (query.order == 'reverso'){
+      options.order = [['firstName', 'DESC']]
+    }
+
+    if (query.name){
+      options.where = {
+        [Op.or]: [
+          {
+            [Op.or]: [
+              { firstName: { [Op.substring]: query.name } },
+              { firstName: { [Op.iLike]: query.name } },
+            ]
+          },
+          {
+            [Op.or]: [
+              { lastName: { [Op.iLike]: query.name } },
+              { lastName: { [Op.substring]: query.name } }
+            ]
+          }
+        ]
+      }
+    }
+
+    const users = await usersModel.findAll(options)
     return {users}
-
+  
   }
 
   /* Find one User */
@@ -111,3 +140,4 @@ class UsersService {
 }
 
 module.exports = UsersService;
+
