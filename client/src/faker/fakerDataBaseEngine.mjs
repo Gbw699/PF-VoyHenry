@@ -2,8 +2,8 @@ import { faker } from "@faker-js/faker";
 import axios from "axios";
 
 async function dataBaseCreator() {
-  function generateUsers() {
-    const nickName = faker.name.middleName();
+function generateUsers() {
+  const nickName = faker.name.middleName();
     const email = faker.internet.email();
     const genre = "Femenino";
     const about = faker.lorem.sentence();
@@ -48,7 +48,7 @@ async function dataBaseCreator() {
       image,
     };
   }
-
+  
   const fakeBlog = generateBlogs();
 
   function generatePlans() {
@@ -59,7 +59,7 @@ async function dataBaseCreator() {
     const image = faker.image.abstract();
     const eventDate = faker.date.future();
     const state = "En planeacion";
-
+    
     return {
       title,
       summary,
@@ -72,7 +72,7 @@ async function dataBaseCreator() {
   }
 
   const fakePlan = generatePlans();
-
+  
   await axios.post("http://localhost:3001/api/v1/users", fakeUser);
 
   for (let j = 0; j < 10; j++) {
@@ -84,14 +84,4 @@ async function dataBaseCreator() {
   }
 }
 
-async function createDataBase() {
-  try {
-    for (let i = 0; i < 10000; i++) {
-      dataBaseCreator();
-    }
-  } catch (error) {
-    dataBaseCreator();
-  }
-}
-
-createDataBase();
+dataBaseCreator();
