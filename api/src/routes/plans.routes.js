@@ -22,16 +22,16 @@ router.get('/', async (req, res, next) => {
 
 });
 
-/* Get plan by title */
+/* Get plan by ID */
 
-router.get('/:title',
+router.get('/:id',
   validatorHandler(getPlanSchema, 'params'),
   async (req, res, next) => {
     try {
 
-      const { title } = req.params;
+      const { id } = req.params;
 
-      const plan = await service.findOne(title)
+      const plan = await service.findOne(id)
 
       res.json(plan)
     } catch (error) {
