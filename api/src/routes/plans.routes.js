@@ -13,12 +13,10 @@ router.get('/', async (req, res, next) => {
   try {
 
     const page = req.query.page || 1
-    console.log(page)
     const plans = await service.find(req.query, page)
 
     const count = await service.count(req.query);
     const pages = Math.ceil(count / 9);
-    console.log(pages)
 
     const response = { plans, page, pages }
     res.json(response)

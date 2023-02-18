@@ -16,7 +16,16 @@ class PlansService {
 
       order: [['eventDate', 'ASC']],
       limit: 9,
-      offset: (page - 1) * 9
+      offset : 0
+    }
+
+    if (query.page) {
+      const page = parseInt(query.page);
+      console.log(page)
+      if (isNaN(page) || page < 1) {
+        throw new CustomError('Invalid page number', 440);
+      }
+      options.offset = (page - 1) * options.limit;
     }
   
     if (query.state){
@@ -37,6 +46,16 @@ class PlansService {
       } else if (query.order === 'antiguos'){
         options.order = [['eventDate', 'DESC']];
       }
+    }
+
+    if (query.limit) {
+
+      options.limit = query.limit; 
+    }
+
+    if (query.offset) {
+
+      options.offset = (page - 1) * query.offset; 
     }
 
     const plans = await plansModel.findAll(options)
