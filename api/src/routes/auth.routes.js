@@ -1,14 +1,9 @@
 const { Router } = require('express');
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
-require('dotenv').config();
 const AuthService = require('../services/auth.service')
 
 const service = new AuthService()
-
-const {
-  JWT_SECRET
-} = process.env
 
 const router = Router();
 
@@ -21,17 +16,7 @@ router.post('/login',
     try {
       const user = req.user;
 
-      const payload = {
-        nick: user.nickName,
-        role: user.role
-      }
-
-      const token = jwt.sign(payload, JWT_SECRET)
-
-      res.json({
-        user,
-        token
-      })
+      res.json(service.signToken(user))
     } catch (error) {
 
       next(error)
@@ -43,9 +28,14 @@ router.post('/login',
 
 router.post('/recovery',
   async (req, res, next) => {
-    const { email } = req.body
 
     try {
+
+      const { email } = req.body
+
+      const message = await service.sendMail(email)
+
+      res.json(message)
     } catch (error) {
 
       next(error)
