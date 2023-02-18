@@ -88,6 +88,7 @@ router.patch('/:planID',
 
 router.delete('/:id',
   validatorHandler(deletePlanSchema, 'params'),
+  passport.authenticate('jwt', {session: false}),
   async (req, res, next) => {
 
     try {
