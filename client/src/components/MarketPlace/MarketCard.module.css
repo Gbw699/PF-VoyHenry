@@ -1,0 +1,22 @@
+.Card {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+
+  color: black;
+  padding: 20px;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+}
+
+.Card:hover {
+  transform: scale(1.05);
+  transition: all 0.5s ease 0.2s;
+}
+
+.img {
+  width: 280px;
+  height: 280px;
+  position: relative;
+}
