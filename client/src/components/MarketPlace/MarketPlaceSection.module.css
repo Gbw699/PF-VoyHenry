@@ -1,0 +1,18 @@
+.container {
+    background-image: url("../../assets/marketBg.png");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.marketCont {
+    display: flex;
+    flex-direction: row;
+    padding: 18% 8%;
+}
+
+.cardsCont {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0px 7%;
+}
