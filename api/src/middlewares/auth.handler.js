@@ -17,6 +17,16 @@ const checkApiKey = (req, res, next) => {
 
 }
 
+const checkAdminRole = (req, res, next) => {
+  const user = req.user;
+  if (user.role === 'admin') {
+    next()
+  } else {
+    next(new CustomError("unauthorized", 401))
+  }
+}
+
 module.exports = {
-  checkApiKey
+  checkApiKey,
+  checkAdminRole
 };

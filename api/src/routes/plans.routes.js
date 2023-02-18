@@ -45,8 +45,8 @@ router.get('/:title',
 /* Create new plan */
 
 router.post('/',
-  /* passport.authenticate('jwt', {session: false}), */
   validatorHandler(createPlanSchema, "body"),
+  passport.authenticate('jwt', {session: false}),
   async (req, res, next) => {
 
     try {
@@ -68,6 +68,7 @@ router.post('/',
 router.patch('/:planTitle',
   validatorHandler(getPlanSchema, 'params'),
   validatorHandler(updateSchema, "body"),
+  passport.authenticate('jwt', {session: false}),
   async (req, res, next) => {
 
     try {
@@ -88,6 +89,7 @@ router.patch('/:planTitle',
 
 router.delete('/:plan',
   validatorHandler(getPlanSchema, 'params'),
+  passport.authenticate('jwt', {session: false}),
   async (req, res, next) => {
 
     try {
