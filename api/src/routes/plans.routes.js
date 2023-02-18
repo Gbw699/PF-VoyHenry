@@ -83,15 +83,15 @@ router.patch('/:planID',
 
 /* Delete plan */
 
-router.delete('/:plan',
-/*   validatorHandler(deletePlanSchema, 'params'), */
+router.delete('/:id',
+  validatorHandler(deletePlanSchema, 'params'),
   async (req, res, next) => {
 
     try {
 
-      const { plan } = req.params
+      const { id } = req.params
 
-      const deletedPlan = await service.delete(plan)
+      const deletedPlan = await service.delete(id)
 
       res.json(deletedPlan)
     } catch (error) {
