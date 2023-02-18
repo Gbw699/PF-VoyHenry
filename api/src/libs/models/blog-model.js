@@ -8,6 +8,7 @@ const blogs = sequelize.define(
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+      
     },
 
     usernickName: {
@@ -20,6 +21,7 @@ const blogs = sequelize.define(
       allowNull: true,
 
       
+      
     },
     content: {
       type: DataTypes.TEXT,
@@ -31,14 +33,14 @@ const blogs = sequelize.define(
       allowNull: true,
       validate: {
         min: 0,
-        max: 10,
-      },
+        max: 10
+      }
     },
     image: {
       type: DataTypes.TEXT,
       validate: {
-        isUrl: true,
-      },
+        isUrl: true
+      }
     },
     userimage: {
       type: DataTypes.TEXT,
@@ -46,11 +48,12 @@ const blogs = sequelize.define(
         isUrl: true,
       },
     },
+    
   },
   {
     createdAt: true,
     updatedAt: true,
-  }
+  })
 );
 
 module.exports = blogs;
