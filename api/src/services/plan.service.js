@@ -22,6 +22,11 @@ class PlansService {
       options.where = { state:{ [Op.substring]: query.state }  }
     } 
 
+    if (query.contains){
+
+      options.where = { title:{ [Op.substring]: query.contains }  }
+    } 
+
     if (query.order) {
       if (query.order === 'alfabetico') {
         options.order = [['title', 'ASC']];
@@ -33,7 +38,12 @@ class PlansService {
     }
 
     const plans = await plansModel.findAll(options)
-    return {plans}
+    
+    if (plans === null) {
+      throw new CustomError("Plan not found", 404)
+    } else {
+      return plan
+    }
   }
 
   /* Find one Plan */

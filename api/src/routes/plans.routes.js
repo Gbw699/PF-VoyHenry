@@ -25,7 +25,7 @@ router.get('/', async (req, res, next) => {
 /* Get plan by ID */
 
 router.get('/:id',
-  validatorHandler(getPlanSchema, 'params'),
+  validatorHandler(getPlanSchema, 'params'), 
   async (req, res, next) => {
     try {
 
