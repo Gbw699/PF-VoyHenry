@@ -83,7 +83,7 @@ class UsersService {
   async findOne (nickName) {
 
     const user = await usersModel.findByPk(nickName, {
-      attributes: [ "genre", "email", "about", "nickName", "image", "firstName", "lastName", "dateOfBirth", "role", "createdAt", "updatedAt" ]
+      attributes: [ "genre", "email", "about", "nickName", "image", "firstName", "lastName", "dateOfBirth", "role", "createdAt", "updatedAt", "recoveryToken" ]
     })
 
     if (user === null) {
@@ -112,7 +112,7 @@ class UsersService {
 
   /* Update user */
 
-  async update (userNickName, { genre, email, nickName, about, image, firstName, lastName, dateOfBirth , password, role}) {
+  async update (userNickName, { genre, email, nickName, about, image, firstName, lastName, dateOfBirth , password, role, recoveryToken}) {
 
     const user = await usersModel.findByPk(userNickName)
 
@@ -126,6 +126,7 @@ class UsersService {
     user.role = role || user.role;
     user.genre = genre || user.genre;
     user.nickName = nickName || user.nickName;
+    user.recoveryToken = recoveryToken || null;
     user.email = email || user.email.toLowerCase();
     user.about = about || user.about;
     user.firstName = firstName || user.firstName;

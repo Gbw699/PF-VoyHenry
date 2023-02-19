@@ -56,6 +56,7 @@ class AuthService {
 
       const token = jwt.sign(payload, JWT_SECRET,{expiresIn: '15min'})
       const link = `https://myfrontend.com/recovery?token=${token}`;
+      await userService.update( user.nickName, {recoveryToken: token})
 
       const mail = {
         from: MAIL,
@@ -70,6 +71,27 @@ class AuthService {
     } catch (error) {
       throw new CustomError("unauthorized", 401)
     }
+  }
+
+  async changePassword(token, newPassword) {
+
+    try {
+      const payload = jwt.verify(token, JWT_SECRET)
+      const user = await userService.findOne(payload.nick)
+
+      if (user.recoveryToken !== token){
+        throw new CustomError("unauthorized", 401)
+      }
+
+      await userService.update(user.nickName, {recoveryToken: null, password: newPassword})
+
+      return { message: "password changed"}
+
+    } catch (error) {
+
+      throw new CustomError("unauthorized", 401)
+    }
+
   }
 
   async sendMail(infoEmail) {
