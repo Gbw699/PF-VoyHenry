@@ -49,16 +49,11 @@ class blogService {
 
     const blog = await blogModel.findByPk(id)
 
-    const search = await users.findOne({where: { nickName: blog.userNickName }  });
-
-
     if (blog === null) {
       throw new CustomError("Blog not found", 404)
     }
 
-    const search = await users.findOne({where: { nickName: blog.usernickName }  });
-
-
+    const search = await users.findOne({where: { nickName: blog.userNickName }  });
 
     return {
       message: "blog",
