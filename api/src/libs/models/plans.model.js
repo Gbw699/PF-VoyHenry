@@ -45,7 +45,7 @@ const plans = sequelize.define('plans', {
 
 })
 
-
+plans.belongsTo(users, { through: 'plansByUser', foreignKey: 'id' });
 //  users.belongsToMany(plans, { through: 'users_plans' });
 //  plans.belongsToMany(users, { through: 'users_plans' });
 
