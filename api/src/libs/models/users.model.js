@@ -53,11 +53,14 @@ const users = sequelize.define('users', {
     allowNull: false,
     defaultValue: 'customer'
   }
-  
+
 
 })
 
-plans.belongsTo(users);
 users.hasMany(plans);
+plans.belongsTo(users);
+
+users.hasMany(blogs);
+blogs.belongsTo(users);
 
 module.exports = users;

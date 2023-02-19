@@ -49,7 +49,7 @@ class blogService {
 
     const blog = await blogModel.findByPk(id)
 
-    const search = await users.findOne({where: { nickName: blog.usernickName }  });
+    const search = await users.findOne({where: { nickName: blog.userNickName }  });
 
 
     if (blog === null) {

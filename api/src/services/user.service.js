@@ -1,7 +1,8 @@
 const usersModel = require('../libs/models/users.model');
 const { CustomError } = require('../middlewares/error.handler')
 const { Op } = require("sequelize");
-const blogModel = require('../libs/models/blog-model')
+const blogModel = require('../libs/models/blog-model');
+const plansModel = require('../libs/models/plans.model');
 
 class UsersService {
 
@@ -80,19 +81,27 @@ class UsersService {
 
     const user = await usersModel.findByPk(nickName)
 
+
+
     if (user === null) {
       throw new CustomError("User not found", 404)
     }
 
-    return user
+    return {
+      message: "plans",
+      data: {
+         user,
 
-  }
+
+    }
+
+  }}
 
     /* Find User all Blogs*/
 
     async findBlogs (nickName) {
 
-      const user = await blogModel.findAll({where: {usernickName: nickName}})
+      const user = await blogModel.findAll({where: {userNickName: nickName}})
 
       if (user.length === 0) {
         throw new CustomError("This user don't have any blog", 404)
@@ -102,6 +111,20 @@ class UsersService {
 
     }
 
+
+    /* Find User all Plans*/
+
+    async findPlans (nickName) {
+
+      const user = await plansModel.findAll({where: {userNickName: nickName}})
+
+      if (user.length === 0) {
+        throw new CustomError("This user don't have any plans", 404)
+      }
+
+      return user
+
+    }
 
   /* Update user */
 
