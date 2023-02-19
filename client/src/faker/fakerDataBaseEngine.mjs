@@ -8,8 +8,8 @@ async function dataBaseCreator() {
     const genre = "Femenino";
     const about = faker.lorem.sentence();
     const dateOfBirth = faker.date.between(
-      "1980-02-18T03:00:00.000Z",
-      "2004-02-18T03:00:00.000Z"
+      "1980-02-18",
+      "2004-02-18"
     );
     const firstName = faker.name.firstName();
     const lastName = faker.name.lastName();
@@ -34,14 +34,14 @@ async function dataBaseCreator() {
   const fakeUser = generateUsers();
 
   function generateBlogs() {
-    const usernickName = fakeUser.nickName;
+    const userNickName = fakeUser.nickName;
     const title = faker.lorem.words();
     const content = faker.lorem.paragraph(1);
     const rating = faker.datatype.number(5);
     const image = faker.image.avatar();
 
     return {
-      usernickName,
+      userNickName,
       title,
       content,
       rating,
@@ -52,6 +52,7 @@ async function dataBaseCreator() {
   const fakeBlog = generateBlogs();
 
   function generatePlans() {
+    const userNickName = fakeUser.nickName;
     const title = faker.word.adjective(5);
     const summary = faker.lorem.sentence();
     const description = faker.lorem.sentence();
@@ -61,6 +62,7 @@ async function dataBaseCreator() {
     const state = "En planeacion";
 
     return {
+      userNickName,
       title,
       summary,
       description,
@@ -75,11 +77,11 @@ async function dataBaseCreator() {
 
   await axios.post("http://localhost:3001/api/v1/users", fakeUser);
 
-  for (let j = 0; j < 10; j++) {
+  for (let j = 0; j < 3; j++) {
     await axios.post("http://localhost:3001/api/v1/blogs", fakeBlog);
   }
 
-  for (let k = 0; k < 15; k++) {
+  for (let k = 0; k < 5; k++) {
     await axios.post("http://localhost:3001/api/v1/plans", fakePlan);
   }
 }
