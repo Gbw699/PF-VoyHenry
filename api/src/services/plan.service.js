@@ -1,6 +1,7 @@
 const plansModel = require('../libs/models/plans.model');
 const { CustomError } = require('../middlewares/error.handler');
 const { Op } = require("sequelize");
+const users = require('../libs/models/users.model.js');
 
 class PlansService {
 
@@ -16,11 +17,11 @@ class PlansService {
 
       order: [['eventDate', 'ASC']]
     }
-  
+
     if (query.state){
 
       options.where = { state:{ [Op.substring]: query.state }  }
-    } 
+    }
 
     if (query.order) {
       if (query.order === 'alfabetico') {
@@ -56,10 +57,12 @@ class PlansService {
 
   /* Create Plan */
 
-  async create ({ id, title, summary, description, mainImage, images, eventDate, state }) {
+  async create ({ id, title, summary, description, mainImage, images, eventDate, state, userNickName }) {
 
     eventDate = new Date(eventDate);
     eventDate.setHours(eventDate.getHours() + Math.abs(eventDate.getTimezoneOffset() / 60));
+
+    const searchname = await users.findOne({where: { nickName: userNickName }  });
 
     const newPlan = await plansModel.create({
       id: id,
@@ -69,13 +72,15 @@ class PlansService {
       mainImage: mainImage,
       images: images,
       eventDate: new Date(eventDate),
-      state: state
+      state: state,
+      userNickName: userNickName
     })
 
     return {
       message: "Create",
       data: {
-        newPlan
+        newPlan,
+        user: searchname
       }
     };
   }
@@ -99,7 +104,7 @@ class PlansService {
     plan.mainImage =  mainImage || plan.mainImage,
     plan.images =  images || plan.images,
     plan.eventDate = eventDate || plan.eventDate,
-    plan.state = state || plan.state 
+    plan.state = state || plan.state
 
     await plan.save()
 
@@ -126,10 +131,10 @@ class PlansService {
           id: planID
         }
       }
-    } 
+    }
 
   }
-  
+
 }
 
 module.exports = PlansService;

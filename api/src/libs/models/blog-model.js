@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database/database');
+const users = require('./users.model');
 
 const blogs = sequelize.define("blogs", {
   id: {
@@ -9,11 +10,6 @@ const blogs = sequelize.define("blogs", {
 
   },
 
-    usernickName: {
-      type: DataTypes.STRING,
-      allowNull: true,
-
-    },
     title: {
       type: DataTypes.TEXT,
       allowNull: true,
@@ -52,5 +48,7 @@ const blogs = sequelize.define("blogs", {
     updatedAt: true,
   })
 
+  users.hasMany(blogs);
+  blogs.belongsTo(users);
 
 module.exports = blogs;

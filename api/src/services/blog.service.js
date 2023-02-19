@@ -11,12 +11,12 @@ class blogService {
 
     /* Create Blog */
 
-    async create (  {usernickName, title , content, rating, image} ){
+    async create (  {userNickName, title , content, rating, image} ){
 
-      const searchname = await users.findOne({where: { nickName: usernickName }  });
+      const searchname = await users.findOne({where: { nickName: userNickName }  });
 
     const newBlog =  await blogModel.create({
-     usernickName: usernickName,
+     userNickName: userNickName,
      userimage: searchname.image,
      image: image,
      title: title,

@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../database/database')
+const plans = require('./plans.model');
 
 const users = sequelize.define('users', {
 
@@ -53,5 +54,12 @@ const users = sequelize.define('users', {
   }
 
 })
+
+plans.belongsTo(users);
+users.hasMany(plans);
+
+users.belongsToMany(plans, { through: 'users_plans' });
+plans.belongsToMany(users, { through: 'users_plans' });
+
 
 module.exports = users;

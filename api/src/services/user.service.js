@@ -1,6 +1,7 @@
 const usersModel = require('../libs/models/users.model');
 const { CustomError } = require('../middlewares/error.handler')
 const { Op } = require("sequelize");
+const blogModel = require('../libs/models/blog-model')
 
 class UsersService {
 
@@ -44,7 +45,7 @@ class UsersService {
 
       order: [['firstName', 'ASC']]
     }
-    
+
     if (query.order == 'reverso'){
       options.order = [['firstName', 'DESC']]
     }
@@ -70,7 +71,7 @@ class UsersService {
 
     const users = await usersModel.findAll(options)
     return {users}
-  
+
   }
 
   /* Find one User */
@@ -86,6 +87,21 @@ class UsersService {
     return user
 
   }
+
+    /* Find User all Blogs*/
+
+    async findBlogs (nickName) {
+
+      const user = await blogModel.findAll({where: {usernickName: nickName}})
+
+      if (user.length === 0) {
+        throw new CustomError("This user don't have any blog", 404)
+      }
+
+      return user
+
+    }
+
 
   /* Update user */
 
