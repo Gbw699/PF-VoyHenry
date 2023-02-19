@@ -57,6 +57,7 @@ const users = sequelize.define('users', {
 
 })
 
-
+plans.belongsTo(users);
+users.hasMany(plans);
 
 module.exports = users;

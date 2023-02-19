@@ -48,5 +48,8 @@ const blogs = sequelize.define("blogs", {
     updatedAt: true,
   })
 
+  users.hasMany(blogs);
+  blogs.belongsTo(users);
+
 
 module.exports = blogs;
