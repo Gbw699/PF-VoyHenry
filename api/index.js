@@ -31,6 +31,4 @@ async function main() {
   }
 }
 
-const users =
-
 main()
