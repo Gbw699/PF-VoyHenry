@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../database/database')
 const plans = require('./plans.model');
+const blogs = require('./blog-model')
 
 const users = sequelize.define('users', {
 
@@ -58,6 +59,8 @@ const users = sequelize.define('users', {
 plans.belongsTo(users, { through: 'plansByUser' });
 users.hasMany(plans, { through: 'plansByUser' });
 
+users.hasMany(blogs, { through: 'blogsByUser' });
+blogs.belongsTo(users, { through: 'blogsByUser' });
 
 
 /* users.belongsToMany(plans, { through: 'users_plans' });
