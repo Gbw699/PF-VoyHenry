@@ -1,5 +1,7 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../database/database')
+const plans = require('./plans.model');
+const blogs = require('./blog-model')
 
 const users = sequelize.define('users', {
 
@@ -52,6 +54,13 @@ const users = sequelize.define('users', {
     defaultValue: 'customer'
   }
 
+
 })
+
+users.hasMany(plans);
+plans.belongsTo(users);
+
+users.hasMany(blogs);
+blogs.belongsTo(users);
 
 module.exports = users;
