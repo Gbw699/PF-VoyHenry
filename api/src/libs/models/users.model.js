@@ -55,11 +55,13 @@ const users = sequelize.define('users', {
 
 })
 
-plans.belongsTo(users);
-users.hasMany(plans);
+plans.belongsTo(users, { through: 'plansByUser' });
+users.hasMany(plans, { through: 'plansByUser' });
 
-users.belongsToMany(plans, { through: 'users_plans' });
-plans.belongsToMany(users, { through: 'users_plans' });
+
+
+/* users.belongsToMany(plans, { through: 'users_plans' });
+plans.belongsToMany(users, { through: 'users_plans' }); */
 
 
 module.exports = users;
