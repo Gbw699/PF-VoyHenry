@@ -12,9 +12,14 @@ router.get('/', async (req, res, next) => {
 
   try {
 
-    const plans = await service.find(req.query)
-    
-    res.json(plans)
+    const page = req.query.page || 1
+    const plans = await service.find(req.query, page)
+
+    const count = await service.count(req.query);
+    const pages = Math.ceil(count / 9);
+
+    const response = { plans, page, pages }
+    res.json(response)
   } catch (error) {
 
     next(error)
@@ -22,16 +27,16 @@ router.get('/', async (req, res, next) => {
 
 });
 
-/* Get plan by title */
+/* Get plan by ID */
 
-router.get('/:title',
-  validatorHandler(getPlanSchema, 'params'),
+router.get('/:id',
+  validatorHandler(getPlanSchema, 'params'), 
   async (req, res, next) => {
     try {
 
-      const { title } = req.params;
+      const { id } = req.params;
 
-      const plan = await service.findOne(title)
+      const plan = await service.findOne(id)
 
       res.json(plan)
     } catch (error) {

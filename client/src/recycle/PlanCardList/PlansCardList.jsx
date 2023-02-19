@@ -18,7 +18,7 @@ export default function PlanCardList() {
   };
 
   return (
-    <div>
+    <div className={style.container}>
       <div className={style.cardCont}>
         {plans.map((plan) => (
           <PlanCard

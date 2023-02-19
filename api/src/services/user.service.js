@@ -51,11 +51,21 @@ class UsersService {
 
     if (query.name){
       options.where = {
-          [Op.or]: [
-            { firstName: { [Op.substring]: query.name } },
-            { lastName: { [Op.substring]: query.name } }
-          ]
-        }
+        [Op.or]: [
+          {
+            [Op.or]: [
+              { firstName: { [Op.substring]: query.name } },
+              { firstName: { [Op.iLike]: query.name } },
+            ]
+          },
+          {
+            [Op.or]: [
+              { lastName: { [Op.iLike]: query.name } },
+              { lastName: { [Op.substring]: query.name } }
+            ]
+          }
+        ]
+      }
     }
 
     const users = await usersModel.findAll(options)

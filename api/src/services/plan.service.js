@@ -1,4 +1,5 @@
 const plansModel = require('../libs/models/plans.model');
+const { CustomError } = require('../middlewares/error.handler');
 const { Op } = require("sequelize");
 
 class PlansService {
@@ -9,16 +10,32 @@ class PlansService {
 
   /* Find all Plans || Filter*/
 
-  async find (query) {
+  async find (query, page) {
 
     const options = {
 
-      order: [['eventDate', 'ASC']]
+      order: [['eventDate', 'ASC']],
+      limit: 9,
+      offset : 0
+    }
+
+    if (query.page) {
+      const page = parseInt(query.page);
+      console.log(page)
+      if (isNaN(page) || page < 1) {
+        throw new CustomError('Invalid page number', 440);
+      }
+      options.offset = (page - 1) * options.limit;
     }
   
     if (query.state){
 
       options.where = { state:{ [Op.substring]: query.state }  }
+    } 
+
+    if (query.contains){
+
+      options.where = { title:{ [Op.substring]: query.contains }  }
     } 
 
     if (query.order) {
@@ -31,25 +48,40 @@ class PlansService {
       }
     }
 
+    if (query.limit) {
+
+      options.limit = query.limit; 
+    }
+
+    if (query.offset) {
+
+      options.offset = (page - 1) * query.offset; 
+    }
+
     const plans = await plansModel.findAll(options)
-    return {plans}
+
+    if (plans === null) {
+      throw new CustomError("Plan not found", 404)
+    } else {
+      return {plans}
+    }
   }
 
   /* Find one Plan */
 
-  async findOne (title) {
+  async findOne (id) {
 
-    const plan = await plansModel.findAll({
+    const plan = await plansModel.findOne({
       where: {
-        title: title
+        id: id
       }
     })
 
     if (plan === null) {
-      throw new Error("Plan not found")
+      throw new CustomError("Plan not found", 404)
+    } else {
+      return plan
     }
-
-    return plan
 
   }
 
@@ -83,13 +115,13 @@ class PlansService {
 
   async update (id, { title, summary, description, mainImage, images, eventDate, state }) {
 
-    const [plan] = await plansModel.findAll({
+    const plan = await plansModel.findOne({
       where: {
         id: id
       }
     })
     if (plan === null) {
-      throw new Error("Plan not found")
+      throw new CustomError("Plan not found", 404)
     }
 
     plan.title =  title || plan.title,
@@ -117,7 +149,7 @@ class PlansService {
     })
 
     if (deletedPlan === 0){
-      throw new Error("Plan not found")
+      throw new CustomError("Plan not found", 404)
     } else {
       return {
         message: "deleted",
@@ -127,6 +159,15 @@ class PlansService {
       }
     } 
 
+  }
+
+  /* Count Pages */
+  async count () {
+    const options = {};
+  
+    const count = await plansModel.count(options);
+  
+    return count;
   }
   
 }

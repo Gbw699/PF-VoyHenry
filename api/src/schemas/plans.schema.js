@@ -14,7 +14,7 @@ const state = Joi.string().valid('En planeacion', 'En progreso',  'Finalizado')
 const eventDate = Joi.date().greater(greaterDate);
 
 const getPlanSchema = Joi.object({
-  title: title.required()
+  id: id.required()
 })
 
 const createPlanSchema = Joi.object({
