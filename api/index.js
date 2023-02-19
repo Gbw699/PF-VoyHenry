@@ -20,7 +20,7 @@ async function main() {
 
   try {
 
-      await sequelize.sync({ force: false, logging:false });
+      await sequelize.sync({ force: true, logging:false });
       console.log('Connection has been established successfully.');
       app.listen(PORT, () => {
       console.log(`Server started on port ${PORT}`)
@@ -30,5 +30,7 @@ async function main() {
       console.error('Unable to connect to the database:', error);
   }
 }
+
+const users = 
 
 main()

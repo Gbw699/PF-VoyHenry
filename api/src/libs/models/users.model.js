@@ -53,17 +53,10 @@ const users = sequelize.define('users', {
     allowNull: false,
     defaultValue: 'customer'
   }
+  
 
 })
 
-users.hasMany(plans, { through: 'plansByUser', foreignKey: 'nickName' });
-
-users.hasMany(blogs, { through: 'blogsByUser' });
-blogs.belongsTo(users, { through: 'blogsByUser' });
-
-
-/* users.belongsToMany(plans, { through: 'users_plans' });
-plans.belongsToMany(users, { through: 'users_plans' }); */
 
 
 module.exports = users;
