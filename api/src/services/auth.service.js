@@ -46,10 +46,35 @@ class AuthService {
     })
   }
 
-  async sendMail(email) {
-
+  async sendRecovery(email) {
     try {
       const user = await userService.findByEmail(email)
+
+      const payload = {
+        nick: user.nickName,
+      }
+
+      const token = jwt.sign(payload, JWT_SECRET)
+      const link = `https://myfrontend.com/recovery?token=${token}`;
+
+      const mail = {
+        from: MAIL,
+        to: user.email,
+        subject: "Recuperación de contraseña.",
+        html: "<b>Haz click en el siguiente Link para recuperar la contraseña</b>",
+      }
+
+      const message = await this.sendMail(mail)
+
+      return message
+    } catch (error) {
+      throw new CustomError("unauthorized", 401)
+    }
+  }
+
+  async sendMail(infoEmail) {
+
+    try {
 
       const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
@@ -61,13 +86,7 @@ class AuthService {
         },
       });
 
-      await transporter.sendMail({
-        from: MAIL, // sender address
-        to: user.email, // list of receivers
-        subject: "recovery prueb", // Subject line
-        text: "Soy el texto de una prueba", // plain text body
-        html: "<b>Sos el lien?</b>", // html body
-      });
+      await transporter.sendMail(infoEmail);
 
       return { message: 'Mail sent'}
 
