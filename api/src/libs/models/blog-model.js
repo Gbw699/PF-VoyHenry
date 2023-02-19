@@ -9,11 +9,6 @@ const blogs = sequelize.define("blogs", {
 
   },
 
-    usernickName: {
-      type: DataTypes.STRING,
-      allowNull: true,
-
-    },
     title: {
       type: DataTypes.TEXT,
       allowNull: true,
@@ -51,6 +46,8 @@ const blogs = sequelize.define("blogs", {
     createdAt: true,
     updatedAt: true,
   })
+
+
 
 
 module.exports = blogs;

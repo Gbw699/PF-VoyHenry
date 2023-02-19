@@ -43,6 +43,45 @@ router.get('/:nickName',
 
 });
 
+/* Get AllBlogs by nickName */
+
+router.get('/:nickName/blogs',
+
+  async (req, res, next) => {
+    try {
+
+      const { nickName } = req.params;
+
+      const user = await service.findBlogs(nickName)
+
+      res.json(user)
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
+
+/* Get AllPlans by nickName */
+
+router.get('/:nickName/plans',
+
+  async (req, res, next) => {
+    try {
+
+      const { nickName } = req.params;
+
+      const user = await service.findPlans(nickName)
+
+      res.json(user)
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
 /* Create new user */
 
 router.post('/',

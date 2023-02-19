@@ -7,7 +7,7 @@ const blogSlice = createSlice({
   },
   reducers: {
     setBlogs: (state, action) => {
-      state.allBlogs = [...action.payload];
+      state.allBlogs = action.payload.blogs;
     },
     setBlogsSearch(state, action) {
       state.allBlogs = [...action.payload];
