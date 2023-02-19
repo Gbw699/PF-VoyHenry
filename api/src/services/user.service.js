@@ -22,7 +22,7 @@ class UsersService {
       password: hash,
       role: role,
       nickName: nickName,
-      email: email,
+      email: email.toLowerCase(),
       about: about,
       firstName: firstName,
       lastName: lastName,
@@ -96,6 +96,8 @@ class UsersService {
 
   async findByEmail (email) {
 
+    email = email.toLowerCase()
+
     const user = await usersModel.findOne({
       where: { email }
     })
@@ -124,7 +126,7 @@ class UsersService {
     user.role = role || user.role;
     user.genre = genre || user.genre;
     user.nickName = nickName || user.nickName;
-    user.email = email || user.email;
+    user.email = email || user.email.toLowerCase();
     user.about = about || user.about;
     user.firstName = firstName || user.firstName;
     user.lastName = lastName || user.lastName;

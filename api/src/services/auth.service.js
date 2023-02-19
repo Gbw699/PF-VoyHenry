@@ -54,14 +54,14 @@ class AuthService {
         nick: user.nickName,
       }
 
-      const token = jwt.sign(payload, JWT_SECRET)
+      const token = jwt.sign(payload, JWT_SECRET,{expiresIn: '15min'})
       const link = `https://myfrontend.com/recovery?token=${token}`;
 
       const mail = {
         from: MAIL,
         to: user.email,
         subject: "Recuperación de contraseña.",
-        html: "<b>Haz click en el siguiente Link para recuperar la contraseña</b>",
+        html:`<b>Haz click en el siguiente Link para recuperar la contraseña: ${link}</b>`,
       }
 
       const message = await this.sendMail(mail)
