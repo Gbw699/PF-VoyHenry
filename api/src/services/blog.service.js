@@ -11,9 +11,9 @@ class blogService {
 
     /* Create Blog */
 
-    async create (  {userNickName, title , content, rating, image} ){
+  async create (  {userNickName, title , content, rating, image} ){
 
-      const searchname = await users.findOne({where: { nickName: userNickName }  });
+    const searchname = await users.findOne({where: { nickName: userNickName }  });
 
     const newBlog =  await blogModel.create({
      userNickName: userNickName,
@@ -23,7 +23,7 @@ class blogService {
      content: content,
      rating: rating,
 
-})
+    })
     return {
       message: "Create",
       data: {
@@ -32,7 +32,7 @@ class blogService {
 
     }
 
-    }}
+  }}
 
   /* Find All Blogs */
 
@@ -49,12 +49,11 @@ class blogService {
 
     const blog = await blogModel.findByPk(id)
 
-    const search = await users.findOne({where: { nickName: blog.userNickName }  });
-
-
     if (blog === null) {
       throw new CustomError("Blog not found", 404)
     }
+
+    const search = await users.findOne({where: { nickName: blog.userNickName }  });
 
     return {
       message: "blog",
