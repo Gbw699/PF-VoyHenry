@@ -1,11 +1,17 @@
 import axios from "axios";
-import { setPlansSearch, setLimitPlans, setAllPlans } from "./planSlice";
+import {
+  setPlansSearch,
+  setLimitPlans,
+  setAllPlans,
+  setPlansPerPage,
+  setTotalPages
+} from "./planSlice";
 
-export const getPlansSearch = (user) => {
+export const getPlansSearch = (content) => {
   return async (dispatch) => {
     try {
       //hablar sobre la ruta
-      const response = await axios.get(`/api/v1/plans/${user}`);
+      const response = await axios.get(`/api/v1/plans?content=${content}`);
       dispatch(setPlansSearch(response.data.plans.plans));
     } catch (error) {
       return console.log("No se pudo realizar la petición");
@@ -19,6 +25,31 @@ export const getLimitPlans = () => {
       //hablar sobre la ruta
       const response = await axios.get("/api/v1/plans?limit=6");
       dispatch(setLimitPlans(response.data.plans.plans));
+    } catch (error) {
+      return console.log("No se pudo realizar la petición");
+    }
+  };
+};
+
+export const getPlansPerPage = (page) => {
+  return async (dispatch) => {
+    try {
+      //hablar sobre la ruta
+      const response = await axios.get(`/api/v1/plans?page=${page}`);
+      dispatch(setPlansPerPage(response.data.plans.plans));
+      dispatch(setTotalPages(response.data));
+    } catch (error) {
+      return console.log("No se pudo realizar la petición");
+    }
+  };
+};
+
+export const getTotalPages = () => {
+  return async (dispatch) => {
+    try {
+      //hablar sobre la ruta
+      const response = await axios.get("/api/v1/plans");
+      dispatch(setTotalPages(response.data.pages));
     } catch (error) {
       return console.log("No se pudo realizar la petición");
     }
