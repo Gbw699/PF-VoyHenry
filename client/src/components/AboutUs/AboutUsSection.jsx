@@ -7,14 +7,17 @@ import MarcosParella from "./MarcosParella";
 import MatiasVarela from "./MatiasVarela";
 import MauricioFonseca from "./MauricioFonseca";
 import ThomasLiendo from "./ThomasLiendo";
-// import style from "./AboutUsSection.module.css";
+import style from "./AboutUsSection.module.css";
 
 export default function AboutUsSection() {
   return (
-    <div>
-      <div>
+    <div className={style.container}>
+      <div className={style.DescriptionOfProyect}>
         <h3>Descripción del proyecto</h3>
-        <hr />
+        <hr
+          width="100%"
+          color="#F1E100"
+        />
         <p>
           La red social Henry es un espacio virtual creado con el objetivo de
           fomentar la unión y fortalecer la comunidad de personas que comparten
@@ -47,17 +50,22 @@ export default function AboutUsSection() {
           mismo!
         </p>
       </div>
-      <div>
+      <div className={style.cardContainer}>
         <h3>Desarrolladores</h3>
-        <hr />
-        <MarcosParella />
-        <JulianCastro />
-        <FacundoTombesi />
-        <ThomasLiendo />
-        <MatiasVarela />
-        <GabrielBarimboim />
-        <LienSanchez />
-        <MauricioFonseca />
+        <hr
+          width="80%"
+          color="#F1E100"
+        />
+        <div className={style.cards}>
+          <MarcosParella />
+          <FacundoTombesi />
+          <MauricioFonseca />
+          <JulianCastro />
+          <ThomasLiendo />
+          <MatiasVarela />
+          <GabrielBarimboim />
+          <LienSanchez />
+        </div>
       </div>
     </div>
   );

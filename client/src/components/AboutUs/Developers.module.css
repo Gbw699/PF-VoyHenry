@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  width: 170px;
+}
+.img {
+  display: flex;
+  flex-direction: row;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(218, 233, 5, 0);
+}
+
+.cardFacu {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 190px;
+  width: 150px;
+}
