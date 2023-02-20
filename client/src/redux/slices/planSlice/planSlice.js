@@ -22,9 +22,12 @@ const planSlice = createSlice({
     },
     setTotalPages(state, action) {
       state.totalPages = action.payload;
+    },
+    setPlansByDate(state, action) {
+      state.renderPlans = [...action.payload];
     }
   },
 });
 
-export const { setPlansSearch, setLimitPlans, setAllPlans, setPlansPerPage, setTotalPages } = planSlice.actions;
+export const { setPlansSearch, setLimitPlans, setAllPlans, setPlansPerPage, setTotalPages, setPlansByDate } = planSlice.actions;
 export default planSlice.reducer;

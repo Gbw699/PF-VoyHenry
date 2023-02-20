@@ -26,7 +26,9 @@ export default function BlogReview({
         <div className={style.userImg} style={{ backgroundImage: userImage }} />
         <div className={style.userCont}>
           <div className={style.nameDate}>
-            <h3 className={style.name}>{usernickName}</h3>
+            {/* vv BORRAR CUANDO HAYA NOMBRE DE PERFIL vv */}
+            {/* <h3 className={style.name}>{usernickName}</h3> */}
+            <h3 className={style.name}>Nombre</h3>
             <p>Fecha de publicación</p>
           </div>
           <hr color="#F1E100" width="100%" />
