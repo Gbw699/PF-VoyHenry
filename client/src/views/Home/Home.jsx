@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 export default function Home() {
   const navigate = useNavigate();
   const handleSubmit = () => {
-      navigate("/createPlan");
+    navigate("/plans/create");
   };
 
   return (
@@ -27,7 +27,10 @@ export default function Home() {
       </div>
       <div className={style.featured}>
         <h3 className={style.featuredTitle}>Planes Destacados</h3>
-        <hr width="100%" color="#F1E100" />
+        <hr
+          width="100%"
+          color="#F1E100"
+        />
         <PlansCardListHome />
         <BlogReview />
       </div>
