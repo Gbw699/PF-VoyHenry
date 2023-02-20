@@ -25,7 +25,7 @@ export default function BlogsReviews() {
     if (!allBlogs.length) {
       dispatch(getBlogs());
     }
-  }, [allBlogs]);
+  }, []);
 
   return (
     <div className={style.container}>
@@ -34,7 +34,7 @@ export default function BlogsReviews() {
           return (
             <BlogReview
               key={blog.id}
-              usernickName={blog.usernickName}
+              userNickName={blog.userNickName}
               userimage={blog.userimage}
               title={blog.title}
               image={blog.image}
