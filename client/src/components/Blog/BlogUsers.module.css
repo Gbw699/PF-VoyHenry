@@ -2,11 +2,11 @@
   display: flex;
   flex-direction: column;
   border-radius: 5px;
-  box-shadow: 3px 3px 5px 2px #222222;
+  box-shadow: 3px 3px 5px 2px #020202e5;
   padding: 10px;
   margin-bottom: 5%;
   width: 20%;
-  height: 100vh;
+  height: 95vh;
 }
 
 .usersTitle {
