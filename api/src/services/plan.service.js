@@ -60,6 +60,11 @@ class PlansService {
       options.offset = (page - 1) * query.offset;
     }
 
+    if (query.date) {
+
+      options.where = { eventDate: { [Op.eq]: `%${query.date}%` } };
+    }
+
     const plans = await plansModel.findAll(options)
 
     if (plans === null) {
