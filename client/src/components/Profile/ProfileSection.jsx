@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import ProfileAboutMe from "./ProfileAboutMe";
 import ProfileInfo from "./ProfileInfo";
@@ -8,8 +8,19 @@ import { ProfileMyFriendsActivity } from "./ProfileMyFriendsActivity";
 import ProfileMyPlans from "./ProfileMyPlans";
 import profileData from "../../profileData.json";
 import style from "./ProfileSection.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../redux/slices/userSlice/thunks";
 
 export default function ProfileSection() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUser("Leslie"));
+  }, [dispatch]);
+
+  // const user = useSelector((state) => state.userStore.user.data.user);
+
+  // console.log(user);
+
   return (
     <div className={style.mainContainer}>
       <div className={style.profileCont}>
@@ -31,7 +42,10 @@ export default function ProfileSection() {
       <div className={style.infoCont}>
         <div className={style.friendsAct}>
           <h6 className={style.title}>Actividad de mis amigos</h6>
-          <hr color="#F1E100" width="100%" />
+          <hr
+            color="#F1E100"
+            width="100%"
+          />
           {profileData.data.map((element) =>
             element.myFriends.map((element2) => (
               <Link
@@ -49,7 +63,10 @@ export default function ProfileSection() {
         <div className={style.activityCont}>
           <div>
             <h6 className={style.title}>Sobre mí</h6>
-            <hr color="#F1E100" width="100%" />
+            <hr
+              color="#F1E100"
+              width="100%"
+            />
             {profileData.data.map((element, index) => (
               <ProfileAboutMe
                 key={index}
@@ -59,7 +76,10 @@ export default function ProfileSection() {
           </div>
           <div>
             <h6 className={style.title}>Últimos planes asistidos</h6>
-            <hr color="#F1E100" width="100%" />
+            <hr
+              color="#F1E100"
+              width="100%"
+            />
             <div className={style.plansCont}>
               {profileData.data.map((element) =>
                 element.latestAssistedPlans.map((element2) => (
@@ -79,7 +99,10 @@ export default function ProfileSection() {
           </div>
           <div>
             <h6 className={style.title}>Mis planes</h6>
-            <hr color="#F1E100" width="100%" />
+            <hr
+              color="#F1E100"
+              width="100%"
+            />
             <div className={style.plansCont}>
               {profileData.data.map((element) =>
                 element.latestAssistedPlans.map((element2) => (
@@ -99,7 +122,10 @@ export default function ProfileSection() {
           </div>
           <div>
             <h6 className={style.title}>Últimas reseñas</h6>
-            <hr color="#F1E100" width="100%" />
+            <hr
+              color="#F1E100"
+              width="100%"
+            />
             <div className={style.plansCont}>
               {profileData.data.map((element) =>
                 element.latestReview.map((element2) => (
@@ -110,7 +136,9 @@ export default function ProfileSection() {
                     <ProfileLatestReviews
                       latestReviewsImg={element2.latestReviewsImg}
                       latestReviewsName={element2.latestReviewsName}
-                      latestReviewsDescription={element2.latestReviewsDescription}
+                      latestReviewsDescription={
+                        element2.latestReviewsDescription
+                      }
                       latestReviewsAssessment={element2.latestReviewsAssessment}
                     />
                   </Link>
