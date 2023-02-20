@@ -22,3 +22,16 @@ export const getUser = (nickname) => {
     }
   };
 };
+
+export const postUser = (obj) => {
+  return async () => {
+    try {
+      await axios.post("/api/v1/users", {
+        ...obj,
+      });
+      console.log("El usuario se creó correctamente");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
