@@ -21,7 +21,7 @@ class PlansService {
       offset : 0
     }
 
-    options.where = options.where || {}
+    options.where = {}
 
 
     if (query.state){
