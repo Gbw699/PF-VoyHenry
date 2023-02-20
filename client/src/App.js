@@ -15,6 +15,7 @@ import ShoppingCart from "./views/ShoppingCart/ShoppingCart";
 import Blog from "./views/Blog/Blog";
 import Plan from "./views/Plan/Plan";
 import AboutUs from "./views/AboutUs/AboutUs";
+import Error404 from "./views/Error404/Error404";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 
@@ -74,6 +75,10 @@ function App() {
         <Route
           path="/aboutUs"
           element={<AboutUs />}
+        />
+        <Route
+          path="*"
+          element={<Error404 />}
         />
       </Routes>
       {location.pathname !== "/" &&
