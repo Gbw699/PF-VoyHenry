@@ -7,10 +7,7 @@ async function dataBaseCreator() {
     const email = faker.internet.email();
     const genre = "Femenino";
     const about = faker.lorem.sentence();
-    const dateOfBirth = faker.date.between(
-      "1980-02-18",
-      "2004-02-18"
-    );
+    const dateOfBirth = faker.date.between("1980-02-18", "2004-02-18");
     const firstName = faker.name.firstName();
     const lastName = faker.name.lastName();
     const image = faker.image.avatar();
