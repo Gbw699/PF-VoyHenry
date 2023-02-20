@@ -23,6 +23,7 @@ export default function PlanCardListHome() {
                         key={plan.id}
                         mainImage={plan.mainImage}
                         title={plan.title}
+                        summary={plan.summary}
                     />
                 ))}
             </div>

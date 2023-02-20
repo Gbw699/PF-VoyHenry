@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px 2px #222222;
+    padding: 3%;
+}
+
+.imgCont {
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 5px;
+}
+
+.infoCont {
+    width: 100%;
+    color: #707070;
+    margin-left: 4%;
+}
+
+.name {
+    font-size: 120%;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+
+.nacionality {
+    font-size: 100%;
+    font-weight: 300;
+    margin-top: 0px;
+    margin-bottom: 5%;
+}
+
+.followInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.followTitle {
+    font-size: 100%;
+    font-weight: 300;
+    margin-bottom: 0px;
+}
+
+.followCount {
+    font-size: 100%;
+    font-weight: 600;
+}

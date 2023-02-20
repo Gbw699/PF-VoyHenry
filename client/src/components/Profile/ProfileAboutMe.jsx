@@ -1,9 +1,9 @@
 import React from "react";
-// import style from "./ProfileAboutMe.module.css";
+import style from "./ProfileAboutMe.module.css";
 
 export default function ProfileAboutMe({ aboutMe }) {
   return (
-    <div>
+    <div className={style.aboutMe}>
       <p>{aboutMe}</p>
     </div>
   );
