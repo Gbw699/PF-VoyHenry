@@ -6,9 +6,6 @@ import style from "./Plan.module.css";
 
 
 export default function Plan() {
-
-
-
   return (
     <div className={style.container}>
       <GeolocationForm />

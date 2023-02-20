@@ -1,7 +1,16 @@
 .container {
-    background-image: url("../../assets/marketBg.png");
-    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+.marketBg {
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
+    width: 100%;
+    height: 350px;
+    margin-top: 0px;
+    margin-bottom: -18%;
 }
 
 .marketCont {
