@@ -7,7 +7,6 @@ import stripeImg from "../../assets/stripe.png";
 
 export default function DetailMarketPlaceImgPrice({
   image,
-  imageExtra,
   stock,
   title,
   price,
@@ -24,10 +23,7 @@ export default function DetailMarketPlaceImgPrice({
   return (
     <div>
       <div>
-        <DetailMarketPlaceImg
-          image={image}
-          imageExtra={imageExtra}
-        />
+        <DetailMarketPlaceImg image={image} />
       </div>
       <div>
         <DetailMarketPlacePrice

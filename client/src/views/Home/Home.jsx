@@ -1,13 +1,14 @@
 import React from "react";
-import PlansCardList from "../../recycle/PlanCardList/PlansCardList";
+import PlansCardListHome from "../../components/Home/PlanCardListHome";
 import PlansSections from "../../recycle/PlansSections/PlansSections";
 import BlogReview from "../../components/Home/BlogReview";
 // import { Container } from "@mui/material";
 import ProfileCard from "../../recycle/ProfileCard/ProfileCard";
 import style from "./Home.module.css";
 
+
 export default function Home() {
-  // const dispatch = useDispatch();
+
   return (
     <div className={style.container}>
       <div className={style.profileCont}>
@@ -22,7 +23,7 @@ export default function Home() {
       <div className={style.featured}>
         <h3 className={style.featuredTitle}>Planes Destacados</h3>
         <hr width="100%" color="#F1E100" />
-        <PlansCardList />
+        <PlansCardListHome />
         <BlogReview />
       </div>
       <PlansSections />

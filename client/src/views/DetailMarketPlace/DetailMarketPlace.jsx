@@ -3,6 +3,5 @@ import DetailMarketPlaceSection from "../../components/DetailMarketPlace/DetailM
 // import style from "./DetailMarketPlace.module.css";
 
 export default function DetailMarketPlace() {
-  return;
-  // <DetailMarketPlaceSection />;
+  return <DetailMarketPlaceSection />;
 }

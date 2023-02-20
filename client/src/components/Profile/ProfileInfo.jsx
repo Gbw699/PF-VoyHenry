@@ -1,5 +1,6 @@
 import React from "react";
-// import style from "./ProfileInfo.module.css";
+import { useEffect, useState } from "react";
+import style from "./ProfileInfo.module.css";
 
 export default function ProfileInfo({
   image,
@@ -11,36 +12,39 @@ export default function ProfileInfo({
   plansCreated,
   reviewsCreated,
 }) {
+  const [backgroundImage, setBackgroundImage] = useState("");
+
+  useEffect(() => {
+    setBackgroundImage(`url(${image})`);
+  });
+
   return (
-    <div>
-      <div>
-        <img
-          src={image}
-          alt={name}
-        />
-        <p>{name}</p>
-        <p>{nationality}</p>
+    <div className={style.container}>
+      <div className={style.mainInfo}>
+        <div className={style.imgCont} style={{ backgroundImage: backgroundImage }} />
+        <p className={style.name}>{name}</p>
+        <p className={style.nacionality}>{nationality}</p>
       </div>
-      <div>
-        <div>
-          <p>Siguiendo</p>
-          <p>{following}</p>
+      <div className={style.profileInfo}>
+        <div className={style.infoCont}>
+          <p className={style.infoTitle}>Siguiendo</p>
+          <p className={style.infoCount}>{following}</p>
         </div>
-        <div>
-          <p>Seguidores</p>
-          <p>{followers}</p>
+        <div className={style.infoCont}>
+          <p className={style.infoTitle}>Seguidores</p>
+          <p className={style.infoCount}>{followers}</p>
         </div>
-        <div>
-          <p>Planes asistidos</p>
-          <p>{assistedPlans}</p>
+        <div className={style.infoCont}>
+          <p className={style.infoTitle}>Planes asistidos</p>
+          <p className={style.infoCount}>{assistedPlans}</p>
         </div>
-        <div>
-          <p>Planes creados</p>
-          <p>{plansCreated}</p>
+        <div className={style.infoCont}>
+          <p className={style.infoTitle}>Planes creados</p>
+          <p className={style.infoCount}>{plansCreated}</p>
         </div>
-        <div>
-          <p>Reseñas creadas</p>
-          <p>{reviewsCreated}</p>
+        <div className={style.infoCont}>
+          <p className={style.infoTitle}>Reseñas creadas</p>
+          <p className={style.infoCount}>{reviewsCreated}</p>
         </div>
       </div>
     </div>

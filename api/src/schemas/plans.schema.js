@@ -12,12 +12,14 @@ const mainImage = Joi.string().uri()
 const images = Joi.array()
 const state = Joi.string().valid('En planeacion', 'En progreso',  'Finalizado')
 const eventDate = Joi.date().greater(greaterDate);
+const userNickName = Joi.string().alphanum().min(0).max(15)
 
 const getPlanSchema = Joi.object({
   id: id.required()
 })
 
 const createPlanSchema = Joi.object({
+  userNickName: userNickName.required(),
   title: title.required(),
   summary: summary.required(),
   description: description.required(),

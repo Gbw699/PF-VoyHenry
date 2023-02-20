@@ -1,6 +1,8 @@
 const plansModel = require('../libs/models/plans.model');
 const { CustomError } = require('../middlewares/error.handler');
 const { Op } = require("sequelize");
+const users = require('../libs/models/users.model.js');
+
 
 class PlansService {
 
@@ -10,17 +12,33 @@ class PlansService {
 
   /* Find all Plans || Filter*/
 
-  async find (query) {
+  async find (query, page) {
 
     const options = {
 
-      order: [['eventDate', 'ASC']]
+      order: [['eventDate', 'ASC']],
+      limit: 9,
+      offset : 0
     }
-  
+
+    if (query.page) {
+      const page = parseInt(query.page);
+      console.log(page)
+      if (isNaN(page) || page < 1) {
+        throw new CustomError('Invalid page number', 440);
+      }
+      options.offset = (page - 1) * options.limit;
+    }
+
     if (query.state){
 
       options.where = { state:{ [Op.substring]: query.state }  }
-    } 
+    }
+
+    if (query.contains){
+
+      options.where = { title:{ [Op.substring]: query.contains }  }
+    }
 
     if (query.order) {
       if (query.order === 'alfabetico') {
@@ -32,8 +50,23 @@ class PlansService {
       }
     }
 
+    if (query.limit) {
+
+      options.limit = query.limit;
+    }
+
+    if (query.offset) {
+
+      options.offset = (page - 1) * query.offset;
+    }
+
     const plans = await plansModel.findAll(options)
-    return {plans}
+
+    if (plans === null) {
+      throw new CustomError("Plan not found", 404)
+    } else {
+      return {plans}
+    }
   }
 
   /* Find one Plan */
@@ -45,21 +78,29 @@ class PlansService {
         id: id
       }
     })
-
+    const search = await users.findOne({where: { nickName: plan.userNickName }  });
     if (plan === null) {
       throw new CustomError("Plan not found", 404)
     } else {
-      return plan
+      return {
+        message: "plans",
+        data: {
+           plan,
+           user: search
+
+      }
     }
 
-  }
+  }}
 
   /* Create Plan */
 
-  async create ({ id, title, summary, description, mainImage, images, eventDate, state }) {
+  async create ({ id, title, summary, description, mainImage, images, eventDate, state, userNickName }) {
 
     eventDate = new Date(eventDate);
     eventDate.setHours(eventDate.getHours() + Math.abs(eventDate.getTimezoneOffset() / 60));
+
+    const searchname = await users.findOne({where: { nickName: userNickName }  });
 
     const newPlan = await plansModel.create({
       id: id,
@@ -69,13 +110,15 @@ class PlansService {
       mainImage: mainImage,
       images: images,
       eventDate: new Date(eventDate),
-      state: state
+      state: state,
+      userNickName: userNickName
     })
 
     return {
       message: "Create",
       data: {
-        newPlan
+        newPlan,
+        user: searchname
       }
     };
   }
@@ -99,7 +142,7 @@ class PlansService {
     plan.mainImage =  mainImage || plan.mainImage,
     plan.images =  images || plan.images,
     plan.eventDate = eventDate || plan.eventDate,
-    plan.state = state || plan.state 
+    plan.state = state || plan.state
 
     await plan.save()
 
@@ -126,10 +169,21 @@ class PlansService {
           id: planID
         }
       }
-    } 
+    }
 
   }
-  
+
+
+  /* Count Pages */
+  async count () {
+    const options = {};
+
+    const count = await plansModel.count(options);
+
+    return count;
+  }
+
+
 }
 
 module.exports = PlansService;

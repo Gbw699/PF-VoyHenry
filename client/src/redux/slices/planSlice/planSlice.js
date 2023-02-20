@@ -1,17 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const planSlice = createSlice({
-  name: "blog",
+  name: "plan",
   initialState: {
     allPlans: [],
     renderPlans: [],
+    totalPages: 0
   },
   reducers: {
-    setPlanssSearch(state, action) {
+    setAllPlans(state, action) {
+      state.allPlans = [...action.payload];
+    },
+    setLimitPlans(state, action) {
       state.renderPlans = [...action.payload];
     },
+    setPlansSearch(state, action) {
+      state.renderPlans = [...action.payload];
+    },
+    setPlansPerPage(state, action) {
+      state.renderPlans = [...action.payload];
+    },
+    setTotalPages(state, action) {
+      state.totalPages = action.payload;
+    }
   },
 });
 
-export const { setPlansSearch } = planSlice.actions;
+export const { setPlansSearch, setLimitPlans, setAllPlans, setPlansPerPage, setTotalPages } = planSlice.actions;
 export default planSlice.reducer;

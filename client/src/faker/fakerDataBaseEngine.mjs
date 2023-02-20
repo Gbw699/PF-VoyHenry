@@ -2,15 +2,12 @@ import { faker } from "@faker-js/faker";
 import axios from "axios";
 
 async function dataBaseCreator() {
-function generateUsers() {
-  const nickName = faker.name.middleName();
+  function generateUsers() {
+    const nickName = faker.name.middleName();
     const email = faker.internet.email();
     const genre = "Femenino";
     const about = faker.lorem.sentence();
-    const dateOfBirth = faker.date.between(
-      "1980-02-18T03:00:00.000Z",
-      "2004-02-18T03:00:00.000Z"
-    );
+    const dateOfBirth = faker.date.between("1980-02-18", "2004-02-18");
     const firstName = faker.name.firstName();
     const lastName = faker.name.lastName();
     const image = faker.image.avatar();
@@ -34,24 +31,25 @@ function generateUsers() {
   const fakeUser = generateUsers();
 
   function generateBlogs() {
-    const usernickName = fakeUser.nickName;
+    const userNickName = fakeUser.nickName;
     const title = faker.lorem.words();
     const content = faker.lorem.paragraph(1);
     const rating = faker.datatype.number(5);
     const image = faker.image.avatar();
 
     return {
-      usernickName,
+      userNickName,
       title,
       content,
       rating,
       image,
     };
   }
-  
+
   const fakeBlog = generateBlogs();
 
   function generatePlans() {
+    const userNickName = fakeUser.nickName;
     const title = faker.word.adjective(5);
     const summary = faker.lorem.sentence();
     const description = faker.lorem.sentence();
@@ -59,8 +57,9 @@ function generateUsers() {
     const image = faker.image.abstract();
     const eventDate = faker.date.future();
     const state = "En planeacion";
-    
+
     return {
+      userNickName,
       title,
       summary,
       description,
@@ -72,16 +71,39 @@ function generateUsers() {
   }
 
   const fakePlan = generatePlans();
-  
+
   await axios.post("http://localhost:3001/api/v1/users", fakeUser);
 
-  for (let j = 0; j < 10; j++) {
+  for (let j = 0; j < 3; j++) {
     await axios.post("http://localhost:3001/api/v1/blogs", fakeBlog);
   }
 
-  for (let k = 0; k < 15; k++) {
+  for (let k = 0; k < 5; k++) {
     await axios.post("http://localhost:3001/api/v1/plans", fakePlan);
   }
 }
 
-dataBaseCreator();
+function delay(time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+async function test() {
+  try {
+    console.log("====================================");
+    console.log("Creating user, blogs and post");
+    console.log("====================================");
+    await dataBaseCreator();
+    console.log("====================================");
+    console.log("Finished creating. Wating for next action. (10s)");
+    console.log("====================================");
+    await delay(2000);
+  } catch (error) {
+    console.log("====================================");
+    console.log("Error occurred... Trying again...");
+    console.log("====================================");
+  } finally {
+    await test();
+  }
+}
+
+test();
