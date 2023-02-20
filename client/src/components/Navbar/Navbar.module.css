@@ -29,3 +29,9 @@
   font-weight: 300;
   text-decoration: none;
 }
+
+.linkFontActive {
+  color: #f1e100;
+  font-weight: 300;
+  text-decoration: none;
+}
