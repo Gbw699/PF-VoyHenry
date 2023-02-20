@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./MarketPlaceSection.module.css";
 import { Link } from "react-router-dom";
 import MarketCard from "./MarketCard";
 import Filters from "./Filters";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/slices/marketPlaceSlice/thunk";
+import marketBgImg from "../../assets/marketBg.png";
 
 export default function MarketPlaceSection() {
   const dispatch = useDispatch();
@@ -16,9 +17,15 @@ export default function MarketPlaceSection() {
     (state) => state.marketPlaceStore.allProducts.products
   );
 
+  const [backgroundImage, setBackgroundImage] = useState("");
+
+  useEffect(() => {
+    setBackgroundImage(`url(${marketBgImg})`);
+  });
+
   return (
     <div className={style.container}>
-      <div className={style.marketBg} />
+      <div className={style.marketBg} style={{ backgroundImage: backgroundImage }} />
       <div className={style.marketCont}>
         <Filters />
         <div className={style.cardsCont}>
