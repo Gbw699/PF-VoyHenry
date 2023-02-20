@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import DetailMarketPlaceDescription from "./DetailMarketPlaceDescription";
 import DetailMarketPlaceImgPrice from "./DetailMarketPlaceImgPrice";
-// import style from "./DetailMarketPlaceSection.module.css";
+import style from "./DetailMarketPlaceSection.module.css";
 import detailProductMarketPlace from "../../marketPlace.json";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/slices/marketPlaceSlice/thunk";
 
@@ -16,8 +16,8 @@ export default function DetailMarketPlaceSection() {
 
   const products = useSelector((state) => state.marketPlaceStore.detailProduct);
   return (
-    <div>
-      <div>
+    <div className={style.mainContainer}>
+      <div className={style.itemCont}>
         {products.map((element) => (
           <DetailMarketPlaceImgPrice
             key={element.id}
@@ -29,15 +29,21 @@ export default function DetailMarketPlaceSection() {
           />
         ))}
       </div>
-      <div>
-        <h6>Descripción del producto:</h6>
-        <hr />
+      <div className={style.description}>
+        <h6 className={style.descriptionTitle}>Descripción del producto:</h6>
+        <hr color="#F1E100" width="100%" />
         {products.map((element) => (
           <DetailMarketPlaceDescription
             key={element.id}
             material={element.detail}
           />
         ))}
+        <NavLink
+            to={"/marketplace"}
+            className={style.btnCont}
+        >
+          <button className={style.backBtn}>Volver</button>
+        </NavLink>
       </div>
     </div>
   );

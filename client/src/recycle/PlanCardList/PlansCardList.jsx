@@ -18,11 +18,9 @@ export default function PlanList() {
     setPage(value);
   };
 
-  const plans = useSelector((state) =>  state.planStore.renderPlans);
+  const plans = useSelector((state) => state.planStore.renderPlans);
 
-  const totalPages = useSelector((state) =>  state.planStore.totalPages);
-
-  console.log(plans, page, totalPages);
+  const totalPages = 34;
 
   return (
     <div className={style.container}>
@@ -36,10 +34,14 @@ export default function PlanList() {
           />
         ))}
       </div>
-      <Pagination
-      onChange={handlePageChange}
-      count={totalPages}
-       />
+      {
+        plans?.length < 9
+          ? null
+          : <Pagination
+            onChange={handlePageChange}
+            count={totalPages}
+          />
+      }
     </div>
   );
 }
