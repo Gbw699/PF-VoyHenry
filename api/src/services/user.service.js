@@ -104,21 +104,13 @@ class UsersService {
       where: { email }
     })
 
-
-
     if (user === null) {
       throw new CustomError("User not found", 404)
     }
 
-    return {
-      message: "plans",
-      data: {
-         user,
+    return user
 
-
-    }
-
-  }}
+  }
 
     /* Find User all Blogs*/
 
