@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import style from "./MarketPlaceSection.module.css";
 import { Link } from "react-router-dom";
 import MarketCard from "./MarketCard";
-import productMarketPlace from "../../marketPlace.json";
 import Filters from "./Filters";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/slices/marketPlaceSlice/thunk";
@@ -19,6 +18,7 @@ export default function MarketPlaceSection() {
 
   return (
     <div className={style.container}>
+      <div className={style.marketBg} />
       <div className={style.marketCont}>
         <Filters />
         <div className={style.cardsCont}>

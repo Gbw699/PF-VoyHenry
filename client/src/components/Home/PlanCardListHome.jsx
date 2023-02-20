@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import PlanCard from "../../recycle/PlanCard/PlanCard";
-import style from "./PlansCardList.module.css";
+import style from "./PlanCardListHome.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getLimitPlans } from "../../redux/slices/planSlice/thunk";
 

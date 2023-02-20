@@ -24,7 +24,7 @@ export default function FilterByCities() {
 
   return (
     <div>
-      <label htmlFor="country-select" className={style.filterTitle}>Filtrar por País:</label>
+      <h3 className={style.filterTitle}>Filtrar por País:</h3>
       <select className={style.inputs} id="country-select" value={selectedCountry} onChange={handleCountryChange}>
         <option value="">Selecciona un país</option>
         {countries.map(country => (

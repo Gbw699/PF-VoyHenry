@@ -29,7 +29,7 @@ export default function BlogsReviews() {
 
   return (
     <div className={style.container}>
-      <div>
+      <div className={style.cardsCont}>
         {allBlogs?.map((blog) => {
           return (
             <BlogReview
