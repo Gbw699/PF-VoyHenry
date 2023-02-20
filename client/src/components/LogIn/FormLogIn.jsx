@@ -51,18 +51,25 @@ export default function FormLogIn() {
                 placeholder="E-mail"
                 name="email"
                 onChange={formik.handleChange}
-                error={formik.errors.email}
+                onBlur={formik.handleBlur}
                 value={formik.values.email}
               />
+              {formik.touched.email && formik.errors.email ? (
+                <div>{formik.errors.email}</div>
+              ) : null}
+
               <h3 className={style.inputTitle}>Contraseña</h3>
               <Form.Input
                 type="password"
                 placeholder="Contraseña"
                 name="password"
                 onChange={formik.handleChange}
-                error={formik.errors.password}
+                onBlur={formik.handleBlur}
                 value={formik.values.password}
               />
+              {formik.touched.password && formik.errors.password ? (
+                <div>{formik.errors.password}</div>
+              ) : null}
             </div>
             <div className={style.buttons}>
               <Button
@@ -82,6 +89,7 @@ export default function FormLogIn() {
               </Button>
             </div>
           </Form>
+          <button>¿Olvidaste tu contraseña?</button>
         </div>
       </div>
     </div>
