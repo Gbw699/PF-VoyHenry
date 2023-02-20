@@ -8,14 +8,14 @@ export const getProducts = (id) => {
         const response = await axios.get(`/api/v1/products/${id}`);
         dispatch(setDetailProducts(response.data));
       } catch (error) {
-        return window.alert("No se pudo hacer el pedido");
+        return console.log("No se pudo hacer el pedido");
       }
     } else {
       try {
         const response = await axios.get("/api/v1/products/");
         dispatch(setProducts(response.data));
       } catch (error) {
-        return window.alert("No se pudo hacer el pedido");
+        return console.log("No se pudo hacer el pedido");
       }
     }
   };

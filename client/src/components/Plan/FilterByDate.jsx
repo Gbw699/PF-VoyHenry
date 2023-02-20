@@ -1,11 +1,13 @@
 import React from "react";
 import style from "./GeolocationForm.module.css";
+import { useDispatch } from "react-redux";
+import { getPlansByDate } from "../../redux/slices/planSlice/thunk";
 
 export default function FilterByDate() {
+    const dispatch = useDispatch();
     const handleInputChange = (event) => {
         const selectedDate = event.target.value;
-        // Acá hay que dispachar la actión para que renderice por fecha. Fromato (YYYY-MM-DD)
-        console.log(selectedDate);
+        dispatch(getPlansByDate(selectedDate));
     };
     return (
         <div>
