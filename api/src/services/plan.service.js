@@ -21,23 +21,17 @@ class PlansService {
       offset : 0
     }
 
-    if (query.page) {
-      const page = parseInt(query.page);
-      console.log(page)
-      if (isNaN(page) || page < 1) {
-        throw new CustomError('Invalid page number', 440);
-      }
-      options.offset = (page - 1) * options.limit;
-    }
+    options.where = {}
+
 
     if (query.state){
 
-      options.where = { state:{ [Op.like]: query.state }  }
+      options.where.state = { [Op.like]: query.state };
     }
 
     if (query.contains){
 
-      options.where = { title:{ [Op.substring]: query.contains }  }
+      options.where.title = { [Op.substring]: query.contains };
     }
 
     if (query.order) {
@@ -50,6 +44,11 @@ class PlansService {
       }
     }
 
+    if (query.date) {
+
+      options.where.eventDate = { [Op.eq]: `%${query.date}%` };
+    }
+
     if (query.limit) {
 
       options.limit = query.limit;
@@ -60,10 +59,14 @@ class PlansService {
       options.offset = (page - 1) * query.offset;
     }
 
-    if (query.date) {
-
-      options.where = { eventDate: { [Op.eq]: `%${query.date}%` } };
+    if (query.page) {
+      const page = parseInt(query.page);
+      if (isNaN(page) || page < 1) {
+        throw new CustomError('Invalid page number', 440);
+      }
+      options.offset = (page - 1) * (options.limit || query.limit);
     }
+
 
     const plans = await plansModel.findAll(options)
 

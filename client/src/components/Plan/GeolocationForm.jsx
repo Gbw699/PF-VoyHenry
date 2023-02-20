@@ -11,14 +11,8 @@ export default function GeolocationForm() {
       <hr color="#F1E100" width="100%" />
       <div className={style.filtersCont}>
         <FilterByDate className={style.inputs}/>
-        {/* <h3 className={style.filterTitle}>Fecha</h3>
-        <input type="date" placeholder="Seleccionar fecha" className={style.inputs} /> */}
         <FilterByCities className={style.inputs}/>
-        {/* <h3 className={style.filterTitle}>Lugar</h3>
-        <input type="text" placeholder="Seleccionar locación" className={style.inputs} /> */}
         <FilterByRating className={style.inputs}/>
-        {/* <h3 className={style.filterTitle}>Valoración</h3>
-        <input type="text" placeholder="Filtrar por valoraciones" className={style.inputs} /> */}
       </div>
     </div>
   );
