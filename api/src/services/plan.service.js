@@ -60,9 +60,14 @@ class PlansService {
       options.offset = (page - 1) * query.offset;
     }
 
+    if (query.date) {
+
+      options.where = { eventDate: { [Op.eq]: `%${query.date}%` } };
+    }
+
     const plans = await plansModel.findAll(options)
 
-    if (plans === null) {
+    if (plans === null|| plans.length === 0) {
       throw new CustomError("Plan not found", 404)
     } else {
       return {plans}

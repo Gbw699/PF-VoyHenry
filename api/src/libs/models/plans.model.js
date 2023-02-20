@@ -45,6 +45,5 @@ const plans = sequelize.define('plans', {
 
 })
 
-/* plans.belongsTo(users, { through: 'plansByUser', foreignKey: 'id' }); */
 
 module.exports = plans;

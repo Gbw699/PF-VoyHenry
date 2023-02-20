@@ -5,6 +5,7 @@ const planSlice = createSlice({
   initialState: {
     allPlans: [],
     renderPlans: [],
+    totalPages: 0
   },
   reducers: {
     setAllPlans(state, action) {
@@ -16,8 +17,14 @@ const planSlice = createSlice({
     setPlansSearch(state, action) {
       state.renderPlans = [...action.payload];
     },
+    setPlansPerPage(state, action) {
+      state.renderPlans = [...action.payload];
+    },
+    setTotalPages(state, action) {
+      state.totalPages = action.payload;
+    }
   },
 });
 
-export const { setPlansSearch, setLimitPlans, setAllPlans } = planSlice.actions;
+export const { setPlansSearch, setLimitPlans, setAllPlans, setPlansPerPage, setTotalPages } = planSlice.actions;
 export default planSlice.reducer;

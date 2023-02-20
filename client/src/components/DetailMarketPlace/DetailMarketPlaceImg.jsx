@@ -1,7 +1,7 @@
 import React from "react";
 // import style from "./DetailMarketPlaceImg.module.css";
 
-export default function DetailMarketPlaceImg({ image, imageExtra }) {
+export default function DetailMarketPlaceImg({ image }) {
   return (
     <div>
       <div>

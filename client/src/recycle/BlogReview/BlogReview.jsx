@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import style from "./BlogReview.module.css";
 
 export default function BlogReview({
@@ -8,28 +9,31 @@ export default function BlogReview({
   content,
   rating,
 }) {
+  const [userImage, setUserImage] = useState("");
+  const [reviewImage, setReviewImage] = useState("");
+
+  useEffect(() => {
+    setUserImage(`url(${userimage})`);
+  });
+
+  useEffect(() => {
+    setReviewImage(`url(${image})`);
+  });
+
   return (
     <div className={style.container}>
       <div className={style.reviewCont}>
-        <img
-          src={userimage}
-          alt="Imagen de usuario"
-          width="150px"
-          height="150px"
-        />
+        <div className={style.userImg} style={{ backgroundImage: userImage }} />
         <div className={style.userCont}>
           <div className={style.nameDate}>
-            <h3 className={style.name}>{usernickName}</h3>
+            {/* vv BORRAR CUANDO HAYA NOMBRE DE PERFIL vv */}
+            {/* <h3 className={style.name}>{usernickName}</h3> */}
+            <h3 className={style.name}>Nombre</h3>
             <p>Fecha de publicación</p>
           </div>
           <hr color="#F1E100" width="100%" />
           <div className={style.review}>
-            <img
-              src={image}
-              alt="Imagen del plan"
-              width="150px"
-              height="150px"
-            />
+            <div className={style.reviewImg} style={{ backgroundImage: reviewImage }} />
             <div className={style.reviewInfo}>
               <h4 className={style.infoName}>{title}</h4>
               <p className={style.infoDescription}>{content}</p>
