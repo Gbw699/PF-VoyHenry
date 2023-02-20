@@ -1,20 +1,24 @@
 import React from "react";
-// import style from "./ProfileMyFriendsActivity.module.css";
+import { useEffect, useState } from "react";
+import style from "./ProfileMyFriendsActivity.module.css";
 
 export const ProfileMyFriendsActivity = ({
   myFriendsActivityImg,
   myFriendsActivityName,
 }) => {
+  const [backgroundImage, setBackgroundImage] = useState("");
+
+  useEffect(() => {
+    setBackgroundImage(`url(${myFriendsActivityImg})`);
+  });
+
   return (
-    <div>
+    <div className={style.container}>
       <div>
-        <img
-          src={myFriendsActivityImg}
-          alt={myFriendsActivityName}
-        />
+        <div className={style.img} style={{ backgroundImage: backgroundImage }} />
       </div>
       <div>
-        <p>{myFriendsActivityName}</p>
+        <p className={style.title}>{myFriendsActivityName}</p>
       </div>
     </div>
   );
