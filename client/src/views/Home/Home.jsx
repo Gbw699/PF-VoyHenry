@@ -5,9 +5,13 @@ import BlogReview from "../../components/Home/BlogReview";
 // import { Container } from "@mui/material";
 import ProfileCard from "../../recycle/ProfileCard/ProfileCard";
 import style from "./Home.module.css";
-
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
+  const handleSubmit = () => {
+      navigate("/createPlan");
+  };
 
   return (
     <div className={style.container}>
@@ -16,6 +20,7 @@ export default function Home() {
         <button
           type="submit"
           className={style.createBtn}
+          onClick={handleSubmit}
         >
           Crea tu evento
         </button>
