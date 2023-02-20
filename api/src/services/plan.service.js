@@ -32,7 +32,7 @@ class PlansService {
 
     if (query.state){
 
-      options.where = { state:{ [Op.substring]: query.state }  }
+      options.where = { state:{ [Op.like]: query.state }  }
     }
 
     if (query.contains){
