@@ -11,7 +11,7 @@ export default function PlanCardList() {
     (page - 1) * plansPerPage,
     page * plansPerPage
   );
-    const count = Math.ceil(plansData.data.length / plansPerPage);
+  const count = Math.ceil(plansData.data.length / plansPerPage);
 
   const handlePageChange = (event, value) => {
     setPage(value);
