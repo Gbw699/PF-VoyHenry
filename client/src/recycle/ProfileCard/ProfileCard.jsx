@@ -43,17 +43,20 @@ export default function ProfileCard() {
           width="80%"
           color="#F1E100"
         />
-        {/* <h1 className={style.profileName}>{user.nickName}</h1> */}
-        <h1 className={style.profileName}>{user.nickName}</h1>{" "}
-        {/* BORRAR CUANDO HAYA NOMBRE DE PERFIL */}
+        {/* vv BORRAR CUANDO HAYA NOMBRE DE PERFIL vv */}
+        {/* <h1 className={style.profileName}>{user.nickName}</h1>{" "} */}
+        <h1 className={style.profileName}>Nombre</h1>{" "}
+        {/* vv BORRAR CUANDO HAYA NACIONALIDAD vv */}
         <h4 className={style.profileCountry}>Nacionalidad</h4>
         <div className={style.followersCont}>
           <div className={style.followers}>
             <p className={style.followTitle}>Siguiendo</p>
+            {/* vv MODIFICAR PARA QUE SE MUESTRE EL N° DE SIGUIENDO/SEGUIDORES vv */}
             <span className={style.followNum}>300</span>
           </div>
           <div className={style.followers}>
             <p className={style.followTitle}>Seguidores</p>
+            {/* vv MODIFICAR PARA QUE SE MUESTRE EL N° DE SIGUIENDO/SEGUIDORES vv */}
             <span className={style.followNum}>123</span>
           </div>
         </div>
