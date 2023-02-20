@@ -4,7 +4,8 @@ import {
   setLimitPlans,
   setAllPlans,
   setPlansPerPage,
-  setTotalPages
+  setTotalPages,
+  setPlansByDate
 } from "./planSlice";
 
 export const getPlansSearch = (content) => {
@@ -62,6 +63,18 @@ export const getAllPlans = () => {
       //hablar sobre la ruta
       const response = await axios.get("/api/v1/plans");
       dispatch(setAllPlans(response.data.plans.plans));
+    } catch (error) {
+      return console.log("No se pudo realizar la petición");
+    }
+  };
+};
+
+export const getPlansByDate = (date) => {
+  return async (dispatch) => {
+    try {
+      //hablar sobre la ruta
+      const response = await axios.get(`/api/v1/plans?date=${date}`);
+      dispatch(setPlansByDate(response.data.plans.plans));
     } catch (error) {
       return console.log("No se pudo realizar la petición");
     }
