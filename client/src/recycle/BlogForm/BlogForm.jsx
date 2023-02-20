@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
-import { postBlog, getBlogs } from "../../redux/slices/blogSlice/thunk";
+import { postBlog } from "../../redux/slices/blogSlice/thunk";
 import style from "./BlogForm.module.css";
 
 export default function BlogForm({ open, close }) {
