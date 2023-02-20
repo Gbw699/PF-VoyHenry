@@ -1,6 +1,8 @@
 const { Router } = require('express');
 const passport = require('passport')
 const AuthService = require('../services/auth.service')
+const validatorHandler = require('../middlewares/validator.handler')
+const { recoverySchema, loginSchema, changePassSchema } = require('../schemas/auth.schema')
 
 const service = new AuthService()
 
@@ -9,6 +11,7 @@ const router = Router();
 /* login */
 
 router.post('/login',
+  validatorHandler(loginSchema, "body"),
   passport.authenticate('local', {session: false}),
   async (req, res, next) => {
 
@@ -26,6 +29,7 @@ router.post('/login',
 /* recovery pass */
 
 router.post('/recovery',
+  validatorHandler(recoverySchema, "body"),
   async (req, res, next) => {
 
     try {
@@ -45,6 +49,7 @@ router.post('/recovery',
 /*  change pass */
 
 router.post('/change-pass',
+  validatorHandler(changePassSchema, "body"),
   async (req, res, next) => {
 
     try {
