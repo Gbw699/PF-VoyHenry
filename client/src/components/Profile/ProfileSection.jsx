@@ -24,6 +24,8 @@ export default function ProfileSection() {
   }, []);
 
   const user = useSelector((state) => state.userStore);
+  const userPlans = useSelector((state) => state.userStore.userPlans.length);
+  const userBlogs = useSelector((state) => state.userStore.userBlogs.length);
 
   return (
     <div className={style.mainContainer}>
@@ -39,8 +41,8 @@ export default function ProfileSection() {
               following="156"
               followers="165"
               assistedPlans="12"
-              plansCreated={element.plansCreated}
-              reviewsCreated={element.reviewsCreated}
+              plansCreated={userPlans}
+              reviewsCreated={userBlogs}
             />
           </div>
         ))}
@@ -52,20 +54,23 @@ export default function ProfileSection() {
             color="#F1E100"
             width="100%"
           />
+          {/* //!! FALTA CONECTAR CON EL BACK-END PORQUE NO ESTÁ */}
           {profileData.data.map((element) =>
             element.myFriends.map((element2) => (
               <Link
                 key={element2.id}
                 to={`/plans/${element2.id}`}
               >
+                {console.log(element2)}
                 <ProfileMyFriendsActivity
-                  myFriendsActivityImg={element2.latestAssistedPlansImg}
-                  myFriendsActivityName={element2.latestAssistedPlansName}
+                  image={element2.latestAssistedPlansImg}
+                  name={element2.latestAssistedPlansName}
                 />
               </Link>
             ))
           )}
         </div>
+        {/* //!! FALTA CONECTAR CON EL BACK-END PORQUE NO ESTÁ */}
         <div className={style.activityCont}>
           <div>
             <h6 className={style.title}>Sobre mí</h6>
@@ -86,20 +91,24 @@ export default function ProfileSection() {
               color="#F1E100"
               width="100%"
             />
+            {/* //!! FALTA CONECTAR CON EL BACK-END PORQUE NO ESTÁ */}
             <div className={style.plansCont}>
-              {profileData.data.map((element) => (
-                <Link
-                  key={element.id}
-                  to={`/plans/${element.id}`}
-                  className={style.link}
-                >
-                  <ProfileLatestAssistedPlans
-                    latestAssistedPlansImg={element.latestAssistedPlansImg}
-                    latestAssistedPlansName={element.latestAssistedPlansName}
-                  />
-                </Link>
-              ))}
+              {profileData.data.map((element) =>
+                element.latestAssistedPlans.map((element2) => (
+                  <Link
+                    key={element2.id}
+                    to={`/plans/${element2.id}`}
+                    className={style.link}
+                  >
+                    <ProfileLatestAssistedPlans
+                      image={element2.latestAssistedPlansImg}
+                      name={element2.latestAssistedPlansName}
+                    />
+                  </Link>
+                ))
+              )}
             </div>
+            {/* //!! FALTA CONECTAR CON EL BACK-END PORQUE NO ESTÁ */}
           </div>
           <div>
             <h6 className={style.title}>Mis planes</h6>
