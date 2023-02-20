@@ -4,7 +4,8 @@ import style from "./ProfileInfo.module.css";
 
 export default function ProfileInfo({
   image,
-  name,
+  firstName,
+  lastName,
   nationality,
   following,
   followers,
@@ -21,8 +22,13 @@ export default function ProfileInfo({
   return (
     <div className={style.container}>
       <div className={style.mainInfo}>
-        <div className={style.imgCont} style={{ backgroundImage: backgroundImage }} />
-        <p className={style.name}>{name}</p>
+        <div
+          className={style.imgCont}
+          style={{ backgroundImage: backgroundImage }}
+        />
+        <p className={style.name}>
+          {firstName} {lastName}
+        </p>
         <p className={style.nacionality}>{nationality}</p>
       </div>
       <div className={style.profileInfo}>

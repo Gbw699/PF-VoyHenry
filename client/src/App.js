@@ -45,7 +45,7 @@ function App() {
           element={<SignUp />}
         />
         <Route
-          path="/createPlan"
+          path="/plans/create"
           element={<PlanForm />}
         />
         <Route

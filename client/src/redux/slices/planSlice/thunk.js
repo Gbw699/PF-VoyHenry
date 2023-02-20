@@ -5,7 +5,7 @@ import {
   setAllPlans,
   setPlansPerPage,
   setTotalPages,
-  setPlansByDate
+  setPlansByDate,
 } from "./planSlice";
 
 export const getPlansSearch = (content) => {
