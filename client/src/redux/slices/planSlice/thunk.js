@@ -80,3 +80,16 @@ export const getPlansByDate = (date) => {
     }
   };
 };
+
+export const postPlan = (obj) => {
+  return async () => {
+    try {
+      await axios.post("/api/v1/plans", {
+        ...obj,
+      });
+      console.log("El plan se creó correctamente");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
