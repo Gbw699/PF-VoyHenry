@@ -300,7 +300,7 @@ export default function FormSignUp() {
                   <label htmlFor="password" className={style.inputTitle}>Contraseña</label>
                   <Field
                     name="password"
-                    type="text"
+                    type="password"
                   />
                   <ErrorMessage name="password" />
                 </div>
@@ -309,7 +309,7 @@ export default function FormSignUp() {
                   <label htmlFor="repeatPassword" className={style.inputTitle}>Repetir contraseña</label>
                   <Field
                     name="repeatPassword"
-                    type="text"
+                    type="password"
                   />
                   <ErrorMessage name="repeatPassword" />
                 </div>
