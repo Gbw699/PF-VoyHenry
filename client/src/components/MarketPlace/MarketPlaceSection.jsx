@@ -25,7 +25,10 @@ export default function MarketPlaceSection() {
 
   return (
     <div className={style.container}>
-      <div className={style.marketBg} style={{ backgroundImage: backgroundImage }} />
+      <div
+        className={style.marketBg}
+        style={{ backgroundImage: backgroundImage }}
+      />
       <div className={style.marketCont}>
         <Filters />
         <div className={style.cardsCont}>

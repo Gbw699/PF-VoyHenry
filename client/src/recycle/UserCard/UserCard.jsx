@@ -11,10 +11,16 @@ export default function UserCard({ nickName, image }) {
 
   return (
     <div className={style.container}>
-      <div className={style.imgCont} style={{ backgroundImage: backgroundImage }}/>
+      <div
+        className={style.imgCont}
+        style={{ backgroundImage: backgroundImage }}
+      />
       <div className={style.infoCont}>
         <h1 className={style.name}>{nickName}</h1>
-        <hr color="#F1E100" width="100%" />
+        <hr
+          color="#F1E100"
+          width="100%"
+        />
         <h4 className={style.nacionality}>Nacionalidad</h4>
         <div className={style.followInfo}>
           <p className={style.followTitle}>Siguiendo</p>

@@ -44,7 +44,7 @@ router.get('/:nickName',
 /* Get AllBlogs by nickName */
 
 router.get('/:nickName/blogs',
-
+  validatorHandler(getUserSchema, 'params'),  
   async (req, res, next) => {
     try {
 
@@ -64,7 +64,7 @@ router.get('/:nickName/blogs',
 /* Get AllPlans by nickName */
 
 router.get('/:nickName/plans',
-
+  validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
 

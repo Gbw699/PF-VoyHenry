@@ -20,6 +20,7 @@ export default function PlanCardListHome() {
         {plans?.map((plan) => (
           <PlanCard
             key={plan.id}
+            id={plan.id}
             mainImage={plan.mainImage}
             title={plan.title}
             summary={plan.summary}
