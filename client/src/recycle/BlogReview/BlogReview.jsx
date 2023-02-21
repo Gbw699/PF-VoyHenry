@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import style from "./BlogReview.module.css";
 
 export default function BlogReview({ blog }) {
@@ -30,7 +31,10 @@ export default function BlogReview({ blog }) {
             color="#F1E100"
             width="100%"
           />
-          <div className={style.review}>
+          <NavLink
+            to={`/blog/${blog.id}`}
+            className={style.review}
+          >
             <div
               className={style.reviewImg}
               style={{ backgroundImage: reviewImage }}
@@ -43,7 +47,7 @@ export default function BlogReview({ blog }) {
                 <span className={style.infoValNum}>{blog.rating}</span>
               </p>
             </div>
-          </div>
+          </NavLink>
         </div>
       </div>
     </div>
