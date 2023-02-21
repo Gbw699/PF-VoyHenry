@@ -18,6 +18,7 @@ export default function DetailPlan() {
             <div>
                 <h1>Galería</h1>
                 <hr />
+                <hr />
                 <img src="https://loremflickr.com/640/480/abstract" alt="img" />
             </div>
         </div>
