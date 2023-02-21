@@ -2,7 +2,7 @@
   background-image: url("../../assets/voyHENRY_landingBg.png");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100%;
+  height: 100vh;
 }
 
 .logo {
@@ -11,6 +11,7 @@
   margin-top: 5%;
   margin-left: 7%;
 }
+
 .container {
   height: 100vh;
   display: flex;
@@ -19,32 +20,69 @@
   justify-content: center;
 }
 
+.formTitle {
+  color: #585858;
+  font-size: 150%;
+  margin-bottom: 8%;
+}
+
 .formContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   border-radius: 25px;
-  padding: 3%;
-  width: 500px;
+  padding: 2%;
+  width: 20%;
+}
+
+.formSubCont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .formInputs {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 80%;
 }
 
 .inputTitle {
+  color: #707070;
+  font-weight: 300;
   font-size: 100%;
 }
 
-.buttons {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  justify-content: space-around;
-  margin-top: 8%;
+.btnSignup {
+  background-color: #F1E100;
+  border: 2px solid #F1E100;
+  width: 150px;
+  padding: 3%;
+  color: #707070;
+  border: 0px;
+  border-radius: 10px;
+  transition: background-color 0.5s;
+  margin: 3%;
+}
+
+.btnVolver {
+  background-color: rgb(219, 219, 219);
+  width: 100px;
+  padding: 2%;
+  color: #707070;
+  border: 0px;
+  border-radius: 10px;
+  transition: background-color 0.5s;
+  margin: 3%;
+}
+
+.btnSignup:hover {
+  background-color: #707070;
+  color: white;
+}
+
+.btnVolver:hover {
+  background-color: #F1E100;
 }

@@ -5,7 +5,7 @@ import {
   setAllPlans,
   setPlansPerPage,
   setTotalPages,
-  setPlansByDate
+  setPlansByDate,
 } from "./planSlice";
 
 export const getPlansSearch = (content) => {
@@ -77,6 +77,19 @@ export const getPlansByDate = (date) => {
       dispatch(setPlansByDate(response.data.plans.plans));
     } catch (error) {
       return console.log("No se pudo realizar la petición");
+    }
+  };
+};
+
+export const postPlan = (obj) => {
+  return async () => {
+    try {
+      await axios.post("/api/v1/plans", {
+        ...obj,
+      });
+      console.log("El plan se creó correctamente");
+    } catch (error) {
+      console.log(error.message);
     }
   };
 };

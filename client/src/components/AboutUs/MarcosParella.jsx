@@ -20,7 +20,7 @@ export default function MarcosParella() {
       />
       <div className={style.container}>
         <div className={style.links}>
-          <div
+          <a
             className={style.img}
             href="https://www.linkedin.com/in/marcoshernanparella/"
             rel="noreferrer"
@@ -31,8 +31,8 @@ export default function MarcosParella() {
               src={linkedInImg}
               alt="LinkedIn"
             />
-          </div>
-          <div
+          </a>
+          <a
             className={style.img}
             href="https://github.com/Markish2000"
             rel="noreferrer"
@@ -43,8 +43,8 @@ export default function MarcosParella() {
               src={gitHubImg}
               alt="GitHub"
             />
-          </div>
-          <div
+          </a>
+          <a
             className={style.img}
             href="https://markish2000.github.io/Portfolio/"
             rel="noreferrer"
@@ -55,7 +55,7 @@ export default function MarcosParella() {
               src={portFolioImg}
               alt="Portfolio"
             />
-          </div>
+          </a>
         </div>
         <div className={style.description}>
           <h5>Marcos Hernan Parella</h5>

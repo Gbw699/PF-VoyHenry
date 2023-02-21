@@ -26,7 +26,7 @@ export const getBlogsSearch = (user) => {
 export const postBlog = (obj) => {
   return async () => {
     try {
-      await axios.post("http://localhost:3001/api/v1/blogs", {
+      await axios.post("/api/v1/blogs", {
         ...obj,
       });
       window.alert("La reseña fue creada");
