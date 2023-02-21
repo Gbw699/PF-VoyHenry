@@ -46,4 +46,5 @@ export default function DetailPlan() {
             </div>
         </div>
     );
+
 }
