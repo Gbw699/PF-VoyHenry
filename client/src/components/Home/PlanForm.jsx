@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { postPlan } from "../../redux/slices/planSlice/thunk";
+import style from "./PlanForm.module.css";
 
 export default function FormSignUp() {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ export default function FormSignUp() {
   const greaterDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
 
   return (
-    <div>
+    <div className={style.container}>
       <Formik
         initialValues={{
           title: "",
@@ -58,60 +59,73 @@ export default function FormSignUp() {
         }}
       >
         <Form>
-          {/* ------------------------------------------------------------------------- */}
-          <label htmlFor="name">Nick Name</label>
-          <Field
-            name="name"
-            type="text"
-          />
-          <ErrorMessage name="name" />
-          {/* ------------------------------------------------------------------------- */}
-          <label htmlFor="title">Título</label>
-          <Field
-            name="title"
-            type="text"
-          />
-          <ErrorMessage name="title" />
-          {/* ------------------------------------------------------------------------- */}
-          <label htmlFor="summary">Breve descripción</label>
-          <Field
-            name="summary"
-            type="text"
-          />
-          <ErrorMessage name="summary" />
-          {/* ------------------------------------------------------------------------- */}
-          <label htmlFor="description">Descripción</label>
-          <Field
-            name="description"
-            type="text"
-          />
-          <ErrorMessage name="description" />
-          {/* ------------------------------------------------------------------------- */}
-          <label htmlFor="mainImage">Imagen principal</label>
-          <Field
-            name="mainImage"
-            type="text"
-          />
-          <ErrorMessage name="nickName" />
-          {/* ------------------------------------------------------------------------- */}
-          <label htmlFor="images">Imágenes secundarias</label>
-          <Field
-            name="images"
-            type="text"
-          />
-          <ErrorMessage name="images" />
-          {/* ------------------------------------------------------------------------- */}
-          <label htmlFor="eventDate">Fecha del evento</label>
-          <Field
-            name="eventDate"
-            type="date"
-          />
-          <ErrorMessage name="eventDate" />
-          {/* ------------------------------------------------------------------------- */}
-          <button type="submit">Crear Plan</button>
+          <div className={style.formContainer}>
+            <h2 className={style.title}>CREA TU PLAN</h2>
+            <hr color="#F1E100" width="100%" />
+            <div className={style.formSubCont}>
+              {/* ------------------------------------------------------------------------- */}
+              <label htmlFor="name" className={style.formTitle}>Nick Name</label>
+              <Field
+                name="name"
+                type="text"
+                className={style.formInputs}
+              />
+              <ErrorMessage name="name" />
+              {/* ------------------------------------------------------------------------- */}
+              <label htmlFor="title" className={style.formTitle}>Título</label>
+              <Field
+                name="title"
+                type="text"
+                className={style.formInputs}
+              />
+              <ErrorMessage name="title" />
+              {/* ------------------------------------------------------------------------- */}
+              <label htmlFor="summary" className={style.formTitle}>Breve descripción</label>
+              <Field
+                name="summary"
+                type="text"
+                className={style.formInputs}
+              />
+              <ErrorMessage name="summary" />
+              {/* ------------------------------------------------------------------------- */}
+              <label htmlFor="description" className={style.formTitle}>Descripción</label>
+              <Field
+                name="description"
+                type="text"
+                className={style.formInputs}
+              />
+              <ErrorMessage name="description" />
+              {/* ------------------------------------------------------------------------- */}
+              <label htmlFor="mainImage" className={style.formTitle}>Imagen principal</label>
+              <Field
+                name="mainImage"
+                type="text"
+                className={style.formInputs}
+              />
+              <ErrorMessage name="nickName" />
+              {/* ------------------------------------------------------------------------- */}
+              <label htmlFor="images" className={style.formTitle}>Imágenes secundarias</label>
+              <Field
+                name="images"
+                type="text"
+                className={style.formInputs}
+              />
+              <ErrorMessage name="images" />
+              {/* ------------------------------------------------------------------------- */}
+              <label htmlFor="eventDate" className={style.formTitle}>Fecha del evento</label>
+              <Field
+                name="eventDate"
+                type="date"
+                className={style.formInputs}
+              />
+              <ErrorMessage name="eventDate" />
+              {/* ------------------------------------------------------------------------- */}
+            </div>
+            <button type="submit" className={style.createBtn}>Crear Plan</button>
+          </div>
         </Form>
       </Formik>
-      <button onClick={() => navigate("/home")}>Volver</button>
+      <button onClick={() => navigate("/home")} className={style.backBtn}>Volver</button>
     </div>
   );
 }
