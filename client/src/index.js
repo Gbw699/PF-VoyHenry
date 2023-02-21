@@ -7,6 +7,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 
+let previousTitle = document.title;
+window.addEventListener("blur", () => {
+  previousTitle = document.title;
+  document.title = "¡Vuelve que tenemos que viajar!";
+});
+
+window.addEventListener("focus", () => {
+  document.title = previousTitle;
+});
+
 const container = document.getElementById("root");
 const root = createRoot(container);
 
