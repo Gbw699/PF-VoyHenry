@@ -39,7 +39,11 @@ const blogs = sequelize.define("blogs", {
       validate: {
         isUrl: true
       }
-    },
+    },  
+    date: {
+      type: DataTypes.DATEONLY,
+      defaultValue: DataTypes.NOW
+    }
 
   },
   {

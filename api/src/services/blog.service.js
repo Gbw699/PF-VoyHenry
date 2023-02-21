@@ -25,7 +25,7 @@ class blogService {
 
     if (query.date) {
 
-      options.where.updatedAt = { [Op.eq]: `${query.date}T00:00:00.000Z` };
+      options.where.date = { [Op.eq]: `${query.date}` };
     }
 
     if (query.order) {
