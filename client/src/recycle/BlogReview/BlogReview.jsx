@@ -24,7 +24,7 @@ export default function BlogReview({ blog }) {
           <div className={style.nameDate}>
             {/* vv BORRAR CUANDO HAYA NOMBRE DE PERFIL vv */}
             <h3 className={style.name}>{blog.userNickName}</h3>
-            <p>{blog.createdAt.slice(0, 10)}</p>
+            <p>{blog.createdAt?.slice(0, 10)}</p>
           </div>
           <hr
             color="#F1E100"
