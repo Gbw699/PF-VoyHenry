@@ -18,19 +18,20 @@ import {
 export default function ProfileSection() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUser("Leslie"));
-    dispatch(getUserPlans("Leslie"));
-    dispatch(getUserBlogs("Leslie"));
+    dispatch(getUser("juancito"));
+    dispatch(getUserPlans("juancito"));
+    dispatch(getUserBlogs("juancito"));
   }, []);
 
-  const user = useSelector((state) => state.userStore);
-  const userPlans = useSelector((state) => state.userStore.userPlans.length);
-  const userBlogs = useSelector((state) => state.userStore.userBlogs.length);
+  const user = useSelector((state) => state.userStore.user);
+  console.log(user);
+  const userPlans = useSelector((state) => state.userStore.userPlans);
+  const userBlogs = useSelector((state) => state.userStore.userBlogs);
 
   return (
     <div className={style.mainContainer}>
       <div className={style.profileCont}>
-        {user.user.map((element) => (
+        {/* {user.user.map((element) => (
           <div key={element.nickName}>
             <ProfileInfo
               image={element.image}
@@ -45,7 +46,19 @@ export default function ProfileSection() {
               reviewsCreated={userBlogs}
             />
           </div>
-        ))}
+        ))} */}
+         <ProfileInfo
+              image={user.image}
+              firstName={user.firstName}
+              lastName={user.lastName}
+              genre={user.genre}
+              nationality="Argentina"
+              following="156"
+              followers="165"
+              assistedPlans="12"
+              plansCreated={userPlans.length}
+              reviewsCreated={userBlogs.length}
+            />
       </div>
       <div className={style.infoCont}>
         <div className={style.friendsAct}>
@@ -78,12 +91,15 @@ export default function ProfileSection() {
               color="#F1E100"
               width="100%"
             />
-            {user.user.map((element, index) => (
+            {/* {user.user.map((element, index) => (
               <ProfileAboutMe
                 key={index}
                 aboutMe={element.about}
               />
-            ))}
+            ))} */}
+            <ProfileAboutMe
+                aboutMe={user.about}
+              />
           </div>
           <div>
             <h6 className={style.title}>Últimos planes asistidos</h6>
@@ -117,7 +133,7 @@ export default function ProfileSection() {
               width="100%"
             />
             <div className={style.plansCont}>
-              {user.userPlans.map((element) => (
+              {userPlans.map((element) => (
                 <Link
                   key={element.id}
                   to={`/plans/${element.id}`}
@@ -129,7 +145,7 @@ export default function ProfileSection() {
                   />
                 </Link>
               ))}
-            </div>
+            </div> 
           </div>
           <div>
             <h6 className={style.title}>Últimas reseñas</h6>
@@ -137,8 +153,8 @@ export default function ProfileSection() {
               color="#F1E100"
               width="100%"
             />
-            <div className={style.plansCont}>
-              {user.userBlogs.map((element) => (
+             <div className={style.plansCont}>
+              {userBlogs.map((element) => (
                 <Link
                   key={element.id}
                   to={`/blog/${element.id}`}
@@ -151,7 +167,7 @@ export default function ProfileSection() {
                   />
                 </Link>
               ))}
-            </div>
+            </div> 
           </div>
         </div>
       </div>

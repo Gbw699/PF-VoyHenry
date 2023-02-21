@@ -4,7 +4,7 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     allUsers: [],
-    user: [],
+    user: {},
     userPlans: [],
     userBlogs: [],
   },
@@ -13,13 +13,13 @@ const userSlice = createSlice({
       state.allUsers = action.payload;
     },
     setUser: (state, action) => {
-      state.user = [action.payload];
+      state.user = {...action.payload};
     },
     setUserPlans: (state, action) => {
-      state.userPlans = action.payload;
+      state.userPlans = [...action.payload];
     },
     setUserBlogs: (state, action) => {
-      state.userBlogs = action.payload;
+      state.userBlogs = [...action.payload];
     },
   },
 });
