@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function PlanCard(props) {
   const navigate = useNavigate();
+
   const [backgroundImage, setBackgroundImage] = useState("");
 
   useEffect(() => {
@@ -23,7 +24,7 @@ export default function PlanCard(props) {
           <p className={style.summary}>{props.title}</p> {/* PLACEHOLDER!! BORRAR CUANDO HAYA SUMMARY */}
           <p className={style.summary}>{props.summary}</p>
           <hr color="white" width="100%" />
-          <button className={style.detailBtn} onClick={() => navigate("/plans/detail")}>Ver detalles</button>
+          <button className={style.detailBtn} onClick={() => navigate(`/plans/${props.id}`)}>Ver detalles</button>
         </div>
       </div>
     </div>
