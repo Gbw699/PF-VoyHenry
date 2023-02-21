@@ -44,7 +44,7 @@ export default function ThomasLiendo() {
             />
           </a>
         </div>
-        <div className={style.details}>
+        <div className={style.description}>
           <h5>Thomas Federico Liendo</h5>
           <p>Full Stack Web Developer</p>
         </div>

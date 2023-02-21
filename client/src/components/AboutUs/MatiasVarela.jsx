@@ -44,7 +44,7 @@ export default function MatiasVarela() {
             />
           </a>
         </div>
-        <div>
+        <div className={style.description}>
           <h5>Matías Varela</h5>
           <p>Full Stack Web Developer</p>
         </div>

@@ -15,7 +15,7 @@ export default function MarcosParella() {
         />
       </div>
       <hr
-        width="100%"
+        width="85%"
         color="#F1E100"
       />
       <div className={style.container}>
@@ -57,7 +57,7 @@ export default function MarcosParella() {
             />
           </a>
         </div>
-        <div>
+        <div className={style.description}>
           <h5>Marcos Hernan Parella</h5>
           <p>Full Stack Web Developer</p>
         </div>

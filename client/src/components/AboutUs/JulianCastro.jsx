@@ -44,7 +44,7 @@ export default function JulianCastro() {
             />
           </a>
         </div>
-        <div>
+        <div className={style.description}>
           <h5>Julian María Castro</h5>
           <p>Full Stack Web Developer</p>
         </div>
