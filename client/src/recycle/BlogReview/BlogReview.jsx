@@ -31,8 +31,7 @@ export default function BlogReview({
           <div className={style.nameDate}>
             {/* vv BORRAR CUANDO HAYA NOMBRE DE PERFIL vv */}
             <h3 className={style.name}>{userNickName}</h3>
-            <h3 className={style.name}>Nombre</h3>
-            <p>Fecha de publicación</p>
+            <p>01/03/2023</p>
           </div>
           <hr
             color="#F1E100"

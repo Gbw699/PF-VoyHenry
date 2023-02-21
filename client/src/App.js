@@ -50,7 +50,7 @@ function App() {
           element={<PlanForm />}
         />
         <Route
-          path="/plans/detail"
+          path="/plans/:id"
           element={<DetailPlan />}
         />
         <Route
