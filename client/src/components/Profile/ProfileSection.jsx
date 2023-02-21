@@ -47,18 +47,18 @@ export default function ProfileSection() {
             />
           </div>
         ))} */}
-         <ProfileInfo
-              image={user.image}
-              firstName={user.firstName}
-              lastName={user.lastName}
-              genre={user.genre}
-              nationality="Argentina"
-              following="156"
-              followers="165"
-              assistedPlans="12"
-              plansCreated={userPlans.length}
-              reviewsCreated={userBlogs.length}
-            />
+        <ProfileInfo
+          image={user.image}
+          firstName={user.firstName}
+          lastName={user.lastName}
+          genre={user.genre}
+          nationality="Argentina"
+          following="156"
+          followers="165"
+          assistedPlans="12"
+          plansCreated={userPlans.length}
+          reviewsCreated={userBlogs.length}
+        />
       </div>
       <div className={style.infoCont}>
         <div className={style.friendsAct}>
@@ -97,9 +97,7 @@ export default function ProfileSection() {
                 aboutMe={element.about}
               />
             ))} */}
-            <ProfileAboutMe
-                aboutMe={user.about}
-              />
+            <ProfileAboutMe aboutMe={user.about} />
           </div>
           <div>
             <h6 className={style.title}>Últimos planes asistidos</h6>
@@ -145,7 +143,7 @@ export default function ProfileSection() {
                   />
                 </Link>
               ))}
-            </div> 
+            </div>
           </div>
           <div>
             <h6 className={style.title}>Últimas reseñas</h6>
@@ -153,7 +151,7 @@ export default function ProfileSection() {
               color="#F1E100"
               width="100%"
             />
-             <div className={style.plansCont}>
+            <div className={style.plansCont}>
               {userBlogs.map((element) => (
                 <Link
                   key={element.id}
@@ -167,7 +165,7 @@ export default function ProfileSection() {
                   />
                 </Link>
               ))}
-            </div> 
+            </div>
           </div>
         </div>
       </div>

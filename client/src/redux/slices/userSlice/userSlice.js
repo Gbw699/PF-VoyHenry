@@ -13,7 +13,7 @@ const userSlice = createSlice({
       state.allUsers = action.payload;
     },
     setUser: (state, action) => {
-      state.user = {...action.payload};
+      state.user = { ...action.payload };
     },
     setUserPlans: (state, action) => {
       state.userPlans = [...action.payload];
