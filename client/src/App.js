@@ -17,6 +17,7 @@ import Plan from "./views/Plan/Plan";
 import AboutUs from "./views/AboutUs/AboutUs";
 import Error404 from "./views/Error404/Error404";
 import PlanForm from "./components/Home/PlanForm";
+import DetailPlan from "./components/Plan/DetailPlan";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 
@@ -47,6 +48,10 @@ function App() {
         <Route
           path="/plans/create"
           element={<PlanForm />}
+        />
+        <Route
+          path="/plans/detail"
+          element={<DetailPlan />}
         />
         <Route
           path="/blog"
