@@ -95,7 +95,6 @@ class PlansService {
         data: {
            plan,
            user: search
-
       }
     }
 

@@ -12,9 +12,14 @@ router.get('/', async (req, res, next) => {
 
   try {
 
-    const blogs = await service.find(req.query)
+    const page = req.query.page || 1
+    const blogs = await service.find(req.query, page)
 
-    res.json(blogs)
+    const count = await service.count(req.query);
+    const pages = Math.ceil(count / 9);
+
+    const response = { blogs, page, pages }
+    res.json(response)
   } catch (error) {
 
     next(error)
@@ -44,7 +49,7 @@ async (req, res, next) => {
 
   /* Create new Blog */
 
-  router.post('/',
+router.post('/',
   validatorHandler(createBlogSchema, "body"),
   async (req, res, next) => {
 
