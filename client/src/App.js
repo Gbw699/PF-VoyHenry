@@ -18,6 +18,7 @@ import AboutUs from "./views/AboutUs/AboutUs";
 import Error404 from "./views/Error404/Error404";
 import PlanForm from "./components/Home/PlanForm";
 import DetailPlan from "./components/Plan/DetailPlan";
+import Auth from "./views/Auth/Auth";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 
@@ -28,6 +29,7 @@ function App() {
       {location.pathname !== "/" &&
         location.pathname !== "/signUp" &&
         location.pathname !== "/logIn" && <NavBar />}
+        <Auth/>
       <Routes>
         <Route
           path="/home"
