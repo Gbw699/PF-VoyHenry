@@ -34,12 +34,7 @@ export default function BlogsReviews() {
           return (
             <BlogReview
               key={blog.id}
-              userNickName={blog.userNickName}
-              userimage={blog.userimage}
-              title={blog.title}
-              image={blog.image}
-              content={blog.content}
-              rating={blog.rating}
+              blog={blog}
             />
           );
         })}
