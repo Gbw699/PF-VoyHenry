@@ -18,7 +18,7 @@ export default function FacundoTombesi() {
         style={{ backgroundImage: backgroundImage }}
       ></div>
       <hr
-        width="100%"
+        width="85%"
         color="#F1E100"
       />
       <div className={style.container}>
@@ -48,7 +48,7 @@ export default function FacundoTombesi() {
             />
           </a>
         </div>
-        <div>
+        <div className={style.description}>
           <h5>Facundo Martín Tombesi</h5>
           <p>Full Stack Web Developer</p>
         </div>

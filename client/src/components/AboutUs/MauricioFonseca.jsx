@@ -44,7 +44,7 @@ export default function MauricioFonseca() {
             />
           </a>
         </div>
-        <div>
+        <div className={style.description}>
           <h5>Mauricio Fonseca</h5>
           <p>Full Stack Web Developer</p>
         </div>

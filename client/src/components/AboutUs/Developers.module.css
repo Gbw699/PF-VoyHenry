@@ -30,3 +30,10 @@
   height: 190px;
   width: 150px;
 }
+
+.description {
+  display: flex;
+  flex-direction: column;
+  height: 190px;
+  width: 150px;
+}

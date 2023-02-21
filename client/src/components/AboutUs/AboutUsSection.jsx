@@ -53,7 +53,7 @@ export default function AboutUsSection() {
       <div className={style.cardContainer}>
         <h3>Desarrolladores</h3>
         <hr
-          width="80%"
+          width="100%"
           color="#F1E100"
         />
         <div className={style.cards}>

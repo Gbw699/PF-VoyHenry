@@ -44,7 +44,7 @@ export default function GabrielBarimboim() {
             />
           </a>
         </div>
-        <div>
+        <div className={style.description}>
           <h5>Gabriel Barimboim</h5>
           <p>Full Stack Web Developer</p>
         </div>
