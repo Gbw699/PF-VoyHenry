@@ -10,7 +10,7 @@ import "./index.css";
 let previousTitle = document.title;
 window.addEventListener("blur", () => {
   previousTitle = document.title;
-  document.title = "¡Vuelve que tenemos que viajar!";
+  document.title = "¡Vuelve, tenemos que viajar!🛩️";
 });
 
 window.addEventListener("focus", () => {
