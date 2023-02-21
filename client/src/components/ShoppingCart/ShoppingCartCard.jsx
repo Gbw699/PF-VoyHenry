@@ -1,5 +1,6 @@
 import React from "react";
-// import style from "./ShoppingCartCard.module.css";
+import { useState, useEffect } from "react";
+import style from "./ShoppingCartCard.module.css";
 
 export default function ShoppingCartCard({
   image,
@@ -8,31 +9,37 @@ export default function ShoppingCartCard({
   totalPrice,
   quantity,
 }) {
+  const [backgroundImage, setBackgroundImage] = useState("");
+
+  useEffect(() => {
+    setBackgroundImage(`url(${image})`);
+  });
+
   return (
-    <div>
-      <div>
-        <div>
-          <img
-            src={image}
-            alt={title}
-          />
-        </div>
-        <div>
-          <div>
-            <h5>{title}</h5>
-            <p>Precio unitario: {unitPrice}</p>
-            <p>Total: {totalPrice}</p>
+    <div className={style.mainContainer}>
+      <div className={style.itemCont}>
+        <div className={style.itemInfo}>
+          <div className={style.img} style={{ backgroundImage: backgroundImage }} />
+          <div className={style.infoCont}>
+            <div>
+              <h5 className={style.title}>{title}</h5>
+              <hr color="#707070" width="100%" />
+              <p className={style.unitPrice}>Precio unitario: ${unitPrice}</p>
+              <p className={style.totalPrice}>Total: ${totalPrice}</p>
+            </div>
+            <div className={style.quantity}>
+              <p className={style.unitPrice}>Cantidad:</p>
+              <div className={style.btnsCont}>
+                <div className={style.quantityBtns}>
+                  <button className={style.decIncBtns}>-</button>
+                  <p className={style.quantityNum}>{quantity}</p>
+                  <button className={style.decIncBtns}>+</button>
+                </div>
+                <button type="submit" className={style.deleteBtn}>Quitar</button>
+              </div>
+            </div>
           </div>
-          <div>
-            <p>Cantidad:</p>
-            <button>-</button>
-            <p>{quantity}</p>
-            <button>+</button>
-          </div>
         </div>
-      </div>
-      <div>
-        <button type="submit">Quitar</button>
       </div>
     </div>
   );

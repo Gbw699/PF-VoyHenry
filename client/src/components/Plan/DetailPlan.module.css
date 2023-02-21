@@ -1,0 +1,106 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(252, 252, 252);
+  width: 100%;
+}
+.plan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.imgCont {
+  display: flex;
+  width: 70%;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0px 15% 50px 15%;
+  padding: 5%;
+}
+.galeria {
+  display: flex;
+  align-items: baseline;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 70%;
+}
+.name {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.img {
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+  height: 200px;
+  background-color: rgba(218, 233, 5, 0);
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.submitBtn {
+  background-color: #f1e100;
+  border: 2px solid #f1e100;
+  border-radius: 10px;
+  padding: 1% 2%;
+  color: #707070;
+  width: 200px;
+}
+
+.submitBtn:hover {
+  background-color: white;
+}
+.closeBtn {
+  background-color: white;
+  border: 2px solid #f1e100;
+  border-radius: 10px;
+  padding: 1% 2%;
+  color: #707070;
+  width: 200px;
+}
+
+.closeBtn:hover {
+  background-color: #707070;
+  border: 2px solid #707070;
+  color: white;
+}
+.AgregarBtn {
+  background-color: #f22176;
+  border: 2px solid #f22176;
+  border-radius: 10px;
+  color: white;
+  padding: 2% 4%;
+  width: 200px;
+  margin: 0px 7%;
+}
+
+.AgregarBtn:hover {
+  background-color: white;
+  color: #707070;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 70%;
+  margin-top: 2%;
+  justify-content: space-between;
+  margin-bottom: 2%;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+}

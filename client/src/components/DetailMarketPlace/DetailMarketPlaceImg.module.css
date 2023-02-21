@@ -1,0 +1,23 @@
+.container {
+    margin: 0px 3%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.extraImg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    width: 200px;
+    margin-right: 3%;
+}
+
+.extraImgPh {
+    background-color: rgb(218, 218, 218);
+    width: 110px;
+    height: 110px;
+    margin: 3%;
+}
