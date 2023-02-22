@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getUser } from "../../redux/slices/userSlice/thunks";
 import style from "./ProfileCard.module.css";
 
 // BORRAR ESTE IMPORT Y LA VARIABLE CUANDO HAYA IMAGEN DE PERFIL PARA CARGAR
