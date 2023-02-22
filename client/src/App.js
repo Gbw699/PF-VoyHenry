@@ -18,6 +18,7 @@ import AboutUs from "./views/AboutUs/AboutUs";
 import Error404 from "./views/Error404/Error404";
 import PlanForm from "./components/Home/PlanForm";
 import DetailPlan from "./components/Plan/DetailPlan";
+import BlogDetail from "./views/Blog/BlogDetail";
 import Auth from "./views/Auth/Auth";
 
 axios.defaults.baseURL = "http://localhost:3001/";
@@ -59,6 +60,11 @@ function App() {
           path="/blog"
           element={<Blog />}
         />
+        <Route
+          path="/blog/:id"
+          element={<BlogDetail />}
+        />
+
         <Route
           path="/plans"
           element={<Plan />}

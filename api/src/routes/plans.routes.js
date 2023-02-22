@@ -2,7 +2,7 @@ const { Router } = require('express');
 const passport = require('passport')
 const PlansService = require('../services/plan.service')
 const validatorHandler = require('../middlewares/validator.handler')
-const { createPlanSchema, updateSchema, getPlanSchema, deletePlanSchema } = require('../schemas/plans.schema')
+const { createPlanSchema, updateSchema, getPlanSchema, deletePlanSchema, ratingSchema } = require('../schemas/plans.schema')
 
 const router = Router();
 const service = new PlansService();
@@ -88,6 +88,28 @@ router.patch('/:planID',
     }
 
 });
+
+
+/* update plan votes info */
+
+router.patch('/:planID/votes',
+  validatorHandler(ratingSchema, "body"),
+  async (req, res, next) => {
+
+    try {
+
+      const { planID } = req.params
+      const body = req.body;
+
+      const updatedPlan = await service.updateVotes(planID, body)
+
+      res.json(updatedPlan)
+    } catch (error) {
+      next(error)
+    }
+
+});
+
 
 /* Delete plan */
 

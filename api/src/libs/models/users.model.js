@@ -67,4 +67,9 @@ plans.belongsTo(users);
 users.hasMany(blogs);
 blogs.belongsTo(users);
 
+users.belongsToMany(plans, { foreignKey:"userNickName", through: 'users_votes_plans' });
+plans.belongsToMany(users, { foreignKey:"Planid", through: 'users_votes_plans' });
+
+
+
 module.exports = users;
