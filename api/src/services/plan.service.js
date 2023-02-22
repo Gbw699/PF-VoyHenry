@@ -2,6 +2,8 @@ const plansModel = require('../libs/models/plans.model');
 const { CustomError } = require('../middlewares/error.handler');
 const { Op } = require("sequelize");
 const users = require('../libs/models/users.model.js');
+const sequelize = require('../libs/database/database');
+
 
 
 class PlansService {
@@ -156,6 +158,45 @@ class PlansService {
     return plan;
 
   }
+
+  /* Update user votes */
+
+  async updateVotes (id, { votes, stars, userNickName, Planid}) {
+
+    const plan = await plansModel.findOne({
+      where: {
+        id: id
+      }
+    })
+
+    const newPlan = await sequelize.models.users_votes_plans.create({
+
+      userNickName: userNickName,
+
+      Planid: Planid
+    })
+
+
+    if (plan === null) {
+      throw new CustomError("Plan not found", 404)
+    }
+       plan.votes += votes,
+       plan.stars += stars
+
+    await plan.save()
+
+   // return plan;
+    return {
+      message: "voted",
+      data: {
+        plan,
+        user_and_plan: newPlan
+      }
+    };
+
+  }
+
+
 
   /* Delete plan */
 
