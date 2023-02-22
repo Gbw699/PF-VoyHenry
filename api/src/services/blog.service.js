@@ -2,6 +2,8 @@ const blogModel = require('../libs/models/blog-model.js');
 const users = require('../libs/models/users.model.js');
 const { CustomError } = require('../middlewares/error.handler')
 const { Op } = require("sequelize");
+const sequelize = require('../libs/database/database');
+
 
 
 class blogService {
@@ -81,13 +83,13 @@ async findOne (id) {
     data: {
       blog,
       users: search
-    } 
+    }
   }
 }
 
   /* Create Blog */
 
-async create (  {userNickName, title , content, rating, image} ){
+async create (  {userNickName, title , content, evaluation, image} ){
 
   const searchname = await users.findOne({where: { nickName: userNickName }  });
 
@@ -97,15 +99,22 @@ async create (  {userNickName, title , content, rating, image} ){
     image: image,
     title: title,
     content: content,
-    rating: rating,
+    evaluation: evaluation,
   })
 
+    const userBlogTable = await sequelize.models.users_votes_blogs.create({
+
+      userNickName: userNickName,
+
+      blogid: newBlog.id
+    })
 
   return {
     message: "Create",
     data: {
       newBlog,
-      user: searchname
+      user: searchname,
+      userBlogTable: userBlogTable
     }
   }
 }
@@ -119,11 +128,11 @@ async update (id, { title , content, rating, image }) {
       id: id
     }}
   )
-  
+
   if (blog === null) {
     throw new CustomError("Blog not found", 404)
   }
-  
+
   blog.image = image || blog.image;
   blog.title = title || blog.title;
   blog.content = content || blog.content;
@@ -134,6 +143,45 @@ async update (id, { title , content, rating, image }) {
   return blog;
 
 }
+
+  /* Update Blog votes*/
+
+  async updateVotes (id, { votes, stars, userNickName }) {
+
+    const blog = await blogModel.findOne({
+      where: {
+        id: id
+      }}
+    )
+    const newBlog = await sequelize.models.users_votes_blogs.create({
+
+      userNickName: userNickName,
+
+      blogid: id
+    })
+
+
+    if (blog === null) {
+      throw new CustomError("Blog not found", 404)
+    }
+
+    blog.votes += votes,
+    blog.stars += stars
+
+    await blog.save()
+
+   // return blog;
+   return {
+    message: "voted",
+    data: {
+      blog,
+      user_and_blog: newBlog
+    }
+  };
+
+  }
+
+
 
   /* Delete Blog */
 

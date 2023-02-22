@@ -123,11 +123,20 @@ class PlansService {
       userNickName: userNickName
     })
 
+
+    const userPlanTable = await sequelize.models.users_votes_plans.create({
+
+      userNickName: userNickName,
+
+      Planid: newPlan.id
+    })
+
     return {
       message: "Create",
       data: {
         newPlan,
-        user: searchname
+        user: searchname,
+        userPlanTable: userPlanTable
       }
     };
   }
@@ -161,7 +170,7 @@ class PlansService {
 
   /* Update user votes */
 
-  async updateVotes (id, { votes, stars, userNickName, Planid}) {
+  async updateVotes (id, { votes, stars, userNickName }) {
 
     const plan = await plansModel.findOne({
       where: {
@@ -173,7 +182,7 @@ class PlansService {
 
       userNickName: userNickName,
 
-      Planid: Planid
+      Planid: id
     })
 
 

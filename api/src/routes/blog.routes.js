@@ -1,7 +1,8 @@
 const { Router } = require('express');
 const UsersBlog = require('../services/blog.service')
 const validatorHandler = require('../middlewares/validator.handler')
-const { createBlogSchema, updateSchema, getBlogSchema } = require('../schemas/blog.schema')
+const { createBlogSchema, updateSchema, getBlogSchema, ratingSchema } = require('../schemas/blog.schema');
+//const { ratingSchema } = require('../schemas/plans.schema');
 
 const router = Router();
 const service = new UsersBlog()
@@ -90,6 +91,31 @@ async (req, res, next) => {
   }
 
 });
+
+    /* Update Blog votes */
+
+    router.patch('/:id/votes',
+    //validatorHandler(getBlogSchema, 'params'),
+    validatorHandler(ratingSchema, "body"),
+
+    async (req, res, next) => {
+
+      try {
+
+        const { id } = req.params
+
+        const body = req.body;
+
+        const updatedBlog = await service.updateVotes(id, body)
+
+        res.json(updatedBlog)
+      } catch (error) {
+        next(error)
+      }
+
+    });
+
+
 
   /* Delete Blog */
 
