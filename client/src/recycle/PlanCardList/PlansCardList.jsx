@@ -41,6 +41,7 @@ export default function PlanList() {
           : <Pagination
             onChange={handlePageChange}
             count={totalPages}
+            page={page}
           />
       }
     </div>
