@@ -10,7 +10,7 @@ Para traer todos los blogs podemos usar la route
 ```
 Por defecto viene:
   - **Orden Actuales primeros**
-  - **9 por page**
+  - **3 por page**
 
 ### 1.2 `Pages`
 

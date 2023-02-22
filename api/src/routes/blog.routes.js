@@ -18,7 +18,9 @@ router.get('/', async (req, res, next) => {
     const count = await service.count(req.query);
     const pages = Math.ceil(count / 9);
 
-    const response = { blogs, page, pages }
+
+    const pageNumber = parseInt(page);
+    const response = { blogs, pageNumber, pages }
     res.json(response)
   } catch (error) {
 

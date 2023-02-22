@@ -17,7 +17,7 @@ class blogService {
     const options = {
 
       order: [['updatedAt', 'DESC']],
-      limit: 9,
+      limit: 3,
       offset : 0
     }
 
