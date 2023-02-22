@@ -7,7 +7,7 @@ import style from "./BlogForm.module.css";
 export default function BlogForm({ open, close }) {
   const dispatch = useDispatch();
   //const nickname = localStorage.getItem("login");
-  const nickname = "juancito";
+  const nickname = "gbw699";
 
   if (!open) return null;
   return (

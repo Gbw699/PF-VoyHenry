@@ -4,16 +4,12 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     allUsers: [],
-    user: {},
     userPlans: [],
     userBlogs: [],
   },
   reducers: {
     setAllUsers: (state, action) => {
       state.allUsers = action.payload;
-    },
-    setUser: (state, action) => {
-      state.user = { ...action.payload };
     },
     setUserPlans: (state, action) => {
       state.userPlans = [...action.payload];
@@ -24,6 +20,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setAllUsers, setUser, setUserPlans, setUserBlogs } =
+export const { setAllUsers, setUserPlans, setUserBlogs } =
   userSlice.actions;
 export default userSlice.reducer;
