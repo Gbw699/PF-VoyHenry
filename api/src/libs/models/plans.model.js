@@ -56,9 +56,9 @@ const plans = sequelize.define('plans', {
     type: DataTypes.VIRTUAL,
     get() {
       if (this.votes === 0) {
-        return 0; // Si no hay votos, el promedio es 0
+        return 0
       } else {
-        return this.stars / this.votes;
+        return this.stars / this.votes
       }
     }
   }

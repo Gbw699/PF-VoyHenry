@@ -35,6 +35,10 @@ class blogService {
         options.order = [['title', 'ASC']];
       } else if (query.order === 'reverso') {
         options.order = [['title', 'DESC']];
+      } else if (query.order === 'masvotados') {
+        options.order = [[sequelize.literal('stars/votes'), 'DESC']];
+      } else if (query.order === 'menosvotados') {
+        options.order = [[sequelize.literal('stars/votes'), 'ASC']];
       }
     }
 
@@ -51,7 +55,7 @@ class blogService {
     if (query.page) {
       const page = parseInt(query.page);
       if (isNaN(page) || page < 1) {
-        throw new CustomError('Invalid page number', 440);
+        throw new CustomError('Page not found', 404);
       }
       options.offset = (page - 1) * (options.limit || query.limit);
     }

@@ -53,6 +53,16 @@ const blogs = sequelize.define("blogs", {
       type: DataTypes.INTEGER,
       defaultValue: 0,
 
+    },
+    average: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        if (this.votes === 0) {
+          return 0
+        } else {
+          return this.stars / this.votes
+        }
+      }
     }
   },
   {

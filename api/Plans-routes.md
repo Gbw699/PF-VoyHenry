@@ -161,7 +161,7 @@ Para buscar el plan a votar se utilizara la `id` seguido de vote
 
 ### 3.4 `Parametros obligatorios`
 
-Se pueden modificar uno o varios :
+es necesario pasar:
   - **Planid**
   - **userNickName**
   - **stars**
