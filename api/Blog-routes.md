@@ -130,8 +130,7 @@ Para buscar el blog a votar se utilizara la `id` seguido de vote
 
 ### 3.4 `Parametros obligatorios`
 
-Se pueden modificar uno o varios :
-  - **id**
+es necesario pasar:
   - **userNickName**
   - **stars**
   - **votes**
