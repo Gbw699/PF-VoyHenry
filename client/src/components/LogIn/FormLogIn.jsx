@@ -101,8 +101,8 @@ export default function FormLogIn() {
       password: Yup.string().required("La contraseña es obligatoria"),
     }),
     // !! FALTA LÓGICA DE SI EXISTE QUE INGRESE Y SINO NO.
-    onSubmit: (formData) => {
-      dispatch(getLogin(formData));
+    onSubmit: async (formData) => {
+      await dispatch(getLogin(formData));
       navigate("/home");
     },
   });

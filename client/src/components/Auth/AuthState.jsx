@@ -1,4 +1,5 @@
 import WhereAmI from "./WhereAmI";
+import IHaveAccess from "./IHaveAccess";
 import { useState } from "react";
 
 export default function AuthState() {
@@ -11,6 +12,10 @@ export default function AuthState() {
         setWhereAmI={setWhereAmI}
       >
       </WhereAmI>
+      <IHaveAccess
+        whereAmI={whereAmI}
+      >
+      </IHaveAccess>
       
     </>
   );
