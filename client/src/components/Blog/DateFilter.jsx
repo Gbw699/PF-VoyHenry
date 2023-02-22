@@ -1,5 +1,14 @@
-export default function DateFilter() {
-  return <div>
-    <h3>Fecha</h3>
-  </div>;
+export default function DateFilter({ filters, setFilters }) {
+  return (
+    <div>
+      <h3>Fecha</h3>
+      <input
+        type="date"
+        name="dateInput"
+        onChange={(event) =>
+          setFilters({ ...filters, date: event.target.value })
+        }
+      />
+    </div>
+  );
 }
