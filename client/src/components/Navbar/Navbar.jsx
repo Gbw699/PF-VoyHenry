@@ -28,6 +28,13 @@ export default function NavBar() {
           <h4>INICIO</h4>
         </NavLink>
         <NavLink
+          to={"/users"}
+          className={navLinkClassName}
+        >
+          <h4>USERS</h4>
+        </NavLink>
+
+        <NavLink
           to={"/blog"}
           className={navLinkClassName}
         >

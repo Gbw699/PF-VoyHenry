@@ -1,51 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
+import style from "../Profile/ProfileSection.module.css";
 import { Link } from "react-router-dom";
-import ProfileAboutMe from "./ProfileAboutMe";
-import ProfileInfo from "./ProfileInfo";
-import ProfileLatestAssistedPlans from "./ProfileLatestAssistedPlans";
-import ProfileLatestReviews from "./ProfileLatestReviews";
-import { ProfileMyFriendsActivity } from "./ProfileMyFriendsActivity";
-import ProfileMyPlans from "./ProfileMyPlans";
+import ProfileInfo from "../Profile/ProfileInfo";
+import ProfileMyPlans from "../Profile/ProfileMyPlans";
 import profileData from "../../profileData.json";
-import style from "./ProfileSection.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getUser,
-  getUserPlans,
-  getUserBlogs,
-} from "../../redux/slices/userSlice/thunks";
+import { ProfileMyFriendsActivity } from "../Profile/ProfileMyFriendsActivity";
+import ProfileAboutMe from "../Profile/ProfileAboutMe";
+import ProfileLatestAssistedPlans from "../Profile/ProfileLatestAssistedPlans";
+import ProfileLatestReviews from "../Profile/ProfileLatestReviews";
 
-export default function ProfileSection() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getUser("juancito"));
-    dispatch(getUserPlans("juancito"));
-    dispatch(getUserBlogs("juancito"));
-  }, []);
+// import style from "./UsersProfileSection.module.css";
 
-  const user = useSelector((state) => state.userStore.user);
-  const userPlans = useSelector((state) => state.userStore.userPlans);
-  const userBlogs = useSelector((state) => state.userStore.userBlogs);
-
+export default function UsersProfileSection({ user, plans, blogs }) {
+  console.log(plans);
   return (
     <div className={style.mainContainer}>
       <div className={style.profileCont}>
-        {/* {user.user.map((element) => (
-          <div key={element.nickName}>
-            <ProfileInfo
-              image={element.image}
-              firstName={element.firstName}
-              lastName={element.lastName}
-              genre={element.genre}
-              nationality="Argentina"
-              following="156"
-              followers="165"
-              assistedPlans="12"
-              plansCreated={userPlans}
-              reviewsCreated={userBlogs}
-            />
-          </div>
-        ))} */}
         <ProfileInfo
           image={user.image}
           firstName={user.firstName}
@@ -55,8 +25,8 @@ export default function ProfileSection() {
           following="156"
           followers="165"
           assistedPlans="12"
-          plansCreated={userPlans.length}
-          reviewsCreated={userBlogs.length}
+          plansCreated={plans.length}
+          reviewsCreated={blogs.length}
         />
       </div>
       <div className={style.infoCont}>
@@ -90,12 +60,6 @@ export default function ProfileSection() {
               color="#F1E100"
               width="100%"
             />
-            {/* {user.user.map((element, index) => (
-              <ProfileAboutMe
-                key={index}
-                aboutMe={element.about}
-              />
-            ))} */}
             <ProfileAboutMe aboutMe={user.about} />
           </div>
           <div>
@@ -130,7 +94,7 @@ export default function ProfileSection() {
               width="100%"
             />
             <div className={style.plansCont}>
-              {userPlans.map((element) => (
+              {plans.map((element) => (
                 <Link
                   key={element.id}
                   to={`/plans/${element.id}`}
@@ -151,7 +115,7 @@ export default function ProfileSection() {
               width="100%"
             />
             <div className={style.plansCont}>
-              {userBlogs.map((element) => (
+              {blogs.map((element) => (
                 <Link
                   key={element.id}
                   to={`/blog/${element.id}`}

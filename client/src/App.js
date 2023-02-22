@@ -18,6 +18,8 @@ import AboutUs from "./views/AboutUs/AboutUs";
 import Error404 from "./views/Error404/Error404";
 import PlanForm from "./components/Home/PlanForm";
 import DetailPlan from "./components/Plan/DetailPlan";
+import Users from "./views/Users/Users";
+import ProfileUser from "./views/ProfileUser/ProfileUser";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 
@@ -85,6 +87,14 @@ function App() {
         <Route
           path="/aboutUs"
           element={<AboutUs />}
+        />
+        <Route
+          path="/users"
+          element={<Users />}
+        />
+        <Route
+          path="/users/:nickName"
+          element={<ProfileUser />}
         />
         <Route
           path="*"
