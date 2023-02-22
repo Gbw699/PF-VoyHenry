@@ -24,6 +24,8 @@ import Users from "./views/Users/Users";
 import ProfileUser from "./views/ProfileUser/ProfileUser";
 
 axios.defaults.baseURL = "http://localhost:3001/";
+const cookie = document.cookie.split("=");
+axios.defaults.headers.common["Authorization"] = `Bearer ${cookie[2]}`;
 
 function App() {
   const location = useLocation();

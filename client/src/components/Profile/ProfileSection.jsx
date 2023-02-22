@@ -23,7 +23,13 @@ export default function ProfileSection() {
     dispatch(getUserBlogs("juancito"));
   }, []);
 
+<<<<<<< HEAD
   const user = useSelector((state) => state.userStore.user);
+=======
+  const user = JSON.parse(localStorage.getItem("user"));
+  // const user = useSelector((state) => state.userStore.user);
+  // console.log(user);
+>>>>>>> development
   const userPlans = useSelector((state) => state.userStore.userPlans);
   const userBlogs = useSelector((state) => state.userStore.userBlogs);
 
