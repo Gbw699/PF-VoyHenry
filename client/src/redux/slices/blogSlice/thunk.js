@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setBlogsSearch, setBlogs } from "./blogSlice";
+import { setBlogsSearch, setBlogs, setBlogById } from "./blogSlice";
 
 export const getBlogs = () => {
   return async (dispatch) => {
@@ -19,6 +19,17 @@ export const getBlogsSearch = (user) => {
       dispatch(setBlogsSearch(response.data));
     } catch (error) {
       return window.alert("No se pudo realizar la petición");
+    }
+  };
+};
+
+export const getBlogById = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/api/v1/blogs/${id}`);
+      dispatch(setBlogById(response.data));
+    } catch (error) {
+      console.log("No se pudo realizar la petición");
     }
   };
 };
