@@ -2,7 +2,6 @@ const { Router } = require('express');
 const UsersBlog = require('../services/blog.service')
 const validatorHandler = require('../middlewares/validator.handler')
 const { createBlogSchema, updateSchema, getBlogSchema, ratingSchema } = require('../schemas/blog.schema');
-//const { ratingSchema } = require('../schemas/plans.schema');
 
 const router = Router();
 const service = new UsersBlog()
@@ -95,7 +94,6 @@ async (req, res, next) => {
     /* Update Blog votes */
 
     router.patch('/:id/votes',
-    //validatorHandler(getBlogSchema, 'params'),
     validatorHandler(ratingSchema, "body"),
 
     async (req, res, next) => {
