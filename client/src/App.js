@@ -21,6 +21,7 @@ import DetailPlan from "./components/Plan/DetailPlan";
 import BlogDetail from "./views/Blog/BlogDetail";
 
 axios.defaults.baseURL = "http://localhost:3001/";
+axios.defaults.headers.common["Authorization"] = `Bearer ${document.cookie}`;
 
 function App() {
   const location = useLocation();

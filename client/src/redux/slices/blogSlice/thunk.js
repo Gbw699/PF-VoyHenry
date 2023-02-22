@@ -7,7 +7,7 @@ export const getBlogs = (page) => {
       const response = await axios.get(`/api/v1/blogs?page=${page}`);
       dispatch(setBlogs(response.data));
     } catch (error) {
-      return window.alert("No se pudo hacer el pedido");
+      console.error(error.response);
     }
   };
 };
@@ -18,7 +18,7 @@ export const getBlogsSearch = (user) => {
       const response = await axios.get(`/api/v1/blogs/${user}`);
       dispatch(setBlogsSearch(response.data));
     } catch (error) {
-      return window.alert("No se pudo realizar la petición");
+      console.error(error.response);
     }
   };
 };
@@ -29,7 +29,7 @@ export const getBlogById = (id) => {
       const response = await axios.get(`/api/v1/blogs/${id}`);
       dispatch(setBlogById(response.data));
     } catch (error) {
-      console.log("No se pudo realizar la petición");
+      console.error(error.response);
     }
   };
 };
@@ -42,7 +42,7 @@ export const postBlog = (obj) => {
       });
       window.alert("La reseña fue creada");
     } catch (error) {
-      window.alert(error.message);
+      console.error(error.response);
     }
   };
 };
