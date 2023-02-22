@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const passport = require('passport')
 const PlansService = require('../services/plan.service')
 const validatorHandler = require('../middlewares/validator.handler')
 const { createPlanSchema, updateSchema, getPlanSchema, deletePlanSchema, ratingSchema } = require('../schemas/plans.schema')
@@ -52,6 +53,7 @@ router.get('/:id',
 
 router.post('/',
   validatorHandler(createPlanSchema, "body"),
+  passport.authenticate('jwt', {session: false}),
   async (req, res, next) => {
 
     try {
@@ -72,6 +74,7 @@ router.post('/',
 
 router.patch('/:planID',
   validatorHandler(updateSchema, "body"),
+  passport.authenticate('jwt', {session: false}),
   async (req, res, next) => {
 
     try {
@@ -114,6 +117,7 @@ router.patch('/:planID/votes',
 
 router.delete('/:id',
   validatorHandler(deletePlanSchema, 'params'),
+  passport.authenticate('jwt', {session: false}),
   async (req, res, next) => {
 
     try {

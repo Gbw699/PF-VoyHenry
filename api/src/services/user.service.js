@@ -1,5 +1,6 @@
 const usersModel = require('../libs/models/users.model');
 const { CustomError } = require('../middlewares/error.handler')
+const bcrypt = require('bcrypt')
 const { Op } = require("sequelize");
 const blogModel = require('../libs/models/blog-model');
 const plansModel = require('../libs/models/plans.model');
@@ -17,11 +18,13 @@ class UsersService {
     dateOfBirth = new Date(dateOfBirth);
     dateOfBirth.setHours(dateOfBirth.getHours() + Math.abs(dateOfBirth.getTimezoneOffset() / 60));
 
+    const hash = await bcrypt.hash(password, 10)
+
     const newUser = await usersModel.create({
-      password: password,
+      password: hash,
       role: role,
       nickName: nickName,
-      email: email,
+      email: email.toLowerCase(),
       about: about,
       firstName: firstName,
       lastName: lastName,
@@ -29,6 +32,8 @@ class UsersService {
       dateOfBirth: new Date(dateOfBirth),
       image: image
     })
+
+    delete newUser.dataValues.password;
 
     return {
       message: "Create",
@@ -79,23 +84,33 @@ class UsersService {
 
   async findOne (nickName) {
 
-    const user = await usersModel.findByPk(nickName)
-
-
+    const user = await usersModel.findByPk(nickName, {
+      attributes: [ "genre", "email", "about", "nickName", "image", "firstName", "lastName", "dateOfBirth", "role", "createdAt", "updatedAt", "recoveryToken" ]
+    })
 
     if (user === null) {
       throw new CustomError("User not found", 404)
     }
 
-    return {
-      message: "plans",
-      data: {
-         user,
+    return user
 
+  }
 
+  async findByEmail (email) {
+
+    email = email.toLowerCase()
+
+    const user = await usersModel.findOne({
+      where: { email }
+    })
+
+    if (user === null) {
+      throw new CustomError("User not found", 404)
     }
 
-  }}
+    return user
+
+  }
 
     /* Find User all Blogs*/
 
@@ -128,7 +143,7 @@ class UsersService {
 
   /* Update user */
 
-  async update (userNickName, { genre, email, nickName, about, image, firstName, lastName, dateOfBirth , password, role}) {
+  async update (userNickName, { genre, email, nickName, about, image, firstName, lastName, dateOfBirth , password, role, recoveryToken}) {
 
     const user = await usersModel.findByPk(userNickName)
 
@@ -136,11 +151,14 @@ class UsersService {
       throw new CustomError("User not found", 404)
     }
 
-    user.password = password || user.password;
+    const hash = password && await bcrypt.hash(password, 10)
+
+    user.password = hash || user.password;
     user.role = role || user.role;
     user.genre = genre || user.genre;
     user.nickName = nickName || user.nickName;
-    user.email = email || user.email;
+    user.recoveryToken = recoveryToken || null;
+    user.email = email || user.email.toLowerCase();
     user.about = about || user.about;
     user.firstName = firstName || user.firstName;
     user.lastName = lastName || user.lastName;
@@ -148,6 +166,8 @@ class UsersService {
     user.image = image || user.image;
 
     await user.save()
+
+    delete user.dataValues.password;
 
     return user;
 

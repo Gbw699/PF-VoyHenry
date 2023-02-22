@@ -15,6 +15,8 @@ app.use((req, res, next) => {
   next();
 });
 
+require('./src/utils/auth')
+
 routesApi(app);
 app.use(errorHandler);
 

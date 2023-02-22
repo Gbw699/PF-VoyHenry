@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const UsersBlog = require('../services/blog.service')
+const passport = require('passport')
 const validatorHandler = require('../middlewares/validator.handler')
 const { createBlogSchema, updateSchema, getBlogSchema, ratingSchema } = require('../schemas/blog.schema');
 
@@ -32,20 +33,20 @@ router.get('/', async (req, res, next) => {
   /* Find One Blog */
 
 router.get('/:id',
-validatorHandler(getBlogSchema, 'params'),
-async (req, res, next) => {
+  validatorHandler(getBlogSchema, 'params'),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const { id } = req.params;
+      const { id } = req.params;
 
-    const blog = await service.findOne(id)
+      const blog = await service.findOne(id)
 
-    res.json(blog)
-  } catch (error) {
+      res.json(blog)
+    } catch (error) {
 
-    next(error)
-  }
+      next(error)
+    }
 
 });
 
@@ -53,6 +54,7 @@ async (req, res, next) => {
 
 router.post('/',
   validatorHandler(createBlogSchema, "body"),
+  passport.authenticate('jwt', {session: false}),
   async (req, res, next) => {
 
     try {
@@ -72,22 +74,23 @@ router.post('/',
     /* Update Blog */
 
 router.patch('/:id',
-validatorHandler(getBlogSchema, 'params'),
-validatorHandler(updateSchema, "body"),
-async (req, res, next) => {
+  validatorHandler(getBlogSchema, 'params'),
+  validatorHandler(updateSchema, "body"),
+  passport.authenticate('jwt', {session: false}),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const { id } = req.params
+      const { id } = req.params
 
-    const body = req.body;
+      const body = req.body;
 
-    const updatedBlog = await service.update(id, body)
+      const updatedBlog = await service.update(id, body)
 
-    res.json(updatedBlog)
-  } catch (error) {
-    next(error)
-  }
+      res.json(updatedBlog)
+    } catch (error) {
+      next(error)
+    }
 
 });
 
@@ -118,20 +121,21 @@ async (req, res, next) => {
   /* Delete Blog */
 
 router.delete('/:id',
-validatorHandler(getBlogSchema, 'params'),
-async (req, res, next) => {
+  validatorHandler(getBlogSchema, 'params'),
+  passport.authenticate('jwt', {session: false}),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const { id } = req.params
+      const { id } = req.params
 
-    const deletedBlog = await service.delete(id)
+      const deletedBlog = await service.delete(id)
 
-    res.json(deletedBlog)
-  } catch (error) {
+      res.json(deletedBlog)
+    } catch (error) {
 
-    next(error)
-  }
+      next(error)
+    }
 
 });
 
