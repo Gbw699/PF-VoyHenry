@@ -1,6 +1,22 @@
 import axios from "axios";
 import { setAllUsers, setUser, setUserPlans, setUserBlogs } from "./userSlice";
 
+export const getLogin = (obj) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post("/api/v1/auth/login", {
+        ...obj,
+      });
+
+      document.cookie = `token=${response.data.token}; max-age=3600; path=/; HttpOnly`;
+
+      dispatch(setUser(response.data.user));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
 export const getAllUsers = () => {
   return async (dispatch) => {
     try {
@@ -12,16 +28,16 @@ export const getAllUsers = () => {
   };
 };
 
-export const getUser = (nickname) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.get(`/api/v1/users/${nickname}`);
-      dispatch(setUser(response.data.data.user));
-    } catch (error) {
-      return window.alert("No se pudo hacer el pedido");
-    }
-  };
-};
+// export const getUser = (nickname) => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.get(`/api/v1/users/${nickname}`);
+//       dispatch(setUser(response.data.data.user));
+//     } catch (error) {
+//       return window.alert("No se pudo hacer el pedido");
+//     }
+//   };
+// };
 
 export const postUser = (obj) => {
   return async () => {
