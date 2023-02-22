@@ -15,7 +15,6 @@ const eventDate = Joi.date().greater(greaterDate);
 const userNickName = Joi.string().alphanum().min(0).max(15)
 const stars = Joi.number().min(0).max(5)
 const votes = Joi.number().min(0).max(1)
-const Planid = Joi.number()
 
 
 
@@ -52,7 +51,6 @@ const ratingSchema = Joi.object({
   stars: stars.required(),
   votes: votes.required(),
   userNickName: userNickName.required(),
-  Planid: Planid.required()
 })
 
 
