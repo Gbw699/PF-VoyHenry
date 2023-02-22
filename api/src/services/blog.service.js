@@ -35,6 +35,10 @@ class blogService {
         options.order = [['title', 'ASC']];
       } else if (query.order === 'reverso') {
         options.order = [['title', 'DESC']];
+      } else if (query.order === 'masvotados') {
+        options.order = [[sequelize.literal('stars/votes'), 'DESC']];
+      } else if (query.order === 'menosvotados') {
+        options.order = [[sequelize.literal('stars/votes'), 'ASC']];
       }
     }
 

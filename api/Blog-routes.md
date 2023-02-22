@@ -27,9 +27,11 @@ Esto nos va a traer la pagina 2
 
 ### 1.3 `Order`
 
-Para traer los planes por orden que pueden ser:
+Para traer los blogs por orden que pueden ser:
   - **alfabetico**
   - **reverso**
+  - **masvotados**
+  - **menosvotados**
 ```
 ?order= orderDeseado
 ```
@@ -55,7 +57,7 @@ Esto nos va a traer blogs de ese dia
 
 ### 1.5 `Limit`
 
-Para traer los planes modificando la cantidad de planes que queremos ver:
+Para traer los blogs modificando la cantidad de blogs que queremos ver:
 ```
 ?limit= numero
 ```
@@ -117,6 +119,22 @@ Se pueden modificar uno o varios :
   - **rating** 
 
 ****se va a modificar el updatedAt, haciendo que aparezca primero en get all blogs****
+
+### 3.3 `Voto`
+
+Para buscar el blog a votar se utilizara la `id` seguido de vote
+
+```
+/api/v1/blogs/:id/votes
+```
+
+### 3.4 `Parametros obligatorios`
+
+Se pueden modificar uno o varios :
+  - **id**
+  - **userNickName**
+  - **stars**
+  - **votes**
 
 ## 4. `Delete`
 
