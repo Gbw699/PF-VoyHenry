@@ -43,6 +43,10 @@ class PlansService {
         options.order = [['title', 'DESC']];
       } else if (query.order === 'antiguos'){
         options.order = [['eventDate', 'DESC']];
+      } else if (query.order === 'masvotados') {
+        options.order = [[sequelize.literal('stars/votes'), 'DESC']];
+      } else if (query.order === 'menosvotados') {
+        options.order = [[sequelize.literal('stars/votes'), 'ASC']];
       }
     }
 
