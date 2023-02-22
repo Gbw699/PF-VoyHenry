@@ -6,8 +6,7 @@ import style from "./BlogForm.module.css";
 
 export default function BlogForm({ open, close }) {
   const dispatch = useDispatch();
-  //const nickname = localStorage.getItem("login");
-  const nickname = "gbw699";
+  const user = JSON.parse(localStorage.getItem("user"));
 
   if (!open) return null;
   return (
@@ -20,7 +19,7 @@ export default function BlogForm({ open, close }) {
         />
         <Formik
           initialValues={{
-            userNickName: nickname,
+            userNickName: user.nickName,
             title: "",
             content: "",
             evaluation: 0,
