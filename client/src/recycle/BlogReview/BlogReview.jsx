@@ -1,23 +1,17 @@
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import style from "./BlogReview.module.css";
 
-export default function BlogReview({
-  userNickName,
-  userimage,
-  title,
-  image,
-  content,
-  rating,
-}) {
+export default function BlogReview({ blog }) {
   const [userImage, setUserImage] = useState("");
   const [reviewImage, setReviewImage] = useState("");
 
   useEffect(() => {
-    setUserImage(`url(${userimage})`);
+    setUserImage(`url(${blog.userimage})`);
   });
 
   useEffect(() => {
-    setReviewImage(`url(${image})`);
+    setReviewImage(`url(${blog.image})`);
   });
 
   return (
@@ -30,26 +24,30 @@ export default function BlogReview({
         <div className={style.userCont}>
           <div className={style.nameDate}>
             {/* vv BORRAR CUANDO HAYA NOMBRE DE PERFIL vv */}
-            <h3 className={style.name}>{userNickName}</h3>
-            <p>01/03/2023</p>
+            <h3 className={style.name}>{blog.userNickName}</h3>
+            <p>{blog.createdAt?.slice(0, 10)}</p>
           </div>
           <hr
             color="#F1E100"
             width="100%"
           />
-          <div className={style.review}>
+          <NavLink
+            to={`/blog/${blog.id}`}
+            className={style.review}
+          >
             <div
               className={style.reviewImg}
               style={{ backgroundImage: reviewImage }}
             />
             <div className={style.reviewInfo}>
-              <h4 className={style.infoName}>{title}</h4>
-              <p className={style.infoDescription}>{content}</p>
+              <h4 className={style.infoName}>{blog.title}</h4>
+              <p className={style.infoDescription}>{blog.content}</p>
               <p className={style.infoValoration}>
-                Valoración: <span className={style.infoValNum}>{rating}</span>
+                Valoración:{" "}
+                <span className={style.infoValNum}>{blog.rating}</span>
               </p>
             </div>
-          </div>
+          </NavLink>
         </div>
       </div>
     </div>

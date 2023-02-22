@@ -2,6 +2,8 @@ const plansModel = require('../libs/models/plans.model');
 const { CustomError } = require('../middlewares/error.handler');
 const { Op } = require("sequelize");
 const users = require('../libs/models/users.model.js');
+const sequelize = require('../libs/database/database');
+
 
 
 class PlansService {
@@ -41,6 +43,10 @@ class PlansService {
         options.order = [['title', 'DESC']];
       } else if (query.order === 'antiguos'){
         options.order = [['eventDate', 'DESC']];
+      } else if (query.order === 'masvotados') {
+        options.order = [[sequelize.literal('stars/votes'), 'DESC']];
+      } else if (query.order === 'menosvotados') {
+        options.order = [[sequelize.literal('stars/votes'), 'ASC']];
       }
     }
 
@@ -95,7 +101,6 @@ class PlansService {
         data: {
            plan,
            user: search
-
       }
     }
 
@@ -122,11 +127,20 @@ class PlansService {
       userNickName: userNickName
     })
 
+
+    const userPlanTable = await sequelize.models.users_votes_plans.create({
+
+      userNickName: userNickName,
+
+      Planid: newPlan.id
+    })
+
     return {
       message: "Create",
       data: {
         newPlan,
-        user: searchname
+        user: searchname,
+        userPlanTable: userPlanTable
       }
     };
   }
@@ -157,6 +171,45 @@ class PlansService {
     return plan;
 
   }
+
+  /* Update user votes */
+
+  async updateVotes (id, { votes, stars, userNickName }) {
+
+    const plan = await plansModel.findOne({
+      where: {
+        id: id
+      }
+    })
+
+    const newPlan = await sequelize.models.users_votes_plans.create({
+
+      userNickName: userNickName,
+
+      Planid: id
+    })
+
+
+    if (plan === null) {
+      throw new CustomError("Plan not found", 404)
+    }
+       plan.votes += votes,
+       plan.stars += stars
+
+    await plan.save()
+
+   // return plan;
+    return {
+      message: "voted",
+      data: {
+        plan,
+        user_and_plan: newPlan
+      }
+    };
+
+  }
+
+
 
   /* Delete plan */
 

@@ -1,7 +1,8 @@
 const { Router } = require('express');
+const passport = require('passport')
 const PlansService = require('../services/plan.service')
 const validatorHandler = require('../middlewares/validator.handler')
-const { createPlanSchema, updateSchema, getPlanSchema, deletePlanSchema } = require('../schemas/plans.schema')
+const { createPlanSchema, updateSchema, getPlanSchema, deletePlanSchema, ratingSchema } = require('../schemas/plans.schema')
 
 const router = Router();
 const service = new PlansService();
@@ -18,7 +19,9 @@ router.get('/', async (req, res, next) => {
     const count = await service.count(req.query);
     const pages = Math.ceil(count / 9);
 
-    const response = { plans, page, pages }
+
+    const pageNumber = parseInt(page);
+    const response = { plans, pageNumber, pages }
     res.json(response)
   } catch (error) {
 
@@ -30,7 +33,7 @@ router.get('/', async (req, res, next) => {
 /* Get plan by ID */
 
 router.get('/:id',
-  validatorHandler(getPlanSchema, 'params'), 
+  validatorHandler(getPlanSchema, 'params'),
   async (req, res, next) => {
     try {
 
@@ -48,8 +51,9 @@ router.get('/:id',
 
 /* Create new plan */
 
-router.post('/', 
+router.post('/',
   validatorHandler(createPlanSchema, "body"),
+  passport.authenticate('jwt', {session: false}),
   async (req, res, next) => {
 
     try {
@@ -70,6 +74,7 @@ router.post('/',
 
 router.patch('/:planID',
   validatorHandler(updateSchema, "body"),
+  passport.authenticate('jwt', {session: false}),
   async (req, res, next) => {
 
     try {
@@ -86,10 +91,33 @@ router.patch('/:planID',
 
 });
 
+
+/* update plan votes info */
+
+router.patch('/:planID/votes',
+  validatorHandler(ratingSchema, "body"),
+  async (req, res, next) => {
+
+    try {
+
+      const { planID } = req.params
+      const body = req.body;
+
+      const updatedPlan = await service.updateVotes(planID, body)
+
+      res.json(updatedPlan)
+    } catch (error) {
+      next(error)
+    }
+
+});
+
+
 /* Delete plan */
 
 router.delete('/:id',
   validatorHandler(deletePlanSchema, 'params'),
+  passport.authenticate('jwt', {session: false}),
   async (req, res, next) => {
 
     try {

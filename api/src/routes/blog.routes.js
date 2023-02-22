@@ -1,7 +1,8 @@
 const { Router } = require('express');
 const UsersBlog = require('../services/blog.service')
+const passport = require('passport')
 const validatorHandler = require('../middlewares/validator.handler')
-const { createBlogSchema, updateSchema, getBlogSchema } = require('../schemas/blog.schema')
+const { createBlogSchema, updateSchema, getBlogSchema, ratingSchema } = require('../schemas/blog.schema');
 
 const router = Router();
 const service = new UsersBlog()
@@ -12,9 +13,16 @@ router.get('/', async (req, res, next) => {
 
   try {
 
-    const blogs = await service.find(req.query)
+    const page = req.query.page || 1
+    const blogs = await service.find(req.query, page)
 
-    res.json(blogs)
+    const count = await service.count(req.query);
+    const pages = Math.ceil(count / 9);
+
+
+    const pageNumber = parseInt(page);
+    const response = { blogs, pageNumber, pages }
+    res.json(response)
   } catch (error) {
 
     next(error)
@@ -25,27 +33,28 @@ router.get('/', async (req, res, next) => {
   /* Find One Blog */
 
 router.get('/:id',
-validatorHandler(getBlogSchema, 'params'),
-async (req, res, next) => {
+  validatorHandler(getBlogSchema, 'params'),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const { id } = req.params;
+      const { id } = req.params;
 
-    const blog = await service.findOne(id)
+      const blog = await service.findOne(id)
 
-    res.json(blog)
-  } catch (error) {
+      res.json(blog)
+    } catch (error) {
 
-    next(error)
-  }
+      next(error)
+    }
 
 });
 
   /* Create new Blog */
 
-  router.post('/',
+router.post('/',
   validatorHandler(createBlogSchema, "body"),
+  passport.authenticate('jwt', {session: false}),
   async (req, res, next) => {
 
     try {
@@ -65,42 +74,68 @@ async (req, res, next) => {
     /* Update Blog */
 
 router.patch('/:id',
-validatorHandler(getBlogSchema, 'params'),
-validatorHandler(updateSchema, "body"),
-async (req, res, next) => {
+  validatorHandler(getBlogSchema, 'params'),
+  validatorHandler(updateSchema, "body"),
+  passport.authenticate('jwt', {session: false}),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const { id } = req.params
+      const { id } = req.params
 
-    const body = req.body;
+      const body = req.body;
 
-    const updatedBlog = await service.update(id, body)
+      const updatedBlog = await service.update(id, body)
 
-    res.json(updatedBlog)
-  } catch (error) {
-    next(error)
-  }
+      res.json(updatedBlog)
+    } catch (error) {
+      next(error)
+    }
 
 });
+
+    /* Update Blog votes */
+
+    router.patch('/:id/votes',
+    validatorHandler(ratingSchema, "body"),
+
+    async (req, res, next) => {
+
+      try {
+
+        const { id } = req.params
+
+        const body = req.body;
+
+        const updatedBlog = await service.updateVotes(id, body)
+
+        res.json(updatedBlog)
+      } catch (error) {
+        next(error)
+      }
+
+    });
+
+
 
   /* Delete Blog */
 
 router.delete('/:id',
-validatorHandler(getBlogSchema, 'params'),
-async (req, res, next) => {
+  validatorHandler(getBlogSchema, 'params'),
+  passport.authenticate('jwt', {session: false}),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const { id } = req.params
+      const { id } = req.params
 
-    const deletedBlog = await service.delete(id)
+      const deletedBlog = await service.delete(id)
 
-    res.json(deletedBlog)
-  } catch (error) {
+      res.json(deletedBlog)
+    } catch (error) {
 
-    next(error)
-  }
+      next(error)
+    }
 
 });
 

@@ -19,7 +19,7 @@ export default function ProfileCard() {
 
   useEffect(() => {
     if (!user.nickName) {
-      dispatch(getUser(nickname));
+      //dispatch(getUser(nickname));
     }
   }, []);
 

@@ -18,7 +18,7 @@ import {
 export default function ProfileSection() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUser("juancito"));
+    //dispatch(getUser("juancito"));
     dispatch(getUserPlans("juancito"));
     dispatch(getUserBlogs("juancito"));
   }, []);

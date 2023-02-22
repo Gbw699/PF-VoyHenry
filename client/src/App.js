@@ -18,6 +18,8 @@ import AboutUs from "./views/AboutUs/AboutUs";
 import Error404 from "./views/Error404/Error404";
 import PlanForm from "./components/Home/PlanForm";
 import DetailPlan from "./components/Plan/DetailPlan";
+import BlogDetail from "./views/Blog/BlogDetail";
+import Auth from "./views/Auth/Auth";
 import Users from "./views/Users/Users";
 import ProfileUser from "./views/ProfileUser/ProfileUser";
 
@@ -30,6 +32,7 @@ function App() {
       {location.pathname !== "/" &&
         location.pathname !== "/signUp" &&
         location.pathname !== "/logIn" && <NavBar />}
+      <Auth />
       <Routes>
         <Route
           path="/home"
@@ -59,6 +62,11 @@ function App() {
           path="/blog"
           element={<Blog />}
         />
+        <Route
+          path="/blog/:id"
+          element={<BlogDetail />}
+        />
+
         <Route
           path="/plans"
           element={<Plan />}

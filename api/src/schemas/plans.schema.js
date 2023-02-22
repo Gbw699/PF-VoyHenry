@@ -13,6 +13,10 @@ const images = Joi.array()
 const state = Joi.string().valid('En planeacion', 'En progreso',  'Finalizado')
 const eventDate = Joi.date().greater(greaterDate);
 const userNickName = Joi.string().alphanum().min(0).max(15)
+const stars = Joi.number().min(0).max(5)
+const votes = Joi.number().min(0).max(1)
+
+
 
 const getPlanSchema = Joi.object({
   id: id.required()
@@ -43,10 +47,19 @@ const deletePlanSchema = Joi.object({
   id: id.required()
 })
 
+const ratingSchema = Joi.object({
+  stars: stars.required(),
+  votes: votes.required(),
+  userNickName: userNickName.required(),
+})
+
+
+
 module.exports = {
   createPlanSchema,
   updateSchema,
   getPlanSchema,
-  deletePlanSchema
+  deletePlanSchema,
+  ratingSchema
 }
 

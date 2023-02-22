@@ -48,6 +48,10 @@ const users = sequelize.define('users', {
     type: DataTypes.STRING,
     allowNull: false
   },
+  recoveryToken: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
   role: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -62,5 +66,11 @@ plans.belongsTo(users);
 
 users.hasMany(blogs);
 blogs.belongsTo(users);
+
+users.belongsToMany(plans, { foreignKey:"userNickName", through: 'users_votes_plans' });
+plans.belongsToMany(users, { foreignKey:"Planid", through: 'users_votes_plans' });
+
+users.belongsToMany(blogs, { foreignKey:"userNickName", through: 'users_votes_blogs' });
+blogs.belongsToMany(users, { foreignKey:"blogid", through: 'users_votes_blogs' });
 
 module.exports = users;

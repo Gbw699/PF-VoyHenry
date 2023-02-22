@@ -41,6 +41,26 @@ const plans = sequelize.define('plans', {
     validate: {
       isIn: [['En planeacion', 'En progreso',  'Finalizado']]
     }
+  },
+  votes: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+
+  },
+  stars: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+
+  },
+  average: {
+    type: DataTypes.VIRTUAL,
+    get() {
+      if (this.votes === 0) {
+        return 0
+      } else {
+        return this.stars / this.votes
+      }
+    }
   }
 
 })
