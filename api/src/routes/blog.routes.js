@@ -53,12 +53,12 @@ router.get('/:id',
   /* Create new Blog */
 
 router.post('/',
-  validatorHandler(createBlogSchema, "body"),
-  passport.authenticate('jwt', {session: false}),
+ validatorHandler(createBlogSchema, "body"),
+ passport.authenticate('jwt', {session: false}),
   async (req, res, next) => {
 
     try {
-
+      
       const body = req.body;
 
       const createdBlog = await service.create(body)

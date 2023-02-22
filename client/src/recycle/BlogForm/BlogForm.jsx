@@ -23,7 +23,7 @@ export default function BlogForm({ open, close }) {
             userNickName: nickname,
             title: "",
             content: "",
-            rating: 0,
+            evaluation: 0,
             image: "",
           }}
           validationSchema={Yup.object({
@@ -34,7 +34,7 @@ export default function BlogForm({ open, close }) {
             content: Yup.string()
               .max(500, "Debe tener menos de 500 caracteres")
               .required("El contenido de la reseña es obligatoria"),
-            rating: Yup.number()
+            evaluation: Yup.number()
               .min(0, "Debe ser mayor o igual que 0")
               .max(5, "Debe ser menor o igual que 5")
               .required("La valoración es obligatoria"),
@@ -70,16 +70,16 @@ export default function BlogForm({ open, close }) {
             <ErrorMessage name="content" />
 
             <label
-              htmlFor="rating"
+              htmlFor="evaluation"
               className={style.formLabel}
             >
               Valoración
             </label>
             <Field
-              name="rating"
+              name="evaluation"
               type="number"
             />
-            <ErrorMessage name="rating" />
+            <ErrorMessage name="evaluation" />
 
             <label
               htmlFor="image"
