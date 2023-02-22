@@ -7,10 +7,13 @@ export const getLogin = (obj) => {
       const response = await axios.post("/api/v1/auth/login", {
         ...obj,
       });
-      
+
+      document.cookie =
+        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = `token=${response.data.token}; max-age=604800; path=/;`;
-      
-      dispatch(setUser(response.data.user));
+
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+  
     } catch (error) {
       console.log(error.message);
     }

@@ -33,6 +33,8 @@ class AuthService {
 
   signToken(user) {
 
+    user.recoveryToken = null
+
     const payload = {
       nick: user.nickName,
       role: user.role

@@ -6,8 +6,7 @@ import style from "./BlogForm.module.css";
 
 export default function BlogForm({ open, close }) {
   const dispatch = useDispatch();
-  //const nickname = localStorage.getItem("login");
-  const nickname = "juancito";
+  const user = JSON.parse(localStorage.getItem("user"));
 
   if (!open) return null;
   return (
@@ -20,10 +19,10 @@ export default function BlogForm({ open, close }) {
         />
         <Formik
           initialValues={{
-            userNickName: nickname,
+            userNickName: user.nickName,
             title: "",
             content: "",
-            rating: 0,
+            evaluation: 0,
             image: "",
           }}
           validationSchema={Yup.object({
@@ -34,7 +33,7 @@ export default function BlogForm({ open, close }) {
             content: Yup.string()
               .max(500, "Debe tener menos de 500 caracteres")
               .required("El contenido de la reseña es obligatoria"),
-            rating: Yup.number()
+            evaluation: Yup.number()
               .min(0, "Debe ser mayor o igual que 0")
               .max(5, "Debe ser menor o igual que 5")
               .required("La valoración es obligatoria"),
@@ -70,16 +69,16 @@ export default function BlogForm({ open, close }) {
             <ErrorMessage name="content" />
 
             <label
-              htmlFor="rating"
+              htmlFor="evaluation"
               className={style.formLabel}
             >
               Valoración
             </label>
             <Field
-              name="rating"
+              name="evaluation"
               type="number"
             />
-            <ErrorMessage name="rating" />
+            <ErrorMessage name="evaluation" />
 
             <label
               htmlFor="image"

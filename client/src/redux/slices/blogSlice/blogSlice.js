@@ -3,12 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const blogSlice = createSlice({
   name: "blog",
   initialState: {
-    allBlogs: [],
+    allBlogs: {empty: true},
     blog: {},
   },
   reducers: {
     setBlogs: (state, action) => {
-      state.allBlogs = action.payload.blogs;
+      state.allBlogs = { ...action.payload };
     },
     setBlogsSearch(state, action) {
       state.allBlogs = [...action.payload];

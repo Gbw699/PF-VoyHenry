@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
     const blogs = await service.find(req.query, page)
 
     const count = await service.count(req.query);
-    const pages = Math.ceil(count / 9);
+    const pages = Math.ceil(count / 3);
 
 
     const pageNumber = parseInt(page);
@@ -53,12 +53,12 @@ router.get('/:id',
   /* Create new Blog */
 
 router.post('/',
-  validatorHandler(createBlogSchema, "body"),
-  passport.authenticate('jwt', {session: false}),
+ validatorHandler(createBlogSchema, "body"),
+ passport.authenticate('jwt', {session: false}),
   async (req, res, next) => {
 
     try {
-
+      
       const body = req.body;
 
       const createdBlog = await service.create(body)

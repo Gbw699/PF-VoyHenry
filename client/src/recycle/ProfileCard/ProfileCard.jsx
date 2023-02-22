@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getUser } from "../../redux/slices/userSlice/thunks";
 import style from "./ProfileCard.module.css";
 
 // BORRAR ESTE IMPORT Y LA VARIABLE CUANDO HAYA IMAGEN DE PERFIL PARA CARGAR
@@ -10,18 +8,9 @@ const fakeImg =
   "https://www.clarin.com/img/2021/10/07/dPmbdeT7x_1200x630__1.jpg";
 
 export default function ProfileCard() {
-  //const nickname = localStorage.getItem("login");
-  const nickname = "juancito";
+  const user = JSON.parse(localStorage.getItem("user"));
 
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.userStore.user);
   const [backgroundImage, setBackgroundImage] = useState("");
-
-  useEffect(() => {
-    if (!user.nickName) {
-      //dispatch(getUser(nickname));
-    }
-  }, []);
 
   // USE EFFECT PARA PODER USAR LA IMAGEN DE PERFIL COMO BG
   // ARREGLAR PARA CUANDO HAYA IMAGEN DEL BACK
@@ -45,9 +34,7 @@ export default function ProfileCard() {
             width="80%"
             color="#F1E100"
           />
-          {/* vv BORRAR CUANDO HAYA NOMBRE DE PERFIL vv */}
           <h1 className={style.profileName}>{user.nickName}</h1>
-          {/* <h1 className={style.profileName}>Nombre</h1>{" "} */}
           {/* vv BORRAR CUANDO HAYA NACIONALIDAD vv */}
           <h4 className={style.profileCountry}>Nacionalidad</h4>
           <div className={style.followersCont}>
