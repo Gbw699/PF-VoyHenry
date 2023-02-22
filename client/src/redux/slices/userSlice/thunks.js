@@ -7,9 +7,9 @@ export const getLogin = (obj) => {
       const response = await axios.post("/api/v1/auth/login", {
         ...obj,
       });
-
-      document.cookie = `token=${response.data.token}; max-age=3600; path=/; HttpOnly`;
-
+      
+      document.cookie = `token=${response.data.token}; max-age=604800; path=/;`;
+      
       dispatch(setUser(response.data.user));
     } catch (error) {
       console.log(error.message);

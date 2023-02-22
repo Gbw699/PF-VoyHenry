@@ -102,8 +102,8 @@ export default function FormLogIn() {
     }),
     // !! FALTA LÓGICA DE SI EXISTE QUE INGRESE Y SINO NO.
     onSubmit: (formData) => {
-      dispatch(getLogin(formData))
-      navigate("/home"); // fixed
+      dispatch(getLogin(formData));
+      navigate("/home");
     },
   });
 
