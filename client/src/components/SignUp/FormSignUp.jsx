@@ -255,6 +255,7 @@ export default function FormSignUp() {
                 password: values.password,
               };
               dispatch(postUser(obj));
+              navigate("/logIn");
             }}
           >
             <Form>

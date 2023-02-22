@@ -57,6 +57,8 @@ Para traer los planes por orden que pueden ser:
   - **alfabetico**
   - **reverso**
   - **antiguos**
+  - **masvotados**
+  - **menosvotados**
 ```
 ?order= orderDeseado
 ```
@@ -148,6 +150,22 @@ Se pueden modificar uno o varios :
   - **images**
   - **eventDate**
   - **state**
+
+### 3.3 `Voto`
+
+Para buscar el plan a votar se utilizara la `id` seguido de vote
+
+```
+/api/v1/plans/:id/votes
+```
+
+### 3.4 `Parametros obligatorios`
+
+es necesario pasar:
+  - **Planid**
+  - **userNickName**
+  - **stars**
+  - **votes**
 
 ## 4. `Delete`
 

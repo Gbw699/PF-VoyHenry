@@ -19,6 +19,7 @@ import Error404 from "./views/Error404/Error404";
 import PlanForm from "./components/Home/PlanForm";
 import DetailPlan from "./components/Plan/DetailPlan";
 import BlogDetail from "./views/Blog/BlogDetail";
+import Auth from "./views/Auth/Auth";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 axios.defaults.headers.common["Authorization"] = `Bearer ${document.cookie}`;
@@ -30,6 +31,7 @@ function App() {
       {location.pathname !== "/" &&
         location.pathname !== "/signUp" &&
         location.pathname !== "/logIn" && <NavBar />}
+        <Auth/>
       <Routes>
         <Route
           path="/home"
