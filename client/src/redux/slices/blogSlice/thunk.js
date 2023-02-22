@@ -1,10 +1,10 @@
 import axios from "axios";
 import { setBlogsSearch, setBlogs, setBlogById } from "./blogSlice";
 
-export const getBlogs = () => {
+export const getBlogs = (page) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("/api/v1/blogs");
+      const response = await axios.get(`/api/v1/blogs?page=${page}`);
       dispatch(setBlogs(response.data));
     } catch (error) {
       return window.alert("No se pudo hacer el pedido");

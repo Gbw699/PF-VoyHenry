@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 import { getBlogs } from "../../redux/slices/blogSlice/thunk";
 import BlogReview from "../../recycle/BlogReview/BlogReview";
 import style from "./BlogsReviews.module.css";
@@ -9,28 +8,23 @@ import { Pagination } from "@mui/material";
 export default function BlogsReviews() {
   const dispatch = useDispatch();
 
-  let allBlogs = useSelector((state) => state.blogStore.allBlogs);
-
-  const [page, setPage] = useState(1);
-  const blogsPerPage = 3;
-  const count = Math.ceil(allBlogs.length / blogsPerPage);
-
-  allBlogs = allBlogs.slice((page - 1) * blogsPerPage, page * blogsPerPage);
+  const allBlogs = useSelector((state) => state.blogStore.allBlogs);
+  let { blogs, page, pages } = allBlogs;
 
   const handlePageChange = (event, value) => {
-    setPage(value);
+    dispatch(getBlogs(value));
   };
 
   useEffect(() => {
-    if (!allBlogs.length) {
-      dispatch(getBlogs());
+    if (allBlogs.empty) {
+      dispatch(getBlogs(1));
     }
   }, []);
 
   return (
     <div className={style.container}>
       <div className={style.cardsCont}>
-        {allBlogs?.map((blog) => {
+        {blogs?.blogs.map((blog) => {
           return (
             <BlogReview
               key={blog.id}
@@ -41,7 +35,7 @@ export default function BlogsReviews() {
       </div>
       <Pagination
         size="large"
-        count={count}
+        count={pages}
         page={page}
         onChange={handlePageChange}
       />
