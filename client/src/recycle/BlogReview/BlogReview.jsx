@@ -23,9 +23,8 @@ export default function BlogReview({ blog }) {
         />
         <div className={style.userCont}>
           <div className={style.nameDate}>
-            {/* vv BORRAR CUANDO HAYA NOMBRE DE PERFIL vv */}
             <h3 className={style.name}>{blog.userNickName}</h3>
-            <p>{blog.createdAt?.slice(0, 10)}</p>
+            <p>{blog.date}</p>
           </div>
           <hr
             color="#F1E100"
@@ -44,7 +43,7 @@ export default function BlogReview({ blog }) {
               <p className={style.infoDescription}>{blog.content}</p>
               <p className={style.infoValoration}>
                 Valoración:{" "}
-                <span className={style.infoValNum}>{blog.rating}</span>
+                <span className={style.infoValNum}>{blog.evaluation}</span>
               </p>
             </div>
           </NavLink>

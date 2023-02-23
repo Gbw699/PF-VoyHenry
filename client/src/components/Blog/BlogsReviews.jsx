@@ -16,9 +16,7 @@ export default function BlogsReviews() {
   };
 
   useEffect(() => {
-    if (allBlogs.empty) {
-      dispatch(getBlogs(1));
-    }
+    dispatch(getBlogs(1));
   }, []);
 
   return (

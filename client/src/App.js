@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
@@ -27,6 +27,8 @@ const cookie = document.cookie.split("=");
 axios.defaults.headers.common["Authorization"] = `Bearer ${cookie[2]}`;
 
 function App() {
+  useEffect(() => {}, [document.cookie]);
+
   const location = useLocation();
   return (
     <div>

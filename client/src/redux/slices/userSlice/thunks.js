@@ -2,7 +2,7 @@ import axios from "axios";
 import { setAllUsers, setUser, setUserPlans, setUserBlogs } from "./userSlice";
 
 export const getLogin = (obj) => {
-  return async (dispatch) => {
+  return async () => {
     try {
       const response = await axios.post("/api/v1/auth/login", {
         ...obj,
@@ -10,11 +10,13 @@ export const getLogin = (obj) => {
 
       document.cookie =
         "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie =
+        "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = `token=${response.data.token}; max-age=604800; path=/;`;
 
       localStorage.setItem("user", JSON.stringify(response.data.user));
     } catch (error) {
-      console.log(error.message);
+      console.error(error.response);
     }
   };
 };
