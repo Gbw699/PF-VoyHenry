@@ -1,8 +1,7 @@
 export default function DateFilter({ filters, setFilters }) {
   return (
-    (
     <div>
-        <h3>Fecha</h3>
+      <h3>Fecha</h3>
       <input
         type="date"
         name="dateInput"
@@ -10,7 +9,6 @@ export default function DateFilter({ filters, setFilters }) {
           setFilters({ ...filters, date: event.target.value })
         }
       />
-      </div>
-  )
+    </div>
   );
 }
