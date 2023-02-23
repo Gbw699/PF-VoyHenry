@@ -1,5 +1,7 @@
+const mercadopago = require('mercadopago')
 const productModel = require('../libs/models/products.model')
 const { CustomError } = require('../middlewares/error.handler')
+
 
 class ProductsService {
 
@@ -137,6 +139,52 @@ class ProductsService {
       }
 
   }
+
+  /* buy One product */
+
+  async buyOne ({title, price}){
+
+    let preference = {
+      items: [
+        {
+          title: title,
+          unit_price: price,
+          currency_id: 'ARS',
+          quantity: 1,
+        }
+      ],
+      back_urls: {
+        success: 'http://localhost:3030/api/v1/',
+        failure: '',
+        pendig: ''
+      },
+      auto_return: 'approved',
+      binary_mode: true,
+    };
+
+    const response = await mercadopago.preferences.create(preference)
+    return response
+  }
+
+  /* Chackour */
+  async checkOut (body) {
+
+    let preference = {
+      items: []
+    }
+
+    body.forEach((products) => {
+      preference.items.push({
+        title: products.title,
+        unit_price: products.price,
+        quantity: products.quantity
+      })
+    });
+
+    console.log(preference)
+
+  }
+
 
 }
 
