@@ -4,7 +4,7 @@ import NextPlans from "../FilteredPlans/NextPlans";
 import CompletedPlans from "../FilteredPlans/CompletedPlans";
 import OnlinePlans from "../FilteredPlans/OnlinePlans";
 import style from "./PlansSections.module.css";
-import axios from "axios";
+// import axios from "axios";
 
 export default function PlansSections() {
   // const today = new Date().toISOString().slice(0, 10);
