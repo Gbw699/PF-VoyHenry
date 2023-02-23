@@ -112,22 +112,7 @@ router.delete('/:id',
 
 });
 
-
-
-
-
-/* const {
-  ACCES_TOKEN
-} = process.env
-
-
-// Agrega credenciales
-mercadopago.configure({
-  access_token: ACCES_TOKEN
-}); */
-
 /* Buy One Product */
-
 
 router.post('/buy',
   validatorHandler(buyProductSchema, 'body'),
