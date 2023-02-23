@@ -30,19 +30,6 @@ router.get('/', async (req, res, next) => {
 
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Get plan by ID */
 
 router.get('/:id',
@@ -85,22 +72,6 @@ router.post('/',
 
 /* Create new plan comment*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 router.post('/:id/comment',
   //validatorHandler(createPlanSchema, "body"),
 
@@ -120,26 +91,6 @@ router.post('/:id/comment',
 
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 router.get('/:id/comment',
   //validatorHandler(createPlanSchema, "body"),
 
@@ -158,20 +109,6 @@ router.get('/:id/comment',
     }
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* update plan info */
 
