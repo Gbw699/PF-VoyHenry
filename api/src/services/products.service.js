@@ -135,7 +135,7 @@ class ProductsService {
         }
       ],
       back_urls: {
-        succes: 'http://localhost:3030/api/v1/products',
+        success: 'http://localhost:3030/api/v1/',
         failure: '',
         pendig: ''
       },
@@ -143,9 +143,8 @@ class ProductsService {
       binary_mode: true, //solo tarjetas no pagos efectivo pendientes
     };
 
-    mercadopago.preferences.create(preference)
-      .then((response) => response.status(200).send({response}))
-      .catch((error) => res.status(400).send({error: error.message}))
+    const response = await mercadopago.preferences.create(preference)
+    return response
   }
 
   /* Chackour */
