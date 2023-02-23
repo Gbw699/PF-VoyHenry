@@ -70,13 +70,12 @@ router.post('/',
 router.post('/buy',
   validatorHandler(createProductSchema, 'body'),
   passport.authenticate('jwt', {session: false}),
-  checkAdminRole,
   async (req, res, next) => {
     try {
 
       const body = req.body;
 
-      const createdProduct = await service.create(body)
+      const buyProducts = await service.buy(body)
 
       res.json(createdProduct)
     } catch (error) {

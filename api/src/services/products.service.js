@@ -119,6 +119,11 @@ class ProductsService {
 
   }
 
+  /* buy product */
+
+  async buy (){
+    
+  }
 }
 
 module.exports = ProductsService;
