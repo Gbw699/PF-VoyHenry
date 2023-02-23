@@ -3,7 +3,7 @@ const ProductsService = require('../services/products.service')
 const { checkAdminRole } = require('../middlewares/auth.handler')
 const passport = require('passport')
 const validatorHandler = require('../middlewares/validator.handler')
-const { createProductSchema, getProductSchema, updateProductSchema } = require('../schemas/products.schema')
+const { createProductSchema, getProductSchema, updateProductSchema, buyProductSchema } = require('../schemas/products.schema')
 
 const router = Router();
 const service = new ProductsService()
@@ -65,19 +65,39 @@ router.post('/',
 });
 
 
-/* BuyProduct */
+/* Buy One Product */
 
 router.post('/buy',
-  validatorHandler(createProductSchema, 'body'),
+  validatorHandler(buyProductSchema, 'body'),
   passport.authenticate('jwt', {session: false}),
   async (req, res, next) => {
     try {
 
       const body = req.body;
 
-      const buyProducts = await service.buy(body)
+      const buyProducts = await service.buyOne(body)
 
-      res.json(createdProduct)
+      res.json(buyProducts)
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
+/* CheckOut Product */
+
+router.post('/checkout',
+  validatorHandler(buyProductSchema, 'body'),
+  passport.authenticate('jwt', {session: false}),
+  async (req, res, next) => {
+    try {
+
+      const body = req.body;
+
+      const buyProducts = await service.checkOut(body)
+
+      res.json(buyProducts)
     } catch (error) {
 
       next(error)

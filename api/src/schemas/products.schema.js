@@ -27,8 +27,14 @@ const updateProductSchema = Joi.object({
   availability: availability
 })
 
+const buyProductSchema = Joi.object({
+  title: title,
+  price: price
+})
+
 module.exports = {
   getProductSchema,
   createProductSchema,
-  updateProductSchema
+  updateProductSchema,
+  buyProductSchema
 }

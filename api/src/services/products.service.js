@@ -119,9 +119,14 @@ class ProductsService {
 
   }
 
-  /* buy product */
+  /* buy One product */
 
-  async buy (){
+  async buyOne ({title, price}){
+
+  }
+
+  /* Chackour */
+  async checkOut () {
     
   }
 }
