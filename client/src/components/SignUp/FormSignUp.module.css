@@ -56,8 +56,8 @@
 }
 
 .btnSignup {
-  background-color: #F1E100;
-  border: 2px solid #F1E100;
+  background-color: #f1e100;
+  border: 2px solid #f1e100;
   width: 150px;
   padding: 3%;
   color: #707070;
@@ -84,5 +84,5 @@
 }
 
 .btnVolver:hover {
-  background-color: #F1E100;
+  background-color: #f1e100;
 }

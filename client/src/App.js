@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
@@ -16,7 +16,6 @@ import Blog from "./views/Blog/Blog";
 import Plan from "./views/Plan/Plan";
 import AboutUs from "./views/AboutUs/AboutUs";
 import Error404 from "./views/Error404/Error404";
-import PlanForm from "./components/Home/PlanForm";
 import DetailPlan from "./components/Plan/DetailPlan";
 import BlogDetail from "./views/Blog/BlogDetail";
 import Auth from "./views/Auth/Auth";
@@ -28,6 +27,8 @@ const cookie = document.cookie.split("=");
 axios.defaults.headers.common["Authorization"] = `Bearer ${cookie[2]}`;
 
 function App() {
+  useEffect(() => {}, [document.cookie]);
+
   const location = useLocation();
   return (
     <div>
@@ -51,10 +52,6 @@ function App() {
         <Route
           path="/signUp"
           element={<SignUp />}
-        />
-        <Route
-          path="/plans/create"
-          element={<PlanForm />}
         />
         <Route
           path="/plans/:id"

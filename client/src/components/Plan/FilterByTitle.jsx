@@ -1,28 +1,26 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
-import style from "./GeolocationForm.module.css";
 
-export default function FilterByRating() {
+export default function FilterByTitle() {
   const dispatch = useDispatch();
   const handleClick = (event) => {
-    const selectedRating = event.target.value;
-    dispatch(getPlansbyOrder("rating", selectedRating));
+    const selectedOrder = event.target.value;
+    dispatch(getPlansbyOrder("order", selectedOrder));
   };
   return (
     <div>
-      <h3 className={style.filterTitle}>Valoración</h3>
       <button
-        value="masvotados"
+        value="alfabetico"
         onClick={handleClick}
       >
-        Mas votados
+        AZ
       </button>
       <button
-        value="menosvotados"
+        value="reverso"
         onClick={handleClick}
       >
-        Menos votados
+        ZA
       </button>
       <hr />
     </div>

@@ -9,7 +9,10 @@ export default function BlogReview() {
     <div className={style.container}>
       <div>
         <h3 className={style.title}>Reseñas destacadas</h3>
-        <hr width="100%" color="#F1E100" />
+        <hr
+          width="100%"
+          color="#F1E100"
+        />
         <div className={style.reviewHeader}>
           <p className={style.headerTitle}>Título:&emsp;</p>
           <p className={style.headerContent}>{blog?.title}</p>
