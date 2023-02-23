@@ -15,10 +15,8 @@ router.get('/', async (req, res, next) => {
 
     const page = req.query.page || 1
     const blogs = await service.find(req.query, page)
-
     const count = await service.count(req.query);
-    const pages = Math.ceil(count / 3);
-
+    const pages = Math.ceil(count / blogs.blogs.length);
 
     const pageNumber = parseInt(page);
     const response = { blogs, pageNumber, pages }
@@ -58,7 +56,7 @@ router.post('/',
   async (req, res, next) => {
 
     try {
-      
+
       const body = req.body;
 
       const createdBlog = await service.create(body)
