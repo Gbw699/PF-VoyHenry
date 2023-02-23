@@ -104,7 +104,7 @@ export const postPlan = (obj) => {
       });
       window.alert("El plan se creó correctamente");
     } catch (error) {
-      console.log(error.message);
+      console.error(error.response);
     }
   };
 };
