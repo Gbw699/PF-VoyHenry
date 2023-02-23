@@ -1,28 +1,28 @@
 .container {
-    padding: 2%;
+  padding: 2%;
 }
 
 .img {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 10px;
-    width: 200px;
-    height: 200px;
-    padding: 0px 0px 3% 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 10px;
+  width: 200px;
+  height: 200px;
+  padding: 0px 0px 3% 0px;
 }
 
 .title {
-    color: white;
-    font-size: 100%;
-    font-weight: 400;
+  color: white;
+  font-size: 100%;
+  font-weight: 400;
 }
 
 .title:hover {
-    color: #F1E100;
-    font-weight: 600;
+  color: #f1e100;
+  font-weight: 600;
 }

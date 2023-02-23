@@ -19,11 +19,17 @@ export default function ShoppingCartCard({
     <div className={style.mainContainer}>
       <div className={style.itemCont}>
         <div className={style.itemInfo}>
-          <div className={style.img} style={{ backgroundImage: backgroundImage }} />
+          <div
+            className={style.img}
+            style={{ backgroundImage: backgroundImage }}
+          />
           <div className={style.infoCont}>
             <div>
               <h5 className={style.title}>{title}</h5>
-              <hr color="#707070" width="100%" />
+              <hr
+                color="#707070"
+                width="100%"
+              />
               <p className={style.unitPrice}>Precio unitario: ${unitPrice}</p>
               <p className={style.totalPrice}>Total: ${totalPrice}</p>
             </div>
@@ -35,7 +41,12 @@ export default function ShoppingCartCard({
                   <p className={style.quantityNum}>{quantity}</p>
                   <button className={style.decIncBtns}>+</button>
                 </div>
-                <button type="submit" className={style.deleteBtn}>Quitar</button>
+                <button
+                  type="submit"
+                  className={style.deleteBtn}
+                >
+                  Quitar
+                </button>
               </div>
             </div>
           </div>

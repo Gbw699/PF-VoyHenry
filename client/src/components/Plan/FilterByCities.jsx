@@ -14,7 +14,9 @@ export default function FilterByCities() {
 
   function handleCountryChange(event) {
     setSelectedCountry(event.target.value);
-    const provincesData = countries.find(country => country.country === event.target.value);
+    const provincesData = countries.find(
+      (country) => country.country === event.target.value
+    );
     setProvinces(provincesData.province);
     dispatch(getPlansbyOrder(event.target.value));
   }
@@ -28,17 +30,37 @@ export default function FilterByCities() {
   return (
     <div>
       <h3 className={style.filterTitle}>Filtrar por País:</h3>
-      <select className={style.inputs} id="country-select" value={selectedCountry} onChange={handleCountryChange}>
+      <select
+        className={style.inputs}
+        id="country-select"
+        value={selectedCountry}
+        onChange={handleCountryChange}
+      >
         <option value="">Selecciona un país</option>
-        {countries.map(country => (
-          <option key={country.country} value={country.country}>{country.country}</option>
+        {countries.map((country) => (
+          <option
+            key={country.country}
+            value={country.country}
+          >
+            {country.country}
+          </option>
         ))}
       </select>
       {provinces.length > 0 && (
-        <select className={style.inputs} id="province-select" value={selectedProvince} onChange={handleProvinceChange}>
+        <select
+          className={style.inputs}
+          id="province-select"
+          value={selectedProvince}
+          onChange={handleProvinceChange}
+        >
           <option value="">Selecciona una provincia</option>
-          {provinces.map(province => (
-            <option key={province} value={province}>{province}</option>
+          {provinces.map((province) => (
+            <option
+              key={province}
+              value={province}
+            >
+              {province}
+            </option>
           ))}
         </select>
       )}

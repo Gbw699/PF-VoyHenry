@@ -31,7 +31,10 @@ export default function DetailMarketPlaceSection() {
       </div>
       <div className={style.description}>
         <h6 className={style.descriptionTitle}>Descripción del producto:</h6>
-        <hr color="#F1E100" width="100%" />
+        <hr
+          color="#F1E100"
+          width="100%"
+        />
         {products.map((element) => (
           <DetailMarketPlaceDescription
             key={element.id}
@@ -39,8 +42,8 @@ export default function DetailMarketPlaceSection() {
           />
         ))}
         <NavLink
-            to={"/marketplace"}
-            className={style.btnCont}
+          to={"/marketplace"}
+          className={style.btnCont}
         >
           <button className={style.backBtn}>Volver</button>
         </NavLink>

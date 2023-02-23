@@ -1,67 +1,67 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 3px 3px 5px 2px #222222;
-    padding: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px 2px #222222;
+  padding: 2%;
 }
 
 .mainInfo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .imgCont {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: grey;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: grey;
 }
 
 .name {
-    color: #707070;
-    font-size: 130%;
-    font-weight: 600;
-    margin: 8% 0px;
+  color: #707070;
+  font-size: 130%;
+  font-weight: 600;
+  margin: 8% 0px;
 }
 
 .nacionality {
-    color: #707070;
-    font-size: 110%;
-    font-weight: 300;
+  color: #707070;
+  font-size: 110%;
+  font-weight: 300;
 }
 
 .profileInfo {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 80%;
-    margin: 4% 0px 2% 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  margin: 4% 0px 2% 0px;
 }
 
 .infoCont {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .infoTitle {
-    color: #707070;
-    font-size: 110%;
-    font-weight: 300;
-    margin-bottom: 3%;
+  color: #707070;
+  font-size: 110%;
+  font-weight: 300;
+  margin-bottom: 3%;
 }
 
 .infoCount {
-    color: #707070;
-    font-size: 130%;
-    font-weight: 600;
+  color: #707070;
+  font-size: 130%;
+  font-weight: 600;
 }
