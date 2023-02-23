@@ -13,7 +13,6 @@ export const getLogin = (obj) => {
       document.cookie = `token=${response.data.token}; max-age=604800; path=/;`;
 
       localStorage.setItem("user", JSON.stringify(response.data.user));
-  
     } catch (error) {
       console.log(error.message);
     }

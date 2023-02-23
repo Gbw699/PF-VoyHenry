@@ -8,7 +8,9 @@ export default function FormSignUp(props) {
   const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
   const currentDate = new Date();
-  const greaterDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
+  const greaterDate = `${currentDate.getFullYear()}-${
+    currentDate.getMonth() + 1
+  }-${currentDate.getDate()}`;
   const handleClick = () => {
     props.setShowPlanForm(false);
   };
@@ -38,8 +40,7 @@ export default function FormSignUp(props) {
           mainImage: Yup.string()
             .url()
             .required("La url de la imagen principal es obligatoria"),
-          images: Yup.string()
-            .required("Debe proporcionar imágen secundaria"),
+          images: Yup.string().required("Debe proporcionar imágen secundaria"),
           eventDate: Yup.date()
             .min(new Date(greaterDate))
             .required("La fecha del evento es obligatoria"),
@@ -56,7 +57,7 @@ export default function FormSignUp(props) {
             images: [values.images],
             eventDate: values.eventDate,
             state: "En planeacion",
-            evaluation: 2
+            evaluation: 2,
           };
           dispatch(postPlan(obj));
           console.log(obj);
@@ -65,10 +66,18 @@ export default function FormSignUp(props) {
         <Form>
           <div className={style.formContainer}>
             <h2 className={style.title}>CREA TU PLAN</h2>
-            <hr color="#F1E100" width="100%" />
+            <hr
+              color="#F1E100"
+              width="100%"
+            />
             <div className={style.formSubCont}>
               {/* ------------------------------------------------------------------------- */}
-              <label htmlFor="title" className={style.formTitle}>Título</label>
+              <label
+                htmlFor="title"
+                className={style.formTitle}
+              >
+                Título
+              </label>
               <Field
                 name="title"
                 type="text"
@@ -76,7 +85,12 @@ export default function FormSignUp(props) {
               />
               <ErrorMessage name="title" />
               {/* ------------------------------------------------------------------------- */}
-              <label htmlFor="summary" className={style.formTitle}>Breve descripción</label>
+              <label
+                htmlFor="summary"
+                className={style.formTitle}
+              >
+                Breve descripción
+              </label>
               <Field
                 name="summary"
                 type="text"
@@ -84,7 +98,12 @@ export default function FormSignUp(props) {
               />
               <ErrorMessage name="summary" />
               {/* ------------------------------------------------------------------------- */}
-              <label htmlFor="description" className={style.formTitle}>Descripción</label>
+              <label
+                htmlFor="description"
+                className={style.formTitle}
+              >
+                Descripción
+              </label>
               <Field
                 name="description"
                 type="text"
@@ -92,7 +111,12 @@ export default function FormSignUp(props) {
               />
               <ErrorMessage name="description" />
               {/* ------------------------------------------------------------------------- */}
-              <label htmlFor="mainImage" className={style.formTitle}>Imagen principal</label>
+              <label
+                htmlFor="mainImage"
+                className={style.formTitle}
+              >
+                Imagen principal
+              </label>
               <Field
                 name="mainImage"
                 type="text"
@@ -100,7 +124,12 @@ export default function FormSignUp(props) {
               />
               <ErrorMessage name="nickName" />
               {/* ------------------------------------------------------------------------- */}
-              <label htmlFor="images" className={style.formTitle}>Imágenes secundarias</label>
+              <label
+                htmlFor="images"
+                className={style.formTitle}
+              >
+                Imágenes secundarias
+              </label>
               <Field
                 name="images"
                 type="text"
@@ -108,7 +137,12 @@ export default function FormSignUp(props) {
               />
               <ErrorMessage name="images" />
               {/* ------------------------------------------------------------------------- */}
-              <label htmlFor="eventDate" className={style.formTitle}>Fecha del evento</label>
+              <label
+                htmlFor="eventDate"
+                className={style.formTitle}
+              >
+                Fecha del evento
+              </label>
               <Field
                 name="eventDate"
                 type="date"
@@ -117,11 +151,21 @@ export default function FormSignUp(props) {
               <ErrorMessage name="eventDate" />
               {/* ------------------------------------------------------------------------- */}
             </div>
-            <button type="submit" className={style.createBtn}>Crear Plan</button>
+            <button
+              type="submit"
+              className={style.createBtn}
+            >
+              Crear Plan
+            </button>
           </div>
         </Form>
       </Formik>
-      <button onClick={handleClick} className={style.backBtn}>Volver</button>
+      <button
+        onClick={handleClick}
+        className={style.backBtn}
+      >
+        Volver
+      </button>
     </div>
   );
 }

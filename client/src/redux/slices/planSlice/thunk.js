@@ -111,10 +111,12 @@ export const postPlan = (obj) => {
 
 export const getPlansbyOrder = (filter, order) => {
   const queryUrl = queryString(filter, order);
-  console.log(queryUrl.slice(0,-1));
+  console.log(queryUrl.slice(0, -1));
   return async (dispatch) => {
     try {
-      const response = await axios.get(`/api/v1/plans?${queryUrl.slice(0,-1)}`);
+      const response = await axios.get(
+        `/api/v1/plans?${queryUrl.slice(0, -1)}`
+      );
       dispatch(setPlansbyOrder(response.data.plans.plans));
     } catch (error) {
       console.log("No se pudo realizar la petición:", error.message);

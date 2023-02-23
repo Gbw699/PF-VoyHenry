@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import PlanCard from "../PlanCard/PlanCard";
 import style from "./PlansCardList.module.css";
-import { getPlansPerPage, getTotalPages } from "../../redux/slices/planSlice/thunk";
+import {
+  getPlansPerPage,
+  getTotalPages,
+} from "../../redux/slices/planSlice/thunk";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "@mui/material/Pagination";
 
@@ -35,15 +38,13 @@ export default function PlanList() {
           />
         ))}
       </div>
-      {
-        plans?.length < 9
-          ? null
-          : <Pagination
-            onChange={handlePageChange}
-            count={totalPages}
-            page={page}
-          />
-      }
+      {plans?.length < 9 ? null : (
+        <Pagination
+          onChange={handlePageChange}
+          count={totalPages}
+          page={page}
+        />
+      )}
     </div>
   );
 }
