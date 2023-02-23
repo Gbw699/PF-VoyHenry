@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const blogSlice = createSlice({
   name: "blog",
   initialState: {
-    allBlogs: {empty: true},
+    allBlogs: {},
     blog: {},
   },
   reducers: {

@@ -1,6 +1,7 @@
 export default function OrderFilter({ filters, setFilters }) {
   return (
     <div>
+      <h3>Ordenar</h3>
       <button
         value="alfabetico"
         onClick={(event) =>
