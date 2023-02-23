@@ -1,7 +1,13 @@
+import style from "./OrderFilter.module.css";
+
 export default function OrderFilter({ filters, setFilters }) {
   return (
-    <div>
+    <div className={style.container}>
       <h3>Ordenar</h3>
+      <hr
+        width="100%"
+        color="#F1E100"
+      />
       <button
         value="alfabetico"
         onClick={(event) =>
