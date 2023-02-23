@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getPlanById, postComment } from "../../redux/slices/planSlice/thunk";
+import { getPlanById } from "../../redux/slices/planSlice/thunk";
 import style from "./DetailPlan.module.css";
+import axios from "axios";
 
 export default function DetailPlan() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -14,14 +15,13 @@ export default function DetailPlan() {
 
   useEffect(() => {
     dispatch(getPlanById(id));
-    fetchComments();
+    getComments();
   }, []);
 
-  const fetchComments = async () => {
+  const getComments = async () => {
     try {
-      const response = await fetch(`/api/vq/plans/${id}/comment`);
-      const comments = await response.json();
-      setComments(comments);
+      const response = await axios.get(`/api/v1/plans/${id}/comment`);
+      setComments(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -30,10 +30,16 @@ export default function DetailPlan() {
   async function handleClick() {
     const text = document.querySelector("#reseña").value;
     const obj = {
-      userNickName: user.userNickName,
-      comment: text
+      userNickName: user.nickName,
+      comment: text,
     };
-    dispatch(postComment(obj));
+    try {
+      await axios.post(`/api/v1/plans/${id}/comment`, obj);
+      getComments();
+      document.querySelector("#reseña").value = "";
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -77,36 +83,6 @@ export default function DetailPlan() {
           src={plan.images}
           alt={plan.title}
         />
-        <img
-          className={style.img}
-          src={plan.images}
-          alt={plan.title}
-        />
-        <img
-          className={style.img}
-          src={plan.images}
-          alt={plan.title}
-        />
-        <img
-          className={style.img}
-          src={plan.images}
-          alt={plan.title}
-        />
-        <img
-          className={style.img}
-          src={plan.images}
-          alt={plan.title}
-        />
-        <img
-          className={style.img}
-          src={plan.images}
-          alt={plan.title}
-        />
-        <img
-          className={style.img}
-          src={plan.images}
-          alt={plan.title}
-        />
       </div>
       <div className={style.buttons}>
         <div className={style.button}>
@@ -121,19 +97,34 @@ export default function DetailPlan() {
         </button>
       </div>
       <div>
-        <textarea placeholder="Dejar reseña" name="reseña" id="reseña" cols="30" rows="10"></textarea>
-        <button className={style.submitBtn} onClick={handleClick}>
+        <textarea
+          placeholder="Dejar reseña"
+          name="reseña"
+          id="reseña"
+          cols="30"
+          rows="10"
+        ></textarea>
+        <button
+          className={style.submitBtn}
+          onClick={handleClick}
+        >
           Dejar reseña
         </button>
       </div>
       <div className={style.comments}>
         <h1>Comentarios</h1>
-        <hr width="100%" color="#F1E100" />
+        <hr
+          width="100%"
+          color="#F1E100"
+        />
         {comments?.map((comment) => (
           <div key={comment.id}>
-            <p>{comment.text}</p>
-            <p>{comment.userNickname}</p>
-            <hr width="100%" color="#F1E100" />
+            <h3 key={comment.id++}>{comment.users[0].nickName}</h3>
+            <p key={comment.id++}>{comment.content}</p>
+            <hr
+              width="100%"
+              color="#F1E100"
+            />
           </div>
         ))}
       </div>

@@ -124,7 +124,7 @@ export const getPlansbyOrder = (filter, order) => {
   };
 };
 
-export const postComment = (id,obj) => {
+export const postComment = (id, obj) => {
   return async () => {
     try {
       await axios.post(`/api/v1/plans/${id}/comment`, {
@@ -132,7 +132,7 @@ export const postComment = (id,obj) => {
       });
       window.alert("El comentario se envió correctamente");
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
     }
   };
 };

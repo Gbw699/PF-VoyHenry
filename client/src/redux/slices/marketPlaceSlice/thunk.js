@@ -1,6 +1,10 @@
 import axios from "axios";
 import { queryString } from "./queryStringMarket.js";
-import { setProducts, setDetailProducts, setProductsByOrder } from "./marketPlaceSlice";
+import {
+  setProducts,
+  setDetailProducts,
+  setProductsByOrder,
+} from "./marketPlaceSlice";
 
 export const getProducts = (id) => {
   return async (dispatch) => {

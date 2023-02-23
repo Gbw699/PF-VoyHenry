@@ -14,6 +14,7 @@ export default function FormSignUp(props) {
   const handleClick = () => {
     props.setShowPlanForm(false);
   };
+  console.log(user.nickName);
 
   return (
     <div className={style.container}>
