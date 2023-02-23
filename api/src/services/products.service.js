@@ -1,6 +1,7 @@
+const mercadopago = require('mercadopago')
 const productModel = require('../libs/models/products.model')
 const { CustomError } = require('../middlewares/error.handler')
-const mercadopago = require('../utils/mercadopago')
+
 
 class ProductsService {
 
@@ -125,18 +126,26 @@ class ProductsService {
   async buyOne ({title, price}){
 
     let preference = {
-      binary_mode: true,//pago aprobado o rechazado
       items: [
         {
           title: title,
           unit_price: price,
+          currency_id: 'ARS',
           quantity: 1,
         }
       ],
- 
+      back_urls: {
+        succes: 'http://localhost:3030/api/v1/products',
+        failure: '',
+        pendig: ''
+      },
+      auto_return: 'approved',
+      binary_mode: true, //solo tarjetas no pagos efectivo pendientes
     };
 
-    return preference
+    mercadopago.preferences.create(preference)
+      .then((response) => response.status(200).send({response}))
+      .catch((error) => res.status(400).send({error: error.message}))
   }
 
   /* Chackour */

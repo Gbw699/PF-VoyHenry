@@ -4,6 +4,11 @@ const { checkAdminRole } = require('../middlewares/auth.handler')
 const passport = require('passport')
 const validatorHandler = require('../middlewares/validator.handler')
 const { createProductSchema, getProductSchema, updateProductSchema, buyProductSchema } = require('../schemas/products.schema')
+//mercadopago
+const mercadopago = require("mercadopago");
+require('dotenv').config();
+
+
 
 const router = Router();
 const service = new ProductsService()
@@ -64,48 +69,6 @@ router.post('/',
 
 });
 
-
-/* Buy One Product */
-
-router.post('/buy',
-  validatorHandler(buyProductSchema, 'body'),
-/*   passport.authenticate('jwt', {session: false}), */
-  async (req, res, next) => {
-    try {
-
-      const body = req.body;
-
-      const buyProducts = await service.buyOne(body)
-
-      res.json(buyProducts)
-    } catch (error) {
-
-      next(error)
-    }
-
-});
-
-/* CheckOut Product */
-
-router.post('/checkout',
-/*   validatorHandler(buyProductSchema, 'body'), */
-/*   passport.authenticate('jwt', {session: false}), */
-  async (req, res, next) => {
-    try {
-
-      const body = req.body;
-
-      const buyProducts = await service.checkOut(body)
-
-      res.json(buyProducts)
-    } catch (error) {
-
-      next(error)
-    }
-
-});
-
-
 /* update product info */
 
 router.patch('/:id',
@@ -149,5 +112,61 @@ router.delete('/:id',
     }
 
 });
+
+
+
+
+
+const {
+  ACCES_TOKEN
+} = process.env
+
+
+// Agrega credenciales
+mercadopago.configure({
+  access_token: ACCES_TOKEN
+});
+
+/* Buy One Product */
+
+
+router.post('/buy',
+  validatorHandler(buyProductSchema, 'body'),
+/*   passport.authenticate('jwt', {session: false}), */
+  async (req, res, next) => {
+    try {
+
+      const body = req.body;
+
+      const buyProducts = await service.buyOne(body)
+
+      res.json(buyProducts)
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
+/* CheckOut Product */
+
+router.post('/checkout',
+/*   validatorHandler(buyProductSchema, 'body'), */
+/*   passport.authenticate('jwt', {session: false}), */
+  async (req, res, next) => {
+    try {
+
+      const body = req.body;
+
+      const buyProducts = await service.checkOut(body)
+
+      res.json(buyProducts)
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
 
 module.exports = router;
