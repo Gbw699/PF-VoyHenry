@@ -1,0 +1,108 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.imgCont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.profileCont {
+  display: flex;
+  flex-direction: column;
+  align-items: first baseline;
+  justify-content: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px 2px #302e2e98;
+  width: 50%;
+  height: 150px;
+  margin-top: 250px;
+}
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+
+  align-items: first baseline;
+  justify-content: center;
+  width: 85%;
+  justify-content: center;
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-items: first baseline;
+  color: #000000;
+  font-size: 150%;
+  font-weight: 600;
+
+  height: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.img {
+  display: flex;
+  flex-direction: column;
+  align-items: first baseline;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: end;
+}
+
+.buttonUnfollow {
+  background-color: #f22176;
+  border: 2px solid #f22176;
+  border-radius: 10px;
+  color: white;
+  /* width: 150px; */
+  padding: 2% 4%;
+  margin: 0px 3%;
+  width: 200px;
+}
+
+.buttonUnfollow:hover {
+  background-color: white;
+  color: #707070;
+}
+
+.buttonPerfil {
+  background-color: #f1e100;
+  border: 2px solid #f1e100;
+  border-radius: 10px;
+  color: #707070;
+  padding: 2% 4%;
+  margin: 0px 3%;
+  width: 200px;
+}
+.buttonPerfil:hover {
+  background-color: white;
+}
+
+.followers {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.followTitle {
+  color: #707070;
+  font-weight: 300;
+}
+.followNum {
+  color: #707070;
+  font-weight: 700;
+}

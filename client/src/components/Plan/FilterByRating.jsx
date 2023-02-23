@@ -13,18 +13,23 @@ export default function FilterByRating() {
     <div>
       <h3 className={style.filterTitle}>Valoración</h3>
       <button
+        className={style.buttonsValoracion}
         value="masvotados"
         onClick={handleClick}
       >
         Mas votados
       </button>
       <button
+        className={style.buttonsValoracion}
         value="menosvotados"
         onClick={handleClick}
       >
         Menos votados
       </button>
-      <hr />
+      <hr
+        width="100%"
+        color="#F1E100"
+      />
     </div>
   );
 }

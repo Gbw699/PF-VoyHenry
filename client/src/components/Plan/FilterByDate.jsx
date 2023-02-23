@@ -26,18 +26,23 @@ export default function FilterByDate() {
       />
       <br />
       <button
+        className={style.buttonJoda}
         value="nuevos"
         onClick={handleClick}
       >
-        First
+        Nuevos
       </button>
       <button
+        className={style.buttonJoda}
         value="antiguos"
         onClick={handleClick}
       >
-        Last
+        Antiguos
       </button>
-      <hr />
+      <hr
+        width="100%"
+        color="#F1E100"
+      />
     </div>
   );
 }
