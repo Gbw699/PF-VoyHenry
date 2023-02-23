@@ -20,6 +20,21 @@ export const queryString = (filter, order) => {
                     break;
             }
             break;
+        case "category":
+            switch (order) {
+                case "remeras":
+                    mapQuery.set("category", "?category=Remeras&");
+                    break;
+                case "pantalones":
+                    mapQuery.set("category", "?category=Pantalones&");
+                    break;
+                case "gorros":
+                    mapQuery.set("category", "?category=Gorros&");
+                    break;
+                default:
+                    break;
+            }
+            break;
         case "availability":
             switch (order) {
                 case "inStock":
@@ -40,9 +55,13 @@ export const queryString = (filter, order) => {
         mapQuery.set("order", "");
     }
 
+    if (!mapQuery.get("category")) {
+        mapQuery.set("category", "");
+    }
+
     if (!mapQuery.get("availability")) {
         mapQuery.set("availability", "");
     }
 
-    return `${mapQuery.get("order")}${mapQuery.get("availability")}`;
+    return `${mapQuery.get("order")}${mapQuery.get("category")}${mapQuery.get("availability")}`;
 };

@@ -60,6 +60,12 @@ class ProductsService {
       }
     }
 
+    if (query.category) {
+      options.where = {
+        category: query.category
+      }
+    }
+
     if (query.availability) {
       options.where = {
         available: query.availability === 'true'
