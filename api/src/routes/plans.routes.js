@@ -30,6 +30,19 @@ router.get('/', async (req, res, next) => {
 
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Get plan by ID */
 
 router.get('/:id',
@@ -69,6 +82,96 @@ router.post('/',
     }
 
 });
+
+/* Create new plan comment*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+router.post('/:id/comment',
+  //validatorHandler(createPlanSchema, "body"),
+
+  async (req, res, next) => {
+
+    try {
+      const {id} = req.params
+      const body = req.body;
+
+      const createdPlan = await service.createComment(id, body)
+
+      res.json(createdPlan)
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+router.get('/:id/comment',
+  //validatorHandler(createPlanSchema, "body"),
+
+  async (req, res, next) => {
+
+    try {
+      const {id} = req.params
+      //const body = req.body;
+
+      const createdPlan = await service.getComment(id)
+
+      res.json(createdPlan)
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* update plan info */
 
