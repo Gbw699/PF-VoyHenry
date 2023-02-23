@@ -14,6 +14,7 @@ export default function FormSignUp(props) {
   const handleClick = () => {
     props.setShowPlanForm(false);
   };
+  console.log(user.nickName);
 
   return (
     <div className={style.container}>
@@ -45,7 +46,6 @@ export default function FormSignUp(props) {
             .min(new Date(greaterDate))
             .required("La fecha del evento es obligatoria"),
           state: Yup.string(),
-          evaluation: Yup.number(),
         })}
         onSubmit={(values) => {
           const obj = {
@@ -57,7 +57,6 @@ export default function FormSignUp(props) {
             images: [values.images],
             eventDate: values.eventDate,
             state: "En planeacion",
-            evaluation: 2,
           };
           dispatch(postPlan(obj));
           console.log(obj);
