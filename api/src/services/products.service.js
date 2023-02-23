@@ -37,8 +37,6 @@ class ProductsService {
       order: [['id', 'ASC']]
     }
 
-
-
     if (query.order){
       if (query.order == 'alfabetico'){
         
@@ -52,6 +50,12 @@ class ProductsService {
       } else if (query.order == 'descendente') {
     
         options.order = [['price', 'DESC']]
+      }
+    }
+
+    if (query.availability) {
+      options.where = {
+        available: query.availability === 'true'
       }
     }
 
