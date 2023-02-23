@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import DateFilter from "./DateFilter";
 import OrderFilter from "./OrderFilter";
-import LimitFilter from "./LimitFilter"
+import LimitFilter from "./LimitFilter";
 
 export default function BlogFilters() {
   const [filters, setFilters] = useState({
