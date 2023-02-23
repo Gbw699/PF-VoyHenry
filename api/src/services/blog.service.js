@@ -14,7 +14,7 @@ class blogService {
 
   /* Find All Blogs */
 
-  async find (query) {
+  async find (query, page) {
 
     const options = {
 

@@ -7,6 +7,9 @@ const detail = Joi.string().min(5).max(255)
 const mainImage = Joi.string().uri()
 const availability = Joi.boolean()
 
+const category = Joi.string().valid('Remeras', 'Pantalones',  'Gorros')
+const images = Joi.array()
+
 const getProductSchema = Joi.object({
   id: id.required()
 })
@@ -16,7 +19,11 @@ const createProductSchema = Joi.object({
   price: price.required(),
   detail: detail.required(),
   mainImage: mainImage.required(),
-  availability: availability.required()
+  availability: availability.required(),
+
+  category: category.required(),
+  images:images.required()
+
 })
 
 const updateProductSchema = Joi.object({
@@ -24,7 +31,9 @@ const updateProductSchema = Joi.object({
   price: price,
   detail: detail,
   mainImage: mainImage,
-  availability: availability
+  availability: availability,
+  category: category,
+  images:images
 })
 
 module.exports = {

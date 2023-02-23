@@ -16,9 +16,19 @@ const products = sequelize.define('products', {
     type: DataTypes.INTEGER,
     allowNull: false
   },
+  category: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      isIn: [['Remeras', 'Pantalones',  'Gorros']]
+    }
+  },
   detail: {
     type: DataTypes.STRING(255),
     allowNull: false
+  },
+  images : {
+  type: DataTypes.ARRAY(DataTypes.TEXT),
   },
   mainImage: {
     type: DataTypes.TEXT,
