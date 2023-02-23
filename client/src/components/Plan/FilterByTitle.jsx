@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
-
+import style from "./GeolocationForm.module.css";
 export default function FilterByTitle() {
   const dispatch = useDispatch();
   const handleClick = (event) => {
@@ -11,18 +11,23 @@ export default function FilterByTitle() {
   return (
     <div>
       <button
+        className={style.buttonsOrdenamiento}
         value="alfabetico"
         onClick={handleClick}
       >
-        AZ
+        A - Z
       </button>
       <button
+        className={style.buttonsOrdenamiento}
         value="reverso"
         onClick={handleClick}
       >
-        ZA
+        Z - A
       </button>
-      <hr />
+      <hr
+        width="100%"
+        color="#F1E100"
+      />
     </div>
   );
 }
