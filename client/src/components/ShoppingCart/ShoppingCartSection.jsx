@@ -14,7 +14,10 @@ export default function ShoppingCartSection() {
     <div className={style.container}>
       <div className={style.cartCont}>
         <h4 className={style.cartTitle}>Carrito</h4>
-        <hr color="#F1E100" width="100%" />
+        <hr
+          color="#F1E100"
+          width="100%"
+        />
         {productCartData.data.map((element) => (
           <div key={element.id}>
             <ShoppingCartCard
@@ -28,9 +31,24 @@ export default function ShoppingCartSection() {
         ))}
       </div>
       <div className={style.btnsCont}>
-        <button type="submit" className={style.buyBtn}>Comprar</button>
-        <button type="submit" className={style.emptyBtn}>Vaciar carrito</button>
-        <button onClick={backHandler} className={style.backBtn}>Volver</button>
+        <button
+          type="submit"
+          className={style.buyBtn}
+        >
+          Comprar
+        </button>
+        <button
+          type="submit"
+          className={style.emptyBtn}
+        >
+          Vaciar carrito
+        </button>
+        <button
+          onClick={backHandler}
+          className={style.backBtn}
+        >
+          Volver
+        </button>
       </div>
     </div>
   );

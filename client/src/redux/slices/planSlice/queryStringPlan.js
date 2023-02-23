@@ -3,25 +3,24 @@ export const queryString = (filter, order) => {
   switch (filter) {
     case "date":
       mapQuery.set("date", `?date=${order}&`);
-      mapQuery.delete("order");
       break;
     case "order":
       switch (order) {
         case "nuevos":
           mapQuery.delete("order");
-          mapQuery.delete("date");
+          mapQuery.delete("rating");
           break;
         case "antiguos":
           mapQuery.set("order", `?order=${order}&`);
-          mapQuery.delete("date");
+          mapQuery.delete("rating");
           break;
         case "reverso":
           mapQuery.set("order", `?order=${order}&`);
-          mapQuery.delete("date");
+          mapQuery.delete("rating");
           break;
         case "alfabetico":
           mapQuery.set("order", `?order=${order}&`);
-          mapQuery.delete("date");
+          mapQuery.delete("rating");
           break;
         default:
           break;
@@ -49,6 +48,20 @@ export const queryString = (filter, order) => {
       mapQuery.set("page", `?page=${order}&`);
       break;
     case "rating":
+      switch (order) {
+        case "menosvotados":
+          mapQuery.set("rating", `?order=${order}&`);
+          mapQuery.delete("order");
+          mapQuery.delete("date");
+          break;
+        case "masvotados":
+          mapQuery.set("rating", `?order=${order}&`);
+          mapQuery.delete("order");
+          mapQuery.delete("date");
+          break;
+        default:
+          break;
+      }
       mapQuery.set("rating", `?rating=${order}&`);
       break;
     default:

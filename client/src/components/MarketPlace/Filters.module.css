@@ -10,19 +10,19 @@
 }
 
 .title {
-    color: #707070;
-    font-weight: 300;
-    font-size: 110%;
-    margin-bottom: 0px;
+  color: #707070;
+  font-weight: 300;
+  font-size: 110%;
+  margin-bottom: 0px;
 }
 
 .option {
-    color: #707070;
-    font-weight: 300;
-    font-size: 90%;
-    cursor: pointer;
+  color: #707070;
+  font-weight: 300;
+  font-size: 90%;
+  cursor: pointer;
 }
 
 .option:hover {
-    color: #F1E100;
+  color: #f1e100;
 }

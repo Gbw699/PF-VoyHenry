@@ -10,7 +10,10 @@ export default function MarketCard({ title, image, price }) {
         src={image}
         alt={title}
       />
-      <hr color="#F1E100" width="100%" />
+      <hr
+        color="#F1E100"
+        width="100%"
+      />
       <h6 className={style.price}>$ {price}</h6>
     </div>
   );

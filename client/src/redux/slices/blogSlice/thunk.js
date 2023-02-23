@@ -37,7 +37,7 @@ export const getBlogById = (id) => {
 export const postBlog = (obj) => {
   return async () => {
     try {
-      await axios.post("/api/v1/blogs", {...obj});
+      await axios.post("/api/v1/blogs", { ...obj });
       window.alert("La reseña fue creada");
     } catch (error) {
       console.log(obj);

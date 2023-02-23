@@ -8,10 +8,5 @@ export default function WhereAmI({ setWhereAmI }) {
     setWhereAmI(url.pathname);
   }, [url]);
 
-  return (
-    <>
-      
-    </>
-  );
-
+  return <></>;
 }

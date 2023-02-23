@@ -240,7 +240,10 @@ export default function FormSignUp() {
                 .min(8, "Debe tener más de 8 caracteres")
                 .required("La contraseña es obligatoria"),
               repeatPassword: Yup.string()
-                .oneOf([Yup.ref("password")], "Las contraseñas deben ser iguales")
+                .oneOf(
+                  [Yup.ref("password")],
+                  "Las contraseñas deben ser iguales"
+                )
                 .required("Debe repetir la contraseña"),
             })}
             onSubmit={(values) => {
@@ -262,7 +265,12 @@ export default function FormSignUp() {
               <div className={style.formSubCont}>
                 {/* ------------------------------------------------------------------------- */}
                 <div className={style.formInputs}>
-                  <label htmlFor="firstName" className={style.inputTitle}>Nombre</label>
+                  <label
+                    htmlFor="firstName"
+                    className={style.inputTitle}
+                  >
+                    Nombre
+                  </label>
                   <Field
                     name="firstName"
                     type="text"
@@ -271,7 +279,12 @@ export default function FormSignUp() {
                 </div>
                 {/* ------------------------------------------------------------------------- */}
                 <div className={style.formInputs}>
-                  <label htmlFor="lastName" className={style.inputTitle}>Apellido</label>
+                  <label
+                    htmlFor="lastName"
+                    className={style.inputTitle}
+                  >
+                    Apellido
+                  </label>
                   <Field
                     name="lastName"
                     type="text"
@@ -280,7 +293,12 @@ export default function FormSignUp() {
                 </div>
                 {/* ------------------------------------------------------------------------- */}
                 <div className={style.formInputs}>
-                  <label htmlFor="nickName" className={style.inputTitle}>Nombre de usuario</label>
+                  <label
+                    htmlFor="nickName"
+                    className={style.inputTitle}
+                  >
+                    Nombre de usuario
+                  </label>
                   <Field
                     name="nickName"
                     type="text"
@@ -289,7 +307,12 @@ export default function FormSignUp() {
                 </div>
                 {/* ------------------------------------------------------------------------- */}
                 <div className={style.formInputs}>
-                  <label htmlFor="email" className={style.inputTitle}>Email</label>
+                  <label
+                    htmlFor="email"
+                    className={style.inputTitle}
+                  >
+                    Email
+                  </label>
                   <Field
                     name="email"
                     type="text"
@@ -298,7 +321,12 @@ export default function FormSignUp() {
                 </div>
                 {/* ------------------------------------------------------------------------- */}
                 <div className={style.formInputs}>
-                  <label htmlFor="password" className={style.inputTitle}>Contraseña</label>
+                  <label
+                    htmlFor="password"
+                    className={style.inputTitle}
+                  >
+                    Contraseña
+                  </label>
                   <Field
                     name="password"
                     type="password"
@@ -307,7 +335,12 @@ export default function FormSignUp() {
                 </div>
                 {/* ------------------------------------------------------------------------- */}
                 <div className={style.formInputs}>
-                  <label htmlFor="repeatPassword" className={style.inputTitle}>Repetir contraseña</label>
+                  <label
+                    htmlFor="repeatPassword"
+                    className={style.inputTitle}
+                  >
+                    Repetir contraseña
+                  </label>
                   <Field
                     name="repeatPassword"
                     type="password"
@@ -316,7 +349,12 @@ export default function FormSignUp() {
                 </div>
                 {/* ------------------------------------------------------------------------- */}
                 <div className={style.formInputs}>
-                  <label htmlFor="dateOfBirth" className={style.inputTitle}>Fecha de nacimiento</label>
+                  <label
+                    htmlFor="dateOfBirth"
+                    className={style.inputTitle}
+                  >
+                    Fecha de nacimiento
+                  </label>
                   <Field
                     name="dateOfBirth"
                     type="date"
@@ -325,7 +363,12 @@ export default function FormSignUp() {
                 </div>
                 {/* ------------------------------------------------------------------------- */}
                 <div className={style.formInputs}>
-                  <label htmlFor="genre" className={style.inputTitle}>Género</label>
+                  <label
+                    htmlFor="genre"
+                    className={style.inputTitle}
+                  >
+                    Género
+                  </label>
                   <Field
                     name="genre"
                     as="select"
@@ -339,17 +382,29 @@ export default function FormSignUp() {
                     <option value="Femenino">Femenino</option>
                     <option value="Masculino">Masculino</option>
                     <option value="No binario">No binario</option>
-                    <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                    <option value="Prefiero no decirlo">
+                      Prefiero no decirlo
+                    </option>
                     <option value="Otro">Otro</option>
                   </Field>
                   <ErrorMessage name="genre" />
                 </div>
                 {/* ------------------------------------------------------------------------- */}
-                <button type="submit" className={style.btnSignup}>Registrarse</button>
+                <button
+                  type="submit"
+                  className={style.btnSignup}
+                >
+                  Registrarse
+                </button>
               </div>
             </Form>
           </Formik>
-          <button onClick={() => navigate("/")} className={style.btnVolver}>Volver</button>
+          <button
+            onClick={() => navigate("/")}
+            className={style.btnVolver}
+          >
+            Volver
+          </button>
         </div>
       </div>
     </div>

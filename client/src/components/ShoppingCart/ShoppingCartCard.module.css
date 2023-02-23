@@ -1,99 +1,99 @@
 .mainContainer {
-    border-radius: 5px;
-    box-shadow: 3px 3px 5px 2px #9e9e9e;
-    padding: 2%;
-    margin: 2% 0px 0px 0px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px 2px #9e9e9e;
+  padding: 2%;
+  margin: 2% 0px 0px 0px;
 }
 
 .itemCont {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .itemInfo {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 .img {
-    width: 100px;
-    height: 100px;
-    border-radius: 5px;
-    margin-right: 1%;
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  margin-right: 1%;
 }
 
 .infoCont {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .title {
-    color: #707070;
-    font-size: 120%;
-    font-weight: 500;
-    margin-bottom: 0px;
+  color: #707070;
+  font-size: 120%;
+  font-weight: 500;
+  margin-bottom: 0px;
 }
 
 .unitPrice {
-    color: #707070;
-    font-size: 100%;
-    font-weight: 300;
-    margin-bottom: 0px;
+  color: #707070;
+  font-size: 100%;
+  font-weight: 300;
+  margin-bottom: 0px;
 }
 
 .totalPrice {
-    color: #707070;
-    font-size: 110%;
-    font-weight: 500;
+  color: #707070;
+  font-size: 110%;
+  font-weight: 500;
 }
 
 .quantity {
-    margin-top: 10%;
+  margin-top: 10%;
 }
 
 .btnsCont {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .quantityBtns {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .quantityNum {
-    color: #707070;
-    font-size: 100%;
-    font-weight: 500;
-    margin: 1% 30%;
+  color: #707070;
+  font-size: 100%;
+  font-weight: 500;
+  margin: 1% 30%;
 }
 
 .decIncBtns {
-    border-radius: 50%;
-    background-color: white;
-    border: 1px solid #F1E100;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid #f1e100;
 }
 
 .decIncBtns:hover {
-    background-color: #F1E100;
+  background-color: #f1e100;
 }
 
 .deleteBtn {
-    background-color: #F22176;
-    border: 2px solid #F22176;
-    border-radius: 10px;
-    color: white;
-    /* width: 150px; */
-    padding: 1% 3%;
+  background-color: #f22176;
+  border: 2px solid #f22176;
+  border-radius: 10px;
+  color: white;
+  /* width: 150px; */
+  padding: 1% 3%;
 }
 
 .deleteBtn:hover {
-    background-color: white;
-    color: #707070;
+  background-color: white;
+  color: #707070;
 }

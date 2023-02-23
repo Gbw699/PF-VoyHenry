@@ -1,40 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import PlansCardListHome from "../../components/Home/PlanCardListHome";
 import PlansSections from "../../recycle/PlansSections/PlansSections";
 import BlogReview from "../../components/Home/BlogReview";
 // import { Container } from "@mui/material";
 import ProfileCard from "../../recycle/ProfileCard/ProfileCard";
 import style from "./Home.module.css";
-import { useNavigate } from "react-router-dom";
+import PlanForm from "../../components/Home/PlanForm";
 
 export default function Home() {
-  const navigate = useNavigate();
+  const [showPlanForm, setShowPlanForm] = useState(false);
   const handleSubmit = () => {
-    navigate("/plans/create");
+    setShowPlanForm(true);
   };
 
   return (
     <div className={style.container}>
-      <div className={style.profileCont}>
-        <ProfileCard />
-        <button
-          type="submit"
-          className={style.createBtn}
-          onClick={handleSubmit}
-        >
-          Crea tu evento
-        </button>
-      </div>
-      <div className={style.featured}>
-        <h3 className={style.featuredTitle}>Planes Destacados</h3>
-        <hr
-          width="100%"
-          color="#F1E100"
-        />
-        <PlansCardListHome />
-        <BlogReview />
-      </div>
-      <PlansSections />
+      {!showPlanForm && (
+        <div className={style.profileCont}>
+          <ProfileCard />
+          <button
+            type="submit"
+            className={style.createBtn}
+            onClick={handleSubmit}
+          >
+            Crea tu evento
+          </button>
+        </div>
+      )}
+      {!showPlanForm && (
+        <div className={style.featured}>
+          <h3 className={style.featuredTitle}>Planes Destacados</h3>
+          <hr
+            width="100%"
+            color="#F1E100"
+          />
+          <PlansCardListHome />
+          <BlogReview />
+        </div>
+      )}
+      {!showPlanForm && <PlansSections />}
+      {showPlanForm && <PlanForm setShowPlanForm={setShowPlanForm} />}
     </div>
   );
 }
