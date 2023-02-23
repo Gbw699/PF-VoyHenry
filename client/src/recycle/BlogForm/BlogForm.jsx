@@ -3,10 +3,15 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { postBlog } from "../../redux/slices/blogSlice/thunk";
 import style from "./BlogForm.module.css";
+import UploadWidget from "../../components/UploadWidget/UploadWidget";
+import { useState } from "react";
 
 export default function BlogForm({ open, close }) {
+  const [url, setUrl] = useState("");
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
+
+  console.log(url);
 
   if (!open) return null;
   return (
@@ -23,7 +28,7 @@ export default function BlogForm({ open, close }) {
             title: "",
             content: "",
             evaluation: 0,
-            image: "",
+            image: url,
           }}
           validationSchema={Yup.object({
             title: Yup.string()
@@ -86,11 +91,13 @@ export default function BlogForm({ open, close }) {
             >
               Imagen de carátula
             </label>
-            <Field
+            <UploadWidget setUrl={setUrl} />
+            {/* <Field
               name="image"
               type="url"
+              value={url}
             />
-            <ErrorMessage name="image" />
+            <ErrorMessage name="image" /> */}
 
             <button
               type="submit"

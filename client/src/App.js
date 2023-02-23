@@ -21,11 +21,10 @@ import BlogDetail from "./views/Blog/BlogDetail";
 import Auth from "./views/Auth/Auth";
 import Users from "./views/Users/Users";
 import ProfileUser from "./views/ProfileUser/ProfileUser";
-import UploadWidget from "./components/UploadWidget/UploadWidget";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 const cookie = document.cookie.split("=");
-axios.defaults.headers.common["Authorization"] = `Bearer ${cookie[2]}`;
+axios.defaults.headers.common["Authorization"] = `Bearer ${cookie[1]}`;
 
 function App() {
   useEffect(() => {}, [document.cookie]);
