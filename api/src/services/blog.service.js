@@ -45,6 +45,15 @@ class blogService {
     if (query.limit) {
 
       options.limit = query.limit;
+      if (query.page) {
+        const page = parseInt(query.page);
+        if (isNaN(page) || page < 1) {
+          throw new CustomError('Page not found', 404);
+        }
+        options.offset = (page - 1) * (options.limit || query.limit);
+      }
+
+
     }
 
     if (query.offset) {

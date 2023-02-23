@@ -2,6 +2,7 @@ const { DataTypes } = require('sequelize')
 const sequelize = require('../database/database')
 const plans = require('./plans.model');
 const blogs = require('./blog-model')
+const comments = require('./comments.users')
 
 const users = sequelize.define('users', {
 
@@ -72,5 +73,46 @@ plans.belongsToMany(users, { foreignKey:"Planid", through: 'users_votes_plans' }
 
 users.belongsToMany(blogs, { foreignKey:"userNickName", through: 'users_votes_blogs' });
 blogs.belongsToMany(users, { foreignKey:"blogid", through: 'users_votes_blogs' });
+
+users.belongsToMany(plans, { foreignKey:"userNickName", through: 'users_comments_plans' });
+plans.belongsToMany(users, { foreignKey:"plansid", through: 'users_comments_plans' });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+users.belongsToMany(comments, { foreignKey:"userNickName", through: 'comments_users' });
+comments.belongsToMany(users, { foreignKey:"commentid", through: 'comments_users' });
+
+comments.belongsToMany(plans, { foreignKey:"commentid", through: 'comments_plans' });
+plans.belongsToMany(comments, { foreignKey:"plansid", through: 'comments_plans' });
+
+
+
+
+
+
+
+
+// users.belongsToMany(comments, {as: "user", foreignKey:"NickName", through: 'users_comments' });
+// comments.belongsToMany(users, {as: "commentuser", foreignKey:"userNickName", through: 'users_comments' })
+// comments.belongsToMany(plans, {as:"commentplans", foreignKey:"userNickName", through: 'users_comments' })
+// plans.belongsToMany(plans, {as:"plans", foreignKey:"planid", through: 'users_comments' });
 
 module.exports = users;

@@ -1,7 +1,8 @@
 const plansModel = require('../libs/models/plans.model');
 const { CustomError } = require('../middlewares/error.handler');
-const { Op } = require("sequelize");
+const { Op, where } = require("sequelize");
 const users = require('../libs/models/users.model.js');
+const comments = require('../libs/models/comments.users.js')
 const sequelize = require('../libs/database/database');
 
 
@@ -144,6 +145,162 @@ class PlansService {
       }
     };
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* Create Plan */
+
+ async createComment (id, { userNickName, comment }) {
+
+
+    const searchname = await users.findOne({where: { nickName: userNickName }  });
+
+    const searchplan = await plansModel.findOne({where: {id: id}});
+
+
+
+   const newCom = await  comments.create({
+
+   content: comment
+
+  })
+  const commentUserTable = await sequelize.models.comments_users.create({
+
+    userNickName: userNickName,
+
+    commentid: newCom.id
+  })
+
+  const commentPlanTable = await sequelize.models.comments_plans.create({
+
+    plansid: id,
+
+    commentid: newCom.id
+  })
+
+
+  return {
+    message: "Create",
+    data: {
+      newCom,
+      commentUser: commentUserTable,
+      commentPlans: commentPlanTable
+
+    }
+  }}
+  // const plan = await plansModel.findOne({
+  //   where: {
+  //     id: id
+  //   }
+  // })
+
+  // if (plan === null) {
+  //   throw new CustomError("Plan not found", 404)
+  // }
+
+  // plan.comment += comment
+
+
+  // await plan.save()
+
+  // return plan;
+
+
+
+  // const userPlanTable = await sequelize.models.users_commemt_plans.create({
+
+  //   userNickName: userNickName,
+
+  //   Planid: newPlan.id
+  // })
+
+
+
+
+
+  // return {
+  //   message: "Create",
+  //   data: {
+  //     newPlan,
+  //     user: searchname,
+  //     userPlanTable: userPlanTable
+  //   }
+  // };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  async getComment (id) {
+
+
+
+    const getCommentid = await sequelize.models.comments_plans.findAll({where: { plansid: id }  })
+
+    let arrayComment = []
+
+    const getComment = getCommentid.map(async comment => {
+      //{where:{id: comment.dataValues.commentid}}
+     // await sequelize.models.comments_plans.findAll({where:{id: comment.dataValues.commentid}})
+      let data = await sequelize.models.comments_plans.findAll({where:{id: comment.dataValues.commentid}})
+      // arrayComment.push(data)
+        return [...arrayComment, data]
+    })
+    console.log(getComment)
+
+
+    if (getCommentid === null|| getCommentid.length === 0) {
+      throw new CustomError("This comment don't exist", 404)
+    } else {
+      return getCommentid.dataValues.commentid
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   /* Update user */
 
