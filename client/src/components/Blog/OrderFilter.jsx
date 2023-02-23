@@ -9,22 +9,25 @@ export default function OrderFilter({ filters, setFilters }) {
         color="#F1E100"
       />
       <button
+        className={style.buttonOrder}
         value="alfabetico"
         onClick={(event) =>
           setFilters({ ...filters, order: event.target.value })
         }
       >
-        AZ
+        A - Z
       </button>
       <button
+        className={style.buttonOrder}
         value="reverso"
         onClick={(event) =>
           setFilters({ ...filters, order: event.target.value })
         }
       >
-        ZA
+        Z - A
       </button>
       <button
+        className={style.button}
         value="masvotados"
         onClick={(event) =>
           setFilters({ ...filters, order: event.target.value })
@@ -33,6 +36,7 @@ export default function OrderFilter({ filters, setFilters }) {
         Más votados
       </button>
       <button
+        className={style.button}
         value="menosvotados"
         onClick={(event) =>
           setFilters({ ...filters, order: event.target.value })
