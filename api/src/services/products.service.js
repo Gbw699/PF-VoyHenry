@@ -1,5 +1,6 @@
 const productModel = require('../libs/models/products.model')
 const { CustomError } = require('../middlewares/error.handler')
+const mercadopago = require('../utils/mercadopago')
 
 class ProductsService {
 
@@ -123,12 +124,37 @@ class ProductsService {
 
   async buyOne ({title, price}){
 
+    let preference = {
+      items: [
+        {
+          title: title,
+          unit_price: price,
+          quantity: 1,
+        }
+      ]
+    };
+
+    return preference
   }
 
   /* Chackour */
-  async checkOut () {
+  async checkOut (body) {
+
+    let preference = {
+      items: [
+        {
+          title: title,
+          unit_price: price,
+          quantity: 1,
+        }
+      ]
+    }
+
+
     
   }
+
+
 }
 
 module.exports = ProductsService;
