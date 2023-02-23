@@ -9,13 +9,20 @@ class ProductsService {
 
   /* create product */
 
-  async create ({ title, price, detail, mainImage, availability}) {
+  async create ({ title, price, detail, mainImage, availability, category, images}) {
 
     const newProduct = await productModel.create({
+
       title: title,
       price: price,
+
+      category: category,
+
       detail: detail,
       mainImage: mainImage,
+
+      images: images,
+
       availability: availability,
     })
 
@@ -37,11 +44,9 @@ class ProductsService {
       order: [['id', 'ASC']]
     }
 
-
-
     if (query.order){
       if (query.order == 'alfabetico'){
-        
+
         options.order = [['title', 'ASC']]
       } else if (query.order == 'reverso'){
 
@@ -50,15 +55,27 @@ class ProductsService {
 
         options.order = [['price', 'ASC']]
       } else if (query.order == 'descendente') {
-    
+
         options.order = [['price', 'DESC']]
+      }
+    }
+
+    if (query.category) {
+      options.where = {
+        category: query.category
+      }
+    }
+
+    if (query.availability) {
+      options.where = {
+        available: query.availability === 'true'
       }
     }
 
     const products = await productModel.findAll(options)
     return {products}
 
-  }        
+  }
 
   /* find one product */
 
@@ -76,7 +93,7 @@ class ProductsService {
 
   /* Update product */
 
-  async update ( id, { title, price, detail, mainImage, availability}) {
+  async update ( id, { title, price, detail, mainImage, availability,category, images}) {
 
     const product = await productModel.findByPk(id)
 
@@ -89,6 +106,8 @@ class ProductsService {
     product.detail = detail || product.detail
     product.mainImage = mainImage || product.mainImage
     product.availability = availability || product.availability
+    product.category = category || product.category
+    product.images = images || product.images
 
     await product.save()
 
