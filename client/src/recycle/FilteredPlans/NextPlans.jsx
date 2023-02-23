@@ -29,7 +29,7 @@ export default function CurrentPlans() {
 
     return (
       <div className={style.cardCont}>
-        <h3 className={style.cardTitle}>Planes Finalizados</h3>
+        <h3 className={style.cardTitle}>Próximos Planes</h3>
         <hr
           width="100%"
           color="#F1E100"
