@@ -3,15 +3,13 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { postBlog } from "../../redux/slices/blogSlice/thunk";
 import style from "./BlogForm.module.css";
-import UploadWidget from "../../components/UploadWidget/UploadWidget";
+import UploadWidget from "../UploadWidget/UploadWidget";
 import { useState } from "react";
 
 export default function BlogForm({ open, close }) {
   const [url, setUrl] = useState("");
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
-
-  console.log(url);
 
   if (!open) return null;
   return (
@@ -28,7 +26,6 @@ export default function BlogForm({ open, close }) {
             title: "",
             content: "",
             evaluation: 0,
-            image: url,
           }}
           validationSchema={Yup.object({
             title: Yup.string()
@@ -42,9 +39,10 @@ export default function BlogForm({ open, close }) {
               .min(0, "Debe ser mayor o igual que 0")
               .max(5, "Debe ser menor o igual que 5")
               .required("La valoración es obligatoria"),
-            image: Yup.string().url(),
           })}
           onSubmit={(values) => {
+            values = { ...values, image: url };
+            setUrl("");
             dispatch(postBlog(values));
           }}
         >
@@ -91,12 +89,22 @@ export default function BlogForm({ open, close }) {
             >
               Imagen de carátula
             </label>
-            <UploadWidget setUrl={setUrl} />
+            <UploadWidget
+              url={url}
+              setUrl={setUrl}
+            />
+            <div className={style.imgContainer}>
+              <img
+                className={style.img}
+                src={url}
+                alt=""
+              />
+            </div>
             {/* <Field
               name="image"
               type="url"
               value={url}
-            />
+              />
             <ErrorMessage name="image" /> */}
 
             <button
