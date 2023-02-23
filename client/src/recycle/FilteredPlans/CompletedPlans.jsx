@@ -13,7 +13,7 @@ export default function CurrentPlans() {
       );
       setPlansData(response.data.plans.plans);
     }
-    fetchData()
+    fetchData();
   }, []);
 
   if (!plansData) {
@@ -25,7 +25,6 @@ export default function CurrentPlans() {
   }
 
   if (plansData) {
-
     const plans = [plansData[0], plansData[1]];
 
     return (

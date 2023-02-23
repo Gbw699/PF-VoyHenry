@@ -8,7 +8,6 @@ import style from "./Home.module.css";
 import PlanForm from "../../components/Home/PlanForm";
 
 export default function Home() {
-
   const [showPlanForm, setShowPlanForm] = useState(false);
   const handleSubmit = () => {
     setShowPlanForm(true);
