@@ -141,17 +141,19 @@ class ProductsService {
   async checkOut (body) {
 
     let preference = {
-      items: [
-        {
-          title: title,
-          unit_price: price,
-          quantity: 1,
-        }
-      ]
+      items: []
     }
 
+    body.forEach((products) => {
+      preference.items.push({
+        title: products.title,
+        unit_price: products.price,
+        quantity: products.quantity
+      })
+    });
 
-    
+    console.log(preference)
+
   }
 
 
