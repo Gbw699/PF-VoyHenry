@@ -3,13 +3,12 @@ const ProductsService = require('../services/products.service')
 const { checkAdminRole } = require('../middlewares/auth.handler')
 const passport = require('passport')
 const validatorHandler = require('../middlewares/validator.handler')
-const { createProductSchema, getProductSchema, updateProductSchema, buyProductSchema } = require('../schemas/products.schema')
-//mercadopago
-const mercadopago = require("mercadopago");
-require('dotenv').config();
+const { createProductSchema, getProductSchema, updateProductSchema, buyProductSchema } = require('../schemas/products.schema');
+const { mercadopagoconfig } = require('../libs/mercadopago/mercadopago');
 
 
 
+mercadopagoconfig()
 const router = Router();
 const service = new ProductsService()
 
@@ -117,7 +116,7 @@ router.delete('/:id',
 
 
 
-const {
+/* const {
   ACCES_TOKEN
 } = process.env
 
@@ -125,7 +124,7 @@ const {
 // Agrega credenciales
 mercadopago.configure({
   access_token: ACCES_TOKEN
-});
+}); */
 
 /* Buy One Product */
 
