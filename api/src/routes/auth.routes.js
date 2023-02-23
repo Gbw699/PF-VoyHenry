@@ -26,6 +26,21 @@ router.post('/login',
 
 });
 
+/* login with google*/
+
+router.post('/login/google',
+  async (req, res, next) => {
+
+    try {
+
+      res.send("ando")
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
 /* recovery pass */
 
 router.post('/recovery',
