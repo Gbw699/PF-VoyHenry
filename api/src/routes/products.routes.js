@@ -116,7 +116,7 @@ router.delete('/:id',
 
 router.post('/buy',
   validatorHandler(buyProductSchema, 'body'),
-/*   passport.authenticate('jwt', {session: false}), */
+  passport.authenticate('jwt', {session: false}),
   async (req, res, next) => {
     try {
 

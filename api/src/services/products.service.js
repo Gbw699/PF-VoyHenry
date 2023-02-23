@@ -140,7 +140,7 @@ class ProductsService {
         pendig: ''
       },
       auto_return: 'approved',
-      binary_mode: true, //solo tarjetas no pagos efectivo pendientes
+      binary_mode: true,
     };
 
     const response = await mercadopago.preferences.create(preference)
