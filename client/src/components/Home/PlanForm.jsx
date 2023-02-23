@@ -1,15 +1,17 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { postPlan } from "../../redux/slices/planSlice/thunk";
 import style from "./PlanForm.module.css";
 
-export default function FormSignUp() {
+export default function FormSignUp(props) {
+  const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const currentDate = new Date();
   const greaterDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
+  const handleClick = () => {
+    props.setShowPlanForm(false);
+  };
 
   return (
     <div className={style.container}>
@@ -41,18 +43,20 @@ export default function FormSignUp() {
           eventDate: Yup.date()
             .min(new Date(greaterDate))
             .required("La fecha del evento es obligatoria"),
-          state: Yup.string()
+          state: Yup.string(),
+          evaluation: Yup.number(),
         })}
         onSubmit={(values) => {
           const obj = {
-            userNickName: values.name,
+            userNickName: user.nickName,
             title: values.title,
             summary: values.summary,
             description: values.description,
             mainImage: values.mainImage,
             images: [values.images],
             eventDate: values.eventDate,
-            state: "En planeacion"
+            state: "En planeacion",
+            evaluation: 2
           };
           dispatch(postPlan(obj));
           console.log(obj);
@@ -63,14 +67,6 @@ export default function FormSignUp() {
             <h2 className={style.title}>CREA TU PLAN</h2>
             <hr color="#F1E100" width="100%" />
             <div className={style.formSubCont}>
-              {/* ------------------------------------------------------------------------- */}
-              <label htmlFor="name" className={style.formTitle}>Nick Name</label>
-              <Field
-                name="name"
-                type="text"
-                className={style.formInputs}
-              />
-              <ErrorMessage name="name" />
               {/* ------------------------------------------------------------------------- */}
               <label htmlFor="title" className={style.formTitle}>Título</label>
               <Field
@@ -125,7 +121,7 @@ export default function FormSignUp() {
           </div>
         </Form>
       </Formik>
-      <button onClick={() => navigate("/home")} className={style.backBtn}>Volver</button>
+      <button onClick={handleClick} className={style.backBtn}>Volver</button>
     </div>
   );
 }

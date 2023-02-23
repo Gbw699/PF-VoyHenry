@@ -5,23 +5,15 @@ import style from "./GeolocationForm.module.css";
 
 export default function FilterByRating() {
     const dispatch = useDispatch();
-    const handleSelectChange = (event) => {
-
-        const selectedRating = parseFloat(event.target.value);
-        dispatch(getPlansbyOrder("rating",selectedRating));
+    const handleClick = (event) => {
+        const selectedRating = event.target.value;
+        dispatch(getPlansbyOrder("rating", selectedRating));
     };
     return (
         <div>
             <h3 className={style.filterTitle}>Valoración</h3>
-            <select id="ratingSelect" name="ratingSelect" onChange={handleSelectChange} className={style.inputs}>
-                <option value="">Select a rating</option>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
+            <button value="masvotados" onClick={handleClick}>Mas votados</button>
+            <button value="menosvotados" onClick={handleClick}>Menos votados</button>
             <hr />
         </div>
     );

@@ -102,7 +102,7 @@ export const postPlan = (obj) => {
       await axios.post("/api/v1/plans", {
         ...obj,
       });
-      console.log("El plan se creó correctamente");
+      window.alert("El plan se creó correctamente");
     } catch (error) {
       console.log(error.message);
     }
