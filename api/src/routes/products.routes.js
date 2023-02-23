@@ -64,6 +64,29 @@ router.post('/',
 
 });
 
+
+/* BuyProduct */
+
+router.post('/buy',
+  validatorHandler(createProductSchema, 'body'),
+  passport.authenticate('jwt', {session: false}),
+  checkAdminRole,
+  async (req, res, next) => {
+    try {
+
+      const body = req.body;
+
+      const createdProduct = await service.create(body)
+
+      res.json(createdProduct)
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
+
 /* update product info */
 
 router.patch('/:id',
