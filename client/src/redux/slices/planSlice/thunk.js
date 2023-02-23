@@ -1,4 +1,5 @@
 import axios from "axios";
+import { queryString } from "./queryStringPlan.js";
 import {
   setPlansSearch,
   setLimitPlans,
@@ -6,7 +7,8 @@ import {
   setPlansPerPage,
   setTotalPages,
   setPlansByDate,
-  setPlanById
+  setPlanById,
+  setPlansbyOrder,
 } from "./planSlice";
 
 export const getPlansSearch = (content) => {
@@ -103,6 +105,19 @@ export const postPlan = (obj) => {
       console.log("El plan se creó correctamente");
     } catch (error) {
       console.log(error.message);
+    }
+  };
+};
+
+export const getPlansbyOrder = (filter, order) => {
+  const queryUrl = queryString(filter, order);
+  console.log(queryUrl.slice(0,-1));
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/api/v1/plans?${queryUrl.slice(0,-1)}`);
+      dispatch(setPlansbyOrder(response.data.plans.plans));
+    } catch (error) {
+      console.log("No se pudo realizar la petición:", error.message);
     }
   };
 };

@@ -38,15 +38,6 @@ class ProductsService {
     }
 
 
-    if (query.price) {
-      if (query.price == 'ascendente') {
-
-        options.order = [['price', 'ASC']]
-      } else if (query.price == 'descendente') {
-    
-        options.order = [['price', 'DESC']]
-      }
-    }
 
     if (query.order){
       if (query.order == 'alfabetico'){
@@ -55,6 +46,12 @@ class ProductsService {
       } else if (query.order == 'reverso'){
 
         options.order = [['title', 'DESC']]
+      } else if (query.order == 'ascendente') {
+
+        options.order = [['price', 'ASC']]
+      } else if (query.order == 'descendente') {
+    
+        options.order = [['price', 'DESC']]
       }
     }
 

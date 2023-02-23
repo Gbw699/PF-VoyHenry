@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import countriesData from "../../countries.json";
+import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
 import style from "./GeolocationForm.module.css";
 
 export default function FilterByCities() {
+  const dispatch = useDispatch();
 
   const countries = countriesData.data;
   const [provinces, setProvinces] = useState([]);
@@ -13,13 +16,13 @@ export default function FilterByCities() {
     setSelectedCountry(event.target.value);
     const provincesData = countries.find(country => country.country === event.target.value);
     setProvinces(provincesData.province);
-    console.log(event.target.value);
+    dispatch(getPlansbyOrder(event.target.value));
   }
 
   function handleProvinceChange(event) {
     setSelectedProvince(event.target.value);
     // Acá tengo que dispatchar la action para que renderPlans (estado global) sea por provincias
-    console.log(event.target.value);
+    dispatch(getPlansbyOrder(event.target.value));
   }
 
   return (
@@ -39,6 +42,7 @@ export default function FilterByCities() {
           ))}
         </select>
       )}
+      <hr />
     </div>
   );
 }
