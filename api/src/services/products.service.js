@@ -125,13 +125,15 @@ class ProductsService {
   async buyOne ({title, price}){
 
     let preference = {
+      binary_mode: true,//pago aprobado o rechazado
       items: [
         {
           title: title,
           unit_price: price,
           quantity: 1,
         }
-      ]
+      ],
+ 
     };
 
     return preference
