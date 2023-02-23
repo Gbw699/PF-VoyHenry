@@ -26,6 +26,28 @@ router.post('/login',
 
 });
 
+/* login with google */
+
+router.get('/login/google',
+  passport.authenticate('google', { session: false, scope: ['profile', 'email', 'https://www.googleapis.com/auth/user.birthday.read', 'https://www.googleapis.com/auth/user.gender.read']})
+);
+
+/* login with google callback */
+
+router.get('/login/google/callback',
+  passport.authenticate('google', { session: false, scope: ['profile', 'email', 'https://www.googleapis.com/auth/user.birthday.read', 'https://www.googleapis.com/auth/user.gender.read']}),
+  async (req, res, next) => {
+
+    try {
+
+      res.send("Logged")
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
 /* recovery pass */
 
 router.post('/recovery',
