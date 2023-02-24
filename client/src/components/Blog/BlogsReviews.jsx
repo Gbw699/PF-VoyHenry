@@ -1,26 +1,23 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getBlogs } from "../../redux/slices/blogSlice/thunk";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import BlogFilters from "./BlogFilters";
 import BlogReview from "../../recycle/BlogReview/BlogReview";
 import style from "./BlogsReviews.module.css";
 import { Pagination } from "@mui/material";
 
 export default function BlogsReviews() {
-  const dispatch = useDispatch();
+  const [pagePagination, setPagePagination] = useState(1);
 
   const allBlogs = useSelector((state) => state.blogStore.allBlogs);
   let { blogs, page, pages } = allBlogs;
 
   const handlePageChange = (event, value) => {
-    dispatch(getBlogs(value));
+    setPagePagination(value);
   };
-
-  useEffect(() => {
-    dispatch(getBlogs(1));
-  }, []);
 
   return (
     <div className={style.container}>
+      <BlogFilters pagePagination={pagePagination} />
       <div className={style.cardsCont}>
         {blogs?.blogs.map((blog) => {
           return (

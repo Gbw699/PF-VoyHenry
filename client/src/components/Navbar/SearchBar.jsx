@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getBlogsSearch } from "../../redux/slices/blogSlice/thunk";
 import { getPlansSearch } from "../../redux/slices/planSlice/thunk";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import style from "./SearchBar.module.css";
 
 export default function SearchBar() {
@@ -11,19 +11,8 @@ export default function SearchBar() {
 
   const [input, setInput] = useState("");
 
-  useEffect(() => {
-    const delayFn = setTimeout(() => {
-      if (input) {
-        handleSearch(input);
-      }
-    }, 500);
-
-    return () => {
-      clearTimeout(delayFn);
-    };
-  }, [input]);
-
   const handleSearch = (input) => {
+    
     if (location.pathname === "/blog") dispatch(getBlogsSearch(input));
     if (location.pathname === "/plans") dispatch(getPlansSearch(input));
   };
@@ -38,8 +27,9 @@ export default function SearchBar() {
         className={style.searchInput}
       />
       <button
-        type="submit"
+        type="button"
         className={style.searchBtn}
+        onClick={() => handleSearch(input)}
       >
         Buscar
       </button>
