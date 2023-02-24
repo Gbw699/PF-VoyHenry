@@ -15,14 +15,8 @@ router.get('/', async (req, res, next) => {
 
     const page = req.query.page || 1
     const blogs = await service.find(req.query, page)
-
-    let pages = ''
-
-    if (blogs.blogsInFilter <= 3){
-      pages = 1
-    } else {
-      pages = Math.ceil(blogs.blogsInFilter / 3)
-    }
+    const count = await service.count(req.query);
+    const pages = Math.ceil(count / 3);
 
     const pageNumber = parseInt(page);
     const response = { blogs, pageNumber, pages }
