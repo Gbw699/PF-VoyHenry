@@ -47,6 +47,9 @@ class UsersService {
 
   async createWithGoogle ({nickName, email, firstName, lastName, image, genre, dateOfBirth}) {
 
+    dateOfBirth = new Date(dateOfBirth);
+    dateOfBirth.setHours(dateOfBirth.getHours() + Math.abs(dateOfBirth.getTimezoneOffset() / 60));
+
     const newUser = await usersModel.findOrCreate({
       where: {
         nickName: nickName,
