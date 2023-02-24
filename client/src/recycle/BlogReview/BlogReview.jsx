@@ -43,7 +43,7 @@ export default function BlogReview({ blog }) {
               <p className={style.infoDescription}>{blog.content}</p>
               <p className={style.infoValoration}>
                 Valoración:{" "}
-                <span className={style.infoValNum}>{blog.evaluation}</span>
+                <span className={style.infoValNum}>{blog.average}</span>
               </p>
             </div>
           </NavLink>
