@@ -15,7 +15,7 @@ const marketPlaceSlice = createSlice({
       state.detailProduct = [action.payload];
     },
     setProductsByOrder: (state, action) => {
-      state.renderProducts = [...action.payload];
+      state.renderProducts = action.payload;
     },
   },
 });

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import CategoryFilter from "./CategoryFilter";
 import OrderFilter from "./OrderFilter";
 import AvailabilityFilter from "./AvailabilityFilter";
-import { getProducts } from "../../redux/slices/marketPlaceSlice/thunk";
+import { getProducts, getProductsByOrder } from "../../redux/slices/marketPlaceSlice/thunk";
 import style from "./Filters.module.css";
 // import productMarketPlace from "../../marketPlace.json";
 
@@ -17,27 +17,30 @@ export default function Filters() {
     availability: "",
   });
 
-  // const handleFilterChange = () => {
-  //   dispatch(getProducts(filters)), [filters];
-  // };
+  const handleFilterChange = () => {
+    dispatch(getProductsByOrder(filters)), [filters];
+  };
 
-  useEffect(() => {
-    dispatch(getProducts(filters));
-  }, [filters]);
+  // useEffect(() => {
+  //   dispatch(getProducts(filters));
+  // }, [filters]);
 
   return (
     <div className={style.container}>
       <CategoryFilter
         filters={filters}
         setFilters={setFilters}
+        onChange={handleFilterChange}
       />
       <OrderFilter
         filters={filters}
         setFilters={setFilters}
+        onChange={handleFilterChange}
       />
       <AvailabilityFilter
         filters={filters}
         setFilters={setFilters}
+        onChange={handleFilterChange}
       />
     </div>
   );
