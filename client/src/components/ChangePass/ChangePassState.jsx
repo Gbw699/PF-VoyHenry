@@ -1,5 +1,6 @@
 import PassInput from "./PassInput";
 import Submit from "./Submit";
+import InputErrors from "./InputErrors";
 import { useState } from "react";
 
 export default function ChangePassState() {
@@ -18,6 +19,12 @@ export default function ChangePassState() {
         value={"firstPass"}
       >
       </PassInput>
+
+      <InputErrors
+        pass={pass.firstPass}
+      >
+      </InputErrors>
+
       <PassInput
         tittle={"Repeat Pass"}
         pass={pass}
@@ -25,6 +32,12 @@ export default function ChangePassState() {
         value={"secondPass"}
       >
       </PassInput>
+
+      <InputErrors
+        pass={pass.secondPass}
+      >
+      </InputErrors>
+
       <Submit
         pass={pass}
         token={token}

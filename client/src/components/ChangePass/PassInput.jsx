@@ -9,7 +9,8 @@ export default function PassInput({tittle, set, value, pass}) {
       <p>{tittle}</p>
 
       <input
-      onChange={handlerOnChange}
+        type="password"
+        onChange={handlerOnChange}
       >
       </input>
     </>
