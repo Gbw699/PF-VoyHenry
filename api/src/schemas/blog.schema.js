@@ -17,7 +17,7 @@ const createBlogSchema = Joi.object({
   image: image.required(),
   title: title.required(),
   content: content.required(),
-  evaluation: evaluation.required()
+  stars: stars.required()
 
 })
 
@@ -25,7 +25,7 @@ const updateSchema = Joi.object({
   userNickName: userNickName,
   title: title,
   content: content,
-  evaluation: evaluation,
+  stars: stars,
   image: image
  })
 

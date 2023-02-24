@@ -36,9 +36,11 @@ class blogService {
       } else if (query.order === 'reverso') {
         options.order = [['title', 'DESC']];
       } else if (query.order === 'masvotados') {
-        options.order = [[sequelize.literal('stars/votes'), 'DESC']];
+
+        options.order = [[sequelize.literal('average'), 'DESC']];
+
       } else if (query.order === 'menosvotados') {
-        options.order = [[sequelize.literal('stars/votes'), 'ASC']];
+        options.order = [[sequelize.literal('average'), 'ASC']];
       }
     }
 
@@ -93,7 +95,7 @@ async findOne (id) {
 
   /* Create Blog */
 
-async create (  {userNickName, title , content, evaluation, image} ){
+async create (  {userNickName, title , content, stars, image} ){
 
   const searchname = await users.findOne({where: { nickName: userNickName }  });
 
@@ -103,7 +105,7 @@ async create (  {userNickName, title , content, evaluation, image} ){
     image: image,
     title: title,
     content: content,
-    evaluation: evaluation,
+    stars: stars,
   })
 
     const userBlogTable = await sequelize.models.users_votes_blogs.create({
