@@ -163,7 +163,8 @@ class ProductsService {
     };
 
     const response = await mercadopago.preferences.create(preference)
-    return response
+    
+    return response.body.init_point
   }
 
   /* Chackour */
@@ -189,8 +190,6 @@ class ProductsService {
     });
 
     const response = await mercadopago.preferences.create(preference)
-
-    console.log(response.body.init_point)
 
     return response.body.init_point
   }
