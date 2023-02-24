@@ -10,7 +10,8 @@ export default function IHaveAccess({ whereAmI }) {
       document.cookie === "" &&
       whereAmI !== "/logIn" &&
       whereAmI !== "/" &&
-      whereAmI !== "/signUp"
+      whereAmI !== "/signUp" &&
+      whereAmI !== "/recoveryPass" 
     ) {
       navigate("/logIn");
     }
