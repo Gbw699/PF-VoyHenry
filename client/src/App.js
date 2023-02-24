@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import { ProductContextProvider } from "./context/ProductContext";
 import "./App.css";
 import axios from "axios";
 import NavBar from "./components/Navbar/Navbar";
@@ -31,7 +32,7 @@ function App() {
 
   const location = useLocation();
   return (
-    <div>
+    <ProductContextProvider>
       {location.pathname !== "/" &&
         location.pathname !== "/signUp" &&
         location.pathname !== "/logIn" && <NavBar />}
@@ -111,7 +112,7 @@ function App() {
       {location.pathname !== "/" &&
         location.pathname !== "/signUp" &&
         location.pathname !== "/logIn" && <Footer />}
-    </div>
+    </ProductContextProvider>
   );
 }
 

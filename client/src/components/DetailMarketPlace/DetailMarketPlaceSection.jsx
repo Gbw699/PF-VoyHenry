@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import DetailMarketPlaceDescription from "./DetailMarketPlaceDescription";
 import DetailMarketPlaceImgPrice from "./DetailMarketPlaceImgPrice";
 import style from "./DetailMarketPlaceSection.module.css";
-import detailProductMarketPlace from "../../marketPlace.json";
 import { useParams, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/slices/marketPlaceSlice/thunk";
@@ -20,6 +19,7 @@ export default function DetailMarketPlaceSection() {
       <div className={style.itemCont}>
         {products.map((element) => (
           <DetailMarketPlaceImgPrice
+            id={element.id}
             key={element.id}
             image={element.mainImage}
             // imageExtra={element.images}
