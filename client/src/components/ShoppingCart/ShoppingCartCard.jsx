@@ -1,28 +1,27 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
+import ItemCount from "../DetailMarketPlace/ItemCount";
 import style from "./ShoppingCartCard.module.css";
 
 export default function ShoppingCartCard({
+  id,
   image,
   title,
   unitPrice,
-  totalPrice,
   quantity,
+  deleteProductAlert,
 }) {
-  const [backgroundImage, setBackgroundImage] = useState("");
-
-  useEffect(() => {
-    setBackgroundImage(`url(${image})`);
-  });
+  const [counter, setCounter] = useState(quantity);
 
   return (
     <div className={style.mainContainer}>
       <div className={style.itemCont}>
         <div className={style.itemInfo}>
-          <div
-            className={style.img}
-            style={{ backgroundImage: backgroundImage }}
-          />
+          <div>
+            <img
+              src={image}
+              alt={title}
+            />
+          </div>
           <div className={style.infoCont}>
             <div>
               <h5 className={style.title}>{title}</h5>
@@ -31,19 +30,22 @@ export default function ShoppingCartCard({
                 width="100%"
               />
               <p className={style.unitPrice}>Precio unitario: ${unitPrice}</p>
-              <p className={style.totalPrice}>Total: ${totalPrice}</p>
+              <p className={style.totalPrice}>Total: ${unitPrice * counter}</p>
             </div>
             <div className={style.quantity}>
               <p className={style.unitPrice}>Cantidad:</p>
               <div className={style.btnsCont}>
                 <div className={style.quantityBtns}>
-                  <button className={style.decIncBtns}>-</button>
-                  <p className={style.quantityNum}>{quantity}</p>
-                  <button className={style.decIncBtns}>+</button>
+                  <ItemCount
+                    quantity={counter}
+                    product={id}
+                    setCounter={setCounter}
+                  />
                 </div>
                 <button
                   type="submit"
                   className={style.deleteBtn}
+                  onClick={() => deleteProductAlert(id)}
                 >
                   Quitar
                 </button>
