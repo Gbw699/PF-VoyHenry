@@ -1,20 +1,22 @@
-const mercadopago = require('mercadopago')
-const productModel = require('../libs/models/products.model')
-const { CustomError } = require('../middlewares/error.handler')
-
+const mercadopago = require('mercadopago');
+const productModel = require('../libs/models/products.model');
+const { CustomError } = require('../middlewares/error.handler');
 
 class ProductsService {
-
-  constructor(){
-
-  }
+  constructor() {}
 
   /* create product */
 
-  async create ({ title, price, detail, mainImage, availability, category, images}) {
-
+  async create({
+    title,
+    price,
+    detail,
+    mainImage,
+    availability,
+    category,
+    images,
+  }) {
     const newProduct = await productModel.create({
-
       title: title,
       price: price,
 
@@ -26,124 +28,112 @@ class ProductsService {
       images: images,
 
       availability: availability,
-    })
+    });
 
     return {
-      message: "Create",
+      message: 'Create',
       data: {
-        newProduct
-      }
-    }
-
+        newProduct,
+      },
+    };
   }
 
   /* find all products || Filter*/
 
-  async find (query) {
-
+  async find(query) {
     const options = {
+      order: [['id', 'ASC']],
+    };
 
-      order: [['id', 'ASC']]
-    }
-
-    if (query.order){
-      if (query.order == 'alfabetico'){
-
-        options.order = [['title', 'ASC']]
-      } else if (query.order == 'reverso'){
-
-        options.order = [['title', 'DESC']]
+    if (query.order) {
+      if (query.order == 'alfabetico') {
+        options.order = [['title', 'ASC']];
+      } else if (query.order == 'reverso') {
+        options.order = [['title', 'DESC']];
       } else if (query.order == 'ascendente') {
-
-        options.order = [['price', 'ASC']]
+        options.order = [['price', 'ASC']];
       } else if (query.order == 'descendente') {
-
-        options.order = [['price', 'DESC']]
+        options.order = [['price', 'DESC']];
       }
     }
 
     if (query.category) {
       options.where = {
-        category: query.category
-      }
+        category: query.category,
+      };
     }
 
     if (query.availability) {
       options.where = {
-        available: query.availability === 'true'
-      }
+        available: query.availability === 'true',
+      };
     }
 
-    const products = await productModel.findAll(options)
-    return {products}
-
+    const products = await productModel.findAll(options);
+    return { products };
   }
 
   /* find one product */
 
-  async findOne (id) {
-
-    const product = await productModel.findByPk(id)
+  async findOne(id) {
+    const product = await productModel.findByPk(id);
 
     if (product === null) {
-      throw new CustomError("Product not found", 404)
+      throw new CustomError('Product not found', 404);
     }
 
-    return product
-
+    return product;
   }
 
   /* Update product */
 
-  async update ( id, { title, price, detail, mainImage, availability,category, images}) {
-
-    const product = await productModel.findByPk(id)
+  async update(
+    id,
+    { title, price, detail, mainImage, availability, category, images }
+  ) {
+    const product = await productModel.findByPk(id);
 
     if (product === null) {
-      throw new CustomError("Product not found", 404)
+      throw new CustomError('Product not found', 404);
     }
 
-    product.title =  title || product.title
-    product.price = price || product.price
-    product.detail = detail || product.detail
-    product.mainImage = mainImage || product.mainImage
-    product.availability = availability || product.availability
-    product.category = category || product.category
-    product.images = images || product.images
+    product.title = title || product.title;
+    product.price = price || product.price;
+    product.detail = detail || product.detail;
+    product.mainImage = mainImage || product.mainImage;
+    product.availability = availability || product.availability;
+    product.category = category || product.category;
+    product.images = images || product.images;
 
-    await product.save()
+    await product.save();
 
     return product;
-
   }
 
   /* delete one product */
 
-  async delete (id) {
-
+  async delete(id) {
     const deletedProduct = await productModel.destroy({
       where: {
-        id: id
-      }
-    })
+        id: id,
+      },
+    });
 
-    if (deletedProduct === 0){
-      throw new CustomError("Product not found", 404)
+    if (deletedProduct === 0) {
+      throw new CustomError('Product not found', 404);
     }
 
     return {
-        message: "deleted",
-        data: {
-          id: id
-        }
-      }
-
+      message: 'deleted',
+      data: {
+        id: id,
+      },
+    };
   }
 
   /* buy One product */
 
-  async buyOne ({title, price}){
-
+  async buyOne({ title, price }) {
     let preference = {
       items: [
         {
@@ -151,50 +141,47 @@ class ProductsService {
           unit_price: price,
           currency_id: 'ARS',
           quantity: 1,
-        }
+        },
       ],
       back_urls: {
         success: 'http://localhost:3030/api/v1/',
         failure: '',
-        pendig: ''
+        pendig: '',
       },
       auto_return: 'approved',
       binary_mode: true,
     };
 
-    const response = await mercadopago.preferences.create(preference)
-    
-    return response.body.init_point
+    const response = await mercadopago.preferences.create(preference);
+
+    return response.body.init_point;
   }
 
   /* Chackour */
-  async checkOut (body) {
-
+  async checkOut(body) {
     let preference = {
       items: [],
       back_urls: {
         success: 'http://localhost:3030/api/v1/',
         failure: '',
-        pendig: ''
+        pendig: '',
       },
       auto_return: 'approved',
       binary_mode: true,
-    }
+    };
 
     body.forEach((products) => {
       preference.items.push({
         title: products.title,
         unit_price: products.price,
-        quantity: products.quantity
-      })
+        quantity: products.quantity,
+      });
     });
 
-    const response = await mercadopago.preferences.create(preference)
+    const response = await mercadopago.preferences.create(preference);
 
-    return response.body.init_point
+    return response.body.init_point;
   }
-
-
 }
 
 module.exports = ProductsService;

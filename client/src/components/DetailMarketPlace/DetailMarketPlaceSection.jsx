@@ -22,7 +22,7 @@ export default function DetailMarketPlaceSection() {
           <DetailMarketPlaceImgPrice
             key={element.id}
             image={element.mainImage}
-            // imageExtra={element.imageExtra}
+            // imageExtra={element.images}
             stock={element.availability}
             title={element.title}
             price={element.price}
