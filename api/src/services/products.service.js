@@ -170,7 +170,14 @@ class ProductsService {
   async checkOut (body) {
 
     let preference = {
-      items: []
+      items: [],
+      back_urls: {
+        success: 'http://localhost:3030/api/v1/',
+        failure: '',
+        pendig: ''
+      },
+      auto_return: 'approved',
+      binary_mode: true,
     }
 
     body.forEach((products) => {
@@ -181,8 +188,11 @@ class ProductsService {
       })
     });
 
-    console.log(preference)
+    const response = await mercadopago.preferences.create(preference)
 
+    console.log(response.body.init_point)
+
+    return response.body.init_point
   }
 
 
