@@ -59,7 +59,6 @@ export default function ProfileSection() {
                 key={element2.id}
                 to={`/plans/${element2.id}`}
               >
-                {console.log(element2)}
                 <ProfileMyFriendsActivity
                   image={element2.latestAssistedPlansImg}
                   name={element2.latestAssistedPlansName}

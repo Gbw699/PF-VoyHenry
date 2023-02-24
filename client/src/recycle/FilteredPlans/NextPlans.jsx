@@ -35,7 +35,6 @@ export default function CurrentPlans() {
           color="#F1E100"
         />
         <div className={style.imgCont}>
-          {console.log(plans)}
           {plans.map((plan) => (
             <img
               key={plan.id}
