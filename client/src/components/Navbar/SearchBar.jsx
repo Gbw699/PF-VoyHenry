@@ -31,7 +31,7 @@ export default function SearchBar() {
         className={style.searchBtn}
         onClick={() => handleSearch(input)}
       >
-        Search
+        Buscar
       </button>
     </div>
   );

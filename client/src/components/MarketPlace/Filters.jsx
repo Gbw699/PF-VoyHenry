@@ -27,9 +27,18 @@ export default function Filters() {
 
   return (
     <div className={style.container}>
-      <CategoryFilter filters={filters} setFilters={setFilters} />
-      <OrderFilter filters={filters} setFilters={setFilters} />
-      <AvailabilityFilter filters={filters} setFilters={setFilters} />
+      <CategoryFilter
+        filters={filters}
+        setFilters={setFilters}
+      />
+      <OrderFilter
+        filters={filters}
+        setFilters={setFilters}
+      />
+      <AvailabilityFilter
+        filters={filters}
+        setFilters={setFilters}
+      />
     </div>
   );
 }

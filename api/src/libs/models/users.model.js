@@ -7,7 +7,7 @@ const comments = require('./comments.users')
 const users = sequelize.define('users', {
 
   nickName: {
-    type: DataTypes.STRING(15),
+    type: DataTypes.STRING(55),
     primaryKey: true,
   },
   email: {
@@ -20,7 +20,7 @@ const users = sequelize.define('users', {
   },
   genre: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
     validate: {
       isIn: [['Femenino', 'Masculino', 'No binario', 'Prefiero no decirlo', "Otro"]]
     }
@@ -30,7 +30,7 @@ const users = sequelize.define('users', {
   },
   dateOfBirth: {
     type: DataTypes.DATEONLY,
-    allowNull: false
+    allowNull: true
   },
   firstName: {
     type: DataTypes.STRING(55),
@@ -47,7 +47,7 @@ const users = sequelize.define('users', {
   },
   password: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
   },
   recoveryToken: {
     type: DataTypes.STRING,
@@ -57,6 +57,11 @@ const users = sequelize.define('users', {
     type: DataTypes.STRING,
     allowNull: false,
     defaultValue: 'customer'
+  },
+  google: {
+    type: DataTypes.BOOLEAN,
+    allowNull: true,
+    defaultValue: false
   }
 
 
