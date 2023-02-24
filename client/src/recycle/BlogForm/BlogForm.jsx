@@ -80,6 +80,9 @@ export default function BlogForm({ open, close }) {
             <Field
               name="evaluation"
               type="number"
+              min="0.25"
+              max="5"
+              step="0.25"
             />
             <ErrorMessage name="evaluation" />
 
