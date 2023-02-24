@@ -4,6 +4,7 @@ import DetailMarketPlacePrice from "./DetailMarketPlacePrice";
 import mercadoPagoImg from "../../assets/mercadoPago.webp";
 import stripeImg from "../../assets/stripe.png";
 import style from "./DetailMarketPlaceImgPrice.module.css";
+import axios from "axios";
 
 export default function DetailMarketPlaceImgPrice({
   image,
@@ -18,7 +19,11 @@ export default function DetailMarketPlaceImgPrice({
 
   const changeQuantitySelect = (event) => {};
 
-  const addHandler = (product, quantity) => {};
+  const handleNowBuy = async () => {
+    await axios
+      .post("/api/v1/products/buy", { title, price })
+      .then((res) => (window.location.href = res.data));
+  };
 
   return (
     <div className={style.container}>
@@ -47,10 +52,13 @@ export default function DetailMarketPlaceImgPrice({
           {/* //!! Hay que hacer un map del stock */}
         </select>
         <button
+          className={style.addBtn}
+          onClick={handleNowBuy}
+        >
+          Comprar ahora
+        </button>
+        <button
           type="submit"
-          onClick={() => {
-            addHandler(products.product, products.quantity);
-          }}
           className={style.addBtn}
         >
           Agregar al carrito
@@ -85,6 +93,7 @@ export default function DetailMarketPlaceImgPrice({
           </div>
         </div>
       </div>
+      <div className="cho-container"></div>
     </div>
   );
 }
