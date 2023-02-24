@@ -14,11 +14,13 @@ router.get('/', async (req, res, next) => {
   try {
 
     const page = req.query.page || 1
+
     const blogs = await service.find(req.query, page)
     const count = await service.count(req.query);
-    const pages = Math.ceil(count / blogs.blogs.length);
+    const pages = Math.ceil(count / 3);
 
     const pageNumber = parseInt(page);
+
     const response = { blogs, pageNumber, pages }
     res.json(response)
   } catch (error) {
