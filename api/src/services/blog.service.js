@@ -37,17 +37,13 @@ class blogService {
         options.order = [['title', 'DESC']];
       } else if (query.order === 'masvotados') {
 
-        options.order = [[sequelize.literal('average'), 'DESC']];
+        options.order = [['average', 'DESC']];
 
       } else if (query.order === 'menosvotados') {
-        options.order = [[sequelize.literal('average'), 'ASC']];
+        options.order = [['average', 'ASC']];
       }
     }
 
-    if (query.limit) {
-
-      options.limit = query.limit;
-    }
 
     if (query.offset) {
 

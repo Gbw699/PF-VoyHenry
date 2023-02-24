@@ -46,15 +46,26 @@ router.get('/:nickName',
 /* Get AllBlogs by nickName */
 
 router.get('/:nickName/blogs',
-  validatorHandler(getUserSchema, 'params'),  
+  validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
 
+      const page = req.query.page || 1
+
       const { nickName } = req.params;
 
-      const user = await service.findBlogs(nickName)
+      const blogs = await service.findBlogs(nickName ,req.query ,page)
 
-      res.json(user)
+      const count = await service.count(nickName);
+
+      const pages = Math.ceil(count / 3);
+
+      const pageNumber = parseInt(page);
+
+      const response = { blogs, pageNumber, pages }
+      res.json(response)
+      //res.json(user)
+      //res.json(user)
     } catch (error) {
 
       next(error)
