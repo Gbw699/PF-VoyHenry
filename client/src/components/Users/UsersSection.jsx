@@ -6,9 +6,6 @@ import style from "./UsersSection.module.css";
 export default function UsersSection({ users }) {
   return (
     <div className={style.container}>
-      {/* <div>
-        <ProfileCard />
-      </div> */}
       <div>
         {users?.map((element) => (
           <Link
