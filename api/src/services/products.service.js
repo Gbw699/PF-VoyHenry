@@ -163,14 +163,22 @@ class ProductsService {
     };
 
     const response = await mercadopago.preferences.create(preference)
-    return response
+    
+    return response.body.init_point
   }
 
   /* Chackour */
   async checkOut (body) {
 
     let preference = {
-      items: []
+      items: [],
+      back_urls: {
+        success: 'http://localhost:3030/api/v1/',
+        failure: '',
+        pendig: ''
+      },
+      auto_return: 'approved',
+      binary_mode: true,
     }
 
     body.forEach((products) => {
@@ -181,8 +189,9 @@ class ProductsService {
       })
     });
 
-    console.log(preference)
+    const response = await mercadopago.preferences.create(preference)
 
+    return response.body.init_point
   }
 
 
