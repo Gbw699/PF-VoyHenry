@@ -1,6 +1,10 @@
 import axios from "axios";
 import { useEffect } from "react";
 
+const getEndpoint = (nickName) => {
+  return nickName ? `/api/v1/users/${nickName}` : "/api/v1/users";
+};
+
 export default function AxiosUsers({
   setUsers,
   setUser,
@@ -10,28 +14,26 @@ export default function AxiosUsers({
 }) {
   useEffect(() => {
     const fetchData = async () => {
-      if (nickName) {
-        try {
-          const responseUser = await axios.get(`/api/v1/users/${nickName}`);
-          const responsePlans = await axios.get(
+      try {
+        const { data } = await axios.get(getEndpoint(nickName));
+        if (nickName) {
+          const { data: userData } = await axios.get(
+            `/api/v1/users/${nickName}`
+          );
+          const { data: plansData } = await axios.get(
             `/api/v1/users/${nickName}/plans`
           );
-          const responseBlogs = await axios.get(
+          const { data: blogsData } = await axios.get(
             `/api/v1/users/${nickName}/blogs`
           );
-          setUser(responseUser.data);
-          setBlogs(responseBlogs.data);
-          setPlans(responsePlans.data);
-        } catch (error) {
-          console.log(error.response);
+          setUser(userData);
+          setPlans(plansData);
+          setBlogs(blogsData);
+        } else {
+          setUsers(data.users);
         }
-      } else {
-        try {
-          const response = await axios.get("/api/v1/users");
-          setUsers(response.data.users);
-        } catch (error) {
-          console.log(error.response);
-        }
+      } catch (error) {
+        console.log(error.response);
       }
     };
     fetchData();

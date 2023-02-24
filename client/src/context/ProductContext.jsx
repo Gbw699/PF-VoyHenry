@@ -26,8 +26,6 @@ export const ProductContextProvider = ({ children }) => {
       const existsProduct = products.find(
         (element) => element.id === product.id
       );
-      console.log(existsProduct);
-      console.log(quantitySelect);
       if (existsProduct.quantity + parseInt(quantitySelect)) {
         existsProduct.quantity += parseInt(quantitySelect);
       }
