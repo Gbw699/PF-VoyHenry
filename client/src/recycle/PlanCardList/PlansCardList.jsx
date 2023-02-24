@@ -9,27 +9,25 @@ import { useDispatch, useSelector } from "react-redux";
 import Pagination from "@mui/material/Pagination";
 
 export default function PlanList() {
-
   const plans = useSelector((state) => state.planStore.renderPlans);
   const totalPages = useSelector((state) => state.planStore.totalPages);
-  
+
   const [page, setPage] = useState(1);
 
   const dispatch = useDispatch();
   useEffect(() => {
-      dispatch(getPlansPerPage(page));
-      dispatch(getTotalPages());
+    dispatch(getPlansPerPage(page));
+    dispatch(getTotalPages());
   }, [page]);
 
   const handlePageChange = (event, value) => {
     setPage(value);
   };
-  
-  
+
   if (!plans || !totalPages) {
     return <div>Loading...</div>;
   }
-  
+
   if (plans.length === 0 || !totalPages) {
     return <div>Loading...</div>;
   }

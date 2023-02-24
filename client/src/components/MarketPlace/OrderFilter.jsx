@@ -13,8 +13,14 @@ export default function OrderFilter({ onOrderChange }) {
   return (
     <div className={style.container}>
       <h3>Ordenar por</h3>
-      <hr width="100%" color="#F1E100" />
-      <select value={order} onChange={handleOrderChange}>
+      <hr
+        width="100%"
+        color="#F1E100"
+      />
+      <select
+        value={order}
+        onChange={handleOrderChange}
+      >
         <option value="">-- Selecciona una opción --</option>
         <option value="price_asc">Precio ascendente</option>
         <option value="price_desc">Precio descendente</option>
