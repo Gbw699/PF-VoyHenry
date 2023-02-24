@@ -9,21 +9,34 @@ import { useDispatch, useSelector } from "react-redux";
 import Pagination from "@mui/material/Pagination";
 
 export default function PlanList() {
+
+  const totalPages = useSelector((state) => state.planStore.totalPages);
+  const plans = useSelector((state) => state.planStore.renderPlans);
+
   const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(totalPages);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getPlansPerPage(page));
-    dispatch(getTotalPages());
+    setTimeout(()=>{
+      dispatch(getPlansPerPage(page));
+      dispatch(getTotalPages());
+      setTotal(totalPages);
+    },2000);
   }, [page]);
 
   const handlePageChange = (event, value) => {
     setPage(value);
   };
 
-  const plans = useSelector((state) => state.planStore.renderPlans);
+  if (!plans || !totalPages) {
+    return <div>Loading...</div>;
+  }
 
-  const totalPages = 34;
+  if (plans.length === 0 || !totalPages) {
+    return <div>Loading...</div>;
+  }
+
 
   return (
     <div className={style.container}>
@@ -35,16 +48,15 @@ export default function PlanList() {
             mainImage={plan.mainImage}
             title={plan.title}
             summary={plan.summary}
+            eventDate={plan.eventDate}
           />
         ))}
       </div>
-      {plans?.length < 9 ? null : (
-        <Pagination
-          onChange={handlePageChange}
-          count={totalPages}
-          page={page}
-        />
-      )}
+      <Pagination
+        onChange={handlePageChange}
+        count={total}
+        page={page}
+      />
     </div>
   );
 }

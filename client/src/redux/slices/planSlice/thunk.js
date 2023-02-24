@@ -115,7 +115,7 @@ export const getPlansbyOrder = (filter, order) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `/api/v1/plans?${queryUrl.slice(0, -1)}`
+        `/api/v1/plans${queryUrl.slice(0, -1)}`
       );
       dispatch(setPlansbyOrder(response.data.plans.plans));
     } catch (error) {
