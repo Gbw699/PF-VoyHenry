@@ -41,7 +41,7 @@ export default function SearchBar() {
         type="submit"
         className={style.searchBtn}
       >
-        Search
+        Buscar
       </button>
     </div>
   );
