@@ -12,7 +12,6 @@ import ProfileLatestReviews from "../Profile/ProfileLatestReviews";
 // import style from "./UsersProfileSection.module.css";
 
 export default function UsersProfileSection({ user, plans, blogs }) {
-  console.log(plans);
   return (
     <div className={style.mainContainer}>
       <div className={style.profileCont}>
@@ -43,7 +42,6 @@ export default function UsersProfileSection({ user, plans, blogs }) {
                 key={element2.id}
                 to={`/plans/${element2.id}`}
               >
-                {console.log(element2)}
                 <ProfileMyFriendsActivity
                   image={element2.latestAssistedPlansImg}
                   name={element2.latestAssistedPlansName}

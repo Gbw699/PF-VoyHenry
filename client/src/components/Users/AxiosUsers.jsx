@@ -11,17 +11,18 @@ export default function AxiosUsers({
   useEffect(() => {
     const fetchData = async () => {
       if (nickName) {
+        console.log(nickName);
         try {
-          const response = await axios.get(`/api/v1/users/${nickName}`);
+          const responseUser = await axios.get(`/api/v1/users/${nickName}`);
           const responsePlans = await axios.get(
             `/api/v1/users/${nickName}/plans`
           );
           const responseBlogs = await axios.get(
             `/api/v1/users/${nickName}/blogs`
           );
+          setUser(responseUser.data);
           setBlogs(responseBlogs.data);
           setPlans(responsePlans.data);
-          setUser(response.data.data.user);
         } catch (error) {
           console.log(error.response);
         }
