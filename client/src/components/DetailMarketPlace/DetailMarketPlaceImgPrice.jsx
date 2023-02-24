@@ -4,6 +4,7 @@ import DetailMarketPlacePrice from "./DetailMarketPlacePrice";
 import mercadoPagoImg from "../../assets/mercadoPago.webp";
 import stripeImg from "../../assets/stripe.png";
 import style from "./DetailMarketPlaceImgPrice.module.css";
+import axios from 'axios'
 
 export default function DetailMarketPlaceImgPrice({
   image,
@@ -19,6 +20,10 @@ export default function DetailMarketPlaceImgPrice({
   const changeQuantitySelect = (event) => {};
 
   const addHandler = (product, quantity) => {};
+
+  const compra = () => {
+    const mp = axios.post('http://localhost:3001/api/v1/products/buy')
+  }
 
   return (
     <div className={style.container}>
@@ -54,6 +59,11 @@ export default function DetailMarketPlaceImgPrice({
           className={style.addBtn}
         >
           Agregar al carrito
+        </button>
+        <button
+          onClick={() => {console.log("funciona chabal!")}}
+        >
+          Comprar
         </button>
         <div className={style.payMethods}>
           <p className={style.title}>Métodos de pagos:</p>
