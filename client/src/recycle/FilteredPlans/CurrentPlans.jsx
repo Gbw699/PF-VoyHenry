@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import style from "./FilteredPlans.module.css";
-import { queryString } from "../../redux/slices/planSlice/queryStringPlan";
+import { queryString } from "./queryStringPlan";
 
 export default function CurrentPlans() {
   const [plansData, setPlansData] = useState(null);
