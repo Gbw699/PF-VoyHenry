@@ -20,14 +20,6 @@ const blogs = sequelize.define("blogs", {
       allowNull: true,
 
     },
-    evaluation: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      validate: {
-        min: 0,
-        max: 5
-      }
-    },
     image: {
       type: DataTypes.TEXT,
       validate: {
@@ -46,7 +38,7 @@ const blogs = sequelize.define("blogs", {
     },
     votes: {
       type: DataTypes.INTEGER,
-      defaultValue: 0,
+      defaultValue: 1,
 
     },
     stars: {
@@ -55,7 +47,7 @@ const blogs = sequelize.define("blogs", {
 
     },
     average: {
-      type: DataTypes.VIRTUAL,
+      type: DataTypes.INTEGER,
       get() {
         if (this.votes === 0) {
           return 0

@@ -43,6 +43,35 @@ class UsersService {
     };
   }
 
+  /* Create with google */
+
+  async createWithGoogle ({nickName, email, firstName, lastName, image, genre, dateOfBirth}) {
+
+    dateOfBirth = new Date(dateOfBirth);
+    dateOfBirth.setHours(dateOfBirth.getHours() + Math.abs(dateOfBirth.getTimezoneOffset() / 60));
+
+    const newUser = await usersModel.findOrCreate({
+      where: {
+        nickName: nickName,
+      },
+      defaults: {
+        email: email.toLowerCase(),
+        firstName: firstName,
+        lastName: lastName,
+        genre: genre,
+        dateOfBirth: new Date(dateOfBirth),
+        image: image,
+        google: true,
+      }
+    })
+
+    newUser[1] = {
+      newUser: newUser[1]
+    }
+
+    return newUser
+  }
+
   /* Find all Users */
 
   async find (query) {
