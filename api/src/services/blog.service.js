@@ -62,12 +62,14 @@ class blogService {
       options.offset = (page - 1) * (options.limit || query.limit);
     }
 
+    const blogsInFilter = await blogModel.count(options);
+
     const blogs = await blogModel.findAll(options)
 
     if (blogs === null|| blogs.length === 0) {
       throw new CustomError("Blog not found", 404)
     } else {
-      return {blogs}
+      return {blogs, blogsInFilter}
     }
 
   }
@@ -213,14 +215,6 @@ async update (id, { title , content, rating, image }) {
 
 }
 
-  /* Count Pages */
-async count () {
-  const options = {};
-
-  const count = await blogModel.count(options);
-
-  return count;
-}
 
 }
 
