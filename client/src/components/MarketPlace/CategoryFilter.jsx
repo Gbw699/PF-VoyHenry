@@ -1,6 +1,15 @@
+import React from "react";
+import { useDispatch } from "react-redux";
+import { setProductsByOrder } from "../../redux/slices/marketPlaceSlice/marketPlaceSlice";
 import style from "./Filters.module.css";
 
-export default function CategoryFilter({ filters, setFilters }) {
+export default function CategoryFilter() {
+  const dispatch = useDispatch();
+
+  const handleClick = (event) => {
+    dispatch(setProductsByOrder(event.target.value));
+  };
+
   return (
     <div className={style.container}>
       <h3>Categorías</h3>
@@ -11,27 +20,21 @@ export default function CategoryFilter({ filters, setFilters }) {
       <button
         className={style.button}
         value="remeras"
-        onClick={(event) =>
-          setFilters({ ...filters, category: event.target.value })
-        }
+        onClick={(event) => handleClick(event)}
       >
         Remeras
       </button>
       <button
         className={style.button}
         value="pantalones"
-        onClick={(event) =>
-          setFilters({ ...filters, category: event.target.value })
-        }
+        onClick={(event) => handleClick(event)}
       >
         Pantalones
       </button>
       <button
         className={style.button}
         value="gorros"
-        onClick={(event) =>
-          setFilters({ ...filters, category: event.target.value })
-        }
+        onClick={(event) => handleClick(event)}
       >
         Gorros
       </button>
