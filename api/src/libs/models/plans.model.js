@@ -52,6 +52,16 @@ const plans = sequelize.define('plans', {
     defaultValue: 0,
 
   },
+  country: {
+    type: DataTypes.STRING(40),
+    allowNull: false,
+
+  },
+  province: {
+    type: DataTypes.STRING(40),
+    allowNull: false,
+
+  },
   average: {
     type: DataTypes.VIRTUAL,
     get() {

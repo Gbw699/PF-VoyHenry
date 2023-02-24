@@ -23,6 +23,14 @@ class PlansService {
       options.where.state = { [Op.like]: query.state };
     }
 
+    if (query.country) {
+      options.where.country = { [Op.like]: query.country };
+    }
+
+    if (query.province) {
+      options.where.province = { [Op.like]: query.province };
+    }
+
     if (query.contains) {
       options.where.title = { [Op.substring]: query.contains };
     }
@@ -106,6 +114,8 @@ class PlansService {
     eventDate,
     state,
     userNickName,
+    country,
+    province,
   }) {
     eventDate = new Date(eventDate);
     eventDate.setHours(
@@ -126,6 +136,8 @@ class PlansService {
       eventDate: new Date(eventDate),
       state: state,
       userNickName: userNickName,
+      country: country,
+      province: province,
     });
 
     const userPlanTable = await sequelize.models.users_votes_plans.create({

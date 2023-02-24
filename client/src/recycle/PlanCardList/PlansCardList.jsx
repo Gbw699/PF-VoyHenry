@@ -2,25 +2,25 @@ import React, { useEffect, useState } from "react";
 import PlanCard from "../PlanCard/PlanCard";
 import style from "./PlansCardList.module.css";
 import {
-  getPlansPerPage,
+  getPlansbyOrder,
   getTotalPages,
 } from "../../redux/slices/planSlice/thunk";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "@mui/material/Pagination";
 
 export default function PlanList() {
+  const dispatch = useDispatch();
   const plans = useSelector((state) => state.planStore.renderPlans);
   const totalPages = useSelector((state) => state.planStore.totalPages);
 
   const [page, setPage] = useState(1);
 
-  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getPlansPerPage(page));
+    dispatch(getPlansbyOrder("page", page));
     dispatch(getTotalPages());
   }, [page]);
 
-  const handlePageChange = (event, value) => {
+  const handleClick = (event, value) => {
     setPage(value);
   };
 
@@ -40,6 +40,8 @@ export default function PlanList() {
             <PlanCard
               key={plan.id}
               id={plan.id}
+              country={plan.country}
+              province={plan.province}
               mainImage={plan.mainImage}
               title={plan.title}
               summary={plan.summary}
@@ -58,6 +60,8 @@ export default function PlanList() {
           <PlanCard
             key={plan.id}
             id={plan.id}
+            country={plan.country}
+            province={plan.province}
             mainImage={plan.mainImage}
             title={plan.title}
             summary={plan.summary}
@@ -66,7 +70,7 @@ export default function PlanList() {
         ))}
       </div>
       <Pagination
-        onChange={handlePageChange}
+        onChange={handleClick}
         count={totalPages}
         page={page}
       />
