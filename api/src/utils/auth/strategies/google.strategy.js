@@ -25,7 +25,8 @@ const GoogleStrategy = new Strategy({
       genre: profile.gender || null,
       dateOfBirth: profile.birthday || "2000-01-01",
     })
-    cb(null, profile)
+
+    cb(null, user)
   }
 );
 

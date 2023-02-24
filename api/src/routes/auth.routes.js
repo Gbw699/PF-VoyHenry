@@ -40,7 +40,7 @@ router.get('/login/google/callback',
 
     try {
 
-      res.send("Logged")
+      res.json(req.user)
     } catch (error) {
 
       next(error)
