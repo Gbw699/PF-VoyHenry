@@ -37,10 +37,11 @@ class blogService {
         options.order = [['title', 'DESC']];
       } else if (query.order === 'masvotados') {
 
-        options.order = [[sequelize.literal('average'), 'DESC']];
+        //Modificar stars por average cuando estén implementados los votos
+        options.order = [[sequelize.literal('stars'), 'DESC']];
 
       } else if (query.order === 'menosvotados') {
-        options.order = [[sequelize.literal('average'), 'ASC']];
+        options.order = [[sequelize.literal('stars'), 'ASC']];
       }
     }
 
