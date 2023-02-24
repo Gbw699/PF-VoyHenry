@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ProfileAboutMe from "./ProfileAboutMe";
 import ProfileInfo from "./ProfileInfo";
@@ -10,44 +10,28 @@ import profileData from "../../profileData.json";
 import style from "./ProfileSection.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getUser,
   getUserPlans,
   getUserBlogs,
 } from "../../redux/slices/userSlice/thunks";
 
 export default function ProfileSection() {
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
-    //dispatch(getUser("juancito"));
-    dispatch(getUserPlans("juancito"));
-    dispatch(getUserBlogs("juancito"));
+    dispatch(getUserPlans(user.nickName));
+    dispatch(getUserBlogs(user.nickName));
   }, []);
 
-  const user = JSON.parse(localStorage.getItem("user"));
-  // const user = useSelector((state) => state.userStore.user);
-  // console.log(user);
   const userPlans = useSelector((state) => state.userStore.userPlans);
   const userBlogs = useSelector((state) => state.userStore.userBlogs);
+  const [morePlans, setMorePlans] = useState(true);
+  const handleMorePlans = () => {
+    setMorePlans(!morePlans);
+  };
 
   return (
     <div className={style.mainContainer}>
       <div className={style.profileCont}>
-        {/* {user.user.map((element) => (
-          <div key={element.nickName}>
-            <ProfileInfo
-              image={element.image}
-              firstName={element.firstName}
-              lastName={element.lastName}
-              genre={element.genre}
-              nationality="Argentina"
-              following="156"
-              followers="165"
-              assistedPlans="12"
-              plansCreated={userPlans}
-              reviewsCreated={userBlogs}
-            />
-          </div>
-        ))} */}
         <ProfileInfo
           image={user.image}
           firstName={user.firstName}
@@ -92,12 +76,6 @@ export default function ProfileSection() {
               color="#F1E100"
               width="100%"
             />
-            {/* {user.user.map((element, index) => (
-              <ProfileAboutMe
-                key={index}
-                aboutMe={element.about}
-              />
-            ))} */}
             <ProfileAboutMe aboutMe={user.about} />
           </div>
           <div>
@@ -132,18 +110,38 @@ export default function ProfileSection() {
               width="100%"
             />
             <div className={style.plansCont}>
-              {userPlans.map((element) => (
-                <Link
-                  key={element.id}
-                  to={`/plans/${element.id}`}
-                  className={style.link}
-                >
-                  <ProfileMyPlans
-                    myPlansImage={element.mainImage}
-                    myPlansName={element.title}
-                  />
-                </Link>
-              ))}
+              {morePlans &&
+                userPlans.slice(0, 8).map((element) => (
+                  <Link
+                    key={element.id}
+                    to={`/plans/${element.id}`}
+                    className={style.link}
+                  >
+                    <ProfileMyPlans
+                      myPlansImage={element.mainImage}
+                      myPlansName={element.title}
+                    />
+                  </Link>
+                ))}
+              {!morePlans &&
+                userPlans.map((element) => (
+                  <Link
+                    key={element.id}
+                    to={`/plans/${element.id}`}
+                    className={style.link}
+                  >
+                    <ProfileMyPlans
+                      myPlansImage={element.mainImage}
+                      myPlansName={element.title}
+                    />
+                  </Link>
+                ))}
+              {morePlans && (
+                <button onClick={handleMorePlans}>Mostrar más</button>
+              )}
+              {!morePlans && (
+                <button onClick={handleMorePlans}>Mostrar menos</button>
+              )}
             </div>
           </div>
           <div>
