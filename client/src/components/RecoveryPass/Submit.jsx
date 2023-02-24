@@ -11,7 +11,7 @@ export default function Submit({data}) {
       <button
         onClick={handlerOnClick}
       >
-        handlerOnClick
+        Get Mail
       </button>
     </>
   );

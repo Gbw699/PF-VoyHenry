@@ -12,7 +12,11 @@ export default function RecoveryState() {
         setMailInput={setMailInput}
       >
       </MailInput>
-      <Submit>
+      <Submit
+      data={{
+        email: mailInput
+      }}
+      >
       </Submit>
     </>
   );
