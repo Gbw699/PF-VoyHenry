@@ -4,7 +4,7 @@ import style from "./DetailMarketPlacePrice.module.css";
 export default function DetailMarketPlacePrice({ stock, title, price }) {
   return (
     <div className={style.container}>
-      {/* vv BORRAR CUANDO HAYA STOCK vv */}
+      {/* //!! BORRAR CUANDO HAYA STOCK */}
       <p className={style.stock}>Stock</p>
       {/* <p className={style.stock}>{stock}</p> */}
       <h3 className={style.title}>{title}</h3>

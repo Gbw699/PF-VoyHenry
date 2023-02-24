@@ -41,7 +41,6 @@ export const getPlansPerPage = (page) => {
       //hablar sobre la ruta
       const response = await axios.get(`/api/v1/plans?page=${page}`);
       dispatch(setPlansPerPage(response.data.plans.plans));
-      dispatch(setTotalPages(response.data));
     } catch (error) {
       return console.log("No se pudo realizar la petición");
     }
@@ -111,12 +110,9 @@ export const postPlan = (obj) => {
 
 export const getPlansbyOrder = (filter, order) => {
   const queryUrl = queryString(filter, order);
-  console.log(queryUrl.slice(0, -1));
   return async (dispatch) => {
     try {
-      const response = await axios.get(
-        `/api/v1/plans${queryUrl.slice(0, -1)}`
-      );
+      const response = await axios.get(`/api/v1/plans?${queryUrl}`);
       dispatch(setPlansbyOrder(response.data.plans.plans));
     } catch (error) {
       console.log("No se pudo realizar la petición:", error.message);

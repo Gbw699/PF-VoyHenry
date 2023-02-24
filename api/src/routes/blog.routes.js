@@ -16,9 +16,7 @@ router.get('/', async (req, res, next) => {
     const page = req.query.page || 1
 
     const blogs = await service.find(req.query, page)
-
-    const count = await service.count();
-
+    const count = await service.count(req.query);
     const pages = Math.ceil(count / 3);
 
     const pageNumber = parseInt(page);
