@@ -4,6 +4,7 @@ import DateFilter from "./DateFilter";
 import OrderFilter from "./OrderFilter";
 import LimitFilter from "./LimitFilter";
 import { getBlogs } from "../../redux/slices/blogSlice/thunk";
+import style from "./BlogFilter.module.css";
 
 export default function BlogFilters() {
   const dispatch = useDispatch();
@@ -19,12 +20,17 @@ export default function BlogFilters() {
   }, [filters]);
 
   return (
-    <div>
-      <h3>Filtros</h3>
+    <div className={style.container}>
+      <h3 className={style.name}>Filtros</h3>
+      <hr
+        width="100%"
+        color="#F1E100"
+      />
       <DateFilter
         filters={filters}
         setFilters={setFilters}
       />
+
       <OrderFilter
         filters={filters}
         setFilters={setFilters}

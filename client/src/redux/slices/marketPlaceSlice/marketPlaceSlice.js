@@ -5,6 +5,7 @@ const marketPlaceSlice = createSlice({
   initialState: {
     allProducts: [],
     detailProduct: [],
+    renderProducts: [],
   },
   reducers: {
     setProducts: (state, action) => {
@@ -13,8 +14,12 @@ const marketPlaceSlice = createSlice({
     setDetailProducts: (state, action) => {
       state.detailProduct = [action.payload];
     },
+    setProductsByOrder: (state, action) => {
+      state.renderProducts = [...action.payload];
+    },
   },
 });
 
-export const { setProducts, setDetailProducts } = marketPlaceSlice.actions;
+export const { setProducts, setDetailProducts, setProductsByOrder } =
+  marketPlaceSlice.actions;
 export default marketPlaceSlice.reducer;

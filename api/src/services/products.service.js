@@ -1,5 +1,7 @@
+const mercadopago = require('mercadopago')
 const productModel = require('../libs/models/products.model')
 const { CustomError } = require('../middlewares/error.handler')
+
 
 class ProductsService {
 
@@ -9,13 +11,20 @@ class ProductsService {
 
   /* create product */
 
-  async create ({ title, price, detail, mainImage, availability}) {
+  async create ({ title, price, detail, mainImage, availability, category, images}) {
 
     const newProduct = await productModel.create({
+
       title: title,
       price: price,
+
+      category: category,
+
       detail: detail,
       mainImage: mainImage,
+
+      images: images,
+
       availability: availability,
     })
 
@@ -37,11 +46,9 @@ class ProductsService {
       order: [['id', 'ASC']]
     }
 
-
-
     if (query.order){
       if (query.order == 'alfabetico'){
-        
+
         options.order = [['title', 'ASC']]
       } else if (query.order == 'reverso'){
 
@@ -50,15 +57,27 @@ class ProductsService {
 
         options.order = [['price', 'ASC']]
       } else if (query.order == 'descendente') {
-    
+
         options.order = [['price', 'DESC']]
+      }
+    }
+
+    if (query.category) {
+      options.where = {
+        category: query.category
+      }
+    }
+
+    if (query.availability) {
+      options.where = {
+        available: query.availability === 'true'
       }
     }
 
     const products = await productModel.findAll(options)
     return {products}
 
-  }        
+  }
 
   /* find one product */
 
@@ -76,7 +95,7 @@ class ProductsService {
 
   /* Update product */
 
-  async update ( id, { title, price, detail, mainImage, availability}) {
+  async update ( id, { title, price, detail, mainImage, availability,category, images}) {
 
     const product = await productModel.findByPk(id)
 
@@ -89,6 +108,8 @@ class ProductsService {
     product.detail = detail || product.detail
     product.mainImage = mainImage || product.mainImage
     product.availability = availability || product.availability
+    product.category = category || product.category
+    product.images = images || product.images
 
     await product.save()
 
@@ -118,6 +139,52 @@ class ProductsService {
       }
 
   }
+
+  /* buy One product */
+
+  async buyOne ({title, price}){
+
+    let preference = {
+      items: [
+        {
+          title: title,
+          unit_price: price,
+          currency_id: 'ARS',
+          quantity: 1,
+        }
+      ],
+      back_urls: {
+        success: 'http://localhost:3030/api/v1/',
+        failure: '',
+        pendig: ''
+      },
+      auto_return: 'approved',
+      binary_mode: true,
+    };
+
+    const response = await mercadopago.preferences.create(preference)
+    return response
+  }
+
+  /* Chackour */
+  async checkOut (body) {
+
+    let preference = {
+      items: []
+    }
+
+    body.forEach((products) => {
+      preference.items.push({
+        title: products.title,
+        unit_price: products.price,
+        quantity: products.quantity
+      })
+    });
+
+    console.log(preference)
+
+  }
+
 
 }
 
