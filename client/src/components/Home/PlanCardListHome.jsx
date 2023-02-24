@@ -19,6 +19,8 @@ export default function PlanCardListHome() {
           <PlanCard
             key={plan.id}
             id={plan.id}
+            country={plan.country}
+            province={plan.province}
             mainImage={plan.mainImage}
             title={plan.title}
             summary={plan.summary}

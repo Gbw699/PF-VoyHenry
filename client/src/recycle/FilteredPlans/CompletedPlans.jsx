@@ -20,8 +20,8 @@ export default function CurrentPlans() {
     return <div>Loading...</div>;
   }
 
-  if (plansData.length === 0) {
-    return <div>No plans available</div>;
+  if (plansData.length < 2) {
+    return <div>Loading...</div>;
   }
 
   if (plansData) {
