@@ -1,4 +1,7 @@
 const { Strategy } = require('passport-google-oauth20');
+const UsersService = require('../../../services/user.service')
+
+const userService = new UsersService()
 
 const {
   GOOGLE_CLIENT_ID,
@@ -11,14 +14,16 @@ const GoogleStrategy = new Strategy({
     callbackURL: "http://localhost:3001/api/v1/auth/login/google/callback"
 
   },
-  function(accessToken, refreshToken, profile, cb) {
-    console.log({
-      id: profile.id,
+  async function(accessToken, refreshToken, profile, cb) {
+
+    const user = await userService.createWithGoogle({
+      nickName: profile.id,
+      email: profile.emails[0].value,
       firstName: profile.name.givenName,
       lastName: profile.name.familyName,
       image: profile.photos[0].value,
-      genre: profile.gender,
-      birthday: profile.birthday,
+      genre: profile.gender || null,
+      dateOfBirth: profile.birthday || "2000-01-01",
     })
     cb(null, profile)
   }
