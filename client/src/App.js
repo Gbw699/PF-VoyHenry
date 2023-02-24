@@ -22,6 +22,7 @@ import Auth from "./views/Auth/Auth";
 import Users from "./views/Users/Users";
 import ProfileUser from "./views/ProfileUser/ProfileUser";
 import RecoveryPass from "./views/RecoveryPass/Recoverypass";
+import ChangePass from "./views/ChangePass/ChangePass";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 const cookie = document.cookie.split("=");
@@ -35,6 +36,7 @@ function App() {
     <div>
       {location.pathname !== "/" &&
         location.pathname !== "/recoveryPass" &&
+        location.pathname !== "/changePass" &&
         location.pathname !== "/signUp" &&
         location.pathname !== "/logIn" && <NavBar />}
       <Auth />
@@ -50,6 +52,10 @@ function App() {
         <Route
           path="/recoveryPass"
           element={<RecoveryPass />}
+        />
+        <Route
+          path="/changePass"
+          element={<ChangePass />}
         />
         <Route
           path="/logIn"
@@ -117,6 +123,7 @@ function App() {
       {location.pathname !== "/" &&
         location.pathname !== "/signUp" &&
         location.pathname !== "/recoveryPass" &&
+        location.pathname !== "/changePass" &&
         location.pathname !== "/logIn" && <Footer />}
     </div>
   );
