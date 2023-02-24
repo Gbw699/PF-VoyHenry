@@ -111,6 +111,10 @@ export default function FormLogIn() {
     navigate("/");
   };
 
+  const handlerRecoveryPass = () => {
+    navigate("/recoveryPass")
+  }
+
   return (
     <div className={style.landing}>
       <img
@@ -170,7 +174,11 @@ export default function FormLogIn() {
               </Button>
             </div>
           </Form>
-          <button>¿Olvidaste tu contraseña?</button>
+          <button
+            onClick={handlerRecoveryPass}
+          >
+            ¿Olvidaste tu contraseña?
+          </button>
         </div>
       </div>
     </div>
