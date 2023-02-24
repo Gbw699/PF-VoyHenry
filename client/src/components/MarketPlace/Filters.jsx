@@ -1,38 +1,35 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import CategoryFilter from "./CategoryFilter";
+import OrderFilter from "./OrderFilter";
+import AvailabilityFilter from "./AvailabilityFilter";
+import { getProducts } from "../../redux/slices/marketPlaceSlice/thunk";
 import style from "./Filters.module.css";
-import productMarketPlace from "../../marketPlace.json";
+// import productMarketPlace from "../../marketPlace.json";
 
 export default function Filters() {
+  const dispatch = useDispatch();
+
+  const [filters, setFilters] = useState({
+    category: "",
+    order: "",
+    availability: "",
+  });
+
+  // const handleFilterChange = () => {
+  //   dispatch(getProducts(filters)), [filters];
+  // };
+
+  useEffect(() => {
+    dispatch(getProducts(filters));
+  }, [filters]);
+
   return (
-    <div className={style.filters}>
-      <h5 className={style.title}>Categorías</h5>
-      <hr
-        color="#F1E100"
-        width="100%"
-      />
-      {productMarketPlace.data.map((element) =>
-        element.categories.map((element2) => (
-          <p
-            key={element2.id}
-            className={style.option}
-          >
-            {element2.category}
-          </p>
-        ))
-      )}
-      <h5 className={style.title}>Precio</h5>
-      <hr
-        color="#F1E100"
-        width="100%"
-      />
-      <input type="range" />
-      <h5 className={style.title}>Ordenar por</h5>
-      <hr
-        color="#F1E100"
-        width="100%"
-      />
-      <p className={style.option}>A ~ Z</p>
-      <p className={style.option}>Z ~ A</p>
+    <div className={style.container}>
+      <CategoryFilter filters={filters} setFilters={setFilters} />
+      <OrderFilter filters={filters} setFilters={setFilters} />
+      <AvailabilityFilter filters={filters} setFilters={setFilters} />
     </div>
   );
 }
