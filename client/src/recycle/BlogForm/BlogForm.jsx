@@ -36,7 +36,7 @@ export default function BlogForm({ open, close }) {
               .max(500, "Debe tener menos de 500 caracteres")
               .required("El contenido de la reseña es obligatoria"),
             evaluation: Yup.number()
-              .min(0, "Debe ser mayor o igual que 0")
+              .min(0, "Debe ser mayor o igual que 1")
               .max(5, "Debe ser menor o igual que 5")
               .required("La valoración es obligatoria"),
           })}
@@ -80,7 +80,7 @@ export default function BlogForm({ open, close }) {
             <Field
               name="evaluation"
               type="number"
-              min="0.25"
+              min="1"
               max="5"
               step="0.25"
             />
@@ -90,7 +90,7 @@ export default function BlogForm({ open, close }) {
               htmlFor="image"
               className={style.formLabel}
             >
-              Imagen de carátula
+              Imagen de caratula
             </label>
             <UploadWidget
               url={url}
