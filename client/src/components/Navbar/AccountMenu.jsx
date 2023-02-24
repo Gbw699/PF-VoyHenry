@@ -9,10 +9,11 @@ import Tooltip from "@mui/material/Tooltip";
 import img from "../../assets/voyHENRY_logo.png";
 import { NavLink } from "react-router-dom";
 import style from "./AccountMenu.module.css";
+import { useState } from "react";
 
 export default function AccountMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const [anchorEl, setAnchorEl] = useState(null);
+  const user = JSON.parse(localStorage.getItem("user"));
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -69,9 +70,7 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem sx={{ justifyContent: "center" }}>
-          Nombre del usuario
-        </MenuItem>
+        <MenuItem sx={{ justifyContent: "center" }}>{user.nickName}</MenuItem>
         <Divider />
         <NavLink
           to={"/marketplace/shoppingcart"}
