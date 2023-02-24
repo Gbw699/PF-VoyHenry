@@ -1,9 +1,11 @@
 import axios from "axios";
 
-export default function Submit({data}) {
+export default function Submit({data,isValidEmail}) {
 
   const handlerOnClick = () => {
-    axios.post("/api/v1/auth/recovery", data);
+    if (isValidEmail){
+      axios.post("/api/v1/auth/recovery", data);
+    }
   };
 
   return (
