@@ -16,9 +16,13 @@ router.get('/', async (req, res, next) => {
     const page = req.query.page || 1
     const plans = await service.find(req.query, page)
 
-    const count = await service.count(req.query);
-    const pages = Math.ceil(count / 9);
+    let pages = ''
 
+    if (plans.plansInFilter <= 9){
+      pages = 1
+    } else {
+      pages = Math.ceil(plans.plansInFilter / 9);
+    }
 
     const pageNumber = parseInt(page);
     const response = { plans, pageNumber, pages }

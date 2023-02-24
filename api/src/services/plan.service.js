@@ -61,12 +61,14 @@ class PlansService {
       options.offset = (page - 1) * (options.limit || query.limit);
     }
 
+    const plansInFilter = await plansModel.count(options);
+
     const plans = await plansModel.findAll(options);
 
     if (plans === null || plans.length === 0) {
       throw new CustomError('Plan not found', 404);
     } else {
-      return { plans };
+      return { plans, plansInFilter };
     }
   }
 
@@ -311,14 +313,6 @@ class PlansService {
     }
   }
 
-  /* Count Pages */
-  async count() {
-    const options = {};
-
-    const count = await plansModel.count(options);
-
-    return count;
-  }
 }
 
 module.exports = PlansService;
