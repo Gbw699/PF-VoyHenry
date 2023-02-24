@@ -11,7 +11,6 @@ export default function AxiosUsers({
   useEffect(() => {
     const fetchData = async () => {
       if (nickName) {
-        console.log(nickName);
         try {
           const responseUser = await axios.get(`/api/v1/users/${nickName}`);
           const responsePlans = await axios.get(

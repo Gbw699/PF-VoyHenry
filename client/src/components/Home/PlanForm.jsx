@@ -14,7 +14,6 @@ export default function FormSignUp(props) {
   const handleClick = () => {
     props.setShowPlanForm(false);
   };
-  console.log(user.nickName);
 
   return (
     <div className={style.container}>
@@ -59,7 +58,6 @@ export default function FormSignUp(props) {
             state: "En planeacion",
           };
           dispatch(postPlan(obj));
-          console.log(obj);
         }}
       >
         <Form>
