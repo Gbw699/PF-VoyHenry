@@ -3,8 +3,11 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { postBlog } from "../../redux/slices/blogSlice/thunk";
 import style from "./BlogForm.module.css";
+import UploadWidget from "../UploadWidget/UploadWidget";
+import { useState } from "react";
 
 export default function BlogForm({ open, close }) {
+  const [url, setUrl] = useState("");
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -23,7 +26,6 @@ export default function BlogForm({ open, close }) {
             title: "",
             content: "",
             evaluation: 0,
-            image: "",
           }}
           validationSchema={Yup.object({
             title: Yup.string()
@@ -34,12 +36,13 @@ export default function BlogForm({ open, close }) {
               .max(500, "Debe tener menos de 500 caracteres")
               .required("El contenido de la reseña es obligatoria"),
             evaluation: Yup.number()
-              .min(0, "Debe ser mayor o igual que 0")
+              .min(0, "Debe ser mayor o igual que 1")
               .max(5, "Debe ser menor o igual que 5")
               .required("La valoración es obligatoria"),
-            image: Yup.string().url(),
           })}
           onSubmit={(values) => {
+            values = { ...values, image: url };
+            setUrl("");
             dispatch(postBlog(values));
           }}
         >
@@ -77,6 +80,9 @@ export default function BlogForm({ open, close }) {
             <Field
               name="evaluation"
               type="number"
+              min="1"
+              max="5"
+              step="0.25"
             />
             <ErrorMessage name="evaluation" />
 
@@ -84,13 +90,25 @@ export default function BlogForm({ open, close }) {
               htmlFor="image"
               className={style.formLabel}
             >
-              Imagen de carátula
+              Imagen de caratula
             </label>
-            <Field
+            <UploadWidget
+              url={url}
+              setUrl={setUrl}
+            />
+            <div className={style.imgContainer}>
+              <img
+                className={style.img}
+                src={url}
+                alt=""
+              />
+            </div>
+            {/* <Field
               name="image"
               type="url"
-            />
-            <ErrorMessage name="image" />
+              value={url}
+              />
+            <ErrorMessage name="image" /> */}
 
             <button
               type="submit"

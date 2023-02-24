@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 30px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px 3px #020202e5;
+}
+.container:hover {
+  background-color: #a0a0a070;
+}
+.name {
+  color: #000000;
+  font-weight: 600;
+}

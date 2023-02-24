@@ -9,18 +9,20 @@ import Tooltip from "@mui/material/Tooltip";
 import img from "../../assets/voyHENRY_logo.png";
 import { NavLink } from "react-router-dom";
 import style from "./AccountMenu.module.css";
+import { useState } from "react";
 
 export default function AccountMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const [anchorEl, setAnchorEl] = useState(null);
+  const user = JSON.parse(localStorage.getItem("user"));
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleLogOut = () => {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    localStorage.removeItem("user");
+  };
+  const handleClose = () => {
     setAnchorEl(null);
   };
 
@@ -47,7 +49,6 @@ export default function AccountMenu() {
         id="account-menu"
         open={open}
         onClose={handleClose}
-        onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -69,73 +70,42 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem
-          onClick={handleClose}
-          sx={{ justifyContent: "center" }}
-        >
-          Nombre del usuario
-        </MenuItem>
+        <MenuItem sx={{ justifyContent: "center" }}>{user.nickName}</MenuItem>
         <Divider />
         <NavLink
           to={"/marketplace/shoppingcart"}
           style={{ color: "#707070" }}
         >
-          <MenuItem
-            onClick={handleClose}
-            className={style.menuLinks}
-          >
-            Carrito
-          </MenuItem>
+          <MenuItem className={style.menuLinks}>Carrito</MenuItem>
         </NavLink>
         <Divider />
         <NavLink
           to={"/profile"}
           style={{ color: "#707070" }}
         >
-          <MenuItem
-            onClick={handleClose}
-            className={style.menuLinks}
-          >
-            Mi perfil
-          </MenuItem>
+          <MenuItem className={style.menuLinks}>Mi perfil</MenuItem>
         </NavLink>
         <Divider />
         <NavLink
           to={"/profile/edit"}
           style={{ color: "#707070" }}
         >
-          <MenuItem
-            onClick={handleClose}
-            className={style.menuLinks}
-          >
-            Editar perfil
-          </MenuItem>
+          <MenuItem className={style.menuLinks}>Editar perfil</MenuItem>
         </NavLink>
         <NavLink
           to={"/configuration"}
           style={{ color: "#707070" }}
         >
-          <MenuItem
-            onClick={handleClose}
-            className={style.menuLinks}
-          >
-            Configuración
-          </MenuItem>
+          <MenuItem className={style.menuLinks}>Configuración</MenuItem>
         </NavLink>
-        <MenuItem
-          onClick={handleClose}
-          className={style.menuLinks}
-        >
-          {" "}
-          Modo oscuro
-        </MenuItem>
+        <MenuItem className={style.menuLinks}> Modo oscuro</MenuItem>
         <Divider />
         <NavLink
           to={"/"}
           style={{ color: "#707070" }}
         >
           <MenuItem
-            onClick={handleClose}
+            onClick={handleLogOut}
             className={style.menuLinks}
           >
             Cerrar sesión

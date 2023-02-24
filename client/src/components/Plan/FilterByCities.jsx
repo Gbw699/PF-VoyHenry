@@ -64,7 +64,10 @@ export default function FilterByCities() {
           ))}
         </select>
       )}
-      <hr />
+      <hr
+        width="100%"
+        color="#F1E100"
+      />
     </div>
   );
 }

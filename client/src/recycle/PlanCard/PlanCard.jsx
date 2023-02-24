@@ -25,7 +25,7 @@ export default function PlanCard(props) {
             width="80%"
           />
           <p className={style.info}>Locación</p>
-          <p className={style.info}>Fecha: 03/03/2023</p>{" "}
+          <p className={style.info}>{props.eventDate}</p>{" "}
           {/* PLACEHOLDER!! BORRAR CUAANDO HAYA EVENT DATE */}
           {/* <p className={style.info}>Fecha: {props.eventDate}</p> */}
           <p className={style.summary}>{props.title}</p>{" "}

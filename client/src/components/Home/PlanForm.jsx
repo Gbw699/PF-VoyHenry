@@ -14,7 +14,14 @@ export default function FormSignUp(props) {
   const handleClick = () => {
     props.setShowPlanForm(false);
   };
-
+  const getDateActually = () => {
+    let toDay = new Date();
+    let day = String(toDay.getDate()).padStart(2, "0");
+    let mount = String(toDay.getMonth() + 1).padStart(2, "0");
+    let year = toDay.getFullYear();
+    toDay = `${year}-${mount}-${day}`;
+    return toDay;
+  };
   return (
     <div className={style.container}>
       <Formik
@@ -45,7 +52,6 @@ export default function FormSignUp(props) {
             .min(new Date(greaterDate))
             .required("La fecha del evento es obligatoria"),
           state: Yup.string(),
-          evaluation: Yup.number(),
         })}
         onSubmit={(values) => {
           const obj = {
@@ -57,10 +63,8 @@ export default function FormSignUp(props) {
             images: [values.images],
             eventDate: values.eventDate,
             state: "En planeacion",
-            evaluation: 2,
           };
           dispatch(postPlan(obj));
-          console.log(obj);
         }}
       >
         <Form>
@@ -147,6 +151,7 @@ export default function FormSignUp(props) {
                 name="eventDate"
                 type="date"
                 className={style.formInputs}
+                min={getDateActually()}
               />
               <ErrorMessage name="eventDate" />
               {/* ------------------------------------------------------------------------- */}

@@ -104,7 +104,7 @@ export const postPlan = (obj) => {
       });
       window.alert("El plan se creó correctamente");
     } catch (error) {
-      console.log(error.message);
+      console.error(error.response);
     }
   };
 };
@@ -115,11 +115,24 @@ export const getPlansbyOrder = (filter, order) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `/api/v1/plans?${queryUrl.slice(0, -1)}`
+        `/api/v1/plans${queryUrl.slice(0, -1)}`
       );
       dispatch(setPlansbyOrder(response.data.plans.plans));
     } catch (error) {
       console.log("No se pudo realizar la petición:", error.message);
+    }
+  };
+};
+
+export const postComment = (id, obj) => {
+  return async () => {
+    try {
+      await axios.post(`/api/v1/plans/${id}/comment`, {
+        ...obj,
+      });
+      window.alert("El comentario se envió correctamente");
+    } catch (error) {
+      console.error(error.message);
     }
   };
 };
