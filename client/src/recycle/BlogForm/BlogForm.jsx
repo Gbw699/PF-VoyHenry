@@ -80,6 +80,9 @@ export default function BlogForm({ open, close }) {
             <Field
               name="stars"
               type="number"
+              min="1"
+              max="5"
+              step="0.25"
             />
             <ErrorMessage name="stars" />
 
@@ -87,7 +90,7 @@ export default function BlogForm({ open, close }) {
               htmlFor="image"
               className={style.formLabel}
             >
-              Imagen de carátula
+              Imagen de caratula
             </label>
             <UploadWidget
               url={url}
