@@ -4,27 +4,25 @@ import countriesData from "../../countries.json";
 import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
 import style from "./GeolocationForm.module.css";
 
-export default function FilterByCities() {
+export default function FilterByCountry() {
   const dispatch = useDispatch();
-
   const countries = countriesData.data;
   const [provinces, setProvinces] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedProvince, setSelectedProvince] = useState("");
 
   function handleCountryChange(event) {
+    dispatch(getPlansbyOrder("country", event.target.value));
     setSelectedCountry(event.target.value);
     const provincesData = countries.find(
       (country) => country.country === event.target.value
     );
     setProvinces(provincesData.province);
-    dispatch(getPlansbyOrder(event.target.value));
   }
 
   function handleProvinceChange(event) {
     setSelectedProvince(event.target.value);
-    // Acá tengo que dispatchar la action para que renderPlans (estado global) sea por provincias
-    dispatch(getPlansbyOrder(event.target.value));
+    dispatch(getPlansbyOrder("province", event.target.value));
   }
 
   return (

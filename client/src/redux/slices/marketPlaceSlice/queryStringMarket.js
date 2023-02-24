@@ -23,13 +23,13 @@ export const queryString = (filter, order) => {
     case "category":
       switch (order) {
         case "remeras":
-          mapQuery.set("category", "?category=Remeras&");
+          mapQuery.set("category", `?category=${order}&`);
           break;
         case "pantalones":
-          mapQuery.set("category", "?category=Pantalones&");
+          mapQuery.set("category", `?category=${order}&`);
           break;
         case "gorros":
-          mapQuery.set("category", "?category=Gorros&");
+          mapQuery.set("category", `?category=${order}&`);
           break;
         default:
           break;
