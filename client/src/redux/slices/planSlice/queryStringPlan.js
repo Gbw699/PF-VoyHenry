@@ -6,18 +6,13 @@ const setOrder = (order) => {
     antiguos: "antiguos",
     reverso: "reverso",
     alfabetico: "alfabetico",
-  };
-  const validRatingOrders = {
     menosvotados: "menosvotados",
     masvotados: "masvotados",
   };
+ 
   if (validOrders[order]) {
     mapQuery.set("order", `&order=${validOrders[order]}`);
-    mapQuery.delete("rating");
-  } else if (validRatingOrders[order]) {
-    mapQuery.set("rating", `&order=${validRatingOrders[order]}`);
-    mapQuery.delete("order");
-  }
+  } 
 };
 
 export const queryString = (filter, order) => {
@@ -55,14 +50,6 @@ export const queryString = (filter, order) => {
         mapQuery.set("page", `&page=${order}`);
       } else {
         mapQuery.delete("page");
-      }
-      break;
-    case "rating":
-      if (order) {
-        setOrder(order);
-        mapQuery.set("rating", `&rating=${order}`);
-      } else {
-        mapQuery.delete("rating");
       }
       break;
     case "country":

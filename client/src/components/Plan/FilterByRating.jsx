@@ -7,7 +7,7 @@ export default function FilterByRating() {
   const dispatch = useDispatch();
   const handleClick = (event) => {
     const selectedRating = event.target.value;
-    dispatch(getPlansbyOrder("rating", selectedRating));
+    dispatch(getPlansbyOrder("order", selectedRating));
   };
   return (
     <div>
