@@ -14,11 +14,9 @@ const setOrder = (order) => {
   if (validOrders[order]) {
     mapQuery.set("order", `&order=${validOrders[order]}`);
     mapQuery.delete("rating");
-    //mapQuery.delete("date");
   } else if (validRatingOrders[order]) {
     mapQuery.set("rating", `&order=${validRatingOrders[order]}`);
     mapQuery.delete("order");
-    //mapQuery.delete("date");
   }
 };
 
