@@ -181,6 +181,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import * as Yup from "yup";
 import { postUser } from "../../redux/slices/userSlice/thunks";
 import titleImg from "../../assets/voyHENRY_title.png";
@@ -189,6 +190,31 @@ import style from "./FormSignUp.module.css";
 export default function FormSignUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const query = new URLSearchParams(location.search);
+  const user = {
+    nickName: query.get("nickName")?.trim(),
+    email: query.get("email")?.trim(),
+    dateOfBirth: query.get("dateOfBirth")?.trim(),
+    firstName: query.get("firstName")?.trim(),
+    lastName: query.get("lastName")?.trim(),
+    image: query.get("image")?.trim(),
+    role: query.get("role")?.trim(),
+    google: query.get("google")?.trim()
+  };
+
+  useEffect(() => {
+    if (query.get("token") !== null){
+      document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie ="csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = `token=${query.get("token")}; max-age=604800; path=/;`;
+      localStorage.setItem("user", JSON.stringify(user));
+      navigate("/home");
+    }
+  }, [query]);
+
+  const handleSingUpWithGoogle = () => {
+    window.location.href = "http://localhost:3001/api/v1/auth/login/google";
+  };
 
   return (
     <div className={style.landing}>
@@ -395,6 +421,12 @@ export default function FormSignUp() {
                   className={style.btnSignup}
                 >
                   Registrarse
+                </button>
+                <button
+                  onClick={handleSingUpWithGoogle}
+                  className={style.btnSignup}
+                >
+                  Continuar con goole
                 </button>
               </div>
             </Form>
