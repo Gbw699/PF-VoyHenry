@@ -4,7 +4,7 @@ const planSlice = createSlice({
   name: "plan",
   initialState: {
     allPlans: [],
-    renderPlans: [],
+    renderPlans: {},
     planById: {},
     totalPages: 0,
   },
@@ -31,7 +31,7 @@ const planSlice = createSlice({
       state.planById = action.payload;
     },
     setPlansbyOrder(state, action) {
-      state.renderPlans = [...action.payload];
+      state.renderPlans = {...action.payload};
     },
   },
 });

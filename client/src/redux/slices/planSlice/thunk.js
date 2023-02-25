@@ -112,8 +112,9 @@ export const getPlansbyOrder = (filter, order) => {
   const queryUrl = queryString(filter, order);
   return async (dispatch) => {
     try {
+      console.log(`/api/v1/plans?${queryUrl}`);
       const response = await axios.get(`/api/v1/plans?${queryUrl}`);
-      dispatch(setPlansbyOrder(response.data.plans.plans));
+      dispatch(setPlansbyOrder(response.data));
     } catch (error) {
       console.log("No se pudo realizar la petición:", error.message);
     }

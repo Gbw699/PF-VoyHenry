@@ -3,14 +3,14 @@ import FilterByDate from "./FilterByDate";
 import FilterByRating from "./FilterByRating";
 import style from "./GeolocationForm.module.css";
 import { useDispatch } from "react-redux";
-import { getPlansPerPage } from "../../redux/slices/planSlice/thunk";
+import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
 import FilterByTitle from "./FilterByTitle";
 import FilterByCountry from "./FilterByCountry";
 
 export default function GeolocationForm() {
   const dispatch = useDispatch(event);
   const handleClick = () => {
-    dispatch(getPlansPerPage(1));
+    dispatch(getPlansbyOrder("page", 1));
   };
   return (
     <div className={style.container}>
