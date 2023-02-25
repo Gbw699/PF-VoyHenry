@@ -158,7 +158,7 @@ class PlansService {
     };
   }
 
-  /* Create Plan */
+  /* Create Comment Plan */
 
   async createComment(id, { userNickName, comment }) {
     const searchname = await users.findOne({

@@ -15,7 +15,7 @@ const userSlice = createSlice({
       state.userPlans = [...action.payload];
     },
     setUserBlogs: (state, action) => {
-      state.userBlogs = [...action.payload];
+      state.userBlogs = [...action.payload.blogs.blogs];
     },
   },
 });

@@ -74,8 +74,8 @@
 
 // DE ACÁ PARA ABAJO NO ROMPE LA PÁGINA
 // DESPUÉS DE LA DEMO PROBAMOS CON LA NUEVA VERSIÓN DEL FORMULARIO
-
 import React from "react";
+import { useEffect } from "react";
 import style from "./FormLogIn.module.css";
 import { Form, Button } from "semantic-ui-react";
 import { useFormik } from "formik";
@@ -87,6 +87,17 @@ import { useDispatch } from "react-redux";
 import { getLogin } from "../../redux/slices/userSlice/thunks";
 
 export default function FormLogIn() {
+  const query = new URLSearchParams(location.search);
+  const user = {
+    nickName: query.get("nickName")?.trim(),
+    email: query.get("email")?.trim(),
+    dateOfBirth: query.get("dateOfBirth")?.trim(),
+    firstName: query.get("firstName")?.trim(),
+    lastName: query.get("lastName")?.trim(),
+    image: query.get("image")?.trim(),
+    role: query.get("role")?.trim(),
+    google: query.get("google")?.trim(),
+  };
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const formik = useFormik({
@@ -107,12 +118,28 @@ export default function FormLogIn() {
     },
   });
 
+  useEffect(() => {
+    if (query.get("token") !== null) {
+      document.cookie =
+        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie =
+        "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = `token=${query.get("token")}; max-age=604800; path=/;`;
+      localStorage.setItem("user", JSON.stringify(user));
+      navigate("/home");
+    }
+  }, [query]);
+
   const backHandler = () => {
     navigate("/");
   };
 
   const handlerRecoveryPass = () => {
     navigate("/recoveryPass");
+  };
+
+  const handleLoginWithGoogle = () => {
+    window.location.href = "http://localhost:3001/api/v1/auth/login/google";
   };
 
   return (
@@ -171,6 +198,12 @@ export default function FormLogIn() {
                 style={{ backgroundColor: "#DBDBDB", color: "#707070" }}
               >
                 Volver
+              </Button>
+              <Button
+                onClick={handleLoginWithGoogle}
+                style={{ backgroundColor: "#DBDBDB", color: "#707070" }}
+              >
+                Iniciar sesion con google
               </Button>
             </div>
           </Form>

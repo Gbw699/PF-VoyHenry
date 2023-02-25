@@ -3,17 +3,29 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { postPlan } from "../../redux/slices/planSlice/thunk";
 import style from "./PlanForm.module.css";
+import countriesData from "../../countries.json";
+import { useState } from "react";
 
 export default function FormSignUp(props) {
   const user = JSON.parse(localStorage.getItem("user"));
+  const countries = countriesData.data;
+  const [provinces, setProvinces] = useState([]);
   const dispatch = useDispatch();
   const currentDate = new Date();
-  const greaterDate = `${currentDate.getFullYear()}-${
-    currentDate.getMonth() + 1
-  }-${currentDate.getDate()}`;
+  const greaterDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1
+    }-${currentDate.getDate()}`;
   const handleClick = () => {
     props.setShowPlanForm(false);
   };
+  const handleCountryChange = (event) => {
+    console.log(event.target.value);
+    console.log(countries);
+    const provincesData = countries.find(
+      (country) => country.country === event.target.value
+    );
+    setProvinces(provincesData.province);
+  };
+
   const getDateActually = () => {
     let toDay = new Date();
     let day = String(toDay.getDate()).padStart(2, "0");
@@ -30,6 +42,8 @@ export default function FormSignUp(props) {
           summary: "",
           mainImage: "",
           images: [],
+          country: "",
+          province: "",
           eventDate: "",
         }}
         validationSchema={Yup.object({
@@ -48,6 +62,8 @@ export default function FormSignUp(props) {
             .url()
             .required("La url de la imagen principal es obligatoria"),
           images: Yup.string().required("Debe proporcionar imágen secundaria"),
+          country: Yup.string(),
+          province: Yup.string(),
           eventDate: Yup.date()
             .min(new Date(greaterDate))
             .required("La fecha del evento es obligatoria"),
@@ -61,6 +77,8 @@ export default function FormSignUp(props) {
             description: values.description,
             mainImage: values.mainImage,
             images: [values.images],
+            country: values.country,
+            province: values.province,
             eventDate: values.eventDate,
             state: "En planeacion",
           };
@@ -140,6 +158,53 @@ export default function FormSignUp(props) {
                 className={style.formInputs}
               />
               <ErrorMessage name="images" />
+              {/* ------------------------------------------------------------------------- */}
+              <label
+                htmlFor="country"
+                className={style.formTitle}
+              >
+                País
+              </label>
+              <Field
+                name="country"
+                as="select"
+                className={style.formInputs}
+                onChange={handleCountryChange}
+              >
+                <option value="">Selecciona un país</option>
+                {countries.map((country) => (
+                  <option
+                    key={country.country}
+                    value={country.country}
+                  >
+                    {country.country}
+                  </option>
+                ))}
+              </Field>
+              <ErrorMessage name="country" />
+              {/* ------------------------------------------------------------------------- */}
+              <label
+                htmlFor="provinces"
+                className={style.formTitle}
+              >
+                Provincia
+              </label>
+              <Field
+                name="province"
+                as="select"
+                className={style.formInputs}
+              >
+                <option value="">Selecciona una provincia</option>
+                {provinces.map((province) => (
+                  <option
+                    key={province}
+                    value={province}
+                  >
+                    {province}
+                  </option>
+                ))}
+              </Field>
+              <ErrorMessage name="province" />
               {/* ------------------------------------------------------------------------- */}
               <label
                 htmlFor="eventDate"
