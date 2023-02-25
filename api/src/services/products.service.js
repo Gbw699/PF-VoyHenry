@@ -159,6 +159,7 @@ class ProductsService {
 
   /* Chackour */
   async checkOut(body) {
+    console.log(body)
     let preference = {
       items: [],
       back_urls: {
