@@ -8,8 +8,8 @@ export default function UploadWidget({ setUrl }) {
     cloudinaryRef.current = window.cloudinary;
     widgetRef.current = cloudinaryRef.current.createUploadWidget(
       {
-        cloudName: "voyhenry",
-        uploadPreset: "qgeyqaqy",
+        cloudName: "voyhenrydb",
+        uploadPreset: "tapjvy8a",
       },
       function (error, result) {
         if (!error && result && result.event === "success") {
