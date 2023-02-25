@@ -12,10 +12,10 @@ export default function ShoppingCartSection() {
   const product = JSON.parse(productLocalStore);
   const productContext = useContext(ProductContext);
 
-  const handleBuyCart = async () => {
+  const handleBuyCart = async (productLocalStore) => {
       await axios
-      .post("/api/v1/products/checkout", productLocalStore)
-      .then((res) => (window.location.href = res.data));
+      .post("http://localhost:3001/api/v1/products/checkout", {productLocalStore})
+      .then((res) => ( console.log(res) /* window.location.href = res.data */));
   };
 
   const totalPrice = () => {
