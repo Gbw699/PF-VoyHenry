@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ShoppingCartCard from "./ShoppingCartCard";
 import style from "./ShoppingCartSection.module.css";
 import ProductContext from "../../context/ProductContext";
+import axios from "axios";
 import Swal from "sweetalert2";
 
 export default function ShoppingCartSection() {
@@ -10,6 +11,12 @@ export default function ShoppingCartSection() {
   const productLocalStore = localStorage.getItem("products");
   const product = JSON.parse(productLocalStore);
   const productContext = useContext(ProductContext);
+
+  const handleBuyCart = async () => {
+      await axios
+      .post("/api/v1/products/checkout", productLocalStore)
+      .then((res) => (window.location.href = res.data));
+  };
 
   const totalPrice = () => {
     const totalesPrice = productContext.products.map(
@@ -122,7 +129,7 @@ export default function ShoppingCartSection() {
       <div className={style.btnsCont}>
         <span>{totalPrice()}</span>
         <button
-          type="submit"
+          onClick={handleBuyCart}
           className={style.buyBtn}
         >
           Finalizar compra
