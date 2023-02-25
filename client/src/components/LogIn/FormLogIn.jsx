@@ -103,7 +103,7 @@ export default function FormLogIn() {
     // !! FALTA LÓGICA DE SI EXISTE QUE INGRESE Y SINO NO.
     onSubmit: async (formData) => {
       await dispatch(getLogin(formData));
-      navigate("/home");
+      await navigate("/home");
     },
   });
 
@@ -112,8 +112,8 @@ export default function FormLogIn() {
   };
 
   const handlerRecoveryPass = () => {
-    navigate("/recoveryPass")
-  }
+    navigate("/recoveryPass");
+  };
 
   return (
     <div className={style.landing}>
@@ -174,9 +174,7 @@ export default function FormLogIn() {
               </Button>
             </div>
           </Form>
-          <button
-            onClick={handlerRecoveryPass}
-          >
+          <button onClick={handlerRecoveryPass}>
             ¿Olvidaste tu contraseña?
           </button>
         </div>
