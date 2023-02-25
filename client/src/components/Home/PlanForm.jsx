@@ -83,9 +83,6 @@ export default function FormSignUp(props) {
             state: "En planeacion",
           };
           dispatch(postPlan(obj));
-          console.log(obj);
-          console.log(values.country);
-          console.log(values.province);
         }}
       >
         <Form>
