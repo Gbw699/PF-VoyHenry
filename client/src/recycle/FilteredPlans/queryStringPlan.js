@@ -44,5 +44,5 @@ export const queryString = (filter, order) => {
   }
 
   const queryParams = Object.values(params).join("");
-  return queryParams ? `&${queryParams}` : "";
+  return queryParams ? `&${queryParams.substring(1)}` : "";
 };
