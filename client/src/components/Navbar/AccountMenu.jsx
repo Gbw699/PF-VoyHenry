@@ -19,9 +19,11 @@ export default function AccountMenu() {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  
   const handleLogOut = () => {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };

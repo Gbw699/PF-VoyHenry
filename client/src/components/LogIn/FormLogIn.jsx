@@ -87,7 +87,17 @@ import { useDispatch } from "react-redux";
 import { getLogin } from "../../redux/slices/userSlice/thunks";
 
 export default function FormLogIn() {
-  const token = new URLSearchParams(location.search).get("token");
+  const query = new URLSearchParams(location.search);
+  const user = {
+    nickName: query.get("nickName")?.trim(),
+    email: query.get("email")?.trim(),
+    dateOfBirth: query.get("dateOfBirth")?.trim(),
+    firstName: query.get("firstName")?.trim(),
+    lastName: query.get("lastName")?.trim(),
+    image: query.get("image")?.trim(),
+    role: query.get("role")?.trim(),
+    google: query.get("google")?.trim()
+  };
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const formik = useFormik({
@@ -109,13 +119,14 @@ export default function FormLogIn() {
   });
 
   useEffect(() => {
-    if (token !== null){
+    if (query.get("token") !== null){
       document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie ="csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = `token=${token}; max-age=604800; path=/;`;
+      document.cookie = `token=${query.get("token")}; max-age=604800; path=/;`;
+      localStorage.setItem("user", JSON.stringify(user));
       navigate("/home");
     }
-  }, [token]);
+  }, [query]);
 
   const backHandler = () => {
     navigate("/");
