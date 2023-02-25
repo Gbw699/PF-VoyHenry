@@ -74,8 +74,8 @@
 
 // DE ACÁ PARA ABAJO NO ROMPE LA PÁGINA
 // DESPUÉS DE LA DEMO PROBAMOS CON LA NUEVA VERSIÓN DEL FORMULARIO
-
 import React from "react";
+import { useEffect } from "react";
 import style from "./FormLogIn.module.css";
 import { Form, Button } from "semantic-ui-react";
 import { useFormik } from "formik";
@@ -87,6 +87,7 @@ import { useDispatch } from "react-redux";
 import { getLogin } from "../../redux/slices/userSlice/thunks";
 
 export default function FormLogIn() {
+  const token = new URLSearchParams(location.search).get("token");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const formik = useFormik({
@@ -106,6 +107,15 @@ export default function FormLogIn() {
       navigate("/home");
     },
   });
+
+  useEffect(() => {
+    if (token !== null){
+      document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie ="csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = `token=${token}; max-age=604800; path=/;`;
+      navigate("/home");
+    }
+  }, [token]);
 
   const backHandler = () => {
     navigate("/");
