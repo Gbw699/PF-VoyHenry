@@ -139,6 +139,45 @@ router.delete('/:id',
 
 });
 
+// Create Comment
+
+router.post('/:id/comment',
+
+  async (req, res, next) => {
+
+    try {
+      const {id} = req.params
+      const body = req.body;
+
+      const createdPlan = await service.createComment(id, body)
+
+      res.json(createdPlan)
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
+// Get comment
+
+router.get('/:id/comment',
+
+  async (req, res, next) => {
+
+    try {
+      const {id} = req.params
+
+      const createdComment = await service.getComment(id)
+
+      res.json(createdComment)
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
 
 
 module.exports = router;

@@ -4,8 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getPlanById } from "../../redux/slices/planSlice/thunk";
 import style from "./DetailPlan.module.css";
 import axios from "axios";
+import { Rating } from "@mui/material";
 
 export default function DetailPlan() {
+  const [value, setValue] = useState();
   const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
   const { id } = useParams();
@@ -42,6 +44,24 @@ export default function DetailPlan() {
     }
   }
 
+  async function handleStarClick(event, value) {
+    const obj = {
+      votes: 1,
+      stars: value,
+      userNickName: user.nickName
+    };
+    try {
+      await axios.patch(`/api/v1/plans/${id}/votes`, obj);
+      setValue(value);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  if (!plan) {
+    return <div>Loading... </div>;
+  }
+
   return (
     <div className={style.container}>
       <div className={style.plan}>
@@ -50,10 +70,18 @@ export default function DetailPlan() {
           className={style.imgCont}
         >
           <h1>{plan.title}</h1>
-          <h3>Localidad</h3>
+          <h3>{plan.country}</h3>
+          <h3>{plan.province}</h3>
           <h3>{plan.eventDate}</h3>
+          {plan.average && <Rating
+            size="large"
+            name="average"
+            value={plan.average}
+            readOnly
+          />}
         </div>
       </div>
+
       <div className={style.name}>
         <h1>{plan.userNickName}</h1>
         <p>Descripción del evento</p>
@@ -62,9 +90,7 @@ export default function DetailPlan() {
           color="#F1E100"
         />
         <p>
-          {plan.description} FacuCapo FacuCapo FacuCapo FacuCapo FacuCapo
-          FacuCapo FacuCapo FacuCapo FacuCapo FacuCapo FacuCapo FacuCapo
-          FacuCapo
+          {plan.description}
         </p>
       </div>
       <div className={style.galeria}>
@@ -87,6 +113,13 @@ export default function DetailPlan() {
       <div className={style.buttons}>
         <div className={style.button}>
           <button className={style.submitBtn}>Unirse</button>
+            <Rating
+              size="large"
+              name="rating"
+              value={value}
+              onChange={handleStarClick}
+            />
+
           <button className={style.AgregarBtn}>Agregar a favoritos</button>
         </div>
         <button
