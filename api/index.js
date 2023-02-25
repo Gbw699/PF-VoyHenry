@@ -15,7 +15,6 @@ const {
   PORT
 } = process.env
 
-
 async function main() {
 
   try {

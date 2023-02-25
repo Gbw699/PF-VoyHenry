@@ -112,8 +112,12 @@ export default function FormLogIn() {
   };
 
   const handlerRecoveryPass = () => {
-    navigate("/recoveryPass")
-  }
+    navigate("/recoveryPass");
+  };
+
+  const handleLoginWithGoogle = () => {
+    window.location.href = "http://localhost:3001/api/v1/auth/login/google";
+  };
 
   return (
     <div className={style.landing}>
@@ -171,6 +175,12 @@ export default function FormLogIn() {
                 style={{ backgroundColor: "#DBDBDB", color: "#707070" }}
               >
                 Volver
+              </Button>
+              <Button
+                onClick={handleLoginWithGoogle}
+                style={{ backgroundColor: "#DBDBDB", color: "#707070" }}
+              >
+                Iniciar sesion con google
               </Button>
             </div>
           </Form>
