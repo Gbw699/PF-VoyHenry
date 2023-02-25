@@ -230,7 +230,7 @@ class PlansService {
     const commentIds = commentsPlans.map(
       (comment) => comment.dataValues.commentid
     );
-    console.log(commentIds);
+   
     const comment = await comments.findAll({
       where: { id: commentIds },
       include: [{
