@@ -20,11 +20,10 @@ export default function BlogFilters({ pagePagination }) {
 
   return (
     <div className={style.container}>
-      <h3 className={style.name}>Filtros</h3>
-      <hr
+      {/* <hr
         width="100%"
         color="#F1E100"
-      />
+      /> */}
       <DateFilter
         filters={filters}
         setFilters={setFilters}

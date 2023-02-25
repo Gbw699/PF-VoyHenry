@@ -25,7 +25,7 @@ export default function GeolocationForm() {
         <FilterByRating className={style.inputs} />
         <FilterByTitle className={style.inputs} />
         <button
-          className={style.buttonActualizar}
+          className={style.buttons}
           value="refresh"
           onClick={handleClick}
         >
