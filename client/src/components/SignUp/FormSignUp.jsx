@@ -25,7 +25,7 @@
 //               genre: "",
 //               email: "",
 //               nickName: "",
-//               //imágen default
+//               imagen default
 //               image:
 //                 "https://www.clarin.com/img/2021/10/07/dPmbdeT7x_1200x630__1.jpg",
 //               firstName: "",
