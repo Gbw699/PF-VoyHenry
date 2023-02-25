@@ -5,15 +5,18 @@ import { postPlan } from "../../redux/slices/planSlice/thunk";
 import style from "./PlanForm.module.css";
 import countriesData from "../../countries.json";
 import { useState } from "react";
+import UploadWidget from "../../recycle/UploadWidget/UploadWidget";
 
 export default function FormSignUp(props) {
   const user = JSON.parse(localStorage.getItem("user"));
   const countries = countriesData.data;
   const [provinces, setProvinces] = useState([]);
+  const [url, setUrl] = useState("");
   const dispatch = useDispatch();
   const currentDate = new Date();
-  const greaterDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1
-    }-${currentDate.getDate()}`;
+  const greaterDate = `${currentDate.getFullYear()}-${
+    currentDate.getMonth() + 1
+  }-${currentDate.getDate()}`;
   const handleClick = () => {
     props.setShowPlanForm(false);
   };
@@ -40,7 +43,6 @@ export default function FormSignUp(props) {
         initialValues={{
           title: "",
           summary: "",
-          mainImage: "",
           images: [],
           country: "",
           province: "",
@@ -58,10 +60,6 @@ export default function FormSignUp(props) {
           description: Yup.string()
             .max(255)
             .required("La descripción es obligatoria"),
-          mainImage: Yup.string()
-            .url()
-            .required("La url de la imagen principal es obligatoria"),
-          // images: Yup.string().required("Debe proporcionar imágen secundaria"),
           country: Yup.string(),
           province: Yup.string(),
           eventDate: Yup.date()
@@ -75,13 +73,14 @@ export default function FormSignUp(props) {
             title: values.title,
             summary: values.summary,
             description: values.description,
-            mainImage: values.mainImage,
+            mainImage: url,
             images: [],
             country: values.country,
             province: values.province,
             eventDate: values.eventDate,
             state: "En planeacion",
           };
+          setUrl("");
           dispatch(postPlan(obj));
         }}
       >
@@ -139,12 +138,10 @@ export default function FormSignUp(props) {
               >
                 Imagen principal
               </label>
-              <Field
-                name="mainImage"
-                type="text"
-                className={style.formInputs}
+              <UploadWidget
+                url={url}
+                setUrl={setUrl}
               />
-              <ErrorMessage name="nickName" />
               {/* ------------------------------------------------------------------------- */}
               {/* <label
                 htmlFor="images"
