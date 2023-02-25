@@ -15,19 +15,22 @@ const GoogleStrategy = new Strategy({
 
   },
   async function(accessToken, refreshToken, profile, cb) {
+    try {
 
-    const user = await userService.createWithGoogle({
-      nickName: profile.id,
-      email: profile.emails[0].value,
-      firstName: profile.name.givenName,
-      lastName: profile.name.familyName,
-      image: profile.photos[0].value,
-      genre: profile.gender || null,
-      dateOfBirth: profile.birthday || "2000-01-01",
-    })
-
-    cb(null, user)
-  }
+      const user = await userService.createWithGoogle({
+        nickName: profile.id,
+        email: profile.emails[0].value,
+        firstName: profile.name.givenName,
+        lastName: profile.name.familyName,
+        image: profile.photos[0].value,
+        genre: profile.gender || null,
+        dateOfBirth: profile.birthday || "2000-01-01",
+      })
+      cb(null, user)
+    } catch (error) {
+      const redirectError = "Bad_validation_method"
+      cb(null, redirectError)
+  }}
 );
 
 module.exports = GoogleStrategy;
