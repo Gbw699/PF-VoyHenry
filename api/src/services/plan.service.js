@@ -158,7 +158,7 @@ class PlansService {
     };
   }
 
-  /* Create Plan */
+  /* Create Comment Plan */
 
   async createComment(id, { userNickName, comment }) {
     const searchname = await users.findOne({
@@ -230,6 +230,7 @@ class PlansService {
     const commentIds = commentsPlans.map(
       (comment) => comment.dataValues.commentid
     );
+    console.log(commentIds);
     const comment = await comments.findAll({
       where: { id: commentIds },
       include: [{

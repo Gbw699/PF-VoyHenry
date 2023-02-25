@@ -77,7 +77,6 @@ router.post('/',
 /* Create new plan comment*/
 
 router.post('/:id/comment',
-  //validatorHandler(createPlanSchema, "body"),
 
   async (req, res, next) => {
 
@@ -96,7 +95,6 @@ router.post('/:id/comment',
 });
 
 router.get('/:id/comment',
-  //validatorHandler(createPlanSchema, "body"),
 
   async (req, res, next) => {
 

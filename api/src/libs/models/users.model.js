@@ -88,6 +88,9 @@ comments.belongsToMany(users, { foreignKey:"commentid", through: 'comments_users
 comments.belongsToMany(plans, { foreignKey:"commentid", through: 'comments_plans' });
 plans.belongsToMany(comments, { foreignKey:"plansid", through: 'comments_plans' });
 
+comments.belongsToMany(blogs, { foreignKey:"commentid", through: 'comments_blogs' });
+blogs.belongsToMany(comments, { foreignKey:"blogid", through: 'comments_blogs' });
+
 // users.belongsToMany(comments, {as: "user", foreignKey:"NickName", through: 'users_comments' });
 // comments.belongsToMany(users, {as: "commentuser", foreignKey:"userNickName", through: 'users_comments' })
 // comments.belongsToMany(plans, {as:"commentplans", foreignKey:"userNickName", through: 'users_comments' })

@@ -62,9 +62,7 @@ export default function DetailPlan() {
           color="#F1E100"
         />
         <p>
-          {plan.description} FacuCapo FacuCapo FacuCapo FacuCapo FacuCapo
-          FacuCapo FacuCapo FacuCapo FacuCapo FacuCapo FacuCapo FacuCapo
-          FacuCapo
+          {plan.description}
         </p>
       </div>
       <div className={style.galeria}>
