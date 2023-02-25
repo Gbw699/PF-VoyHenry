@@ -212,8 +212,20 @@ async update (id, { title , content, rating, image }) {
 
 }
 
+  /* Count Pages */
+  async count () {
+   let  options = {}
 
-}
+    const count = await blogModel.count(options);
+
+    return count;
+  }
+
+  }
+
+
+
+
 
 
 
