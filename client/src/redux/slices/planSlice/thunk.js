@@ -28,7 +28,7 @@ export const getLimitPlans = () => {
     try {
       //hablar sobre la ruta
       const response = await axios.get("/api/v1/plans?limit=6");
-      dispatch(setLimitPlans(response.data.plans.plans));
+      dispatch(setLimitPlans(response.data));
     } catch (error) {
       return console.log("No se pudo realizar la petición");
     }
@@ -112,7 +112,6 @@ export const getPlansbyOrder = (filter, order) => {
   const queryUrl = queryString(filter, order);
   return async (dispatch) => {
     try {
-      console.log(`/api/v1/plans?${queryUrl}`);
       const response = await axios.get(`/api/v1/plans?${queryUrl}`);
       dispatch(setPlansbyOrder(response.data));
     } catch (error) {

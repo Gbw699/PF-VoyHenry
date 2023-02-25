@@ -13,7 +13,7 @@ const planSlice = createSlice({
       state.allPlans = [...action.payload];
     },
     setLimitPlans(state, action) {
-      state.renderPlans = [...action.payload];
+      state.renderPlans = {...action.payload};
     },
     setPlansSearch(state, action) {
       state.renderPlans = [...action.payload];
