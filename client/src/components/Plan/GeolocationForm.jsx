@@ -10,7 +10,7 @@ import FilterByCountry from "./FilterByCountry";
 export default function GeolocationForm() {
   const dispatch = useDispatch(event);
   const handleClick = () => {
-    dispatch(getPlansbyOrder("page", 1));
+    dispatch(getPlansbyOrder("clean", 1));
   };
   return (
     <div className={style.container}>
