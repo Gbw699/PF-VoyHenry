@@ -190,6 +190,15 @@ export default function FormSignUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const getDateActually = () => {
+    let toDay = new Date();
+    let day = String(toDay.getDate()).padStart(2, "0");
+    let mount = String(toDay.getMonth() + 1).padStart(2, "0");
+    let year = toDay.getFullYear();
+    toDay = `${year}-${mount}-${day}`;
+    return toDay;
+  };
+
   return (
     <div className={style.landing}>
       <img
@@ -205,7 +214,7 @@ export default function FormSignUp() {
               genre: "",
               email: "",
               nickName: "",
-              //imágen default
+              //imagen default
               image:
                 "https://www.clarin.com/img/2021/10/07/dPmbdeT7x_1200x630__1.jpg",
               firstName: "",
@@ -358,6 +367,7 @@ export default function FormSignUp() {
                   <Field
                     name="dateOfBirth"
                     type="date"
+                    max={getDateActually()}
                   />
                   <ErrorMessage name="dateOfBirth" />
                 </div>
