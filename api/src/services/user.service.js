@@ -5,6 +5,7 @@ const { Op } = require("sequelize");
 const blogModel = require('../libs/models/blog-model');
 const plansModel = require('../libs/models/plans.model');
 
+
 class UsersService {
 
   constructor(){
@@ -143,18 +144,39 @@ class UsersService {
 
     /* Find User all Blogs*/
 
-    async findBlogs (nickName) {
+    async findBlogs (nickName,query, page) {
 
-      const user = await blogModel.findAll({where: {userNickName: nickName}})
+      const options = {
 
-      if (user.length === 0) {
-        throw new CustomError("This user don't have any blog", 404)
+        order: [['title', 'DESC']],
+        limit: 3,
+        offset : 0
       }
 
-      return user
+     if (query.offset) {
+
+       options.offset = (page - 1) * query.offset;
+     }
+
+     if (query.page) {
+       const page = parseInt(query.page);
+       if (isNaN(page) || page < 1) {
+         throw new CustomError('Page not found', 404);
+        }
+        options.offset = (page - 1) * (options.limit || query.limit);
+      }
+
+
+      const blogs = await blogModel.findAll({limit: options.limit, offset: options.offset, where: {userNickName: nickName}})
+
+
+      if (blogs === null||blogs.length === 0) {
+        throw new CustomError("This user don't have any blog", 404)
+      }else{
+        return {blogs}
+      }
 
     }
-
 
     /* Find User all Plans*/
 
@@ -225,7 +247,16 @@ class UsersService {
 
   }
 
-}
+
+  /* Count Pages */
+  async count (nickName) {
+
+    const count = await blogModel.count({where:{userNickName: nickName}});
+
+    return count;
+  }
+
+  }
 
 module.exports = UsersService;
 

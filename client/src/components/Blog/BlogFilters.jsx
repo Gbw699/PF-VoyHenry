@@ -6,9 +6,8 @@ import LimitFilter from "./LimitFilter";
 import { getBlogs } from "../../redux/slices/blogSlice/thunk";
 import style from "./BlogFilters.module.css";
 
-export default function BlogFilters() {
+export default function BlogFilters({ pagePagination }) {
   const dispatch = useDispatch();
-
   const [filters, setFilters] = useState({
     date: "",
     order: "",
@@ -16,8 +15,8 @@ export default function BlogFilters() {
   });
 
   useEffect(() => {
-    dispatch(getBlogs(1, filters.date, filters.order));
-  }, [filters]);
+    dispatch(getBlogs(pagePagination, filters.date, filters.order));
+  }, [pagePagination, filters]);
 
   return (
     <div className={style.container}>

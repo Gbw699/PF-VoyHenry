@@ -1,25 +1,28 @@
-import { useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { setProductsByOrder } from "../../redux/slices/marketPlaceSlice/marketPlaceSlice";
 import style from "./Filters.module.css";
 
-export default function OrderFilter({ onOrderChange }) {
-  const [order, setOrder] = useState("");
+export default function OrderFilter() {
+  const dispatch = useDispatch();
 
-  const handleOrderChange = (event) => {
-    const newOrder = event.target.value;
-    setOrder(newOrder);
-    onOrderChange(newOrder);
+  const handleChange = (event) => {
+    dispatch(setProductsByOrder(event.target.value));
   };
 
   return (
     <div className={style.container}>
       <h3>Ordenar por</h3>
-      <hr width="100%" color="#F1E100" />
-      <select value={order} onChange={handleOrderChange}>
+      <hr
+        width="100%"
+        color="#F1E100"
+      />
+      <select onChange={handleChange}>
         <option value="">-- Selecciona una opción --</option>
-        <option value="price_asc">Precio ascendente</option>
-        <option value="price_desc">Precio descendente</option>
-        <option value="name_asc">Nombre A-Z</option>
-        <option value="name_desc">Nombre Z-A</option>
+        <option value="alfabetico">Nombre A-Z</option>
+        <option value="reverso">Nombre Z-A</option>
+        <option value="ascendente">Precio ascendente</option>
+        <option value="descendente">Precio descendente</option>
       </select>
     </div>
   );

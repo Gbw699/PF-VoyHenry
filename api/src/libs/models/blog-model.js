@@ -49,8 +49,8 @@ const blogs = sequelize.define("blogs", {
     average: {
       type: DataTypes.INTEGER,
       get() {
-        if (this.votes === 0) {
-          return 0
+        if (this.votes === 1) {
+          return this.stars
         } else {
           return this.stars / this.votes
         }

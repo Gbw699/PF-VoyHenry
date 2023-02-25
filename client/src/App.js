@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import { ProductContextProvider } from "./context/ProductContext";
 import "./App.css";
 import axios from "axios";
 import NavBar from "./components/Navbar/Navbar";
@@ -23,6 +24,7 @@ import Users from "./views/Users/Users";
 import ProfileUser from "./views/ProfileUser/ProfileUser";
 import RecoveryPass from "./views/RecoveryPass/Recoverypass";
 import ChangePass from "./views/ChangePass/ChangePass";
+import Configuration from "./views/Configuration/Configuration";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 const cookie = document.cookie.split("=");
@@ -33,7 +35,7 @@ function App() {
 
   const location = useLocation();
   return (
-    <div>
+    <ProductContextProvider>
       {location.pathname !== "/" &&
         location.pathname !== "/recoveryPass" &&
         location.pathname !== "/changePass" &&
@@ -116,6 +118,10 @@ function App() {
           element={<ProfileUser />}
         />
         <Route
+          path="/configuration"
+          element={<Configuration />}
+        />
+        <Route
           path="*"
           element={<Error404 />}
         />
@@ -125,7 +131,7 @@ function App() {
         location.pathname !== "/recoveryPass" &&
         location.pathname !== "/changePass" &&
         location.pathname !== "/logIn" && <Footer />}
-    </div>
+    </ProductContextProvider>
   );
 }
 

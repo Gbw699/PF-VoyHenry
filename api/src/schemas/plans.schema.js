@@ -15,6 +15,8 @@ const eventDate = Joi.date().greater(greaterDate);
 const userNickName = Joi.string().alphanum().min(0).max(15)
 const stars = Joi.number().min(0).max(5)
 const votes = Joi.number().min(0).max(1)
+const country = Joi.string().max(40)
+const province = Joi.string().max(40)
 
 
 
@@ -30,7 +32,9 @@ const createPlanSchema = Joi.object({
   mainImage: mainImage.required(),
   images: images.required(),
   state: state.required(),
-  eventDate: eventDate.required()
+  eventDate: eventDate.required(),
+  country: country.required(),
+  province: province.required()
 })
 
 const updateSchema = Joi.object({
@@ -40,7 +44,9 @@ const updateSchema = Joi.object({
   mainImage: mainImage,
   images: images,
   state: state,
-  eventDate: eventDate
+  eventDate: eventDate,
+  country: country,
+  province: province
 })
 
 const deletePlanSchema = Joi.object({
