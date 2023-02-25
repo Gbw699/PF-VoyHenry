@@ -135,8 +135,7 @@ router.post('/buy',
 /* CheckOut Product */
 
 router.post('/checkout',
-/*   validatorHandler(buyProductSchema, 'body'), */
-/*   passport.authenticate('jwt', {session: false}), */
+  passport.authenticate('jwt', {session: false}),
   async (req, res, next) => {
     try {
 
