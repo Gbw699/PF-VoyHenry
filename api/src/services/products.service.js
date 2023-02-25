@@ -172,8 +172,10 @@ class ProductsService {
 
     body.forEach((products) => {
       preference.items.push({
+        id: products.id,
         title: products.title,
         unit_price: products.price,
+        desciption: products.title,
         quantity: products.quantity,
       });
     });
