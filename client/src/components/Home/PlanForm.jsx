@@ -61,7 +61,7 @@ export default function FormSignUp(props) {
           mainImage: Yup.string()
             .url()
             .required("La url de la imagen principal es obligatoria"),
-          images: Yup.string().required("Debe proporcionar imágen secundaria"),
+          // images: Yup.string().required("Debe proporcionar imágen secundaria"),
           country: Yup.string(),
           province: Yup.string(),
           eventDate: Yup.date()
@@ -76,7 +76,7 @@ export default function FormSignUp(props) {
             summary: values.summary,
             description: values.description,
             mainImage: values.mainImage,
-            images: [values.images],
+            images: [],
             country: values.country,
             province: values.province,
             eventDate: values.eventDate,
@@ -146,7 +146,7 @@ export default function FormSignUp(props) {
               />
               <ErrorMessage name="nickName" />
               {/* ------------------------------------------------------------------------- */}
-              <label
+              {/* <label
                 htmlFor="images"
                 className={style.formTitle}
               >
@@ -157,7 +157,7 @@ export default function FormSignUp(props) {
                 type="text"
                 className={style.formInputs}
               />
-              <ErrorMessage name="images" />
+              <ErrorMessage name="images" /> */}
               {/* ------------------------------------------------------------------------- */}
               <label
                 htmlFor="country"
@@ -169,7 +169,7 @@ export default function FormSignUp(props) {
                 name="country"
                 as="select"
                 className={style.formInputs}
-                onChange={handleCountryChange}
+                onClick={handleCountryChange}
               >
                 <option value="">Selecciona un país</option>
                 {countries.map((country) => (
