@@ -6,20 +6,13 @@ const setOrder = (order) => {
     antiguos: "antiguos",
     reverso: "reverso",
     alfabetico: "alfabetico",
-  };
-  const validRatingOrders = {
     menosvotados: "menosvotados",
     masvotados: "masvotados",
   };
+ 
   if (validOrders[order]) {
     mapQuery.set("order", `&order=${validOrders[order]}`);
-    mapQuery.delete("rating");
-    mapQuery.delete("date");
-  } else if (validRatingOrders[order]) {
-    mapQuery.set("rating", `&order=${validRatingOrders[order]}`);
-    mapQuery.delete("order");
-    mapQuery.delete("date");
-  }
+  } 
 };
 
 export const queryString = (filter, order) => {
@@ -59,14 +52,6 @@ export const queryString = (filter, order) => {
         mapQuery.delete("page");
       }
       break;
-    case "rating":
-      if (order) {
-        setOrder(order);
-        mapQuery.set("rating", `&rating=${order}`);
-      } else {
-        mapQuery.delete("rating");
-      }
-      break;
     case "country":
       if (order) {
         setOrder(order);
@@ -81,6 +66,17 @@ export const queryString = (filter, order) => {
         mapQuery.set("province", `&province=${order}`);
       } else {
         mapQuery.delete("province");
+      }
+      break;
+      case "clean":
+      if (order) {
+        mapQuery.delete("date");
+        mapQuery.delete("order");
+        mapQuery.delete("country");
+        mapQuery.delete("province");
+        mapQuery.set("page", `&page=${order}`);
+      } else {
+        mapQuery.delete("page");
       }
       break;
     default:

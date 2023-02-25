@@ -10,12 +10,13 @@ export default function PlanCardListHome() {
     dispatch(getLimitPlans());
   }, []);
 
-  const plans = useSelector((state) => state.planStore.renderPlans);
+  const renderPlans = useSelector((state) => state.planStore.renderPlans);
+  const { plans, pageNumber, pages } = renderPlans;
 
   return (
     <div className={style.container}>
       <div className={style.cardCont}>
-        {plans?.map((plan) => (
+        {plans?.plans.map((plan) => (
           <PlanCard
             key={plan.id}
             id={plan.id}
