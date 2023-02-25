@@ -50,18 +50,23 @@ router.get('/login/google/callback',
 
     try {
 
-      const user = service.signToken(req.user)
+      if(req.user === "Bad_validation_method"){
+        res.redirect(`http://localhost:3000/logIn?error=${req.user}`)
+      } else {
 
-      res.redirect(`http://localhost:3000/logIn?token=${user.token}
-        &nickName=${user.user[0].nickName}
-        &email=${user.user[0].email}
-        &dateOfBirth=${user.user[0].dateOfBirth}
-        &firstName=${user.user[0].firstName}
-        &lastName=${user.user[0].lastName}
-        &image=${user.user[0].image}
-        &role=${user.user[0].role}
-        &google=${user.user[0].google}`
-      )
+        const user = service.signToken(req.user)
+
+        res.redirect(`http://localhost:3000/logIn?token=${user.token}
+          &nickName=${user.user[0].nickName}
+          &email=${user.user[0].email}
+          &dateOfBirth=${user.user[0].dateOfBirth}
+          &firstName=${user.user[0].firstName}
+          &lastName=${user.user[0].lastName}
+          &image=${user.user[0].image}
+          &role=${user.user[0].role}
+          &google=${user.user[0].google}`
+        )
+      }
     } catch (error) {
 
       next(error)
