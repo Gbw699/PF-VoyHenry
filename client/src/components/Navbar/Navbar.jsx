@@ -2,6 +2,7 @@ import SearchBar from "./SearchBar";
 import AccountMenu from "./AccountMenu";
 import { NavLink, useLocation } from "react-router-dom";
 import img from "../../assets/voyHENRY_title.png";
+import imgCarrito from "../../assets/carrito-de-compras.png";
 import style from "./Navbar.module.css";
 
 export default function NavBar() {
@@ -51,6 +52,16 @@ export default function NavBar() {
           className={navLinkClassName}
         >
           <h4>TIENDA</h4>
+        </NavLink>
+        <NavLink
+          to="/marketplace/shoppingcart"
+          className={navLinkClassName}
+        >
+          <img
+            src={imgCarrito}
+            width="20px"
+            alt="Carrito de compras"
+          />
         </NavLink>
         <AccountMenu />
       </div>

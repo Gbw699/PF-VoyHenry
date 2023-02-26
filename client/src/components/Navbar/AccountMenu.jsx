@@ -5,8 +5,6 @@ import MenuItem from "@mui/material/MenuItem";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-//remplazar la imagen por la del usuario
-import img from "../../assets/voyHENRY_logo.png";
 import { NavLink } from "react-router-dom";
 import style from "./AccountMenu.module.css";
 import { useState } from "react";
@@ -39,7 +37,7 @@ export default function AccountMenu() {
           aria-expanded={open ? "true" : undefined}
         >
           <Avatar
-            srcSet={img}
+            srcSet={user.image}
             sx={{ width: 32, height: 32 }}
           >
             I
@@ -80,14 +78,6 @@ export default function AccountMenu() {
             {user.nickName}
           </NavLink>
         </MenuItem>
-        <Divider />
-        <NavLink
-          to={"/marketplace/shoppingcart"}
-          style={{ color: "#707070" }}
-        >
-          <MenuItem className={style.menuLinks}>Carrito</MenuItem>
-        </NavLink>
-        <Divider />
         <NavLink
           to={"/profile"}
           style={{ color: "#707070" }}
@@ -96,10 +86,10 @@ export default function AccountMenu() {
         </NavLink>
         <Divider />
         <NavLink
-          to="/profile/edit"
+          to="/favorite"
           style={{ color: "#707070" }}
         >
-          <MenuItem className={style.menuLinks}>Editar perfil</MenuItem>
+          <MenuItem className={style.menuLinks}>Favoritos</MenuItem>
         </NavLink>
         <NavLink
           to="/profile/edit"
