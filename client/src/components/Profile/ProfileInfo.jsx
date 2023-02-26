@@ -34,6 +34,7 @@ export default function ProfileInfo({
         <p className={style.nacionality}>{nationality}</p>
       </div>
       <div>
+        {location.pathname !== "/profile" && <button>AGREGAR AMIGO</button>}
         {location.pathname === "/profile" && (
           <Link to="/profile/edit">
             <button>EDITAR PERFIL</button>
