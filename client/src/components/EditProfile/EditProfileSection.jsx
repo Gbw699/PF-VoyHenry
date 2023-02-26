@@ -2,14 +2,24 @@ import React from "react";
 import EditProfileAboutMe from "./EditProfileAboutMe";
 import EditProfileImage from "./EditProfileImage";
 import EditProfileInput from "./EditProfileInput";
-import EditProfileSelectCountry from "./EditProfileSelectCountry";
+// import EditProfileSelectCountry from "./EditProfileSelectCountry";
+import { useDispatch } from "react-redux";
+import { editUser } from "../../redux/slices/userSlice/thunks";
+import Swal from "sweetalert2";
+
 // import style from "EditProfileSection.module.css";
 
 export const EditProfileSection = ({
+  nickName,
+  setNickName,
   image,
   setImage,
-  setName,
+  firstName,
+  setFirstName,
+  lastName,
   setLastName,
+  about,
+  setAbout,
   provinces,
   setProvinces,
   selectedCountry,
@@ -17,14 +27,68 @@ export const EditProfileSection = ({
   selectedProvince,
   setSelectedProvince,
 }) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const dispatch = useDispatch();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
+      },
+      buttonsStyling: false,
+    });
+    swalWithBootstrapButtons
+      .fire({
+        title: "¿Estás seguro que quieres actualizar tus datos?",
+        text: "¡Luego lo puedes volver a cambiar!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Si",
+        cancelButtonText: "No",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          dispatch(
+            editUser(
+              { firstName, lastName, image, nickName, about },
+              user.nickName
+            )
+          );
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              ...user,
+              firstName: firstName,
+              lastName: lastName,
+              image: image,
+              nickName: nickName,
+              about: about,
+            })
+          );
+          swalWithBootstrapButtons.fire(
+            "Perfil actualizado!",
+            "Se ha actualizado los datos de tu perfil",
+            "success"
+          );
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire(
+            "Cancelado",
+            "¡Sigue editando tu perfil!",
+            "error"
+          );
+        }
+      });
+  };
   return (
     <div>
-      <div>
+      <form onSubmit={handleSubmit}>
         <p>Nombre completo</p>
         <EditProfileInput
-          name="name"
+          name="firstName"
           placeholder="Nombre completo"
-          setState={setName}
+          setState={setFirstName}
         />
         <p>Apellido</p>
         <EditProfileInput
@@ -36,8 +100,9 @@ export const EditProfileSection = ({
         <EditProfileInput
           name="nickName"
           placeholder="Como te ven los otros usuarios"
+          setState={setNickName}
         />
-        <EditProfileSelectCountry
+        {/* <EditProfileSelectCountry
           {...{
             provinces,
             setProvinces,
@@ -46,22 +111,22 @@ export const EditProfileSection = ({
             selectedProvince,
             setSelectedProvince,
           }}
-        />
-        <p>Teléfono</p>
+        /> */}
+        {/* <p>Teléfono</p>
         <EditProfileInput
           name="phone"
           placeholder="(Código país) (Código área) 1122-3344"
-        />
+        /> */}
+        <div>
+          <div>
+            <EditProfileImage {...{ image, setImage }} />
+          </div>
+          <div>
+            <EditProfileAboutMe setState={setAbout} />
+          </div>
+        </div>
         <button>Guardar cambios</button>
-      </div>
-      <div>
-        <div>
-          <EditProfileImage {...{ image, setImage }} />
-        </div>
-        <div>
-          <EditProfileAboutMe />
-        </div>
-      </div>
+      </form>
     </div>
   );
 };

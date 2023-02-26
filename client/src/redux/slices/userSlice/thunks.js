@@ -49,7 +49,6 @@ export const postUser = (obj) => {
       await axios.post("/api/v1/users", {
         ...obj,
       });
-      console.log("El usuario se creó correctamente");
     } catch (error) {
       console.log(error.message);
     }
@@ -74,6 +73,18 @@ export const getUserBlogs = (nickName) => {
       dispatch(setUserBlogs(response.data));
     } catch (error) {
       return console.log("No se pudo realizar la petición");
+    }
+  };
+};
+
+export const editUser = (obj, nickName) => {
+  return async () => {
+    try {
+      await axios.patch(`/api/v1/users/${nickName}`, {
+        ...obj,
+      });
+    } catch (error) {
+      return console.log(error.message);
     }
   };
 };
