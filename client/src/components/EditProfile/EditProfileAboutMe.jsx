@@ -1,7 +1,10 @@
 import React from "react";
 // import style from "EditProfileAboutMe.module.css";
 
-export default function EditProfileAboutMe() {
+export default function EditProfileAboutMe({ setState }) {
+  const handleChange = (event) => {
+    setState(event.target.value);
+  };
   return (
     <div>
       <textarea
@@ -10,6 +13,7 @@ export default function EditProfileAboutMe() {
         id="aboutMe"
         cols="30"
         rows="10"
+        onChange={handleChange}
       ></textarea>
     </div>
   );

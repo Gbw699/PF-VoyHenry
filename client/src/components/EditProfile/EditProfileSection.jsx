@@ -18,6 +18,8 @@ export const EditProfileSection = ({
   setFirstName,
   lastName,
   setLastName,
+  about,
+  setAbout,
   provinces,
   setProvinces,
   selectedCountry,
@@ -26,8 +28,6 @@ export const EditProfileSection = ({
   setSelectedProvince,
 }) => {
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log(user.nickName);
-  console.log(nickName);
   const dispatch = useDispatch();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -51,7 +51,10 @@ export const EditProfileSection = ({
       .then((result) => {
         if (result.isConfirmed) {
           dispatch(
-            editUser({ firstName, lastName, image, nickName }, user.nickName)
+            editUser(
+              { firstName, lastName, image, nickName, about },
+              user.nickName
+            )
           );
           localStorage.setItem(
             "user",
@@ -61,6 +64,7 @@ export const EditProfileSection = ({
               lastName: lastName,
               image: image,
               nickName: nickName,
+              about: about,
             })
           );
           swalWithBootstrapButtons.fire(
@@ -113,16 +117,16 @@ export const EditProfileSection = ({
           name="phone"
           placeholder="(Código país) (Código área) 1122-3344"
         /> */}
+        <div>
+          <div>
+            <EditProfileImage {...{ image, setImage }} />
+          </div>
+          <div>
+            <EditProfileAboutMe setState={setAbout} />
+          </div>
+        </div>
         <button>Guardar cambios</button>
       </form>
-      <div>
-        <div>
-          <EditProfileImage {...{ image, setImage }} />
-        </div>
-        <div>
-          <EditProfileAboutMe />
-        </div>
-      </div>
     </div>
   );
 };
