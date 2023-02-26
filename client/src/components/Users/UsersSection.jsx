@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import UserCard from "./UserCard";
+import UserSearch from "./UserSearch";
 import style from "./UsersSection.module.css";
 
 export default function UsersSection({ users }) {
   return (
     <div className={style.container}>
+      <div>
+        <UserSearch />
+      </div>
       <div>
         {users?.map((element) => (
           <Link

@@ -24,7 +24,7 @@ export default function BlogUsers() {
         width="100%"
         color="#F1E100"
       />
-      {allUsers.users?.map((user) => {
+      {allUsers.users.slice(0, 6)?.map((user) => {
         return (
           <Link
             key={user.nickName}
@@ -37,7 +37,9 @@ export default function BlogUsers() {
           </Link>
         );
       })}
-      <button className={style.searchBtn}>Buscar usuario</button>
+      <Link to="/users">
+        <button className={style.searchBtn}>Buscar más usuarios</button>
+      </Link>
     </div>
   );
 }

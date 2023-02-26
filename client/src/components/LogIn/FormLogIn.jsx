@@ -158,7 +158,7 @@ export default function FormLogIn() {
             <div>
               <h3 className={style.inputTitle}>E-mail</h3>
               <Form.Input
-                type="text"
+                type="email"
                 placeholder="E-mail"
                 name="email"
                 onChange={formik.handleChange}

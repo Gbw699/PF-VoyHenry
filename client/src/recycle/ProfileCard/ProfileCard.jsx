@@ -36,7 +36,7 @@ export default function ProfileCard() {
           />
           <h1 className={style.profileName}>{user.nickName}</h1>
           {/* vv BORRAR CUANDO HAYA NACIONALIDAD vv */}
-          <h4 className={style.profileCountry}>Nacionalidad</h4>
+          <h4 className={style.profileCountry}>Argentina</h4>
           <div className={style.followersCont}>
             <div className={style.followers}>
               <p className={style.followTitle}>Siguiendo</p>
