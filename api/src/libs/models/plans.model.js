@@ -63,12 +63,12 @@ const plans = sequelize.define('plans', {
 
   },
   average: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.VIRTUAL,
     get() {
       if (this.votes === 1) {
         return this.stars
       } else {
-        return this.stars / this.votes-1
+        return this.stars / (this.votes -1)
       }
     }
   }
