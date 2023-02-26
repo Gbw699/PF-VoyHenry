@@ -6,9 +6,12 @@ import EditProfileSelectCountry from "./EditProfileSelectCountry";
 // import style from "EditProfileSection.module.css";
 
 export const EditProfileSection = ({
+  nickName,
   image,
   setImage,
+  name,
   setName,
+  lastName,
   setLastName,
   provinces,
   setProvinces,
@@ -17,6 +20,10 @@ export const EditProfileSection = ({
   selectedProvince,
   setSelectedProvince,
 }) => {
+  // const dispatch = useDispatch();
+  const handleSubmit = () => {
+    // dispatch(nickName, );
+  };
   return (
     <div>
       <div>
