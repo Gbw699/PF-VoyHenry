@@ -156,6 +156,91 @@ router.delete('/:nickName',
       next(error)
     }
 
+
+/* user follow user */
+//router.patch('/:nickName',
+router.post('/usee',
+  //validatorHandler(createUserSchema, "body"),
+  async (req, res, next) => {
+
+    try {
+
+      const {nickName} = req.params
+      console.log(nickName)
+      const body = req.body;
+
+      const createdUser = await service.follow(nickName,body)
+
+      res.json(createdUser)
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
+
+
+
+
+
+
+
+// Create favorite
+
+router.post(
+  '/:nickName/favorite',
+
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      console.log(id)
+      const body = req.body;
+
+      const createdPlan = await service.followblog(id, body);
+
+      res.json(createdPlan);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
 
 module.exports = router;

@@ -2,7 +2,7 @@ const blogModel = require('../libs/models/blog-model.js');
 const users = require('../libs/models/users.model.js');
 const comments = require('../libs/models/comments.users');
 const { CustomError } = require('../middlewares/error.handler')
-const { Op } = require("sequelize");
+const { Op, where } = require("sequelize");
 const sequelize = require('../libs/database/database');
 
 
@@ -247,6 +247,313 @@ async update (id, { title , content, rating, image }) {
       },
     };
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* Create favorite blog */
+
+  async followblog(id, { userNickName  }) {
+
+    const commentUserTable = await sequelize.models.user_favorite_blog.create({
+      userid: userNickName,
+
+      blogid: id,
+    });
+
+    return {
+      message: 'Create',
+      data: {
+
+        favoriteBlog: commentUserTable,
+
+      },
+    };
+  }
+
+
+
+  /* Create favorite blog */
+
+  async followplan(id, { userNickName  }) {
+
+    const commentUserTable = await sequelize.models.user_favorite_plan.create({
+      userid: userNickName,
+
+      planid: id,
+    });
+
+    return {
+      message: 'Create',
+      data: {
+
+        favoriteBlog: commentUserTable,
+
+      },
+    };
+  }
+
+
+
+
+  async follow (nickName,{userNickName}) {
+
+    //const count = await blogModel.count({where:{userNickName: nickName}});
+    console.log(nickName)
+    console.log(userNickName)
+    const userFollowUser = await sequelize.models.user_follow_user.create({
+      userid: userNickName,
+
+      followUserId: nickName,
+    });
+
+
+
+    return userFollowUser;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Get favorite by nickname
+
+  async getFollowBlog(nickName) {
+
+    const commentsBlogs = await sequelize.models.user_favorite_blog.findAll({
+      where: { userid: nickName },
+    });
+
+    const commentIds = commentsBlogs.map(
+      (comment) => comment.dataValues.blogid
+    );
+
+    const comment = await blogModel.findAll({
+      where: { id: commentIds },
+    });
+    return comment;
+  }
+
+
+
+
+
+
+
+
+
+
+
+  // Get favorite by nickname
+
+  async getFollowPlan(nickName) {
+
+    const commentsBlogs = await sequelize.models.user_favorite_blog.findAll({
+      where: { userid: nickName },
+    });
+
+    const commentIds = commentsBlogs.map(
+      (comment) => comment.dataValues.blogid
+    );
+
+    const comment = await blogModel.findAll({
+      where: { id: commentIds },
+    });
+    return comment;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Get favorite by blogid
+
+  async getFollowuser(id) {
+
+    const commentsBlogs = await sequelize.models.user_favorite_blog.findAll({
+      where: { blogid: id },
+    });
+
+    const commentIds = commentsBlogs.map(
+      (comment) => comment.dataValues.userid
+    );
+
+     const comment = await users.findAll({
+       where: { nickName: commentIds },
+    });
+   return comment;
+  }
+
+
+
+
+
+
+
+
+
+
+  /* Delete Blog */
+
+  async deleteFavoriteBlog (id,{userNickName}) {
+
+    const deletedblog = await sequelize.models.user_favorite_blog.destroy({
+      where: {
+         blogid: id,
+         userid: userNickName
+      }
+    })
+
+    if (deletedblog === 0){
+      throw new CustomError("Blog not found", 404)
+    } else {
+      return {
+        message: "blog favorite deleted",
+        data: {
+          id: deletedblog,
+
+        }
+      }
+    }
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // Get comment
 

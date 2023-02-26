@@ -149,6 +149,222 @@ router.post(
   }
 );
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Create favorite
+
+router.post(
+  '/:id/favorite',
+
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const body = req.body;
+
+      const createdPlan = await service.followblog(id, body);
+
+      res.json(createdPlan);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+
+
+// Create favorite
+
+router.post(
+  '/:id/planfavorite',
+
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const body = req.body;
+
+      const createdPlan = await service.followplan(id, body);
+
+      res.json(createdPlan);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+
+
+
+/* user follow user */
+//router.patch('/:nickName',
+router.post('/:nickName/follow',
+  //validatorHandler(createUserSchema, "body"),
+  async (req, res, next) => {
+
+    try {
+
+      const {nickName} = req.params
+    //  console.log(nickName)
+      const body = req.body;
+
+      const createdUser = await service.follow(nickName,body)
+
+      res.json(createdUser)
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Get favorite
+
+router.get(
+  '/:nickName/favorite',
+
+  async (req, res, next) => {
+    try {
+      const  {nickName}  = req.params;
+
+      const createdComment = await service.getFollowBlog(nickName);
+
+      res.json(createdComment);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+
+
+
+
+// Get favorite
+
+router.get(
+  '/:id/blogfavorite',
+
+  async (req, res, next) => {
+    try {
+      const  { id }  = req.params;
+
+      const createdComment = await service.getFollowuser(id);
+
+      res.json(createdComment);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+
+
+
+/* Delete Blog favorite */
+
+router.delete(
+  '/:id/favorite',
+  //validatorHandler(getBlogSchema, 'params'),
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+
+      const body = req.body;
+
+      const deletedBlog = await service.deleteFavoriteBlog(id, body);
+
+      res.json(deletedBlog);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Get comment
 
 router.get(

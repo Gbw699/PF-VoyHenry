@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 const { Op } = require("sequelize");
 const blogModel = require('../libs/models/blog-model');
 const plansModel = require('../libs/models/plans.model');
+const sequelize = require('../libs/database/database');
 
 
 class UsersService {
@@ -255,6 +256,94 @@ class UsersService {
 
     return count;
   }
+
+
+
+
+
+
+
+
+
+
+
+
+  // async follow (nickName,{userNickName}) {
+
+  //   const count = await blogModel.count({where:{userNickName: nickName}});
+
+
+  //   const userFollowUser = await sequelize.models.user_follow_user.create({
+  //     userid: userNickName,
+
+  //     followUserid: nickName,
+  //   });
+
+
+
+  //   return userFollowUser;
+  // }
+
+
+
+
+  // async createComment(id, { userNickName, comment }) {
+  //   const searchname = await users.findOne({
+  //     where: { nickName: userNickName },
+  //   });
+
+  //   const searchplan = await plansModel.findOne({ where: { id: id } });
+
+  //   const newCom = await comments.create({
+  //     content: comment,
+  //   });
+  //   const commentUserTable = await sequelize.models.comments_users.create({
+  //     userNickName: userNickName,
+
+  //     commentid: newCom.id,
+  //   });
+
+  //   const commentPlanTable = await sequelize.models.comments_plans.create({
+  //     plansid: id,
+
+  //     commentid: newCom.id,
+  //   });
+
+    // return {
+    //   message: 'Create',
+    //   data: {
+    //     newCom,
+    //     commentUser: commentUserTable,
+    //     commentPlans: commentPlanTable,
+    //   },
+    // };
+  //}
+
+
+
+  /* Create favorite blog */
+
+  async followblog(id, { userNickName  }) {
+
+    const commentUserTable = await sequelize.models.user_favorite_blog.create({
+      userid: userNickName,
+
+      blogid: id,
+    });
+
+    return {
+      message: 'Create',
+      data: {
+
+        favoriteBlog: commentUserTable,
+
+      },
+    };
+  }
+
+
+
+
 
   }
 
