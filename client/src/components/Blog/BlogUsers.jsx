@@ -24,7 +24,7 @@ export default function BlogUsers() {
         width="100%"
         color="#F1E100"
       />
-      {allUsers.users.slice(0, 6)?.map((user) => {
+      {allUsers.users?.map((user) => {
         return (
           <Link
             key={user.nickName}
