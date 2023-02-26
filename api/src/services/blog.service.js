@@ -261,7 +261,6 @@ async update (id, { title , content, rating, image }) {
       where: { id: commentIds },
       include: [{
         model: sequelize.models.users,
-        attributes: ['nickName'],
         through: {
           model: sequelize.models.comments_users,
           attributes: []
