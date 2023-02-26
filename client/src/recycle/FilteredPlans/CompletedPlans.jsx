@@ -9,7 +9,7 @@ export default function CurrentPlans() {
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(
-        `/api/v1/plans?${queryUrl.slice(0, -1)}`
+        `/api/v1/plans?${queryUrl}`
       );
       setPlansData(response.data.plans.plans);
     }

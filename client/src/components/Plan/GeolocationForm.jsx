@@ -7,10 +7,13 @@ import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
 import FilterByTitle from "./FilterByTitle";
 import FilterByCountry from "./FilterByCountry";
 
-export default function GeolocationForm() {
+export default function GeolocationForm(props) {
   const dispatch = useDispatch(event);
   const handleClick = () => {
     dispatch(getPlansbyOrder("clean", 1));
+  };
+  const handleButtonCreate = () => {
+    props.setShowPlanForm(true);
   };
   return (
     <div className={style.container}>
@@ -31,6 +34,12 @@ export default function GeolocationForm() {
         >
           Actualizar
         </button>
+        <button
+        className={style.buttonActualizar}
+        onClick={handleButtonCreate}
+      >
+        Crea tu evento
+      </button>
       </div>
     </div>
   );
