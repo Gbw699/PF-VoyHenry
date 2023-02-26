@@ -37,7 +37,9 @@ export default function BlogUsers() {
           </Link>
         );
       })}
-      <button className={style.searchBtn}>Buscar usuario</button>
+      <Link to="/users">
+        <button className={style.searchBtn}>Buscar más usuarios</button>
+      </Link>
     </div>
   );
 }
