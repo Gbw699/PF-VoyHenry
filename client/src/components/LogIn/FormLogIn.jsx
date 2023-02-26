@@ -138,7 +138,7 @@ export default function FormLogIn() {
   };
 
   const handleLoginWithGoogle = () => {
-    window.location.href = "http://localhost:3001/api/v1/auth/login/google";
+    window.location.href = "https://voyhenry.fly.dev/api/v1/auth/login/google";
   };
 
   return (
