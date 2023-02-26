@@ -68,6 +68,14 @@ export const queryString = (filter, order) => {
         mapQuery.delete("province");
       }
       break;
+    case "contains":
+      if (order) {
+        setOrder(order);
+        mapQuery.set("contains", `&contains=${order}`);
+      } else {
+        mapQuery.delete("contains");
+      }
+      break;
     case "clean":
       if (order) {
         mapQuery.delete("date");
