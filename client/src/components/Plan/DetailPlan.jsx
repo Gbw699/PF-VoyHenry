@@ -5,6 +5,8 @@ import { getPlanById } from "../../redux/slices/planSlice/thunk";
 import style from "./DetailPlan.module.css";
 import axios from "axios";
 import { Rating } from "@mui/material";
+import PostComment from "../../recycle/Comments/PostComment";
+import GetComments from "../../recycle/Comments/GetComments";
 
 export default function DetailPlan() {
   const [value, setValue] = useState();
@@ -129,61 +131,8 @@ export default function DetailPlan() {
           Volver
         </button>
       </div>
-      <div>
-        <div>
-          <img
-            className={style.imgComment}
-            src={user.image}
-            alt=""
-          />
-          <textarea
-            style={{ resize: "none", borderRadius: "5px" }}
-            placeholder="Dejar reseña"
-            name="reseña"
-            id="reseña"
-            cols="70"
-            rows="3"
-          ></textarea>
-        </div>
-        <div className={style.buttonCommentDiv}>
-          <button
-            className={style.submitBtn}
-            onClick={handleClick}
-          >
-            Dejar reseña
-          </button>
-        </div>
-      </div>
-      <div className={style.comments}>
-        <h1>Comentarios</h1>
-        <hr
-          width="100%"
-          color="#F1E100"
-        />
-        {comments?.map((comment) => (
-          <div key={comment.id}>
-            <div className={style.comment}>
-              <div>
-                <img
-                  className={style.imgComment}
-                  src={comment.users[0].image}
-                  alt=""
-                />
-              </div>
-              <div>
-                <h3 key={comment.id++}>{comment.users[0].nickName}</h3>
-                <p key={comment.id++}>{comment.content}</p>
-              </div>
-            </div>
-            <div>
-              <hr
-                width="100%"
-                color="#F1E100"
-              />
-            </div>
-          </div>
-        ))}
-      </div>
+      <PostComment handleClick={handleClick}/>
+      <GetComments comments={comments}/>
     </div>
   );
 }
