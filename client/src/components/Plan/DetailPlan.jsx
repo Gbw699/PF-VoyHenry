@@ -58,8 +58,6 @@ export default function DetailPlan() {
     }
   }
 
-  console.log(user);
-
   if (!plan) {
     return <div>Loading... </div>;
   }
@@ -133,7 +131,11 @@ export default function DetailPlan() {
       </div>
       <div>
         <div>
-          <img className={style.imgComment} src={user.image} alt="" />
+          <img
+            className={style.imgComment}
+            src={user.image}
+            alt=""
+          />
           <textarea
             style={{ resize: "none", borderRadius: "5px" }}
             placeholder="Dejar reseña"
@@ -162,7 +164,11 @@ export default function DetailPlan() {
           <div key={comment.id}>
             <div className={style.comment}>
               <div>
-                <img className={style.imgComment} src={comment.users[0].image} alt="" />
+                <img
+                  className={style.imgComment}
+                  src={comment.users[0].image}
+                  alt=""
+                />
               </div>
               <div>
                 <h3 key={comment.id++}>{comment.users[0].nickName}</h3>

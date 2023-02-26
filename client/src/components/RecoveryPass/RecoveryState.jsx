@@ -4,29 +4,25 @@ import Submit from "./Submit";
 import HandlerErrorInput from "./HandlerErrorInput";
 
 export default function RecoveryState() {
-    const [ mailInput, setMailInput ] = useState();
-    const [ isValidEmail, setIsValidEmail] = useState();
+  const [mailInput, setMailInput] = useState();
+  const [isValidEmail, setIsValidEmail] = useState();
 
   return (
     <>
       <MailInput
-        data={{mailInput}}
+        data={{ mailInput }}
         setMailInput={setMailInput}
-      >
-      </MailInput>
+      ></MailInput>
       <Submit
         isValidEmail={isValidEmail}
         data={{
-          email: mailInput
+          email: mailInput,
         }}
-      >
-      </Submit>
+      ></Submit>
       <HandlerErrorInput
         setIsValidEmail={setIsValidEmail}
         email={mailInput}
-      >
-      </HandlerErrorInput>
+      ></HandlerErrorInput>
     </>
   );
-
 }

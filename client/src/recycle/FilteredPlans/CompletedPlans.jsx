@@ -8,9 +8,7 @@ export default function CurrentPlans() {
   const queryUrl = queryString("state", "Finalizado");
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get(
-        `/api/v1/plans?${queryUrl}`
-      );
+      const response = await axios.get(`/api/v1/plans?${queryUrl}`);
       setPlansData(response.data.plans.plans);
     }
     fetchData();

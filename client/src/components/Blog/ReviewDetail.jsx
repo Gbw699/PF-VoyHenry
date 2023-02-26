@@ -9,7 +9,7 @@ export default function ReviewDetail({ blog }) {
   const dispatch = useDispatch();
   const [comments, setComments] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     getComments();
   });
 
@@ -61,11 +61,7 @@ export default function ReviewDetail({ blog }) {
           cols="30"
           rows="10"
         ></textarea>
-        <button
-          onClick={handleClick}
-        >
-          Dejar reseña
-        </button>
+        <button onClick={handleClick}>Dejar reseña</button>
       </div>
       <div>
         <h1>Comentarios</h1>

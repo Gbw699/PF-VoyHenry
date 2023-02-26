@@ -1,8 +1,7 @@
-export default function PassInput({tittle, set, value, pass}) {
-
-    const handlerOnChange = (event) => {
-      set({...pass, [value]: event.target.value});
-    };
+export default function PassInput({ tittle, set, value, pass }) {
+  const handlerOnChange = (event) => {
+    set({ ...pass, [value]: event.target.value });
+  };
 
   return (
     <>
@@ -11,9 +10,7 @@ export default function PassInput({tittle, set, value, pass}) {
       <input
         type="password"
         onChange={handlerOnChange}
-      >
-      </input>
+      ></input>
     </>
   );
-
 }
