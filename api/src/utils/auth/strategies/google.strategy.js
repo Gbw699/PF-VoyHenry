@@ -11,7 +11,7 @@ const {
 const GoogleStrategy = new Strategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:3001/api/v1/auth/login/google/callback"
+    callbackURL: "https://pf-voy-henry.vercel.app/api/v1/auth/login/google/callback"
 
   },
   async function(accessToken, refreshToken, profile, cb) {

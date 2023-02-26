@@ -57,7 +57,7 @@ class AuthService {
       }
 
       const token = jwt.sign(payload, JWT_SECRET,{expiresIn: '15min'})
-      const link = `http://localhost:3000/changePass?token=${token}`;
+      const link = `https://pf-voy-henry.vercel.app/changePass?token=${token}`;
       await userService.update( user.nickName, {recoveryToken: token})
 
       const mail = {
