@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
 import FilterByTitle from "./FilterByTitle";
 import FilterByCountry from "./FilterByCountry";
+import SearchPlan from "./SearchPlan";
 
 export default function GeolocationForm(props) {
   const dispatch = useDispatch(event);
@@ -23,6 +24,7 @@ export default function GeolocationForm(props) {
         width="100%"
       />
       <div className={style.filtersCont}>
+        <SearchPlan className={style.inputs} />
         <FilterByDate className={style.inputs} />
         <FilterByCountry className={style.inputs} />
         <FilterByRating className={style.inputs} />
