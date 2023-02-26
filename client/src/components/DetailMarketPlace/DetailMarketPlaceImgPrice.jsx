@@ -35,7 +35,6 @@ export default function DetailMarketPlaceImgPrice({
 
   const handleAddProduct = () => {
     productContext.addProduct(products, quantity);
-    console.log(products, quantity);
     Swal.fire({
       icon: "success",
       title: "Se ha actualizado el carrito de compras",
@@ -43,12 +42,15 @@ export default function DetailMarketPlaceImgPrice({
   };
 
   const handleNowBuy = async () => {
-      try {
-        const response = await axios.post("/api/v1/products/buy",{ title, price });
-        window.location.href = response.data
-      } catch (error) {
-        console.error(error);
-      }
+    try {
+      const response = await axios.post("/api/v1/products/buy", {
+        title,
+        price,
+      });
+      window.location.href = response.data;
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
