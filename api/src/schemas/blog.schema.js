@@ -2,7 +2,7 @@ const Joi = require('joi')
 
 
 const id = Joi.number().min(1)
-const userNickName = Joi.string().alphanum().min(0).max(15)
+const userNickName = Joi.string().alphanum().min(0).max(25)
 const title = Joi.string().min(3).max(30)
 const content = Joi.string().max(500)
 const evaluation = Joi.number().min(0).max(5)
