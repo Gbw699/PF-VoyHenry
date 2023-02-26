@@ -11,14 +11,14 @@ export default function FilterByTitle() {
   return (
     <div>
       <button
-        className={style.buttonsOrdenamiento}
+        className={style.buttons}
         value="alfabetico"
         onClick={handleClick}
       >
         A - Z
       </button>
       <button
-        className={style.buttonsOrdenamiento}
+        className={style.buttons}
         value="reverso"
         onClick={handleClick}
       >

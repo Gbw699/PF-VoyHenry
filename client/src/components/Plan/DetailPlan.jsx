@@ -48,7 +48,7 @@ export default function DetailPlan() {
     const obj = {
       votes: 1,
       stars: value,
-      userNickName: user.nickName
+      userNickName: user.nickName,
     };
     try {
       await axios.patch(`/api/v1/plans/${id}/votes`, obj);
@@ -73,12 +73,14 @@ export default function DetailPlan() {
           <h3>{plan.country}</h3>
           <h3>{plan.province}</h3>
           <h3>{plan.eventDate}</h3>
-          {plan.average && <Rating
-            size="large"
-            name="average"
-            value={plan.average}
-            readOnly
-          />}
+          {plan.average && (
+            <Rating
+              size="large"
+              name="average"
+              value={plan.average}
+              readOnly
+            />
+          )}
         </div>
       </div>
 
@@ -89,9 +91,7 @@ export default function DetailPlan() {
           width="100%"
           color="#F1E100"
         />
-        <p>
-          {plan.description}
-        </p>
+        <p>{plan.description}</p>
       </div>
       <div className={style.galeria}>
         <h1>Galería</h1>
@@ -113,12 +113,12 @@ export default function DetailPlan() {
       <div className={style.buttons}>
         <div className={style.button}>
           <button className={style.submitBtn}>Unirse</button>
-            <Rating
-              size="large"
-              name="rating"
-              value={value}
-              onChange={handleStarClick}
-            />
+          <Rating
+            size="large"
+            name="rating"
+            value={value}
+            onChange={handleStarClick}
+          />
 
           <button className={style.AgregarBtn}>Agregar a favoritos</button>
         </div>

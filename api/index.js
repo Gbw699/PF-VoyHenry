@@ -11,9 +11,7 @@ const sequelize = require('./src/libs/database/database');
  ➖🟥🟥➖🟥🟥
  ➖🟥🟥➖🟥🟥 */
 
-const {
-  PORT
-} = process.env
+const { PORT } = process.env;
 
 async function main() {
   try {

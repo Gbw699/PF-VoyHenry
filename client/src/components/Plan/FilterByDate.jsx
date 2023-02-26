@@ -26,14 +26,14 @@ export default function FilterByDate() {
       />
       <br />
       <button
-        className={style.buttonJoda}
+        className={style.buttons}
         value="nuevos"
         onClick={handleClick}
       >
         Nuevos
       </button>
       <button
-        className={style.buttonJoda}
+        className={style.buttons}
         value="antiguos"
         onClick={handleClick}
       >

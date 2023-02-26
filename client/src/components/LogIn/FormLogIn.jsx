@@ -96,7 +96,7 @@ export default function FormLogIn() {
     lastName: query.get("lastName")?.trim(),
     image: query.get("image")?.trim(),
     role: query.get("role")?.trim(),
-    google: query.get("google")?.trim()
+    google: query.get("google")?.trim(),
   };
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -114,14 +114,16 @@ export default function FormLogIn() {
     // !! FALTA LÓGICA DE SI EXISTE QUE INGRESE Y SINO NO.
     onSubmit: async (formData) => {
       await dispatch(getLogin(formData));
-      navigate("/home");
+      await navigate("/home");
     },
   });
 
   useEffect(() => {
-    if (query.get("token") !== null){
-      document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie ="csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    if (query.get("token") !== null) {
+      document.cookie =
+        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie =
+        "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = `token=${query.get("token")}; max-age=604800; path=/;`;
       localStorage.setItem("user", JSON.stringify(user));
       navigate("/home");
@@ -205,9 +207,7 @@ export default function FormLogIn() {
               </Button>
             </div>
           </Form>
-          <button
-            onClick={handlerRecoveryPass}
-          >
+          <button onClick={handlerRecoveryPass}>
             ¿Olvidaste tu contraseña?
           </button>
         </div>

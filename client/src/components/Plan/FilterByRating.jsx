@@ -13,14 +13,14 @@ export default function FilterByRating() {
     <div>
       <h3 className={style.filterTitle}>Valoración</h3>
       <button
-        className={style.buttonsValoracion}
+        className={style.buttons}
         value="masvotados"
         onClick={handleClick}
       >
         Mas votados
       </button>
       <button
-        className={style.buttonsValoracion}
+        className={style.buttons}
         value="menosvotados"
         onClick={handleClick}
       >

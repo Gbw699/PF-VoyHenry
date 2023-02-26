@@ -24,7 +24,8 @@ import Users from "./views/Users/Users";
 import ProfileUser from "./views/ProfileUser/ProfileUser";
 import RecoveryPass from "./views/RecoveryPass/Recoverypass";
 import ChangePass from "./views/ChangePass/ChangePass";
-import Configuration from "./views/Configuration/Configuration";
+import Configuration from "./views/EditProfile/EditProfile";
+import EditProfile from "./views/EditProfile/EditProfile";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 const cookie = document.cookie.split("=");
@@ -118,8 +119,8 @@ function App() {
           element={<ProfileUser />}
         />
         <Route
-          path="/configuration"
-          element={<Configuration />}
+          path="/profile/edit"
+          element={<EditProfile />}
         />
         <Route
           path="*"
