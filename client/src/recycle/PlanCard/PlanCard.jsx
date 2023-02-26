@@ -24,7 +24,8 @@ export default function PlanCard(props) {
             color="white"
             width="80%"
           />
-          <p className={style.info}>Locación</p>
+          <p className={style.info}>{props.country}</p>
+          <p className={style.info}>{props.province}</p>
           <p className={style.info}>{props.eventDate}</p>{" "}
           {/* PLACEHOLDER!! BORRAR CUAANDO HAYA EVENT DATE */}
           {/* <p className={style.info}>Fecha: {props.eventDate}</p> */}

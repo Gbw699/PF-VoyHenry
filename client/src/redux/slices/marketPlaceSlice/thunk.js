@@ -26,15 +26,12 @@ export const getProducts = (id) => {
   };
 };
 
-export const getProductsByOrder = (filter, order) => {
+export const getProductsByOrder = ({ filter, order }) => {
   const queryUrl = queryString(filter, order);
-  console.log(queryUrl.slice(0, -1));
   return async (dispatch) => {
     try {
-      const response = await axios.get(
-        `/api/v1/products?${queryUrl.slice(0, -1)}`
-      );
-      dispatch(setProductsByOrder(response.data.products.products));
+      const response = await axios.get(`/api/v1/products?${queryUrl.slice(0, -1)}`);
+      dispatch(setProductsByOrder(response.data.products));
     } catch (error) {
       console.log("No se pudo realizar la petición:", error.message);
     }

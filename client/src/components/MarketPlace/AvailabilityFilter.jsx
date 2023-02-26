@@ -1,6 +1,15 @@
+import React from "react";
+import { useDispatch } from "react-redux";
+import { setProductsByOrder } from "../../redux/slices/marketPlaceSlice/marketPlaceSlice";
 import style from "./Filters.module.css";
 
-export default function AvailabilityFilter({ filters, setFilters }) {
+export default function AvailabilityFilter() {
+  const dispatch = useDispatch();
+
+  const handleClick = (event) => {
+    dispatch(setProductsByOrder(event.target.value === "true"));
+  };
+
   return (
     <div className={style.container}>
       <h3>Disponibilidad</h3>
@@ -11,18 +20,14 @@ export default function AvailabilityFilter({ filters, setFilters }) {
       <button
         className={style.button}
         value="true"
-        onClick={(event) =>
-          setFilters({ ...filters, availability: event.target.value })
-        }
+        onClick={handleClick}
       >
         En stock
       </button>
       <button
         className={style.button}
         value="false"
-        onClick={(event) =>
-          setFilters({ ...filters, availability: event.target.value })
-        }
+        onClick={handleClick}
       >
         Agotado
       </button>

@@ -3,9 +3,15 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { postPlan } from "../../redux/slices/planSlice/thunk";
 import style from "./PlanForm.module.css";
+import countriesData from "../../countries.json";
+import { useState } from "react";
+import UploadWidget from "../../recycle/UploadWidget/UploadWidget";
 
 export default function FormSignUp(props) {
   const user = JSON.parse(localStorage.getItem("user"));
+  const countries = countriesData.data;
+  const [provinces, setProvinces] = useState([]);
+  const [url, setUrl] = useState("");
   const dispatch = useDispatch();
   const currentDate = new Date();
   const greaterDate = `${currentDate.getFullYear()}-${
@@ -14,6 +20,15 @@ export default function FormSignUp(props) {
   const handleClick = () => {
     props.setShowPlanForm(false);
   };
+  const handleCountryChange = (event) => {
+    console.log(event.target.value);
+    console.log(countries);
+    const provincesData = countries.find(
+      (country) => country.country === event.target.value
+    );
+    setProvinces(provincesData.province);
+  };
+
   const getDateActually = () => {
     let toDay = new Date();
     let day = String(toDay.getDate()).padStart(2, "0");
@@ -28,8 +43,9 @@ export default function FormSignUp(props) {
         initialValues={{
           title: "",
           summary: "",
-          mainImage: "",
           images: [],
+          country: "",
+          province: "",
           eventDate: "",
         }}
         validationSchema={Yup.object({
@@ -44,10 +60,8 @@ export default function FormSignUp(props) {
           description: Yup.string()
             .max(255)
             .required("La descripción es obligatoria"),
-          mainImage: Yup.string()
-            .url()
-            .required("La url de la imagen principal es obligatoria"),
-          images: Yup.string().required("Debe proporcionar imágen secundaria"),
+          country: Yup.string(),
+          province: Yup.string(),
           eventDate: Yup.date()
             .min(new Date(greaterDate))
             .required("La fecha del evento es obligatoria"),
@@ -59,11 +73,14 @@ export default function FormSignUp(props) {
             title: values.title,
             summary: values.summary,
             description: values.description,
-            mainImage: values.mainImage,
-            images: [values.images],
+            mainImage: url,
+            images: [],
+            country: values.country,
+            province: values.province,
             eventDate: values.eventDate,
             state: "En planeacion",
           };
+          setUrl("");
           dispatch(postPlan(obj));
         }}
       >
@@ -121,14 +138,12 @@ export default function FormSignUp(props) {
               >
                 Imagen principal
               </label>
-              <Field
-                name="mainImage"
-                type="text"
-                className={style.formInputs}
+              <UploadWidget
+                url={url}
+                setUrl={setUrl}
               />
-              <ErrorMessage name="nickName" />
               {/* ------------------------------------------------------------------------- */}
-              <label
+              {/* <label
                 htmlFor="images"
                 className={style.formTitle}
               >
@@ -139,7 +154,54 @@ export default function FormSignUp(props) {
                 type="text"
                 className={style.formInputs}
               />
-              <ErrorMessage name="images" />
+              <ErrorMessage name="images" /> */}
+              {/* ------------------------------------------------------------------------- */}
+              <label
+                htmlFor="country"
+                className={style.formTitle}
+              >
+                País
+              </label>
+              <Field
+                name="country"
+                as="select"
+                className={style.formInputs}
+                onClick={handleCountryChange}
+              >
+                <option value="">Selecciona un país</option>
+                {countries.map((country) => (
+                  <option
+                    key={country.country}
+                    value={country.country}
+                  >
+                    {country.country}
+                  </option>
+                ))}
+              </Field>
+              <ErrorMessage name="country" />
+              {/* ------------------------------------------------------------------------- */}
+              <label
+                htmlFor="provinces"
+                className={style.formTitle}
+              >
+                Provincia
+              </label>
+              <Field
+                name="province"
+                as="select"
+                className={style.formInputs}
+              >
+                <option value="">Selecciona una provincia</option>
+                {provinces.map((province) => (
+                  <option
+                    key={province}
+                    value={province}
+                  >
+                    {province}
+                  </option>
+                ))}
+              </Field>
+              <ErrorMessage name="province" />
               {/* ------------------------------------------------------------------------- */}
               <label
                 htmlFor="eventDate"

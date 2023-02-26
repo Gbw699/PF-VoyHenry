@@ -1,8 +1,10 @@
 const blogModel = require('../libs/models/blog-model.js');
 const users = require('../libs/models/users.model.js');
+const comments = require('../libs/models/comments.users');
 const { CustomError } = require('../middlewares/error.handler')
 const { Op } = require("sequelize");
 const sequelize = require('../libs/database/database');
+
 
 
 
@@ -37,17 +39,14 @@ class blogService {
         options.order = [['title', 'DESC']];
       } else if (query.order === 'masvotados') {
 
-        options.order = [[sequelize.literal('average'), 'DESC']];
+        //Modificar stars por average cuando estén implementados los votos
+        options.order = [[sequelize.literal('stars'), 'DESC']];
 
       } else if (query.order === 'menosvotados') {
-        options.order = [[sequelize.literal('average'), 'ASC']];
+        options.order = [[sequelize.literal('stars'), 'ASC']];
       }
     }
 
-    if (query.limit) {
-
-      options.limit = query.limit;
-    }
 
     if (query.offset) {
 
@@ -62,12 +61,14 @@ class blogService {
       options.offset = (page - 1) * (options.limit || query.limit);
     }
 
+    const blogsInFilter = await blogModel.count(options);
+
     const blogs = await blogModel.findAll(options)
 
     if (blogs === null|| blogs.length === 0) {
       throw new CustomError("Blog not found", 404)
     } else {
-      return {blogs}
+      return {blogs, blogsInFilter}
     }
 
   }
@@ -213,16 +214,77 @@ async update (id, { title , content, rating, image }) {
 
 }
 
+  /* Create Comment */
+
+  async createComment(id, { userNickName, comment }) {
+    const searchname = await users.findOne({
+      where: { nickName: userNickName },
+    });
+
+    const searchblog = await blogModel.findOne({ where: { id: id } });
+
+    const newCom = await comments.create({
+      content: comment,
+    });
+    const commentUserTable = await sequelize.models.comments_users.create({
+      userNickName: userNickName,
+
+      commentid: newCom.id,
+    });
+
+    const commentBlogTable = await sequelize.models.comments_blogs.create({
+      blogid: id,
+
+      commentid: newCom.id,
+    });
+
+    return {
+      message: 'Create',
+      data: {
+        newCom,
+        commentUser: commentUserTable,
+        commentPlans: commentBlogTable,
+      },
+    };
+  }
+
+  // Get comment
+
+  async getComment(id) {
+    const commentsBlogs = await sequelize.models.comments_blogs.findAll({
+      where: { blogid: id },
+    });
+    const commentIds = commentsBlogs.map(
+      (comment) => comment.dataValues.commentid
+    );
+    const comment = await comments.findAll({
+      where: { id: commentIds },
+      include: [{
+        model: sequelize.models.users,
+        attributes: ['nickName'],
+        through: {
+          model: sequelize.models.comments_users,
+          attributes: []
+        }
+      }]
+    });
+    return comment;
+  }
+
   /* Count Pages */
-async count () {
-  const options = {};
+  async count () {
+   let  options = {}
 
-  const count = await blogModel.count(options);
+    const count = await blogModel.count(options);
 
-  return count;
-}
+    return count;
+  }
 
-}
+  }
+
+
+
+
 
 
 

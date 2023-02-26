@@ -23,10 +23,10 @@
   height: 150px;
   margin-top: 250px;
 }
+
 .profileInfo {
   display: flex;
   flex-direction: column;
-
   align-items: first baseline;
   justify-content: center;
   width: 85%;
@@ -40,7 +40,6 @@
   color: #000000;
   font-size: 150%;
   font-weight: 600;
-
   height: 10px;
   margin-top: 20px;
   margin-bottom: 10px;
@@ -55,11 +54,12 @@
   height: 150px;
   border-radius: 50%;
 }
+
 .buttons {
   display: flex;
   flex-direction: column;
-  align-items: end;
-  justify-content: end;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 .buttonUnfollow {
@@ -67,7 +67,10 @@
   border: 2px solid #f22176;
   border-radius: 10px;
   color: white;
+<<<<<<< HEAD
 
+=======
+>>>>>>> development
   padding: 2% 4%;
   margin: 0px 3%;
   width: 200px;

@@ -19,7 +19,7 @@ export default function NavBar() {
           height="35px"
         />
       </NavLink>
-      {location.pathname !== "/home" && <SearchBar />}
+      {location.pathname === "/blog" && <SearchBar />}
       <div className={style.linksCont}>
         <NavLink
           to={"/home"}

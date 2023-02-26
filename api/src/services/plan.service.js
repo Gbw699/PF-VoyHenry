@@ -23,6 +23,14 @@ class PlansService {
       options.where.state = { [Op.like]: query.state };
     }
 
+    if (query.country) {
+      options.where.country = { [Op.like]: query.country };
+    }
+
+    if (query.province) {
+      options.where.province = { [Op.like]: query.province };
+    }
+
     if (query.contains) {
       options.where.title = { [Op.substring]: query.contains };
     }
@@ -61,12 +69,14 @@ class PlansService {
       options.offset = (page - 1) * (options.limit || query.limit);
     }
 
+    const plansInFilter = await plansModel.count(options);
+
     const plans = await plansModel.findAll(options);
 
     if (plans === null || plans.length === 0) {
       throw new CustomError('Plan not found', 404);
     } else {
-      return { plans };
+      return { plans, plansInFilter };
     }
   }
 
@@ -106,6 +116,8 @@ class PlansService {
     eventDate,
     state,
     userNickName,
+    country,
+    province,
   }) {
     eventDate = new Date(eventDate);
     eventDate.setHours(
@@ -126,6 +138,8 @@ class PlansService {
       eventDate: new Date(eventDate),
       state: state,
       userNickName: userNickName,
+      country: country,
+      province: province,
     });
 
     const userPlanTable = await sequelize.models.users_votes_plans.create({
@@ -144,7 +158,7 @@ class PlansService {
     };
   }
 
-  /* Create Plan */
+  /* Create Comment Plan */
 
   async createComment(id, { userNickName, comment }) {
     const searchname = await users.findOne({
@@ -311,14 +325,6 @@ class PlansService {
     }
   }
 
-  /* Count Pages */
-  async count() {
-    const options = {};
-
-    const count = await plansModel.count(options);
-
-    return count;
-  }
 }
 
 module.exports = PlansService;

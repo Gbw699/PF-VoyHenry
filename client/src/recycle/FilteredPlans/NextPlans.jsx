@@ -3,14 +3,12 @@ import React, { useState, useEffect } from "react";
 import style from "./FilteredPlans.module.css";
 import { queryString } from "./queryStringPlan";
 
-export default function CurrentPlans() {
+export default function NextPlans() {
   const [plansData, setPlansData] = useState(null);
-  const queryUrl = queryString("order", "nuevos");
+  const queryUrl = queryString("state", "En planeacion");
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get(
-        `/api/v1/plans?${queryUrl.slice(0, -1)}`
-      );
+      const response = await axios.get(`/api/v1/plans?${queryUrl}`);
       setPlansData(response.data.plans.plans);
     }
     fetchData();
@@ -20,8 +18,8 @@ export default function CurrentPlans() {
     return <div>Loading...</div>;
   }
 
-  if (plansData.length === 0) {
-    return <div>No plans available</div>;
+  if (plansData.length < 2) {
+    return <div>Loading...</div>;
   }
 
   if (plansData) {

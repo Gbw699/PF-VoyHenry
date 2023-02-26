@@ -14,11 +14,13 @@ router.get('/', async (req, res, next) => {
   try {
 
     const page = req.query.page || 1
+
     const blogs = await service.find(req.query, page)
     const count = await service.count(req.query);
     const pages = Math.ceil(count / 3);
 
     const pageNumber = parseInt(page);
+
     const response = { blogs, pageNumber, pages }
     res.json(response)
   } catch (error) {
@@ -130,6 +132,45 @@ router.delete('/:id',
       const deletedBlog = await service.delete(id)
 
       res.json(deletedBlog)
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
+// Create Comment
+
+router.post('/:id/comment',
+
+  async (req, res, next) => {
+
+    try {
+      const {id} = req.params
+      const body = req.body;
+
+      const createdPlan = await service.createComment(id, body)
+
+      res.json(createdPlan)
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
+// Get comment
+
+router.get('/:id/comment',
+
+  async (req, res, next) => {
+
+    try {
+      const {id} = req.params
+
+      const createdComment = await service.getComment(id)
+
+      res.json(createdComment)
     } catch (error) {
 
       next(error)

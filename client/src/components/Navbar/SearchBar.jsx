@@ -12,7 +12,6 @@ export default function SearchBar() {
   const [input, setInput] = useState("");
 
   const handleSearch = (input) => {
-    
     if (location.pathname === "/blog") dispatch(getBlogsSearch(input));
     if (location.pathname === "/plans") dispatch(getPlansSearch(input));
   };
@@ -20,11 +19,12 @@ export default function SearchBar() {
   return (
     <div className={style.searchCont}>
       <input
+        className={style.searchInput}
         type="search"
         onChange={(event) => {
           setInput(event.target.value);
         }}
-        className={style.searchInput}
+        onKeyDown={(event) => event.key === "Enter" && handleSearch(input)}
       />
       <button
         type="button"

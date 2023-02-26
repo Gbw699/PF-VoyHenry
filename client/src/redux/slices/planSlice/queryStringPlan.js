@@ -1,94 +1,92 @@
 const mapQuery = new Map();
+
+const setOrder = (order) => {
+  const validOrders = {
+    nuevos: null,
+    antiguos: "antiguos",
+    reverso: "reverso",
+    alfabetico: "alfabetico",
+    menosvotados: "menosvotados",
+    masvotados: "masvotados",
+  };
+ 
+  if (validOrders[order]) {
+    mapQuery.set("order", `&order=${validOrders[order]}`);
+  } 
+};
+
 export const queryString = (filter, order) => {
   switch (filter) {
     case "date":
-      mapQuery.set("date", `&date=${order}`);
+      if (order) {
+        mapQuery.set("date", `&date=${order}`);
+      } else {
+        mapQuery.delete("date");
+      }
       break;
     case "order":
-      switch (order) {
-        case "nuevos":
-          mapQuery.delete("order");
-          mapQuery.delete("rating");
-          mapQuery.delete("date");
-          break;
-        case "antiguos":
-          mapQuery.set("order", `&order=${order}`);
-          mapQuery.delete("rating");
-          mapQuery.delete("date");
-          break;
-        case "reverso":
-          mapQuery.set("order", `&order=${order}`);
-          mapQuery.delete("rating");
-          break;
-        case "alfabetico":
-          mapQuery.set("order", `&order=${order}`);
-          mapQuery.delete("rating");
-          break;
-        default:
-          break;
+      if (order === "nuevos") {
+        mapQuery.clear();
+      } else {
+        setOrder(order);
       }
       break;
     case "state":
-      switch (order) {
-        case "En planeacion":
-          mapQuery.set("state", `&state=${order}`);
-          break;
-        case "En progreso":
-          mapQuery.set("state", `&state=${order}`);
-          break;
-        case "Finalizado":
-          mapQuery.set("state", `&state=${order}`);
-          break;
-        default:
-          break;
+      if (order) {
+        mapQuery.set("state", `&state=${order}`);
+      } else {
+        mapQuery.delete("state");
       }
       break;
     case "limit":
-      mapQuery.set("limit", `&limit=${order}`);
+      if (order) {
+        mapQuery.set("limit", `&limit=${order}`);
+      } else {
+        mapQuery.delete("limit");
+      }
       break;
     case "page":
-      mapQuery.set("page", `&page=${order}`);
-      break;
-    case "rating":
-      switch (order) {
-        case "menosvotados":
-          mapQuery.set("rating", `&order=${order}`);
-          mapQuery.delete("order");
-          mapQuery.delete("date");
-          break;
-        case "masvotados":
-          mapQuery.set("rating", `&order=${order}`);
-          mapQuery.delete("order");
-          mapQuery.delete("date");
-          break;
-        default:
-          break;
+      if (order) {
+        mapQuery.set("page", `&page=${order}`);
+      } else {
+        mapQuery.delete("page");
       }
-      mapQuery.set("rating", `&rating=${order}`);
+      break;
+    case "country":
+      if (order) {
+        setOrder(order);
+        mapQuery.set("country", `&country=${order}`);
+      } else {
+        mapQuery.delete("country");
+      }
+      break;
+    case "province":
+      if (order) {
+        setOrder(order);
+        mapQuery.set("province", `&province=${order}`);
+      } else {
+        mapQuery.delete("province");
+      }
+      break;
+      case "clean":
+      if (order) {
+        mapQuery.delete("date");
+        mapQuery.delete("order");
+        mapQuery.delete("country");
+        mapQuery.delete("province");
+        mapQuery.set("page", `&page=${order}`);
+      } else {
+        mapQuery.delete("page");
+      }
       break;
     default:
       break;
   }
-  if (!mapQuery.get("date")) {
-    mapQuery.set("date", "");
-  }
-  if (!mapQuery.get("order")) {
-    mapQuery.set("order", "");
-  }
-  if (!mapQuery.get("state")) {
-    mapQuery.set("state", "");
-  }
-  if (!mapQuery.get("limit")) {
-    mapQuery.set("limit", "");
-  }
-  if (!mapQuery.get("page")) {
-    mapQuery.set("page", "");
-  }
-  if (!mapQuery.get("rating")) {
-    mapQuery.set("rating", "");
+
+  let queryString = "";
+  for (const value of mapQuery.values()) {
+    queryString += value;
   }
 
-  return `${mapQuery.get("date")}${mapQuery.get("order")}${mapQuery.get(
-    "state"
-  )}${mapQuery.get("limit")}${mapQuery.get("page")}${mapQuery.get("rating")}`;
+  return queryString;
 };
