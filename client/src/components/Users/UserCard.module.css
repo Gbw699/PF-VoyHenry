@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .imgCont {
@@ -14,11 +15,11 @@
 .profileCont {
   display: flex;
   flex-direction: column;
-  align-items: first baseline;
+  align-items: center;
   justify-content: center;
   border-radius: 5px;
   box-shadow: 3px 3px 5px 2px #302e2e98;
-  width: 50%;
+  width: 100%;
   height: 150px;
   margin-top: 250px;
 }
@@ -29,7 +30,6 @@
   align-items: first baseline;
   justify-content: center;
   width: 85%;
-  justify-content: center;
 }
 
 .name {
@@ -67,6 +67,10 @@
   border: 2px solid #f22176;
   border-radius: 10px;
   color: white;
+<<<<<<< HEAD
+
+=======
+>>>>>>> development
   padding: 2% 4%;
   margin: 0px 3%;
   width: 200px;

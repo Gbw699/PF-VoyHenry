@@ -1,11 +1,11 @@
 import React from "react";
-// import style from "./Users.module.css";
+import style from "./Users.module.css";
 import UserState from "../../components/Users/UserState";
 import ProfileCard from "../../recycle/ProfileCard/ProfileCard";
 
 export default function Users() {
   return (
-    <div>
+    <div className={style.container}>
       <div>
         <ProfileCard />
       </div>
