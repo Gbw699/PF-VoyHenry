@@ -20,9 +20,11 @@ export default function Filters() {
 
   return (
     <div className={style.container}>
-      <CategoryFilter />
-      <OrderFilter />
-      <AvailabilityFilter />
+      <div className={style.filters}>
+        <CategoryFilter />
+        <OrderFilter />
+        <AvailabilityFilter />
+      </div>
     </div>
   );
 }

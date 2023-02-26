@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import ProductContext from "../../context/ProductContext";
+import style from "./ItemCount.module.css";
 
 const ItemCount = ({ quantity, product, setCounter }) => {
   const productContext = useContext(ProductContext);
@@ -22,17 +23,17 @@ const ItemCount = ({ quantity, product, setCounter }) => {
   };
 
   return (
-    <div className="btn-group">
+    <div className={style.buttons}>
       <button
         onClick={handleClickDelete}
-        className="btn btn-comprar"
+        className={style.buttonMenos}
       >
         -
       </button>
-      <p className="contador">{quantity}</p>
+      <h3 className={style.contador}>{quantity}</h3>
       <button
         onClick={handleClickAdd}
-        className="btn btn-comprar"
+        className={style.buttonMas}
       >
         +
       </button>

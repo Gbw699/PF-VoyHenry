@@ -11,13 +11,16 @@ export default function OrderFilter() {
   };
 
   return (
-    <div className={style.container}>
+    <div>
       <h3>Ordenar por</h3>
       <hr
         width="100%"
         color="#F1E100"
       />
-      <select onChange={handleChange}>
+      <select
+        onChange={handleChange}
+        className={style.handle}
+      >
         <option value="">-- Selecciona una opción --</option>
         <option value="alfabetico">Nombre A-Z</option>
         <option value="reverso">Nombre Z-A</option>
