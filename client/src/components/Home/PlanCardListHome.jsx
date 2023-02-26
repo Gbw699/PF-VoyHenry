@@ -25,6 +25,7 @@ export default function PlanCardListHome() {
             mainImage={plan.mainImage}
             title={plan.title}
             summary={plan.summary}
+            average={plan.average}
           />
         ))}
       </div>

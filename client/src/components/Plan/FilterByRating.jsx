@@ -6,6 +6,7 @@ import style from "./GeolocationForm.module.css";
 export default function FilterByRating() {
   const dispatch = useDispatch();
   const handleClick = (event) => {
+    console.log(event.target.value);
     const selectedRating = event.target.value;
     dispatch(getPlansbyOrder("order", selectedRating));
   };
