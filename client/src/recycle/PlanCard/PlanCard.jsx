@@ -2,6 +2,7 @@ import style from "./PlanCard.module.css";
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Rating } from "@mui/material";
 
 export default function PlanCard(props) {
   const navigate = useNavigate();
@@ -18,6 +19,12 @@ export default function PlanCard(props) {
       style={{ backgroundImage: backgroundImage }}
     >
       <div className={style.card}>
+        <Rating
+          size="large"
+          name="average"
+          value={props.average}
+          readOnly
+        />
         <div className={style.details}>
           <p className={style.title}>{props.title}</p>
           <hr
@@ -27,10 +34,7 @@ export default function PlanCard(props) {
           <p className={style.info}>{props.country}</p>
           <p className={style.info}>{props.province}</p>
           <p className={style.info}>{props.eventDate}</p>{" "}
-          {/* PLACEHOLDER!! BORRAR CUAANDO HAYA EVENT DATE */}
-          {/* <p className={style.info}>Fecha: {props.eventDate}</p> */}
           <p className={style.summary}>{props.title}</p>{" "}
-          {/* PLACEHOLDER!! BORRAR CUANDO HAYA SUMMARY */}
           <p className={style.summary}>{props.summary}</p>
           <hr
             color="white"
