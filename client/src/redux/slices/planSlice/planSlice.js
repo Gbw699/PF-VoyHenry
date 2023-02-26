@@ -9,7 +9,7 @@ const planSlice = createSlice({
   },
   reducers: {
     setLimitPlans(state, action) {
-      state.renderPlans = {...action.payload};
+      state.renderPlans = { ...action.payload };
     },
     setPlansSearch(state, action) {
       state.renderPlans = [...action.payload];
@@ -18,15 +18,11 @@ const planSlice = createSlice({
       state.planById = action.payload;
     },
     setPlansbyOrder(state, action) {
-      state.renderPlans = {...action.payload};
+      state.renderPlans = { ...action.payload };
     },
   },
 });
 
-export const {
-  setPlansSearch,
-  setLimitPlans,
-  setPlanById,
-  setPlansbyOrder,
-} = planSlice.actions;
+export const { setPlansSearch, setLimitPlans, setPlanById, setPlansbyOrder } =
+  planSlice.actions;
 export default planSlice.reducer;

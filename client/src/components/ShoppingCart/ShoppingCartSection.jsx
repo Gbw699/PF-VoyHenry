@@ -14,7 +14,10 @@ export default function ShoppingCartSection() {
 
   const handleBuyCart = async () => {
     try {
-      const response = await axios.post("http://localhost:3001/api/v1/products/checkout", product);
+      const response = await axios.post(
+        "http://localhost:3001/api/v1/products/checkout",
+        product
+      );
       window.location.href = response.data;
     } catch (error) {
       console.error(error);

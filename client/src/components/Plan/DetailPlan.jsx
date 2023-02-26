@@ -130,19 +130,29 @@ export default function DetailPlan() {
         </button>
       </div>
       <div>
-        <textarea
-          placeholder="Dejar reseña"
-          name="reseña"
-          id="reseña"
-          cols="30"
-          rows="10"
-        ></textarea>
-        <button
-          className={style.submitBtn}
-          onClick={handleClick}
-        >
-          Dejar reseña
-        </button>
+        <div>
+          <img
+            className={style.imgComment}
+            src={user.image}
+            alt=""
+          />
+          <textarea
+            style={{ resize: "none", borderRadius: "5px" }}
+            placeholder="Dejar reseña"
+            name="reseña"
+            id="reseña"
+            cols="70"
+            rows="3"
+          ></textarea>
+        </div>
+        <div className={style.buttonCommentDiv}>
+          <button
+            className={style.submitBtn}
+            onClick={handleClick}
+          >
+            Dejar reseña
+          </button>
+        </div>
       </div>
       <div className={style.comments}>
         <h1>Comentarios</h1>
@@ -152,12 +162,25 @@ export default function DetailPlan() {
         />
         {comments?.map((comment) => (
           <div key={comment.id}>
-            <h3 key={comment.id++}>{comment.users[0].nickName}</h3>
-            <p key={comment.id++}>{comment.content}</p>
-            <hr
-              width="100%"
-              color="#F1E100"
-            />
+            <div className={style.comment}>
+              <div>
+                <img
+                  className={style.imgComment}
+                  src={comment.users[0].image}
+                  alt=""
+                />
+              </div>
+              <div>
+                <h3 key={comment.id++}>{comment.users[0].nickName}</h3>
+                <p key={comment.id++}>{comment.content}</p>
+              </div>
+            </div>
+            <div>
+              <hr
+                width="100%"
+                color="#F1E100"
+              />
+            </div>
           </div>
         ))}
       </div>

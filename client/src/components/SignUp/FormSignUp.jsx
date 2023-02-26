@@ -199,13 +199,15 @@ export default function FormSignUp() {
     lastName: query.get("lastName")?.trim(),
     image: query.get("image")?.trim(),
     role: query.get("role")?.trim(),
-    google: query.get("google")?.trim()
+    google: query.get("google")?.trim(),
   };
 
   useEffect(() => {
-    if (query.get("token") !== null){
-      document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie ="csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    if (query.get("token") !== null) {
+      document.cookie =
+        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie =
+        "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = `token=${query.get("token")}; max-age=604800; path=/;`;
       localStorage.setItem("user", JSON.stringify(user));
       navigate("/home");

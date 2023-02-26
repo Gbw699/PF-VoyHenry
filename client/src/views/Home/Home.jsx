@@ -6,30 +6,24 @@ import BlogReview from "../../components/Home/BlogReview";
 import ProfileCard from "../../recycle/ProfileCard/ProfileCard";
 import style from "./Home.module.css";
 
-
 export default function Home() {
-
   return (
     <div className={style.container}>
+      <div className={style.profileCont}>
+        <ProfileCard />
+      </div>
 
-        <div className={style.profileCont}>
-          <ProfileCard />
+      <div className={style.featured}>
+        <h3 className={style.featuredTitle}>Planes Destacados</h3>
+        <hr
+          width="100%"
+          color="#F1E100"
+        />
+        <PlansCardListHome />
+        <BlogReview />
+      </div>
 
-        </div>
-
-
-        <div className={style.featured}>
-          <h3 className={style.featuredTitle}>Planes Destacados</h3>
-          <hr
-            width="100%"
-            color="#F1E100"
-          />
-          <PlansCardListHome />
-          <BlogReview />
-        </div>
-
- <PlansSections />
-
+      <PlansSections />
     </div>
   );
 }
