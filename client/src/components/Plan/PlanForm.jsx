@@ -21,8 +21,6 @@ export default function FormSignUp(props) {
     props.setShowPlanForm(false);
   };
   const handleCountryChange = (event) => {
-    console.log(event.target.value);
-    console.log(countries);
     const provincesData = countries.find(
       (country) => country.country === event.target.value
     );

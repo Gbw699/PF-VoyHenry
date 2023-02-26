@@ -1,5 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import style from "./ProfileInfo.module.css";
 
 export default function ProfileInfo({
@@ -14,7 +16,7 @@ export default function ProfileInfo({
   reviewsCreated,
 }) {
   const [backgroundImage, setBackgroundImage] = useState("");
-
+  const location = useLocation();
   useEffect(() => {
     setBackgroundImage(`url(${image})`);
   });
@@ -30,6 +32,13 @@ export default function ProfileInfo({
           {firstName} {lastName}
         </p>
         <p className={style.nacionality}>{nationality}</p>
+      </div>
+      <div>
+        {location.pathname === "/profile" && (
+          <Link to="/profile/edit">
+            <button>EDITAR PERFIL</button>
+          </Link>
+        )}
       </div>
       <div className={style.profileInfo}>
         <div className={style.infoCont}>

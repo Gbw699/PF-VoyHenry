@@ -9,7 +9,6 @@ import LogIn from "./views/LogIn/LogIn";
 import SignUp from "./views/SignUp/SignUp";
 import Home from "./views/Home/Home";
 import MarketPlace from "./views/MarketPlace/MarketPlace";
-import Footer from "./views/Footer/Footer";
 import Profile from "./views/Profile/Profile";
 import DetailMarketPlace from "./views/DetailMarketPlace/DetailMarketPlace";
 import ShoppingCart from "./views/ShoppingCart/ShoppingCart";
@@ -26,6 +25,9 @@ import RecoveryPass from "./views/RecoveryPass/Recoverypass";
 import ChangePass from "./views/ChangePass/ChangePass";
 import Configuration from "./views/EditProfile/EditProfile";
 import EditProfile from "./views/EditProfile/EditProfile";
+import LoadSpinning from "./views/LoadSpinning/LoadSpinning";
+import Favorite from "./views/Favorite/Favorite";
+import FooterSection from "./components/Footer/FooterSection";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 const cookie = document.cookie.split("=");
@@ -123,6 +125,14 @@ function App() {
           element={<EditProfile />}
         />
         <Route
+          path="/loadSpinning"
+          element={<LoadSpinning />}
+        />
+        <Route
+          path="/favorite"
+          element={<Favorite />}
+        />
+        <Route
           path="*"
           element={<Error404 />}
         />
@@ -131,7 +141,7 @@ function App() {
         location.pathname !== "/signUp" &&
         location.pathname !== "/recoveryPass" &&
         location.pathname !== "/changePass" &&
-        location.pathname !== "/logIn" && <Footer />}
+        location.pathname !== "/logIn" && <FooterSection />}
     </ProductContextProvider>
   );
 }

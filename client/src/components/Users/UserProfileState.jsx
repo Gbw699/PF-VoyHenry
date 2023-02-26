@@ -8,9 +8,6 @@ export default function UserProfileState() {
   const [plans, setPlans] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const { nickName } = useParams();
-  console.log(user);
-  console.log(plans);
-  console.log(blogs);
 
   return (
     <>
