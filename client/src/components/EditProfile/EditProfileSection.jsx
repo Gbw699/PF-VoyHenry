@@ -117,16 +117,16 @@ export const EditProfileSection = ({
           name="phone"
           placeholder="(Código país) (Código área) 1122-3344"
         /> */}
-        <div>
-          <div>
-            <EditProfileImage {...{ image, setImage }} />
-          </div>
-          <div>
-            <EditProfileAboutMe setState={setAbout} />
-          </div>
-        </div>
         <button>Guardar cambios</button>
       </form>
+      <div>
+        <div>
+          <EditProfileImage {...{ image, setImage }} />
+        </div>
+        <div>
+          <EditProfileAboutMe setState={setAbout} />
+        </div>
+      </div>
     </div>
   );
 };
