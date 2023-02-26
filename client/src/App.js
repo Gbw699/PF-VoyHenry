@@ -29,7 +29,7 @@ import LoadSpinning from "./views/LoadSpinning/LoadSpinning";
 import Favorite from "./views/Favorite/Favorite";
 import FooterSection from "./components/Footer/FooterSection";
 
-axios.defaults.baseURL = "http://localhost:3001/";
+axios.defaults.baseURL = "https://pf-voy-henry.vercel.app/";
 const cookie = document.cookie.split("=");
 axios.defaults.headers.common["Authorization"] = `Bearer ${cookie[1]}`;
 
