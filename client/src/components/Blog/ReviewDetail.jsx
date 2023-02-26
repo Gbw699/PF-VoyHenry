@@ -55,8 +55,10 @@ export default function ReviewDetail({ blog }) {
       <p>{blog.content}</p>
       <p>{blog.rating}</p>
       <button onClick={() => history.back()}>Volver</button>
+      <div>
       <PostComment handleClick={handleClick}/>
       <GetComments comments={comments}/>
+      </div>
     </div>
   );
 }

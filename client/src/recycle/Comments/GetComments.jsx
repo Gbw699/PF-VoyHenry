@@ -20,6 +20,7 @@ function GetComments(props) {
             />
           </div>
           <div>
+            <h3>{comment.createdAt.slice(5,10)}&nbsp;{comment.createdAt.slice(11,16)}</h3>
             <h3 key={comment.id++}>{comment.users[0].nickName}</h3>
             <p key={comment.id++}>{comment.content}</p>
           </div>
