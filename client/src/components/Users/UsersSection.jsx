@@ -7,10 +7,9 @@ import style from "./UsersSection.module.css";
 export default function UsersSection({ users }) {
   return (
     <div className={style.container}>
-      <div>
-        <UserSearch />
-      </div>
-      <div>
+      <UserSearch />
+
+      <div className={style.cardContainer}>
         {users?.map((element) => (
           <Link
             to={`/users/${element.nickName}`}

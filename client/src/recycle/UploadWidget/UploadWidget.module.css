@@ -1,0 +1,10 @@
+.image {
+  color: #000000;
+  background-color: #f1e100;
+  font-size: 16px;
+}
+
+.image:hover {
+  background-color: #000000;
+  color: #f1e100;
+}
