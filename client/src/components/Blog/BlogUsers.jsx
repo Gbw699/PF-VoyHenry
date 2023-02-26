@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { getAllUsers } from "../../redux/slices/userSlice/thunks";
 import UserCard from "../../recycle/UserCard/UserCard";
 import style from "./BlogUsers.module.css";
+import { Link } from "react-router-dom";
 
 export default function BlogUsers() {
   const dispatch = useDispatch();
@@ -25,11 +26,15 @@ export default function BlogUsers() {
       />
       {allUsers.users?.map((user) => {
         return (
-          <UserCard
-            nickName={user.nickName}
-            image={user.image}
+          <Link
             key={user.nickName}
-          />
+            to={`/users/${user.nickName}`}
+          >
+            <UserCard
+              nickName={user.nickName}
+              image={user.image}
+            />
+          </Link>
         );
       })}
       <button className={style.searchBtn}>Buscar usuario</button>

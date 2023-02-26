@@ -19,7 +19,7 @@ export default function AccountMenu() {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  
+
   const handleLogOut = () => {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   };
@@ -72,7 +72,14 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem sx={{ justifyContent: "center" }}>{user.nickName}</MenuItem>
+        <MenuItem sx={{ justifyContent: "center" }}>
+          <NavLink
+            to={"/profile"}
+            style={{ color: "#707070" }}
+          >
+            {user.nickName}
+          </NavLink>
+        </MenuItem>
         <Divider />
         <NavLink
           to={"/marketplace/shoppingcart"}
@@ -89,13 +96,13 @@ export default function AccountMenu() {
         </NavLink>
         <Divider />
         <NavLink
-          to={"/profile/edit"}
+          to="/profile/edit"
           style={{ color: "#707070" }}
         >
           <MenuItem className={style.menuLinks}>Editar perfil</MenuItem>
         </NavLink>
         <NavLink
-          to={"/configuration"}
+          to="/profile/edit"
           style={{ color: "#707070" }}
         >
           <MenuItem className={style.menuLinks}>Configuración</MenuItem>
