@@ -30,7 +30,9 @@ export const getProductsByOrder = ({ filter, order }) => {
   const queryUrl = queryString(filter, order);
   return async (dispatch) => {
     try {
-      const response = await axios.get(`/api/v1/products?${queryUrl.slice(0, -1)}`);
+      const response = await axios.get(
+        `/api/v1/products?${queryUrl.slice(0, -1)}`
+      );
       dispatch(setProductsByOrder(response.data.products));
     } catch (error) {
       console.log("No se pudo realizar la petición:", error.message);

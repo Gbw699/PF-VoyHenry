@@ -9,10 +9,10 @@ const setOrder = (order) => {
     menosvotados: "menosvotados",
     masvotados: "masvotados",
   };
- 
+
   if (validOrders[order]) {
     mapQuery.set("order", `&order=${validOrders[order]}`);
-  } 
+  }
 };
 
 export const queryString = (filter, order) => {
@@ -68,7 +68,7 @@ export const queryString = (filter, order) => {
         mapQuery.delete("province");
       }
       break;
-      case "clean":
+    case "clean":
       if (order) {
         mapQuery.delete("date");
         mapQuery.delete("order");

@@ -234,7 +234,6 @@ class PlansService {
       where: { id: commentIds },
       include: [{
         model: sequelize.models.users,
-        attributes: ['nickName'],
         through: {
           model: sequelize.models.comments_users,
           attributes: []

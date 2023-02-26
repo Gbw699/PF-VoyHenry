@@ -7,13 +7,6 @@ export default function HandlerErrorInput({ email, setIsValidEmail }) {
   useEffect(() => {
     setIsValidEmail(isValidEmail);
   }, [email, setIsValidEmail, isValidEmail]);
-  
-  return (
-    <>
-      {
-        !isValidEmail 
-        && <p>Please enter a valid email address.</p>
-      }
-      </>
-    );
-  }
+
+  return <>{!isValidEmail && <p>Please enter a valid email address.</p>}</>;
+}

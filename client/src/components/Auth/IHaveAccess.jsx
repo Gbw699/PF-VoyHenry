@@ -12,7 +12,7 @@ export default function IHaveAccess({ whereAmI }) {
       whereAmI !== "/" &&
       whereAmI !== "/changePass" &&
       whereAmI !== "/signUp" &&
-      whereAmI !== "/recoveryPass" 
+      whereAmI !== "/recoveryPass"
     ) {
       navigate("/logIn");
     }

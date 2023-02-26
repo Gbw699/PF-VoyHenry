@@ -13,10 +13,12 @@ export default function Plan() {
   return (
     <div className={style.container}>
       {showPlanForm && <PlanForm setShowPlanForm={setShowPlanForm} />}
-        {!showPlanForm && <GeolocationForm setShowPlanForm={setShowPlanForm}/>}
-      {!showPlanForm && <div className={style.plans}>
-        <PlanCardList />
-      </div>}
+      {!showPlanForm && <GeolocationForm setShowPlanForm={setShowPlanForm} />}
+      {!showPlanForm && (
+        <div className={style.plans}>
+          <PlanCardList />
+        </div>
+      )}
       {!showPlanForm && <PlansSections />}
     </div>
   );
