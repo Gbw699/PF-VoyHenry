@@ -92,7 +92,7 @@ export default function UsersProfileSection({ user, plans, blogs }) {
               width="100%"
             />
             <div className={style.plansCont}>
-              {plans.map((element) => (
+              {plans?.map((element) => (
                 <Link
                   key={element.id}
                   to={`/plans/${element.id}`}
@@ -113,7 +113,7 @@ export default function UsersProfileSection({ user, plans, blogs }) {
               width="100%"
             />
             <div className={style.plansCont}>
-              {blogs.map((element) => (
+              {blogs?.map((element) => (
                 <Link
                   key={element.id}
                   to={`/blog/${element.id}`}

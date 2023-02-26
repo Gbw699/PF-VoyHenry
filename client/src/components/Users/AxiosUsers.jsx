@@ -28,7 +28,7 @@ export default function AxiosUsers({
           );
           setUser(userData);
           setPlans(plansData);
-          setBlogs(blogsData);
+          setBlogs(blogsData.blogs.blogs);
         } else {
           setUsers(data.users);
         }
