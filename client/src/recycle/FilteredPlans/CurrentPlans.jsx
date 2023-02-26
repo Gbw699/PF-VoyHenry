@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import style from "./FilteredPlans.module.css";
 import { queryString } from "./queryStringPlan";
 
@@ -34,15 +35,18 @@ export default function CurrentPlans() {
         />
         <div className={style.imgCont}>
           {plans.map((plan) => (
-            <img
+            <Link
+              to={`/plans/${plan.id}`}
               key={plan.id}
-              className={style.planImg}
-              src={plan.mainImage}
-              title={plan.title}
-            />
+            >
+              <img
+                className={style.planImg}
+                src={plan.mainImage}
+                title={plan.title}
+              />
+            </Link>
           ))}
         </div>
-        <button className={style.btn}>Deja tu reseña</button>
       </div>
     );
   }

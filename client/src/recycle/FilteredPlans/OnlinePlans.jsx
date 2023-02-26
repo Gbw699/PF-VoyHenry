@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import plansData from "../../onlinePlans.json";
 import style from "./FilteredPlans.module.css";
 
@@ -13,15 +14,18 @@ export default function OnlinePlans() {
       />
       <div className={style.imgCont}>
         {plans.map((plan) => (
-          <img
+          <Link
+            to={`/plans/${plan.id}`}
             key={plan.id}
-            className={style.planImg}
-            src={plan.mainImage}
-            title={plan.title}
-          />
+          >
+            <img
+              className={style.planImg}
+              src={plan.mainImage}
+              title={plan.title}
+            />
+          </Link>
         ))}
       </div>
-      <button className={style.btn}>Unirse Ahora</button>
     </div>
   );
 }
