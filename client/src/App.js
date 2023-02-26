@@ -26,6 +26,7 @@ import RecoveryPass from "./views/RecoveryPass/Recoverypass";
 import ChangePass from "./views/ChangePass/ChangePass";
 import Configuration from "./views/EditProfile/EditProfile";
 import EditProfile from "./views/EditProfile/EditProfile";
+import LoadSpinning from "./views/LoadSpinning/LoadSpinning";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 const cookie = document.cookie.split("=");
@@ -121,6 +122,10 @@ function App() {
         <Route
           path="/profile/edit"
           element={<EditProfile />}
+        />
+        <Route
+          path="/loadSpinning"
+          element={<LoadSpinning />}
         />
         <Route
           path="*"
