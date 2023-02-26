@@ -18,6 +18,7 @@ export default function ShoppingCartCard({
         <div className={style.itemInfo}>
           <div>
             <img
+              className={style.img}
               src={image}
               alt={title}
             />
@@ -26,7 +27,7 @@ export default function ShoppingCartCard({
             <div>
               <h5 className={style.title}>{title}</h5>
               <hr
-                color="#707070"
+                color="#f1e100"
                 width="100%"
               />
               <p className={style.unitPrice}>Precio unitario: ${unitPrice}</p>

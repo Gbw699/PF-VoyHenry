@@ -11,7 +11,7 @@ export default function CategoryFilter() {
   };
 
   return (
-    <div className={style.container}>
+    <div>
       <h3>Categorías</h3>
       <hr
         width="100%"
