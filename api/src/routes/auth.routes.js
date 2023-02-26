@@ -51,12 +51,12 @@ router.get('/login/google/callback',
     try {
 
       if(req.user === "Bad_validation_method"){
-        res.redirect(`http://localhost:3000/logIn?error=${req.user}`)
+        res.redirect(`https://pf-voy-henry.vercel.app//logIn?error=${req.user}`)
       } else {
 
         const user = service.signToken(req.user)
 
-        res.redirect(`http://localhost:3000/logIn?token=${user.token}
+        res.redirect(`https://pf-voy-henry.vercel.app//logIn?token=${user.token}
           &nickName=${user.user[0].nickName}
           &email=${user.user[0].email}
           &dateOfBirth=${user.user[0].dateOfBirth}
