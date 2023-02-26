@@ -35,7 +35,6 @@ export default function DetailMarketPlaceImgPrice({
 
   const handleAddProduct = () => {
     productContext.addProduct(products, quantity);
-    console.log(products, quantity);
     Swal.fire({
       icon: "success",
       title: "Se ha actualizado el carrito de compras",

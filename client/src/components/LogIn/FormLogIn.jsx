@@ -34,7 +34,6 @@
 //                 .required("La contraseña es obligatoria"),
 //             })}
 //             onSubmit={(values) => {
-//               console.log(values);
 //               navigate("/home");
 //               //dispatch(postUser(values));
 //             }}
