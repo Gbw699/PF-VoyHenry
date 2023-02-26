@@ -8,7 +8,7 @@ const lessDate = `${currentDate.getFullYear() - 18}-${currentDate.getMonth() + 1
 
 //
 
-const nickName = Joi.string().alphanum().min(3).max(15)
+const nickName = Joi.string().alphanum().min(3).max(25)
 const email = Joi.string().email()
 const password = Joi.string().min(8);
 const role = Joi.string().min(3);
