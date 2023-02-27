@@ -18,6 +18,8 @@ const dateOfBirth = Joi.date().greater(greaterDate).less(lessDate);
 const firstName = Joi.string().alphanum().min(3).max(55)
 const lastName = Joi.string().alphanum().min(3).max(55)
 const image = Joi.string().uri()
+const userNickName = Joi.string().alphanum().min(3).max(25)
+
 
 const createUserSchema = Joi.object({
   nickName: nickName.required(),
@@ -49,9 +51,14 @@ const getUserSchema = Joi.object({
   nickName: nickName.required()
 })
 
+const userFollowSchema = Joi.object({
+  userNickName: userNickName.required()
+})
+
 module.exports = {
   createUserSchema,
   updateSchema,
-  getUserSchema
+  getUserSchema,
+  userFollowSchema
 }
 

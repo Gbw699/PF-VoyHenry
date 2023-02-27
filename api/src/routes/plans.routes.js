@@ -2,7 +2,7 @@ const { Router } = require('express');
 const passport = require('passport')
 const PlansService = require('../services/plan.service')
 const validatorHandler = require('../middlewares/validator.handler')
-const { createPlanSchema, updateSchema, getPlanSchema, deletePlanSchema, ratingSchema } = require('../schemas/plans.schema')
+const { createPlanSchema, updateSchema, getPlanSchema, deletePlanSchema, ratingSchema, followSchema } = require('../schemas/plans.schema')
 
 const router = Router();
 const service = new PlansService();
@@ -181,7 +181,8 @@ router.delete('/:id',
 
 router.post(
   '/:id/favorite',
-
+  validatorHandler(deletePlanSchema, 'params'),
+  validatorHandler(followSchema, 'body'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -201,7 +202,7 @@ router.post(
 
 router.get(
   '/:id/favorite',
-
+  validatorHandler(deletePlanSchema, 'params'),
   async (req, res, next) => {
     try {
       const  {id}  = req.params;
@@ -218,13 +219,13 @@ router.get(
 /* Get user plan favorite */
 
 router.get(
-  '/:nickName/Plansfavorite',
-
+  '/:userNickName/Plansfavorite',
+  validatorHandler(followSchema, 'params'),
   async (req, res, next) => {
     try {
-      const  { nickName }  = req.params;
+      const  { userNickName }  = req.params;
 
-      const followedPlan = await service.getFollowedPlans(nickName);
+      const followedPlan = await service.getFollowedPlans(userNickName);
 
       res.json(followedPlan);
     } catch (error) {
@@ -237,7 +238,8 @@ router.get(
 
 router.delete(
   '/:id/favorite',
-
+  validatorHandler(deletePlanSchema, 'params'),
+  validatorHandler(followSchema, 'body'),
   async (req, res, next) => {
     try {
       const { id } = req.params;

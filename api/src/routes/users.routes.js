@@ -3,7 +3,7 @@ const passport = require('passport')
 const { checkRoleClosure } = require('../middlewares/auth.handler')
 const UsersService = require('../services/user.service')
 const validatorHandler = require('../middlewares/validator.handler')
-const { createUserSchema, updateSchema, getUserSchema } = require('../schemas/users.schema')
+const { createUserSchema, updateSchema, getUserSchema, userFollowSchema } = require('../schemas/users.schema')
 
 const router = Router();
 const service = new UsersService()
@@ -158,7 +158,8 @@ router.delete('/:nickName',
 /* user follow user */
 
 router.post('/:nickName/follow',
-
+validatorHandler(getUserSchema, 'params'),
+validatorHandler(userFollowSchema, 'body'),
   async (req, res, next) => {
 
     try {
@@ -181,7 +182,7 @@ router.post('/:nickName/follow',
 
 router.get(
   '/:nickName/followed',
-
+  validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
       const  {nickName}  = req.params;
@@ -199,7 +200,7 @@ router.get(
 
 router.get(
   '/:nickName/Following',
-
+  validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
       const  { nickName }  = req.params;
@@ -217,7 +218,8 @@ router.get(
 
 router.delete(
   '/:nickName/follow',
-
+  validatorHandler(getUserSchema, 'params'),
+  validatorHandler(userFollowSchema, 'body'),
   async (req, res, next) => {
     try {
 

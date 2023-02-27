@@ -337,10 +337,10 @@ class PlansService {
 
   /* Get favorite by nickName */
 
-  async getFollowedPlans(nickName) {
+  async getFollowedPlans(userNickName) {
 
     const followedPlan = await sequelize.models.user_favorite_plan.findAll({
-      where: { userid: nickName },
+      where: { userid: userNickName },
     });
 
     const followedPlanId = followedPlan.map(

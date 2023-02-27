@@ -214,12 +214,6 @@ async update (id, { title , content, rating, image }) {
   /* Create Comment */
 
   async createComment(id, { userNickName, comment }) {
-    const searchname = await users.findOne({
-      where: { nickName: userNickName },
-    });
-
-    const searchblog = await blogModel.findOne({ where: { id: id } });
-
     const newCom = await comments.create({
       content: comment,
     });
@@ -289,10 +283,10 @@ async update (id, { title , content, rating, image }) {
 
   /* Get favorite by nickname */
 
-  async getFavotireBlogs(nickName) {
+  async getFavoriteBlogs(userNickName) {
 
     const followingBlogs = await sequelize.models.user_favorite_blog.findAll({
-      where: { userid: nickName },
+      where: { userid: userNickName },
     });
 
     const blogsid = followingBlogs.map(

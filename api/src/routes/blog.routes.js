@@ -1,4 +1,4 @@
-const { Router } = require('express');
+const { Router, text } = require('express');
 const UsersBlog = require('../services/blog.service');
 const passport = require('passport');
 const validatorHandler = require('../middlewares/validator.handler');
@@ -7,6 +7,8 @@ const {
   updateSchema,
   getBlogSchema,
   ratingSchema,
+  favorites,
+  coments,
 } = require('../schemas/blog.schema');
 
 const router = Router();
@@ -134,7 +136,8 @@ router.delete(
 
 router.post(
   '/:id/comment',
-
+  validatorHandler(getBlogSchema, 'params'),
+  validatorHandler(coments, 'body'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -153,7 +156,7 @@ router.post(
 
 router.get(
   '/:id/comment',
-
+  validatorHandler(getBlogSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -173,7 +176,8 @@ router.get(
 
 router.post(
   '/:id/favorite',
-
+  validatorHandler(getBlogSchema, 'params'),
+  validatorHandler(favorites, 'body'),
   async (req, res, next) => {
     try {
 
@@ -193,13 +197,13 @@ router.post(
 /* Get favorite blogs by nickname */
 
 router.get(
-  '/:nickName/favorite',
-
+  '/:userNickName/favorite',
+  validatorHandler(favorites, 'params'),
   async (req, res, next) => {
     try {
-      const  {nickName}  = req.params;
+      const  {userNickName}  = req.params;
 
-      const favoriteBlogs = await service.getFavoriteBlogs(nickName);
+      const favoriteBlogs = await service.getFavoriteBlogs(userNickName);
 
       res.json(favoriteBlogs);
     } catch (error) {
@@ -212,7 +216,7 @@ router.get(
 
 router.get(
   '/:id/blogfavorite',
-
+  validatorHandler(getBlogSchema, 'params'),
   async (req, res, next) => {
     try {
       const  { id }  = req.params;
@@ -230,7 +234,8 @@ router.get(
 
 router.delete(
   '/:id/favorite',
-
+  validatorHandler(getBlogSchema, 'params'),
+  validatorHandler(favorites, 'body'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
