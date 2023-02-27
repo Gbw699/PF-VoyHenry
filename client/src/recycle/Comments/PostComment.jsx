@@ -3,7 +3,7 @@ import style from "./DetailPlan.module.css";
 
 export default function PostComment(props) {
   const user = JSON.parse(localStorage.getItem("user"));
-  
+
   return (
     <div>
       <div>
@@ -13,6 +13,7 @@ export default function PostComment(props) {
           alt=""
         />
         <textarea
+          className={style.text}
           style={{ resize: "none", borderRadius: "5px" }}
           placeholder="Dejar reseña"
           name="reseña"
@@ -31,4 +32,4 @@ export default function PostComment(props) {
       </div>
     </div>
   );
-};
+}
