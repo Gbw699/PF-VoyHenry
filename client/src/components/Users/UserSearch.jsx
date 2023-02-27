@@ -1,20 +1,21 @@
 import React from "react";
-// import style from "UserSearch.module.css";
+import style from "./UserSearch.module.css";
 import imgSearch from "../../assets/search.png";
 
 export default function UserSearch() {
   return (
-    <form>
+    <div className={style.searchCont}>
       <input
+        className={style.searchInput}
         type="text"
         placeholder="Buscar"
       />
-      <button>
-        <img
-          src={imgSearch}
-          alt="Search"
-        />
+      <button
+        type="button"
+        className={style.searchBtn}
+      >
+        buscar
       </button>
-    </form>
+    </div>
   );
 }

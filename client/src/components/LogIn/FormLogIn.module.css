@@ -65,6 +65,10 @@
   margin: 3%;
 }
 
+.btnLogin:hover {
+  background-color: #707070;
+  color: white;
+}
 .btnVolver {
   background-color: rgb(219, 219, 219);
   width: 100px;
@@ -76,11 +80,20 @@
   margin: 3%;
 }
 
-.btnLogin:hover {
-  background-color: #707070;
-  color: white;
+.btnVolver:hover {
+  background-color: #f1e100;
 }
 
-.btnVolver:hover {
+.button {
+  background-color: rgb(219, 219, 219);
+  width: 100px;
+  padding: 2%;
+  color: #707070;
+  border: 0px;
+  border-radius: 10px;
+  transition: background-color 0.5s;
+  margin: 3%;
+}
+.button:hover {
   background-color: #f1e100;
 }

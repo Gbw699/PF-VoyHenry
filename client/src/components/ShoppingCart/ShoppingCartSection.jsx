@@ -133,7 +133,7 @@ export default function ShoppingCartSection() {
         ))}
       </div>
       <div className={style.btnsCont}>
-        <span>{totalPrice()}</span>
+        <span className={style.price}>{totalPrice()}</span>
         <button
           onClick={handleBuyCart}
           className={style.buyBtn}
