@@ -39,3 +39,14 @@ export const getProductsByOrder = ({ filter, order }) => {
     }
   };
 };
+
+export const createProduct = (obj) => {
+  return async () => {
+    try {
+      await axios.post("/api/v1/products", { ...obj });
+      window.alert("El producto fue creado");
+    } catch (error) {
+      console.error(error.response);
+    }
+  };
+};
