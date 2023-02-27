@@ -11,7 +11,7 @@
 
 .cardCont:hover .card {
   /* transform: scale(1.05); */
-  transition: all 0.5s ease 0.2s;
+  /* transition: all 0.5s ease 0.2s; */
   visibility: visible;
 }
 

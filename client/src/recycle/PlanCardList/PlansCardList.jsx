@@ -33,6 +33,7 @@ export default function PlanList() {
             title={plan.title}
             summary={plan.summary}
             eventDate={plan.eventDate}
+            average={plan.average}
           />
         ))}
       </div>

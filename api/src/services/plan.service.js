@@ -33,7 +33,7 @@ class PlansService {
     }
 
     if (query.contains) {
-      options.where.title = { [Op.substring]: query.contains };
+      options.where.title = { [Op.iLike]: `%${query.contains}%` };
     }
 
     if (query.order) {

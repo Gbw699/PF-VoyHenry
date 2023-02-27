@@ -7,12 +7,12 @@ import PlanForm from "./PlanForm";
 
 export default function Plan() {
   const [showPlanForm, setShowPlanForm] = useState(false);
-  const handleSubmit = () => {
-    setShowPlanForm(true);
-  };
+
   return (
     <div className={style.container}>
-      {showPlanForm && <PlanForm setShowPlanForm={setShowPlanForm} />}
+      <div className={style.planForm}>
+        {showPlanForm && <PlanForm setShowPlanForm={setShowPlanForm} />}
+      </div>
       {!showPlanForm && <GeolocationForm setShowPlanForm={setShowPlanForm} />}
       {!showPlanForm && (
         <div className={style.plans}>

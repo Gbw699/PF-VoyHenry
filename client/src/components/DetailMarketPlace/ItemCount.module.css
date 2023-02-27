@@ -1,0 +1,48 @@
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.contador {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.buttonMenos {
+  font-family: monospace;
+  background-color: rgb(209, 209, 209);
+  color: #000000;
+  border: none;
+  border-radius: 8px;
+  width: 100px;
+  height: 45px;
+  transition: 0.3s;
+}
+
+.buttonMenos:hover {
+  background-color: #f22176;
+  box-shadow: 0 0 0 2px black;
+  color: #fff;
+}
+.buttonMas {
+  font-family: monospace;
+  background-color: rgb(209, 209, 209);
+  color: #3b82f6;
+  border: none;
+  border-radius: 8px;
+  width: 100px;
+  height: 45px;
+  transition: 0.3s;
+}
+
+.buttonMas:hover {
+  background-color: rgb(13, 236, 13);
+  box-shadow: 0 0 0 2px black;
+  color: #fff;
+}
