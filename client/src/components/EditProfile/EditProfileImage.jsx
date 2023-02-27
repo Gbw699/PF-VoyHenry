@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 // import style from "EditProfileImage.module.css";
 
 export default function EditProfileImage({ image, setImage }) {
+  const cloudinaryRef = useRef();
+  const widgetRef = useRef();
+  useEffect(() => {
+    cloudinaryRef.current = window.cloudinary;
+    widgetRef.current = cloudinaryRef.current.createUploadWidget(
+      {
+        cloudName: "voyhenrydb",
+        uploadPreset: "tapjvy8a",
+      },
+      function (error, result) {
+        if (!error && result && result.event === "success") {
+          setImage(result.info.url);
+        }
+      }
+    );
+  }, []);
   return (
     <div>
       <div>
@@ -14,7 +30,7 @@ export default function EditProfileImage({ image, setImage }) {
         />
       </div>
       <div>
-        <button>Subir imagen</button>
+        <button onClick={() => widgetRef.current.open()}>Subir imagen</button>
       </div>
     </div>
   );
