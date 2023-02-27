@@ -78,6 +78,7 @@
   padding: 6px;
   border-radius: 10px;
 }
+
 .editarPerfil {
   display: inline-block;
   align-items: center;
@@ -91,6 +92,10 @@
   overflow: hidden;
   position: relative;
   border-radius: 8px;
+}
+
+.editarPerfil:hover{
+  cursor: pointer;
 }
 
 .editarPerfil::before {
