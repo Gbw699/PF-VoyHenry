@@ -1,9 +1,9 @@
 import axios from "axios";
-import { queryString } from "./queryStringMarket.js";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { marketQueryString } from "./queryStringMarket.js";
 import {
   setProducts,
-  setDetailProducts,
-  setProductsByOrder,
+  setDetailProducts
 } from "./marketPlaceSlice";
 
 export const getProducts = (id) => {
@@ -26,16 +26,11 @@ export const getProducts = (id) => {
   };
 };
 
-export const getProductsByOrder = ({ filter, order }) => {
-  const queryUrl = queryString(filter, order);
-  return async (dispatch) => {
-    try {
-      const response = await axios.get(
-        `/api/v1/products?${queryUrl.slice(0, -1)}`
-      );
-      dispatch(setProductsByOrder(response.data.products));
-    } catch (error) {
-      console.log("No se pudo realizar la petición:", error.message);
-    }
-  };
-};
+export const getProductsByFilter = createAsyncThunk(
+  "marketplace/fecthproducts",
+  async (filters) => {
+    const queryString = marketQueryString(filters);
+    const response = await axios.get(`/api/v1/products?${queryString}`);
+    return response.data;
+  }
+);

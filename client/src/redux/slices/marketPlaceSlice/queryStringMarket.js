@@ -1,69 +1,34 @@
-const mapQuery = new Map();
+export const marketQueryString = (filters) => {
+  const query = {};
 
-export const queryString = (filter, order) => {
-  switch (filter) {
-    case "order":
-      switch (order) {
-        case "alfabetico":
-          mapQuery.set("order", `?order=${order}&`);
-          break;
-        case "reverso":
-          mapQuery.set("order", `?order=${order}&`);
-          break;
-        case "ascendente":
-          mapQuery.set("order", `?order=${order}&`);
-          break;
-        case "descendente":
-          mapQuery.set("order", `?order=${order}&`);
-          break;
-        default:
-          break;
-      }
-      break;
-    case "category":
-      switch (order) {
-        case "remeras":
-          mapQuery.set("category", `?category=${order}&`);
-          break;
-        case "pantalones":
-          mapQuery.set("category", `?category=${order}&`);
-          break;
-        case "gorros":
-          mapQuery.set("category", `?category=${order}&`);
-          break;
-        default:
-          break;
-      }
-      break;
-    case "availability":
-      switch (order) {
-        case "inStock":
-          mapQuery.set("availability", "?availability=true&");
-          break;
-        case "outStock":
-          mapQuery.set("availability", "?availability=false&");
-          break;
-        default:
-          break;
-      }
-      break;
-    default:
-      break;
+  if (filters.category) {
+    query.category = filters.category;
   }
 
-  if (!mapQuery.get("order")) {
-    mapQuery.set("order", "");
+  if (filters.availability) {
+    query.availability = filters.availability;
   }
 
-  if (!mapQuery.get("category")) {
-    mapQuery.set("category", "");
+  if (filters.order) {
+    switch (filters.order) {
+      case "title":
+        query.order = "alfabetico";
+        break;
+      case "-title":
+        query.order = "reverso";
+        break;
+      case "price":
+        query.order = "ascendente";
+        break;
+      case "-price":
+        query.order = "descendente";
+        break;
+      default:
+        break;
+    }
   }
 
-  if (!mapQuery.get("availability")) {
-    mapQuery.set("availability", "");
-  }
+  const queryString = new URLSearchParams(query).toString();
 
-  return `${mapQuery.get("order")}${mapQuery.get("category")}${mapQuery.get(
-    "availability"
-  )}`;
+  return queryString ? `?${queryString}` : "";
 };

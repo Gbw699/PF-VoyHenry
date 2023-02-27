@@ -1,29 +1,40 @@
 import React from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setProductsByOrder } from "../../redux/slices/marketPlaceSlice/marketPlaceSlice";
+import { sortProductsByTitle, sortProductsByPrice } from "../../redux/slices/marketPlaceSlice/marketPlaceSlice";
 import style from "./Filters.module.css";
 
-export default function OrderFilter() {
+export default function OrderBy() {
   const dispatch = useDispatch();
+  const [order, setOrder] = useState("");
 
-  const handleChange = (event) => {
-    dispatch(setProductsByOrder(event.target.value));
+  const handleOrderChange = (e) => {
+    const newOrder = e.target.value;
+    setOrder(newOrder);
+    console.log("New order selected:", newOrder);
+
+    if (newOrder === "title") {
+      dispatch(sortProductsByTitle());
+    } else if (newOrder === "price") {
+      dispatch(sortProductsByPrice());
+    }
   };
 
   return (
     <div className={style.container}>
-      <h3>Ordenar por</h3>
-      <hr
-        width="100%"
-        color="#F1E100"
-      />
-      <select onChange={handleChange}>
-        <option value="">-- Selecciona una opción --</option>
-        <option value="alfabetico">Nombre A-Z</option>
-        <option value="reverso">Nombre Z-A</option>
-        <option value="ascendente">Precio ascendente</option>
-        <option value="descendente">Precio descendente</option>
-      </select>
+      <label>Ordenar por
+        <hr
+          width="100%"
+          color="#F1E100"
+        />
+        <select value={order} onChange={handleOrderChange}>
+          <option value="">-- Seleccionar opción --</option>
+          <option value="alfabetico">A-Z</option>
+          <option value="reverso">Z-A</option>
+          <option value="ascendente">Más baratos</option>
+          <option value="descendente">Más caros</option>
+        </select>
+      </label>
     </div>
   );
-}
+};

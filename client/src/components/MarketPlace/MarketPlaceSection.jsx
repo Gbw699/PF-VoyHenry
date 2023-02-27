@@ -17,6 +17,8 @@ export default function MarketPlaceSection() {
     (state) => state.marketPlaceStore.allProducts.products
   );
 
+  console.log(products);
+
   const [backgroundImage, setBackgroundImage] = useState("");
 
   useEffect(() => {

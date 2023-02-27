@@ -1,43 +1,35 @@
 import React from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setProductsByOrder } from "../../redux/slices/marketPlaceSlice/marketPlaceSlice";
+import { filterProductsByCategory } from "../../redux/slices/marketPlaceSlice/marketPlaceSlice";
 import style from "./Filters.module.css";
 
 export default function CategoryFilter() {
   const dispatch = useDispatch();
+  const [category, setCategory] = useState("");
 
-  const handleClick = (event) => {
-    dispatch(setProductsByOrder(event.target.value));
+  const handleCategoryChange = (e) => {
+    const newCategory = e.target.value;
+    setCategory(newCategory);
+    console.log("New category selected:", newCategory);
+    dispatch(filterProductsByCategory({ category: newCategory }));
   };
 
   return (
     <div className={style.container}>
-      <h3>Categorías</h3>
-      <hr
-        width="100%"
-        color="#F1E100"
-      />
-      <button
-        className={style.button}
-        value="remeras"
-        onClick={(event) => handleClick(event)}
-      >
-        Remeras
-      </button>
-      <button
-        className={style.button}
-        value="pantalones"
-        onClick={(event) => handleClick(event)}
-      >
-        Pantalones
-      </button>
-      <button
-        className={style.button}
-        value="gorros"
-        onClick={(event) => handleClick(event)}
-      >
-        Gorros
-      </button>
+      <label>
+        Categorías
+        <hr
+          width="100%"
+          color="#F1E100"
+        />
+        <select value={category} onChange={handleCategoryChange}>
+          <option value="">-- Seleccionar categoría --</option>
+          <option value="remeras">Remeras</option>
+          <option value="pantalones">Pantalones</option>
+          <option value="gorros">Gorros</option>
+        </select>
+      </label>
     </div>
   );
-}
+};
