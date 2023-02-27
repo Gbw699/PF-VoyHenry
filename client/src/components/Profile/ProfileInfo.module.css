@@ -3,10 +3,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-image: url("../../assets/4.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 5px;
   box-shadow: 3px 3px 5px 2px #222222;
-  padding: 2%;
+  padding: 1%;
 }
 
 .mainInfo {
@@ -14,6 +16,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 300px;
 }
 
 .imgCont {
@@ -27,16 +30,21 @@
 }
 
 .name {
-  color: #707070;
-  font-size: 130%;
+  color: #f1e100;
+  font-size: 110%;
   font-weight: 600;
-  margin: 8% 0px;
+  margin-bottom: 10px;
+  background-color: black;
+  border-radius: 5px;
 }
 
 .nacionality {
-  color: #707070;
+  color: #f1e100;
   font-size: 110%;
-  font-weight: 300;
+  font-weight: 600;
+  margin-bottom: 10px;
+  background-color: black;
+  border-radius: 5px;
 }
 
 .profileInfo {
@@ -54,14 +62,61 @@
 }
 
 .infoTitle {
-  color: #707070;
+  color: #f1e100;
   font-size: 110%;
-  font-weight: 300;
-  margin-bottom: 3%;
+  font-weight: 600;
+  margin-bottom: 10px;
+  background-color: black;
+  border-radius: 5px;
 }
 
 .infoCount {
-  color: #707070;
+  color: #f1e100;
   font-size: 130%;
   font-weight: 600;
+  background-color: black;
+  padding: 6px;
+  border-radius: 10px;
+}
+.editarPerfil {
+  display: inline-block;
+  align-items: center;
+  margin-left: 1200px;
+  border: 3px solid #dfb112;
+  padding: 10px;
+  background-color: #212121;
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 8px;
+}
+
+.editarPerfil::before {
+  content: "";
+  z-index: -1;
+  -webkit-transform: translateY(-100%) translateX(-100%);
+  -ms-transform: translateY(-100%) translateX(-100%);
+  transform: translateY(-100%) translateX(-100%);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  background-color: #dfb112;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+.editarPerfil:hover::before {
+  -webkit-transform: translateY(0) translateX(0);
+  -ms-transform: translateY(0) translateX(0);
+  transform: translateY(0) translateX(0);
+}
+
+.editarPerfil:hover::after {
+  -webkit-transform: translateY(100%) translateX(100%);
+  -ms-transform: translateY(100%) translateX(100%);
+  transform: translateY(100%) translateX(100%);
 }
