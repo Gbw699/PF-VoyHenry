@@ -11,7 +11,7 @@ export default function AvailabilityFilter() {
   };
 
   return (
-    <div className={style.container}>
+    <div>
       <h3>Disponibilidad</h3>
       <hr
         width="100%"

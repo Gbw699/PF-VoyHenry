@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import style from "./UploadWidget.module.css";
 
 export default function UploadWidget({ setUrl }) {
   const cloudinaryRef = useRef();
@@ -21,6 +22,7 @@ export default function UploadWidget({ setUrl }) {
 
   return (
     <button
+      className={style.image}
       type="button"
       onClick={() => widgetRef.current.open()}
     >

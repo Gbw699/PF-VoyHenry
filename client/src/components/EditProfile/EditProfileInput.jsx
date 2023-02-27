@@ -1,5 +1,5 @@
 import React from "react";
-// import style from "EditProfileInput.module.css";
+import style from "./EditProfileInput.module.css";
 
 export default function EditProfileInput({ name, placeholder, setState }) {
   const handleChange = (event) => {
@@ -9,6 +9,7 @@ export default function EditProfileInput({ name, placeholder, setState }) {
   return (
     <div>
       <input
+        className={style.input}
         type="text"
         name={name}
         placeholder={placeholder}

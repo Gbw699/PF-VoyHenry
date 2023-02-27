@@ -14,7 +14,7 @@ export default function MarketCard({ title, image, price }) {
         color="#F1E100"
         width="100%"
       />
-      <h6 className={style.price}>$ {price}</h6>
+      <h6 className={style.price}>💲 {price}</h6>
     </div>
   );
 }

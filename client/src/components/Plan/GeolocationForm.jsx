@@ -37,7 +37,7 @@ export default function GeolocationForm(props) {
           Actualizar
         </button>
         <button
-          className={style.buttonActualizar}
+          className={style.buttons}
           onClick={handleButtonCreate}
         >
           Crea tu evento

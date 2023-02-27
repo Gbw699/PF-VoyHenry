@@ -206,7 +206,10 @@ export default function FormLogIn() {
               </Button>
             </div>
           </Form>
-          <button onClick={handlerRecoveryPass}>
+          <button
+            onClick={handlerRecoveryPass}
+            className={style.button}
+          >
             ¿Olvidaste tu contraseña?
           </button>
         </div>
