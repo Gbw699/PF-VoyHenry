@@ -48,7 +48,7 @@ export const getPlansbyOrder = (filter, order) => {
       const response = await axios.get(`/api/v1/plans?${queryUrl}`);
       dispatch(setPlansbyOrder(response.data));
     } catch (error) {
-      console.log("No se pudo realizar la petición:", error.message);
+      console.error(error.response);
     }
   };
 };
