@@ -1,6 +1,6 @@
 .mainContainer {
   border-radius: 5px;
-  box-shadow: 3px 3px 5px 2px #9e9e9e;
+
   padding: 2%;
   margin: 2% 0px 0px 0px;
 }
@@ -18,8 +18,9 @@
 }
 
 .img {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
+
   border-radius: 5px;
   margin-right: 1%;
 }
@@ -31,21 +32,21 @@
 }
 
 .title {
-  color: #707070;
+  color: #000000;
   font-size: 120%;
   font-weight: 500;
   margin-bottom: 0px;
 }
 
 .unitPrice {
-  color: #707070;
+  color: #000000;
   font-size: 100%;
   font-weight: 300;
   margin-bottom: 0px;
 }
 
 .totalPrice {
-  color: #707070;
+  color: #000000;
   font-size: 110%;
   font-weight: 500;
 }

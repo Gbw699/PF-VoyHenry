@@ -44,7 +44,7 @@ const plans = sequelize.define('plans', {
   },
   votes: {
     type: DataTypes.INTEGER,
-    defaultValue: 0,
+    defaultValue: 1,
 
   },
   stars: {
@@ -65,10 +65,10 @@ const plans = sequelize.define('plans', {
   average: {
     type: DataTypes.VIRTUAL,
     get() {
-      if (this.votes === 0) {
-        return 0
+      if (this.votes === 1) {
+        return this.stars
       } else {
-        return this.stars / this.votes
+        return this.stars / (this.votes -1)
       }
     }
   }

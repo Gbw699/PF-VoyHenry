@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  margin: 10px;
+  width: 100%;
+}
+
+.textArea {
+  font-family: monospace;
+  max-width: 190px;
+  outline: none;
+  border: 1px solid #dadada;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #020203;
+  transition: 0.7s;
+  color: #f1e100;
+}
+
+.textArea::placeholder {
+  color: #f1e100;
+}
+
+.textArea:focus {
+  border: 1px solid #f1e100;
+  box-shadow: 0 0 0 5px #f1e100;
+}

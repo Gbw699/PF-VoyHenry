@@ -8,6 +8,10 @@
   width: 250px;
 }
 
+.cardCont:hover{
+  transform: scale(1.1);
+}
+
 .cardTitle {
   color: #707070;
   font-weight: 300;
@@ -27,6 +31,7 @@
   height: 110px;
   width: 110px;
   margin: 2%;
+  margin-right: 0.6em;
   border-radius: 5px;
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 import CurrentPlans from "../FilteredPlans/CurrentPlans";
 import NextPlans from "../FilteredPlans/NextPlans";
 import CompletedPlans from "../FilteredPlans/CompletedPlans";
-import OnlinePlans from "../FilteredPlans/OnlinePlans";
+// import OnlinePlans from "../FilteredPlans/OnlinePlans";
 import style from "./PlansSections.module.css";
 // import axios from "axios";
 
@@ -34,7 +34,7 @@ export default function PlansSections() {
       <NextPlans />
       <CurrentPlans />
       <CompletedPlans />
-      <OnlinePlans />
+      {/* <OnlinePlans /> */}
     </div>
   );
 }

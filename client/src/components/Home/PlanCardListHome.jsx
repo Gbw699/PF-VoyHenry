@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import PlanCard from "../../recycle/PlanCard/PlanCard";
 import style from "./PlanCardListHome.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getLimitPlans } from "../../redux/slices/planSlice/thunk";
+import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
 
 export default function PlanCardListHome() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getLimitPlans());
+    dispatch(getPlansbyOrder("order","masvotados"));
   }, []);
 
   const renderPlans = useSelector((state) => state.planStore.renderPlans);
@@ -16,7 +16,7 @@ export default function PlanCardListHome() {
   return (
     <div className={style.container}>
       <div className={style.cardCont}>
-        {plans?.plans.map((plan) => (
+        {plans?.plans.slice(0,6).map((plan) => (
           <PlanCard
             key={plan.id}
             id={plan.id}
@@ -25,6 +25,7 @@ export default function PlanCardListHome() {
             mainImage={plan.mainImage}
             title={plan.title}
             summary={plan.summary}
+            average={plan.average}
           />
         ))}
       </div>

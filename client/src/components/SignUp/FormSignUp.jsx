@@ -352,7 +352,7 @@ export default function FormSignUp() {
                   </label>
                   <Field
                     name="email"
-                    type="text"
+                    type="email"
                   />
                   <ErrorMessage name="email" />
                 </div>

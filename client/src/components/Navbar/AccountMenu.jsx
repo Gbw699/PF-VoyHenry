@@ -97,7 +97,7 @@ export default function AccountMenu() {
         >
           <MenuItem className={style.menuLinks}>Configuración</MenuItem>
         </NavLink>
-        <MenuItem className={style.menuLinks}> Modo oscuro</MenuItem>
+        <MenuItem className={style.menuLinks}>🌞 - 🌛</MenuItem>
         <Divider />
         <NavLink
           to={"/"}
