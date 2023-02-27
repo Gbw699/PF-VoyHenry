@@ -71,7 +71,7 @@ export default function DetailPlan() {
           style={{ backgroundImage: `url(${plan.mainImage})` }}
           className={style.imgCont}
         >
-          <h1>{plan.title}</h1>
+          <h1>{plan.title} </h1>
           <h3>{plan.country}</h3>
           <h3>{plan.province}</h3>
           <h3>{plan.eventDate}</h3>
@@ -95,7 +95,7 @@ export default function DetailPlan() {
         />
         <p>{plan.description}</p>
       </div>
-      <div className={style.galeria}>
+      {/* <div className={style.galeria}>
         <h1>Galería</h1>
         <hr
           width="100%"
@@ -111,7 +111,7 @@ export default function DetailPlan() {
           src={plan.images}
           alt={plan.title}
         />
-      </div>
+      </div> */}
       <div className={style.buttons}>
         <div className={style.button}>
           <button className={style.submitBtn}>Unirse</button>
@@ -131,8 +131,8 @@ export default function DetailPlan() {
           Volver
         </button>
       </div>
-      <PostComment handleClick={handleClick}/>
-      <GetComments comments={comments}/>
+      <PostComment handleClick={handleClick} />
+      <GetComments comments={comments} />
     </div>
   );
 }

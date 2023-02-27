@@ -17,8 +17,8 @@ export default function PlanCard(props) {
       className={style.cardCont}
       style={{ backgroundImage: backgroundImage }}
     >
-        <br/>
-        <h1 className={style.titlePro} style={{color: "white", textAlign: "center", fontSize: "50px"}}>{props.title}</h1>
+        {/* <br/>
+        <h1 className={style.titlePro} style={{color: "white", textAlign: "center", fontSize: "50px"}}>{props.title}</h1> */}
       <div className={style.card}>
         <div className={style.details}>
           <p className={style.title}>{props.title}</p>
