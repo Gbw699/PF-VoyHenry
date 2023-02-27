@@ -15,11 +15,13 @@ export default function UsersSection({ users }) {
             to={`/users/${element.nickName}`}
             key={element.nickName}
           >
-            <UserCard
-              firstName={element.firstName}
-              lastName={element.lastName}
-              image={element.image}
-            />
+            <div className={style.userCard}>
+              <UserCard
+                firstName={element.firstName}
+                lastName={element.lastName}
+                image={element.image}
+              />
+            </div>
           </Link>
         ))}
       </div>
