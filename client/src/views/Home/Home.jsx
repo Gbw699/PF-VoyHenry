@@ -1,7 +1,7 @@
 import React from "react";
 import PlansCardListHome from "../../components/Home/PlanCardListHome";
 import PlansSections from "../../recycle/PlansSections/PlansSections";
-import BlogReview from "../../components/Home/BlogReview";
+import BlogHome from "../../components/Home/BlogHome";
 // import { Container } from "@mui/material";
 import ProfileCard from "../../recycle/ProfileCard/ProfileCard";
 import style from "./Home.module.css";
@@ -20,7 +20,7 @@ export default function Home() {
           color="#F1E100"
         />
         <PlansCardListHome />
-        <BlogReview />
+        <BlogHome />
       </div>
 
       <PlansSections />

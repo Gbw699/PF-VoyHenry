@@ -2,7 +2,6 @@ import axios from "axios";
 import { queryString } from "./queryStringPlan.js";
 import {
   setPlansSearch,
-  setLimitPlans,
   setPlanById,
   setPlansbyOrder,
 } from "./planSlice";
@@ -12,17 +11,6 @@ export const getPlansSearch = (content) => {
     try {
       const response = await axios.get(`/api/v1/plans?content=${content}`);
       dispatch(setPlansSearch(response.data.plans.plans));
-    } catch (error) {
-      return console.log("No se pudo realizar la petición");
-    }
-  };
-};
-
-export const getLimitPlans = () => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.get("/api/v1/plans?limit=6");
-      dispatch(setLimitPlans(response.data));
     } catch (error) {
       return console.log("No se pudo realizar la petición");
     }
