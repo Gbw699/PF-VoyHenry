@@ -1,8 +1,14 @@
 .container {
+  padding: 0.5em 0 0.5em 1em;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 3% 0px;
+}
+
+.container:hover {
+  border-radius: 1em;
+  background-color: #F1E100;
 }
 
 .img {
@@ -15,9 +21,10 @@
 }
 
 .title {
-  color: #707070;
-  font-size: 90%;
-  font-weight: 300;
   margin-left: 8%;
   width: 100%;
+  color: #030303;
+  font-size: 110%;
+  font-weight: 600;
+  margin-bottom: 10px;
 }

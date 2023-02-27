@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import style from "./BlogReview.module.css";
 
@@ -17,10 +18,12 @@ export default function BlogReview({ blog }) {
   return (
     <div className={style.container}>
       <div className={style.reviewCont}>
-        <div
-          className={style.userImg}
-          style={{ backgroundImage: userImage }}
-        />
+        <Link to={`/users/${blog.userNickName}`}>
+          <div
+            className={style.userImg}
+            style={{ backgroundImage: userImage }}
+          />
+        </Link>
         <div className={style.userCont}>
           <div className={style.nameDate}>
             <h3 className={style.name}>{blog.userNickName}</h3>

@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { editUser } from "../../redux/slices/userSlice/thunks";
 import Swal from "sweetalert2";
 
-// import style from "EditProfileSection.module.css";
+import style from "./EditProfileSection.module.css";
 
 export const EditProfileSection = ({
   nickName,
@@ -82,21 +82,24 @@ export const EditProfileSection = ({
       });
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <p>Nombre completo</p>
+    <div className={style.container}>
+      <form
+        className={style.form}
+        onSubmit={handleSubmit}
+      >
+        <p className={style.title}>Nombre completo</p>
         <EditProfileInput
           name="firstName"
           placeholder="Nombre completo"
           setState={setFirstName}
         />
-        <p>Apellido</p>
+        <p className={style.title}>Apellido</p>
         <EditProfileInput
           name="lastName"
           placeholder="Apellido"
           setState={setLastName}
         />
-        <p>Apodo</p>
+        <p className={style.title}>Apodo</p>
         <EditProfileInput
           name="nickName"
           placeholder="Como te ven los otros usuarios"
@@ -117,16 +120,16 @@ export const EditProfileSection = ({
           name="phone"
           placeholder="(Código país) (Código área) 1122-3344"
         /> */}
-        <div>
-          <div>
-            <EditProfileImage {...{ image, setImage }} />
-          </div>
-          <div>
-            <EditProfileAboutMe setState={setAbout} />
-          </div>
-        </div>
-        <button>Guardar cambios</button>
+        <button className={style.buttons}>Guardar cambios</button>
       </form>
+      <div>
+        <div>
+          <EditProfileImage {...{ image, setImage }} />
+        </div>
+        <div>
+          <EditProfileAboutMe setState={setAbout} />
+        </div>
+      </div>
     </div>
   );
 };

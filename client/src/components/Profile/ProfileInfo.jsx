@@ -24,6 +24,16 @@ export default function ProfileInfo({
   return (
     <div className={style.container}>
       <div className={style.mainInfo}>
+        <div className={style.editarPerfilCont}>
+          {location.pathname !== "/profile" && (
+            <button className={style.editarPerfil}>AGREGAR AMIGO</button>
+          )}
+          {location.pathname === "/profile" && (
+            <Link to="/profile/edit">
+              <button className={style.editarPerfil}>EDITAR PERFIL</button>
+            </Link>
+          )}
+        </div>
         <div
           className={style.imgCont}
           style={{ backgroundImage: backgroundImage }}
@@ -32,14 +42,6 @@ export default function ProfileInfo({
           {firstName} {lastName}
         </p>
         <p className={style.nacionality}>{nationality}</p>
-      </div>
-      <div>
-        {location.pathname !== "/profile" && <button>AGREGAR AMIGO</button>}
-        {location.pathname === "/profile" && (
-          <Link to="/profile/edit">
-            <button>EDITAR PERFIL</button>
-          </Link>
-        )}
       </div>
       <div className={style.profileInfo}>
         <div className={style.infoCont}>

@@ -136,10 +136,20 @@ export default function ProfileSection() {
                   </Link>
                 ))}
               {morePlans && (
-                <button onClick={handleMorePlans}>Mostrar más</button>
+                <button
+                  onClick={handleMorePlans}
+                  className={style.buttons}
+                >
+                  Mostrar más
+                </button>
               )}
               {!morePlans && (
-                <button onClick={handleMorePlans}>Mostrar menos</button>
+                <button
+                  onClick={handleMorePlans}
+                  className={style.buttons}
+                >
+                  Mostrar menos
+                </button>
               )}
             </div>
           </div>

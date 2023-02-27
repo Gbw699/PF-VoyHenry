@@ -1,4 +1,11 @@
+.container_flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
+  margin-right: 3em;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -107,4 +114,8 @@
   color: white;
   background-color: #000000;
   border: 2px solid #f1e100;
+}
+
+.imageForm{
+  border-radius: 2em;
 }
