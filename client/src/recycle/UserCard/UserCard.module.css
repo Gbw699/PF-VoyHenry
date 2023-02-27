@@ -8,6 +8,10 @@
   margin-bottom: 5%;
 }
 
+.container:hover{
+  transform: scale(1.1);
+}
+
 .imgCont {
   width: 80px;
   height: 80px;

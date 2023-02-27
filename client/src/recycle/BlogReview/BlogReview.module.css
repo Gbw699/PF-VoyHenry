@@ -6,13 +6,20 @@
 .reviewCont {
   display: flex;
   flex-direction: row;
+  align-items: center;
   background-color: white;
   padding: 20px 30px;
   width: 100%;
 }
 
+.reviewCont:hover{
+  border-radius: 3em;
+  background-color: #F1E100;
+}
+
 .userImg {
-  width: 200px;
+  margin-top: 3em;
+  width: 150px;
   height: 150px;
   background-size: cover;
   background-repeat: no-repeat;
