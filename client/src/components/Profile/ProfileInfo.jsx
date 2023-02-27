@@ -25,7 +25,9 @@ export default function ProfileInfo({
     <div className={style.container}>
       <div className={style.mainInfo}>
         <div className={style.editarPerfilCont}>
-          {location.pathname !== "/profile" && <button>AGREGAR AMIGO</button>}
+          {location.pathname !== "/profile" && (
+            <button className={style.editarPerfil}>AGREGAR AMIGO</button>
+          )}
           {location.pathname === "/profile" && (
             <Link to="/profile/edit">
               <button className={style.editarPerfil}>EDITAR PERFIL</button>
