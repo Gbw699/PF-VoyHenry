@@ -2,29 +2,24 @@ import style from "./PlanCard.module.css";
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Rating } from "@mui/material";
 
 export default function PlanCard(props) {
   const navigate = useNavigate();
-
   const [backgroundImage, setBackgroundImage] = useState("");
 
   useEffect(() => {
     setBackgroundImage(`url(${props.mainImage})`);
   }, [props]);
 
+
   return (
     <div
       className={style.cardCont}
       style={{ backgroundImage: backgroundImage }}
     >
+        <br/>
+        <h1 className={style.titlePro} style={{color: "white", textAlign: "center", fontSize: "50px"}}>{props.title}</h1>
       <div className={style.card}>
-        <Rating
-          size="large"
-          name="average"
-          value={props.average}
-          readOnly
-        />
         <div className={style.details}>
           <p className={style.title}>{props.title}</p>
           <hr
