@@ -13,7 +13,7 @@ export default function EditProfileState() {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedProvince, setSelectedProvince] = useState("");
   return (
-    <>
+    <div>
       <EditProfileSection
         {...{
           nickName,
@@ -34,6 +34,6 @@ export default function EditProfileState() {
           setSelectedProvince,
         }}
       />
-    </>
+    </div>
   );
 }
