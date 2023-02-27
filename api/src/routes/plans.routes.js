@@ -175,96 +175,38 @@ router.delete('/:id',
 
       next(error)
     }
+  });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /* Create new plan comment*/
-
-// router.post('/:id/favorite',
-
-// async (req, res, next) => {
-
-//   try {
-//     const {id} = req.params
-//     const body = req.body;
-
-//     const createdPlan = await service.createComment(id, body)
-
-//     res.json(createdPlan)
-//   } catch (error) {
-
-//     next(error)
-//   }
-
-// });
-
-
-
-// Create favorite
+  /* Create new plan favorite*/
 
 router.post(
   '/:id/favorite',
+
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      console.log(id)
+
       const body = req.body;
 
-      const createdPlan = await service.followblog(id, body);
+      const createdPlanFollow = await service.followplan(id, body);
 
-      res.json(createdPlan);
+      res.json(createdPlanFollow);
     } catch (error) {
       next(error);
     }
   }
 );
 
-
-
-// Get favorite
+/* Get plans favorite */
 
 router.get(
-  '/:nickName/favorite',
+  '/:id/favorite',
 
   async (req, res, next) => {
     try {
-      const  {nickName}  = req.params;
+      const  {id}  = req.params;
 
-      const createdComment = await service.getFollowBlog(nickName);
+      const createdComment = await service.getFollowPlan(id);
 
       res.json(createdComment);
     } catch (error) {
@@ -273,46 +215,38 @@ router.get(
   }
 );
 
-
-
-
-
-// Get favorite
+/* Get user plan favorite */
 
 router.get(
-  '/:id/blogfavorite',
+  '/:nickName/Plansfavorite',
 
   async (req, res, next) => {
     try {
-      const  { id }  = req.params;
+      const  { nickName }  = req.params;
 
-      const createdComment = await service.getFollowuser(id);
+      const followedPlan = await service.getFollowedPlans(nickName);
 
-      res.json(createdComment);
+      res.json(followedPlan);
     } catch (error) {
       next(error);
     }
   }
 );
 
-
-
-
-/* Delete Blog favorite */
+/* Delete Plan favorite */
 
 router.delete(
   '/:id/favorite',
-  //validatorHandler(getBlogSchema, 'params'),
-  passport.authenticate('jwt', { session: false }),
+
   async (req, res, next) => {
     try {
       const { id } = req.params;
 
       const body = req.body;
 
-      const deletedBlog = await service.deleteFavoriteBlog(id, body);
+      const deletedPlan = await service.deleteFavoritePlan(id, body);
 
-      res.json(deletedBlog);
+      res.json(deletedPlan);
     } catch (error) {
       next(error);
     }
@@ -328,6 +262,6 @@ router.delete(
 
 
 
-});
+
 
 module.exports = router;

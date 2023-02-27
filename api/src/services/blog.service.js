@@ -2,7 +2,7 @@ const blogModel = require('../libs/models/blog-model.js');
 const users = require('../libs/models/users.model.js');
 const comments = require('../libs/models/comments.users');
 const { CustomError } = require('../middlewares/error.handler')
-const { Op, where } = require("sequelize");
+const { Op } = require("sequelize");
 const sequelize = require('../libs/database/database');
 
 
@@ -177,7 +177,6 @@ async update (id, { title , content, rating, image }) {
 
     await blog.save()
 
-   // return blog;
    return {
     message: "voted",
     data: {
@@ -187,8 +186,6 @@ async update (id, { title , content, rating, image }) {
   };
 
   }
-
-
 
   /* Delete Blog */
 
@@ -248,314 +245,7 @@ async update (id, { title , content, rating, image }) {
     };
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /* Create favorite blog */
-
-  async followblog(id, { userNickName  }) {
-
-    const commentUserTable = await sequelize.models.user_favorite_blog.create({
-      userid: userNickName,
-
-      blogid: id,
-    });
-
-    return {
-      message: 'Create',
-      data: {
-
-        favoriteBlog: commentUserTable,
-
-      },
-    };
-  }
-
-
-
-  /* Create favorite blog */
-
-  async followplan(id, { userNickName  }) {
-
-    const commentUserTable = await sequelize.models.user_favorite_plan.create({
-      userid: userNickName,
-
-      planid: id,
-    });
-
-    return {
-      message: 'Create',
-      data: {
-
-        favoriteBlog: commentUserTable,
-
-      },
-    };
-  }
-
-
-
-
-  async follow (nickName,{userNickName}) {
-
-    //const count = await blogModel.count({where:{userNickName: nickName}});
-    console.log(nickName)
-    console.log(userNickName)
-    const userFollowUser = await sequelize.models.user_follow_user.create({
-      userid: userNickName,
-
-      followUserId: nickName,
-    });
-
-
-
-    return userFollowUser;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // Get favorite by nickname
-
-  async getFollowBlog(nickName) {
-
-    const commentsBlogs = await sequelize.models.user_favorite_blog.findAll({
-      where: { userid: nickName },
-    });
-
-    const commentIds = commentsBlogs.map(
-      (comment) => comment.dataValues.blogid
-    );
-
-    const comment = await blogModel.findAll({
-      where: { id: commentIds },
-    });
-    return comment;
-  }
-
-
-
-
-
-
-
-
-
-
-
-  // Get favorite by nickname
-
-  async getFollowPlan(nickName) {
-
-    const commentsBlogs = await sequelize.models.user_favorite_blog.findAll({
-      where: { userid: nickName },
-    });
-
-    const commentIds = commentsBlogs.map(
-      (comment) => comment.dataValues.blogid
-    );
-
-    const comment = await blogModel.findAll({
-      where: { id: commentIds },
-    });
-    return comment;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // Get favorite by blogid
-
-  async getFollowuser(id) {
-
-    const commentsBlogs = await sequelize.models.user_favorite_blog.findAll({
-      where: { blogid: id },
-    });
-
-    const commentIds = commentsBlogs.map(
-      (comment) => comment.dataValues.userid
-    );
-
-     const comment = await users.findAll({
-       where: { nickName: commentIds },
-    });
-   return comment;
-  }
-
-
-
-
-
-
-
-
-
-
-  /* Delete Blog */
-
-  async deleteFavoriteBlog (id,{userNickName}) {
-
-    const deletedblog = await sequelize.models.user_favorite_blog.destroy({
-      where: {
-         blogid: id,
-         userid: userNickName
-      }
-    })
-
-    if (deletedblog === 0){
-      throw new CustomError("Blog not found", 404)
-    } else {
-      return {
-        message: "blog favorite deleted",
-        data: {
-          id: deletedblog,
-
-        }
-      }
-    }
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // Get comment
+  /* Get comment */
 
   async getComment(id) {
     const commentsBlogs = await sequelize.models.comments_blogs.findAll({
@@ -577,9 +267,100 @@ async update (id, { title , content, rating, image }) {
     return comment;
   }
 
+  /* Create favorite blog */
+
+  async addBlogFavorite(id, { userNickName  }) {
+
+    const userFavoriteTable = await sequelize.models.user_favorite_blog.create({
+
+      userid: userNickName,
+
+      blogid: id,
+    });
+
+    return {
+      message: 'Create',
+      data: {
+
+        favoriteBlog: userFavoriteTable,
+      },
+    };
+  }
+
+  /* Get favorite by nickname */
+
+  async getFavotireBlogs(nickName) {
+
+    const followingBlogs = await sequelize.models.user_favorite_blog.findAll({
+      where: { userid: nickName },
+    });
+
+    const blogsid = followingBlogs.map(
+      (comment) => comment.dataValues.blogid
+    );
+
+    const blogs = await blogModel.findAll({
+      where: { id: blogsid },
+    });
+
+    if (blogs[0] ===  undefined){
+      throw new CustomError("this user don't have any blog in favorites", 404)
+    } else {
+   return blogs;
+  }
+  }
+
+  /* Get favorite by blogid */
+
+  async getFavoriteUsers(id) {
+
+    const followingUsers = await sequelize.models.user_favorite_blog.findAll({
+      where: { blogid: id },
+    });
+
+    const usersid = followingUsers.map(
+      (comment) => comment.dataValues.userid
+    );
+
+     const user = await users.findAll({
+       where: { nickName: usersid },
+    });
+
+    if (user[0] ===  undefined){
+      throw new CustomError("this blog don't exist in any user favorite ", 404)
+    } else {
+   return user;
+  }
+  }
+
+  /* Delete Blog */
+
+  async deleteFavoriteBlog (id,{userNickName}) {
+
+    const deletedFavoriteBlog = await sequelize.models.user_favorite_blog.destroy({
+      where: {
+         blogid: id,
+         userid: userNickName
+      }
+    })
+
+    if (deletedFavoriteBlog === 0){
+      throw new CustomError("this user don't have this blog in favorite", 404)
+    } else {
+      return {
+        message: "blog favorite deleted",
+        data: {
+          id: deletedFavoriteBlog,
+
+        }
+      }
+    }
+
+  }
+
   /* Count Pages */
   async count () {
-   let  options = {}
+    let  options = {}
 
     const count = await blogModel.count(options);
 
@@ -587,11 +368,5 @@ async update (id, { title , content, rating, image }) {
   }
 
   }
-
-
-
-
-
-
 
 module.exports = blogService;

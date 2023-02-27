@@ -63,16 +63,14 @@ router.get('/:nickName/blogs',
       const pageNumber = parseInt(page);
 
       const response = { blogs, pageNumber, pages }
+
       res.json(response)
-      //res.json(user)
-      //res.json(user)
     } catch (error) {
 
       next(error)
     }
 
 });
-
 
 /* Get AllPlans by nickName */
 
@@ -155,23 +153,23 @@ router.delete('/:nickName',
 
       next(error)
     }
-
+  });
 
 /* user follow user */
-//router.patch('/:nickName',
-router.post('/usee',
-  //validatorHandler(createUserSchema, "body"),
+
+router.post('/:nickName/follow',
+
   async (req, res, next) => {
 
     try {
 
       const {nickName} = req.params
-      console.log(nickName)
+
       const body = req.body;
 
-      const createdUser = await service.follow(nickName,body)
+      const userFollowUser = await service.follow(nickName,body)
 
-      res.json(createdUser)
+      res.json(userFollowUser)
     } catch (error) {
 
       next(error)
@@ -179,68 +177,62 @@ router.post('/usee',
 
 });
 
+/* get users followed */
 
-
-
-
-
-
-
-// Create favorite
-
-router.post(
-  '/:nickName/favorite',
+router.get(
+  '/:nickName/followed',
 
   async (req, res, next) => {
     try {
-      const { id } = req.params;
-      console.log(id)
-      const body = req.body;
+      const  {nickName}  = req.params;
 
-      const createdPlan = await service.followblog(id, body);
+      const FollowedUsers = await service.getFollowedUsers(nickName);
 
-      res.json(createdPlan);
+      res.json(FollowedUsers);
     } catch (error) {
       next(error);
     }
   }
 );
 
+/* Get users following */
 
+router.get(
+  '/:nickName/Following',
 
+  async (req, res, next) => {
+    try {
+      const  { nickName }  = req.params;
 
+      const followingUsers = await service.getUsersFollowing(nickName);
 
+      res.json(followingUsers);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
+/* delete follow user */
 
+router.delete(
+  '/:nickName/follow',
 
+  async (req, res, next) => {
+    try {
 
+      const { nickName } = req.params
 
+      const body = req.body;
 
+      const deletedFollow = await service.deleteFollowUser(nickName, body);
 
+      res.json(deletedFollow);
+    } catch (error) {
+      next(error);
+    }
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-});
+);
 
 module.exports = router;

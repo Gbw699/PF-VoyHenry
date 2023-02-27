@@ -257,93 +257,92 @@ class UsersService {
     return count;
   }
 
+  /* user follow user */
 
+  async follow(nickName, { userNickName  }) {
 
+    const userFollowUserTable = await sequelize.models.user_follow_user.create({
+      userid: nickName,
 
-
-
-
-
-
-
-
-
-  // async follow (nickName,{userNickName}) {
-
-  //   const count = await blogModel.count({where:{userNickName: nickName}});
-
-
-  //   const userFollowUser = await sequelize.models.user_follow_user.create({
-  //     userid: userNickName,
-
-  //     followUserid: nickName,
-  //   });
-
-
-
-  //   return userFollowUser;
-  // }
-
-
-
-
-  // async createComment(id, { userNickName, comment }) {
-  //   const searchname = await users.findOne({
-  //     where: { nickName: userNickName },
-  //   });
-
-  //   const searchplan = await plansModel.findOne({ where: { id: id } });
-
-  //   const newCom = await comments.create({
-  //     content: comment,
-  //   });
-  //   const commentUserTable = await sequelize.models.comments_users.create({
-  //     userNickName: userNickName,
-
-  //     commentid: newCom.id,
-  //   });
-
-  //   const commentPlanTable = await sequelize.models.comments_plans.create({
-  //     plansid: id,
-
-  //     commentid: newCom.id,
-  //   });
-
-    // return {
-    //   message: 'Create',
-    //   data: {
-    //     newCom,
-    //     commentUser: commentUserTable,
-    //     commentPlans: commentPlanTable,
-    //   },
-    // };
-  //}
-
-
-
-  /* Create favorite blog */
-
-  async followblog(id, { userNickName  }) {
-
-    const commentUserTable = await sequelize.models.user_favorite_blog.create({
-      userid: userNickName,
-
-      blogid: id,
+      followedUserId: userNickName,
     });
 
     return {
       message: 'Create',
       data: {
 
-        favoriteBlog: commentUserTable,
-
+        userFollowUser: userFollowUserTable,
       },
     };
   }
 
+ // Get followed users
 
+ async getFollowedUsers(nickName) {
 
+  const users = await sequelize.models.user_follow_user.findAll({
+    where: { userid: nickName },
+  });
 
+  const usersId = users.map(
+    (comment) => comment.dataValues.followedUserId
+  );
+
+  const followed = await usersModel.findAll({
+    where: { nickName: usersId },
+  });
+  return {
+    message: 'Create',
+    data: {
+
+      followedUsers: followed,
+
+    },
+  };
+}
+
+  /* Get users following */
+
+  async getUsersFollowing(nickName) {
+
+    const followingUsers = await sequelize.models.user_follow_user.findAll({
+      where: { followedUserId: nickName },
+    });
+
+    const followingsUsersId = followingUsers.map(
+      (comment) => comment.dataValues.userid
+    );
+
+     const user = await usersModel.findAll({
+       where: { nickName: followingsUsersId },
+    });
+   return user;
+  }
+
+  /* Delete user follow */
+
+  async deleteFollowUser (nickName,{userNickName}) {
+
+    const deletedFollowedUser = await sequelize.models.user_follow_user.destroy({
+      where: {
+         userid: nickName,
+         followedUserId: userNickName
+      }
+    })
+
+    if (deletedFollowedUser === 0){
+      throw new CustomError("user relacion not exist", 404)
+    } else {
+      return {
+        message: "user follow deleted",
+        data: {
+          id: deletedFollowedUser,
+
+        }
+      }
+    }
+
+  }
 
   }
 

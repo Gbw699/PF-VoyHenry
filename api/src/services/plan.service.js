@@ -1,10 +1,10 @@
 const plansModel = require('../libs/models/plans.model');
 const { CustomError } = require('../middlewares/error.handler');
-const { Op, where } = require('sequelize');
+const { Op } = require('sequelize');
 const users = require('../libs/models/users.model.js');
 const comments = require('../libs/models/comments.users');
 const sequelize = require('../libs/database/database');
-const blogs = require('../libs/models/blog-model');
+
 
 class PlansService {
   constructor() {}
@@ -192,37 +192,6 @@ class PlansService {
       },
     };
   }
-  // const plan = await plansModel.findOne({
-  //   where: {
-  //     id: id
-  //   }
-  // })
-
-  // if (plan === null) {
-  //   throw new CustomError("Plan not found", 404)
-  // }
-
-  // plan.comment += comment
-
-  // await plan.save()
-
-  // return plan;
-
-  // const userPlanTable = await sequelize.models.users_commemt_plans.create({
-
-  //   userNickName: userNickName,
-
-  //   Planid: newPlan.id
-  // })
-
-  // return {
-  //   message: "Create",
-  //   data: {
-  //     newPlan,
-  //     user: searchname,
-  //     userPlanTable: userPlanTable
-  //   }
-  // };
 
   async getComment(id) {
     const commentsPlans = await sequelize.models.comments_plans.findAll({
@@ -294,7 +263,6 @@ class PlansService {
 
     await plan.save();
 
-    // return plan;
     return {
       message: 'voted',
       data: {
@@ -325,161 +293,95 @@ class PlansService {
     }
   }
 
+  /* Create favorite plan */
 
+  async followplan(id, { userNickName  }) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /* Create favorite blog */
-
-  async followblog(id, { userNickName  }) {
-
-    const commentUserTable = await sequelize.models.user_favorite_blog.create({
+    const userFavoritePlan = await sequelize.models.user_favorite_plan.create({
       userid: userNickName,
 
-      blogid: id,
+      planid: id,
     });
 
     return {
       message: 'Create',
       data: {
 
-        favoriteBlog: commentUserTable,
-
+        favoriteBlog: userFavoritePlan,
       },
     };
   }
 
+  /* Get favorite by planid */
 
+  async getFollowPlan(id) {
 
+    const followingUser = await sequelize.models.user_favorite_plan.findAll({
+      where: { planid: id },
+    });
 
+    const followingUserId = followingUser.map(
+      (us) => us.dataValues.userid
+    );
 
+    const user = await users.findAll({
+      where: { nickName: followingUserId },
+    });
 
-  // Get favorite by nickname
+    if (user[0] ===  undefined){
+      throw new CustomError("this plan don't exist in any user favorite ", 404)
+    } else {
+   return user;
+  }
+  }
 
-  async getFollowBlog(nickName) {
+  /* Get favorite by nickName */
 
-    const commentsBlogs = await sequelize.models.user_favorite_blog.findAll({
+  async getFollowedPlans(nickName) {
+
+    const followedPlan = await sequelize.models.user_favorite_plan.findAll({
       where: { userid: nickName },
     });
 
-    const commentIds = commentsBlogs.map(
-      (comment) => comment.dataValues.blogid
+    const followedPlanId = followedPlan.map(
+      (pl) => pl.dataValues.planid
     );
 
-    const comment = await blogs.findAll({
-      where: { id: commentIds },
+     const plans = await plansModel.findAll({
+       where: { id: followedPlanId },
     });
-    return comment;
+
+    if (plans[0] ===  undefined){
+      throw new CustomError("this user don't have any plan in favorites", 404)
+    } else {
+   return plans;
+  }
   }
 
+  /* Delete Plan */
 
+  async deleteFavoritePlan (id,{userNickName}) {
 
-
-
-
-
-  // Get favorite by blogid
-
-  async getFollowuser(id) {
-
-    const commentsBlogs = await sequelize.models.user_favorite_blog.findAll({
-      where: { blogid: id },
-    });
-
-    const commentIds = commentsBlogs.map(
-      (comment) => comment.dataValues.userid
-    );
-
-     const comment = await users.findAll({
-       where: { nickName: commentIds },
-    });
-   return comment;
-  }
-
-
-
-
-
-
-
-
-
-
-  /* Delete Blog */
-
-  async deleteFavoriteBlog (id,{userNickName}) {
-
-    const deletedblog = await sequelize.models.user_favorite_blog.destroy({
+    const deletedFavoritePlan = await sequelize.models.user_favorite_plan.destroy({
       where: {
-         blogid: id,
+         planid: id,
          userid: userNickName
       }
     })
 
-    if (deletedblog === 0){
-      throw new CustomError("Blog not found", 404)
+    if (deletedFavoritePlan === 0){
+      throw new CustomError("this user don't have this plan in favorite", 404)
     } else {
       return {
-        message: "blog favorite deleted",
+        message: "plan favorite deleted",
         data: {
-          id: deletedblog,
+          id: deletedFavoritePlan,
 
         }
       }
     }
 
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 
