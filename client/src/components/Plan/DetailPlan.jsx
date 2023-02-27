@@ -95,7 +95,7 @@ export default function DetailPlan() {
         />
         <p>{plan.description}</p>
       </div>
-      <div className={style.galeria}>
+      {/* <div className={style.galeria}>
         <h1>Galería</h1>
         <hr
           width="100%"
@@ -111,7 +111,7 @@ export default function DetailPlan() {
           src={plan.images}
           alt={plan.title}
         />
-      </div>
+      </div> */}
       <div className={style.buttons}>
         <div className={style.button}>
           <button className={style.submitBtn}>Unirse</button>
