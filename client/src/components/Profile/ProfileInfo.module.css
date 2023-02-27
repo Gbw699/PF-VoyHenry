@@ -3,9 +3,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url("../../assets/4.png");
+  /* background-image: url("../../assets/4.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
+  background-color: black;
   border-radius: 5px;
   box-shadow: 3px 3px 5px 2px #222222;
   padding: 1%;
@@ -23,6 +24,7 @@
   width: 150px;
   height: 150px;
   border-radius: 50%;
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -94,8 +96,6 @@
 }
 
 .editarPerfil::before {
-  content: "";
-  z-index: -1;
   -webkit-transform: translateY(-100%) translateX(-100%);
   -ms-transform: translateY(-100%) translateX(-100%);
   transform: translateY(-100%) translateX(-100%);

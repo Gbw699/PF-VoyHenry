@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-// import style from "EditProfileImage.module.css";
+import style from "./EditProfileImage.module.css";
 
 export default function EditProfileImage({ image, setImage }) {
   const cloudinaryRef = useRef();
@@ -19,18 +19,23 @@ export default function EditProfileImage({ image, setImage }) {
     );
   }, []);
   return (
-    <div>
-      <div>
-        <p>Imagen de perfil</p>
+    <div className={style.container}>
+      <div className={style.img}>
+        <p className={style.title}>Imagen de perfil</p>
       </div>
-      <div>
+      <div className={style.imagePerfil}>
         <img
           src={image}
           alt="Imagen de perfil"
         />
       </div>
       <div>
-        <button onClick={() => widgetRef.current.open()}>Subir imagen</button>
+        <button
+          className={style.buttons}
+          onClick={() => widgetRef.current.open()}
+        >
+          Subir imagen
+        </button>
       </div>
     </div>
   );
