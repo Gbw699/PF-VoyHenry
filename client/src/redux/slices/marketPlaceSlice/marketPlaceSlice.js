@@ -4,7 +4,7 @@ const marketPlaceSlice = createSlice({
   name: "marketplace",
   initialState: {
     allProducts: [],
-    filteredProducts: [],
+    filteredProducts: {},
     detailProduct: [],
   },
   reducers: {
@@ -13,6 +13,9 @@ const marketPlaceSlice = createSlice({
     },
     setDetailProducts: (state, action) => {
       state.detailProduct = [action.payload];
+    },
+    setProductsByOrder: (state, action) => {
+      state.filteredProducts = { ...action.payload };
     },
     sortProductsByTitle: (state) => {
       state.allProducts.sort((a, b) => a.title.localeCompare(b.title));
@@ -25,7 +28,7 @@ const marketPlaceSlice = createSlice({
       const filteredProducts = state.allProducts.products.filter(
         (product) => product.category === action.payload
       );
-      console.log(filteredProducts)
+      console.log(filteredProducts);
       state.filteredProducts = filteredProducts;
     },
     filterProductsByAvailability: (state, action) => {
@@ -44,6 +47,7 @@ export const {
     sortProductsByPrice,
     filterProductsByCategory,
     filterProductsByAvailability,
+    setProductsByOrder,
   } = marketPlaceSlice.actions;
 
 export default marketPlaceSlice.reducer;

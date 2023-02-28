@@ -85,7 +85,6 @@ export default function DetailPlan() {
           )}
         </div>
       </div>
-
       <div className={style.name}>
         <h1>{plan.userNickName}</h1>
         <p>Descripción del evento</p>
