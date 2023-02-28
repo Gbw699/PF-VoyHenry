@@ -11,6 +11,7 @@ const lessDate = `${currentDate.getFullYear() - 18}-${currentDate.getMonth() + 1
 const nickName = Joi.string().alphanum().min(3).max(25)
 const email = Joi.string().email()
 const password = Joi.string().min(8);
+const nationality = Joi.string().max(50)
 const role = Joi.string().min(3);
 const genre = Joi.string().valid('Femenino', 'Masculino', 'No binario', 'Prefiero no decirlo', 'Otro');
 const about = Joi.string().max(255)
@@ -26,6 +27,7 @@ const createUserSchema = Joi.object({
   genre: genre.required(),
   role: role,
   about: about,
+  nationality: nationality,
   dateOfBirth: dateOfBirth.required(),
   firstName: firstName.required(),
   lastName: lastName,
