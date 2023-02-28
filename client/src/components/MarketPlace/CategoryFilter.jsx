@@ -1,20 +1,6 @@
-import React from "react";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { filterProductsByCategory } from "../../redux/slices/marketPlaceSlice/marketPlaceSlice";
 import style from "./Filters.module.css";
 
-export default function CategoryFilter() {
-  const dispatch = useDispatch();
-  const [category, setCategory] = useState("");
-
-  const handleCategoryChange = (e) => {
-    const newCategory = e.target.value;
-    setCategory(newCategory);
-    console.log("New category selected:", newCategory);
-    dispatch(filterProductsByCategory({ category: newCategory }));
-  };
-
+export default function CategoryFilter({ filters, setFilters }) {
   return (
     <div className={style.container}>
       <label>
@@ -23,11 +9,13 @@ export default function CategoryFilter() {
           width="100%"
           color="#F1E100"
         />
-        <select value={category} onChange={handleCategoryChange}>
+        <select onChange={(event) => 
+          setFilters({ ...filters, order: event.target.value })}
+        >
           <option value="">-- Seleccionar categoría --</option>
-          <option value="remeras">Remeras</option>
-          <option value="pantalones">Pantalones</option>
-          <option value="gorros">Gorros</option>
+          <option value="Remeras">Remeras</option>
+          <option value="Pantalones">Pantalones</option>
+          <option value="Gorros">Gorros</option>
         </select>
       </label>
     </div>

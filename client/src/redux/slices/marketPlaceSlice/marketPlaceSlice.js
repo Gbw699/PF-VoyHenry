@@ -21,21 +21,18 @@ const marketPlaceSlice = createSlice({
       state.allProducts.sort((a, b) => a.price - b.price);
     },
     filterProductsByCategory: (state, action) => {
-      const { category } = action.payload;
-      console.log("Selected category:", category); 
+      console.log("Selected category:", action.payload); 
       const filteredProducts = state.allProducts.products.filter(
-        (product) => product.category === category
+        (product) => product.category === action.payload
       );
+      console.log(filteredProducts)
       state.filteredProducts = filteredProducts;
-      console.log(state.filteredProducts);
     },
     filterProductsByAvailability: (state, action) => {
-      if (state.allProducts.length > 0) {
-        const filteredProducts = state.allProducts.filter(
-          (product) => product.availability === action.payload
-        );
-        state.filteredProducts = filteredProducts;
-      }
+      const filteredProducts = state.allProducts.products.filter(
+        (product) => product.availability === action.payload
+      );
+      state.filteredProducts = filteredProducts;
     },
   },
 });

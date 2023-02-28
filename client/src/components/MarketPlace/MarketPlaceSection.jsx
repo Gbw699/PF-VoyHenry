@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
-import style from "./MarketPlaceSection.module.css";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import MarketCard from "./MarketCard";
 import Filters from "./Filters";
-import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../redux/slices/marketPlaceSlice/thunk";
 import marketBgImg from "../../assets/marketBg.png";
+import style from "./MarketPlaceSection.module.css";
 
 export default function MarketPlaceSection() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
-
   const products = useSelector(
     (state) => state.marketPlaceStore.allProducts.products
   );

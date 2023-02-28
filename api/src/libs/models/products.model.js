@@ -20,7 +20,7 @@ const products = sequelize.define('products', {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      isIn: [['remeras', 'pantalones',  'gorros']]
+      isIn: [['Remeras', 'Pantalones',  'Gorros']]
     }
   },
   detail: {

@@ -1,6 +1,4 @@
 import axios from "axios";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { marketQueryString } from "./queryStringMarket.js";
 import {
   setProducts,
   setDetailProducts
@@ -26,11 +24,15 @@ export const getProducts = (id) => {
   };
 };
 
-export const getProductsByFilter = createAsyncThunk(
-  "marketplace/fecthproducts",
-  async (filters) => {
-    const queryString = marketQueryString(filters);
-    const response = await axios.get(`/api/v1/products?${queryString}`);
-    return response.data;
-  }
-);
+export const getProductsByFilter = (category = "", order = "", availability = "") => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(
+        `/api/v1/products?category=${category}&order=${order}&availability=${availability}`
+      );
+      dispatch(setProducts(response.data.products));
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+};
