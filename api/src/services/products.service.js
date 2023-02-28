@@ -40,9 +40,11 @@ class ProductsService {
 
   /* find all products || Filter*/
 
-  async find(query) {
+  async find(query, page) {
     const options = {
       order: [['id', 'ASC']],
+      limit: 9,
+      offset: 0,
     };
 
     if (query.order) {
@@ -65,12 +67,27 @@ class ProductsService {
 
     if (query.availability) {
       options.where = {
-        available: query.availability === 'true',
+        availability: query.availability === 'true',
       };
     }
 
+    if (query.page) {
+      const page = parseInt(query.page);
+      if (isNaN(page) || page < 1) {
+        throw new CustomError('Invalid page number', 440);
+      }
+      options.offset = (page - 1) * (options.limit || query.limit);
+    }
+
+    const productsInFilter = await productModel.count(options)
+
     const products = await productModel.findAll(options);
-    return { products };
+    
+    if (products === null || products.length === 0) {
+      throw new CustomError('Plan not found', 404);
+    } else {
+      return { products, productsInFilter };
+    }
   }
 
   /* find one product */

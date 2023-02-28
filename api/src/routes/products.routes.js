@@ -18,9 +18,19 @@ router.get('/', async (req, res, next) => {
 
   try {
 
-    const products = await service.find(req.query)
+    const page = req.query.page || 1
+    const products = await service.find(req.query, page)
 
-    res.json(products)
+    let pages = ''
+    if (products.productsInFilter <= 9){
+      pages = 1
+    } else {
+      pages = Math.ceil(products.productsInFilter / 9);
+    }
+
+    const pageNumber = parseInt(page)
+    const response = {products, pageNumber, pages}
+    res.json(response)
   } catch (error) {
 
     next(error)
