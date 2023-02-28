@@ -28,7 +28,7 @@ const users = sequelize.define('users', {
   },
   nationality: {
     type: DataTypes.STRING(40),
-    allowNull: false,
+    allowNull: true,
   },
   about: {
     type: DataTypes.STRING(255),

@@ -195,7 +195,7 @@ class UsersService {
 
   /* Update user */
 
-  async update (userNickName, { genre, email, nickName, about, image, firstName, lastName, dateOfBirth , password, role, recoveryToken}) {
+  async update (userNickName, { genre, nationality, email, nickName, about, image, firstName, lastName, dateOfBirth , password, role, recoveryToken}) {
 
     const user = await usersModel.findByPk(userNickName)
 
@@ -208,6 +208,7 @@ class UsersService {
     user.password = hash || user.password;
     user.role = role || user.role;
     user.genre = genre || user.genre;
+    user.nationality = nationality || user.nationality;
     user.nickName = nickName || user.nickName;
     user.recoveryToken = recoveryToken || null;
     user.email = email || user.email.toLowerCase();
