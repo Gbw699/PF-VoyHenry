@@ -264,7 +264,7 @@ class UsersService {
     const userFollowUserTable = await sequelize.models.user_follow_user.create({
       userid: nickName,
 
-      followedUserId: userNickName,
+      followUserId: userNickName,
     });
 
     return {
@@ -306,7 +306,7 @@ class UsersService {
   async getUsersFollowing(nickName) {
 
     const followingUsers = await sequelize.models.user_follow_user.findAll({
-      where: { followedUserId: nickName },
+      where: { followUserId: nickName },
     });
 
     const followingsUsersId = followingUsers.map(
@@ -326,7 +326,7 @@ class UsersService {
     const deletedFollowedUser = await sequelize.models.user_follow_user.destroy({
       where: {
          userid: nickName,
-         followedUserId: userNickName
+         followUserId: userNickName
       }
     })
 
