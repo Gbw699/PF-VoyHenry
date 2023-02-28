@@ -14,7 +14,7 @@ class UsersService {
 
   /* Create user */
 
-  async create ({ genre, email, about, nickName, image, firstName, lastName, dateOfBirth, password, role }) {
+  async create ({ genre, nationality, email, about, nickName, image, firstName, lastName, dateOfBirth, password, role }) {
 
     dateOfBirth = new Date(dateOfBirth);
     dateOfBirth.setHours(dateOfBirth.getHours() + Math.abs(dateOfBirth.getTimezoneOffset() / 60));
@@ -30,6 +30,7 @@ class UsersService {
       firstName: firstName,
       lastName: lastName,
       genre: genre,
+      nationality: nationality,
       dateOfBirth: new Date(dateOfBirth),
       image: image
     })
@@ -194,7 +195,7 @@ class UsersService {
 
   /* Update user */
 
-  async update (userNickName, { genre, email, nickName, about, image, firstName, lastName, dateOfBirth , password, role, recoveryToken}) {
+  async update (userNickName, { genre, nationality, email, nickName, about, image, firstName, lastName, dateOfBirth , password, role, recoveryToken}) {
 
     const user = await usersModel.findByPk(userNickName)
 
@@ -207,6 +208,7 @@ class UsersService {
     user.password = hash || user.password;
     user.role = role || user.role;
     user.genre = genre || user.genre;
+    user.nationality = nationality || user.nationality;
     user.nickName = nickName || user.nickName;
     user.recoveryToken = recoveryToken || null;
     user.email = email || user.email.toLowerCase();
