@@ -14,7 +14,7 @@ class UsersService {
 
   /* Create user */
 
-  async create ({ genre, email, about, nickName, image, firstName, lastName, dateOfBirth, password, role }) {
+  async create ({ genre, nationality, email, about, nickName, image, firstName, lastName, dateOfBirth, password, role }) {
 
     dateOfBirth = new Date(dateOfBirth);
     dateOfBirth.setHours(dateOfBirth.getHours() + Math.abs(dateOfBirth.getTimezoneOffset() / 60));
@@ -30,6 +30,7 @@ class UsersService {
       firstName: firstName,
       lastName: lastName,
       genre: genre,
+      nationality: nationality,
       dateOfBirth: new Date(dateOfBirth),
       image: image
     })
