@@ -4,6 +4,7 @@ import style from "./Filters.module.css";
 
 export default function CategoryFilter() {
   const dispatch = useDispatch();
+  
   const handleChange = (event) => {
     console.log(event.target.value);
     dispatch(getProductsbyOrder("category", event.target.value));

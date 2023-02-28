@@ -67,7 +67,7 @@ class ProductsService {
 
     if (query.availability) {
       options.where = {
-        available: query.availability === 'true',
+        availability: query.availability === 'true',
       };
     }
 
