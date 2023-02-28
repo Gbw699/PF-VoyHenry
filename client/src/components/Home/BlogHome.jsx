@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import style from "./BlogHome.module.css";
 import BlogReview from "../../recycle/BlogReview/BlogReview";
 import { getBlogs } from "../../redux/slices/blogSlice/thunk";
+// import style from "./BlogHome.module.css";
 
 export default function BlogHome() {
   const dispatch = useDispatch();
@@ -13,5 +13,9 @@ export default function BlogHome() {
     dispatch(getBlogs(1, "", "masvotados"));
   }, []);
 
-  return <div>{blogs && <BlogReview blog={blogs.blogs[0]} />}</div>;
+  return (
+    <div>
+      {blogs && <BlogReview blog={blogs.blogs[0]} />}
+    </div>
+  );
 }

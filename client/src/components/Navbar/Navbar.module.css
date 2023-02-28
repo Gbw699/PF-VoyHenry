@@ -10,12 +10,17 @@
   width: 100%;
 }
 
+.img {
+  height: 3em;
+  margin: 0.2em;
+}
+
 .linksCont {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  width: 35%;
+  width: 50em;
 }
 
 .linkFont {
