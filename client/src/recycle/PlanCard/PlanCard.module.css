@@ -10,10 +10,23 @@
 }
 
 .cardCont:hover .card {
-  /* transform: scale(1.05); */
-  /* transition: all 0.5s ease 0.2s; */
   visibility: visible;
 }
+
+/* .cardCont:hover .cardTitleCont {
+  visibility: hidden;
+} */
+
+/* .cardTitleCont {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  filter: opacity(80%);
+  padding: 1%;
+} */
 
 .card {
   background-color: black;
