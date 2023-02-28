@@ -9,18 +9,18 @@
   align-items: center;
   background-color: white;
   padding: 20px 30px;
-  width: 100%;
+  width: 98%;
 }
 
-.reviewCont:hover{
+.reviewCont:hover {
   border-radius: 3em;
-  background-color: #F1E100;
+  background-color: #f1e100;
 }
 
 .userImg {
   margin-top: 3em;
-  width: 150px;
-  height: 150px;
+  width: 12em;
+  height: 12em;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -61,17 +61,17 @@
 }
 
 .reviewImg {
-  width: 25%;
-  height: 150px;
+  width: 20em;
+  height: 10em;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  border-radius: 10px;
-  margin-right: 3%;
+  border-radius: 1em;
+  margin-right: 2em;
 }
 
 .reviewInfo {
-  width: 75%;
+  width: 20em;
   display: flex;
   flex-direction: column;
 }
