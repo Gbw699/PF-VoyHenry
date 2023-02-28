@@ -1,6 +1,14 @@
+import { useDispatch } from "react-redux";
+import { getProductsbyOrder } from "../../redux/slices/marketPlaceSlice/thunk";
 import style from "./Filters.module.css";
 
-export default function CategoryFilter({ filters, setFilters }) {
+export default function CategoryFilter() {
+  const dispatch = useDispatch();
+  const handleChange = (event) => {
+    console.log(event.target.value);
+    dispatch(getProductsbyOrder("category", event.target.value));
+  };
+
   return (
     <div className={style.container}>
       <label>
@@ -9,8 +17,7 @@ export default function CategoryFilter({ filters, setFilters }) {
           width="100%"
           color="#F1E100"
         />
-        <select onChange={(event) => 
-          setFilters({ ...filters, order: event.target.value })}
+        <select onChange={handleChange}
         >
           <option value="">-- Seleccionar categoría --</option>
           <option value="Remeras">Remeras</option>

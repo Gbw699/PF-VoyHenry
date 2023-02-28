@@ -1,24 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import MarketCard from "./MarketCard";
 import Filters from "./Filters";
 import marketBgImg from "../../assets/marketBg.png";
 import style from "./MarketPlaceSection.module.css";
+import { getProductsbyOrder } from "../../redux/slices/marketPlaceSlice/thunk";
 
 export default function MarketPlaceSection() {
-  const products = useSelector(
-    (state) => state.marketPlaceStore.allProducts.products
+  const [backgroundImage, setBackgroundImage] = useState("");
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProductsbyOrder("order","nuevos"));
+    setBackgroundImage(`url(${marketBgImg})`);
+  },[]);
+
+  const {products, pageNumber, pages} = useSelector(
+    (state) => state.marketPlaceStore.filteredProducts
   );
 
-  console.log(products);
-
-  const [backgroundImage, setBackgroundImage] = useState("");
-
-  useEffect(() => {
-    setBackgroundImage(`url(${marketBgImg})`);
-  });
-
+  if(!products){
+    return <div>Loading Product...</div>;
+  }
+  if(products.lenght === 0){
+    return <div>Loading Product...</div>;
+  }
+  
   return (
     <div className={style.container}>
       <div
