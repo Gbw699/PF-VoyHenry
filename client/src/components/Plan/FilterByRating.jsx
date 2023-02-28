@@ -10,7 +10,7 @@ export default function FilterByRating() {
     dispatch(getPlansbyOrder("order", selectedRating));
   };
   return (
-    <div>
+    <div className={style.FilterByRating}>
       <h3 className={style.filterTitle}>Valoración</h3>
       <button
         className={style.buttons}

@@ -26,7 +26,7 @@ export default function FilterByCountry() {
   }
 
   return (
-    <div>
+    <div className={style.FilterByCountry}>
       <h3 className={style.filterTitle}>Filtrar por País:</h3>
       <select
         className={style.inputs}
