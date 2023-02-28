@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./LogInSignUp.module.css";
 import { useNavigate } from "react-router-dom";
-import titleImg from "../../assets/voyHENRY_title(white).png";
+import titleImg from "../../assets/voyHENRY_title(white).svg";
 
 export default function LogInSignUp() {
   const navigate = useNavigate();

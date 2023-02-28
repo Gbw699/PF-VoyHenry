@@ -1,69 +1,76 @@
 const mapQuery = new Map();
 
+const setOrder = (order) => {
+  const validOrders = {
+    nuevos: null,
+    reverso: "reverso",
+    alfabetico: "alfabetico",
+    ascendente: "ascendente",
+    descendente: "descendente",
+  };
+
+  if (validOrders[order]) {
+    mapQuery.set("order", `&order=${validOrders[order]}`);
+  }
+};
+
 export const queryString = (filter, order) => {
   switch (filter) {
     case "order":
-      switch (order) {
-        case "alfabetico":
-          mapQuery.set("order", `?order=${order}&`);
-          break;
-        case "reverso":
-          mapQuery.set("order", `?order=${order}&`);
-          break;
-        case "ascendente":
-          mapQuery.set("order", `?order=${order}&`);
-          break;
-        case "descendente":
-          mapQuery.set("order", `?order=${order}&`);
-          break;
-        default:
-          break;
-      }
-      break;
-    case "category":
-      switch (order) {
-        case "remeras":
-          mapQuery.set("category", `?category=${order}&`);
-          break;
-        case "pantalones":
-          mapQuery.set("category", `?category=${order}&`);
-          break;
-        case "gorros":
-          mapQuery.set("category", `?category=${order}&`);
-          break;
-        default:
-          break;
+      if (order === "nuevos") {
+        mapQuery.clear();
+      } else {
+        setOrder(order);
       }
       break;
     case "availability":
-      switch (order) {
-        case "inStock":
-          mapQuery.set("availability", "?availability=true&");
-          break;
-        case "outStock":
-          mapQuery.set("availability", "?availability=false&");
-          break;
-        default:
-          break;
+      if (order) {
+        mapQuery.set("availability", `&availability=${order}`);
+      } else {
+        mapQuery.delete("availability");
+      }
+      break;
+    case "limit":
+      if (order) {
+        mapQuery.set("limit", `&limit=${order}`);
+      } else {
+        mapQuery.delete("limit");
+      }
+      break;
+    case "page":
+      if (order) {
+        mapQuery.set("page", `&page=${order}`);
+      } else {
+        mapQuery.delete("page");
+      }
+      break;
+    case "category":
+      if (order) {
+        setOrder(order);
+        mapQuery.set("category", `&category=${order}`);
+      } else {
+        mapQuery.delete("category");
+      }
+      break;
+    case "clean":
+      if (order) {
+        mapQuery.delete("limit");
+        mapQuery.delete("order");
+        mapQuery.delete("category");
+        mapQuery.delete("availability");
+        mapQuery.set("page", `&page=${order}`);
+      } else {
+        mapQuery.delete("page");
       }
       break;
     default:
       break;
   }
 
-  if (!mapQuery.get("order")) {
-    mapQuery.set("order", "");
+  let queryString = "";
+  for (const value of mapQuery.values()) {
+    queryString += value;
   }
 
-  if (!mapQuery.get("category")) {
-    mapQuery.set("category", "");
-  }
-
-  if (!mapQuery.get("availability")) {
-    mapQuery.set("availability", "");
-  }
-
-  return `${mapQuery.get("order")}${mapQuery.get("category")}${mapQuery.get(
-    "availability"
-  )}`;
+  return queryString;
 };
