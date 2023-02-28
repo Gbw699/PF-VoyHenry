@@ -28,19 +28,6 @@ export const getProducts = (id) => {
   };
 };
 
-export const getProductsByFilter = (category = "", order = "", availability = "") => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.get(
-        `/api/v1/products?category=${category}&order=${order}&availability=${availability}`
-      );
-      dispatch(setProducts(response.data.products));
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
-};
-
 export const getProductsbyOrder = (filter, order) => {
   const queryUrl = queryString(filter, order);
   console.log(queryUrl);

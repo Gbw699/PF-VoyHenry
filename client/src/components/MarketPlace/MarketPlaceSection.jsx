@@ -15,15 +15,15 @@ export default function MarketPlaceSection() {
     setBackgroundImage(`url(${marketBgImg})`);
   },[]);
 
-  const {products, pageNumber, pages} = useSelector(
+  const { products, pageNumber, pages } = useSelector(
     (state) => state.marketPlaceStore.filteredProducts
   );
 
   if(!products){
-    return <div>Loading Product...</div>;
+    return <div>La tienda está vacía</div>;
   }
   if(products.lenght === 0){
-    return <div>Loading Product...</div>;
+    return <div>La tienda está vacía</div>;
   }
   
   return (

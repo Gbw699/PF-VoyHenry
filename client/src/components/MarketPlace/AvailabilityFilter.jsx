@@ -1,16 +1,24 @@
+import { useDispatch } from "react-redux";
+import { getProductsbyOrder } from "../../redux/slices/marketPlaceSlice/thunk";
 import style from "./Filters.module.css";
 
-export default function AvailabilityFilter({ filters, setFilters }) {
+export default function AvailabilityFilter() {
+  const dispatch = useDispatch();
+  
+  const handleChange = (event) => {
+    console.log(event.target.value);
+    dispatch(getProductsbyOrder("availability", event.target.value));
+  };
+
   return (
     <div className={style.container}>
-      <label>Disponibilidad
+      <label>
+        Disponibilidad
         <hr
           width="100%"
           color="#F1E100"
         />
-        <select onChange={(event) => 
-          setFilters({ ...filters, order: event.target.value })}
-        >
+        <select onChange={handleChange}>
           <option value="">-- Todos los productos --</option>
           <option value="true">En stock</option>
           <option value="false">Agotados</option>
