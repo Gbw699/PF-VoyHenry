@@ -101,6 +101,6 @@ users.belongsToMany(blogs, {foreignKey: "userid", through: "user_favorite_blog"}
 blogs.belongsToMany(users, {foreignKey: "blogid", through: "user_favorite_blog"} )
 
 users.belongsToMany(users, {as: "user", foreignKey: "userid", through: "user_follow_user"} )
-users.belongsToMany(users, {as: "followedUser", foreignKey: "followUserId", through: "user_follow_user"} )
+users.belongsToMany(users, {as: "followUser", foreignKey: "followUserId", through: "user_follow_user"} )
 
 module.exports = users;
