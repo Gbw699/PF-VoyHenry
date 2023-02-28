@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const marketPlaceSlice = createSlice({
-  name: "marketPlace",
+  name: "marketplace",
   initialState: {
     allProducts: [],
+    filteredProducts: {},
     detailProduct: [],
-    renderProducts: [],
   },
   reducers: {
     setProducts: (state, action) => {
@@ -15,11 +15,15 @@ const marketPlaceSlice = createSlice({
       state.detailProduct = [action.payload];
     },
     setProductsByOrder: (state, action) => {
-      state.renderProducts = action.payload;
+      state.filteredProducts = { ...action.payload };
     },
   },
 });
 
-export const { setProducts, setDetailProducts, setProductsByOrder } =
-  marketPlaceSlice.actions;
+export const { 
+  setProducts, 
+  setDetailProducts,
+  setProductsByOrder,
+} = marketPlaceSlice.actions;
+
 export default marketPlaceSlice.reducer;

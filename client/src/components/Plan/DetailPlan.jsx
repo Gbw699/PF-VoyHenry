@@ -7,6 +7,7 @@ import axios from "axios";
 import { Rating } from "@mui/material";
 import PostComment from "../../recycle/Comments/PostComment";
 import GetComments from "../../recycle/Comments/GetComments";
+import ButtonShare from "../../recycle/ButtonShare/ButtonShare";
 
 export default function DetailPlan() {
   const [value, setValue] = useState();
@@ -85,7 +86,6 @@ export default function DetailPlan() {
           )}
         </div>
       </div>
-
       <div className={style.name}>
         <h1>{plan.userNickName}</h1>
         <p>Descripción del evento</p>
@@ -121,8 +121,9 @@ export default function DetailPlan() {
             value={value}
             onChange={handleStarClick}
           />
-
+          <label name="rating">Puntaje!</label>
           <button className={style.AgregarBtn}>Agregar a favoritos</button>
+          <ButtonShare description="string prueba"/>
         </div>
         <button
           onClick={() => navigate("/home")}

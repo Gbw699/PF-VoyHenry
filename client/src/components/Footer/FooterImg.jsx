@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import voyHenryImage from "../../assets/voyHENRY_title(white).png";
+import voyHenryImage from "../../assets/voyHENRY_title(white).svg";
 import style from "./FooterImg.module.css";
 
 export default function FooterImg() {
@@ -10,7 +10,7 @@ export default function FooterImg() {
         <img
           src={voyHenryImage}
           alt="voyHenry"
-          height="40px"
+          height="40em"
         />
       </Link>
     </div>

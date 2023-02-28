@@ -9,7 +9,8 @@ export default function FilterByTitle() {
     dispatch(getPlansbyOrder("order", selectedOrder));
   };
   return (
-    <div>
+    <div className={style.FilterByTitle}>
+      <h3 className={style.filterTitle}>Alfabeticamente</h3>
       <button
         className={style.buttons}
         value="alfabetico"

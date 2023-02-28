@@ -7,7 +7,7 @@
 
 .logo {
   position: absolute;
-  height: 10%;
+  height: 4em;
   margin-top: 5%;
   margin-left: 7%;
 }
@@ -33,7 +33,7 @@
   background-color: white;
   border-radius: 25px;
   padding: 2%;
-  width: 20%;
+  width: 45em;
 }
 
 .formSubCont {
@@ -41,12 +41,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 40em;
 }
 
 .formInputs {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  justify-content: center;
+  width: 30em;
 }
 
 .inputTitle {
@@ -58,29 +60,61 @@
 .btnSignup {
   background-color: #f1e100;
   border: 2px solid #f1e100;
-  width: 150px;
-  padding: 3%;
+  padding: 1em;
   color: #707070;
   border: 0px;
   border-radius: 10px;
   transition: background-color 0.5s;
-  margin: 3%;
+  margin-top: 3em;
+  margin-bottom: 1em;
+  width: 14em;
+  cursor: pointer;
+}
+
+.googleCont {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.googleLogo {
+  height: 20px;
+}
+
+.btnGoogle {
+  background-color: #f13000;
+  border: 2px solid #f13000;
+  padding: 1em;
+  color: #ffffff;
+  font-size: 100%;
+  border: 0px;
+  border-radius: 10px;
+  transition: background-color 0.5s;
+  margin: 1em;
+  width: 14em;
+  cursor: pointer;
 }
 
 .btnVolver {
   background-color: rgb(219, 219, 219);
-  width: 100px;
-  padding: 2%;
+  width: 8em;
+  padding: 0.5em;
   color: #707070;
   border: 0px;
   border-radius: 10px;
   transition: background-color 0.5s;
-  margin: 3%;
+  margin: 1em;
+  cursor: pointer;
 }
 
 .btnSignup:hover {
   background-color: #707070;
   color: white;
+}
+
+.btnGoogle:hover {
+  background-color: #ac0000ec;
 }
 
 .btnVolver:hover {

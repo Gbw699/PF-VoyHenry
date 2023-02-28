@@ -15,7 +15,7 @@
 
 .logo {
   position: absolute;
-  height: 10%;
+  height: 5em;
   margin-top: 5%;
   margin-left: 7%;
 }
@@ -38,6 +38,7 @@
   border: 0px;
   border-radius: 10px;
   transition: background-color 0.5s;
+  cursor: pointer;
 }
 
 .loginSignup:hover {

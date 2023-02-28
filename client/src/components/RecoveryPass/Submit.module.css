@@ -1,4 +1,4 @@
-.buttons {
+/* .buttons {
   background-color: #f1e100;
   border: 2px solid #f1e100;
   width: 150px;
@@ -13,4 +13,8 @@
 .buttons:hover {
   background-color: #707070;
   color: white;
+} */
+
+.buttons {
+  background-color: black;
 }

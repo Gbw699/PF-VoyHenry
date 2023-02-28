@@ -3,28 +3,26 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 11%;
-  margin: 100px;
+  padding: 10%;
 }
 .containerButton {
   display: flex;
-  align-items: row;
+  align-items: center;
   justify-content: center;
-
-  padding: 10px;
 }
 .name {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 .buttons {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  width: 60%;
-  padding: 10px;
+  flex-direction: column;
+  width: 5em;
+  padding: 1em;
   appearance: none;
   background-color: #f1e100;
   border: 0.125em solid #1a1a1a;

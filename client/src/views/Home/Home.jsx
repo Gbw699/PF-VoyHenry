@@ -2,7 +2,6 @@ import React from "react";
 import PlansCardListHome from "../../components/Home/PlanCardListHome";
 import PlansSections from "../../recycle/PlansSections/PlansSections";
 import BlogHome from "../../components/Home/BlogHome";
-// import { Container } from "@mui/material";
 import ProfileCard from "../../recycle/ProfileCard/ProfileCard";
 import style from "./Home.module.css";
 
@@ -12,7 +11,6 @@ export default function Home() {
       <div className={style.profileCont}>
         <ProfileCard />
       </div>
-
       <div className={style.featured}>
         <h3 className={style.featuredTitle}>Planes Destacados</h3>
         <hr
@@ -20,10 +18,16 @@ export default function Home() {
           color="#F1E100"
         />
         <PlansCardListHome />
+        <h3 className={style.featuredTitle}>Reseñas Destacadas</h3>
+        <hr
+          width="100%"
+          color="#F1E100"
+        />
         <BlogHome />
       </div>
-
-      <PlansSections />
+      <div className={style.sections}>
+        <PlansSections />
+      </div>
     </div>
   );
 }

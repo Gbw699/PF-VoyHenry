@@ -1,7 +1,7 @@
 import SearchBar from "./SearchBar";
 import AccountMenu from "./AccountMenu";
 import { NavLink, useLocation } from "react-router-dom";
-import img from "../../assets/voyHENRY_title.png";
+import img from "../../assets/voyHENRY_title.svg";
 import imgCarrito from "../../assets/carrito-de-compras.png";
 import style from "./Navbar.module.css";
 
@@ -17,7 +17,7 @@ export default function NavBar() {
         <img
           src={img}
           alt="img"
-          height="35px"
+          className={style.img}
         />
       </NavLink>
       {location.pathname === "/blog" && <SearchBar />}
@@ -32,7 +32,7 @@ export default function NavBar() {
           to={"/users"}
           className={navLinkClassName}
         >
-          <h4>USERS</h4>
+          <h4>USUARIOS</h4>
         </NavLink>
 
         <NavLink
