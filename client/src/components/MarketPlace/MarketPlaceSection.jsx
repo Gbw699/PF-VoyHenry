@@ -1,28 +1,31 @@
 import React, { useEffect, useState } from "react";
-import style from "./MarketPlaceSection.module.css";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import MarketCard from "./MarketCard";
 import Filters from "./Filters";
-import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../redux/slices/marketPlaceSlice/thunk";
 import marketBgImg from "../../assets/marketBg.png";
+import style from "./MarketPlaceSection.module.css";
+import { getProductsbyOrder } from "../../redux/slices/marketPlaceSlice/thunk";
 
 export default function MarketPlaceSection() {
+  const [backgroundImage, setBackgroundImage] = useState("");
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
+    dispatch(getProductsbyOrder("order","nuevos"));
+    setBackgroundImage(`url(${marketBgImg})`);
+  },[]);
 
-  const products = useSelector(
-    (state) => state.marketPlaceStore.allProducts.products
+  const { products, pageNumber, pages } = useSelector(
+    (state) => state.marketPlaceStore.filteredProducts
   );
 
-  const [backgroundImage, setBackgroundImage] = useState("");
-
-  useEffect(() => {
-    setBackgroundImage(`url(${marketBgImg})`);
-  });
-
+  if(!products){
+    return <div>La tienda está vacía</div>;
+  }
+  if(products.lenght === 0){
+    return <div>La tienda está vacía</div>;
+  }
+  
   return (
     <div className={style.container}>
       <div
