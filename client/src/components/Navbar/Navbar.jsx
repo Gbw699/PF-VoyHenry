@@ -7,6 +7,8 @@ import style from "./Navbar.module.css";
 
 export default function NavBar() {
   const location = useLocation();
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user.role);
 
   const navLinkClassName = (navData) =>
     navData.isActive ? style.linkFontActive : style.linkFont;
@@ -20,6 +22,14 @@ export default function NavBar() {
           height="35px"
         />
       </NavLink>
+      {user.role === "admin" && (
+        <NavLink
+          to={"/admin"}
+          className={navLinkClassName}
+        >
+          <h4>ADMIN</h4>
+        </NavLink>
+      )}
       {location.pathname === "/blog" && <SearchBar />}
       <div className={style.linksCont}>
         <NavLink

@@ -28,6 +28,7 @@ import EditProfile from "./views/EditProfile/EditProfile";
 import LoadSpinning from "./views/LoadSpinning/LoadSpinning";
 import Favorite from "./views/Favorite/Favorite";
 import FooterSection from "./components/Footer/FooterSection";
+import AdminSection from "./views/AdminSection/AdminSection";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 const cookie = document.cookie.split("=");
@@ -46,6 +47,10 @@ function App() {
         location.pathname !== "/logIn" && <NavBar />}
       <Auth />
       <Routes>
+        <Route
+          path="/admin"
+          element={<AdminSection />}
+        />
         <Route
           path="/home"
           element={<Home />}
