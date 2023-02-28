@@ -39,7 +39,6 @@ export const getProductsbyOrder = (filter, order) => {
       console.log("No se pudo realizar la petición:", error.message);
     }
   };
-<<<<<<< HEAD
 };
 
 export const createProduct = (obj) => {
@@ -52,6 +51,3 @@ export const createProduct = (obj) => {
     }
   };
 };
-=======
-};
->>>>>>> development
