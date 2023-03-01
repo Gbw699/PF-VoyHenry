@@ -6,8 +6,7 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config();
 
 const {
-  JWT_SECRET,
-  MAIL
+  JWT_SECRET
 } = process.env
 
 const mailerService = new MailerService()
@@ -57,17 +56,9 @@ class AuthService {
       }
 
       const token = jwt.sign(payload, JWT_SECRET,{expiresIn: '15min'})
-      const link = `http://localhost:3000/changePass?token=${token}`;
       await userService.update( user.nickName, {recoveryToken: token})
 
-      const mail = {
-        from: MAIL,
-        to: user.email,
-        subject: "Recuperación de contraseña.",
-        html:`<b>Haz click en el siguiente Link para recuperar la contraseña: ${link}</b>`,
-      }
-
-      const message = await mailerService.sendMail(mail)
+      const message = await mailerService.sendRecoveryMail(user, token)
 
       return message
     } catch (error) {
