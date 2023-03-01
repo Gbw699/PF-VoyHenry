@@ -12,10 +12,11 @@ export default function PostComment(props) {
           src={user.image}
           alt=""
         />
+        <label>{props.label}</label>
         <textarea
           className={style.text}
           style={{ resize: "none", borderRadius: "5px" }}
-          placeholder="Dejar reseña"
+          placeholder={props.placeholder}
           name="reseña"
           id="reseña"
           cols="70"
