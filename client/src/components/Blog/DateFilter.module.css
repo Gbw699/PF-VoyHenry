@@ -1,15 +1,23 @@
 .container {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  padding: 10%;
+  /* justify-content: center; */
+  /* align-items: center; */
+  margin: 0px 2em;
+}
+
+.name {
+  color: #707070;
+  font-size: 110%;
+  font-weight: 300;
+  margin-bottom: 5px;
 }
 
 .input {
   border: 1px solid #f1e100;
   border-radius: 5px;
-  color: #f1e100;
-  margin: 5%;
-  background-color: black;
+  color: #707070;
+  background-color: white;
+  height: 30px;
+  padding: 5px;
 }
