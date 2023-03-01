@@ -17,9 +17,7 @@ export const getProducts = (id) => {
       }
     } else {
       try {
-        console.log("antes");
         const response = await axios.get("/api/v1/products/");
-        console.log(response.data);
         dispatch(setProducts(response.data.products));
       } catch (error) {
         return console.log("No se pudo hacer el pedido");
@@ -30,7 +28,6 @@ export const getProducts = (id) => {
 
 export const getProductsbyOrder = (filter, order) => {
   const queryUrl = queryString(filter, order);
-  console.log(queryUrl);
   return async (dispatch) => {
     try {
       const response = await axios.get(`/api/v1/products?${queryUrl}`);
@@ -50,4 +47,8 @@ export const createProduct = (obj) => {
       console.error(error.response);
     }
   };
+};
+
+export const deactivateProduct = async (id) => {
+  await axios.delete(`/api/v1/products/${id}`);
 };

@@ -20,10 +20,7 @@ const marketPlaceSlice = createSlice({
   },
 });
 
-export const { 
-  setProducts, 
-  setDetailProducts,
-  setProductsByOrder,
-} = marketPlaceSlice.actions;
+export const { setProducts, setDetailProducts, setProductsByOrder } =
+  marketPlaceSlice.actions;
 
 export default marketPlaceSlice.reducer;

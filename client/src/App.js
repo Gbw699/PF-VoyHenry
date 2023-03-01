@@ -28,6 +28,7 @@ import EditProfile from "./views/EditProfile/EditProfile";
 import LoadSpinning from "./views/LoadSpinning/LoadSpinning";
 import Favorite from "./views/Favorite/Favorite";
 import FooterSection from "./components/Footer/FooterSection";
+import AdminMarketPlace from "./views/MarketPlace/Admin/AdminMarketPlace";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 const cookie = document.cookie.split("=");
@@ -82,7 +83,6 @@ function App() {
           path="/blog/:id"
           element={<BlogDetail />}
         />
-
         <Route
           path="/plans"
           element={<Plan />}
@@ -103,6 +103,10 @@ function App() {
         <Route
           path="/marketplace/:id"
           element={<DetailMarketPlace />}
+        />
+        <Route
+          path="/marketplace/admin"
+          element={<AdminMarketPlace />}
         />
         <Route
           path="/marketplace/shoppingCart"
