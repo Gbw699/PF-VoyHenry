@@ -40,17 +40,21 @@ export default function MarketPlaceSection() {
           </div>
         </div>
         <div className={style.cardsCont}>
-          {products?.map((element) => (
-            <div key={element.id}>
-              <Link to={`/marketplace/${element.id}`}>
-                <MarketCard
-                  title={element.title}
-                  image={element.mainImage}
-                  price={element.price}
-                />
-              </Link>
-            </div>
-          ))}
+          {products ? (
+            products?.map((element) => (
+              <div key={element.id}>
+                <Link to={`/marketplace/${element.id}`}>
+                  <MarketCard
+                    title={element.title}
+                    image={element.mainImage}
+                    price={element.price}
+                  />
+                </Link>
+              </div>
+            ))
+          ) : (
+            <h1>No hay ningún producto</h1>
+          )}
         </div>
       </div>
     </>
