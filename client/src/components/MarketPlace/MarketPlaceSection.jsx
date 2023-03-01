@@ -17,10 +17,6 @@ export default function MarketPlaceSection() {
     (state) => state.marketPlaceStore.filteredProducts
   );
 
-  // if (products.length === 0) {
-  //   return <div>La tienda está vacía</div>;
-  // }
-
   return (
     <>
       <div>
@@ -40,17 +36,21 @@ export default function MarketPlaceSection() {
           </div>
         </div>
         <div className={style.cardsCont}>
-          {products?.map((element) => (
-            <div key={element.id}>
-              <Link to={`/marketplace/${element.id}`}>
-                <MarketCard
-                  title={element.title}
-                  image={element.mainImage}
-                  price={element.price}
-                />
-              </Link>
-            </div>
-          ))}
+          {products ? (
+            products?.map((element) => (
+              <div key={element.id}>
+                <Link to={`/marketplace/${element.id}`}>
+                  <MarketCard
+                    title={element.title}
+                    image={element.mainImage}
+                    price={element.price}
+                  />
+                </Link>
+              </div>
+            ))
+          ) : (
+            <h1>No hay ningún producto</h1>
+          )}
         </div>
       </div>
     </>
