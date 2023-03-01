@@ -18,7 +18,7 @@ export default function BlogsReviews() {
   return (
     <div className={style.container}>
       <BlogFilters pagePagination={pagePagination} />
-      <div>
+      <div className={style.subCont}>
         {blogs?.blogs.map((blog) => {
           return (
             <BlogReview
