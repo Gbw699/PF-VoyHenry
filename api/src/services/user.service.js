@@ -75,6 +75,10 @@ class UsersService {
       newUser: newUser[1]
     }
 
+    if(newUser[1].newUser){
+      mailerService.sendWelcomeMail(newUser[0].dataValues)
+    }
+
     return newUser
   }
 
