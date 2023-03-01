@@ -3,49 +3,40 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background-image: url("../../assets/4.png");
-  background-repeat: no-repeat;
-  background-size: cover; */
-  background-color: black;
   border-radius: 5px;
-  box-shadow: 3px 3px 5px 2px #222222;
-  padding: 1%;
+  box-shadow: 3px 3px 5px 2px;
+  padding: 2em;
 }
 
 .mainInfo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 300px;
+  justify-content: end;
 }
 
 .imgCont {
-  width: 150px;
-  height: 150px;
+  width: 11em;
+  height: 11em;
   border-radius: 50%;
-
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: grey;
 }
 
 .name {
-  color: #f1e100;
+  color: black;
   font-size: 110%;
   font-weight: 600;
   margin-bottom: 10px;
-  background-color: black;
   border-radius: 5px;
 }
 
 .nacionality {
-  color: #f1e100;
+  color: black;
   font-size: 110%;
   font-weight: 600;
   margin-bottom: 10px;
-  background-color: black;
   border-radius: 5px;
 }
 
@@ -64,19 +55,17 @@
 }
 
 .infoTitle {
-  color: #f1e100;
+  color: black;
   font-size: 110%;
   font-weight: 600;
   margin-bottom: 10px;
-  background-color: black;
   border-radius: 5px;
 }
 
 .infoCount {
-  color: #f1e100;
+  color: black;
   font-size: 130%;
   font-weight: 600;
-  background-color: black;
   padding: 6px;
   border-radius: 10px;
 }
@@ -96,7 +85,7 @@
   border-radius: 8px;
 }
 
-.editarPerfil:hover{
+.editarPerfil:hover {
   cursor: pointer;
 }
 

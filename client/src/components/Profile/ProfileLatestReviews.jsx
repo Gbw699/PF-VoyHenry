@@ -26,12 +26,12 @@ export default function ProfileLatestReviews({
         <div className={style.reviewInfo}>
           <h6 className={style.title}>{name}</h6>
           <hr
-            color="#707070"
+            color="#f1e100"
             width="100%"
           />
           <p className={style.review}>{description}</p>
           <hr
-            color="#707070"
+            color="#f1e100"
             width="100%"
           />
           {/* //TODO AGREGAR LÓGICA CON ESTRELLAS */}
