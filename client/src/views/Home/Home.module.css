@@ -3,21 +3,23 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 4em;
+  padding: 4rem;
+  height: 100vh;
 }
 
 .profileCont {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 20em;
+  width: 20rem;
 }
 
 .featured {
   display: flex;
   flex-direction: column;
-  padding: 0px 3em;
-  width: 80em;
+  padding: 0px 3rem;
+  /* width: 60%; */
+  width: 70rem;
 }
 
 .featuredTitle {
@@ -31,7 +33,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 25em;
+  width: 25rem;
 }
 
 /* .createBtn {
