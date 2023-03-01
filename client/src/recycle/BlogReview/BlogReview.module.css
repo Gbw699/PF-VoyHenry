@@ -8,30 +8,32 @@
   flex-direction: row;
   align-items: center;
   background-color: white;
-  padding: 20px 30px;
-  width: 98%;
+  padding: 1em 1.5em;
+  width: 70em;
+  margin: 1em 0px;
 }
 
 .reviewCont:hover {
-  border-radius: 3em;
+  border-radius: 1em;
   background-color: #f1e100;
 }
 
 .userImg {
   margin-top: 3em;
-  width: 12em;
-  height: 12em;
+  width: 10em;
+  height: 10em;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 50%;
+  /* box-shadow: 3px 3px 5px 2px #b1b1b1; */
 }
 
 .userCont {
   display: flex;
   flex-direction: column;
-  margin: 0px 3%;
-  width: 100%;
+  margin: 0px 2em;
+  width: 80%;
 }
 
 .nameDate {
@@ -57,12 +59,12 @@
 .review {
   display: flex;
   flex-direction: row;
-  margin-top: 1%;
+  margin-top: 0.5em;
 }
 
 .reviewImg {
-  width: 20em;
-  height: 10em;
+  width: 16em;
+  height: 8em;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

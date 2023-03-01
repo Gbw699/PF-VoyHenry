@@ -4,7 +4,10 @@ const bcrypt = require('bcrypt')
 const { Op } = require("sequelize");
 const blogModel = require('../libs/models/blog-model');
 const plansModel = require('../libs/models/plans.model');
+const sequelize = require('../libs/database/database');
+const MailerService = require('./Mailer.service')
 
+const mailerService = new MailerService()
 
 class UsersService {
 
@@ -14,7 +17,7 @@ class UsersService {
 
   /* Create user */
 
-  async create ({ genre, email, about, nickName, image, firstName, lastName, dateOfBirth, password, role }) {
+  async create ({ genre, nationality, email, about, nickName, image, firstName, lastName, dateOfBirth, password, role }) {
 
     dateOfBirth = new Date(dateOfBirth);
     dateOfBirth.setHours(dateOfBirth.getHours() + Math.abs(dateOfBirth.getTimezoneOffset() / 60));
@@ -30,9 +33,12 @@ class UsersService {
       firstName: firstName,
       lastName: lastName,
       genre: genre,
+      nationality: nationality,
       dateOfBirth: new Date(dateOfBirth),
       image: image
     })
+
+    mailerService.sendWelcomeMail(newUser)
 
     delete newUser.dataValues.password;
 
@@ -68,6 +74,10 @@ class UsersService {
 
     newUser[1] = {
       newUser: newUser[1]
+    }
+
+    if(newUser[1].newUser){
+      mailerService.sendWelcomeMail(newUser[0].dataValues)
     }
 
     return newUser
@@ -125,6 +135,8 @@ class UsersService {
     return user
 
   }
+
+  /* Find user by email */
 
   async findByEmail (email) {
 
@@ -194,7 +206,7 @@ class UsersService {
 
   /* Update user */
 
-  async update (userNickName, { genre, email, nickName, about, image, firstName, lastName, dateOfBirth , password, role, recoveryToken}) {
+  async update (userNickName, { genre, nationality, email, nickName, about, image, firstName, lastName, dateOfBirth , password, role, recoveryToken}) {
 
     const user = await usersModel.findByPk(userNickName)
 
@@ -207,6 +219,7 @@ class UsersService {
     user.password = hash || user.password;
     user.role = role || user.role;
     user.genre = genre || user.genre;
+    user.nationality = nationality || user.nationality;
     user.nickName = nickName || user.nickName;
     user.recoveryToken = recoveryToken || null;
     user.email = email || user.email.toLowerCase();
@@ -254,6 +267,93 @@ class UsersService {
     const count = await blogModel.count({where:{userNickName: nickName}});
 
     return count;
+  }
+
+  /* user follow user */
+
+  async follow(nickName, { userNickName  }) {
+
+    const userFollowUserTable = await sequelize.models.user_follow_user.create({
+      userid: nickName,
+
+      followUserId: userNickName,
+    });
+
+    return {
+      message: 'Create',
+      data: {
+
+        userFollowUser: userFollowUserTable,
+      },
+    };
+  }
+
+ // Get followed users
+
+ async getFollowedUsers(nickName) {
+
+  const users = await sequelize.models.user_follow_user.findAll({
+    where: { userid: nickName },
+  });
+
+  const usersId = users.map(
+    (comment) => comment.dataValues.followedUserId
+  );
+
+  const followed = await usersModel.findAll({
+    where: { nickName: usersId },
+  });
+  return {
+    message: 'Create',
+    data: {
+
+      followedUsers: followed,
+
+    },
+  };
+}
+
+  /* Get users following */
+
+  async getUsersFollowing(nickName) {
+
+    const followingUsers = await sequelize.models.user_follow_user.findAll({
+      where: { followUserId: nickName },
+    });
+
+    const followingsUsersId = followingUsers.map(
+      (comment) => comment.dataValues.userid
+    );
+
+     const user = await usersModel.findAll({
+       where: { nickName: followingsUsersId },
+    });
+   return user;
+  }
+
+  /* Delete user follow */
+
+  async deleteFollowUser (nickName,{userNickName}) {
+
+    const deletedFollowedUser = await sequelize.models.user_follow_user.destroy({
+      where: {
+         userid: nickName,
+         followUserId: userNickName
+      }
+    })
+
+    if (deletedFollowedUser === 0){
+      throw new CustomError("user relacion not exist", 404)
+    } else {
+      return {
+        message: "user follow deleted",
+        data: {
+          id: deletedFollowedUser,
+
+        }
+      }
+    }
+
   }
 
   }

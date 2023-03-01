@@ -1,21 +1,10 @@
 .container {
   display: flex;
-  flex-direction: grid;
-  align-items: center;
+  flex-direction: row;
+  align-items: baseline;
   border-radius: 5px;
-  justify-content: center;
-  box-shadow: 3px 3px 5px 2px #222222;
-  width: 70m;
-  margin: 4em;
-  padding: 4em;
-  height: 12rem;
+  /* justify-content: center; */
+  /* box-shadow: 3px 3px 5px 2px #b1b1b1; */
+  width: 60em;
+  margin-bottom: 1em;
 }
-
-.container:hover {
-  background-color: #a0a0a070;
-}
-
-/* .name {
-  color: #f00505;
-  font-weight: 600;
-} */

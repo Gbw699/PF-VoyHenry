@@ -11,6 +11,7 @@ const lessDate = `${currentDate.getFullYear() - 18}-${currentDate.getMonth() + 1
 const nickName = Joi.string().alphanum().min(3).max(25)
 const email = Joi.string().email()
 const password = Joi.string().min(8);
+const nationality = Joi.string().max(50)
 const role = Joi.string().min(3);
 const genre = Joi.string().valid('Femenino', 'Masculino', 'No binario', 'Prefiero no decirlo', 'Otro');
 const about = Joi.string().max(255)
@@ -18,6 +19,8 @@ const dateOfBirth = Joi.date().greater(greaterDate).less(lessDate);
 const firstName = Joi.string().alphanum().min(3).max(55)
 const lastName = Joi.string().alphanum().min(3).max(55)
 const image = Joi.string().uri()
+const userNickName = Joi.string().alphanum().min(3).max(25)
+
 
 const createUserSchema = Joi.object({
   nickName: nickName.required(),
@@ -26,6 +29,7 @@ const createUserSchema = Joi.object({
   genre: genre.required(),
   role: role,
   about: about,
+  nationality: nationality,
   dateOfBirth: dateOfBirth.required(),
   firstName: firstName.required(),
   lastName: lastName,
@@ -49,9 +53,14 @@ const getUserSchema = Joi.object({
   nickName: nickName.required()
 })
 
+const userFollowSchema = Joi.object({
+  userNickName: userNickName.required()
+})
+
 module.exports = {
   createUserSchema,
   updateSchema,
-  getUserSchema
+  getUserSchema,
+  userFollowSchema
 }
 

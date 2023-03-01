@@ -2,11 +2,9 @@
   display: flex;
   flex-direction: column;
   border-radius: 5px;
-  box-shadow: 3px 3px 5px 2px #020202e5;
-  padding: 10px;
-  margin-bottom: 5%;
-  width: 20%;
-  height: 100%;
+  box-shadow: 3px 3px 5px 2px #b1b1b1;
+  padding: 20px;
+  width: 20em;
 }
 
 .usersTitle {
@@ -17,15 +15,14 @@
 }
 
 .searchBtn {
-  margin-top: 20%;
+  margin-top: 2em;
   background-color: #f1e100;
   border: 2px solid #f1e100;
   border-radius: 10px;
-  padding: 3% 5%;
+  padding: 0.5em 1.5em;
   color: #707070;
   cursor: pointer;
-  width: 60%;
-  align-self: flex-end;
+  width: 12em;
 }
 
 .searchBtn:hover {
