@@ -106,7 +106,7 @@ class ProductsService {
 
   async update(
     id,
-    { title, price, detail, mainImage, availability, category, images }
+    { title, price, detail, mainImage, availability, stock, category, images }
   ) {
     const product = await productModel.findByPk(id);
 
@@ -116,6 +116,7 @@ class ProductsService {
 
     product.title = title || product.title;
     product.price = price || product.price;
+    product.stock = stock || product.stock;
     product.detail = detail || product.detail;
     product.mainImage = mainImage || product.mainImage;
     product.availability = availability || product.availability;
