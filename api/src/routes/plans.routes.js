@@ -2,7 +2,7 @@ const { Router } = require('express');
 const passport = require('passport')
 const PlansService = require('../services/plan.service')
 const validatorHandler = require('../middlewares/validator.handler')
-const { createPlanSchema, updateSchema, getPlanSchema, deletePlanSchema, ratingSchema } = require('../schemas/plans.schema')
+const { createPlanSchema, updateSchema, getPlanSchema, deletePlanSchema, ratingSchema, followSchema } = require('../schemas/plans.schema')
 
 const router = Router();
 const service = new PlansService();
@@ -94,6 +94,8 @@ router.post('/:id/comment',
 
 });
 
+/* get plan comment*/
+
 router.get('/:id/comment',
 
   async (req, res, next) => {
@@ -173,7 +175,95 @@ router.delete('/:id',
 
       next(error)
     }
+  });
 
-});
+  /* Create new plan favorite*/
+
+router.post(
+  '/:id/favorite',
+  validatorHandler(deletePlanSchema, 'params'),
+  validatorHandler(followSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+
+      const body = req.body;
+
+      const createdPlanFollow = await service.followplan(id, body);
+
+      res.json(createdPlanFollow);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+/* Get plans favorite */
+
+router.get(
+  '/:id/favorite',
+  validatorHandler(deletePlanSchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const  {id}  = req.params;
+
+      const createdComment = await service.getFollowPlan(id);
+
+      res.json(createdComment);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+/* Get user plan favorite */
+
+router.get(
+  '/:userNickName/Plansfavorite',
+  validatorHandler(followSchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const  { userNickName }  = req.params;
+
+      const followedPlan = await service.getFollowedPlans(userNickName);
+
+      res.json(followedPlan);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+/* Delete Plan favorite */
+
+router.delete(
+  '/:id/favorite',
+  validatorHandler(deletePlanSchema, 'params'),
+  validatorHandler(followSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+
+      const body = req.body;
+
+      const deletedPlan = await service.deleteFavoritePlan(id, body);
+
+      res.json(deletedPlan);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
