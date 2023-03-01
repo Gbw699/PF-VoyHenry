@@ -216,12 +216,12 @@ export default function DetailPlan() {
   };
 
   const handleLabel = (event) => {
-      setInputsValue(
-        {
+    setInputsValue(
+      {
         [event.target.name]: event.target.value
       });
   };
-  
+
   const handleSave = async () => {
     const updatedPlan = inputsValue;
     try {
@@ -231,6 +231,15 @@ export default function DetailPlan() {
       console.error(error);
     }
     setShowEditInputs(false);
+  };
+
+  const handleDeleteClick = async () => {
+    try {
+      await axios.delete(`/api/v1/plans/${id}`);
+      navigate("/plans");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   if (!plan) {
@@ -243,19 +252,26 @@ export default function DetailPlan() {
         <div
           style={{ backgroundImage: `url(${plan.mainImage})` }}
           className={style.imgCont}
-          >
+        >
           {isEditable && (
             <>
-            <button className={style.editButton} onClick={handleEditClick}>
-              Editar Plan
-            </button>
-            <button className={style.saveButton} onClick={handleSave}>Guardar cambios</button>
+              <button className={style.editButton} onClick={handleEditClick}>
+                Editar Plan
+              </button>
             </>
           )}
-          <h1>{plan.title}</h1>{showEditInputs && <input onChange={handleLabel} name="title"/>}
-          <h3>{plan.country}</h3>{showEditInputs &&<input onChange={handleLabel} name="country"/>}
-          <h3>{plan.province}</h3>{showEditInputs &&<input onChange={handleLabel} name="province"/>}
-          <h3>{plan.eventDate}</h3>{showEditInputs &&<input onChange={handleLabel} name="eventDate"/>}
+          {showEditInputs && <>
+            <button className={style.deleteButton} onClick={handleDeleteClick}>
+              Borrar Plan
+            </button>
+            <button className={style.saveButton} onClick={handleSave}>
+              Guardar cambios
+            </button>
+          </>}
+          <h1>{plan.title}</h1>{showEditInputs && <input onChange={handleLabel} name="title" />}
+          <h3>{plan.country}</h3>{showEditInputs && <input onChange={handleLabel} name="country" />}
+          <h3>{plan.province}</h3>{showEditInputs && <input onChange={handleLabel} name="province" />}
+          <h3>{plan.eventDate}</h3>{showEditInputs && <input onChange={handleLabel} name="eventDate" />}
           {plan.average && (
             <Rating
               size="large"
@@ -264,10 +280,6 @@ export default function DetailPlan() {
               readOnly
             />
           )}
-          {/* <ButtonShare
-        url={`https://example.com/plans/${plan.id}`}
-        text={`¡Mira este plan que encontré en Example! ${plan.title}`}
-      /> */}
         </div>
       </div>
       <div className={style.name}>
@@ -277,7 +289,7 @@ export default function DetailPlan() {
           color="#F1E100"
         />
         <p>Descripción del evento</p>
-        <p>{plan.description}</p>{showEditInputs &&<input onChange={handleLabel} name="description"/>}
+        <p>{plan.description}</p>{showEditInputs && <input onChange={handleLabel} name="description" />}
       </div>
       <div className={style.buttons}>
         <div className={style.button}>
@@ -295,7 +307,7 @@ export default function DetailPlan() {
           />
         </div>
         <button
-          onClick={() => navigate("/home")}
+          onClick={() => navigate("/plans")}
           className={style.submitBtn}
         >
           Volver
@@ -326,6 +338,6 @@ export default function DetailPlan() {
           <p>Aún no hay comentarios</p>
         )}
       </div>
-    </div>
+    </div >
   );
 }
