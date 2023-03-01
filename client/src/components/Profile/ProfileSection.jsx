@@ -37,7 +37,7 @@ export default function ProfileSection() {
           firstName={user.firstName}
           lastName={user.lastName}
           genre={user.genre}
-          nationality="Argentina"
+          nationality={user.nationality ? user.nationality : "Sin nacionalidad"}
           following="156"
           followers="165"
           assistedPlans="12"
