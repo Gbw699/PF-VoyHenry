@@ -30,7 +30,7 @@ export default function BlogReview({ blog }) {
             <p>{blog.date}</p>
           </div>
           <hr
-            color="#F1E100"
+            color="#707070"
             width="100%"
           />
           <NavLink

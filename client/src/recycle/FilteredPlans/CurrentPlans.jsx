@@ -16,7 +16,18 @@ export default function CurrentPlans() {
   }, []);
 
   if (!plansData) {
-    return <div>Loading...</div>;
+    return (
+      <div className={style.cardCont}>
+        <h3 className={style.cardTitle}>Planes en progreso</h3>
+        <hr
+          width="100%"
+          color="#F1E100"
+        />
+        <div className={style.imgCont}>
+          No hay planes en progreso en este momento
+        </div>
+      </div>
+    );
   }
 
   if (plansData.length < 2) {

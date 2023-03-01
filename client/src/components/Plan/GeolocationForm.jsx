@@ -24,24 +24,26 @@ export default function GeolocationForm(props) {
         width="100%"
       />
       <div className={style.filtersCont}>
-        <SearchPlan className={style.inputs} />
+        {/* <SearchPlan className={style.inputs} /> */}
         <FilterByDate className={style.inputs} />
         <FilterByCountry className={style.inputs} />
         <FilterByRating className={style.inputs} />
         <FilterByTitle className={style.inputs} />
-        <button
-          className={style.buttons}
-          value="refresh"
-          onClick={handleClick}
-        >
-          Actualizar
-        </button>
-        <button
-          className={style.buttons}
-          onClick={handleButtonCreate}
-        >
-          Crea tu evento
-        </button>
+        <div className={style.button}>
+          <button
+            className={style.buttons}
+            value="refresh"
+            onClick={handleClick}
+          >
+            Actualizar
+          </button>
+          <button
+            className={style.buttons}
+            onClick={handleButtonCreate}
+          >
+            Crea tu evento
+          </button>
+        </div>
       </div>
     </div>
   );
