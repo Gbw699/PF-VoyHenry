@@ -17,10 +17,6 @@ export default function MarketPlaceSection() {
     (state) => state.marketPlaceStore.filteredProducts
   );
 
-  // if (products.length === 0) {
-  //   return <div>La tienda está vacía</div>;
-  // }
-
   return (
     <>
       <div>
