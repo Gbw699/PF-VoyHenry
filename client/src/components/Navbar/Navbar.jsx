@@ -8,7 +8,6 @@ import style from "./Navbar.module.css";
 export default function NavBar() {
   const location = useLocation();
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log(user.role);
 
   const navLinkClassName = (navData) =>
     navData.isActive ? style.linkFontActive : style.linkFont;
