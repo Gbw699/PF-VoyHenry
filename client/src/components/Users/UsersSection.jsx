@@ -22,6 +22,7 @@ export default function UsersSection({ users }) {
                 firstName={element.firstName}
                 lastName={element.lastName}
                 image={element.image}
+                nationality={element.nationality}
               />
             </div>
           // </Link>

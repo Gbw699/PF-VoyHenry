@@ -17,8 +17,9 @@ export default function ProfileCard() {
             color="#F1E100"
           />
           <h1 className={style.profileName}>{user.nickName}</h1>
-          {/* vv MODIFICAR PARA QUE SE MUESTRE NACIONALIDAD vv */}
-          <h4 className={style.profileCountry}>Argentina</h4>
+          <h4 className={style.profileCountry}>
+            {user.nationality ? user.nationality : "Sin nacionalidad"}
+          </h4>
           <div className={style.followersCont}>
             <div className={style.followers}>
               <p className={style.followTitle}>Siguiendo</p>

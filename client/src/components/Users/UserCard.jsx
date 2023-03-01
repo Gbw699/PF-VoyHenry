@@ -19,7 +19,7 @@ export default function UserCard({ nickName, image, firstName, lastName, nationa
             <div>
               <p className={style.name}>{`${firstName} ${lastName}`}</p>
               <hr color="#F1E100" width="100%" />
-              <p className={style.nacionality}>{nationality} Argentina</p>
+              <p className={style.nacionality}>{nationality ? nationality : "Sin nacionalidad"}</p>
             </div>
             <div className={style.followers}>
               <p className={style.followTitle}>Siguiendo</p>

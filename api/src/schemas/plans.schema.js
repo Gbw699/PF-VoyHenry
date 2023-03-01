@@ -59,6 +59,10 @@ const ratingSchema = Joi.object({
   userNickName: userNickName.required(),
 })
 
+const followSchema = Joi.object({
+  userNickName: userNickName.required(),
+})
+
 
 
 module.exports = {
@@ -66,6 +70,7 @@ module.exports = {
   updateSchema,
   getPlanSchema,
   deletePlanSchema,
-  ratingSchema
+  ratingSchema,
+  followSchema
 }
 
