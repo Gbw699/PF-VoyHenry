@@ -18,7 +18,7 @@ export default function UserCard({ image, firstName, lastName, nationality }) {
         <div className={style.profileInfo}>
           <div className={style.name}>{`${firstName} ${lastName}`}</div>
 
-          <h4>{nationality} Argentino</h4>
+          <h4>{nationality ? nationality : "Sin nacionalidad"}</h4>
           <div className={style.followers}>
             <p className={style.followTitle}>Siguiendo:</p>
             <span className={style.followNum}> 103</span>
