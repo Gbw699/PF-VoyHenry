@@ -4,13 +4,9 @@ const bcrypt = require('bcrypt')
 const { Op } = require("sequelize");
 const blogModel = require('../libs/models/blog-model');
 const plansModel = require('../libs/models/plans.model');
-/* const AuthService = require('./auth.service')
+const MailerService = require('./Mailer.service')
 
-const {
-  MAIL
-} = process.env
-
-const authService = new AuthService() */
+const mailerService = new MailerService()
 
 class UsersService {
 
@@ -40,6 +36,8 @@ class UsersService {
       dateOfBirth: new Date(dateOfBirth),
       image: image
     })
+
+    mailerService.sendWelcomeMail(newUser)
 
     delete newUser.dataValues.password;
 

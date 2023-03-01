@@ -51,7 +51,26 @@ class MailerService {
 
     return message
 
+  }
 
+  sendWelcomeMail(user){
+
+    const mail = {
+      from: MAIL,
+      to: user.email,
+      subject: `¡Bienvenido/a a voyHenry, ${user.firstName}!`,
+      html: `
+        <h2>Hola ${user.firstName},</h2>
+        <h3>¡Bienvenido/a a voyHenry! Nos alegra que hayas decidido unirte a nuestra comunidad.</h3>
+        <p>En voyHenry podrás encontrar o hacer planes de viajes entre Henrys.</p>
+        <p>Si tienes alguna pregunta o necesitas ayuda, no dudes en ponerte en contacto con nosotros.</p>
+        <p>¡Gracias por unirte a voyHenry!</p>
+        <p>Saludos cordiales,</p>
+        <p>El equipo de voyHenry</p>
+      `,
+    }
+
+    this.sendMail(mail)
   }
 
 }
