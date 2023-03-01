@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 const { Op } = require("sequelize");
 const blogModel = require('../libs/models/blog-model');
 const plansModel = require('../libs/models/plans.model');
+const sequelize = require('../libs/database/database');
 const MailerService = require('./Mailer.service')
 
 const mailerService = new MailerService()
@@ -266,6 +267,93 @@ class UsersService {
     const count = await blogModel.count({where:{userNickName: nickName}});
 
     return count;
+  }
+
+  /* user follow user */
+
+  async follow(nickName, { userNickName  }) {
+
+    const userFollowUserTable = await sequelize.models.user_follow_user.create({
+      userid: nickName,
+
+      followUserId: userNickName,
+    });
+
+    return {
+      message: 'Create',
+      data: {
+
+        userFollowUser: userFollowUserTable,
+      },
+    };
+  }
+
+ // Get followed users
+
+ async getFollowedUsers(nickName) {
+
+  const users = await sequelize.models.user_follow_user.findAll({
+    where: { userid: nickName },
+  });
+
+  const usersId = users.map(
+    (comment) => comment.dataValues.followedUserId
+  );
+
+  const followed = await usersModel.findAll({
+    where: { nickName: usersId },
+  });
+  return {
+    message: 'Create',
+    data: {
+
+      followedUsers: followed,
+
+    },
+  };
+}
+
+  /* Get users following */
+
+  async getUsersFollowing(nickName) {
+
+    const followingUsers = await sequelize.models.user_follow_user.findAll({
+      where: { followUserId: nickName },
+    });
+
+    const followingsUsersId = followingUsers.map(
+      (comment) => comment.dataValues.userid
+    );
+
+     const user = await usersModel.findAll({
+       where: { nickName: followingsUsersId },
+    });
+   return user;
+  }
+
+  /* Delete user follow */
+
+  async deleteFollowUser (nickName,{userNickName}) {
+
+    const deletedFollowedUser = await sequelize.models.user_follow_user.destroy({
+      where: {
+         userid: nickName,
+         followUserId: userNickName
+      }
+    })
+
+    if (deletedFollowedUser === 0){
+      throw new CustomError("user relacion not exist", 404)
+    } else {
+      return {
+        message: "user follow deleted",
+        data: {
+          id: deletedFollowedUser,
+
+        }
+      }
+    }
+
   }
 
   }
