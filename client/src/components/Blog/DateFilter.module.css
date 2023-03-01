@@ -3,13 +3,11 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 10%;
+  margin: 6em;
 }
 
 .input {
   border: 1px solid #f1e100;
   border-radius: 5px;
-  color: #f1e100;
-  margin: 5%;
-  background-color: black;
+  color: black;
 }
