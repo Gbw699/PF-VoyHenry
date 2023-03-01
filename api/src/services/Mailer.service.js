@@ -1,5 +1,4 @@
 const nodemailer = require("nodemailer");
-const { CustomError } = require('../middlewares/error.handler')
 
 const {
   MAILER_PASS,
@@ -31,7 +30,7 @@ class MailerService {
       return { message: 'Mail sent'}
 
     } catch (error) {
-      throw new CustomError("unauthorized", 401)
+      return(error)
     }
 
   }
