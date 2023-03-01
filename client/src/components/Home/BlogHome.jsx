@@ -13,9 +13,5 @@ export default function BlogHome() {
     dispatch(getBlogs(1, "", "masvotados"));
   }, []);
 
-  return (
-    <div>
-      {blogs && <BlogReview blog={blogs.blogs[0]} />}
-    </div>
-  );
+  return <div>{blogs && <BlogReview blog={blogs.blogs[0]} />}</div>;
 }

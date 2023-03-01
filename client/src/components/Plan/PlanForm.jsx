@@ -15,8 +15,9 @@ export default function FormSignUp(props) {
   const [url, setUrl] = useState(noPhoto);
   const dispatch = useDispatch();
   const currentDate = new Date();
-  const greaterDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1
-    }-${currentDate.getDate()}`;
+  const greaterDate = `${currentDate.getFullYear()}-${
+    currentDate.getMonth() + 1
+  }-${currentDate.getDate()}`;
   const handleClick = () => {
     props.setShowPlanForm(false);
   };
@@ -62,7 +63,7 @@ export default function FormSignUp(props) {
               .max(255)
               .required("La descripción es obligatoria"),
             country: Yup.string(),
-            province: Yup.string(), 
+            province: Yup.string(),
             city: Yup.string(),
             address: Yup.string(),
             eventDate: Yup.date()

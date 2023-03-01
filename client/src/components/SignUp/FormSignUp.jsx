@@ -65,8 +65,7 @@ export default function FormSignUp() {
               email: "",
               nickName: "",
               //imagen default
-              image:
-                "https://i.ibb.co/86tPY9X/PF-profile-01.png",
+              image: "https://i.ibb.co/86tPY9X/PF-profile-01.png",
               firstName: "",
               lastName: "",
               dateOfBirth: "",
