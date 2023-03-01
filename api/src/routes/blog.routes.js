@@ -1,4 +1,4 @@
-const { Router } = require('express');
+const { Router, text } = require('express');
 const UsersBlog = require('../services/blog.service');
 const passport = require('passport');
 const validatorHandler = require('../middlewares/validator.handler');
@@ -7,6 +7,8 @@ const {
   updateSchema,
   getBlogSchema,
   ratingSchema,
+  favorites,
+  coments,
 } = require('../schemas/blog.schema');
 
 const router = Router();
@@ -130,11 +132,12 @@ router.delete(
   }
 );
 
-// Create Comment
+/* Create Comment */
 
 router.post(
   '/:id/comment',
-
+  validatorHandler(getBlogSchema, 'params'),
+  validatorHandler(coments, 'body'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -149,11 +152,11 @@ router.post(
   }
 );
 
-// Get comment
+/* Get comment */
 
 router.get(
   '/:id/comment',
-
+  validatorHandler(getBlogSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -161,6 +164,87 @@ router.get(
       const createdComment = await service.getComment(id);
 
       res.json(createdComment);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+
+
+/* Create favorite blog */
+
+router.post(
+  '/:id/favorite',
+  validatorHandler(getBlogSchema, 'params'),
+  validatorHandler(favorites, 'body'),
+  async (req, res, next) => {
+    try {
+
+      const { id } = req.params;
+
+      const body = req.body;
+
+      const blogAddFavorite = await service.addBlogFavorite(id, body);
+
+      res.json(blogAddFavorite);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+/* Get favorite blogs by nickname */
+
+router.get(
+  '/:userNickName/favorite',
+  validatorHandler(favorites, 'params'),
+  async (req, res, next) => {
+    try {
+      const  {userNickName}  = req.params;
+
+      const favoriteBlogs = await service.getFavoriteBlogs(userNickName);
+
+      res.json(favoriteBlogs);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+/* Get all users with blogid in favorite */
+
+router.get(
+  '/:id/blogfavorite',
+  validatorHandler(getBlogSchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const  { id }  = req.params;
+
+      const createdComment = await service.getFavoriteUsers(id);
+
+      res.json(createdComment);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+/* Delete Blog favorite */
+
+router.delete(
+  '/:id/favorite',
+  validatorHandler(getBlogSchema, 'params'),
+  validatorHandler(favorites, 'body'),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+
+      const body = req.body;
+
+      const deletedBlog = await service.deleteFavoriteBlog(id, body);
+
+      res.json(deletedBlog);
     } catch (error) {
       next(error);
     }

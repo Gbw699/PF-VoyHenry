@@ -3,7 +3,7 @@ const passport = require('passport')
 const { checkRoleClosure } = require('../middlewares/auth.handler')
 const UsersService = require('../services/user.service')
 const validatorHandler = require('../middlewares/validator.handler')
-const { createUserSchema, updateSchema, getUserSchema } = require('../schemas/users.schema')
+const { createUserSchema, updateSchema, getUserSchema, userFollowSchema } = require('../schemas/users.schema')
 
 const router = Router();
 const service = new UsersService()
@@ -63,16 +63,14 @@ router.get('/:nickName/blogs',
       const pageNumber = parseInt(page);
 
       const response = { blogs, pageNumber, pages }
+
       res.json(response)
-      //res.json(user)
-      //res.json(user)
     } catch (error) {
 
       next(error)
     }
 
 });
-
 
 /* Get AllPlans by nickName */
 
@@ -155,7 +153,88 @@ router.delete('/:nickName',
 
       next(error)
     }
+  });
+
+/* user follow user */
+
+router.post('/:nickName/follow',
+validatorHandler(getUserSchema, 'params'),
+validatorHandler(userFollowSchema, 'body'),
+  async (req, res, next) => {
+
+    try {
+
+      const {nickName} = req.params
+
+      const body = req.body;
+
+      const userFollowUser = await service.follow(nickName,body)
+
+      res.json(userFollowUser)
+    } catch (error) {
+
+      next(error)
+    }
 
 });
+
+/* get users followed */
+
+router.get(
+  '/:nickName/followed',
+  validatorHandler(getUserSchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const  {nickName}  = req.params;
+
+      const FollowedUsers = await service.getFollowedUsers(nickName);
+
+      res.json(FollowedUsers);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+/* Get users following */
+
+router.get(
+  '/:nickName/Following',
+  validatorHandler(getUserSchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const  { nickName }  = req.params;
+
+      const followingUsers = await service.getUsersFollowing(nickName);
+
+      res.json(followingUsers);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+/* delete follow user */
+
+router.delete(
+  '/:nickName/follow',
+  validatorHandler(getUserSchema, 'params'),
+  validatorHandler(userFollowSchema, 'body'),
+  async (req, res, next) => {
+    try {
+
+      const { nickName } = req.params
+
+      const body = req.body;
+
+      const deletedFollow = await service.deleteFollowUser(nickName, body);
+
+      res.json(deletedFollow);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+);
 
 module.exports = router;

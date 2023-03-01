@@ -130,9 +130,15 @@ blogs.belongsToMany(comments, {
   through: 'comments_blogs',
 });
 
-// users.belongsToMany(comments, {as: "user", foreignKey:"NickName", through: 'users_comments' });
-// comments.belongsToMany(users, {as: "commentuser", foreignKey:"userNickName", through: 'users_comments' })
-// comments.belongsToMany(plans, {as:"commentplans", foreignKey:"userNickName", through: 'users_comments' })
-// plans.belongsToMany(plans, {as:"plans", foreignKey:"planid", through: 'users_comments' });
+
+users.belongsToMany(plans, {foreignKey: "userid", through: "user_favorite_plan"} )
+plans.belongsToMany(users, {foreignKey: "planid", through: "user_favorite_plan"} )
+
+users.belongsToMany(blogs, {foreignKey: "userid", through: "user_favorite_blog"} )
+blogs.belongsToMany(users, {foreignKey: "blogid", through: "user_favorite_blog"} )
+
+users.belongsToMany(users, {as: "user", foreignKey: "userid", through: "user_follow_user"} )
+users.belongsToMany(users, {as: "followUser", foreignKey: "followUserId", through: "user_follow_user"} )
 
 module.exports = users;
+
