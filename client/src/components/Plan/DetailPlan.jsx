@@ -8,6 +8,7 @@ import { Rating } from "@mui/material";
 import PostComment from "../../recycle/Comments/PostComment";
 import GetComments from "../../recycle/Comments/GetComments";
 import ButtonShare from "../../recycle/ButtonShare/ButtonShare";
+import MapPlan from "./MapPlan";
 
 export default function DetailPlan() {
   const [value, setValue] = useState();
@@ -109,6 +110,12 @@ export default function DetailPlan() {
 
   return (
     <div className={style.container}>
+      <MapPlan
+      country={plan.country}
+      province={plan.province}
+      city={plan.city}
+      address={plan.address}
+      />
       <div className={style.plan}>
         <div
           style={{ backgroundImage: `url(${plan.mainImage})` }}
