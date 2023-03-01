@@ -127,8 +127,6 @@ blogs.belongsToMany(comments, {
 });
 
 
-
-
 users.belongsToMany(plans, {foreignKey: "userid", through: "user_favorite_plan"} )
 plans.belongsToMany(users, {foreignKey: "planid", through: "user_favorite_plan"} )
 
