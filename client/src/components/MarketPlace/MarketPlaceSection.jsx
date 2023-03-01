@@ -11,21 +11,22 @@ export default function MarketPlaceSection() {
   const [backgroundImage, setBackgroundImage] = useState("");
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getProductsbyOrder("order","nuevos"));
+    dispatch(getProductsbyOrder("order", "nuevos"));
     setBackgroundImage(`url(${marketBgImg})`);
-  },[]);
+  }, []);
+
+  const handleDeleteProduct = (id) => {
+    dispatch(id);
+  };
 
   const { products, pageNumber, pages } = useSelector(
     (state) => state.marketPlaceStore.filteredProducts
   );
 
-  if(!products){
+  if (products.length === 0) {
     return <div>La tienda está vacía</div>;
   }
-  if(products.lenght === 0){
-    return <div>La tienda está vacía</div>;
-  }
-  
+
   return (
     <div className={style.container}>
       <div
@@ -36,16 +37,16 @@ export default function MarketPlaceSection() {
         <Filters />
         <div className={style.cardsCont}>
           {products?.map((element) => (
-            <Link
-              to={`/marketplace/${element.id}`}
-              key={element.id}
-            >
-              <MarketCard
-                title={element.title}
-                image={element.mainImage}
-                price={element.price}
-              />
-            </Link>
+            <div key={element.id}>
+              <button onClick={handleDeleteProduct(element.id)}>X</button>
+              <Link to={`/marketplace/${element.id}`}>
+                <MarketCard
+                  title={element.title}
+                  image={element.mainImage}
+                  price={element.price}
+                />
+              </Link>
+            </div>
           ))}
         </div>
       </div>
