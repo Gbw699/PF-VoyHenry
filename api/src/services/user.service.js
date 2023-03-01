@@ -4,7 +4,13 @@ const bcrypt = require('bcrypt')
 const { Op } = require("sequelize");
 const blogModel = require('../libs/models/blog-model');
 const plansModel = require('../libs/models/plans.model');
+/* const AuthService = require('./auth.service')
 
+const {
+  MAIL
+} = process.env
+
+const authService = new AuthService() */
 
 class UsersService {
 
@@ -126,6 +132,8 @@ class UsersService {
     return user
 
   }
+
+  /* Find user by email */
 
   async findByEmail (email) {
 
