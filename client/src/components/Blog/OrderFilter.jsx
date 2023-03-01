@@ -3,7 +3,7 @@ import style from "./OrderFilter.module.css";
 export default function OrderFilter({ filters, setFilters }) {
   return (
     <div className={style.container}>
-      <h3 className={style.name}>Ordenar</h3>
+      <h3 className={style.name}>Ordenar por</h3>
       <div className={style.containerButton}>
         <button
           className={style.buttons}
