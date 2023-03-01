@@ -9,13 +9,8 @@
   align-items: center;
   background-color: white;
   padding: 1em 1.5em;
-  width: 70em;
+  width: 100%;
   margin: 1em 0px;
-}
-
-.reviewCont:hover {
-  border-radius: 1em;
-  background-color: #f1e100;
 }
 
 .userImg {
@@ -63,7 +58,7 @@
 }
 
 .reviewImg {
-  width: 16em;
+  width: 20%;
   height: 8em;
   background-size: cover;
   background-repeat: no-repeat;
@@ -73,7 +68,7 @@
 }
 
 .reviewInfo {
-  width: 20em;
+  width: 80%;
   display: flex;
   flex-direction: column;
 }

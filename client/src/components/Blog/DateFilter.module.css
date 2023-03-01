@@ -1,11 +1,8 @@
 .container {
   display: flex;
   flex-direction: column;
-
-  margin: 6em;
-  /* justify-content: center; */
-  /* align-items: center; */
   margin: 0px 2em;
+  width: 20%;
 }
 
 .name {
@@ -17,8 +14,7 @@
 
 .input {
   border: 1px solid #f1e100;
-
-  color: black;
+  border-radius: 5px;
   color: #707070;
   background-color: white;
   height: 30px;
