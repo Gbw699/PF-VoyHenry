@@ -55,7 +55,6 @@ router.get('/login/google/callback',
       } else {
 
         const user = service.signToken(req.user)
-
         res.redirect(`http://localhost:3000/logIn?token=${user.token}
           &nickName=${user.user[0].nickName}
           &email=${user.user[0].email}

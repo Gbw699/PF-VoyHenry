@@ -5,7 +5,9 @@ const { Op } = require("sequelize");
 const blogModel = require('../libs/models/blog-model');
 const plansModel = require('../libs/models/plans.model');
 const sequelize = require('../libs/database/database');
+const MailerService = require('./Mailer.service')
 
+const mailerService = new MailerService()
 
 class UsersService {
 
@@ -35,6 +37,8 @@ class UsersService {
       dateOfBirth: new Date(dateOfBirth),
       image: image
     })
+
+    mailerService.sendWelcomeMail(newUser)
 
     delete newUser.dataValues.password;
 
@@ -70,6 +74,10 @@ class UsersService {
 
     newUser[1] = {
       newUser: newUser[1]
+    }
+
+    if(newUser[1].newUser){
+      mailerService.sendWelcomeMail(newUser[0].dataValues)
     }
 
     return newUser
@@ -127,6 +135,8 @@ class UsersService {
     return user
 
   }
+
+  /* Find user by email */
 
   async findByEmail (email) {
 

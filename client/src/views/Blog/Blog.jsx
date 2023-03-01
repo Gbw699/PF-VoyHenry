@@ -23,8 +23,12 @@ export default function Blog() {
           close={() => setIsOpen(false)}
         />
       </div>
-      <BlogsReviews />
-      <BlogUsers />
+      <div className={style.reviews}>
+        <BlogsReviews />
+      </div>
+      <div className={style.users}>
+        <BlogUsers />
+      </div>
     </div>
   );
 }

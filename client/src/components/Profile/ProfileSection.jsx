@@ -135,22 +135,24 @@ export default function ProfileSection() {
                     />
                   </Link>
                 ))}
-              {morePlans && (
-                <button
-                  onClick={handleMorePlans}
-                  className={style.buttons}
-                >
-                  Mostrar más
-                </button>
-              )}
-              {!morePlans && (
-                <button
-                  onClick={handleMorePlans}
-                  className={style.buttons}
-                >
-                  Mostrar menos
-                </button>
-              )}
+              <div className={style.containerOfButton}>
+                {morePlans && (
+                  <button
+                    onClick={handleMorePlans}
+                    className={style.buttons}
+                  >
+                    Mostrar más
+                  </button>
+                )}
+                {!morePlans && (
+                  <button
+                    onClick={handleMorePlans}
+                    className={style.buttons}
+                  >
+                    Mostrar menos
+                  </button>
+                )}
+              </div>
             </div>
           </div>
           <div>
