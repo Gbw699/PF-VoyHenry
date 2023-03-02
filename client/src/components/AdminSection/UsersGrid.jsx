@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 import {
   DataGrid,
   GridActionsCellItem,
@@ -21,7 +22,7 @@ export default function UsersGrid({ users }) {
         <Button
           color="primary"
           startIcon={<AddIcon />}
-          onClick={(e) => console.log(e)}
+          onClick={() => handleCreateClick()}
         >
           ADD RECORD
         </Button>
@@ -29,7 +30,15 @@ export default function UsersGrid({ users }) {
     );
   }
 
+  const handleCreateClick = (event) => {
+    console.log(event);
+  };
+
   const handleEditClick = (event) => {
+    console.log(event);
+  };
+
+  const handleDeleteClick = (event) => {
     console.log(event);
   };
 
@@ -65,13 +74,21 @@ export default function UsersGrid({ users }) {
       type: "actions",
       width: 150,
       renderCell: (nickName) => {
-        return (
+        return [
           <GridActionsCellItem
+            key={1}
             icon={<EditIcon />}
             label="Editar"
             onClick={() => handleEditClick(nickName.row.col1)}
-          ></GridActionsCellItem>
-        );
+          ></GridActionsCellItem>,
+          <GridActionsCellItem
+            key={2}
+            icon={<DeleteIcon />}
+            label="Delete"
+            onClick={handleDeleteClick(nickName.row.col1)}
+            color="inherit"
+          ></GridActionsCellItem>,
+        ];
       },
     },
   ];
