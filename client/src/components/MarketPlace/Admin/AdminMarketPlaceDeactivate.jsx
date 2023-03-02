@@ -1,12 +1,14 @@
 import React from "react";
 // import style from './AdminMarketPlaceDeactivate.module.css'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AdminMarketPlaceInput from "./AdminMarketPlaceInput";
+import { deactivateProduct } from "../../../redux/slices/marketPlaceSlice/thunk";
 
 export default function AdminMarketPlaceDeactivate({
   setProductDeactivate,
   productDeactivate,
 }) {
+  const dispatch = useDispatch();
   const { products } = useSelector(
     (state) => state.marketPlaceStore.filteredProducts
   );
@@ -17,6 +19,12 @@ export default function AdminMarketPlaceDeactivate({
         ? products.find((product) => product.id === parseInt(value))
         : "";
     setProductDeactivate(product);
+  };
+
+  const handleDeactivate = () => {
+    productDeactivate
+      ? dispatch(deactivateProduct(productDeactivate.id))
+      : window.alert("No has seleccionado ningún producto para borrar");
   };
 
   return (
@@ -85,7 +93,7 @@ export default function AdminMarketPlaceDeactivate({
             />
           </div>
         ))}
-      <button>Desactivar</button>
+      <button onClick={handleDeactivate}>Desactivar</button>
     </div>
   );
 }
