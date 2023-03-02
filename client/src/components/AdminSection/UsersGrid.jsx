@@ -11,6 +11,7 @@ import {
   GridToolbarDensitySelector,
 } from "@mui/x-data-grid";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteRecord from "./DeleteRecord";
 
 export default function UsersGrid({ users }) {
   function CustomToolbar() {
@@ -30,16 +31,16 @@ export default function UsersGrid({ users }) {
     );
   }
 
-  const handleCreateClick = (event) => {
-    console.log(event);
+  const handleCreateClick = () => {
+    console.log("create");
   };
 
-  const handleEditClick = (event) => {
-    console.log(event);
+  const handleEditClick = (nickName) => {
+    console.log("edit");
   };
 
-  const handleDeleteClick = (event) => {
-    console.log(event);
+  const handleDeleteClick = (nickName) => {
+    DeleteRecord(nickName);
   };
 
   const rows = users?.map((user, index) => {
@@ -70,7 +71,7 @@ export default function UsersGrid({ users }) {
     { field: "col9", headerName: "Imagen de perfil", width: 150 },
     {
       field: "col10",
-      headerName: "Editar",
+      headerName: "Acciones",
       type: "actions",
       width: 150,
       renderCell: (nickName) => {
@@ -85,7 +86,7 @@ export default function UsersGrid({ users }) {
             key={2}
             icon={<DeleteIcon />}
             label="Delete"
-            onClick={handleDeleteClick(nickName.row.col1)}
+            onClick={() => handleDeleteClick(nickName.row.col1)}
             color="inherit"
           ></GridActionsCellItem>,
         ];
