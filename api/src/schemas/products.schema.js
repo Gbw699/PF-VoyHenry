@@ -37,6 +37,7 @@ const updateProductSchema = Joi.object({
 })
 
 const buyProductSchema = Joi.object({
+  id: id,
   title: title,
   price: price
 })

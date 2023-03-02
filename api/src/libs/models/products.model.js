@@ -28,7 +28,7 @@ const products = sequelize.define('products', {
     allowNull: false
   },
   images : {
-  type: DataTypes.ARRAY(DataTypes.TEXT),
+    type: DataTypes.ARRAY(DataTypes.TEXT),
   },
   mainImage: {
     type: DataTypes.TEXT,
@@ -37,9 +37,19 @@ const products = sequelize.define('products', {
       isUrl: true
     }
   },
-  availability: {
-    type: DataTypes.BOOLEAN,
+  stock: {
+    type: DataTypes.INTEGER,
     allowNull: false
+  },
+  availability: {
+    type: DataTypes.VIRTUAL,
+    get() {
+      if (this.stock === 0) {
+        return false
+      } else {
+        return true
+      }
+    }
   }
 
 })
