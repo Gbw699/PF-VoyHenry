@@ -213,7 +213,7 @@ export default function FormSignUp(props) {
                   htmlFor="city"
                   className={style.formTitle}
                 >
-                  Descripción
+                  Ciudad
                 </label>
                 <Field
                   name="city"
@@ -226,7 +226,7 @@ export default function FormSignUp(props) {
                   htmlFor="address"
                   className={style.formTitle}
                 >
-                  Descripción
+                  Dirección
                 </label>
                 <Field
                   name="address"
