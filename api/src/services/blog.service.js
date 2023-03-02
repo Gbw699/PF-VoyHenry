@@ -1,6 +1,6 @@
 const blogModel = require('../libs/models/blog-model.js');
 const users = require('../libs/models/users.model.js');
-const comments = require('../libs/models/comments.users');
+const comments = require('../libs/models/comments.model');
 const { CustomError } = require('../middlewares/error.handler')
 const { Op } = require("sequelize");
 const sequelize = require('../libs/database/database');

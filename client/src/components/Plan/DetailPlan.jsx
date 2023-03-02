@@ -26,8 +26,8 @@ export default function DetailPlan() {
 
   useEffect(() => {
     dispatch(getPlanById(id));
-    getComments();
     getFavorites();
+    getComments();
   }, []);
   
   useEffect(() => {
@@ -59,13 +59,13 @@ export default function DetailPlan() {
     };
     try {
       await axios.post(`/api/v1/plans/${id}/comment`, obj);
-      getComments();
       document.querySelector("#reseña").value = "";
+      getComments();
     } catch (error) {
       console.error(error);
     }
   }
-
+  
   async function handleStarClick(event, value) {
     const obj = {
       votes: 1,
@@ -285,7 +285,9 @@ export default function DetailPlan() {
           </div>
         )}
         {comments.length > 0 ? (
-          <GetComments comments={comments} />
+          <GetComments 
+          getComments={getComments}
+          comments={comments} />
         ) : (
           <p>Aún no hay comentarios</p>
         )}

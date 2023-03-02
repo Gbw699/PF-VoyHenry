@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../database/database');
 const plans = require('./plans.model');
 const blogs = require('./blog-model');
-const comments = require('./comments.users');
+const comments = require('./comments.model');
 
 const users = sequelize.define('users', {
   nickName: {
