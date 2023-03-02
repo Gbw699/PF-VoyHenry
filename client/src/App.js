@@ -48,7 +48,7 @@ function App() {
       <Auth />
       <Routes>
         <Route
-          path="/admin"
+          path="/admin/*"
           element={<AdminSection />}
         />
         <Route
