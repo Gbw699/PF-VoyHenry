@@ -10,8 +10,6 @@ import Swal from "sweetalert2";
 import style from "./EditProfileSection.module.css";
 
 export const EditProfileSection = ({
-  nickName,
-  setNickName,
   image,
   setImage,
   firstName,
@@ -28,6 +26,7 @@ export const EditProfileSection = ({
   setSelectedProvince,
 }) => {
   const user = JSON.parse(localStorage.getItem("user"));
+  const nickName = user.nickName;
   const dispatch = useDispatch();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -51,10 +50,7 @@ export const EditProfileSection = ({
       .then((result) => {
         if (result.isConfirmed) {
           dispatch(
-            editUser(
-              { firstName, lastName, image, nickName, about },
-              user.nickName
-            )
+            editUser({ firstName, lastName, image, about, nickName }, nickName)
           );
           localStorage.setItem(
             "user",
@@ -99,12 +95,6 @@ export const EditProfileSection = ({
           placeholder="Apellido"
           setState={setLastName}
         />
-        <p className={style.title}>Apodo</p>
-        <EditProfileInput
-          name="nickName"
-          placeholder="Como te ven los otros usuarios"
-          setState={setNickName}
-        />
         {/* <EditProfileSelectCountry
           {...{
             provinces,
@@ -114,11 +104,6 @@ export const EditProfileSection = ({
             selectedProvince,
             setSelectedProvince,
           }}
-        /> */}
-        {/* <p>Teléfono</p>
-        <EditProfileInput
-          name="phone"
-          placeholder="(Código país) (Código área) 1122-3344"
         /> */}
         <button className={style.buttons}>Guardar cambios</button>
       </form>

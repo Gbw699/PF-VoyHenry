@@ -16,10 +16,12 @@ export default function UserCard({
       <div className={style.profileCont}>
         <div className={style.subCont}>
           <div className={style.imgCont}>
-            <div
-              style={{ backgroundImage: `url(${image})` }}
-              className={style.img}
-            />
+            <Link to={`/users/${nickName}`}>
+              <div
+                style={{ backgroundImage: `url(${image})` }}
+                className={style.img}
+              />
+            </Link>
           </div>
           <div className={style.profileInfo}>
             <div>
@@ -48,10 +50,7 @@ export default function UserCard({
           >
             Seguir
           </button>
-          <Link
-            to={`/users/${nickName}`}
-            key={nickName}
-          >
+          <Link to={`/users/${nickName}`}>
             <button
               className={style.buttonPerfil}
               type="submit"

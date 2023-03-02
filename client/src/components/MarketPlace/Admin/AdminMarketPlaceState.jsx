@@ -1,5 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import AdminMarketPlaceSection from "./AdminMarketPlaceSection";
 
 export default function AdminMarketPlaceState() {
-  return <div>AdminMarketPlaceState</div>;
+  const [productName, setProductName] = useState();
+  const [productPrice, setProductPrice] = useState();
+  const [productCategory, setProductCategory] = useState();
+  const [productDetail, setProductDetail] = useState();
+  const [productMainImage, setProductMainImage] = useState();
+  const [productImages, setProductImages] = useState();
+
+  return (
+    <div>
+      <AdminMarketPlaceSection
+        {...{
+          productName,
+          setProductName,
+          productPrice,
+          setProductPrice,
+          productCategory,
+          setProductCategory,
+          productDetail,
+          setProductDetail,
+          productMainImage,
+          setProductMainImage,
+          productImages,
+          setProductImages,
+        }}
+      />
+    </div>
+  );
 }
