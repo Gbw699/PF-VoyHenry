@@ -21,6 +21,7 @@ export default function SearchBar() {
       <input
         className={style.searchInput}
         type="search"
+        placeholder="Buscar reseña"
         onChange={(event) => {
           setInput(event.target.value);
         }}
