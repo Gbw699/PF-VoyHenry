@@ -77,9 +77,7 @@ export default function FormLogIn() {
       <div className={style.container}>
         <div className={style.formContainer}>
           <h1 className={style.formTitle}>INICIAR SESIÓN</h1>
-          <Form
-            onSubmit={formik.handleSubmit}
-          >
+          <Form onSubmit={formik.handleSubmit}>
             <div>
               <h3 className={style.inputTitle}>E-mail</h3>
               <Form.Input
@@ -119,13 +117,13 @@ export default function FormLogIn() {
                 className={style.btnGoogle}
               >
                 <div className={style.googleCont}>
-                    <img
-                      src={googleLogo}
-                      className={style.googleLogo}
-                      alt="voyHENRY logo"
-                    />
-                    <p>Iniciar sesión con Google</p>
-                  </div>
+                  <img
+                    src={googleLogo}
+                    className={style.googleLogo}
+                    alt="voyHENRY logo"
+                  />
+                  <p>Iniciar sesión con Google</p>
+                </div>
               </button>
               <div className={style.subBtns}>
                 <button

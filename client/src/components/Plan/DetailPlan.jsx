@@ -8,6 +8,7 @@ import { Rating } from "@mui/material";
 import PostComment from "../../recycle/Comments/PostComment";
 import GetComments from "../../recycle/Comments/GetComments";
 import ButtonShare from "../../recycle/ButtonShare/ButtonShare";
+import MapPlan from "./MapPlan";
 
 export default function DetailPlan() {
   const [value, setValue] = useState();
@@ -77,10 +78,9 @@ export default function DetailPlan() {
   };
 
   const handleLabel = (event) => {
-    setInputsValue(
-      {
-        [event.target.name]: event.target.value
-      });
+    setInputsValue({
+      [event.target.name]: event.target.value,
+    });
   };
 
   const handleSave = async () => {
@@ -109,6 +109,12 @@ export default function DetailPlan() {
 
   return (
     <div className={style.container}>
+      <MapPlan
+        country={plan.country}
+        province={plan.province}
+        city={plan.city}
+        address={plan.address}
+      />
       <div className={style.plan}>
         <div
           style={{ backgroundImage: `url(${plan.mainImage})` }}
@@ -116,23 +122,58 @@ export default function DetailPlan() {
         >
           {isEditable && (
             <>
-              <button className={style.editButton} onClick={handleEditClick}>
+              <button
+                className={style.editButton}
+                onClick={handleEditClick}
+              >
                 Editar Plan
               </button>
             </>
           )}
-          {showEditInputs && <>
-            <button className={style.deleteButton} onClick={handleDeleteClick}>
-              Borrar Plan
-            </button>
-            <button className={style.saveButton} onClick={handleSave}>
-              Guardar cambios
-            </button>
-          </>}
-          <h1>{plan.title}</h1>{showEditInputs && <input onChange={handleLabel} name="title" />}
-          <h3>{plan.country}</h3>{showEditInputs && <input onChange={handleLabel} name="country" />}
-          <h3>{plan.province}</h3>{showEditInputs && <input onChange={handleLabel} name="province" />}
-          <h3>{plan.eventDate}</h3>{showEditInputs && <input onChange={handleLabel} name="eventDate" />}
+          {showEditInputs && (
+            <>
+              <button
+                className={style.deleteButton}
+                onClick={handleDeleteClick}
+              >
+                Borrar Plan
+              </button>
+              <button
+                className={style.saveButton}
+                onClick={handleSave}
+              >
+                Guardar cambios
+              </button>
+            </>
+          )}
+          <h1>{plan.title}</h1>
+          {showEditInputs && (
+            <input
+              onChange={handleLabel}
+              name="title"
+            />
+          )}
+          <h3>{plan.country}</h3>
+          {showEditInputs && (
+            <input
+              onChange={handleLabel}
+              name="country"
+            />
+          )}
+          <h3>{plan.province}</h3>
+          {showEditInputs && (
+            <input
+              onChange={handleLabel}
+              name="province"
+            />
+          )}
+          <h3>{plan.eventDate}</h3>
+          {showEditInputs && (
+            <input
+              onChange={handleLabel}
+              name="eventDate"
+            />
+          )}
           {plan.average && (
             <Rating
               size="large"
@@ -150,7 +191,13 @@ export default function DetailPlan() {
           color="#F1E100"
         />
         <p>Descripción del evento</p>
-        <p>{plan.description}</p>{showEditInputs && <input onChange={handleLabel} name="description" />}
+        <p>{plan.description}</p>
+        {showEditInputs && (
+          <input
+            onChange={handleLabel}
+            name="description"
+          />
+        )}
       </div>
       <div className={style.buttons}>
         <div className={style.button}>
@@ -192,13 +239,14 @@ export default function DetailPlan() {
               value={value}
               onChange={handleStarClick}
             />
-          </div>)}
+          </div>
+        )}
         {comments.length > 0 ? (
           <GetComments comments={comments} />
         ) : (
           <p>Aún no hay comentarios</p>
         )}
       </div>
-    </div >
+    </div>
   );
 }
