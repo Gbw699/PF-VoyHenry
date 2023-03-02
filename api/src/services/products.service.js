@@ -152,7 +152,7 @@ class ProductsService {
 
   /* buy One product */
 
-  async buyOne({id, title, price }) {
+  async buyOne({id, title, price, user }) {
     let preference = {
       items: [
         {
@@ -163,8 +163,8 @@ class ProductsService {
         },
       ],
       back_urls: {
-        success: 'http://localhost:3030/api/v1/',
-        failure: '',
+        success: `http://localhost:3001/api/v1/products/success?customer=${user}`,
+        failure: 'http://localhost:3001/api/v1/products/failure',
         pendig: '',
       },
       auto_return: 'approved',
@@ -221,6 +221,8 @@ class ProductsService {
     
       await product.save()
     }
+
+    console.log(body)
 
     const response = await mercadopago.preferences.create(preference);
 
