@@ -2,7 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import style from "./UserCard.module.css";
 
-export default function UserCard({ nickName, image, firstName, lastName, nationality }) {
+export default function UserCard({
+  nickName,
+  image,
+  firstName,
+  lastName,
+  nationality,
+}) {
   const handleClick = () => {};
 
   return (
@@ -18,8 +24,13 @@ export default function UserCard({ nickName, image, firstName, lastName, nationa
           <div className={style.profileInfo}>
             <div>
               <p className={style.name}>{`${firstName} ${lastName}`}</p>
-              <hr color="#F1E100" width="100%" />
-              <p className={style.nacionality}>{nationality ? nationality : "Sin nacionalidad"}</p>
+              <hr
+                color="#F1E100"
+                width="100%"
+              />
+              <p className={style.nacionality}>
+                {nationality ? nationality : "Sin nacionalidad"}
+              </p>
             </div>
             <div className={style.followers}>
               <p className={style.followTitle}>Siguiendo</p>

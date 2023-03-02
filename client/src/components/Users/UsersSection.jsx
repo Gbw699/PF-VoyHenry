@@ -14,17 +14,17 @@ export default function UsersSection({ users }) {
           //   to={`/users/${element.nickName}`}
           //   key={element.nickName}
           // >
-            <div 
-              className={style.userCard}
-              key={element.nickName}
-            >
-              <UserCard
-                firstName={element.firstName}
-                lastName={element.lastName}
-                image={element.image}
-                nationality={element.nationality}
-              />
-            </div>
+          <div
+            className={style.userCard}
+            key={element.nickName}
+          >
+            <UserCard
+              firstName={element.firstName}
+              lastName={element.lastName}
+              image={element.image}
+              nationality={element.nationality}
+            />
+          </div>
           // </Link>
         ))}
       </div>

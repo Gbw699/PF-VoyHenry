@@ -56,12 +56,11 @@
   transform: translateY(0);
 }
 
-
-.containerFilter{
+.containerFilter {
   margin-bottom: 1.5em;
 }
 
-.selectFilter{
+.selectFilter {
   margin-top: 0.5em;
   width: 100%;
   text-align: center;

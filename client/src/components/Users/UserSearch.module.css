@@ -9,7 +9,7 @@
   font-family: monospace;
   width: 290px;
   outline: none;
-  border: 1px solid #F1E100;
+  border: 1px solid #f1e100;
   padding: 5px;
   border-radius: 5px;
   background-color: white;
@@ -22,20 +22,20 @@
 }
 
 .searchInput:focus {
-  box-shadow: 0 0 0 2px #F1E100;
+  box-shadow: 0 0 0 2px #f1e100;
 }
 
 .searchBtn {
-  background-color: #F1E100;
+  background-color: #f1e100;
   color: #707070;
-  border: 1px solid #F1E100;
+  border: 1px solid #f1e100;
   border-radius: 5px;
   padding: 5px;
 }
 
 .searchBtn:hover {
   background-color: #707070;
-  color: #F1E100;
+  color: #f1e100;
   border: 1px solid #707070;
   border-radius: 5px;
 }

@@ -7,7 +7,7 @@ import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
 export default function PlanCardListHome() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getPlansbyOrder("order","masvotados"));
+    dispatch(getPlansbyOrder("order", "masvotados"));
   }, []);
 
   const renderPlans = useSelector((state) => state.planStore.renderPlans);
@@ -16,7 +16,7 @@ export default function PlanCardListHome() {
   return (
     <div className={style.container}>
       <div className={style.cardCont}>
-        {plans?.plans.slice(0,6).map((plan) => (
+        {plans?.plans.slice(0, 6).map((plan) => (
           <PlanCard
             key={plan.id}
             id={plan.id}

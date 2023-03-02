@@ -46,6 +46,8 @@ export default function FormSignUp(props) {
             images: [],
             country: "",
             province: "",
+            city: "",
+            address: "",
             eventDate: "",
           }}
           validationSchema={Yup.object({
@@ -62,6 +64,8 @@ export default function FormSignUp(props) {
               .required("La descripción es obligatoria"),
             country: Yup.string(),
             province: Yup.string(),
+            city: Yup.string(),
+            address: Yup.string(),
             eventDate: Yup.date()
               .min(new Date(greaterDate))
               .required("La fecha del evento es obligatoria"),
@@ -77,6 +81,8 @@ export default function FormSignUp(props) {
               images: [],
               country: values.country,
               province: values.province,
+              city: values.province,
+              address: values.province,
               eventDate: values.eventDate,
               state: "En planeacion",
             };
@@ -202,6 +208,32 @@ export default function FormSignUp(props) {
                   ))}
                 </Field>
                 <ErrorMessage name="province" />
+                {/* ------------------------------------------------------------------------- */}
+                <label
+                  htmlFor="city"
+                  className={style.formTitle}
+                >
+                  Descripción
+                </label>
+                <Field
+                  name="city"
+                  type="text"
+                  className={style.formInputs}
+                />
+                <ErrorMessage name="city" />
+                {/* ------------------------------------------------------------------------- */}
+                <label
+                  htmlFor="address"
+                  className={style.formTitle}
+                >
+                  Descripción
+                </label>
+                <Field
+                  name="address"
+                  type="text"
+                  className={style.formInputs}
+                />
+                <ErrorMessage name="address" />
                 {/* ------------------------------------------------------------------------- */}
                 <label
                   htmlFor="eventDate"

@@ -16,13 +16,13 @@
   flex-wrap: wrap;
 }
 
-.buttonAdmin{
+.buttonAdmin {
   font-size: 1.5em;
   margin-top: 1.5em;
   border-radius: 1em;
-  border-color: #F1E100;
+  border-color: #f1e100;
   padding: 0.4em;
-  background-color: #F1E100;
+  background-color: #f1e100;
 }
 
 .buttonAdmin:hover{

@@ -11,7 +11,6 @@ export default function PlanCard(props) {
     setBackgroundImage(`url(${props.mainImage})`);
   }, [props]);
 
-
   return (
     <div
       className={style.cardCont}
