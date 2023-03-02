@@ -133,25 +133,34 @@ export default function FormSignUp() {
               className={style.formInputs}
               >
                 
-              <label htmlFor="firstName"
-                className={style.inputTitle}
-              >Nombre</label>
-              <Form.Input
-                id="firstName"
-                name="firstName"
-                type="text"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.firstName}
-                />
-                {formik.touched.firstName && formik.errors.firstName ? (
-                <div>{formik.errors.firstName}</div>
-                ) : null}
+              <div
+                className={style.inputs}
+              >
+                <label htmlFor="firstName"
+                  className={style.inputTitle}
+                >Nombre</label>
+                <Form.Input
+                  placeholder="Nombre"
+                  id="firstName"
+                  name="firstName"
+                  type="text"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.firstName}
+                  />
+                  {formik.touched.firstName && formik.errors.firstName ? (
+                  <div>{formik.errors.firstName}</div>
+                  ) : null}
+              </div> 
 
+              <div
+                className={style.inputs}
+              >
               <label htmlFor="lastName"
                 className={style.inputTitle}
               >Apellido</label>
               <Form.Input
+                placeholder="Apellido"
                 id="lastName"
                 name="lastName"
                 type="text"
@@ -162,11 +171,16 @@ export default function FormSignUp() {
                 {formik.touched.lastName && formik.errors.lastName ? (
                 <div>{formik.errors.lastName}</div>
                 ) : null}
+              </div>
 
+              <div
+                className={style.inputs}
+              >
               <label htmlFor="nickName"
                 className={style.inputTitle}
               >Nombre de usuario</label>
               <Form.Input
+                placeholder="Nombre de usuario"
                 id="nickName"
                 name="nickName"
                 type="text"
@@ -177,11 +191,17 @@ export default function FormSignUp() {
                 {formik.touched.nickName && formik.errors.nickName ? (
                 <div>{formik.errors.nickName}</div>
                 ) : null}
+              </div>
 
+
+              <div
+                className={style.inputs}
+              >
               <label htmlFor="email"
                 className={style.inputTitle}
               >Email</label>
               <Form.Input
+                placeholder="Email"
                 id="email"
                 name="email"
                 type="text"
@@ -192,11 +212,16 @@ export default function FormSignUp() {
                 {formik.touched.email && formik.errors.email ? (
                 <div>{formik.errors.email}</div>
                 ) : null}
+              </div>
 
+              <div
+                className={style.inputs}
+              >
               <label htmlFor="password"
                 className={style.inputTitle}
               >Contraseña</label>
               <Form.Input
+                placeholder="Contraseña"
                 id="password"
                 name="password"
                 type="password"
@@ -207,11 +232,16 @@ export default function FormSignUp() {
                 {formik.touched.password && formik.errors.password ? (
                 <div>{formik.errors.password}</div>
                 ) : null}
-
+              </div>
+              
+              <div
+                className={style.inputs}
+              >
               <label htmlFor="repeatPassword"
                 className={style.inputTitle}
               >Repite la contraseña</label>
               <Form.Input
+                placeholder="Repite la contraseña"
                 id="repeatPassword"
                 name="repeatPassword"
                 type="password"
@@ -222,7 +252,11 @@ export default function FormSignUp() {
                 {formik.touched.repeatPassword && formik.errors.repeatPassword ? (
                 <div>{formik.errors.repeatPassword}</div>
                 ) : null}
-
+              </div>
+              
+              <div
+                className={style.inputs}
+              >
               <label htmlFor="dateOfBirth"
                 className={style.inputTitle}
               >Fecha de nacimiento</label>
@@ -238,7 +272,11 @@ export default function FormSignUp() {
                 {formik.touched.dateOfBirth && formik.errors.dateOfBirth ? (
                 <div>{formik.errors.dateOfBirth}</div>
                 ) : null}
+              </div>
 
+              <div
+                className={style.inputs}
+              >
                 <label 
                   htmlFor="genre"
                   className={style.inputTitle}
@@ -262,15 +300,14 @@ export default function FormSignUp() {
                   {formik.touched.genre && formik.errors.genre ? (
                   <div>{formik.errors.genre}</div>
                   ) : null}
-
-                
-              <button 
-                className={style.btnSignup}
-                type="submit"
-              >
-                Enviar
-              </button>
+              </div>
             </div>
+            <button 
+              className={style.btnSignup}
+              type="submit"
+            >
+                Enviar
+            </button>
           </form>
 
           <button
