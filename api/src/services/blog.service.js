@@ -47,6 +47,10 @@ class blogService {
       }
     }
 
+    if (query.limit) {
+      options.limit = query.limit;
+    }
+
 
     if (query.offset) {
 
