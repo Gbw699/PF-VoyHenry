@@ -17,36 +17,45 @@ export default function AdminMarketPlaceSection({
   setProductImages,
   buttonOption,
   setButtonOption,
+  productDeactivate,
+  setProductDeactivate,
 }) {
   const handleOnClick = (value) => {
     setButtonOption(value);
   };
-  console.log(buttonOption);
   return (
     <div>
       <button onClick={() => handleOnClick("create")}>Crear</button>
       <button onClick={() => handleOnClick("edit")}>Editar</button>
       <button onClick={() => handleOnClick("deactivate")}>Desactivar</button>
-      {buttonOption === "deactivate" && <AdminMarketPlaceDeactivate />}
-      <AdminMarketPlaceInput
+      {buttonOption === "deactivate" && (
+        <AdminMarketPlaceDeactivate
+          {...{ setProductDeactivate, productDeactivate }}
+        />
+      )}
+      {/* <AdminMarketPlaceInput
         name="title"
         placeholder="Ingrese el nombre del producto"
         setState={setProductName}
+        value={productDeactivate && productDeactivate.title}
       />
       <AdminMarketPlaceInput
         name="price"
         placeholder="Ingrese el titulo del producto"
         setState={setProductPrice}
+        value={productDeactivate && productDeactivate.price}
       />
       <AdminMarketPlaceInput
         name="category"
         placeholder="Ingrese la categoría del producto"
         setState={setProductCategory}
+        value={productDeactivate && productDeactivate.category}
       />
       <AdminMarketPlaceInput
         name="detail"
         placeholder="Ingrese la descripción del producto"
         setState={setProductDetail}
+        value={productDeactivate && productDeactivate.detail}
       />
       <AdminMarketPlaceInput
         name="mainImage"
@@ -57,7 +66,7 @@ export default function AdminMarketPlaceSection({
         name="images"
         placeholder="Ingrese las imágenes del producto"
         setState={setProductImages}
-      />
+      /> */}
     </div>
   );
 }
