@@ -1,18 +1,22 @@
 .container {
-  background-color: white;
   display: flex;
   flex-direction: row;
-  padding: 40px;
-  height: 100vh;
+  justify-content: center;
+  padding: 4rem;
 }
 
-.planForm{
+.planForm {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 18%;
 }
 
 .plans {
   margin: 0px 2%;
-  width: 100%;
+  width: 60%;
+}
+
+.sections {
+  width: 22%;
 }
