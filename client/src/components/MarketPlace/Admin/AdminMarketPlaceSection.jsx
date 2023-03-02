@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import AdminMarketPlaceDeactivate from "./AdminMarketPlaceDeactivate";
 import AdminMarketPlaceInput from "./AdminMarketPlaceInput";
 export default function AdminMarketPlaceSection({
   setProducts,
@@ -15,18 +15,19 @@ export default function AdminMarketPlaceSection({
   setProductMainImage,
   productImages,
   setProductImages,
+  buttonOption,
+  setButtonOption,
 }) {
-  const { products } = useSelector(
-    (state) => state.marketPlaceStore.filteredProducts
-  );
-
+  const handleOnClick = (value) => {
+    setButtonOption(value);
+  };
+  console.log(buttonOption);
   return (
     <div>
-      <select>
-        {products.map((element) => (
-          <option key={element.id}>{element.title}</option>
-        ))}
-      </select>
+      <button onClick={() => handleOnClick("create")}>Crear</button>
+      <button onClick={() => handleOnClick("edit")}>Editar</button>
+      <button onClick={() => handleOnClick("deactivate")}>Desactivar</button>
+      {buttonOption === "deactivate" && <AdminMarketPlaceDeactivate />}
       <AdminMarketPlaceInput
         name="title"
         placeholder="Ingrese el nombre del producto"
