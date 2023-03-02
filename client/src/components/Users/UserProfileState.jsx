@@ -7,11 +7,11 @@ export default function UserProfileState() {
   const [user, setUser] = useState([]);
   const [plans, setPlans] = useState([]);
   const [blogs, setBlogs] = useState([]);
-  const { nickName } = useParams();
+  const { id } = useParams();
 
   return (
     <>
-      <AxiosUsers {...{ nickName, setUser, setPlans, setBlogs }} />
+      <AxiosUsers {...{ id, setUser, setPlans, setBlogs }} />
       <UsersProfileSection
         user={user}
         plans={plans}

@@ -37,7 +37,7 @@ export default function ProfileSection() {
           firstName={user.firstName}
           lastName={user.lastName}
           genre={user.genre}
-          nationality="Argentina"
+          nationality={user.nationality ? user.nationality : "Sin nacionalidad"}
           following="156"
           followers="165"
           assistedPlans="12"
@@ -135,22 +135,24 @@ export default function ProfileSection() {
                     />
                   </Link>
                 ))}
-              {morePlans && (
-                <button
-                  onClick={handleMorePlans}
-                  className={style.buttons}
-                >
-                  Mostrar más
-                </button>
-              )}
-              {!morePlans && (
-                <button
-                  onClick={handleMorePlans}
-                  className={style.buttons}
-                >
-                  Mostrar menos
-                </button>
-              )}
+              <div className={style.containerOfButton}>
+                {morePlans && (
+                  <button
+                    onClick={handleMorePlans}
+                    className={style.buttons}
+                  >
+                    Mostrar más
+                  </button>
+                )}
+                {!morePlans && (
+                  <button
+                    onClick={handleMorePlans}
+                    className={style.buttons}
+                  >
+                    Mostrar menos
+                  </button>
+                )}
+              </div>
             </div>
           </div>
           <div>

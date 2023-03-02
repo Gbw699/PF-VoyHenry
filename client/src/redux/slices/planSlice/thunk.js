@@ -1,10 +1,6 @@
 import axios from "axios";
 import { queryString } from "./queryStringPlan.js";
-import {
-  setPlansSearch,
-  setPlanById,
-  setPlansbyOrder,
-} from "./planSlice";
+import { setPlansSearch, setPlanById, setPlansbyOrder } from "./planSlice";
 
 export const getPlansSearch = (content) => {
   return async (dispatch) => {

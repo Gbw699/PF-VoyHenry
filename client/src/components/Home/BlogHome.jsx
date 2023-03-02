@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import style from "./BlogHome.module.css";
 import BlogReview from "../../recycle/BlogReview/BlogReview";
 import { getBlogs } from "../../redux/slices/blogSlice/thunk";
+// import style from "./BlogHome.module.css";
 
 export default function BlogHome() {
   const dispatch = useDispatch();

@@ -1,22 +1,8 @@
 .container {
   display: flex;
-  flex-direction: grid;
-  align-items: center;
+  flex-direction: row;
+  align-items: baseline;
   border-radius: 5px;
-  box-shadow: 3px 3px 5px 2px #222222;
-  width: 80%;
-  margin: 3%;
-  margin-bottom: 10%;
-  /* height: 150px; */
-  height: 15%;
-  padding: 50px;
+  width: 100%;
+  margin-bottom: 1em;
 }
-
-.container:hover {
-  background-color: #a0a0a070;
-}
-
-/* .name {
-  color: #f00505;
-  font-weight: 600;
-} */

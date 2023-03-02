@@ -10,6 +10,7 @@
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.9",
     "@mui/styled-engine-sc": "^5.11.9",
+    "@react-google-maps/api": "^2.18.1",
     "@mui/x-data-grid": "^5.17.25",
     "@reduxjs/toolkit": "^1.9.2",
     "@testing-library/jest-dom": "^5.16.5",

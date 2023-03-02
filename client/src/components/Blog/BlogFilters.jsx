@@ -28,7 +28,6 @@ export default function BlogFilters({ pagePagination }) {
         filters={filters}
         setFilters={setFilters}
       />
-
       <OrderFilter
         filters={filters}
         setFilters={setFilters}

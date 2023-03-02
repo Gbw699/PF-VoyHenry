@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { postUser } from "../../redux/slices/userSlice/thunks";
 import titleImg from "../../assets/voyHENRY_title.svg";
 import googleLogo from "../../assets/google_icon.svg";
+// import profileImg from "../../assets/profile_img.svg";
 import style from "./FormSignUp.module.css";
 
 export default function FormSignUp() {
@@ -64,8 +65,7 @@ export default function FormSignUp() {
               email: "",
               nickName: "",
               //imagen default
-              image:
-                "https://www.clarin.com/img/2021/10/07/dPmbdeT7x_1200x630__1.jpg",
+              image: "https://i.ibb.co/86tPY9X/PF-profile-01.png",
               firstName: "",
               lastName: "",
               dateOfBirth: "",

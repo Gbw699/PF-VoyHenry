@@ -15,9 +15,8 @@ export default function FormSignUp(props) {
   const [url, setUrl] = useState(noPhoto);
   const dispatch = useDispatch();
   const currentDate = new Date();
-  const greaterDate = `${currentDate.getFullYear()}-${
-    currentDate.getMonth() + 1
-  }-${currentDate.getDate()}`;
+  const greaterDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1
+    }-${currentDate.getDate()}`;
   const handleClick = () => {
     props.setShowPlanForm(false);
   };
@@ -27,6 +26,22 @@ export default function FormSignUp(props) {
     );
     setProvinces(provincesData.province);
   };
+  const [state, setState] = useState({
+    showDescription: true,
+    showLocation: "",
+    showImage: "",
+    showDate: "",
+  });
+
+  function handleClickButton(show) {
+    setState({
+      showDescription: false,
+      showLocation: false,
+      showImage: false,
+      showDate: false,
+      [show]: true,
+    });
+  }
 
   const getDateActually = () => {
     let toDay = new Date();
@@ -34,6 +49,8 @@ export default function FormSignUp(props) {
     let mount = String(toDay.getMonth() + 1).padStart(2, "0");
     let year = toDay.getFullYear();
     toDay = `${year}-${mount}-${day}`;
+
+
     return toDay;
   };
   return (
@@ -46,6 +63,8 @@ export default function FormSignUp(props) {
             images: [],
             country: "",
             province: "",
+            city: "",
+            address: "",
             eventDate: "",
           }}
           validationSchema={Yup.object({
@@ -62,6 +81,8 @@ export default function FormSignUp(props) {
               .required("La descripción es obligatoria"),
             country: Yup.string(),
             province: Yup.string(),
+            city: Yup.string(),
+            address: Yup.string(),
             eventDate: Yup.date()
               .min(new Date(greaterDate))
               .required("La fecha del evento es obligatoria"),
@@ -77,6 +98,8 @@ export default function FormSignUp(props) {
               images: [],
               country: values.country,
               province: values.province,
+              city: values.province,
+              address: values.province,
               eventDate: values.eventDate,
               state: "En planeacion",
             };
@@ -86,7 +109,12 @@ export default function FormSignUp(props) {
         >
           <Form>
             <div className={style.formContainer}>
-              <h2 className={style.title}>CREA TU PLAN</h2>
+              <div className={style.buttonTitle}>
+                <button onClick={() => handleClickButton("showDescription")}>Description</button>
+                <button onClick={() => handleClickButton("showLocation")}>Location</button>
+                <button onClick={() => handleClickButton("showImage")}>Image</button>
+                <button onClick={() => handleClickButton("showDate")}>Date</button>
+              </div>
               <hr
                 color="#F1E100"
                 width="100%"
@@ -106,6 +134,7 @@ export default function FormSignUp(props) {
                 />
                 <ErrorMessage name="title" />
                 {/* ------------------------------------------------------------------------- */}
+                {state.showDescription && <>
                 <label
                   htmlFor="summary"
                   className={style.formTitle}
@@ -115,10 +144,12 @@ export default function FormSignUp(props) {
                 <Field
                   name="summary"
                   type="text"
-                  className={style.formInputs}
+                  as="textarea"
+                  rows="4"
+                  className={style.formInputDescription}
                 />
                 <ErrorMessage name="summary" />
-                {/* ------------------------------------------------------------------------- */}
+
                 <label
                   htmlFor="description"
                   className={style.formTitle}
@@ -128,10 +159,14 @@ export default function FormSignUp(props) {
                 <Field
                   name="description"
                   type="text"
-                  className={style.formInputs}
+                  as="textarea"
+                  rows="12"
+                  className={style.formInputDescription}
                 />
                 <ErrorMessage name="description" />
+                </>}
                 {/* ------------------------------------------------------------------------- */}
+                {state.showImage && <>
                 <label
                   htmlFor="mainImage"
                   className={style.formTitle}
@@ -142,20 +177,8 @@ export default function FormSignUp(props) {
                   url={url}
                   setUrl={setUrl}
                 />
-                {/* ------------------------------------------------------------------------- */}
-                {/* <label
-                htmlFor="images"
-                className={style.formTitle}
-              >
-                Imágenes secundarias
-              </label>
-              <Field
-                name="images"
-                type="text"
-                className={style.formInputs}
-              />
-              <ErrorMessage name="images" /> */}
-                {/* ------------------------------------------------------------------------- */}
+                </>}
+                {state.showLocation && <>
                 <label
                   htmlFor="country"
                   className={style.formTitle}
@@ -179,7 +202,6 @@ export default function FormSignUp(props) {
                   ))}
                 </Field>
                 <ErrorMessage name="country" />
-                {/* ------------------------------------------------------------------------- */}
                 <label
                   htmlFor="provinces"
                   className={style.formTitle}
@@ -202,7 +224,33 @@ export default function FormSignUp(props) {
                   ))}
                 </Field>
                 <ErrorMessage name="province" />
+                <label
+                  htmlFor="city"
+                  className={style.formTitle}
+                >
+                  Ciudad
+                </label>
+                <Field
+                  name="city"
+                  type="text"
+                  className={style.formInputs}
+                />
+                <ErrorMessage name="city" />
+                <label
+                  htmlFor="address"
+                  className={style.formTitle}
+                >
+                  Dirección
+                </label>
+                <Field
+                  name="address"
+                  type="text"
+                  className={style.formInputs}
+                />
+                <ErrorMessage name="address" />
+                </>}
                 {/* ------------------------------------------------------------------------- */}
+                {state.showDate && <>
                 <label
                   htmlFor="eventDate"
                   className={style.formTitle}
@@ -216,6 +264,7 @@ export default function FormSignUp(props) {
                   min={getDateActually()}
                 />
                 <ErrorMessage name="eventDate" />
+                </>}
                 {/* ------------------------------------------------------------------------- */}
               </div>
               <button
@@ -234,7 +283,7 @@ export default function FormSignUp(props) {
           Volver
         </button>
       </div>
-      <div>
+      {/* <div>
         <img
           className={style.imageForm}
           src={url}
@@ -242,7 +291,7 @@ export default function FormSignUp(props) {
           width="600em"
           height="400em"
         />
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -1,19 +1,11 @@
-//Componete que renderiza la información de un usuario, disitnto al usuario que ingresó a la página
-import { useState, useEffect } from "react";
 import style from "./UserCard.module.css";
 
 export default function UserCard({ nickName, image }) {
-  const [backgroundImage, setBackgroundImage] = useState("");
-
-  useEffect(() => {
-    setBackgroundImage(`url(${image})`);
-  });
-
   return (
     <div className={style.container}>
       <div
         className={style.imgCont}
-        style={{ backgroundImage: backgroundImage }}
+        style={{ backgroundImage: `url(${image})` }}
       />
       <div className={style.infoCont}>
         <h1 className={style.name}>{nickName}</h1>

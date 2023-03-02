@@ -62,6 +62,16 @@ const plans = sequelize.define('plans', {
     allowNull: false,
 
   },
+  city: {
+    type: DataTypes.STRING(40),
+    allowNull: false,
+
+  },
+  address: {
+    type: DataTypes.STRING(40),
+    allowNull: false,
+
+  },
   average: {
     type: DataTypes.VIRTUAL,
     get() {

@@ -16,7 +16,18 @@ export default function NextPlans() {
   }, []);
 
   if (!plansData) {
-    return <div>Loading...</div>;
+    return (
+      <div className={style.cardCont}>
+        <h3 className={style.cardTitle}>Próximos planes</h3>
+        <hr
+          width="100%"
+          color="#F1E100"
+        />
+        <div className={style.imgCont}>
+          No hay planes próximos en este momento
+        </div>
+      </div>
+    );
   }
 
   if (plansData.length < 2) {

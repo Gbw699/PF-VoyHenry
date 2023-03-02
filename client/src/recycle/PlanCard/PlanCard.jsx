@@ -11,14 +11,14 @@ export default function PlanCard(props) {
     setBackgroundImage(`url(${props.mainImage})`);
   }, [props]);
 
-
   return (
     <div
       className={style.cardCont}
       style={{ backgroundImage: backgroundImage }}
     >
-        {/* <br/>
-        <h1 className={style.titlePro} style={{color: "white", textAlign: "center", fontSize: "50px"}}>{props.title}</h1> */}
+      {/* <div className={style.cardTitleCont}>
+        <h1>{props.title}</h1>
+      </div> */}
       <div className={style.card}>
         <div className={style.details}>
           <p className={style.title}>{props.title}</p>

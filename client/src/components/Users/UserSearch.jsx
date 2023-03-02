@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./UserSearch.module.css";
-import imgSearch from "../../assets/search.png";
+// import imgSearch from "../../assets/search.png";
 
 export default function UserSearch() {
   return (
@@ -14,7 +14,7 @@ export default function UserSearch() {
         type="button"
         className={style.searchBtn}
       >
-        buscar
+        Buscar
       </button>
     </div>
   );

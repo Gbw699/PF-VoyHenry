@@ -1,29 +1,45 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import style from "./UserCard.module.css";
 
-export default function UserCard({ image, firstName, lastName, nationality }) {
+export default function UserCard({
+  nickName,
+  image,
+  firstName,
+  lastName,
+  nationality,
+}) {
   const handleClick = () => {};
 
   return (
-    <div className={style.container}>
+    <div>
       <div className={style.profileCont}>
-        <div className={style.imgCont}>
-          <img
-            className={style.img}
-            src={image}
-            alt={`${firstName} ${lastName}`}
-            loading="lazy"
-          />
-        </div>
-        <div className={style.profileInfo}>
-          <div className={style.name}>{`${firstName} ${lastName}`}</div>
-
-          <h4>{nationality} Argentino</h4>
-          <div className={style.followers}>
-            <p className={style.followTitle}>Siguiendo:</p>
-            <span className={style.followNum}> 103</span>
-            <p className={style.followTitle}>Seguidores:</p>
-            <span className={style.followNum}> 98</span>
+        <div className={style.subCont}>
+          <div className={style.imgCont}>
+            <Link to={`/users/${nickName}`}>
+              <div
+                style={{ backgroundImage: `url(${image})` }}
+                className={style.img}
+              />
+            </Link>
+          </div>
+          <div className={style.profileInfo}>
+            <div>
+              <p className={style.name}>{`${firstName} ${lastName}`}</p>
+              <hr
+                color="#F1E100"
+                width="100%"
+              />
+              <p className={style.nacionality}>
+                {nationality ? nationality : "Sin nacionalidad"}
+              </p>
+            </div>
+            <div className={style.followers}>
+              <p className={style.followTitle}>Siguiendo</p>
+              <span className={style.followNum}> 103</span>
+              <p className={style.followTitle}>Seguidores</p>
+              <span className={style.followNum}> 98</span>
+            </div>
           </div>
         </div>
         <div className={style.buttons}>
@@ -34,12 +50,14 @@ export default function UserCard({ image, firstName, lastName, nationality }) {
           >
             Seguir
           </button>
-          <button
-            className={style.buttonPerfil}
-            type="submit"
-          >
-            Ver perfil
-          </button>
+          <Link to={`/users/${nickName}`}>
+            <button
+              className={style.buttonPerfil}
+              type="submit"
+            >
+              Ver perfil
+            </button>
+          </Link>
         </div>
       </div>
     </div>

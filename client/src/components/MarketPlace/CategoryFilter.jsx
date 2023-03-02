@@ -4,23 +4,26 @@ import style from "./Filters.module.css";
 
 export default function CategoryFilter() {
   const dispatch = useDispatch();
-  
+
   const handleChange = (event) => {
     console.log(event.target.value);
     dispatch(getProductsbyOrder("category", event.target.value));
   };
 
   return (
-    <div className={style.container}>
+    <div className={style.containerFilter}>
       <label>
         Categorías
         <hr
           width="100%"
           color="#F1E100"
         />
-        <select onChange={handleChange}
+        <select
+          onChange={handleChange}
+          className={style.selectFilter}
         >
-          <option value="">-- Seleccionar categoría --</option>
+          {/* Está hardcodeado */}
+          <option value="">Seleccionar categoría</option>
           <option value="Remeras">Remeras</option>
           <option value="Pantalones">Pantalones</option>
           <option value="Gorros">Gorros</option>
@@ -28,4 +31,4 @@ export default function CategoryFilter() {
       </label>
     </div>
   );
-};
+}

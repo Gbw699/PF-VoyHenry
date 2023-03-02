@@ -14,7 +14,7 @@ export default function FilterByDate() {
     dispatch(getPlansbyOrder("order", selectedOrder));
   };
   return (
-    <div>
+    <div className={style.FilterByDate}>
       <h3 className={style.filterTitle}>Fecha</h3>
       <input
         type="date"
@@ -24,7 +24,7 @@ export default function FilterByDate() {
         className={style.inputs}
         onChange={handleInputChange}
       />
-      <br />
+
       <button
         className={style.buttons}
         value="nuevos"
@@ -39,10 +39,10 @@ export default function FilterByDate() {
       >
         Antiguos
       </button>
-      <hr
+      {/* <hr
         width="100%"
         color="#F1E100"
-      />
+      /> */}
     </div>
   );
 }

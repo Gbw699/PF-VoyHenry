@@ -17,6 +17,8 @@ const stars = Joi.number().min(0).max(5)
 const votes = Joi.number().min(0).max(1)
 const country = Joi.string().max(40)
 const province = Joi.string().max(40)
+const city = Joi.string().max(40)
+const address = Joi.string().max(40)
 
 
 
@@ -34,7 +36,9 @@ const createPlanSchema = Joi.object({
   state: state.required(),
   eventDate: eventDate.required(),
   country: country.required(),
-  province: province.required()
+  province: province.required(),
+  city: city.required(),
+  address: address.required()
 })
 
 const updateSchema = Joi.object({
@@ -59,13 +63,16 @@ const ratingSchema = Joi.object({
   userNickName: userNickName.required(),
 })
 
-
+const followSchema = Joi.object({
+  userNickName: userNickName.required(),
+})
 
 module.exports = {
   createPlanSchema,
   updateSchema,
   getPlanSchema,
   deletePlanSchema,
-  ratingSchema
+  ratingSchema,
+  followSchema
 }
 
