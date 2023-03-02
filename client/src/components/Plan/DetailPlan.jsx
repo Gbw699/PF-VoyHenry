@@ -17,16 +17,19 @@ export default function DetailPlan() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const plan = useSelector((state) => state.planStore.planById);
+  const [favorites, setFavorites] = useState();
   const [comments, setComments] = useState([]);
   const [isEditable, setIsEditable] = useState(false);
   const [showEditInputs, setShowEditInputs] = useState(false);
   const [inputsValue, setInputsValue] = useState({});
+  const [isFav, setIsFav] = useState(false);
 
   useEffect(() => {
     dispatch(getPlanById(id));
     getComments();
+    getFavorites();
   }, []);
-
+  
   useEffect(() => {
     if (user && plan && user.nickName === plan.userNickName) {
       setIsEditable(true);
@@ -35,7 +38,11 @@ export default function DetailPlan() {
     }
   }, [user, plan]);
 
-  const getComments = async () => {
+  useEffect(()=>{
+    checkFav();
+  },[favorites, isFav]);
+
+  async function getComments() {
     try {
       const response = await axios.get(`/api/v1/plans/${id}/comment`);
       setComments(response.data);
@@ -73,17 +80,17 @@ export default function DetailPlan() {
     }
   }
 
-  const handleEditClick = () => {
+  function handleEditClick() {
     setShowEditInputs(!showEditInputs);
   };
 
-  const handleLabel = (event) => {
+  function handleLabel(event) {
     setInputsValue({
       [event.target.name]: event.target.value,
     });
   };
 
-  const handleSave = async () => {
+  async function handleSave() {
     const updatedPlan = inputsValue;
     try {
       await axios.patch(`/api/v1/plans/${id}`, updatedPlan);
@@ -94,7 +101,7 @@ export default function DetailPlan() {
     setShowEditInputs(false);
   };
 
-  const handleDeleteClick = async () => {
+  async function handleDeleteClick() {
     try {
       await axios.delete(`/api/v1/plans/${id}`);
       navigate("/plans");
@@ -102,6 +109,45 @@ export default function DetailPlan() {
       console.error(error);
     }
   };
+
+  async function addFavorite() {
+    const body = {
+      userNickName: user.nickName
+    };
+    try {
+      await axios.post(`/api/v1/plans/${id}/favorite`, body);
+      setIsFav(true);
+      alert("Agregado a favoritos");
+    } catch (error) {
+      console.error(error.response);
+    }
+  };
+
+  async function deleteFavorite() {
+    const body = {
+      userNickName: user.nickName
+    };
+    try {
+      await axios.delete(`/api/v1/plans/${id}/favorite`, { data: body });
+      setIsFav(false);
+      alert("Eliminado de favoritos");
+    } catch (error) {
+      console.error(error.response.data.message);
+    }
+  };
+
+  async function getFavorites() {
+    const response = await axios.get(`http://localhost:3001/api/v1/plans/${user.nickName}/Plansfavorite`);
+    setFavorites(response.data);
+  };
+
+  async function checkFav(){
+    if (favorites?.find(fav => fav.id === plan.id)) {
+      setIsFav(true);
+    }
+  }
+
+  console.log(isFav);
 
   if (!plan) {
     return <div>Loading... </div>;
@@ -209,7 +255,12 @@ export default function DetailPlan() {
             onChange={handleStarClick}
           />
           <label name="rating">Puntaje!</label>
-          <button className={style.AgregarBtn}>Agregar a favoritos</button>
+          {!isFav && <button
+            onClick={addFavorite}
+            className={style.AgregarBtn}>Agregar a favoritos</button>}
+          {isFav && <button
+            onClick={deleteFavorite}
+            className={style.AgregarBtn}>Eliminar de favoritos</button>}
           <ButtonShare
             text={`¡Mira este plan que encontré en Example! ${plan.title}`}
           />
@@ -232,12 +283,6 @@ export default function DetailPlan() {
               handleClick={handleClick}
               label="Escribe tu comentario"
               placeholder="Agrega un comentario"
-            />
-            <Rating
-              size="large"
-              name="simple-controlled"
-              value={value}
-              onChange={handleStarClick}
             />
           </div>
         )}
