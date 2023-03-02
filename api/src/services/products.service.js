@@ -15,6 +15,7 @@ class ProductsService {
     availability,
     category,
     images,
+    stock
   }) {
     const newProduct = await productModel.create({
       title: title,
@@ -26,7 +27,7 @@ class ProductsService {
       mainImage: mainImage,
 
       images: images,
-
+      stock:stock,
       availability: availability,
     });
 
@@ -84,7 +85,7 @@ class ProductsService {
     const products = await productModel.findAll(options);
     
     if (products === null || products.length === 0) {
-      throw new CustomError('Plan not found', 404);
+      throw new CustomError('Product not found', 404);
     } else {
       return { products, productsInFilter };
     }
@@ -151,7 +152,7 @@ class ProductsService {
 
   /* buy One product */
 
-  async buyOne({ title, price }) {
+  async buyOne({id, title, price }) {
     let preference = {
       items: [
         {
@@ -170,12 +171,22 @@ class ProductsService {
       binary_mode: true,
     };
 
+    const product = await productModel.findOne({
+      where: {
+        id: id
+      },
+    });
+
+    product.stock -=1
+
+    await product.save()
+
     const response = await mercadopago.preferences.create(preference);
 
     return response.body.init_point;
   }
 
-  /* Chackour */
+  /* Chackout */
   async checkOut(body) {
     let preference = {
       items: [],
@@ -197,6 +208,19 @@ class ProductsService {
         quantity: products.quantity,
       });
     });
+
+    for (const productData of body) {
+      
+      const product = await productModel.findOne({
+        where: {
+          id: productData.id
+        },
+      })
+    
+      product.stock -= productData.quantity
+    
+      await product.save()
+    }
 
     const response = await mercadopago.preferences.create(preference);
 
