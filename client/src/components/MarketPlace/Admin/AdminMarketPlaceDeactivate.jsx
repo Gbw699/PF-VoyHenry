@@ -11,17 +11,14 @@ export default function AdminMarketPlaceDeactivate({
     (state) => state.marketPlaceStore.filteredProducts
   );
 
-  const handleSelect = (event) => {
-    const selectValue = event.target.value;
-    if (selectValue !== "unselected") {
-      const product = products.find(
-        (product) => product.id === parseInt(selectValue)
-      );
-      setProductDeactivate(product);
-    } else {
-      setProductDeactivate("");
-    }
+  const handleProductSelection = ({ target: { value } }) => {
+    const product =
+      value !== "unselected"
+        ? products.find((product) => product.id === parseInt(value))
+        : "";
+    setProductDeactivate(product);
   };
+
   return (
     <div>
       {!products ? (
@@ -29,7 +26,7 @@ export default function AdminMarketPlaceDeactivate({
           <option>No hay productos</option>
         </select>
       ) : (
-        <select onChange={handleSelect}>
+        <select onChange={handleProductSelection}>
           <option value="unselected">Seleccionar un producto</option>
           {products.map((element) => (
             <option
@@ -44,26 +41,26 @@ export default function AdminMarketPlaceDeactivate({
       <AdminMarketPlaceInput
         name="title"
         placeholder="Ingrese el nombre del producto"
-        value={productDeactivate && productDeactivate.title}
-        disabled="true"
+        value={productDeactivate?.title}
+        disabled
       />
       <AdminMarketPlaceInput
         name="price"
         placeholder="Ingrese el titulo del producto"
-        value={productDeactivate && productDeactivate.price}
-        disabled="true"
+        value={productDeactivate?.price}
+        disabled
       />
       <AdminMarketPlaceInput
         name="category"
         placeholder="Ingrese la categoría del producto"
-        value={productDeactivate && productDeactivate.category}
-        disabled="true"
+        value={productDeactivate?.category}
+        disabled
       />
       <AdminMarketPlaceInput
         name="detail"
         placeholder="Ingrese la descripción del producto"
-        value={productDeactivate && productDeactivate.detail}
-        disabled="true"
+        value={productDeactivate?.detail}
+        disabled
       />
       {productDeactivate ? (
         <img

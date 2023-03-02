@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 export default function AdminMarketPlaceInput({
   name,
@@ -7,9 +7,13 @@ export default function AdminMarketPlaceInput({
   value,
   disabled,
 }) {
-  const handleChange = (event) => {
-    setState(event.target.value);
-  };
+  const handleInputChange = useCallback(
+    (event) => {
+      const newValue = event.target.value;
+      setState(newValue);
+    },
+    [setState]
+  );
 
   return (
     <div>
@@ -17,9 +21,9 @@ export default function AdminMarketPlaceInput({
         type="text"
         name={name}
         placeholder={placeholder}
-        onChange={handleChange}
-        value={value && value}
-        disabled={disabled && disabled}
+        onChange={handleInputChange}
+        value={value}
+        disabled={disabled}
       />
     </div>
   );
