@@ -48,8 +48,8 @@ router.get('/success', async (req, res, next) => {
 
   try {
 
-    const response = await mailer.buySuccess(req.query.customer)
-    res.json(response)
+    mailer.buySuccess(req.query)
+    res.redirect(`http://localhost:3000/home`)
   } catch (error) {
 
     next(error)
@@ -57,19 +57,6 @@ router.get('/success', async (req, res, next) => {
 
 });
 
-/* Buy failure */
-
-router.get('/failure', async (req, res, next) => {
-
-  try {
-    const response = 'esto no funca'
-    res.json(response)
-  } catch (error) {
-
-    next(error)
-  }
-
-});
 
 /* Get product by id */
 
