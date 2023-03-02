@@ -2,7 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import style from "./UserCard.module.css";
 
-export default function UserCard({ nickName, image, firstName, lastName, nationality }) {
+export default function UserCard({
+  nickName,
+  image,
+  firstName,
+  lastName,
+  nationality,
+}) {
   const handleClick = () => {};
 
   return (
@@ -10,16 +16,23 @@ export default function UserCard({ nickName, image, firstName, lastName, nationa
       <div className={style.profileCont}>
         <div className={style.subCont}>
           <div className={style.imgCont}>
-            <div
-              style={{ backgroundImage: `url(${image})` }}
-              className={style.img}
-            />
+            <Link to={`/users/${nickName}`}>
+              <div
+                style={{ backgroundImage: `url(${image})` }}
+                className={style.img}
+              />
+            </Link>
           </div>
           <div className={style.profileInfo}>
             <div>
               <p className={style.name}>{`${firstName} ${lastName}`}</p>
-              <hr color="#F1E100" width="100%" />
-              <p className={style.nacionality}>{nationality ? nationality : "Sin nacionalidad"}</p>
+              <hr
+                color="#F1E100"
+                width="100%"
+              />
+              <p className={style.nacionality}>
+                {nationality ? nationality : "Sin nacionalidad"}
+              </p>
             </div>
             <div className={style.followers}>
               <p className={style.followTitle}>Siguiendo</p>
@@ -37,10 +50,7 @@ export default function UserCard({ nickName, image, firstName, lastName, nationa
           >
             Seguir
           </button>
-          <Link
-            to={`/users/${nickName}`}
-            key={nickName}
-          >
+          <Link to={`/users/${nickName}`}>
             <button
               className={style.buttonPerfil}
               type="submit"

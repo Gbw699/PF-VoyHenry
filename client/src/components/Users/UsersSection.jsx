@@ -10,22 +10,18 @@ export default function UsersSection({ users }) {
       <UserSearch />
       <div className={style.cardContainer}>
         {users?.map((element) => (
-          // <Link
-          //   to={`/users/${element.nickName}`}
-          //   key={element.nickName}
-          // >
-            <div 
-              className={style.userCard}
-              key={element.nickName}
-            >
-              <UserCard
-                firstName={element.firstName}
-                lastName={element.lastName}
-                image={element.image}
-                nationality={element.nationality}
-              />
-            </div>
-          // </Link>
+          <div
+            className={style.userCard}
+            key={element.nickName}
+          >
+            <UserCard
+              nickName={element.nickName}
+              firstName={element.firstName}
+              lastName={element.lastName}
+              image={element.image}
+              nationality={element.nationality}
+            />
+          </div>
         ))}
       </div>
     </div>

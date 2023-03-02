@@ -16,7 +16,9 @@ export default function ProfileCard() {
             width="150em"
             color="#F1E100"
           />
-          <h1 className={style.profileName}>{user.nickName}</h1>
+          <h1
+            className={style.profileName}
+          >{`${user.firstName} ${user.lastName}`}</h1>
           <h4 className={style.profileCountry}>
             {user.nationality ? user.nationality : "Sin nacionalidad"}
           </h4>

@@ -29,12 +29,11 @@ export default function NavBar() {
           <h4>INICIO</h4>
         </NavLink>
         <NavLink
-          to={"/users"}
+          to={"/plans"}
           className={navLinkClassName}
         >
-          <h4>USUARIOS</h4>
+          <h4>PLANES</h4>
         </NavLink>
-
         <NavLink
           to={"/blog"}
           className={navLinkClassName}
@@ -42,10 +41,10 @@ export default function NavBar() {
           <h4>BLOG</h4>
         </NavLink>
         <NavLink
-          to={"/plans"}
+          to={"/users"}
           className={navLinkClassName}
         >
-          <h4>PLANES</h4>
+          <h4>USUARIOS</h4>
         </NavLink>
         <NavLink
           to={"/marketplace"}

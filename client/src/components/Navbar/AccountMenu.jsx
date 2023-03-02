@@ -12,6 +12,7 @@ import { useState } from "react";
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
   const user = JSON.parse(localStorage.getItem("user"));
+
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -75,7 +76,7 @@ export default function AccountMenu() {
             to={"/profile"}
             style={{ color: "#707070" }}
           >
-            {user.nickName}
+            {`${user.firstName} ${user.lastName}`}
           </NavLink>
         </MenuItem>
         <NavLink

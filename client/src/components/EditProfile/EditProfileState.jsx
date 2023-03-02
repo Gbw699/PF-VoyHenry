@@ -6,7 +6,6 @@ export default function EditProfileState() {
   const user = JSON.parse(localStorage.getItem("user"));
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
-  const [nickName, setNickName] = useState(user.nickName);
   const [about, setAbout] = useState(
     user.about === null ? "Sin sobre mí" : user.about
   );
@@ -18,8 +17,6 @@ export default function EditProfileState() {
     <div>
       <EditProfileSection
         {...{
-          nickName,
-          setNickName,
           firstName,
           setFirstName,
           lastName,

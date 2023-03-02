@@ -1,4 +1,4 @@
-.container_flex{
+.container_flex {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -116,6 +116,6 @@
   border: 2px solid #f1e100;
 }
 
-.imageForm{
+.imageForm {
   border-radius: 2em;
 }
