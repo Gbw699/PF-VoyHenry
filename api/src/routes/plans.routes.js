@@ -114,6 +114,45 @@ router.get('/:id/comment',
 
 });
 
+/* Delete Plan Comment */
+
+router.delete(
+  '/comment/:id',
+
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+
+      const deletedComment = await service.deleteComment(id);
+
+      res.json(deletedComment);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+/* update comment content */
+
+router.patch('/comment/:id',
+
+  async (req, res, next) => {
+
+    try {
+
+      const { id } = req.params
+      const body = req.body;
+
+      const updatedComment = await service.updateComment(id, body)
+
+      res.json(updatedComment)
+
+    } catch (error) {
+      next(error)
+    }
+
+});
+
 /* update plan info */
 
 router.patch('/:planID',
