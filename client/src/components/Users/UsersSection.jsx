@@ -5,12 +5,15 @@ import UserSearch from "./UserSearch";
 import style from "./UsersSection.module.css";
 
 export default function UsersSection({ users }) {
+  const loginUser = JSON.parse(localStorage.getItem("user"));
+
   return (
     <div className={style.container}>
       <UserSearch />
       <div className={style.cardContainer}>
         {users?.map((element) => (
-          <div
+          element.nickName !== loginUser.nickName
+          && <div
             className={style.userCard}
             key={element.nickName}
           >

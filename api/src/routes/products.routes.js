@@ -60,9 +60,9 @@ router.get('/:id',
 /* Create new product */
 
 router.post('/',
-  validatorHandler(createProductSchema, 'body'),
+/*   validatorHandler(createProductSchema, 'body'),
   passport.authenticate('jwt', {session: false}),
-  checkAdminRole,
+  checkAdminRole, */
   async (req, res, next) => {
     try {
 

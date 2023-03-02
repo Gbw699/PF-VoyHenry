@@ -149,8 +149,6 @@ export default function DetailPlan() {
     }
   }
 
-  console.log(isFav);
-
   if (!plan) {
     return <div>Loading... </div>;
   }
