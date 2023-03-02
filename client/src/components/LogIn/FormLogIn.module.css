@@ -63,13 +63,15 @@
   color: #707070;
   border: 0px;
   border-radius: 10px;
-  transition: background-color 0.5s;
+  transition: filter 0.5s ease-in-out;
   margin: 1em;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .btnLogin:hover {
-  background-color: #707070;
-  color: white;
+  filter: saturate(150%) brightness(80%);
+  transition: filter 0.5s ease-in-out;
 }
 
 .googleCont {
@@ -92,13 +94,15 @@
   font-size: 100%;
   border: 0px;
   border-radius: 10px;
-  transition: background-color 0.5s;
+  transition: filter 0.5s ease-in-out;
   margin: 1em;
   cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .btnGoogle:hover {
-  background-color: #ac0000ec;
+  filter: saturate(150%) brightness(80%);
+  transition: filter 0.5s ease-in-out;
 }
 
 .subBtns {
@@ -106,6 +110,7 @@
   flex-direction: row;
   align-items: center;
   margin-top: 0.5em;
+  
 }
 
 .btnVolver {
@@ -117,10 +122,13 @@
   border-radius: 10px;
   transition: background-color 0.5s;
   margin: 1em;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .btnVolver:hover {
   background-color: #f1e100;
+  transition: background-color 0.5s;
 }
 
 .forgetBtn {
@@ -132,8 +140,11 @@
   border-radius: 10px;
   transition: background-color 0.5s;
   margin: 1em;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .forgetBtn:hover {
   background-color: #f1e100;
+  transition: background-color 0.5s;
 }

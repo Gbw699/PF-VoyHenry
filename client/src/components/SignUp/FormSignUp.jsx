@@ -83,7 +83,7 @@ export default function FormSignUp() {
       .max(55, "Debe tener menos de 55 caracteres")
       .required("El apellido es obligatorio"),
     dateOfBirth: Yup.string().required(
-      "La fecha de nacimiento es obligatoria"
+      "Este campo es obligatorio"
     ),
     password: Yup.string()
       .min(8, "Debe tener más de 8 caracteres")
@@ -259,6 +259,7 @@ export default function FormSignUp() {
               >
               <label htmlFor="dateOfBirth"
                 className={style.inputTitle}
+    
               >Fecha de nacimiento</label>
               <Form.Input
                 id="dateOfBirth"
