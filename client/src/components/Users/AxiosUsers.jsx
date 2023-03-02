@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect } from "react";
 
-const getEndpoint = (nickName) => {
-  return nickName ? `/api/v1/users/${nickName}` : "/api/v1/users";
+const getEndpoint = (id) => {
+  return id ? `/api/v1/users/${id}` : "/api/v1/users";
 };
 
 export default function AxiosUsers({
@@ -10,32 +10,38 @@ export default function AxiosUsers({
   setUser,
   setPlans,
   setBlogs,
-  nickName,
+  id,
 }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(getEndpoint(nickName));
-        if (nickName) {
-          const { data: userData } = await axios.get(
-            `/api/v1/users/${nickName}`
-          );
-          const { data: plansData } = await axios.get(
-            `/api/v1/users/${nickName}/plans`
-          );
-          const { data: blogsData } = await axios.get(
-            `/api/v1/users/${nickName}/blogs`
-          );
+        const { data } = await axios.get(getEndpoint(id));
+        if (id) {
+          const { data: userData } = await axios.get(`/api/v1/users/${id}`);
           setUser(userData);
-          setPlans(plansData);
-          setBlogs(blogsData.blogs.blogs);
+          try {
+            const { data: plansData } = await axios.get(
+              `/api/v1/users/${id}/plans`
+            );
+            setPlans(plansData);
+          } catch (error) {
+            console.log("Error getting plans: ", error.message);
+          }
+          try {
+            const { data: blogsData } = await axios.get(
+              `/api/v1/users/${id}/blogs`
+            );
+            setBlogs(blogsData.blogs.blogs);
+          } catch (error) {
+            console.log("Error getting blogs: ", error.message);
+          }
         } else {
           setUsers(data.users);
         }
       } catch (error) {
-        console.log(error.response);
+        console.log(error.message);
       }
     };
     fetchData();
-  }, [setUsers, nickName]);
+  }, [setUsers, setUser, setPlans, setBlogs, id]);
 }
