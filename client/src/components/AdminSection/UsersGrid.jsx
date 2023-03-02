@@ -75,6 +75,7 @@ export default function UsersGrid({ users }) {
       },
     },
   ];
+
   return (
     <Box sx={{ height: "auto", width: "100%" }}>
       <DataGrid
