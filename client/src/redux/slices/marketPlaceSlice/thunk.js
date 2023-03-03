@@ -49,6 +49,17 @@ export const createProduct = (obj) => {
   };
 };
 
+export const editProduct = (obj) => {
+  return async () => {
+    try {
+      await axios.patch("/api/v1/products", { ...obj });
+      window.alert("El producto fue editado");
+    } catch (error) {
+      console.error(error.response);
+    }
+  };
+};
+
 export const deactivateProduct = async (id) => {
   await axios.delete(`/api/v1/products/${id}`);
 };
