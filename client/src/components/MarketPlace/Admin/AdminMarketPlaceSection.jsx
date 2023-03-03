@@ -37,7 +37,23 @@ export default function AdminMarketPlaceSection({
       )}
       {buttonOption === "edit" && (
         <AdminMarketPlaceEdit
-          {...{ editProducts, setEditProducts, setProducts }}
+          {...{
+            editProducts,
+            setEditProducts,
+            setProducts,
+            productName,
+            setProductName,
+            productPrice,
+            setProductPrice,
+            productCategory,
+            setProductCategory,
+            productDetail,
+            setProductDetail,
+            productMainImage,
+            setProductMainImage,
+            productImages,
+            setProductImages,
+          }}
         />
       )}
     </div>

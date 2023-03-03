@@ -8,7 +8,18 @@ import { editProduct } from "../../../redux/slices/marketPlaceSlice/thunk";
 export default function AdminMarketPlaceEdit({
   editProducts,
   setEditProducts,
-  setProducts,
+  productName,
+  setProductName,
+  productPrice,
+  setProductPrice,
+  productCategory,
+  setProductCategory,
+  productDetail,
+  setProductDetail,
+  productMainImage,
+  setProductMainImage,
+  productImages,
+  setProductImages,
 }) {
   const dispatch = useDispatch();
   const { products } = useSelector(
@@ -21,12 +32,27 @@ export default function AdminMarketPlaceEdit({
         ? products.find((product) => product.id === parseInt(value))
         : "";
     setEditProducts(product);
+    setProductName(product.title);
+    setProductPrice(product.price);
+    setProductCategory(product.category);
+    setProductDetail(product.detail);
+    setProductMainImage(product.mainImage);
+    setProductImages(product.Images);
   };
 
   const handleEdit = () => {
     editProducts
-      ? dispatch(editProduct(editProducts.id))
-      : window.alert("No has seleccionado ningún producto para borrar");
+      ? dispatch(
+          editProduct(editProducts.id, {
+            title: productName,
+            price: productPrice,
+            category: productCategory,
+            detail: productDetail,
+            mainImage: productMainImage,
+            images: productImages,
+          })
+        )
+      : window.alert("No has seleccionado ningún producto para editar");
   };
 
   return (
@@ -51,33 +77,38 @@ export default function AdminMarketPlaceEdit({
       <AdminMarketPlaceInput
         name="title"
         placeholder="Ingrese el nombre del producto"
-        value={editProducts?.title}
-        setState={setProducts}
+        value={productName}
+        setState={setProductName}
       />
       <AdminMarketPlaceInput
         name="price"
         placeholder="Ingrese el titulo del producto"
-        value={editProducts?.price}
+        value={productPrice}
+        setState={setProductPrice}
       />
       <AdminMarketPlaceInput
         name="category"
         placeholder="Ingrese la categoría del producto"
-        value={editProducts?.category}
+        value={productCategory}
+        setState={setProductCategory}
       />
       <AdminMarketPlaceInput
         name="detail"
         placeholder="Ingrese la descripción del producto"
-        value={editProducts?.detail}
+        value={productDetail}
+        setState={setProductDetail}
       />
       <AdminMarketPlaceInput
         name="mainImage"
         placeholder="Ingrese la imagen principal del producto"
-        value={editProducts?.mainImage}
+        value={productMainImage}
+        setState={setProductMainImage}
       />
       <AdminMarketPlaceInput
         name="images"
         placeholder="Ingrese las imágenes del producto"
-        value={editProducts?.images}
+        value={productImages}
+        setState={setProductImages}
       />
       {editProducts ? (
         <img

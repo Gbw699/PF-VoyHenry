@@ -49,10 +49,13 @@ export const createProduct = (obj) => {
   };
 };
 
-export const editProduct = (obj) => {
+export const editProduct = (id, obj) => {
+  console.log(id);
+  console.log({ ...obj });
+
   return async () => {
     try {
-      await axios.patch("/api/v1/products", { ...obj });
+      await axios.patch(`/api/v1/products/${id}`, { ...obj });
       window.alert("El producto fue editado");
     } catch (error) {
       console.error(error.response);
