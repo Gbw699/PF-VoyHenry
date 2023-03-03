@@ -1,40 +1,11 @@
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/DeleteOutlined";
-import {
-  DataGrid,
-  GridActionsCellItem,
-  GridToolbarContainer,
-  GridToolbarColumnsButton,
-  GridToolbarFilterButton,
-  GridToolbarDensitySelector,
-} from "@mui/x-data-grid";
+import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteRecord from "./DeleteRecord";
+import CustomToolbar from "./CustomToolbar";
 
 export default function UsersGrid({ users }) {
-  function CustomToolbar() {
-    return (
-      <GridToolbarContainer>
-        <GridToolbarColumnsButton />
-        <GridToolbarFilterButton />
-        <GridToolbarDensitySelector />
-        <Button
-          color="primary"
-          startIcon={<AddIcon />}
-          onClick={() => handleCreateClick()}
-        >
-          ADD RECORD
-        </Button>
-      </GridToolbarContainer>
-    );
-  }
-
-  const handleCreateClick = () => {
-    console.log("create");
-  };
-
   const handleEditClick = (nickName) => {
     console.log("edit");
   };
