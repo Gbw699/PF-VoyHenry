@@ -7,8 +7,14 @@ export default function AdminUsers() {
 
   return (
     <>
-      <AxiosUsers setUsers={setUsers} />
-      <UsersGrid users={users} />
+      <AxiosUsers
+        users={users}
+        setUsers={setUsers}
+      />
+      <UsersGrid
+        users={users}
+        setUsers={setUsers}
+      />
     </>
   );
 }

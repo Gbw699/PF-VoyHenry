@@ -6,7 +6,7 @@ import DeleteRecord from "./recycleAdmin/DeleteRecord";
 import CustomToolbar from "./recycleAdmin/CustomToolbar";
 import { useLocation } from "react-router-dom";
 
-export default function UsersGrid({ users }) {
+export default function UsersGrid({ users, SetUsers }) {
   const location = useLocation();
 
   const handleEditClick = (nickName) => {
@@ -14,7 +14,7 @@ export default function UsersGrid({ users }) {
   };
 
   const handleDeleteClick = (nickName) => {
-    DeleteRecord(nickName, location.pathname);
+    DeleteRecord(nickName, location.pathname, SetUsers);
   };
 
   const rows = users?.map((user, index) => {
