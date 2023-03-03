@@ -1,9 +1,17 @@
-const { io } = require('../../../app')
+const { io } = require('../../../app');
+const SessionsService = require('../../services/sessions.service');
+
+const sessionsService = new SessionsService()
 
 const startSocketIo = () =>{
   io.on('connection', (socket) => {
     console.log("Clientes conectados: ", io.engine.clientsCount)
-    /* console.log("id: ", socket.id) */
+
+    sessionsService.initSession(
+      socket.handshake.auth.nickName,
+      socket.handshake.auth.completeName
+      )
+
     socket.on('disconnect', () => {
       console.log("Clientes conectados: ", io.engine.clientsCount)
     });
