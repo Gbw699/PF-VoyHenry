@@ -1,7 +1,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
-export default function DeleteRecord(argt, location, Set) {
+export default function DeleteRecord(argt, location, renderValue, Set) {
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: "btn btn-success",
@@ -17,13 +17,12 @@ export default function DeleteRecord(argt, location, Set) {
       confirmButtonText: "Si",
       showCancelButton: true,
       cancelButtonText: "No",
-      //reverseButtons: true
     })
     .then((result) => {
       if (result.isConfirmed) {
         try {
           location === "/admin/users" && axios.delete(`/api/v1/users/${argt}`);
-          Set([]);
+          Set(!renderValue);
         } catch (error) {
           console.error(error.response);
         }

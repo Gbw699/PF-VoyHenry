@@ -5,16 +5,18 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteRecord from "./recycleAdmin/DeleteRecord";
 import CustomToolbar from "./recycleAdmin/CustomToolbar";
 import { useLocation } from "react-router-dom";
+import EditRecord from "./recycleAdmin/EditRecord";
 
-export default function UsersGrid({ users, SetUsers }) {
+export default function UsersGrid({ users, reRender, setReRender }) {
   const location = useLocation();
 
   const handleEditClick = (nickName) => {
     console.log("edit");
+    EditRecord(nickName, location.pathname, reRender, setReRender);
   };
 
   const handleDeleteClick = (nickName) => {
-    DeleteRecord(nickName, location.pathname, SetUsers);
+    DeleteRecord(nickName, location.pathname, reRender, setReRender);
   };
 
   const rows = users?.map((user, index) => {

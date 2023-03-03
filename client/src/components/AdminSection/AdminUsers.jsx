@@ -4,16 +4,18 @@ import UsersGrid from "./UsersGrid";
 
 export default function AdminUsers() {
   const [users, setUsers] = useState([]);
+  const [reRender, setReRender] = useState(false);
 
   return (
     <>
       <AxiosUsers
-        users={users}
         setUsers={setUsers}
+        reRender={reRender}
       />
       <UsersGrid
         users={users}
-        setUsers={setUsers}
+        reRender={reRender}
+        setReRender={setReRender}
       />
     </>
   );

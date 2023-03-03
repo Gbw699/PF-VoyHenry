@@ -7,7 +7,7 @@ const getEndpoint = (id) => {
 
 export default function AxiosUsers({
   setUsers,
-  users,
+  reRender,
   setUser,
   setPlans,
   setBlogs,
@@ -44,5 +44,5 @@ export default function AxiosUsers({
       }
     };
     fetchData();
-  }, [setUsers, users, setUser, setPlans, setBlogs, id]);
+  }, [setUsers, reRender, setUser, setPlans, setBlogs, id]);
 }
