@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./GeolocationForm.module.css";
+import style from "./FiltersContainer.module.css";
 import { useDispatch } from "react-redux";
 import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
 
