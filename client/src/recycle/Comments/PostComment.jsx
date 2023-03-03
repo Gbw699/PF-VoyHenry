@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import emojiIcon from "../../assets/emoji.svg";
 import style from "./Comments.module.css";
 import EmojiPicker from "emoji-picker-react";
 
@@ -37,18 +38,24 @@ export default function PostComment(props) {
           </div>
         )}
       </div>
+      <div className={style.postButtons}>
         <button
-          className={style.submitBtn}
+          className={style.emojiBtn}
           onClick={() => setShowPicker(!showPicker)}
         >
-          Add Emoji
+          <img 
+            src={emojiIcon}
+            alt="Emoji icon"
+            height="15px"
+          />
         </button>
-      <button
-        className={style.submitBtn}
-        onClick={props.handleClick}
-      >
-        Dejar reseña
-      </button>
+        <button
+          className={style.submitBtn}
+          onClick={props.handleClick}
+        >
+          Dejar reseña
+        </button>
+      </div>
     </div>
   );
 }
