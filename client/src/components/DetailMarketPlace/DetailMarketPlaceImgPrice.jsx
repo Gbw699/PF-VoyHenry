@@ -16,6 +16,8 @@ export default function DetailMarketPlaceImgPrice({
   price,
   imageExtra,
 }) {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const email = user.email;
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(1);
 
@@ -55,6 +57,7 @@ export default function DetailMarketPlaceImgPrice({
       const response = await axios.post("/api/v1/products/buy", {
         title,
         price,
+        email,
       });
       window.location.href = response.data;
     } catch (error) {
