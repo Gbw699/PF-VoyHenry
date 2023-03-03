@@ -28,6 +28,14 @@ export default function DetailMarketPlaceImgPrice({
     setProducts({ id, image, stock, title, price });
   };
 
+  const createOption = () => {
+    let optionStock = [];
+    for (let i = 1; i <= stock; i++) {
+      optionStock.push({ value: i });
+    }
+    return optionStock;
+  };
+
   const changeQuantitySelect = (event) => {
     const quantityValue = event.target.value;
     setQuantity(parseInt(quantityValue));
@@ -69,13 +77,16 @@ export default function DetailMarketPlaceImgPrice({
           onChange={changeQuantitySelect}
           className={style.select}
         >
-          <option
-            value={0}
-            disabled
-            selected
-          >
-            cantidad: {stock}
-          </option>
+          {createOption().map((option) => (
+            <option
+              key={option.value}
+              value={option.value}
+            >
+              {option.value === 1
+                ? option.value + " unidad"
+                : option.value + " unidades"}
+            </option>
+          ))}
         </select>
         <button
           className={style.addBtn}
