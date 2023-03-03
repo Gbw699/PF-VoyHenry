@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { ProductContextProvider } from "./context/ProductContext";
+import { io } from "socket.io-client";
 import "./App.css";
 import axios from "axios";
 import NavBar from "./components/Navbar/Navbar";
@@ -30,6 +31,24 @@ axios.defaults.headers.common["Authorization"] = `Bearer ${cookie[1]}`;
 
 function App() {
   useEffect(() => {}, [document.cookie]);
+
+  useEffect(() => {
+    const socket = io("http://localhost:3001");
+
+    socket.on("connect", () => {
+      console.log("Conectado al servidor");
+    });
+
+    socket.on("disconnect", () => {
+      console.log("Desconectado del servidor");
+    });
+
+    socket.emit("mensaje", "Hola desde el cliente");
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   const location = useLocation();
   return (
