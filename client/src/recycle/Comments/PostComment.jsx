@@ -1,20 +1,19 @@
 import React from "react";
-import style from "./DetailPlan.module.css";
+import style from "./Comments.module.css";
 
 export default function PostComment(props) {
   const user = JSON.parse(localStorage.getItem("user"));
 
   return (
-    <div>
-      <div>
+    <div className={style.container}>
+      <div className={style.postComment}>
         <img
           className={style.imgComment}
           src={user.image}
           alt=""
         />
-        <label>{props.label}</label>
         <textarea
-          className={style.text}
+          className={style.inputComment}
           style={{ resize: "none", borderRadius: "5px" }}
           placeholder={props.placeholder}
           name="reseña"
@@ -23,14 +22,12 @@ export default function PostComment(props) {
           rows="3"
         ></textarea>
       </div>
-      <div className={style.buttonCommentDiv}>
-        <button
-          className={style.submitBtn}
-          onClick={props.handleClick}
-        >
-          Dejar reseña
-        </button>
-      </div>
+      <button
+        className={style.submitBtn}
+        onClick={props.handleClick}
+      >
+        Dejar reseña
+      </button>
     </div>
   );
 }

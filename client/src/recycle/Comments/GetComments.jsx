@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import style from "./DetailPlan.module.css";
+import style from "./Comments.module.css";
 
 export default function GetComments(props) {
 
@@ -42,42 +42,58 @@ export default function GetComments(props) {
   }
 
   return (
-    <div className={style.comments}>
-      <h1>Comentarios</h1>
-      <hr width="100%" color="#F1E100" />
+    <div>
       {props.comments?.map((comment) => (
-        <div key={comment.id}>
-          <div className={style.comment}>
-            <div>
-              <img
-                className={style.imgComment}
-                src={comment.users[0].image}
-                alt=""
-              />
-            </div>
-            <div>
-              <h3>
+        <div key={comment.id} className={style.getComment}>
+          <img
+            className={style.imgComment}
+            src={comment.users[0].image}
+            alt=""
+          />
+          <div className={style.commentInfo}>
+            <div className={style.infoCont}>
+              <p className={style.infoName}>{comment.users[0].nickName}</p>
+              <p>
                 {comment.createdAt.slice(5, 10)}&nbsp;
                 {comment.createdAt.slice(11, 16)}
-              </h3>
-              <h3>{comment.users[0].nickName}</h3>
-              <p>{comment.content}</p>
-              {comment.users[0].nickName === user.nickName && (
-                <>
-                  <button onClick={() => handleDelete(comment.id)}>Borrar</button>
-                  {!commentStates[comment.id] && <button onClick={() => toggleTextEdit(comment.id)}>Editar</button>}
-                  {commentStates[comment.id] && (
-                    <>
-                      <textarea id={comment.id} onChange={handleText}></textarea>
-                      <button onClick={() => handleEdit(comment.id, text)}>Guardar</button>
-                    </>
-                  )}
-                </>
-              )}
+              </p>
             </div>
-          </div>
-          <div>
-            <hr width="100%" color="#F1E100" />
+            <hr color="#b1b1b1" width="100%" />
+            <p>{comment.content}</p>
+            {commentStates[comment.id] && (
+              <div className={style.editCont}>
+                <textarea 
+                  id={comment.id} 
+                  onChange={handleText}
+                  placeholder="Edita tu comentario"
+                  className={style.editInput}
+                />
+                <button 
+                  onClick={() => handleEdit(comment.id, text)}
+                  className={style.saveBtn}
+                >
+                  Guardar
+                </button>
+              </div>
+            )}
+            {comment.users[0].nickName === user.nickName && (
+              <div className={style.buttons}>
+                {!commentStates[comment.id] && (
+                  <button 
+                    onClick={() => toggleTextEdit(comment.id)}
+                    className={style.editBtn}
+                  >
+                    Editar
+                  </button>
+                )}
+                <button 
+                  onClick={() => handleDelete(comment.id)}
+                  className={style.deleteBtn}
+                >
+                  Borrar
+                </button>
+              </div>
+            )}
           </div>
         </div>
       ))}

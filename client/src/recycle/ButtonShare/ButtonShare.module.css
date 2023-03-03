@@ -1,6 +1,52 @@
 .shareIconCollections {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.shareIcon {
+  width: 30px;
+}
+
+.shareBtn {
+  background-color: #f1e100;
+  border: 2px solid #f1e100;
+  border-radius: 10px;
+  padding: 1% 2%;
+  color: #707070;
+  width: 25%;
+}
+
+.shareBtn:hover {
   background-color: white;
 }
-.share-icon {
-  /* style the individual icon */
+
+.copyBtn {
+  background-color: #f1e100;
+  border: 2px solid #f1e100;
+  border-radius: 10px;
+  padding: 1% 2%;
+  color: #707070;
+  width: 100px;
+  margin: 0px 10px;
+}
+
+.copyBtn:hover {
+  background-color: white;
+}
+
+.backBtn {
+  background-color: white;
+  border: 2px solid #f1e100;
+  border-radius: 10px;
+  padding: 1% 1%;
+  color: #707070;
+  width: 50px;
+  margin: 0px 10px;
+}
+
+.backBtn:hover {
+  background-color: #707070;
+  border: 2px solid #707070;
+  color: white;
 }
