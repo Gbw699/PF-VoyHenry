@@ -8,13 +8,12 @@ import Swal from "sweetalert2";
 
 export default function ShoppingCartSection() {
   const navigate = useNavigate();
-  const cart = JSON.parse(localStorage.getItem("products"));
+  const product = JSON.parse(localStorage.getItem("products"));
   const user = JSON.parse(localStorage.getItem("user"));
   const email = user.email;
   const productContext = useContext(ProductContext);
 
-
-  const data = {cart, email}
+  const data = {product, email}
 
   const handleBuyCart = async () => {
 
