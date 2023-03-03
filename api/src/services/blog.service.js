@@ -47,6 +47,10 @@ class blogService {
       }
     }
 
+    if (query.limit) {
+      options.limit = query.limit;
+    }
+
 
     if (query.offset) {
 
@@ -61,6 +65,8 @@ class blogService {
       options.offset = (page - 1) * (options.limit || query.limit);
     }
 
+    const blogsLimit = options.limit
+
     const blogsInFilter = await blogModel.count(options);
 
     const blogs = await blogModel.findAll(options)
@@ -68,7 +74,7 @@ class blogService {
     if (blogs === null|| blogs.length === 0) {
       throw new CustomError("Blog not found", 404)
     } else {
-      return {blogs, blogsInFilter}
+      return {blogs, blogsInFilter, blogsLimit}
     }
 
   }
@@ -352,14 +358,6 @@ async update (id, { title , content, rating, image }) {
 
   }
 
-  /* Count Pages */
-  async count () {
-    let  options = {}
-
-    const count = await blogModel.count(options);
-
-    return count;
-  }
 
   }
 

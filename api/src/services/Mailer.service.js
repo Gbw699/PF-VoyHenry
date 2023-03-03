@@ -72,6 +72,22 @@ class MailerService {
     this.sendMail(mail)
   }
 
+  async buySuccess(info) {
+    const email = info.customer
+
+    const mail = {
+      from: MAIL,
+      to: email,
+      subject: "Compra confirmada.",
+      html:`<b>Muchas gracias por tu compra!!!! </b>`,
+    }
+
+    const message = await this.sendMail(mail)
+
+    return message
+ 
+  }
+
 }
 
 module.exports = MailerService;

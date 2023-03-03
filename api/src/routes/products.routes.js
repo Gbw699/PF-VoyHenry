@@ -5,12 +5,16 @@ const passport = require('passport')
 const validatorHandler = require('../middlewares/validator.handler')
 const { createProductSchema, getProductSchema, updateProductSchema, buyProductSchema } = require('../schemas/products.schema');
 const { mercadopagoconfig } = require('../libs/mercadopago/mercadopago');
+const MailerService = require('../services/Mailer.service');
+
 
 
 
 mercadopagoconfig()
 const router = Router();
 const service = new ProductsService()
+const mailer = new MailerService()
+
 
 /* Get all products */
 
@@ -37,6 +41,22 @@ router.get('/', async (req, res, next) => {
   }
 
 });
+
+/* Buy success */
+
+router.get('/success', async (req, res, next) => {
+
+  try {
+
+    mailer.buySuccess(req.query)
+    res.redirect(`http://localhost:3000/home`)
+  } catch (error) {
+
+    next(error)
+  }
+
+});
+
 
 /* Get product by id */
 

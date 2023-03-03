@@ -18,10 +18,10 @@ router.get('/', async (req, res, next) => {
 
     let pages = ''
 
-    if (plans.plansInFilter <= 9){
+    if (plans.plansInFilter <= plans.plansLimit){
       pages = 1
     } else {
-      pages = Math.ceil(plans.plansInFilter / 9);
+      pages = Math.ceil(plans.plansInFilter / plans.plansLimit);
     }
 
     const pageNumber = parseInt(page);
