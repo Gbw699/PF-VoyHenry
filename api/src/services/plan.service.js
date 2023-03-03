@@ -4,6 +4,9 @@ const { Op } = require('sequelize');
 const users = require('../libs/models/users.model.js');
 const comments = require('../libs/models/comments.users');
 const sequelize = require('../libs/database/database');
+const MailerService = require('./Mailer.service');
+
+const mailerService = new MailerService()
 
 
 class PlansService {
@@ -161,6 +164,26 @@ class PlansService {
       Planid: newPlan.id,
     });
 
+    mailerService.sendPlanCreateEmail(searchname, newPlan)
+
+    const follow = await sequelize.models.user_follow_user.findAll({
+      where: {followUserId: userNickName}
+    })
+
+     const userid = follow.map(
+      (fo) => fo.dataValues.userid
+     )
+
+    const allUsers = await users .findAll({
+      where: {nickName: userid}
+    })
+
+    const usermail = allUsers.map(
+      (fo) => fo.dataValues.email
+     )
+
+    mailerService.sendFollowingPlanCreateEmail(searchname, newPlan, userid, usermail)
+
     return {
       message: 'Create',
       data: {
@@ -174,11 +197,9 @@ class PlansService {
   /* Create Comment Plan */
 
   async createComment(id, { userNickName, comment }) {
-    const searchname = await users.findOne({
-      where: { nickName: userNickName },
-    });
+    //const searchname = await users.findOne({where: { nickName: userNickName },});
 
-    const searchplan = await plansModel.findOne({ where: { id: id } });
+  //  const searchplan = await plansModel.findOne({ where: { id: id } });
 
     const newCom = await comments.create({
       content: comment,
@@ -194,6 +215,31 @@ class PlansService {
 
       commentid: newCom.id,
     });
+
+
+
+    const searchplan = await plansModel.findOne({
+      where: { id: id },
+    });
+
+    const searchname = await users.findOne({
+      where: { nickName: searchplan.userNickName },
+    });
+
+    mailerService.sendPlanCommentEmail(searchname, searchplan, userNickName )
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return {
       message: 'Create',
@@ -274,6 +320,30 @@ class PlansService {
     (plan.votes += votes), (plan.stars += stars);
 
     await plan.save();
+
+    const searchname = await users.findOne({
+      where: { nickName: userNickName },
+    });
+
+    mailerService.sendPlanVoteEmail(searchname, plan)
+
+    const follow = await sequelize.models.user_follow_user.findAll({
+      where: {followUserId: userNickName}
+    })
+
+     const userid = follow.map(
+      (fo) => fo.dataValues.userid
+     )
+
+    const allUsers = await users .findAll({
+      where: {nickName: userid}
+    })
+
+    const usermail = allUsers.map(
+      (fo) => fo.dataValues.email
+     )
+
+    mailerService.sendFollowingPlanVoteEmail(searchname, plan, userid, usermail)
 
     return {
       message: 'voted',
