@@ -30,19 +30,8 @@ require('./src/utils/auth');
 routesApi(app);
 app.use(errorHandler);
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
-
-  socket.on('chat message', (msg) => {
-    console.log('message: ' + msg);
-  });
-
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-
-  io.emit('chat message', 'A user has connected');
-});
-
-module.exports = server;
+module.exports = {
+  server,
+  io
+};
 
