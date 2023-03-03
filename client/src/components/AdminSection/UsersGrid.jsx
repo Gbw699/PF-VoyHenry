@@ -45,7 +45,8 @@ export default function UsersGrid({ users }) {
       headerName: "Acciones",
       type: "actions",
       width: 150,
-      renderCell: (nickName) => {
+      cellClassName: "actions",
+      getActions: (nickName) => {
         return [
           <GridActionsCellItem
             key={1}
