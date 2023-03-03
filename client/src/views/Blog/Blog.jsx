@@ -11,11 +11,11 @@ export default function Blog() {
   return (
     <div className={style.container}>
       <div className={style.profileCont}>
-      <h3 className={style.title}>Filtros</h3>
-      <hr
-        color="#F1E100"
-        width="100%"
-      />
+        <h3 className={style.title}>Filtros</h3>
+        <hr
+          color="#F1E100"
+          width="100%"
+        />
         <BlogFilters />
         <button
           onClick={() => setIsOpen(true)}
