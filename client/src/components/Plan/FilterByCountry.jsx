@@ -28,6 +28,10 @@ export default function FilterByCountry() {
   return (
     <div className={style.FilterByCountry}>
       <h3 className={style.filterTitle}>Filtrar por País:</h3>
+      <hr
+        width="100%"
+        color="#b1b1b1"
+      />
       <select
         className={style.inputs}
         id="country-select"
@@ -62,10 +66,6 @@ export default function FilterByCountry() {
           ))}
         </select>
       )}
-      <hr
-        width="100%"
-        color="#F1E100"
-      />
     </div>
   );
 }
