@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import AdminMarketPlaceSection from "./AdminMarketPlaceSection";
 
 export default function AdminMarketPlaceState() {
-  const [editProducts, setEditProducts] = useState();
-  const [productName, setProductName] = useState();
-  const [productPrice, setProductPrice] = useState();
-  const [productCategory, setProductCategory] = useState();
-  const [productDetail, setProductDetail] = useState();
-  const [productMainImage, setProductMainImage] = useState();
-  const [productImages, setProductImages] = useState();
+  const [editProducts, setEditProducts] = useState("");
+  const [productName, setProductName] = useState("");
+  const [productPrice, setProductPrice] = useState("");
+  const [productCategory, setProductCategory] = useState("");
+  const [productDetail, setProductDetail] = useState("");
+  const [productMainImage, setProductMainImage] = useState("");
+  const [productImages, setProductImages] = useState("");
   const [buttonOption, setButtonOption] = useState("create");
-  const [productDeactivate, setProductDeactivate] = useState();
+  const [productDeactivate, setProductDeactivate] = useState("");
+  const [productStock, setProductStock] = useState("");
 
   return (
     <div>
@@ -34,6 +35,8 @@ export default function AdminMarketPlaceState() {
           setProductDeactivate,
           editProducts,
           setEditProducts,
+          productStock,
+          setProductStock,
         }}
       />
     </div>
