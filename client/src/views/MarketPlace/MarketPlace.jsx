@@ -4,8 +4,8 @@ import MarketPlaceSection from "../../components/MarketPlace/MarketPlaceSection"
 
 export default function MarketPlace() {
   return (
-    <div>
+    <>
       <MarketPlaceSection />
-    </div>
+    </>
   );
 }

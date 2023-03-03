@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import countriesData from "../../countries.json";
 import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
-import style from "./GeolocationForm.module.css";
+import style from "./FiltersContainer.module.css";
 
 export default function FilterByCountry() {
   const dispatch = useDispatch();
