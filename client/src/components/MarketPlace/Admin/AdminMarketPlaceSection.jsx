@@ -77,6 +77,8 @@ export default function AdminMarketPlaceSection({
             setProductMainImage,
             productImages,
             setProductImages,
+            productStock,
+            setProductStock,
           }}
         />
       )}

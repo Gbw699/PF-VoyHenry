@@ -48,25 +48,31 @@ export default function AdminMarketPlaceDeactivate({
       )}
       <AdminMarketPlaceInput
         name="title"
-        placeholder="Ingrese el nombre del producto"
+        placeholder="Nombre del producto"
         value={productDeactivate?.title}
         disabled
       />
       <AdminMarketPlaceInput
         name="price"
-        placeholder="Ingrese el titulo del producto"
+        placeholder="Precio del producto"
         value={productDeactivate?.price}
         disabled
       />
       <AdminMarketPlaceInput
+        name="stock"
+        placeholder="Stock del producto"
+        value={productDeactivate?.stock}
+        disabled
+      />
+      <AdminMarketPlaceInput
         name="category"
-        placeholder="Ingrese la categoría del producto"
+        placeholder="Categoría del producto"
         value={productDeactivate?.category}
         disabled
       />
       <AdminMarketPlaceInput
         name="detail"
-        placeholder="Ingrese la descripción del producto"
+        placeholder="Descripción del producto"
         value={productDeactivate?.detail}
         disabled
       />
