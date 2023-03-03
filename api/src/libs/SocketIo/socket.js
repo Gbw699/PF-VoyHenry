@@ -3,7 +3,8 @@ const SessionsService = require('../../services/sessions.service');
 
 const sessionsService = new SessionsService()
 
-const startSocketIo = () =>{
+const startSocketIo = async() =>{
+  await sessionsService.resetAllSessions()
   io.on('connection', (socket) => {
     console.log("Clientes conectados: ", io.engine.clientsCount)
 

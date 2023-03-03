@@ -40,15 +40,20 @@ class SessionsService{
 
   async addOnesession(session){
     if (!session[1]) {
-      session[0].numberOfSessions =  session[0].numberOfSessions + 1
+      session[0].numberOfSessions = await session[0].numberOfSessions + 1
       session[0].save()
     }
   }
 
   async finishOneSession(session){
-      session.numberOfSessions =  session.numberOfSessions - 1
-      console.log(session)
+      session.numberOfSessions = await session.numberOfSessions - 1
       session.save()
+  }
+
+  async resetAllSessions(){
+    await sessionModel.destroy({
+      where: {}
+    })
   }
 
 }
