@@ -35,8 +35,8 @@ class AuthService {
     user.recoveryToken = null
 
     const payload = {
-      nick: user.nickName,
-      role: user.role
+      nick: user.nickName || user[0].dataValues.nickName,
+      role: user.role || user[0].dataValues.role
     }
 
     const token = jwt.sign(payload, JWT_SECRET)
