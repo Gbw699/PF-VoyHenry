@@ -23,7 +23,7 @@ export default function LogInSignUp() {
       />
       <div className={style.buttons}>
         <button
-          className={style.loginSignup}
+          className={style.login}
           type="submit"
           value="logIn"
           onClick={handleSubmit}
@@ -31,7 +31,7 @@ export default function LogInSignUp() {
           Iniciar sesión
         </button>
         <button
-          className={style.loginSignup}
+          className={style.signup}
           type="submit"
           value="signUp"
           onClick={handleSubmit}
