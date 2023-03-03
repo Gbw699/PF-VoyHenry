@@ -49,7 +49,7 @@ export default function MarketPlaceSection() {
               </div>
             ))
           ) : (
-            <h1>No hay ningún producto</h1>
+            <h1 className={style.empty}>No hay ningún producto</h1>
           )}
         </div>
       </div>
