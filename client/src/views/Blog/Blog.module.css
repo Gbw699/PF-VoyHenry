@@ -14,7 +14,15 @@
   border-radius: 5px;
   box-shadow: 3px 3px 5px 2px #b1b1b1;
   padding: 1.5em;
-  
+  height: 50em;
+  min-width: 16.25em;
+}
+
+.title {
+  color: #707070;
+  font-weight: 500;
+  font-size: 130%;
+  margin-bottom: 0px;
 }
 
 .writeBtn {
