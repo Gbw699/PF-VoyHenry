@@ -38,7 +38,6 @@ export default function DetailMarketPlaceImgPrice({
     }
     return optionStock;
   };
-
   const changeQuantitySelect = (event) => {
     const quantityValue = event.target.value;
     setQuantity(parseInt(quantityValue));
@@ -58,6 +57,7 @@ export default function DetailMarketPlaceImgPrice({
         title,
         price,
         email,
+        quantity,
       });
       window.location.href = response.data;
     } catch (error) {

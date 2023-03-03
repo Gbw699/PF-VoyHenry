@@ -152,18 +152,18 @@ class ProductsService {
 
   /* buy One product */
 
-  async buyOne({ id, title, price, user }) {
+  async buyOne({ id, title, price, email, quantity }) {
     let preference = {
       items: [
         {
           title: title,
           unit_price: price,
           currency_id: 'ARS',
-          quantity: 1,
+          quantity: quantity,
         },
       ],
       back_urls: {
-        success: `http://localhost:3001/api/v1/products/success?customer=${user}`,
+        success: `http://localhost:3001/api/v1/products/success?customer=${email}`,
         failure: '',
         pendig: '',
       },
