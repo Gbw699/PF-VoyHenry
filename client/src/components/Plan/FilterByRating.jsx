@@ -12,24 +12,24 @@ export default function FilterByRating() {
   return (
     <div className={style.FilterByRating}>
       <h3 className={style.filterTitle}>Valoración</h3>
+      <hr
+        width="100%"
+        color="#b1b1b1"
+      />
       <button
-        className={style.buttons}
+        className={style.filterBtn}
         value="masvotados"
         onClick={handleClick}
       >
         Mas votados
       </button>
       <button
-        className={style.buttons}
+        className={style.filterBtn}
         value="menosvotados"
         onClick={handleClick}
       >
         Menos votados
       </button>
-      <hr
-        width="100%"
-        color="#F1E100"
-      />
     </div>
   );
 }
