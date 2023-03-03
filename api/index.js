@@ -1,5 +1,6 @@
 require('dotenv').config();
-const { server, io} = require('./app');
+const { server} = require('./app');
+const startSocketIo = require('./src/libs/SocketIo/socket')
 const sequelize = require('./src/libs/database/database');
 
 /* ➖➖🟥🟥🟥
@@ -20,13 +21,7 @@ async function main() {
     console.log('Connection has been established successfully.');
 
     /* Socket.io */
-    io.on('connection', (socket) => {
-      console.log("Clientes conectados: ", io.engine.clientsCount)
-      /* console.log("id: ", socket.id) */
-      socket.on('disconnect', () => {
-        console.log("Clientes conectados: ", io.engine.clientsCount)
-      });
-    });
+    startSocketIo()
 
     /* Express server */
     server.listen(PORT, () => {
