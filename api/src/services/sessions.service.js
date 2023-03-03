@@ -6,6 +6,14 @@ class SessionsService{
 
   }
 
+  /* Find all sessions */
+
+  async find(){
+    const allSessions = sessionModel.findAll()
+
+    return allSessions
+  }
+
   async initSession(nickName, completeName){
 
     const session = await sessionModel.findOrCreate({
