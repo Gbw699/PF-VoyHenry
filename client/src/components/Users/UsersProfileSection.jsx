@@ -1,5 +1,4 @@
 import React from "react";
-import style from "../Profile/ProfileSection.module.css";
 import { Link } from "react-router-dom";
 import ProfileInfo from "../Profile/ProfileInfo";
 import ProfileMyPlans from "../Profile/ProfileMyPlans";
@@ -8,12 +7,11 @@ import { ProfileMyFriendsActivity } from "../Profile/ProfileMyFriendsActivity";
 import ProfileAboutMe from "../Profile/ProfileAboutMe";
 import ProfileLatestAssistedPlans from "../Profile/ProfileLatestAssistedPlans";
 import ProfileLatestReviews from "../Profile/ProfileLatestReviews";
-
-// import style from "./UsersProfileSection.module.css";
+import style from "./UsersProfileSection.module.css";
 
 export default function UsersProfileSection({ user, plans, blogs }) {
   return (
-    <div className={style.mainContainer}>
+    <div className={style.container}>
       <div className={style.profileCont}>
         <ProfileInfo
           image={user.image}
