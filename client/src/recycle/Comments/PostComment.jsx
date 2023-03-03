@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import style from "./DetailPlan.module.css";
+import emojiIcon from "../../assets/emoji.svg";
+import style from "./Comments.module.css";
 import EmojiPicker from "emoji-picker-react";
 
 export default function PostComment(props) {
@@ -13,12 +14,15 @@ export default function PostComment(props) {
   };
 
   return (
-    <div>
-      <div>
-        <img className={style.imgComment} src={user.image} alt="" />
-        <label>{props.label}</label>
+    <div className={style.container}>
+      <div className={style.postComment}>
+        <img
+          className={style.imgComment}
+          src={user.image}
+          alt=""
+        />
         <textarea
-          className={style.text}
+          className={style.inputComment}
           style={{ resize: "none", borderRadius: "5px" }}
           placeholder={props.placeholder}
           name="reseña"
@@ -34,12 +38,16 @@ export default function PostComment(props) {
           </div>
         )}
       </div>
-      <div className={style.buttonCommentDiv}>
+      <div className={style.postButtons}>
         <button
-          className={style.submitBtn}
+          className={style.emojiBtn}
           onClick={() => setShowPicker(!showPicker)}
         >
-          Add Emoji
+          <img 
+            src={emojiIcon}
+            alt="Emoji icon"
+            height="15px"
+          />
         </button>
         <button
           className={style.submitBtn}

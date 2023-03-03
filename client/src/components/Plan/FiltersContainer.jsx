@@ -1,14 +1,14 @@
 import React from "react";
 import FilterByDate from "./FilterByDate";
 import FilterByRating from "./FilterByRating";
-import style from "./GeolocationForm.module.css";
+import style from "./FiltersContainer.module.css";
 import { useDispatch } from "react-redux";
 import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
 import FilterByTitle from "./FilterByTitle";
 import FilterByCountry from "./FilterByCountry";
 // import SearchPlan from "./SearchPlan";
 
-export default function GeolocationForm(props) {
+export default function FiltersContainer(props) {
   const dispatch = useDispatch(event);
 
   const handleClick = () => {

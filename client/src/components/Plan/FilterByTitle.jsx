@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
-import style from "./GeolocationForm.module.css";
+import style from "./FiltersContainer.module.css";
 export default function FilterByTitle() {
   const dispatch = useDispatch();
   const handleClick = (event) => {
