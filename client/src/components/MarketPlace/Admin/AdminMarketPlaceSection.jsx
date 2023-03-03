@@ -19,6 +19,8 @@ export default function AdminMarketPlaceSection({
   setButtonOption,
   productDeactivate,
   setProductDeactivate,
+  editProducts,
+  setEditProducts,
 }) {
   const handleOnClick = (value) => {
     setButtonOption(value);
@@ -35,7 +37,7 @@ export default function AdminMarketPlaceSection({
       )}
       {buttonOption === "edit" && (
         <AdminMarketPlaceEdit
-          {...{ setProductDeactivate, productDeactivate }}
+          {...{ editProducts, setEditProducts, setProducts }}
         />
       )}
     </div>
