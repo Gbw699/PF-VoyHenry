@@ -14,6 +14,7 @@ export default function DetailMarketPlaceImgPrice({
   stock,
   title,
   price,
+  imageExtra,
 }) {
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(1);
@@ -64,7 +65,7 @@ export default function DetailMarketPlaceImgPrice({
   return (
     <div className={style.container}>
       <div className={style.imgCont}>
-        <DetailMarketPlaceImg image={image} />
+        <DetailMarketPlaceImg {...{ image, imageExtra, title }} />
       </div>
       <div className={style.infoCont}>
         <DetailMarketPlacePrice
