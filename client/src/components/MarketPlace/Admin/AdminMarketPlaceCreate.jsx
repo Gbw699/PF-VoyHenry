@@ -1,7 +1,7 @@
 import React from "react";
 // import style from "AdminMarketPlaceEdit.module.css";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import AdminMarketPlaceInput from "./AdminMarketPlaceInput";
 import { createProduct } from "../../../redux/slices/marketPlaceSlice/thunk";
 
