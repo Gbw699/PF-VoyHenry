@@ -21,7 +21,7 @@ export default function MapComponent({ country, province, city, address }) {
         <GoogleMap
           mapContainerStyle={{ height: "400px", width: "100%" }}
           center={coordinates}
-          zoom={17}
+          zoom={18}
         ></GoogleMap>
       )}
     </LoadScript>

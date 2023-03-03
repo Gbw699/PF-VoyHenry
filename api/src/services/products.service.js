@@ -152,7 +152,7 @@ class ProductsService {
 
   /* buy One product */
 
-  async buyOne({id, title, price }) {
+  async buyOne({id, title, price, user }) {
     let preference = {
       items: [
         {
@@ -163,7 +163,7 @@ class ProductsService {
         },
       ],
       back_urls: {
-        success: 'http://localhost:3030/api/v1/',
+        success: `http://localhost:3001/api/v1/products/success?customer=${user}`,
         failure: '',
         pendig: '',
       },
@@ -187,11 +187,13 @@ class ProductsService {
   }
 
   /* Chackout */
-  async checkOut(body) {
+  async checkOut(cart) {
+
+
     let preference = {
       items: [],
       back_urls: {
-        success: 'http://localhost:3030/api/v1/',
+        success: `http://localhost:3001/api/v1/products/success?customer=${cart[0].user} `,
         failure: '',
         pendig: '',
       },
@@ -199,17 +201,18 @@ class ProductsService {
       binary_mode: true,
     };
 
-    body.forEach((products) => {
+    cart.forEach((products) => {
       preference.items.push({
         id: products.id,
         title: products.title,
         unit_price: products.price,
         desciption: products.title,
         quantity: products.quantity,
+        user: products.user
       });
     });
 
-    for (const productData of body) {
+    for (const productData of cart) {
       
       const product = await productModel.findOne({
         where: {

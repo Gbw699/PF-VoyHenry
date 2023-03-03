@@ -8,6 +8,8 @@ export default function AdminMarketPlaceState() {
   const [productDetail, setProductDetail] = useState();
   const [productMainImage, setProductMainImage] = useState();
   const [productImages, setProductImages] = useState();
+  const [buttonOption, setButtonOption] = useState("create");
+  const [productDeactivate, setProductDeactivate] = useState();
 
   return (
     <div>
@@ -25,6 +27,10 @@ export default function AdminMarketPlaceState() {
           setProductMainImage,
           productImages,
           setProductImages,
+          buttonOption,
+          setButtonOption,
+          productDeactivate,
+          setProductDeactivate,
         }}
       />
     </div>
