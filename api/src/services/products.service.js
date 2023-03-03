@@ -188,7 +188,6 @@ class ProductsService {
 
   /* Chackout */
   async checkOut(data) {
-    console.log(data)
 
     let preference = {
       items: [],
@@ -202,8 +201,6 @@ class ProductsService {
     };
 
     let cart = data.product
-
-    console.log(cart)
 
     cart.forEach((products) => {
       preference.items.push({
