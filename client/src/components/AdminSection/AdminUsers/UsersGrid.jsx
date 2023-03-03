@@ -2,12 +2,12 @@ import Box from "@mui/material/Box";
 import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import EditIcon from "@mui/icons-material/Edit";
-import DeleteRecord from "./recycleAdmin/DeleteRecord";
-import CustomToolbar from "./recycleAdmin/CustomToolbar";
+import DeleteRecord from "../recycleAdmin/DeleteRecord";
+import CustomToolbar from "../recycleAdmin/CustomToolbar";
 import { useLocation } from "react-router-dom";
-import EditRecord from "./recycleAdmin/EditRecord";
+import EditRecord from "../recycleAdmin/EditRecord";
 
-export default function UsersGrid({ users, reRender, setReRender }) {
+export default function UsersGrid({ users, reRender, setReRender, setCreateRecord }) {
   const location = useLocation();
 
   const handleEditClick = (nickName) => {
@@ -77,7 +77,7 @@ export default function UsersGrid({ users, reRender, setReRender }) {
         rows={rows}
         columns={columns}
         components={{
-          Toolbar: CustomToolbar,
+          Toolbar: () => CustomToolbar(setCreateRecord),
         }}
       />
     </Box>

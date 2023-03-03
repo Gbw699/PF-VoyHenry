@@ -6,13 +6,10 @@ import {
   GridToolbarFilterButton,
   GridToolbarDensitySelector,
 } from "@mui/x-data-grid";
-import { useLocation } from "react-router-dom";
 
-export default function CustomToolbar() {
-  const location = useLocation();
-
+export default function CustomToolbar(setCreateRecord) {
   const handleCreateClick = () => {
-    console.log(location.pathname === "/admin/users");
+    setCreateRecord(true);
   };
 
   return (
