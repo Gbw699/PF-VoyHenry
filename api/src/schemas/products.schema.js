@@ -7,7 +7,7 @@ const quantity = Joi.number()
 const detail = Joi.string().min(5).max(255)
 const mainImage = Joi.string().uri()
 const availability = Joi.boolean()
-const user = Joi.string()
+const email = Joi.string()
 const category = Joi.string().valid('Remeras', 'Pantalones',  'Gorros')
 const images = Joi.array()
 
@@ -42,7 +42,7 @@ const buyProductSchema = Joi.object({
   title: title,
   price: price,
   quantity: quantity,
-  user: user
+  email: email
 })
 
 module.exports = {
