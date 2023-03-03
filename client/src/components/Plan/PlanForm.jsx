@@ -54,8 +54,8 @@ export default function FormSignUp(props) {
     return toDay;
   };
   return (
-    <div className={style.container_flex}>
-      <div className={style.container}>
+    <div className={style.container}>
+      <div>
         <Formik
           initialValues={{
             title: "",
@@ -178,6 +178,7 @@ export default function FormSignUp(props) {
                   setUrl={setUrl}
                 />
                 </>}
+                {/* ------------------------------------------------------------------------- */}
                 {state.showLocation && <>
                 <label
                   htmlFor="country"

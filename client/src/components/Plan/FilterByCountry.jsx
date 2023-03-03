@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import countriesData from "../../countries.json";
 import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
-import style from "./GeolocationForm.module.css";
+import style from "./FiltersContainer.module.css";
 
 export default function FilterByCountry() {
   const dispatch = useDispatch();
@@ -28,6 +28,10 @@ export default function FilterByCountry() {
   return (
     <div className={style.FilterByCountry}>
       <h3 className={style.filterTitle}>Filtrar por País:</h3>
+      <hr
+        width="100%"
+        color="#b1b1b1"
+      />
       <select
         className={style.inputs}
         id="country-select"
@@ -62,10 +66,6 @@ export default function FilterByCountry() {
           ))}
         </select>
       )}
-      <hr
-        width="100%"
-        color="#F1E100"
-      />
     </div>
   );
 }

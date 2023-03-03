@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AdminMarketPlaceSection from "./AdminMarketPlaceSection";
 
 export default function AdminMarketPlaceState() {
+  const [editProducts, setEditProducts] = useState();
   const [productName, setProductName] = useState();
   const [productPrice, setProductPrice] = useState();
   const [productCategory, setProductCategory] = useState();
@@ -31,6 +32,8 @@ export default function AdminMarketPlaceState() {
           setButtonOption,
           productDeactivate,
           setProductDeactivate,
+          editProducts,
+          setEditProducts,
         }}
       />
     </div>

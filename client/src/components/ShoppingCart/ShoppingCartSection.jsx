@@ -8,15 +8,17 @@ import Swal from "sweetalert2";
 
 export default function ShoppingCartSection() {
   const navigate = useNavigate();
-  const productLocalStore = localStorage.getItem("products");
-  const product = JSON.parse(productLocalStore);
+  const product = JSON.parse(localStorage.getItem("products"));
+  const user = JSON.parse(localStorage.getItem("user"));
+  const email = user.email;
   const productContext = useContext(ProductContext);
 
   const handleBuyCart = async () => {
     try {
       const response = await axios.post(
         "http://localhost:3001/api/v1/products/checkout",
-        product
+        product,
+        email
       );
       window.location.href = response.data;
     } catch (error) {
@@ -123,6 +125,7 @@ export default function ShoppingCartSection() {
             <ShoppingCartCard
               id={element.id}
               deleteProductAlert={deleteProductAlert}
+              stock={element.stock}
               image={element.image}
               title={element.title}
               unitPrice={element.price}

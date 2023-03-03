@@ -3,7 +3,34 @@ import style from "./OrderFilter.module.css";
 export default function OrderFilter({ filters, setFilters }) {
   return (
     <div className={style.container}>
-      <h3 className={style.name}>Ordenar por</h3>
+      <h3 className={style.name}>Valoración</h3>
+      <hr
+        width="100%"
+        color="#b1b1b1"
+      />
+        <button
+          className={style.buttons}
+          value="masvotados"
+          onClick={(event) =>
+            setFilters({ ...filters, order: event.target.value })
+          }
+        >
+          Más votados
+        </button>
+        <button
+          className={style.buttons}
+          value="menosvotados"
+          onClick={(event) =>
+            setFilters({ ...filters, order: event.target.value })
+          }
+        >
+          Menos votados
+        </button>
+      <h3 className={style.name}>Alfabeticamente</h3>
+      <hr
+        width="100%"
+        color="#b1b1b1"
+      />
       <div className={style.containerButton}>
         <button
           className={style.buttons}
@@ -22,24 +49,6 @@ export default function OrderFilter({ filters, setFilters }) {
           }
         >
           Z - A
-        </button>
-        <button
-          className={style.buttons}
-          value="masvotados"
-          onClick={(event) =>
-            setFilters({ ...filters, order: event.target.value })
-          }
-        >
-          Más votados
-        </button>
-        <button
-          className={style.buttons}
-          value="menosvotados"
-          onClick={(event) =>
-            setFilters({ ...filters, order: event.target.value })
-          }
-        >
-          Menos votados
         </button>
       </div>
     </div>

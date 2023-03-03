@@ -15,7 +15,7 @@ class ProductsService {
     availability,
     category,
     images,
-    stock
+    stock,
   }) {
     const newProduct = await productModel.create({
       title: title,
@@ -27,7 +27,7 @@ class ProductsService {
       mainImage: mainImage,
 
       images: images,
-      stock:stock,
+      stock: stock,
       availability: availability,
     });
 
@@ -80,10 +80,10 @@ class ProductsService {
       options.offset = (page - 1) * (options.limit || query.limit);
     }
 
-    const productsInFilter = await productModel.count(options)
+    const productsInFilter = await productModel.count(options);
 
     const products = await productModel.findAll(options);
-    
+
     if (products === null || products.length === 0) {
       throw new CustomError('Product not found', 404);
     } else {
@@ -152,18 +152,18 @@ class ProductsService {
 
   /* buy One product */
 
-  async buyOne({id, title, price, user }) {
+  async buyOne({ id, title, price, email, quantity }) {
     let preference = {
       items: [
         {
           title: title,
           unit_price: price,
           currency_id: 'ARS',
-          quantity: 1,
+          quantity: quantity,
         },
       ],
       back_urls: {
-        success: `http://localhost:3001/api/v1/products/success?customer=${user}`,
+        success: `http://localhost:3001/api/v1/products/success?customer=${email}`,
         failure: '',
         pendig: '',
       },
@@ -173,13 +173,13 @@ class ProductsService {
 
     const product = await productModel.findOne({
       where: {
-        id: id
+        id: id,
       },
     });
 
-    product.stock -=1
+    product.stock -= 1;
 
-    await product.save()
+    await product.save();
 
     const response = await mercadopago.preferences.create(preference);
 
@@ -188,8 +188,6 @@ class ProductsService {
 
   /* Chackout */
   async checkOut(cart) {
-
-
     let preference = {
       items: [],
       back_urls: {
@@ -208,21 +206,20 @@ class ProductsService {
         unit_price: products.price,
         desciption: products.title,
         quantity: products.quantity,
-        user: products.user
+        user: products.user,
       });
     });
 
     for (const productData of cart) {
-      
       const product = await productModel.findOne({
         where: {
-          id: productData.id
+          id: productData.id,
         },
-      })
-    
-      product.stock -= productData.quantity
-    
-      await product.save()
+      });
+
+      product.stock -= productData.quantity;
+
+      await product.save();
     }
 
     const response = await mercadopago.preferences.create(preference);

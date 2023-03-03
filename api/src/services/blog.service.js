@@ -4,8 +4,9 @@ const comments = require('../libs/models/comments.model');
 const { CustomError } = require('../middlewares/error.handler')
 const { Op } = require("sequelize");
 const sequelize = require('../libs/database/database');
+const MailerService = require('./Mailer.service')
 
-
+const mailerService = new MailerService()
 
 
 class blogService {
@@ -122,6 +123,68 @@ async create (  {userNickName, title , content, stars, image} ){
       blogid: newBlog.id
     })
 
+
+
+    mailerService.sendBlogCreateEmail(searchname, newBlog)
+
+    const follow = await sequelize.models.user_follow_user.findAll({
+      where: {followUserId: userNickName}
+    })
+
+     const userid = follow.map(
+      (fo) => fo.dataValues.userid
+     )
+
+    const allUsers = await users .findAll({
+      where: {nickName: userid}
+    })
+
+    const usermail = allUsers.map(
+      (fo) => fo.dataValues.email
+     )
+
+    mailerService.sendFollowingBlogCreateEmail(searchname, newBlog, userid, usermail)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return {
     message: "Create",
     data: {
@@ -183,6 +246,54 @@ async update (id, { title , content, rating, image }) {
 
     await blog.save()
 
+
+
+
+
+
+
+
+
+
+    const searchname = await users.findOne({
+      where: { nickName: userNickName },
+    });
+
+    mailerService.sendBlogVoteEmail(searchname, blog)
+
+    const follow = await sequelize.models.user_follow_user.findAll({
+      where: {followUserId: userNickName}
+    })
+
+     const userid = follow.map(
+      (fo) => fo.dataValues.userid
+     )
+
+    const allUsers = await users .findAll({
+      where: {nickName: userid}
+    })
+
+    const usermail = allUsers.map(
+      (fo) => fo.dataValues.email
+     )
+
+    mailerService.sendFollowingBlogVoteEmail(searchname, blog, userid, usermail)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    return {
     message: "voted",
     data: {
@@ -229,11 +340,32 @@ async update (id, { title , content, rating, image }) {
       commentid: newCom.id,
     });
 
+
+
+
     const commentBlogTable = await sequelize.models.comments_blogs.create({
       blogid: id,
 
       commentid: newCom.id,
     });
+
+    const searchblog = await blogModel.findOne({
+      where: { id: id },
+    });
+
+    const searchname = await users.findOne({
+      where: { nickName: searchblog.userNickName },
+    });
+
+    mailerService.sendBlogCommentEmail(searchname, searchblog, userNickName )
+
+
+
+
+
+
+
+
 
     return {
       message: 'Create',

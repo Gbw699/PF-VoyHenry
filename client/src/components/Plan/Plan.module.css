@@ -1,22 +1,31 @@
 .container {
+  background-color: white;
+  background-size: cover;
   display: flex;
   flex-direction: row;
   justify-content: center;
   padding: 4rem;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .planForm {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  /* width: 18%; */
+  width: 18%;
 }
 
 .plans {
-  margin: 0px 2%;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 3rem;
   width: 60%;
 }
 
 .sections {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 22%;
 }

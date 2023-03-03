@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./GeolocationForm.module.css";
+import style from "./FiltersContainer.module.css";
 import { useDispatch } from "react-redux";
 import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
 
@@ -16,6 +16,10 @@ export default function FilterByDate() {
   return (
     <div className={style.FilterByDate}>
       <h3 className={style.filterTitle}>Fecha</h3>
+      <hr
+        width="100%"
+        color="#b1b1b1"
+      />
       <input
         type="date"
         id="dateInput"
@@ -24,25 +28,20 @@ export default function FilterByDate() {
         className={style.inputs}
         onChange={handleInputChange}
       />
-
       <button
-        className={style.buttons}
+        className={style.filterBtn}
         value="nuevos"
         onClick={handleClick}
       >
         Nuevos
       </button>
       <button
-        className={style.buttons}
+        className={style.filterBtn}
         value="antiguos"
         onClick={handleClick}
       >
         Antiguos
       </button>
-      {/* <hr
-        width="100%"
-        color="#F1E100"
-      /> */}
     </div>
   );
 }
