@@ -2,16 +2,19 @@ import Box from "@mui/material/Box";
 import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import EditIcon from "@mui/icons-material/Edit";
-import DeleteRecord from "./DeleteRecord";
-import CustomToolbar from "./CustomToolbar";
+import DeleteRecord from "./recycleAdmin/DeleteRecord";
+import CustomToolbar from "./recycleAdmin/CustomToolbar";
+import { useLocation } from "react-router-dom";
 
 export default function UsersGrid({ users }) {
+  const location = useLocation();
+
   const handleEditClick = (nickName) => {
     console.log("edit");
   };
 
   const handleDeleteClick = (nickName) => {
-    DeleteRecord(nickName);
+    DeleteRecord(nickName, location.pathname);
   };
 
   const rows = users?.map((user, index) => {
