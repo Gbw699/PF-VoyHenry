@@ -78,6 +78,8 @@ class PlansService {
       options.offset = (page - 1) * (options.limit || query.limit);
     }
 
+    const plansLimit = options.limit
+
     const plansInFilter = await plansModel.count(options);
 
     const plans = await plansModel.findAll(options);
@@ -85,7 +87,7 @@ class PlansService {
     if (plans === null || plans.length === 0) {
       throw new CustomError('Plan not found', 404);
     } else {
-      return { plans, plansInFilter };
+      return { plans, plansInFilter, plansLimit };
     }
   }
 
