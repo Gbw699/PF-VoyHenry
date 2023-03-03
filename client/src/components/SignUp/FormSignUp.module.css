@@ -45,16 +45,21 @@
 }
 
 .formInputs {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 30em;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  width: 31em;
 }
 
 .inputTitle {
   color: #707070;
   font-weight: 300;
   font-size: 100%;
+}
+
+.inputs { 
+  margin: 0.5em 1.5em 0.5em 1.5em;
+  width: 15em;
 }
 
 .btnSignup {
@@ -65,10 +70,12 @@
   border: 0px;
   border-radius: 10px;
   transition: background-color 0.5s;
-  margin-top: 3em;
-  margin-bottom: 1em;
+  margin: 3em auto 1em;
+  display: block;
   width: 14em;
   cursor: pointer;
+  transition: filter 0.5s ease-in-out;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .googleCont {
@@ -90,9 +97,10 @@
   font-size: 100%;
   border: 0px;
   border-radius: 10px;
-  transition: background-color 0.5s;
+  transition: filter 0.5s ease-in-out;
   margin: 1em;
   width: 14em;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
 
@@ -104,19 +112,22 @@
   border: 0px;
   border-radius: 10px;
   transition: background-color 0.5s;
-  margin: 1em;
+  margin: 1em 1em 0em 1em;
   cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .btnSignup:hover {
-  background-color: #707070;
-  color: white;
+  filter: saturate(150%) brightness(80%);
+  transition: filter 0.5s ease-in-out;
 }
 
 .btnGoogle:hover {
-  background-color: #ac0000ec;
+  filter: saturate(150%) brightness(80%);
+  transition: filter 0.5s ease-in-out;
 }
 
 .btnVolver:hover {
   background-color: #f1e100;
+  transition: background-color 0.5s;
 }

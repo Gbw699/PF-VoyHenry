@@ -18,10 +18,10 @@ router.get('/', async (req, res, next) => {
 
     let pages = ''
 
-    if (plans.plansInFilter <= 9){
+    if (plans.plansInFilter <= plans.plansLimit){
       pages = 1
     } else {
-      pages = Math.ceil(plans.plansInFilter / 9);
+      pages = Math.ceil(plans.plansInFilter / plans.plansLimit);
     }
 
     const pageNumber = parseInt(page);
@@ -109,6 +109,45 @@ router.get('/:id/comment',
       res.json(createdPlan)
     } catch (error) {
 
+      next(error)
+    }
+
+});
+
+/* Delete Plan Comment */
+
+router.delete(
+  '/comment/:id',
+
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+
+      const deletedComment = await service.deleteComment(id);
+
+      res.json(deletedComment);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+/* update comment content */
+
+router.patch('/comment/:id',
+
+  async (req, res, next) => {
+
+    try {
+
+      const { id } = req.params
+      const body = req.body;
+
+      const updatedComment = await service.updateComment(id, body)
+
+      res.json(updatedComment)
+
+    } catch (error) {
       next(error)
     }
 

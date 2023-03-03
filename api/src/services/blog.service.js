@@ -1,11 +1,12 @@
 const blogModel = require('../libs/models/blog-model.js');
 const users = require('../libs/models/users.model.js');
-const comments = require('../libs/models/comments.users');
+const comments = require('../libs/models/comments.model');
 const { CustomError } = require('../middlewares/error.handler')
 const { Op } = require("sequelize");
 const sequelize = require('../libs/database/database');
+const MailerService = require('./Mailer.service')
 
-
+const mailerService = new MailerService()
 
 
 class blogService {
@@ -47,6 +48,10 @@ class blogService {
       }
     }
 
+    if (query.limit) {
+      options.limit = query.limit;
+    }
+
 
     if (query.offset) {
 
@@ -61,6 +66,8 @@ class blogService {
       options.offset = (page - 1) * (options.limit || query.limit);
     }
 
+    const blogsLimit = options.limit
+
     const blogsInFilter = await blogModel.count(options);
 
     const blogs = await blogModel.findAll(options)
@@ -68,7 +75,7 @@ class blogService {
     if (blogs === null|| blogs.length === 0) {
       throw new CustomError("Blog not found", 404)
     } else {
-      return {blogs, blogsInFilter}
+      return {blogs, blogsInFilter, blogsLimit}
     }
 
   }
@@ -115,6 +122,68 @@ async create (  {userNickName, title , content, stars, image} ){
 
       blogid: newBlog.id
     })
+
+
+
+    mailerService.sendBlogCreateEmail(searchname, newBlog)
+
+    const follow = await sequelize.models.user_follow_user.findAll({
+      where: {followUserId: userNickName}
+    })
+
+     const userid = follow.map(
+      (fo) => fo.dataValues.userid
+     )
+
+    const allUsers = await users .findAll({
+      where: {nickName: userid}
+    })
+
+    const usermail = allUsers.map(
+      (fo) => fo.dataValues.email
+     )
+
+    mailerService.sendFollowingBlogCreateEmail(searchname, newBlog, userid, usermail)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return {
     message: "Create",
@@ -177,6 +246,54 @@ async update (id, { title , content, rating, image }) {
 
     await blog.save()
 
+
+
+
+
+
+
+
+
+
+    const searchname = await users.findOne({
+      where: { nickName: userNickName },
+    });
+
+    mailerService.sendBlogVoteEmail(searchname, blog)
+
+    const follow = await sequelize.models.user_follow_user.findAll({
+      where: {followUserId: userNickName}
+    })
+
+     const userid = follow.map(
+      (fo) => fo.dataValues.userid
+     )
+
+    const allUsers = await users .findAll({
+      where: {nickName: userid}
+    })
+
+    const usermail = allUsers.map(
+      (fo) => fo.dataValues.email
+     )
+
+    mailerService.sendFollowingBlogVoteEmail(searchname, blog, userid, usermail)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    return {
     message: "voted",
     data: {
@@ -223,11 +340,32 @@ async update (id, { title , content, rating, image }) {
       commentid: newCom.id,
     });
 
+
+
+
     const commentBlogTable = await sequelize.models.comments_blogs.create({
       blogid: id,
 
       commentid: newCom.id,
     });
+
+    const searchblog = await blogModel.findOne({
+      where: { id: id },
+    });
+
+    const searchname = await users.findOne({
+      where: { nickName: searchblog.userNickName },
+    });
+
+    mailerService.sendBlogCommentEmail(searchname, searchblog, userNickName )
+
+
+
+
+
+
+
+
 
     return {
       message: 'Create',
@@ -352,14 +490,6 @@ async update (id, { title , content, rating, image }) {
 
   }
 
-  /* Count Pages */
-  async count () {
-    let  options = {}
-
-    const count = await blogModel.count(options);
-
-    return count;
-  }
 
   }
 
