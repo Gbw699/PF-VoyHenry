@@ -14,17 +14,18 @@ export default function DeleteRecord(nickName) {
       title: "¿Estás seguro que quieres borrar este registro?",
       text: "¡Esta acción no se puede revertir!",
       icon: "warning",
-      showCancelButton: true,
       confirmButtonText: "Si",
+      showCancelButton: true,
       cancelButtonText: "No",
+      //reverseButtons: true
     })
     .then((result) => {
-      try {
-        axios.delete(`/api/v1/users/${nickName}`);
-      } catch (error) {
-        console.error(error.response);
-      }
       if (result.isConfirmed) {
+        try {
+          axios.delete(`/api/v1/users/${nickName}`);
+        } catch (error) {
+          console.error(error.response);
+        }
         swalWithBootstrapButtons.fire(
           "Registro borrado!",
           "Se ha actualizado la base de datos",
