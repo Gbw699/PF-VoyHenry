@@ -6,6 +6,7 @@ export default function ShoppingCartCard({
   id,
   image,
   title,
+  stock,
   unitPrice,
   quantity,
   deleteProductAlert,
@@ -38,6 +39,7 @@ export default function ShoppingCartCard({
               <div className={style.btnsCont}>
                 <div className={style.quantityBtns}>
                   <ItemCount
+                    stock={stock}
                     quantity={counter}
                     product={id}
                     setCounter={setCounter}
