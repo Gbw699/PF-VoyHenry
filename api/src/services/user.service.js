@@ -279,6 +279,18 @@ class UsersService {
       followUserId: userNickName,
     });
 
+    const searchname = await usersModel.findOne({where: { nickName: userNickName }  });
+
+
+    mailerService.sendUserFollowUserEmail(searchname, nickName)
+
+
+
+
+
+
+
+
     return {
       message: 'Create',
       data: {
@@ -341,6 +353,12 @@ class UsersService {
          followUserId: userNickName
       }
     })
+
+    const searchname = await usersModel.findOne({where: { nickName: userNickName }  });
+
+
+    mailerService.sendUserStopFollowUserEmail(searchname, nickName)
+
 
     if (deletedFollowedUser === 0){
       throw new CustomError("user relacion not exist", 404)
