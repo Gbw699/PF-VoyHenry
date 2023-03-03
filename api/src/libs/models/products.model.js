@@ -1,58 +1,55 @@
-const { DataTypes } = require('sequelize')
-const sequelize = require('../database/database')
+const { DataTypes } = require('sequelize');
+const sequelize = require('../database/database');
 
 const products = sequelize.define('products', {
-
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
   },
   title: {
-    type: DataTypes.STRING(55),
-    allowNull: false
+    type: DataTypes.STRING(255),
+    allowNull: false,
   },
   price: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   category: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      isIn: [['Remeras', 'Pantalones',  'Gorros']]
-    }
+      isIn: [['Remeras', 'Pantalones', 'Gorros']],
+    },
   },
   detail: {
-    type: DataTypes.STRING(255),
-    allowNull: false
+    type: DataTypes.STRING,
+    allowNull: false,
   },
-  images : {
+  images: {
     type: DataTypes.ARRAY(DataTypes.TEXT),
   },
   mainImage: {
     type: DataTypes.TEXT,
     allowNull: false,
     validate: {
-      isUrl: true
-    }
+      isUrl: true,
+    },
   },
   stock: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   availability: {
     type: DataTypes.VIRTUAL,
     get() {
       if (this.stock === 0) {
-        return false
+        return false;
       } else {
-        return true
+        return true;
       }
-    }
-  }
-
-})
-
+    },
+  },
+});
 
 module.exports = products;

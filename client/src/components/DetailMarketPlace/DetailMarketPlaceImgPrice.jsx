@@ -69,44 +69,13 @@ export default function DetailMarketPlaceImgPrice({
           onChange={changeQuantitySelect}
           className={style.select}
         >
-          {/* //!! Hay que hacer un map del stock */}
-          {/* <option
-            key={stock}
-            value={stock}
-          >
-            {stock === 1 ? `${stock} unidad` : `${stock} unidades`}
-          </option> */}
           <option
-            key="1"
-            value="1"
+            value={0}
+            disabled
+            selected
           >
-            1{/* {stock === 1 ? `${stock} unidad` : `${stock} unidades`} */}
+            cantidad: {stock}
           </option>
-          <option
-            key="2"
-            value="2"
-          >
-            2
-          </option>
-          <option
-            key="3"
-            value="3"
-          >
-            3
-          </option>
-          <option
-            key="4"
-            value="4"
-          >
-            4
-          </option>
-          <option
-            key="5"
-            value="5"
-          >
-            5
-          </option>
-          {/* //!! Hay que hacer un map del stock */}
         </select>
         <button
           className={style.addBtn}
