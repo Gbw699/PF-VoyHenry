@@ -14,6 +14,7 @@ const startSocketIo = () =>{
 
     socket.on('disconnect', () => {
       console.log("Clientes conectados: ", io.engine.clientsCount)
+      sessionsService.finishSession(socket.handshake.auth.nickName)
     });
   });
 }
