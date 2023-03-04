@@ -11,7 +11,11 @@ const startSocketIo = async() =>{
     sessionsService.initSession(
       socket.handshake.auth.nickName,
       socket.handshake.auth.completeName
-      )
+    )
+
+/*     if(socket.handshake.auth.nickName === "109838909950803434792"){
+      io.emit("welcome", "Tukilando")
+    } */
 
     socket.on('disconnect', () => {
       console.log("Clientes conectados: ", io.engine.clientsCount)

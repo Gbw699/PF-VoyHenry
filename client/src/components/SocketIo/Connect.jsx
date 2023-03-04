@@ -20,6 +20,11 @@ export default function Connect() {
       socket.on("disconnect", () => {
         console.log("Desconectado del servidor");
       });
+
+      socket.on("welcome", (data) => {
+        console.log(data);
+      });
+
       return () => {
         socket.disconnect();
       };
