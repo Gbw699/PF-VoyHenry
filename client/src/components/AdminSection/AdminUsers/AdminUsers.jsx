@@ -1,7 +1,7 @@
 import { useState } from "react";
 import AxiosUsers from "../../Users/AxiosUsers";
 import UsersGrid from "./UsersGrid";
-import FormSignUp from "../../SignUp/FormSignUp";
+import CreateUserForm from "./CreateUserForm";
 
 export default function AdminUsers() {
   const [users, setUsers] = useState([]);
@@ -23,7 +23,13 @@ export default function AdminUsers() {
           setCreateRecord={setCreateRecord}
         />
       )}
-      {createRecord && <FormSignUp />}
+      {createRecord && (
+        <CreateUserForm
+          reRender={reRender}
+          setReRender={setReRender}
+          setCreateRecord={setCreateRecord}
+        />
+      )}
     </>
   );
 }
