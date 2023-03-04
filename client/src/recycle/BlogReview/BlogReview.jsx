@@ -1,27 +1,15 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import style from "./BlogReview.module.css";
 
 export default function BlogReview({ blog }) {
-  const [userImage, setUserImage] = useState("");
-  const [reviewImage, setReviewImage] = useState("");
-
-  useEffect(() => {
-    setUserImage(`url(${blog.userimage})`);
-  });
-
-  useEffect(() => {
-    setReviewImage(`url(${blog.image})`);
-  });
-
   return (
     <div className={style.container}>
       <div className={style.reviewCont}>
         <Link to={`/users/${blog.userNickName}`}>
           <div
             className={style.userImg}
-            style={{ backgroundImage: userImage }}
+            style={{ backgroundImage: `url(${blog.userimage})` }}
           />
         </Link>
         <div className={style.userCont}>
@@ -39,7 +27,7 @@ export default function BlogReview({ blog }) {
           >
             <div
               className={style.reviewImg}
-              style={{ backgroundImage: reviewImage }}
+              style={{ backgroundImage: `url(${blog.image})` }}
             />
             <div className={style.reviewInfo}>
               <h4 className={style.infoName}>{blog.title}</h4>

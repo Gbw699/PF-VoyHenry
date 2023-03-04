@@ -1,21 +1,16 @@
 import { useState } from "react";
 import BlogsReviews from "../../components/Blog/BlogsReviews";
+import BlogFilters from "../../components/Blog/BlogFilters";
 import BlogForm from "../../recycle/BlogForm/BlogForm";
 import BlogUsers from "../../components/Blog/BlogUsers";
 import style from "./Blog.module.css";
-import BlogFilters from "../../components/Blog/BlogFilters";
 
 export default function Blog() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className={style.container}>
-      <div className={style.profileCont}>
-        <h3 className={style.title}>Filtros</h3>
-        <hr
-          color="#F1E100"
-          width="100%"
-        />
+      <div className={style.filters}>
         <BlogFilters />
         <button
           onClick={() => setIsOpen(true)}

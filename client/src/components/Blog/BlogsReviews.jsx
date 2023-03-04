@@ -16,7 +16,7 @@ export default function BlogsReviews() {
 
   return (
     <div className={style.container}>
-      <div className={style.subCont}>
+      <div className={style.reviewCont}>
         {blogs?.blogs.map((blog) => {
           return (
             <BlogReview

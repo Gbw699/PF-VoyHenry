@@ -5,6 +5,7 @@ import style from "./DetailMarketPlaceSection.module.css";
 import { useParams, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/slices/marketPlaceSlice/thunk";
+import Error404 from "../../views/Error404/Error404";
 
 export default function DetailMarketPlaceSection() {
   const { id } = useParams();
@@ -14,7 +15,8 @@ export default function DetailMarketPlaceSection() {
   }, [dispatch]);
 
   const products = useSelector((state) => state.marketPlaceStore.detailProduct);
-  return (
+  console.log(products);
+  return products.length > 0 ? (
     <div className={style.mainContainer}>
       <div className={style.itemCont}>
         {products.map((element) => (
@@ -49,5 +51,7 @@ export default function DetailMarketPlaceSection() {
         </NavLink>
       </div>
     </div>
+  ) : (
+    <Error404 />
   );
 }

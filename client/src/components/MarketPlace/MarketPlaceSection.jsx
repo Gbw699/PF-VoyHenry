@@ -8,6 +8,7 @@ import style from "./MarketPlaceSection.module.css";
 import { getProductsbyOrder } from "../../redux/slices/marketPlaceSlice/thunk";
 
 export default function MarketPlaceSection() {
+  const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProductsbyOrder("order", "nuevos"));
@@ -29,11 +30,13 @@ export default function MarketPlaceSection() {
       <div className={style.container}>
         <div className={style.marketCont}>
           <Filters />
-          <div>
-            <Link to="/marketplace/admin">
-              <button className={style.buttonAdmin}>Administrar</button>
-            </Link>
-          </div>
+          {user.role === "admin" && (
+            <div>
+              <Link to="/marketplace/admin">
+                <button className={style.buttonAdmin}>Administrar</button>
+              </Link>
+            </div>
+          )}
         </div>
         <div className={style.cardsCont}>
           {products ? (
@@ -49,7 +52,7 @@ export default function MarketPlaceSection() {
               </div>
             ))
           ) : (
-            <h1>No hay ningún producto</h1>
+            <h1 className={style.empty}>No hay ningún producto</h1>
           )}
         </div>
       </div>

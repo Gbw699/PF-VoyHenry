@@ -177,7 +177,7 @@ class ProductsService {
       },
     });
 
-    product.stock -= 1;
+    product.stock -= quantity;
 
     await product.save();
 
@@ -187,17 +187,20 @@ class ProductsService {
   }
 
   /* Chackout */
-  async checkOut(cart) {
+  async checkOut(data) {
+
     let preference = {
       items: [],
       back_urls: {
-        success: `http://localhost:3001/api/v1/products/success?customer=${cart[0].user} `,
+        success: `http://localhost:3001/api/v1/products/success?customer=${data.email} `,
         failure: '',
         pendig: '',
       },
       auto_return: 'approved',
       binary_mode: true,
     };
+
+    let cart = data.product
 
     cart.forEach((products) => {
       preference.items.push({
@@ -210,7 +213,7 @@ class ProductsService {
       });
     });
 
-    for (const productData of cart) {
+     for (const productData of cart) {
       const product = await productModel.findOne({
         where: {
           id: productData.id,
@@ -219,12 +222,12 @@ class ProductsService {
 
       product.stock -= productData.quantity;
 
-      await product.save();
+      await product.save(); 
     }
 
     const response = await mercadopago.preferences.create(preference);
 
-    return response.body.init_point;
+    return response.body.init_point; 
   }
 }
 

@@ -9,28 +9,20 @@
   min-height: 100vh;
 }
 
-.profileCont {
+.filters {
   display: flex;
   flex-direction: column;
-  border-radius: 5px;
-  box-shadow: 3px 3px 5px 2px #b1b1b1;
+  align-items: center;
   width: 18%;
 }
 
-.title {
-  color: #707070;
-  font-weight: 500;
-  font-size: 130%;
-  margin-bottom: 0px;
-}
-
 .writeBtn {
-  margin-top: 20%;
   background-color: #f1e100;
   border: 2px solid #f1e100;
   border-radius: 10px;
   padding: 0.5em 1em;
   color: #707070;
+  margin-top: 2em;
   cursor: pointer;
 }
 
