@@ -1,5 +1,12 @@
 .container {
+  background-color: white;
+  background-size: cover;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 4rem;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .marketCont {
@@ -14,17 +21,21 @@
   width: 75%;
   display: flex;
   flex-wrap: wrap;
+  color: #707070;
+  justify-content: center;
 }
 
 .buttonAdmin {
-  font-size: 1.5em;
+  font-size: 120%;
   margin-top: 1.5em;
-  border-radius: 1em;
-  border-color: #f1e100;
-  padding: 0.4em;
+  border-radius: 10px;
+  border: 2px solid #f1e100;
   background-color: #f1e100;
+  color: #707070;
+  padding: 0.5em 1em;
+  cursor: pointer;
 }
 
 .buttonAdmin:hover{
-  cursor: pointer;
+  background-color: white;
 }

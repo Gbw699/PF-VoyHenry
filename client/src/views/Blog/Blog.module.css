@@ -1,37 +1,28 @@
 .container {
   background-color: white;
+  background-size: cover;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 4em;
+  padding: 4rem;
   width: 100%;
   min-height: 100vh;
 }
 
-.profileCont {
+.filters {
   display: flex;
   flex-direction: column;
-  border-radius: 5px;
-  box-shadow: 3px 3px 5px 2px #b1b1b1;
-  padding: 1.5em;
-  height: 50em;
-  min-width: 16.25em;
-}
-
-.title {
-  color: #707070;
-  font-weight: 500;
-  font-size: 130%;
-  margin-bottom: 0px;
+  align-items: center;
+  width: 18%;
 }
 
 .writeBtn {
-  margin-top: 20%;
   background-color: #f1e100;
   border: 2px solid #f1e100;
   border-radius: 10px;
-  padding: 6% 15%;
+  padding: 0.5em 1em;
   color: #707070;
+  margin-top: 2em;
   cursor: pointer;
 }
 

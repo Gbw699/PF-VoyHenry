@@ -13,12 +13,14 @@ export default function ShoppingCartSection() {
   const email = user.email;
   const productContext = useContext(ProductContext);
 
+  const data = {product, email}
+
   const handleBuyCart = async () => {
+
     try {
       const response = await axios.post(
         "http://localhost:3001/api/v1/products/checkout",
-        product,
-        email
+        data
       );
       window.location.href = response.data;
     } catch (error) {

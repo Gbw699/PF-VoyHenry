@@ -160,105 +160,128 @@ export default function DetailPlan() {
           style={{ backgroundImage: `url(${plan.mainImage})` }}
           className={style.imgCont}
         >
-          {isEditable && (
-            <>
-              <button
-                className={style.editButton}
-                onClick={handleEditClick}
-              >
-                Editar Plan
-              </button>
-            </>
-          )}
-          {showEditInputs && (
-            <>
-              <button
-                className={style.deleteButton}
-                onClick={handleDeleteClick}
-              >
-                Borrar Plan
-              </button>
-              <button
-                className={style.saveButton}
-                onClick={handleSave}
-              >
-                Guardar cambios
-              </button>
-            </>
-          )}
-          <h1>{plan.title}</h1>
-          {showEditInputs && (
-            <input
-              onChange={handleLabel}
-              name="title"
-            />
-          )}
-          <h3>{plan.country}</h3>
-          {showEditInputs && (
-            <input
-              onChange={handleLabel}
-              name="country"
-            />
-          )}
-          <h3>{plan.province}</h3>
-          {showEditInputs && (
-            <input
-              onChange={handleLabel}
-              name="province"
-            />
-          )}
-          <h3>{plan.eventDate}</h3>
-          {showEditInputs && (
-            <input
-              onChange={handleLabel}
-              name="eventDate"
-            />
-          )}
-          {plan.average && (
-            <Rating
-              size="large"
-              name="average"
-              value={plan.average}
-              readOnly
-            />
-          )}
+          <div className={style.editCont}>
+            {isEditable && !showEditInputs && (
+              <>
+                <button
+                  className={style.editBtn}
+                  onClick={handleEditClick}
+                >
+                  Editar Plan
+                </button>
+              </>
+            )}
+            {showEditInputs && (
+              <>
+                <button
+                  className={style.saveBtn}
+                  onClick={handleSave}
+                >
+                  Guardar cambios
+                </button>
+                <button
+                  className={style.deleteBtn}
+                  onClick={handleDeleteClick}
+                >
+                  Borrar Plan
+                </button>
+              </>
+            )}
+          </div>
+          <div className={style.infoCont}>
+            <h1 className={style.infoTitle}>{plan.title}</h1>
+            {showEditInputs && (
+              <input
+                onChange={handleLabel}
+                name="title"
+                className={style.editInput}
+                placeholder="Ingresa el nuevo título"
+              />
+            )}
+            <hr color="white" width="60%" />
+            <h3 className={style.infoCountry}>{plan.country}</h3>
+            {showEditInputs && (
+              <input
+                onChange={handleLabel}
+                name="country"
+                className={style.editInput}
+                placeholder="Ingresa el nuevo país"
+              />
+            )}
+            <h3 className={style.infoProvince}>{plan.province}</h3>
+            {showEditInputs && (
+              <input
+                onChange={handleLabel}
+                name="province"
+                className={style.editInput}
+                placeholder="Ingresa la nueva provincia"
+              />
+            )}
+            <h3 className={style.infoDate}>{plan.eventDate}</h3>
+            {showEditInputs && (
+              <input
+                onChange={handleLabel}
+                name="eventDate"
+                className={style.editInput}
+                placeholder="Ingresa la nueva fecha"
+              />
+            )}
+            {plan.average && (
+              <Rating
+                size="large"
+                name="average"
+                value={plan.average}
+                readOnly
+              />
+            )}
+          </div>
         </div>
       </div>
-      <div className={style.name}>
+      <div className={style.planData}>
         <MapPlan
           country={plan.country}
           province={plan.province}
           city={plan.city}
           address={plan.address}
         />
-        <h1>{plan.userNickName}</h1>
-        <hr
-          width="100%"
-          color="#F1E100"
-        />
-        <p>Descripción del evento</p>
-        <p>{plan.description}</p>
-        {showEditInputs && (
-          <input
-            onChange={handleLabel}
-            name="description"
+        <div className={style.creator}>
+          <div className={style.creatorInfo}>
+            <p>Creador del plan: </p>
+            <h1 className={style.creatorName}>{plan.userNickName}</h1>
+          </div>
+          <hr
+            width="100%"
+            color="#F1E100"
           />
-        )}
+        </div>
+        <div className={style.description}>
+          <p className={style.descTitle}>Descripción del evento</p>
+          <p className={style.descInfo}>{plan.description}</p>
+          {showEditInputs && (
+            <input
+              onChange={handleLabel}
+              name="description"
+              className={style.editInput}
+              placeholder="Escribe la nueva descripción de tu plan aquí"
+            />
+          )}
+          <div className={style.descValoration}>
+            <label name="rating" className={style.descValTitle}>Valoración:</label>
+            <Rating
+              size="large"
+              name="rating"
+              value={value}
+              onChange={handleStarClick}
+            />
+          </div>
+        </div>
       </div>
       <div className={style.buttons}>
-        <div className={style.button}>
           <button className={style.submitBtn}>Unirse</button>
-          <Rating
-            size="large"
-            name="rating"
-            value={value}
-            onChange={handleStarClick}
-          />
-          <label name="rating">Puntaje!</label>
           {!isFav && (
             <button
               onClick={addFavorite}
-              className={style.AgregarBtn}
+              className={style.addBtn}
             >
               Agregar a favoritos
             </button>
@@ -266,44 +289,41 @@ export default function DetailPlan() {
           {isFav && (
             <button
               onClick={deleteFavorite}
-              className={style.AgregarBtn}
+              className={style.addBtn}
             >
               Eliminar de favoritos
             </button>
           )}
           <ButtonShare
-            text={`¡Mira este plan que encontré en Example! ${plan.title}`}
+            text={`¡Mira este plan que encontré en voyHENRY! ${plan.title}`}
           />
-        </div>
-        <button
-          onClick={() => navigate("/plans")}
-          className={style.submitBtn}
-        >
-          Volver
-        </button>
       </div>
-      <div className={style.comment}>
-        <h2>Comentarios</h2>
-      </div>
-      <div className={style.commentSection}>
-        <h2>Comentarios</h2>
-        {user && (
-          <div className={style.postComment}>
+      <div className={style.commentsCont}>
+        <h2 className={style.commentsTitle}>Comentarios</h2>
+        <hr color="#F1E100" width="100%" />
+        <div className={style.commentsSection}>
+          {/* <h2>Comentarios</h2> */}
+          {user && (
             <PostComment
               handleClick={handleClick}
-              label="Escribe tu comentario"
               placeholder="Agrega un comentario"
             />
-          </div>
-        )}
-        {comments.length > 0 ? (
-          <GetComments 
-          getComments={getComments}
-          comments={comments} />
-        ) : (
-          <p>Aún no hay comentarios</p>
-        )}
+          )}
+          {comments.length > 0 ? (
+            <GetComments 
+            getComments={getComments}
+            comments={comments} />
+          ) : (
+            <p className={style.emptyComments}>Aún no hay comentarios</p>
+          )}
+        </div>
       </div>
+      <button
+        onClick={() => navigate("/plans")}
+        className={style.backBtn}
+      >
+        Volver
+      </button>
     </div>
   );
 }

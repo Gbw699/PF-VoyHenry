@@ -1,6 +1,7 @@
 import React from "react";
 import AdminMarketPlaceDeactivate from "./AdminMarketPlaceDeactivate";
 import AdminMarketPlaceEdit from "./AdminMarketPlaceEdit";
+import AdminMarketPlaceCreate from "./AdminMarketPlaceCreate";
 export default function AdminMarketPlaceSection({
   setProducts,
   productName,
@@ -21,6 +22,8 @@ export default function AdminMarketPlaceSection({
   setProductDeactivate,
   editProducts,
   setEditProducts,
+  productStock,
+  setProductStock,
 }) {
   const handleOnClick = (value) => {
     setButtonOption(value);
@@ -30,6 +33,27 @@ export default function AdminMarketPlaceSection({
       <button onClick={() => handleOnClick("create")}>Crear</button>
       <button onClick={() => handleOnClick("edit")}>Editar</button>
       <button onClick={() => handleOnClick("deactivate")}>Desactivar</button>
+      {buttonOption === "create" && (
+        <AdminMarketPlaceCreate
+          {...{
+            setProducts,
+            productName,
+            setProductName,
+            productPrice,
+            setProductPrice,
+            productCategory,
+            setProductCategory,
+            productDetail,
+            setProductDetail,
+            productMainImage,
+            setProductMainImage,
+            productImages,
+            setProductImages,
+            productStock,
+            setProductStock,
+          }}
+        />
+      )}
       {buttonOption === "deactivate" && (
         <AdminMarketPlaceDeactivate
           {...{ setProductDeactivate, productDeactivate }}
@@ -37,7 +61,25 @@ export default function AdminMarketPlaceSection({
       )}
       {buttonOption === "edit" && (
         <AdminMarketPlaceEdit
-          {...{ editProducts, setEditProducts, setProducts }}
+          {...{
+            editProducts,
+            setEditProducts,
+            setProducts,
+            productName,
+            setProductName,
+            productPrice,
+            setProductPrice,
+            productCategory,
+            setProductCategory,
+            productDetail,
+            setProductDetail,
+            productMainImage,
+            setProductMainImage,
+            productImages,
+            setProductImages,
+            productStock,
+            setProductStock,
+          }}
         />
       )}
     </div>

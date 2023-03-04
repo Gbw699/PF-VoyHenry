@@ -1,8 +1,70 @@
 .container {
   display: flex;
   flex-direction: column;
-  align-items: baseline;
   border-radius: 5px;
-  width: 100%;
+  box-shadow: 3px 3px 5px 2px #b1b1b1;
+  padding: 1.5em;
+  height: auto;
+}
+
+.title {
+  color: #707070;
+  font-weight: 500;
+  font-size: 130%;
+  margin-bottom: 0px;
+}
+
+.inputs {
+  border: 1px solid #f1e100;
+  color: #b1b1b1;
+  border-radius: 5px;
+  margin-top: 1em;
   margin-bottom: 1em;
+  padding: 0.4em;
+}
+
+.filterBtn {
+  background-color: white;
+  border: 0px;
+  cursor: pointer;
+  color: #707070;
+  text-align: left;
+  margin-bottom: 0.5em;
+}
+
+.filterBtn:hover {
+  font-size: 110%;
+  color: #f1e100;
+}
+
+.filterBtn:active {
+  color: #f1e100;
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.filtersCont {
+  display: flex;
+  flex-direction: column;
+}
+
+.filterTitle {
+  color: #707070;
+  font-weight: 300;
+  font-size: 110%;
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+
+.FilterByDate {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
+.FilterByOrder {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
 }
