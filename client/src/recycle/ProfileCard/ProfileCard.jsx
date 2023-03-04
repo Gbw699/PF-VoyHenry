@@ -1,8 +1,12 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { getFollowing } from "../../redux/slices/userSlice/thunks";
 import style from "./ProfileCard.module.css";
 
 export default function ProfileCard() {
   const user = JSON.parse(localStorage.getItem("user"));
+  const [following, setFollowing] = useState([]);
+  const [followed, setFollowed] = useState([]);
 
   return (
     <Link to="/profile">
