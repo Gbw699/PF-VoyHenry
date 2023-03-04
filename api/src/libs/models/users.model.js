@@ -141,4 +141,3 @@ users.belongsToMany(users, {as: "user", foreignKey: "userid", through: "user_fol
 users.belongsToMany(users, {as: "followUser", foreignKey: "followUserId", through: "user_follow_user"} )
 
 module.exports = users;
-

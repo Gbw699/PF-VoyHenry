@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import style from "./UserCard.module.css";
+import { useDispatch } from "react-redux";
+import { followUser, unfollowUser } from "../../redux/slices/userSlice/thunks";
 
 export default function UserCard({
   nickName,
@@ -8,8 +10,22 @@ export default function UserCard({
   firstName,
   lastName,
   nationality,
+  following,
+  loginUser,
 }) {
-  const handleClick = () => {};
+
+  const dispatch = useDispatch();
+
+  const handleClick = (event) => {
+    if (event.target.value === "follow") {
+      dispatch(followUser(loginUser,nickName));
+    }
+    else {
+      dispatch(unfollowUser(loginUser,nickName));
+    }
+  };
+
+  console.log(following);
 
   return (
     <div>
@@ -45,10 +61,17 @@ export default function UserCard({
         <div className={style.buttons}>
           <button
             className={style.buttonUnfollow}
-            type="submit"
             onClick={handleClick}
+            value="follow"
           >
             Seguir
+          </button>
+          <button
+            className={style.buttonUnfollow}
+            onClick={handleClick}
+            value="unfollow"
+          >
+            Dejar de Seguir
           </button>
           <Link to={`/users/${nickName}`}>
             <button

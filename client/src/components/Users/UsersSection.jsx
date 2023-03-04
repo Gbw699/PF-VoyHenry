@@ -4,7 +4,7 @@ import UserCard from "./UserCard";
 import UserSearch from "./UserSearch";
 import style from "./UsersSection.module.css";
 
-export default function UsersSection({ users }) {
+export default function UsersSection({ users, following }) {
   const loginUser = JSON.parse(localStorage.getItem("user"));
 
   return (
@@ -23,6 +23,8 @@ export default function UsersSection({ users }) {
               lastName={element.lastName}
               image={element.image}
               nationality={element.nationality}
+              following={following}
+              loginUser={loginUser.nickName}
             />
           </div>
         ))}

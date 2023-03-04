@@ -11,6 +11,8 @@ export default function AxiosUsers({
   setPlans,
   setBlogs,
   id,
+  user,
+  setFollowing
 }) {
   useEffect(() => {
     const fetchData = async () => {
@@ -35,13 +37,21 @@ export default function AxiosUsers({
           } catch (error) {
             console.log("Error getting blogs: ", error.message);
           }
+
         } else {
           setUsers(data.users);
+          try {
+            const response = await axios.get(`http://localhost:3001/api/v1/users/${user}/Following`);
+            setFollowing(response.data);
+          } catch (error) {
+            console.error(error);
+          }
         }
       } catch (error) {
         console.log(error.message);
       }
     };
     fetchData();
-  }, [setUsers, setUser, setPlans, setBlogs, id]);
+  }, [setUsers, setUser, setPlans, setBlogs, id, setFollowing]);
 }
+
