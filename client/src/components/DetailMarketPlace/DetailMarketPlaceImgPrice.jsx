@@ -54,6 +54,7 @@ export default function DetailMarketPlaceImgPrice({
   const handleNowBuy = async () => {
     try {
       const response = await axios.post("/api/v1/products/buy", {
+        id,
         title,
         price,
         email,
