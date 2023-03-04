@@ -113,6 +113,17 @@ export const unfollowUser = async (myNickName, userNickName) => {
   }
 };
 
+export const getFollowing = async (myNickName) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:3001/api/v1/users/${myNickName}/Following`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const getFollowed = async (myNickName) => {
   try {
     const response = await axios.get(
