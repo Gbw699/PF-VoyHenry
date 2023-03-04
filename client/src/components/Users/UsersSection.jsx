@@ -3,7 +3,7 @@ import UserCard from "./UserCard";
 import UserSearch from "./UserSearch";
 import style from "./UsersSection.module.css";
 
-export default function UsersSection({ users, following }) {
+export default function UsersSection({ users, setUsers, following, setFollowing, isFollowing, setIsFollowing }) {
   const loginUser = JSON.parse(localStorage.getItem("user"));
 
   return (
@@ -22,8 +22,12 @@ export default function UsersSection({ users, following }) {
               lastName={element.lastName}
               image={element.image}
               nationality={element.nationality}
+              setUsers={setUsers}
               following={following}
+              setFollowing={setFollowing}
               loginUser={loginUser.nickName}
+              isFollowing={isFollowing}
+              setIsFollowing={setIsFollowing}
             />
           </div>
         ))}

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
+import { getFollowing } from "../../redux/slices/userSlice/thunks";
 
 const getEndpoint = (id) => {
   return id ? `/api/v1/users/${id}` : "/api/v1/users";
@@ -12,8 +13,10 @@ export default function AxiosUsers({
   setBlogs,
   id,
   user,
-  setFollowing
+  isFollowing,
+  setFollowing,
 }) {
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,8 +44,8 @@ export default function AxiosUsers({
         } else {
           setUsers(data.users);
           try {
-            const response = await axios.get(`http://localhost:3001/api/v1/users/${user}/Following`);
-            setFollowing(response.data);
+            const response = await getFollowing(user);
+            setFollowing(response);
           } catch (error) {
             console.error(error);
           }
@@ -52,6 +55,6 @@ export default function AxiosUsers({
       }
     };
     fetchData();
-  }, [setUsers, setUser, setPlans, setBlogs, id, setFollowing]);
+  }, [setUsers, setUser, setPlans, setBlogs, id, setFollowing, isFollowing]);
 }
 

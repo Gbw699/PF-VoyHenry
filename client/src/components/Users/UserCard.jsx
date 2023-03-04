@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./UserCard.module.css";
-import { useDispatch } from "react-redux";
 import { followUser, unfollowUser } from "../../redux/slices/userSlice/thunks";
 
 export default function UserCard({
@@ -13,19 +12,19 @@ export default function UserCard({
   following,
   loginUser,
 }) {
-
-  const dispatch = useDispatch();
+  const [isFollowing, setIsFollowing] = useState(
+    following?.find((follow) => follow.nickName === nickName)
+  );
 
   const handleClick = (event) => {
     if (event.target.value === "follow") {
-      dispatch(followUser(loginUser,nickName));
-    }
-    else {
-      dispatch(unfollowUser(loginUser,nickName));
+      followUser(loginUser, nickName);
+      setIsFollowing(true);
+    } else {
+      unfollowUser(loginUser, nickName);
+      setIsFollowing(false);
     }
   };
-
-  console.log(following);
 
   return (
     <div>
@@ -42,10 +41,7 @@ export default function UserCard({
           <div className={style.profileInfo}>
             <div>
               <p className={style.name}>{`${firstName} ${lastName}`}</p>
-              <hr
-                color="#F1E100"
-                width="100%"
-              />
+              <hr color="#F1E100" width="100%" />
               <p className={style.nacionality}>
                 {nationality ? nationality : "Sin nacionalidad"}
               </p>
@@ -59,25 +55,26 @@ export default function UserCard({
           </div>
         </div>
         <div className={style.buttons}>
-          <button
-            className={style.buttonUnfollow}
-            onClick={handleClick}
-            value="follow"
-          >
-            Seguir
-          </button>
-          <button
-            className={style.buttonUnfollow}
-            onClick={handleClick}
-            value="unfollow"
-          >
-            Dejar de Seguir
-          </button>
-          <Link to={`/users/${nickName}`}>
+          {!isFollowing && (
             <button
-              className={style.buttonPerfil}
-              type="submit"
+              className={style.buttonUnfollow}
+              onClick={handleClick}
+              value="follow"
             >
+              Seguir
+            </button>
+          )}
+          {isFollowing && (
+            <button
+              className={style.buttonUnfollow}
+              onClick={handleClick}
+              value="unfollow"
+            >
+              Dejar de Seguir
+            </button>
+          )}
+          <Link to={`/users/${nickName}`}>
+            <button className={style.buttonPerfil} type="submit">
               Ver perfil
             </button>
           </Link>
