@@ -4,7 +4,7 @@ import AdminMarketPlace from "../views/MarketPlace/Admin/AdminMarketPlace";
 import MarketPlace from "../views/MarketPlace/MarketPlace";
 import ShoppingCart from "../views/ShoppingCart/ShoppingCart";
 
-export default function MarketPlaceRouter() {
+export default function MarketPlaceRouter({ role }) {
   return (
     <>
       <Routes>
@@ -17,13 +17,15 @@ export default function MarketPlaceRouter() {
           element={<DetailMarketPlace />}
         />
         <Route
-          path="/admin"
-          element={<AdminMarketPlace />}
-        />
-        <Route
           path="/shoppingCart"
           element={<ShoppingCart />}
         />
+        {role === "admin" && (
+          <Route
+            path="/admin"
+            element={<AdminMarketPlace />}
+          />
+        )}
       </Routes>
     </>
   );
