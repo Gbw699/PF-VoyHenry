@@ -1,5 +1,4 @@
 import React from "react";
-// import { Link } from "react-router-dom";
 import UserCard from "./UserCard";
 import UserSearch from "./UserSearch";
 import style from "./UsersSection.module.css";

@@ -17,6 +17,7 @@ import {
 export default function ProfileSection() {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
+
   useEffect(() => {
     dispatch(getUserPlans(user.nickName));
     dispatch(getUserBlogs(user.nickName));
@@ -25,12 +26,13 @@ export default function ProfileSection() {
   const userPlans = useSelector((state) => state.userStore.userPlans);
   const userBlogs = useSelector((state) => state.userStore.userBlogs);
   const [morePlans, setMorePlans] = useState(true);
+
   const handleMorePlans = () => {
     setMorePlans(!morePlans);
   };
 
   return (
-    <div className={style.mainContainer}>
+    <div className={style.container}>
       <div className={style.profileCont}>
         <ProfileInfo
           image={user.image}

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import PostComment from "../../recycle/Comments/PostComment";
@@ -9,7 +8,6 @@ import style from "./ReviewDetail.module.css";
 export default function ReviewDetail({ blog }) {
   const user = JSON.parse(localStorage.getItem("user"));
   const { id } = useParams();
-  const dispatch = useDispatch();
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
@@ -42,36 +40,49 @@ export default function ReviewDetail({ blog }) {
 
   return (
     <div className={style.container}>
-      <div className={style.profile}>
-        <img
-          className={style.imgProfile}
-          src={blog.userimage}
-          alt="img"
-        />
-        <h3 className={style.titleName}>{blog.userNickName}</h3>
-      </div>
-      <hr
-        width="100%"
-        color="#f1e100"
-      />
-      <p className={style.fecha}>{blog.createdAt?.slice(0, 10)}</p>
-      <img
-        className={style.img}
-        src={blog.image}
-        alt=""
-      />
-      <h3 className={style.title}>{blog.title}</h3>
-      <p className={style.blogContent}>{blog.content}</p>
-      <p>{blog.rating}</p>
-      <button
-        className={style.button}
-        onClick={() => history.back()}
-      >
-        Volver
-      </button>
-      <div className={style.containerComments}>
-        <PostComment handleClick={handleClick} />
-        <GetComments comments={comments} />
+      <div className={style.detailCont}>
+        <div className={style.profile}>
+          <img
+            className={style.imgProfile}
+            src={blog.userimage}
+            alt="img"
+            height="80px"
+          />
+          <div className={style.review}>
+            <div className={style.nameCont}>
+              <p className={style.name}>{blog.userNickName}</p>
+              <p className={style.date}>{blog.createdAt?.slice(0, 10)}</p>
+            </div>
+            <hr
+              width="100%"
+              color="#f1e100"
+            />
+            <div className={style.reviewCont}>
+              <img
+                className={style.img}
+                src={blog.image}
+                alt="Review image"
+                height="120px"
+              />
+              <div className={style.reviewInfo}>
+                <p className={style.title}>{blog.title}</p>
+                <p className={style.blogContent}>{blog.content}</p>
+                <p>{blog.rating}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={style.commentsCont}>
+          <p className={style.commentsTitle}>Comentarios</p>
+          <PostComment handleClick={handleClick} />
+          <GetComments comments={comments} />
+        </div>
+        <button
+          className={style.backBtn}
+          onClick={() => history.back()}
+        >
+          Volver
+        </button>
       </div>
     </div>
   );

@@ -2,8 +2,8 @@ import style from "./BlogFilters.module.css";
 
 export default function OrderFilter({ filters, setFilters }) {
   return (
-    <div>
-      <h3>Valoración</h3>
+    <div className={style.FilterByOrder}>
+      <p className={style.filterTitle}>Valoración</p>
       <hr
         width="100%"
         color="#b1b1b1"
@@ -13,6 +13,7 @@ export default function OrderFilter({ filters, setFilters }) {
         onClick={(event) =>
           setFilters({ ...filters, order: event.target.value })
         }
+        className={style.filterBtn}
       >
         Más votados
       </button>
@@ -21,32 +22,33 @@ export default function OrderFilter({ filters, setFilters }) {
         onClick={(event) =>
           setFilters({ ...filters, order: event.target.value })
         }
+        className={style.filterBtn}
       >
         Menos votados
       </button>
-      <h3>Alfabeticamente</h3>
+      <p className={style.filterTitle}>Alfabeticamente</p>
       <hr
         width="100%"
         color="#b1b1b1"
       />
-      <div>
-        <button
-          value="alfabetico"
-          onClick={(event) =>
-            setFilters({ ...filters, order: event.target.value })
-          }
-        >
-          A - Z
-        </button>
-        <button
-          value="reverso"
-          onClick={(event) =>
-            setFilters({ ...filters, order: event.target.value })
-          }
-        >
-          Z - A
-        </button>
-      </div>
+      <button
+        value="alfabetico"
+        onClick={(event) =>
+          setFilters({ ...filters, order: event.target.value })
+        }
+        className={style.filterBtn}
+      >
+        A - Z
+      </button>
+      <button
+        value="reverso"
+        onClick={(event) =>
+          setFilters({ ...filters, order: event.target.value })
+        }
+        className={style.filterBtn}
+      >
+        Z - A
+      </button>
     </div>
   );
 }

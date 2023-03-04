@@ -306,18 +306,24 @@ class UsersService {
     where: { userid: nickName },
   });
 
+ 
+
   const usersId = users.map(
-    (comment) => comment.dataValues.followedUserId
+    (comment) => comment.dataValues.followUserId
   );
 
-  const followed = await usersModel.findAll({
+  console.log(usersId)
+
+/*   const followed = await usersModel.findAll({
     where: { nickName: usersId },
-  });
+  }); */
+
+
   return {
     message: 'Create',
     data: {
 
-      followedUsers: followed,
+      followedUsers: usersId,
 
     },
   };
