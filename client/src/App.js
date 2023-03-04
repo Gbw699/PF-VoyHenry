@@ -44,7 +44,7 @@ function App() {
       <Auth />
       <SocketIo/>
       <Routes>
-        {user.role === "admin" && (
+        {user?.role === "admin" && (
           <Route
             path="/admin/*"
             element={<AdminSection />}
@@ -88,7 +88,7 @@ function App() {
         />
         <Route
           path="/marketplace/*"
-          element={<MarketPlace role={user.role} />}
+          element={<MarketPlace role={user?.role} />}
         />
         <Route
           path="/aboutUs"
