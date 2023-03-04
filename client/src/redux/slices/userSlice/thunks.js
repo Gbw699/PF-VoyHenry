@@ -91,7 +91,10 @@ export const editUser = (obj, nickName) => {
 
 export const followUser = async (myNickName, userNickName) => {
   try {
-    const response = await axios.post(`http://localhost:3001/api/v1/users/${userNickName}/follow`, {userNickName: myNickName});
+    const response = await axios.post(
+      `http://localhost:3001/api/v1/users/${userNickName}/follow`,
+      { userNickName: myNickName }
+    );
     alert(`Following ${userNickName}`);
   } catch (error) {
     console.error(error);
@@ -100,7 +103,10 @@ export const followUser = async (myNickName, userNickName) => {
 
 export const unfollowUser = async (myNickName, userNickName) => {
   try {
-    const response = await axios.delete(`http://localhost:3001/api/v1/users/${userNickName}/follow`, {data: {userNickName: myNickName}});
+    const response = await axios.delete(
+      `http://localhost:3001/api/v1/users/${userNickName}/follow`,
+      { data: { userNickName: myNickName } }
+    );
     alert(`Unfollowing ${userNickName}`);
   } catch (error) {
     console.error(error.response.data.message);
@@ -108,22 +114,24 @@ export const unfollowUser = async (myNickName, userNickName) => {
 };
 
 export const getFollowing = async (myNickName) => {
-try {
-  const response = await axios.get(`http://localhost:3001/api/v1/users/${myNickName}/Following`);
-  return response.data;
-} catch (error) {
-  console.error(error);
-}
+  try {
+    const response = await axios.get(
+      `http://localhost:3001/api/v1/users/${myNickName}/Following`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getFollowed = async (myNickName) => {
   try {
-    const response = await axios.get(`http://localhost:3001/api/v1/users/${myNickName}/followed`);
-    console.log(response.data.data.followedUsers
-      );
-    return response.data.data.followedUsers
-    ;
+    const response = await axios.get(
+      `http://localhost:3001/api/v1/users/${myNickName}/followed`
+    );
+    console.log(response.data.data.followedUsers);
+    return response.data.data.followedUsers;
   } catch (error) {
     console.error(error);
   }
-  };
+};

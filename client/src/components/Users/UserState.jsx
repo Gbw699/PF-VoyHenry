@@ -7,24 +7,19 @@ export default function UserState() {
   const [users, setUsers] = useState([]);
   const [following, setFollowing] = useState([]);
   const [followed, setFollowed] = useState([]);
-  const [isFollowing, setIsFollowing] = useState(false);
-
   return (
     <>
-      <AxiosUsers 
-      following={following}
-      setFollowing={setFollowing}
-      followed={followed}
-      setFollowed={setFollowed}
-      user={user.nickName}
-      setUsers={setUsers} 
-      isFollowing={isFollowing}
+      <AxiosUsers
+        following={following}
+        setFollowing={setFollowing}
+        followed={followed}
+        setFollowed={setFollowed}
+        user={user.nickName}
+        setUsers={setUsers}
       />
       <UsersSection
         {...{
           setUsers,
-          isFollowing,
-          setIsFollowing,
           following,
           setFollowing,
           followed,

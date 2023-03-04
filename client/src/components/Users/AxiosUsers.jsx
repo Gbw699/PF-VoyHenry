@@ -13,10 +13,25 @@ export default function AxiosUsers({
   setBlogs,
   id,
   user,
-  isFollowing,
+  following,
   setFollowing,
-  setFollowed
+  setFollowed,
 }) {
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!id) {
+        try {
+          const response = await axios.get(
+            `http://localhost:3001/api/v1/users/${user}/Following`
+          );
+          setFollowing(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+    fetchData();
+  }, [following.length]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,23 +56,13 @@ export default function AxiosUsers({
           } catch (error) {
             console.log("Error getting blogs: ", error.message);
           }
-
         } else {
           setUsers(data.users);
-          try {
-            const responseFollowing = await getFollowing(user);
-            setFollowing(responseFollowing);
-            const responseFollowed = await getFollowed(user);
-            setFollowed(responseFollowed);
-          } catch (error) {
-            console.error(error);
-          }
         }
       } catch (error) {
         console.log(error.message);
       }
     };
     fetchData();
-  }, [setUsers, setUser, setPlans, setBlogs, id, setFollowing, isFollowing]);
+  }, [setUsers, setUser, setPlans, setBlogs, id, setFollowing]);
 }
-
