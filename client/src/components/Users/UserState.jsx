@@ -6,6 +6,7 @@ export default function UserState() {
   const user = JSON.parse(localStorage.getItem("user"));
   const [users, setUsers] = useState([]);
   const [following, setFollowing] = useState([]);
+  const [followed, setFollowed] = useState([]);
   const [isFollowing, setIsFollowing] = useState(false);
 
   return (
@@ -13,6 +14,8 @@ export default function UserState() {
       <AxiosUsers 
       following={following}
       setFollowing={setFollowing}
+      followed={followed}
+      setFollowed={setFollowed}
       user={user.nickName}
       setUsers={setUsers} 
       isFollowing={isFollowing}
@@ -24,6 +27,8 @@ export default function UserState() {
           setIsFollowing,
           following,
           setFollowing,
+          followed,
+          setFollowed,
           users,
         }}
       />

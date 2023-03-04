@@ -12,20 +12,26 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getUserPlans,
   getUserBlogs,
+  getFollowing,
+  getFollowed,
 } from "../../redux/slices/userSlice/thunks";
 
 export default function ProfileSection() {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
 
-  useEffect(() => {
+  useEffect(async () => {
     dispatch(getUserPlans(user.nickName));
     dispatch(getUserBlogs(user.nickName));
+    setFollowing(await getFollowing(user.nickName));
+    setFollowed(await getFollowed(user.nickName));
   }, []);
 
   const userPlans = useSelector((state) => state.userStore.userPlans);
   const userBlogs = useSelector((state) => state.userStore.userBlogs);
   const [morePlans, setMorePlans] = useState(true);
+  const [following, setFollowing] = useState([]);
+  const [followed, setFollowed] = useState([]);
 
   const handleMorePlans = () => {
     setMorePlans(!morePlans);
@@ -40,8 +46,8 @@ export default function ProfileSection() {
           lastName={user.lastName}
           genre={user.genre}
           nationality={user.nationality ? user.nationality : "Sin nacionalidad"}
-          following="156"
-          followers="165"
+          following={following.length}
+          followers={followed.length}
           assistedPlans="12"
           plansCreated={userPlans.length}
           reviewsCreated={userBlogs.length}

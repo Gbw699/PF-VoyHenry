@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./UserCard.module.css";
-import { followUser, unfollowUser } from "../../redux/slices/userSlice/thunks";
+import { followUser, getFollowing, unfollowUser } from "../../redux/slices/userSlice/thunks";
 
 export default function UserCard({
   nickName,
@@ -11,18 +11,22 @@ export default function UserCard({
   nationality,
   following,
   loginUser,
+  followed,
+  setIsFollowed
 }) {
-  const [isFollowing, setIsFollowing] = useState(
-    following?.find((follow) => follow.nickName === nickName)
-  );
+
+  useEffect(()=>{
+
+  },[following]);
+
 
   const handleClick = (event) => {
     if (event.target.value === "follow") {
       followUser(loginUser, nickName);
-      setIsFollowing(true);
+      getFollowing(loginUser);
     } else {
       unfollowUser(loginUser, nickName);
-      setIsFollowing(false);
+      getFollowing(loginUser);
     }
   };
 
@@ -48,14 +52,14 @@ export default function UserCard({
             </div>
             <div className={style.followers}>
               <p className={style.followTitle}>Siguiendo</p>
-              <span className={style.followNum}> 103</span>
+              <span className={style.followNum}>{following.length}</span>
               <p className={style.followTitle}>Seguidores</p>
-              <span className={style.followNum}> 98</span>
+              <span className={style.followNum}>{followed.length}</span>
             </div>
           </div>
         </div>
         <div className={style.buttons}>
-          {!isFollowing && (
+          {!following.find((follow) => follow.nickName === nickName) && (
             <button
               className={style.buttonUnfollow}
               onClick={handleClick}
@@ -64,7 +68,7 @@ export default function UserCard({
               Seguir
             </button>
           )}
-          {isFollowing && (
+          {following.find((follow) => follow.nickName === nickName) && (
             <button
               className={style.buttonUnfollow}
               onClick={handleClick}

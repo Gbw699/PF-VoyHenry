@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { getFollowing } from "../../redux/slices/userSlice/thunks";
+import { getFollowed, getFollowing } from "../../redux/slices/userSlice/thunks";
 
 const getEndpoint = (id) => {
   return id ? `/api/v1/users/${id}` : "/api/v1/users";
@@ -15,6 +15,7 @@ export default function AxiosUsers({
   user,
   isFollowing,
   setFollowing,
+  setFollowed
 }) {
 
   useEffect(() => {
@@ -44,8 +45,10 @@ export default function AxiosUsers({
         } else {
           setUsers(data.users);
           try {
-            const response = await getFollowing(user);
-            setFollowing(response);
+            const responseFollowing = await getFollowing(user);
+            setFollowing(responseFollowing);
+            const responseFollowed = await getFollowed(user);
+            setFollowed(responseFollowed);
           } catch (error) {
             console.error(error);
           }

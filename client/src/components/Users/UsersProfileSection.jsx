@@ -9,7 +9,7 @@ import ProfileLatestAssistedPlans from "../Profile/ProfileLatestAssistedPlans";
 import ProfileLatestReviews from "../Profile/ProfileLatestReviews";
 import style from "./UsersProfileSection.module.css";
 
-export default function UsersProfileSection({ user, plans, blogs }) {
+export default function UsersProfileSection({ user, plans, blogs, followed, following }) {
   return (
     <div className={style.container}>
       <div className={style.profileCont}>
@@ -19,8 +19,8 @@ export default function UsersProfileSection({ user, plans, blogs }) {
           lastName={user.lastName}
           genre={user.genre}
           nationality={user.nationality ? user.nationality : "Sin nacionalidad"}
-          following="156"
-          followers="165"
+          following={following.length}
+          followed={followed.length}
           assistedPlans="12"
           plansCreated={plans.length}
           reviewsCreated={blogs.length}
