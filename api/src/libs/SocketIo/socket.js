@@ -10,7 +10,8 @@ const startSocketIo = async() =>{
 
     sessionsService.initSession(
       socket.handshake.auth.nickName,
-      socket.handshake.auth.completeName
+      socket.handshake.auth.completeName,
+      socket.id
     )
 
 /*     if(socket.handshake.auth.nickName === "109838909950803434792"){
@@ -19,7 +20,7 @@ const startSocketIo = async() =>{
 
     socket.on('disconnect', () => {
       console.log("Clientes conectados: ", io.engine.clientsCount)
-      sessionsService.finishSession(socket.handshake.auth.nickName)
+      sessionsService.finishSession(socket.handshake.auth.nickName, socket.id)
     });
   });
 }

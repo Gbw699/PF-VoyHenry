@@ -13,7 +13,10 @@ const sessions = sequelize.define("sessions", {
   numberOfSessions: {
     type: DataTypes.INTEGER,
     allowNull: false
-    }
+    },
+  sockets: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+    },
   })
 
 module.exports = sessions;
