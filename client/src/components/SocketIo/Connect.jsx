@@ -5,18 +5,17 @@ export default function Connect() {
   const userInfo = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    
-    if (localStorage.getItem("user") && document.cookie !== ""){
+    if (localStorage.getItem("user") && document.cookie !== "") {
       const socket = io("http://localhost:3001", {
         auth: {
           nickName: userInfo.nickName,
-          completeName: `${userInfo.firstName} ${userInfo.lastName}`
-        }
+          completeName: `${userInfo.firstName} ${userInfo.lastName}`,
+        },
       });
       socket.on("connect", () => {
         console.log("Conectado al servidor");
       });
-  
+
       socket.on("disconnect", () => {
         console.log("Desconectado del servidor");
       });
@@ -26,10 +25,5 @@ export default function Connect() {
     }
   }, [localStorage.getItem("user"), document.cookie]);
 
-  return (
-    <>
-      
-    </>
-  );
-
+  return <></>;
 }
