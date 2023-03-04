@@ -6,7 +6,7 @@ const checkAdminRole = (req, res, next) => {
   if (user.role === 'admin') {
     next();
   } else {
-    next(new CustomError('unauthorized', 401));
+    next(new CustomError('forbidden', 403));
   }
 };
 

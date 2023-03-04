@@ -24,6 +24,7 @@ import LoadSpinning from "./views/LoadSpinning/LoadSpinning";
 import Favorite from "./views/Favorite/Favorite";
 import FooterSection from "./components/Footer/FooterSection";
 import AdminSection from "./views/AdminSection/AdminSection";
+import SocketIo from "./views/Socket.io/Socket.io";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 const cookie = document.cookie.split("=");
@@ -41,6 +42,7 @@ function App() {
         location.pathname !== "/signUp" &&
         location.pathname !== "/logIn" && <NavBar />}
       <Auth />
+      <SocketIo/>
       <Routes>
         {user?.role === "admin" && (
           <Route
