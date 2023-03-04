@@ -12,7 +12,6 @@ export default function AdminMarketPlaceState() {
   const [buttonOption, setButtonOption] = useState("create");
   const [productDeactivate, setProductDeactivate] = useState("");
   const [productStock, setProductStock] = useState("");
-
   return (
     <div>
       <AdminMarketPlaceSection

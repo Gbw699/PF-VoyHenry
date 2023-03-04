@@ -50,7 +50,6 @@ export const createProduct = (obj) => {
 };
 
 export const editProduct = (id, obj) => {
-  //
   return async () => {
     try {
       await axios.patch(`/api/v1/products/${id}`, { ...obj });
