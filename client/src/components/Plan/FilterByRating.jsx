@@ -5,16 +5,18 @@ import style from "./FiltersContainer.module.css";
 
 export default function FilterByRating() {
   const dispatch = useDispatch();
+
   const handleClick = (event) => {
     const selectedRating = event.target.value;
     dispatch(getPlansbyOrder("order", selectedRating));
   };
+  
   return (
     <div className={style.FilterByRating}>
       <h3 className={style.filterTitle}>Valoración</h3>
       <hr
         width="100%"
-        color="#b1b1b1"
+        color="#f1e100"
       />
       <button
         className={style.filterBtn}

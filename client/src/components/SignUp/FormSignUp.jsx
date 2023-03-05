@@ -1,13 +1,12 @@
 import { useFormik } from "formik";
 import { Form, Input } from "semantic-ui-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import * as Yup from "yup";
 import { postUser } from "../../redux/slices/userSlice/thunks";
 import titleImg from "../../assets/voyHENRY_title.svg";
 import googleLogo from "../../assets/google_icon.svg";
-// import profileImg from "../../assets/profile_img.svg";
 import style from "./FormSignUp.module.css";
 
 export default function FormSignUp() {
@@ -337,6 +336,9 @@ export default function FormSignUp() {
               <p>Continuar con Google</p>
             </div>
           </button>
+          <Link to="/logIn">
+            <button className={style.subButtons}>¿Ya tienes una cuenta?</button>
+          </Link>
           <button
             onClick={() => navigate("/")}
             className={style.btnVolver}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AdminMarketPlaceSection from "./AdminMarketPlaceSection";
+import style from "./AdminMarketPlaceState.module.css";
 
 export default function AdminMarketPlaceState() {
   const [editProducts, setEditProducts] = useState("");
@@ -12,8 +13,9 @@ export default function AdminMarketPlaceState() {
   const [buttonOption, setButtonOption] = useState("create");
   const [productDeactivate, setProductDeactivate] = useState("");
   const [productStock, setProductStock] = useState("");
+
   return (
-    <div>
+    <div className={style.container}>
       <AdminMarketPlaceSection
         {...{
           productName,

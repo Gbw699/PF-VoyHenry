@@ -7,13 +7,6 @@
   height: auto;
 }
 
-.title {
-  color: #707070;
-  font-weight: 500;
-  font-size: 130%;
-  margin-bottom: 0px;
-}
-
 .inputs {
   border: 1px solid #f1e100;
   color: #b1b1b1;
@@ -43,11 +36,6 @@
   transform: translateY(0);
 }
 
-.filtersCont {
-  display: flex;
-  flex-direction: column;
-}
-
 .filterTitle {
   color: #707070;
   font-weight: 300;
@@ -59,12 +47,10 @@
 .FilterByDate {
   display: flex;
   flex-direction: column;
-  margin-top: 1em;
   margin-bottom: 2em;
 }
 
 .FilterByOrder {
   display: flex;
   flex-direction: column;
-  margin-bottom: 2em;
 }

@@ -21,11 +21,6 @@ export default function FiltersContainer(props) {
 
   return (
     <div className={style.container}>
-      <h3 className={style.title}>Filtros</h3>
-      <hr
-        color="#F1E100"
-        width="100%"
-      />
       <div className={style.filtersCont}>
         {/* <SearchPlan className={style.inputs} /> */}
         <FilterByDate className={style.inputs} />

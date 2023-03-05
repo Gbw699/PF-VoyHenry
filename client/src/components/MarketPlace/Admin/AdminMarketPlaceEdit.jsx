@@ -1,9 +1,8 @@
 import React from "react";
-// import style from "AdminMarketPlaceEdit.module.css";
-
 import { useDispatch, useSelector } from "react-redux";
 import AdminMarketPlaceInput from "./AdminMarketPlaceInput";
 import { editProduct } from "../../../redux/slices/marketPlaceSlice/thunk";
+// import style from "AdminMarketPlaceEdit.module.css";
 
 export default function AdminMarketPlaceEdit({
   editProducts,
@@ -24,6 +23,7 @@ export default function AdminMarketPlaceEdit({
   setProductStock,
 }) {
   const dispatch = useDispatch();
+
   const { products } = useSelector(
     (state) => state.marketPlaceStore.filteredProducts
   );
@@ -42,6 +42,7 @@ export default function AdminMarketPlaceEdit({
     setProductMainImage(product.mainImage);
     setProductImages(product.Images);
   };
+
   const handleEdit = () => {
     editProducts
       ? dispatch(
