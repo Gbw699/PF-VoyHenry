@@ -15,8 +15,9 @@ export default function FormSignUp(props) {
   const [url, setUrl] = useState(noPhoto);
   const dispatch = useDispatch();
   const currentDate = new Date();
-  const greaterDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1
-    }-${currentDate.getDate()}`;
+  const greaterDate = `${currentDate.getFullYear()}-${
+    currentDate.getMonth() + 1
+  }-${currentDate.getDate()}`;
   const handleClick = () => {
     props.setShowPlanForm(false);
   };
@@ -49,7 +50,6 @@ export default function FormSignUp(props) {
     let mount = String(toDay.getMonth() + 1).padStart(2, "0");
     let year = toDay.getFullYear();
     toDay = `${year}-${mount}-${day}`;
-
 
     return toDay;
   };
@@ -110,10 +110,30 @@ export default function FormSignUp(props) {
           <Form>
             <div className={style.formContainer}>
               <div className={style.buttonTitle}>
-                <button onClick={() => handleClickButton("showDescription")}>Description</button>
-                <button onClick={() => handleClickButton("showLocation")}>Location</button>
-                <button onClick={() => handleClickButton("showImage")}>Image</button>
-                <button onClick={() => handleClickButton("showDate")}>Date</button>
+                <button
+                  className={style.buttons}
+                  onClick={() => handleClickButton("showDescription")}
+                >
+                  Description
+                </button>
+                <button
+                  className={style.buttons}
+                  onClick={() => handleClickButton("showLocation")}
+                >
+                  Location
+                </button>
+                <button
+                  className={style.buttons}
+                  onClick={() => handleClickButton("showImage")}
+                >
+                  Image
+                </button>
+                <button
+                  className={style.buttons}
+                  onClick={() => handleClickButton("showDate")}
+                >
+                  Date
+                </button>
               </div>
               <hr
                 color="#F1E100"
@@ -134,138 +154,146 @@ export default function FormSignUp(props) {
                 />
                 <ErrorMessage name="title" />
                 {/* ------------------------------------------------------------------------- */}
-                {state.showDescription && <>
-                <label
-                  htmlFor="summary"
-                  className={style.formTitle}
-                >
-                  Breve descripción
-                </label>
-                <Field
-                  name="summary"
-                  type="text"
-                  as="textarea"
-                  rows="4"
-                  className={style.formInputDescription}
-                />
-                <ErrorMessage name="summary" />
+                {state.showDescription && (
+                  <>
+                    <label
+                      htmlFor="summary"
+                      className={style.formTitle}
+                    >
+                      Breve descripción
+                    </label>
+                    <Field
+                      name="summary"
+                      type="text"
+                      as="textarea"
+                      rows="4"
+                      className={style.formInputDescription}
+                    />
+                    <ErrorMessage name="summary" />
 
-                <label
-                  htmlFor="description"
-                  className={style.formTitle}
-                >
-                  Descripción
-                </label>
-                <Field
-                  name="description"
-                  type="text"
-                  as="textarea"
-                  rows="12"
-                  className={style.formInputDescription}
-                />
-                <ErrorMessage name="description" />
-                </>}
-                {/* ------------------------------------------------------------------------- */}
-                {state.showImage && <>
-                <label
-                  htmlFor="mainImage"
-                  className={style.formTitle}
-                >
-                  Imagen principal
-                </label>
-                <UploadWidget
-                  url={url}
-                  setUrl={setUrl}
-                />
-                </>}
-                {/* ------------------------------------------------------------------------- */}
-                {state.showLocation && <>
-                <label
-                  htmlFor="country"
-                  className={style.formTitle}
-                >
-                  País
-                </label>
-                <Field
-                  name="country"
-                  as="select"
-                  className={style.formInputs}
-                  onClick={handleCountryChange}
-                >
-                  <option value="">Selecciona un país</option>
-                  {countries.map((country) => (
-                    <option
-                      key={country.country}
-                      value={country.country}
+                    <label
+                      htmlFor="description"
+                      className={style.formTitle}
                     >
-                      {country.country}
-                    </option>
-                  ))}
-                </Field>
-                <ErrorMessage name="country" />
-                <label
-                  htmlFor="provinces"
-                  className={style.formTitle}
-                >
-                  Provincia
-                </label>
-                <Field
-                  name="province"
-                  as="select"
-                  className={style.formInputs}
-                >
-                  <option value="">Selecciona una provincia</option>
-                  {provinces.map((province) => (
-                    <option
-                      key={province}
-                      value={province}
-                    >
-                      {province}
-                    </option>
-                  ))}
-                </Field>
-                <ErrorMessage name="province" />
-                <label
-                  htmlFor="city"
-                  className={style.formTitle}
-                >
-                  Ciudad
-                </label>
-                <Field
-                  name="city"
-                  type="text"
-                  className={style.formInputs}
-                />
-                <ErrorMessage name="city" />
-                <label
-                  htmlFor="address"
-                  className={style.formTitle}
-                >
-                  Dirección
-                </label>
-                <Field
-                  name="address"
-                  type="text"
-                  className={style.formInputs}
-                />
-                <ErrorMessage name="address" />
-                </>}
+                      Descripción
+                    </label>
+                    <Field
+                      name="description"
+                      type="text"
+                      as="textarea"
+                      rows="12"
+                      className={style.formInputDescription}
+                    />
+                    <ErrorMessage name="description" />
+                  </>
+                )}
                 {/* ------------------------------------------------------------------------- */}
-                {state.showDate && <>
-                <label
-                  htmlFor="eventDate"
-                  className={style.formTitle}
-                >
-                  Fecha del evento
-                </label>
-                <Field
-                  name="eventDate"
-                  type="date"
-                  className={style.formInputs}
-                  min={getDateActually()}
-                />
-                <ErrorMessage name="eventDate" />
-                </>}
+                {state.showImage && (
+                  <>
+                    <label
+                      htmlFor="mainImage"
+                      className={style.formTitle}
+                    >
+                      Imagen principal
+                    </label>
+                    <UploadWidget
+                      url={url}
+                      setUrl={setUrl}
+                    />
+                  </>
+                )}
+                {/* ------------------------------------------------------------------------- */}
+                {state.showLocation && (
+                  <>
+                    <label
+                      htmlFor="country"
+                      className={style.formTitle}
+                    >
+                      País
+                    </label>
+                    <Field
+                      name="country"
+                      as="select"
+                      className={style.formInputs}
+                      onClick={handleCountryChange}
+                    >
+                      <option value="">Selecciona un país</option>
+                      {countries.map((country) => (
+                        <option
+                          key={country.country}
+                          value={country.country}
+                        >
+                          {country.country}
+                        </option>
+                      ))}
+                    </Field>
+                    <ErrorMessage name="country" />
+                    <label
+                      htmlFor="provinces"
+                      className={style.formTitle}
+                    >
+                      Provincia
+                    </label>
+                    <Field
+                      name="province"
+                      as="select"
+                      className={style.formInputs}
+                    >
+                      <option value="">Selecciona una provincia</option>
+                      {provinces.map((province) => (
+                        <option
+                          key={province}
+                          value={province}
+                        >
+                          {province}
+                        </option>
+                      ))}
+                    </Field>
+                    <ErrorMessage name="province" />
+                    <label
+                      htmlFor="city"
+                      className={style.formTitle}
+                    >
+                      Ciudad
+                    </label>
+                    <Field
+                      name="city"
+                      type="text"
+                      className={style.formInputs}
+                    />
+                    <ErrorMessage name="city" />
+                    <label
+                      htmlFor="address"
+                      className={style.formTitle}
+                    >
+                      Dirección
+                    </label>
+                    <Field
+                      name="address"
+                      type="text"
+                      className={style.formInputs}
+                    />
+                    <ErrorMessage name="address" />
+                  </>
+                )}
+                {/* ------------------------------------------------------------------------- */}
+                {state.showDate && (
+                  <>
+                    <label
+                      htmlFor="eventDate"
+                      className={style.formTitle}
+                    >
+                      Fecha del evento
+                    </label>
+                    <Field
+                      name="eventDate"
+                      type="date"
+                      className={style.formInputs}
+                      min={getDateActually()}
+                    />
+                    <ErrorMessage name="eventDate" />
+                  </>
+                )}
                 {/* ------------------------------------------------------------------------- */}
               </div>
               <button
