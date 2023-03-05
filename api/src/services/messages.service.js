@@ -1,5 +1,7 @@
 const chatsModel = require('../libs/models/chats.model')
 const messagesModel = require('../libs/models/messages.model')
+const usersModel = require('../libs/models/users.model')
+const { CustomError } = require('../middlewares/error.handler');
 const { Op } = require('sequelize');
 
 class MessagesService {
@@ -53,7 +55,55 @@ class MessagesService {
       }
     })
 
-    return chats
+    if(chats.length === 0){
+      throw new CustomError('Chats not found', 404);
+    }
+
+    const chatWithUserData = await this.addUserData(chats)
+
+    return chatWithUserData
+  }
+
+  async findConversation(chatId){
+    const conversation = await messagesModel.findAll({
+      where: {
+        chatId: chatId
+      }
+    })
+
+
+    if(conversation.length === 0){
+      throw new CustomError('conversation not found', 404);
+    }
+
+    const conversationWithUserData = await this.addUserData(conversation)
+
+    return conversationWithUserData
+  }
+
+  async addUserData(chats){
+    const chatWithUserData = await Promise.all(chats.map(async chat => {
+      const usersInfo = await usersModel.findAll({
+        where: {
+          [Op.or]: [
+            { nickName: chat.firstUser || chat.from },
+            { nickName: chat.secondUser || chat.to}
+          ]
+        },
+        attributes: [
+          "nickName",
+          "firstName",
+          "lastName",
+          "image"
+        ]
+      });
+      return {
+        chat,
+        usersInfo
+      };
+    }));
+
+    return chatWithUserData
   }
 
 }

@@ -28,4 +28,17 @@ router.get('/:nickName/chats', async (req, res, next) => {
 
 });
 
+router.get('/:chatId', async (req, res, next) => {
+  try {
+    const { chatId } = req.params
+
+    const conversation = await messageService.findConversation(chatId)
+    res.json(conversation)
+  } catch (error) {
+
+    next(error)
+  }
+
+});
+
 module.exports = router;
