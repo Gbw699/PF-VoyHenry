@@ -10,7 +10,7 @@ export default function Submit({ data, isValidEmail }) {
 
   return (
     <div>
-      <button 
+      <button
         onClick={handlerOnClick}
         className={style.sendBtn}
       >
