@@ -1,20 +1,17 @@
-/* .buttons {
+.button {
   background-color: #f1e100;
   border: 2px solid #f1e100;
-  width: 150px;
-  padding: 3%;
-  color: #707070;
+
+  color: #020202;
   border: 0px;
   border-radius: 10px;
-  transition: background-color 0.5s;
-  margin: 3%;
+  font-weight: 300;
+  font-size: 100%;
+  width: 8em;
+  padding: 0.3em;
 }
 
-.buttons:hover {
+.button:hover {
   background-color: #707070;
   color: white;
-} */
-
-.buttons {
-  background-color: black;
 }

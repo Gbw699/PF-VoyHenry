@@ -9,7 +9,12 @@ export default function Submit({ data, isValidEmail }) {
 
   return (
     <div className={style.buttons}>
-      <button onClick={handlerOnClick}>Get Mail</button>
+      <button
+        className={style.button}
+        onClick={handlerOnClick}
+      >
+        Get Mail
+      </button>
     </div>
   );
 }
