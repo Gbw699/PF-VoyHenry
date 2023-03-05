@@ -6,7 +6,7 @@ export default function DateFilter({ filters, setFilters }) {
       <p className={style.filterTitle}>Fecha</p>
       <hr
         width="100%"
-        color="#b1b1b1"
+        color="#f1e100"
       />
       <input
         type="date"

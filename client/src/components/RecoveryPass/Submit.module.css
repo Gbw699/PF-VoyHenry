@@ -1,17 +1,21 @@
-.button {
+.sendBtn {
   background-color: #f1e100;
   border: 2px solid #f1e100;
-
   color: #020202;
   border: 0px;
   border-radius: 10px;
-  font-weight: 300;
-  font-size: 100%;
-  width: 8em;
-  padding: 0.3em;
+  transition: filter 0.5s ease-in-out;
+  margin: 1em;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.button:hover {
-  background-color: #707070;
-  color: white;
+.sendBtn:hover {
+  filter: saturate(150%) brightness(80%);
+  transition: filter 0.5s ease-in-out;
+}
+
+.sendBtn:hover {
+  filter: saturate(150%) brightness(80%);
+  transition: filter 0.5s ease-in-out;
 }
