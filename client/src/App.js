@@ -43,12 +43,12 @@ function App() {
         location.pathname !== "/logIn" && <NavBar />}
       <Auth />
       <Routes>
-        {user.role === "admin" && (
+        {/* {user.role === "admin" && (
+          )} */}
           <Route
             path="/admin/*"
             element={<AdminSection />}
           />
-        )}
         <Route
           path="/home"
           element={<Home />}
@@ -85,10 +85,10 @@ function App() {
           path="/profile"
           element={<Profile />}
         />
-        <Route
+        {/* <Route
           path="/marketplace/*"
           element={<MarketPlace role={user.role} />}
-        />
+        /> */}
         <Route
           path="/aboutUs"
           element={<AboutUs />}
