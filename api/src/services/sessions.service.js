@@ -62,7 +62,7 @@ class SessionsService{
       session.sockets = session.sockets.filter(element => {
         return (element !== socketId)
       });
-      session.save()
+      await session.save()
   }
 
   async resetAllSessions(){

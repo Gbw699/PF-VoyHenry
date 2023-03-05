@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database/database');
+const users = require('./users.model')
 
 const sessions = sequelize.define("sessions", {
   nickName: {
@@ -17,6 +18,9 @@ const sessions = sequelize.define("sessions", {
   sockets: {
       type: DataTypes.ARRAY(DataTypes.STRING),
     },
-  })
+})
+
+users.hasOne(sessions, { foreignKey: 'nickName' });
+sessions.belongsTo(users, { foreignKey: 'nickName' });
 
 module.exports = sessions;
