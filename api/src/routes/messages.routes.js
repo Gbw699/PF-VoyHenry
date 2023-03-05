@@ -4,9 +4,15 @@ const MessagesService = require('../services/messages.service')
 
 const messageService = new MessagesService()
 
-router.get('/', (req, res) => {
+router.post('/', async (req, res, next) => {
+  try {
 
-  res.json("Funciono")
+    const chat = await messageService.create(req.body)
+    res.json(chat)
+  } catch (error) {
+
+    next(error)
+  }
 
 });
 
