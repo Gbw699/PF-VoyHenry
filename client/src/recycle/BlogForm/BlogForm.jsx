@@ -6,7 +6,7 @@ import style from "./BlogForm.module.css";
 import UploadWidget from "../UploadWidget/UploadWidget";
 import { useState } from "react";
 
-export default function BlogForm({ open, close }) {
+export default function BlogForm({ open, close, setState }) {
   const [url, setUrl] = useState("");
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
@@ -25,7 +25,7 @@ export default function BlogForm({ open, close }) {
             userNickName: user.nickName,
             title: "",
             content: "",
-            stars: 0,
+            stars: 1,
           }}
           validationSchema={Yup.object({
             title: Yup.string()
@@ -40,10 +40,11 @@ export default function BlogForm({ open, close }) {
               .max(5, "Debe ser menor o igual que 5")
               .required("La valoración es obligatoria"),
           })}
-          onSubmit={(values) => {
+          onSubmit={async (values) => {
             values = { ...values, image: url };
             setUrl("");
-            dispatch(postBlog(values));
+            await dispatch(postBlog(values));
+            await setState(false);
           }}
         >
           <Form className={style.formCont}>
@@ -56,9 +57,9 @@ export default function BlogForm({ open, close }) {
             <Field
               name="title"
               type="text"
+              placeholder="Escribe el título de la reseña"
             />
             <ErrorMessage name="title" />
-
             <label
               htmlFor="content"
               className={style.formLabel}
@@ -68,9 +69,9 @@ export default function BlogForm({ open, close }) {
             <Field
               name="content"
               as="textarea"
+              placeholder="Escribe la reseña"
             />
             <ErrorMessage name="content" />
-
             <label
               htmlFor="stars"
               className={style.formLabel}
@@ -85,7 +86,6 @@ export default function BlogForm({ open, close }) {
               step="0.25"
             />
             <ErrorMessage name="stars" />
-
             <label
               htmlFor="image"
               className={style.formLabel}
@@ -109,7 +109,6 @@ export default function BlogForm({ open, close }) {
               value={url}
               />
             <ErrorMessage name="image" /> */}
-
             <button
               type="submit"
               className={style.submitBtn}

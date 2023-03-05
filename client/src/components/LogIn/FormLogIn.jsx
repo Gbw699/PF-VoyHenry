@@ -44,7 +44,6 @@ export default function FormLogIn() {
       await navigate("/home");
     },
   });
-  console.log(formik.values);
   useEffect(() => {
     if (query.get("token") !== null) {
       document.cookie =
