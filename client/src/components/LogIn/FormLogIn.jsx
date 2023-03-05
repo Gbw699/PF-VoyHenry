@@ -137,6 +137,17 @@ export default function FormLogIn() {
                   <p>Iniciar sesión con Google</p>
                 </div>
               </button>
+              <div className={style.subButtonsCont}>
+                <button
+                  onClick={handlerRecoveryPass}
+                  className={style.subButtons}
+                >
+                  ¿Olvidaste tu contraseña?
+                </button>
+                <Link to="/signUp">
+                  <button className={style.subButtons}>¿Aún no tienes una cuenta?</button>
+                </Link>
+              </div>
               <div className={style.subBtns}>
                 <button
                   onClick={backHandler}
@@ -144,15 +155,6 @@ export default function FormLogIn() {
                 >
                   Volver
                 </button>
-                <button
-                  onClick={handlerRecoveryPass}
-                  className={style.forgetBtn}
-                >
-                  ¿Olvidaste tu contraseña?
-                </button>
-                <Link to="/signUp">
-                  <button className={style.btnVolver}>Crear cuenta</button>
-                </Link>
               </div>
             </div>
           </Form>

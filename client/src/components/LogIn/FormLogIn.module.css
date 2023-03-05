@@ -55,6 +55,27 @@
   margin-top: 1em;
 }
 
+.subButtonsCont {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0.5em 0px;
+}
+
+.subButtons {
+  background-color: white;
+  border: 0px;
+  color: #707070;
+  font-weight: 300;
+  font-size: 90%;
+  cursor: pointer;
+}
+
+.subButtons:hover {
+  color: #f1e100;
+}
+
 .btnLoginDeactivate{
   background-color: #4e4d41;
   border: 2px solid #4e4d41;
@@ -128,7 +149,6 @@
   flex-direction: row;
   align-items: center;
   margin-top: 0.5em;
-  
 }
 
 .btnVolver {
@@ -149,7 +169,7 @@
   transition: background-color 0.5s;
 }
 
-.forgetBtn {
+/* .forgetBtn {
   background-color: rgb(219, 219, 219);
   width: 14em;
   padding: 0.5em;
@@ -165,4 +185,4 @@
 .forgetBtn:hover {
   background-color: #f1e100;
   transition: background-color 0.5s;
-}
+} */

@@ -1,5 +1,5 @@
 import React from "react";
-import facundoTombesiImg from "../../assets/facundoTombesi.jpg";
+import facundoTombesiImg from "../../assets/facundoTombesi.png";
 import gitHubImg from "../../assets/github.png";
 import linkedInImg from "../../assets/linkedin.png";
 import style from "./Developers.module.css";

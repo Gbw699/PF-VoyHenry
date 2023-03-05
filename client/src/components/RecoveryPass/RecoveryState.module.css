@@ -1,0 +1,19 @@
+.landing {
+    background-color: black;
+    height: 100vh;
+}
+  
+.logo {
+    position: absolute;
+    height: 4em;
+    margin-top: 5%;
+    margin-left: 7%;
+}
+  
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

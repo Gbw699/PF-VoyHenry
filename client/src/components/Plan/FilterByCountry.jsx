@@ -30,7 +30,7 @@ export default function FilterByCountry() {
       <h3 className={style.filterTitle}>Filtrar por País:</h3>
       <hr
         width="100%"
-        color="#b1b1b1"
+        color="#f1e100"
       />
       <select
         className={style.inputs}

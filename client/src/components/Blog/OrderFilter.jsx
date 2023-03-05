@@ -6,7 +6,7 @@ export default function OrderFilter({ filters, setFilters }) {
       <p className={style.filterTitle}>Valoración</p>
       <hr
         width="100%"
-        color="#b1b1b1"
+        color="#f1e100"
       />
       <button
         value="masvotados"
@@ -29,7 +29,7 @@ export default function OrderFilter({ filters, setFilters }) {
       <p className={style.filterTitle}>Alfabeticamente</p>
       <hr
         width="100%"
-        color="#b1b1b1"
+        color="#f1e100"
       />
       <button
         value="alfabetico"
