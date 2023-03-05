@@ -20,6 +20,7 @@ export default function Blog() {
         </button>
         <BlogForm
           open={isOpen}
+          setState={setIsOpen}
           close={() => setIsOpen(false)}
         />
       </div>
