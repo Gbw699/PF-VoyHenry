@@ -25,8 +25,8 @@ class MessagesService {
         ]
       },
       defaults: {
-        firstUser: body.firstUser,
-        secondUser: body.secondUser
+        firstUser: body.from,
+        secondUser: body.to
       }
     });
 
@@ -40,6 +40,20 @@ class MessagesService {
       to: body.to,
       message: body.message
     })
+  }
+
+  async findUserChats(nickName){
+
+    const chats = await chatsModel.findAll({
+      where: {
+        [Op.or]: [
+          { firstUser: nickName},
+          { secondUser: nickName}
+        ]
+      }
+    })
+
+    return chats
   }
 
 }

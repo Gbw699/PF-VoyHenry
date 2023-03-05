@@ -16,4 +16,16 @@ router.post('/', async (req, res, next) => {
 
 });
 
+router.get('/:nickName/chats', async (req, res, next) => {
+  try {
+    const { nickName } = req.params
+    const chats = await messageService.findUserChats(nickName)
+    res.json(chats)
+  } catch (error) {
+
+    next(error)
+  }
+
+});
+
 module.exports = router;
