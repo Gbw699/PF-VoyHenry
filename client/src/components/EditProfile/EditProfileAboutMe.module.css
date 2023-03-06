@@ -1,23 +1,22 @@
 .container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0px;
-  margin: 10px;
-  width: 100%;
+  margin: 1em;
 }
 
 .textArea {
   font-family: monospace;
-  max-width: 190px;
   outline: none;
   border: 1px solid #dadada;
-  padding: 5px;
   border-radius: 5px;
   background-color: #020203;
   transition: 0.7s;
   color: #f1e100;
+  width: 20em;
+  height: 10em;
+  margin: 0.5em;
 }
 
 .textArea::placeholder {

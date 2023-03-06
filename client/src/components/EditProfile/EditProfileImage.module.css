@@ -1,6 +1,20 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.subContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
 .title {
   color: #030303;
-  font-weight: 600;
+  font-weight: 300;
   font-size: 17px;
   margin-bottom: 10px;
 }
@@ -9,8 +23,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
-  padding: 10px;
+  padding: 0.5em;
   appearance: none;
   background-color: #f1e100;
   border: 0.125em solid #1a1a1a;
@@ -44,4 +57,14 @@
 .buttons:active {
   box-shadow: none;
   transform: translateY(0);
+}
+
+.img {
+  width: 12em;
+  height: 12em;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  margin: 1em auto;
 }
