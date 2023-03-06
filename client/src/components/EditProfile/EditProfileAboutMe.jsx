@@ -9,7 +9,7 @@ export default function EditProfileAboutMe({ setState }) {
     <div className={style.container}>
       <textarea
         className={style.textArea}
-        placeholder="Sobre mí..."
+        placeholder="Cuenta un poco sobre tí"
         name="aboutMe"
         id="aboutMe"
         cols="30"

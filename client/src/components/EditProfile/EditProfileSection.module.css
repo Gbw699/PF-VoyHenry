@@ -1,39 +1,54 @@
 .container {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
-  height: 100vh;
-  background-color: #000000;
-  background-image: url("../../assets/voyHENRY_title\(white\).png");
+  min-height: 100vh;
+  padding: 4em;
 }
-.containerForm {
-}
+
 .editContainer {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-items: center;
-  box-shadow: 0px 0px 9px 2px #222222;
+  /* align-items: center; */
+  box-shadow: 0px 0px 9px 2px #b1b1b1;
   border-radius: 1em;
-  height: 100vh;
-  width: 60em;
-  margin: 5em;
+  width: 70%;
+  padding: 2em;
   background-color: white;
 }
+
+.formContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 2em 0px;
+}
+
 .form {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
 }
-.title {
+
+.editTitle {
   display: flex;
-  color: #030303;
-  font-weight: 300;
-  font-size: 17px;
+  color: #707070;
+  font-weight: 500;
+  font-size: 130%;
   margin-bottom: 0em;
 }
+
+.title {
+  display: flex;
+  color: #707070;
+  font-weight: 300;
+  font-size: 110%;
+  margin-top: 1em;
+  margin-bottom: 0em;
+}
+
 .buttonContainer {
   display: flex;
   align-items: center;
@@ -46,14 +61,14 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 0.5em;
+  padding: 0.8em;
   margin: 0.5em;
   appearance: none;
   background-color: #f1e100;
-  border: 0.125em solid #1a1a1a;
-  border-radius: 0.9375em;
+  border: 2px solid #f1e100;
+  border-radius: 10px;
   box-sizing: border-box;
-  color: #000000;
+  color: #707070;
   cursor: pointer;
   font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -72,8 +87,8 @@
 }
 
 .buttons:hover {
-  color: #f1e100;
-  background-color: #1a1a1a;
+  color: #707070;
+  background-color: white;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   transform: translateY(-2px);
 }
