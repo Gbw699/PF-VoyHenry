@@ -7,7 +7,7 @@ export default function EditProfileInput({ name, placeholder, setState }) {
   };
 
   return (
-    <div>
+    <div className={style.container}>
       <input
         className={style.input}
         type="text"
