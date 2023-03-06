@@ -1,6 +1,5 @@
 import { useState } from "react";
 import BlogsReviews from "../../components/Blog/BlogsReviews";
-import BlogFilters from "../../components/Blog/BlogFilters";
 import BlogForm from "../../recycle/BlogForm/BlogForm";
 import BlogUsers from "../../components/Blog/BlogUsers";
 import style from "./Blog.module.css";
@@ -10,22 +9,13 @@ export default function Blog() {
 
   return (
     <div className={style.container}>
-      <div className={style.filters}>
-        <BlogFilters />
-        <button
-          onClick={() => setIsOpen(true)}
-          className={style.writeBtn}
-        >
-          Escribir reseña
-        </button>
+      <div className={style.reviews}>
         <BlogForm
           open={isOpen}
           setState={setIsOpen}
           close={() => setIsOpen(false)}
         />
-      </div>
-      <div className={style.reviews}>
-        <BlogsReviews />
+        <BlogsReviews setIsOpen={setIsOpen}/>
       </div>
       <div className={style.users}>
         <BlogUsers />
