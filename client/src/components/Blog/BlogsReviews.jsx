@@ -27,26 +27,26 @@ export default function BlogsReviews(props) {
         </button>
       </div>
       <div className={style.reviewContainer}>
-      <div className={style.subCont}>
-        {blogs?.blogs.map((blog) => {
-          return (
-            <BlogReview
-              key={blog.id}
-              blog={blog}
-            />
-          );
-        })}
-      </div>
-      <Pagination
-        style={{
-          display: "flex",
-          justifyContent: "center"
-        }}
-        size="large"
-        count={pages}
-        page={page}
-        onChange={handlePageChange}
-      />
+        {/* <div className={style.subCont}> */}
+          {blogs?.blogs.map((blog) => {
+            return (
+              <BlogReview
+                key={blog.id}
+                blog={blog}
+              />
+            );
+          })}
+        {/* </div> */}
+        <Pagination
+          style={{
+            display: "flex",
+            justifyContent: "center"
+          }}
+          size="large"
+          count={pages}
+          page={page}
+          onChange={handlePageChange}
+        />
       </div>
     </div>
   );
