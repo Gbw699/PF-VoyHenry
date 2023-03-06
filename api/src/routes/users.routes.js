@@ -10,17 +10,19 @@ const service = new UsersService()
 
 /* Get all users */
 
-router.get('/', async (req, res, next) => {
+router.get('/', 
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const users = await service.find(req.query)
+      const users = await service.find(req.query)
 
-    res.json(users)
-  } catch (error) {
+      res.json(users)
+    } catch (error) {
 
-    next(error)
-  }
+      next(error)
+    }
 
 });
 
@@ -28,6 +30,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:nickName',
   validatorHandler(getUserSchema, 'params'),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
 
@@ -47,6 +50,7 @@ router.get('/:nickName',
 
 router.get('/:nickName/blogs',
   validatorHandler(getUserSchema, 'params'),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
 
@@ -76,6 +80,7 @@ router.get('/:nickName/blogs',
 
 router.get('/:nickName/plans',
   validatorHandler(getUserSchema, 'params'),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
 
@@ -95,6 +100,7 @@ router.get('/:nickName/plans',
 
 router.post('/',
   validatorHandler(createUserSchema, "body"),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
 
     try {
@@ -158,23 +164,24 @@ router.delete('/:nickName',
 /* user follow user */
 
 router.post('/:nickName/follow',
-validatorHandler(getUserSchema, 'params'),
-validatorHandler(userFollowSchema, 'body'),
-  async (req, res, next) => {
+  validatorHandler(getUserSchema, 'params'),
+  validatorHandler(userFollowSchema, 'body'),
+  passport.authenticate('jwt', { session: false }),
+    async (req, res, next) => {
 
-    try {
+      try {
 
-      const {nickName} = req.params
+        const {nickName} = req.params
 
-      const body = req.body;
+        const body = req.body;
 
-      const userFollowUser = await service.follow(nickName,body)
+        const userFollowUser = await service.follow(nickName,body)
 
-      res.json(userFollowUser)
-    } catch (error) {
+        res.json(userFollowUser)
+      } catch (error) {
 
-      next(error)
-    }
+        next(error)
+      }
 
 });
 
@@ -183,6 +190,7 @@ validatorHandler(userFollowSchema, 'body'),
 router.get(
   '/:nickName/followed',
   validatorHandler(getUserSchema, 'params'),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
       const  {nickName}  = req.params;
@@ -201,6 +209,7 @@ router.get(
 router.get(
   '/:nickName/Following',
   validatorHandler(getUserSchema, 'params'),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
       const  { nickName }  = req.params;
@@ -220,6 +229,7 @@ router.delete(
   '/:nickName/follow',
   validatorHandler(getUserSchema, 'params'),
   validatorHandler(userFollowSchema, 'body'),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
 

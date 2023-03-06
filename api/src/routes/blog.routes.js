@@ -16,26 +16,28 @@ const service = new UsersBlog();
 
 /* Get all Blogs */
 
-router.get('/', async (req, res, next) => {
-  try {
+router.get('/', 
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
+    try {
 
-    const page = req.query.page || 1;
-    const blogs = await service.find(req.query, page);
+      const page = req.query.page || 1;
+      const blogs = await service.find(req.query, page);
 
-    let pages = ''
+      let pages = ''
 
-    if (blogs.blogsInFilter <= blogs.blogsLimit){
-      pages = 1
-    } else {
-      pages = Math.ceil(blogs.blogsInFilter / blogs.blogsLimit);
+      if (blogs.blogsInFilter <= blogs.blogsLimit){
+        pages = 1
+      } else {
+        pages = Math.ceil(blogs.blogsInFilter / blogs.blogsLimit);
+      }
+
+      const pageNumber = parseInt(page);
+      const response = { blogs, pageNumber, pages };
+      res.json(response);
+    } catch (error) {
+      next(error);
     }
-
-    const pageNumber = parseInt(page);
-    const response = { blogs, pageNumber, pages };
-    res.json(response);
-  } catch (error) {
-    next(error);
-  }
 });
 
 /* Find One Blog */
@@ -43,6 +45,7 @@ router.get('/', async (req, res, next) => {
 router.get(
   '/:id',
   validatorHandler(getBlogSchema, 'params'),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -102,7 +105,7 @@ router.patch(
 router.patch(
   '/:id/votes',
   validatorHandler(ratingSchema, 'body'),
-
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -143,6 +146,7 @@ router.post(
   '/:id/comment',
   validatorHandler(getBlogSchema, 'params'),
   validatorHandler(coments, 'body'),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -162,6 +166,7 @@ router.post(
 router.get(
   '/:id/comment',
   validatorHandler(getBlogSchema, 'params'),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -183,6 +188,7 @@ router.post(
   '/:id/favorite',
   validatorHandler(getBlogSchema, 'params'),
   validatorHandler(favorites, 'body'),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
 
@@ -204,6 +210,7 @@ router.post(
 router.get(
   '/:userNickName/favorite',
   validatorHandler(favorites, 'params'),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
       const  {userNickName}  = req.params;
@@ -222,6 +229,7 @@ router.get(
 router.get(
   '/:id/blogfavorite',
   validatorHandler(getBlogSchema, 'params'),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
       const  { id }  = req.params;
@@ -241,6 +249,7 @@ router.delete(
   '/:id/favorite',
   validatorHandler(getBlogSchema, 'params'),
   validatorHandler(favorites, 'body'),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
       const { id } = req.params;

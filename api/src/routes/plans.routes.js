@@ -9,28 +9,30 @@ const service = new PlansService();
 
 /* Get all plans */
 
-router.get('/', async (req, res, next) => {
+router.get('/', 
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const page = req.query.page || 1
-    const plans = await service.find(req.query, page)
+      const page = req.query.page || 1
+      const plans = await service.find(req.query, page)
 
-    let pages = ''
+      let pages = ''
 
-    if (plans.plansInFilter <= plans.plansLimit){
-      pages = 1
-    } else {
-      pages = Math.ceil(plans.plansInFilter / plans.plansLimit);
+      if (plans.plansInFilter <= plans.plansLimit){
+        pages = 1
+      } else {
+        pages = Math.ceil(plans.plansInFilter / plans.plansLimit);
+      }
+
+      const pageNumber = parseInt(page);
+      const response = { plans, pageNumber, pages }
+      res.json(response)
+    } catch (error) {
+
+      next(error)
     }
-
-    const pageNumber = parseInt(page);
-    const response = { plans, pageNumber, pages }
-    res.json(response)
-  } catch (error) {
-
-    next(error)
-  }
 
 });
 
@@ -38,6 +40,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id',
   validatorHandler(getPlanSchema, 'params'),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
 
@@ -77,7 +80,7 @@ router.post('/',
 /* Create new plan comment*/
 
 router.post('/:id/comment',
-
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
 
     try {
@@ -97,7 +100,7 @@ router.post('/:id/comment',
 /* get plan comment*/
 
 router.get('/:id/comment',
-
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
 
     try {
@@ -118,7 +121,7 @@ router.get('/:id/comment',
 
 router.delete(
   '/comment/:id',
-
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -135,7 +138,7 @@ router.delete(
 /* update comment content */
 
 router.patch('/comment/:id',
-
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
 
     try {
@@ -179,6 +182,7 @@ router.patch('/:planID',
 
 router.patch('/:planID/votes',
   validatorHandler(ratingSchema, "body"),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
 
     try {
@@ -222,6 +226,7 @@ router.post(
   '/:id/favorite',
   validatorHandler(deletePlanSchema, 'params'),
   validatorHandler(followSchema, 'body'),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -242,6 +247,7 @@ router.post(
 router.get(
   '/:id/favorite',
   validatorHandler(deletePlanSchema, 'params'),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
       const  {id}  = req.params;
@@ -260,6 +266,7 @@ router.get(
 router.get(
   '/:userNickName/Plansfavorite',
   validatorHandler(followSchema, 'params'),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
       const  { userNickName }  = req.params;
@@ -279,6 +286,7 @@ router.delete(
   '/:id/favorite',
   validatorHandler(deletePlanSchema, 'params'),
   validatorHandler(followSchema, 'body'),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
       const { id } = req.params;
