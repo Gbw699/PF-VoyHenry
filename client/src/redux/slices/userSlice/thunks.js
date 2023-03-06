@@ -119,8 +119,8 @@ export const getFollowing = async (myNickName) => {
     const response = await axios.get(
       `http://localhost:3001/api/v1/users/${myNickName}/following`
     );
-    if(response && response.data){
-      return response.data.data;
+    if (response && response.data) {
+      return response.data.data.followingUsers;
     }
   } catch (error) {
     if (error.response.data.message === "no user is following you") {
@@ -135,8 +135,7 @@ export const getFollowed = async (myNickName) => {
     const response = await axios.get(
       `http://localhost:3001/api/v1/users/${myNickName}/followed`
     );
-    if(response && response.data){
-
+    if (response && response.data) {
       return response.data.data;
     }
   } catch (error) {

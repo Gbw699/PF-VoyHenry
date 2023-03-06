@@ -49,7 +49,7 @@ export default function ProfileSection() {
           genre={user.genre}
           nationality={user.nationality ? user.nationality : "Sin nacionalidad"}
           following={following.length}
-          followers={followed.length}
+          followed={followed.length}
           assistedPlans="12"
           plansCreated={userPlans.length}
           reviewsCreated={userBlogs.length}
