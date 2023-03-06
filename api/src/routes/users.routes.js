@@ -29,8 +29,8 @@ router.get('/',
 /* Get user by nickName */
 
 router.get('/:nickName',
-  validatorHandler(getUserSchema, 'params'),
   passport.authenticate('jwt', { session: false }),
+  validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
 
@@ -49,8 +49,8 @@ router.get('/:nickName',
 /* Get AllBlogs by nickName */
 
 router.get('/:nickName/blogs',
-  validatorHandler(getUserSchema, 'params'),
   passport.authenticate('jwt', { session: false }),
+  validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
 
@@ -79,8 +79,8 @@ router.get('/:nickName/blogs',
 /* Get AllPlans by nickName */
 
 router.get('/:nickName/plans',
-  validatorHandler(getUserSchema, 'params'),
   passport.authenticate('jwt', { session: false }),
+  validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
 
@@ -99,8 +99,8 @@ router.get('/:nickName/plans',
 /* Create new user */
 
 router.post('/',
-  validatorHandler(createUserSchema, "body"),
   passport.authenticate('jwt', { session: false }),
+  validatorHandler(createUserSchema, "body"),
   async (req, res, next) => {
 
     try {
@@ -120,9 +120,9 @@ router.post('/',
 /* update user info */
 
 router.patch('/:nickName',
+  passport.authenticate('jwt', {session: false}),
   validatorHandler(getUserSchema, 'params'),
   validatorHandler(updateSchema, "body"),
-  passport.authenticate('jwt', {session: false}),
   checkRoleClosure('nickName'),
   async (req, res, next) => {
 
@@ -143,8 +143,8 @@ router.patch('/:nickName',
 /* Delete user */
 
 router.delete('/:nickName',
-  validatorHandler(getUserSchema, 'params'),
   passport.authenticate('jwt', {session: false}),
+  validatorHandler(getUserSchema, 'params'),
   checkRoleClosure('nickName'),
   async (req, res, next) => {
 
@@ -164,9 +164,9 @@ router.delete('/:nickName',
 /* user follow user */
 
 router.post('/:nickName/follow',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getUserSchema, 'params'),
   validatorHandler(userFollowSchema, 'body'),
-  passport.authenticate('jwt', { session: false }),
     async (req, res, next) => {
 
       try {
@@ -189,8 +189,8 @@ router.post('/:nickName/follow',
 
 router.get(
   '/:nickName/followed',
-  validatorHandler(getUserSchema, 'params'),
   passport.authenticate('jwt', { session: false }),
+  validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
       const  {nickName}  = req.params;
@@ -208,8 +208,8 @@ router.get(
 
 router.get(
   '/:nickName/Following',
-  validatorHandler(getUserSchema, 'params'),
   passport.authenticate('jwt', { session: false }),
+  validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
       const  { nickName }  = req.params;
@@ -227,9 +227,9 @@ router.get(
 
 router.delete(
   '/:nickName/follow',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getUserSchema, 'params'),
   validatorHandler(userFollowSchema, 'body'),
-  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
 

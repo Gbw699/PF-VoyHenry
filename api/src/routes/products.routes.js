@@ -65,8 +65,8 @@ router.get('/success',
 /* Get product by id */
 
 router.get('/:id',
-  validatorHandler(getProductSchema, 'params'),
   passport.authenticate('jwt', { session: false }),
+  validatorHandler(getProductSchema, 'params'),
   async (req, res, next) => {
     try {
 
@@ -85,8 +85,8 @@ router.get('/:id',
 /* Create new product */
 
 router.post('/',
-  validatorHandler(createProductSchema, 'body'),
   passport.authenticate('jwt', {session: false}),
+  validatorHandler(createProductSchema, 'body'),
   checkAdminRole,
   async (req, res, next) => {
     try {
@@ -106,9 +106,9 @@ router.post('/',
 /* update product info */
 
 router.patch('/:id',
+  passport.authenticate('jwt', {session: false}),
   validatorHandler(getProductSchema, 'params'),
   validatorHandler(updateProductSchema, 'body'),
-  passport.authenticate('jwt', {session: false}),
   checkAdminRole,
   async (req, res, next) => {
     try {
@@ -128,8 +128,8 @@ router.patch('/:id',
 /* Delete product */
 
 router.delete('/:id',
-  validatorHandler(getProductSchema, 'params'),
   passport.authenticate('jwt', {session: false}),
+  validatorHandler(getProductSchema, 'params'),
   checkAdminRole,
   async (req, res, next) => {
 
@@ -150,8 +150,8 @@ router.delete('/:id',
 /* Buy One Product */
 
 router.post('/buy',
-  validatorHandler(buyProductSchema, 'body'),
   passport.authenticate('jwt', {session: false}),
+  validatorHandler(buyProductSchema, 'body'),
   async (req, res, next) => {
     try {
 

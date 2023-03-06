@@ -39,8 +39,8 @@ router.get('/',
 /* Get plan by ID */
 
 router.get('/:id',
-  validatorHandler(getPlanSchema, 'params'),
   passport.authenticate('jwt', { session: false }),
+  validatorHandler(getPlanSchema, 'params'),
   async (req, res, next) => {
     try {
 
@@ -59,8 +59,8 @@ router.get('/:id',
 /* Create new plan */
 
 router.post('/',
-  validatorHandler(createPlanSchema, "body"),
   passport.authenticate('jwt', {session: false}),
+  validatorHandler(createPlanSchema, "body"),
   async (req, res, next) => {
 
     try {
@@ -159,8 +159,8 @@ router.patch('/comment/:id',
 /* update plan info */
 
 router.patch('/:planID',
-  validatorHandler(updateSchema, "body"),
   passport.authenticate('jwt', {session: false}),
+  validatorHandler(updateSchema, "body"),
   async (req, res, next) => {
 
     try {
@@ -181,8 +181,8 @@ router.patch('/:planID',
 /* update plan votes info */
 
 router.patch('/:planID/votes',
-  validatorHandler(ratingSchema, "body"),
   passport.authenticate('jwt', { session: false }),
+  validatorHandler(ratingSchema, "body"),
   async (req, res, next) => {
 
     try {
@@ -202,9 +202,9 @@ router.patch('/:planID/votes',
 
 /* Delete plan */
 
-router.delete('/:id',
-  validatorHandler(deletePlanSchema, 'params'),
+router.delete('/:id', 
   passport.authenticate('jwt', {session: false}),
+  validatorHandler(deletePlanSchema, 'params'),
   async (req, res, next) => {
 
     try {
@@ -224,9 +224,9 @@ router.delete('/:id',
 
 router.post(
   '/:id/favorite',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(deletePlanSchema, 'params'),
   validatorHandler(followSchema, 'body'),
-  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -246,8 +246,8 @@ router.post(
 
 router.get(
   '/:id/favorite',
-  validatorHandler(deletePlanSchema, 'params'),
   passport.authenticate('jwt', { session: false }),
+  validatorHandler(deletePlanSchema, 'params'),
   async (req, res, next) => {
     try {
       const  {id}  = req.params;
@@ -265,8 +265,8 @@ router.get(
 
 router.get(
   '/:userNickName/Plansfavorite',
-  validatorHandler(followSchema, 'params'),
   passport.authenticate('jwt', { session: false }),
+  validatorHandler(followSchema, 'params'),
   async (req, res, next) => {
     try {
       const  { userNickName }  = req.params;
@@ -284,9 +284,9 @@ router.get(
 
 router.delete(
   '/:id/favorite',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(deletePlanSchema, 'params'),
   validatorHandler(followSchema, 'body'),
-  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
       const { id } = req.params;
