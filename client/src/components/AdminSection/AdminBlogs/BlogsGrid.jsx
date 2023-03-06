@@ -17,8 +17,8 @@ export default function PlansGrid({
 }) {
   const location = useLocation();
 
-  const handleDeleteClick = (nickName) => {
-    DeleteRecord(nickName, location.pathname, reRender, setReRender);
+  const handleDeleteClick = (id) => {
+    DeleteRecord(id, location.pathname, reRender, setReRender);
   };
 
   const handleEditClick = (row) => {
