@@ -60,8 +60,9 @@ class MessagesService {
     }
 
     const chatWithUserData = await this.addUserData(chats)
+    const chatsWithLastMessage = await this.addLastMessage(chatWithUserData)
 
-    return chatWithUserData
+    return chatsWithLastMessage
   }
 
   async findConversation(chatId){
@@ -104,6 +105,26 @@ class MessagesService {
     }));
 
     return chatWithUserData
+  }
+
+  async addLastMessage(chats){
+    const chatWithLastMessage =Promise.all(chats.map(async chat => {
+      const lastMessage = await messagesModel.findOne({
+        where: {
+          chatId: chat.chat.id
+        },
+        order: [['createdAt', 'DESC']],
+        limit: 1,
+        attributes: [
+          "from",
+          "to",
+          "message"
+        ]
+      });
+      chat.lastMessage = lastMessage
+      return chat
+    }));
+    return chatWithLastMessage
   }
 
 }
