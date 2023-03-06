@@ -8,6 +8,7 @@ const getEndpoint = (id) => {
 
 export default function AxiosUsers({
   setUsers,
+  reRender,
   setUser,
   setPlans,
   setBlogs,
@@ -31,7 +32,7 @@ export default function AxiosUsers({
       }
     };
     fetchData();
-  }, [following.length]);
+  }, [following?.length]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,5 +65,5 @@ export default function AxiosUsers({
       }
     };
     fetchData();
-  }, [setUsers, setUser, setPlans, setBlogs, id, setFollowing]);
+  }, [setUsers, reRender, setUser, setPlans, setBlogs, id, setFollowing]);
 }
