@@ -7,7 +7,7 @@ export default function AllMsgAxios( { setAllMessage }) {
   useEffect(() => {
 
     (async () => {
-      const chats = await axios.get(`http://localhost:3001/api/v1/messages/${userInfo.nickName}/chats`);
+      const chats = await axios.get(`/api/v1/messages/${userInfo.nickName}/chats`);
       await setAllMessage(chats.data);
     })();
 

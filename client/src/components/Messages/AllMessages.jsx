@@ -1,7 +1,7 @@
 import AllMsgAxios from "./AllMsgAxios";
 import MapAllMsg from "./MapAllMsg";
 
-export default function AllMessages({ allMessage, setAllMessage }) {
+export default function AllMessages({ allMessage, setAllMessage, setMessageSelect }) {
 
   return (
     <>
@@ -10,6 +10,7 @@ export default function AllMessages({ allMessage, setAllMessage }) {
         setAllMessage={setAllMessage}
       />
       <MapAllMsg
+        setMessageSelect={setMessageSelect}
         allMessage={allMessage}
       >
 
