@@ -1,44 +1,17 @@
 import { useFormik } from "formik";
-import { Form, Input } from "semantic-ui-react";
-import { useNavigate, Link } from "react-router-dom";
+import { Form } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 import * as Yup from "yup";
-import { postUser } from "../../redux/slices/userSlice/thunks";
-import titleImg from "../../assets/voyHENRY_title.svg";
-import googleLogo from "../../assets/google_icon.svg";
-import style from "./FormSignUp.module.css";
+import { postUser } from "../../../redux/slices/userSlice/thunks";
+import titleImg from "../../../assets/voyHENRY_title.svg";
+import style from "./CreateUserForm.module.css";
 
-export default function FormSignUp() {
+export default function CreateUserForm({
+  reRender,
+  setReRender,
+  setCreateRecord,
+}) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const query = new URLSearchParams(location.search);
-  const user = {
-    nickName: query.get("nickName")?.trim(),
-    email: query.get("email")?.trim(),
-    dateOfBirth: query.get("dateOfBirth")?.trim(),
-    firstName: query.get("firstName")?.trim(),
-    lastName: query.get("lastName")?.trim(),
-    image: query.get("image")?.trim(),
-    role: query.get("role")?.trim(),
-    google: query.get("google")?.trim(),
-  };
-
-  useEffect(() => {
-    if (query.get("token") !== null) {
-      document.cookie =
-        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie =
-        "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = `token=${query.get("token")}; max-age=604800; path=/;`;
-      localStorage.setItem("user", JSON.stringify(user));
-      navigate("/home");
-    }
-  }, [query]);
-
-  const handleSingUpWithGoogle = () => {
-    window.location.href = "http://localhost:3001/api/v1/auth/login/google";
-  };
 
   const getDateActually = () => {
     let toDay = new Date();
@@ -53,7 +26,6 @@ export default function FormSignUp() {
     genre: "",
     email: "",
     nickName: "",
-    //imagen default
     image: "https://i.ibb.co/86tPY9X/PF-profile-01.png",
     firstName: "",
     lastName: "",
@@ -89,7 +61,7 @@ export default function FormSignUp() {
       .required("Debe repetir la contraseña"),
   });
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     const obj = {
       genre: values.genre,
       email: values.email,
@@ -100,8 +72,9 @@ export default function FormSignUp() {
       dateOfBirth: values.dateOfBirth,
       password: values.password,
     };
-    dispatch(postUser(obj));
-    navigate("/logIn");
+    await dispatch(postUser(obj));
+    setCreateRecord(false);
+    setReRender(!reRender);
   };
 
   const formik = useFormik({
@@ -111,7 +84,7 @@ export default function FormSignUp() {
   });
 
   return (
-    <div className={style.landing}>
+    <div>
       <img
         src={titleImg}
         className={style.logo}
@@ -119,7 +92,6 @@ export default function FormSignUp() {
       />
       <div className={style.container}>
         <div className={style.formContainer}>
-          <h1 className={style.formTitle}>REGISTRARSE</h1>
           <form onSubmit={formik.handleSubmit}>
             <div className={style.formInputs}>
               <div className={style.inputs}>
@@ -142,6 +114,7 @@ export default function FormSignUp() {
                   <div>{formik.errors.firstName}</div>
                 ) : null}
               </div>
+
               <div className={style.inputs}>
                 <label
                   htmlFor="lastName"
@@ -162,6 +135,7 @@ export default function FormSignUp() {
                   <div>{formik.errors.lastName}</div>
                 ) : null}
               </div>
+
               <div className={style.inputs}>
                 <label
                   htmlFor="nickName"
@@ -182,6 +156,7 @@ export default function FormSignUp() {
                   <div>{formik.errors.nickName}</div>
                 ) : null}
               </div>
+
               <div className={style.inputs}>
                 <label
                   htmlFor="email"
@@ -202,6 +177,7 @@ export default function FormSignUp() {
                   <div>{formik.errors.email}</div>
                 ) : null}
               </div>
+
               <div className={style.inputs}>
                 <label
                   htmlFor="password"
@@ -222,6 +198,7 @@ export default function FormSignUp() {
                   <div>{formik.errors.password}</div>
                 ) : null}
               </div>
+
               <div className={style.inputs}>
                 <label
                   htmlFor="repeatPassword"
@@ -243,6 +220,7 @@ export default function FormSignUp() {
                   <div>{formik.errors.repeatPassword}</div>
                 ) : null}
               </div>
+
               <div className={style.inputs}>
                 <label
                   htmlFor="dateOfBirth"
@@ -263,6 +241,7 @@ export default function FormSignUp() {
                   <div>{formik.errors.dateOfBirth}</div>
                 ) : null}
               </div>
+
               <div className={style.inputs}>
                 <label
                   htmlFor="genre"
@@ -292,55 +271,16 @@ export default function FormSignUp() {
                 ) : null}
               </div>
             </div>
-            {formik.errors.firstName ||
-            formik.errors.lastName ||
-            formik.errors.nickName ||
-            formik.errors.email ||
-            formik.errors.password ||
-            formik.errors.repeatPassword ||
-            formik.errors.dateOfBirth ||
-            formik.errors.genre ||
-            formik.values.firstName === "" ||
-            formik.values.lastName === "" ||
-            formik.values.nickName === "" ||
-            formik.values.email === "" ||
-            formik.values.password === "" ||
-            formik.values.repeatPassword === "" ||
-            formik.values.dateOfBirth === "" ||
-            formik.values.genre === "" ? (
-              <button
-                className={style.btnSignUpDesactive}
-                disabled
-              >
-                Registrarse
-              </button>
-            ) : (
-              <button
-                className={style.btnSignup}
-                type="submit"
-              >
-                Registrarse
-              </button>
-            )}
+            <button
+              className={style.btnSignup}
+              type="submit"
+            >
+              Crear usuario
+            </button>
           </form>
+
           <button
-            onClick={handleSingUpWithGoogle}
-            className={style.btnGoogle}
-          >
-            <div className={style.googleCont}>
-              <img
-                src={googleLogo}
-                className={style.googleLogo}
-                alt="Imagen de botón para continuar con google"
-              />
-              <p>Continuar con Google</p>
-            </div>
-          </button>
-          <Link to="/logIn">
-            <button className={style.subButtons}>¿Ya tienes una cuenta?</button>
-          </Link>
-          <button
-            onClick={() => navigate("/")}
+            onClick={() => setCreateRecord(false)}
             className={style.btnVolver}
           >
             Volver

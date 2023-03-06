@@ -1,3 +1,11 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px 2px #b1b1b1;
+  padding: 1.5em;
+  height: auto;
+}
 .title {
   color: #707070;
   font-weight: 500;
@@ -34,11 +42,6 @@
   transform: translateY(0);
 }
 
-.filtersCont {
-  display: flex;
-  flex-direction: column;
-}
-
 .filterTitle {
   color: #707070;
   font-weight: 300;
@@ -50,12 +53,10 @@
 .FilterByDate {
   display: flex;
   flex-direction: column;
-  margin-top: 1em;
   margin-bottom: 2em;
 }
 
 .FilterByOrder {
   display: flex;
   flex-direction: column;
-  margin-bottom: 2em;
 }

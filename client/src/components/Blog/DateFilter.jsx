@@ -2,8 +2,12 @@ import style from "./DateFilter.module.css";
 
 export default function DateFilter({ filters, setFilters }) {
   return (
-    <div className={style.container}>
-      <p className={style.name}>Fecha</p>
+    <div className={style.FilterByDate}>
+      <p className={style.filterTitle}>Fecha</p>
+      <hr
+        width="100%"
+        color="#f1e100"
+      />
       <input
         className={style.input}
         type="date"

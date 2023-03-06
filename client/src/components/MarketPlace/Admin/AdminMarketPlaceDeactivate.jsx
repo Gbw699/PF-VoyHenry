@@ -1,14 +1,15 @@
 import React from "react";
-// import style from './AdminMarketPlaceDeactivate.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import AdminMarketPlaceInput from "./AdminMarketPlaceInput";
 import { deactivateProduct } from "../../../redux/slices/marketPlaceSlice/thunk";
+// import style from './AdminMarketPlaceDeactivate.module.css'
 
 export default function AdminMarketPlaceDeactivate({
   setProductDeactivate,
   productDeactivate,
 }) {
   const dispatch = useDispatch();
+  
   const { products } = useSelector(
     (state) => state.marketPlaceStore.filteredProducts
   );

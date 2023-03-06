@@ -1,15 +1,9 @@
-.landing {
-  background-image: url("../../assets/voyHENRY_landingBg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
-}
-
 .logo {
   position: absolute;
   height: 4em;
   margin-top: 5%;
   margin-left: 7%;
+  padding-left: 34rem;
 }
 
 .container {
@@ -18,6 +12,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-left: 30rem;
 }
 
 .formTitle {
@@ -62,22 +57,6 @@
   width: 15em;
 }
 
-.btnSignUpDesactive {
-  background-color: #4e4d41;
-  border: 2px solid #4e4d41;
-  padding: 1em;
-  color: #ffffff;
-  border: 0px;
-  border-radius: 10px;
-  transition: background-color 0.5s;
-  margin: 3em auto 1em;
-  display: block;
-  width: 14em;
-  cursor: no-drop;
-  transition: filter 0.5s ease-in-out;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-}
-
 .btnSignup {
   background-color: #f1e100;
   border: 2px solid #f1e100;
@@ -89,48 +68,9 @@
   margin: 3em auto 1em;
   display: block;
   width: 14em;
+  cursor: pointer;
   transition: filter 0.5s ease-in-out;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.googleCont {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.googleLogo {
-  height: 20px;
-}
-
-.btnGoogle {
-  background-color: #f13000;
-  border: 2px solid #f13000;
-  padding: 1em;
-  color: #ffffff;
-  font-size: 100%;
-  border: 0px;
-  border-radius: 10px;
-  transition: filter 0.5s ease-in-out;
-  margin: 1em;
-  width: 14em;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-}
-
-.subButtons {
-  background-color: white;
-  border: 0px;
-  color: #707070;
-  font-weight: 300;
-  font-size: 90%;
-  cursor: pointer;
-  margin: 1em 0px;
-}
-
-.subButtons:hover {
-  color: #f1e100;
 }
 
 .btnVolver {
