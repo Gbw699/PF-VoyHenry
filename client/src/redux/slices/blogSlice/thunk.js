@@ -47,3 +47,15 @@ export const postBlog = (obj) => {
     }
   };
 };
+
+export const editBlog = (obj, id) => {
+  return async () => {
+    try {
+      await axios.patch(`/api/v1/blogs/${id}`, {
+        ...obj,
+      });
+    } catch (error) {
+      return console.error(error.response);
+    }
+  };
+};
