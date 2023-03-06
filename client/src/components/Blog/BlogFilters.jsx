@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import DateFilter from "./DateFilter";
 import OrderFilter from "./OrderFilter";
-// import LimitFilter from "./LimitFilter";
 import { getBlogs } from "../../redux/slices/blogSlice/thunk";
 import style from "./BlogFilters.module.css";
 
@@ -11,7 +10,6 @@ export default function BlogFilters({ pagePagination }) {
   const [filters, setFilters] = useState({
     date: "",
     order: "",
-    //limit: undefined,
   });
 
   useEffect(() => {
@@ -28,10 +26,6 @@ export default function BlogFilters({ pagePagination }) {
           filters={filters}
           setFilters={setFilters}
         />
-        {/* <LimitFilter
-          filters={filters}
-          setFilters={setFilters}
-        /> */}
     </div>
   );
 }

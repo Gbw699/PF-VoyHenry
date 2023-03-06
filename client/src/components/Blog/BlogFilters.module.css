@@ -1,10 +1,8 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  border-radius: 5px;
-  box-shadow: 3px 3px 5px 2px #b1b1b1;
-  padding: 1.5em;
-  height: auto;
+.title {
+  color: #707070;
+  font-weight: 500;
+  font-size: 130%;
+  margin-bottom: 0px;
 }
 
 .inputs {
@@ -12,7 +10,6 @@
   color: #b1b1b1;
   border-radius: 5px;
   margin-top: 1em;
-  margin-bottom: 1em;
   padding: 0.4em;
 }
 
