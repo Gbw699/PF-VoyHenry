@@ -272,9 +272,9 @@ class UsersService {
   /* user follow user */
 
   async follow(nickName, { userNickName  }) {
-    
+
     if(nickName === userNickName){
-      throw new CustomError("Is not allow to follow yourself", 404) 
+      throw new CustomError("Is not allow to follow yourself", 404)
     }
 
     const userFollowUserTable = await sequelize.models.user_follow_user.create({
@@ -306,25 +306,31 @@ class UsersService {
     where: { userid: nickName },
   });
 
- 
+
 
   const usersId = users.map(
     (comment) => comment.dataValues.followUserId
   );
 
-  console.log(usersId)
-
-/*   const followed = await usersModel.findAll({
+   const followed = await usersModel.findAll({
     where: { nickName: usersId },
-  }); */
+  });
 
+  const number = await sequelize.models.user_follow_user.count({
+    where: {userid:nickName}
+  })
+
+  if(usersId[0] === undefined){
+    throw new CustomError("you don't follow any user", 404)
+  }
 
   return {
     message: 'Create',
     data: {
 
       followedUsers: usersId,
-
+      data: followed,
+      count: number
     },
   };
 }
@@ -344,7 +350,24 @@ class UsersService {
      const user = await usersModel.findAll({
        where: { nickName: followingsUsersId },
     });
-   return user;
+
+    const number = await sequelize.models.user_follow_user.count({
+      where: {followUserId:nickName}
+    })
+
+    if(followingsUsersId[0] === undefined){
+      throw new CustomError("no user is following you", 404)
+    }
+
+  return {
+    message: 'Create',
+    data: {
+
+      followingUsers: followingsUsersId,
+      data: user,
+      count: number
+    },
+  };
   }
 
   /* Delete user follow */
