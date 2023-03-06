@@ -6,6 +6,9 @@
   border-radius: 5px;
   box-shadow: 3px 3px 5px 2px;
   padding: 2em;
+  background-color: white;
+  background-size: cover;
+  width: 100%;
 }
 
 .mainInfo {
@@ -96,17 +99,17 @@
 .addBtn {
   display: inline-block;
   align-items: center;
-  margin-left: 1200px;
   border: 2px solid #f22176;
-  padding: 0.5em 1em;
+  padding: 0.5em;
   background-color: #f22176;
   color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 85em;
   font-weight: 500;
   font-size: 100%;
   overflow: hidden;
   position: relative;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .addBtn:hover {

@@ -21,6 +21,7 @@ export default function AccountMenu() {
 
   const handleLogOut = () => {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    localStorage.removeItem("user");
   };
 
   const handleClose = () => {
@@ -98,7 +99,7 @@ export default function AccountMenu() {
         >
           <MenuItem className={style.menuLinks}>Configuración</MenuItem>
         </NavLink>
-        <MenuItem className={style.menuLinks}>🌞 - 🌛</MenuItem>
+        {/* <MenuItem className={style.menuLinks}>🌞 - 🌛</MenuItem> */}
         <Divider />
         <NavLink
           to={"/"}
