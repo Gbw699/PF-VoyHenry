@@ -42,7 +42,7 @@ function App() {
         location.pathname !== "/signUp" &&
         location.pathname !== "/logIn" && <NavBar />}
       <Auth />
-      <SocketIo/>
+      <SocketIo />
       <Routes>
         {user?.role === "admin" && (
           <Route
