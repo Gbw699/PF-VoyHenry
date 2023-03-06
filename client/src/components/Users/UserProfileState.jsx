@@ -8,8 +8,8 @@ export default function UserProfileState() {
   const [plans, setPlans] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const { id } = useParams();
-  const [following, setFollowing] = useState([]);
-  const [followed, setFollowed] = useState([]);
+  const [following, setFollowing] = useState({});
+  const [followed, setFollowed] = useState({});
 
   return (
     <>
