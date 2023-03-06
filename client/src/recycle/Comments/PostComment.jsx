@@ -34,7 +34,9 @@ export default function PostComment(props) {
         ></textarea>
         {showPicker && (
           <div className={style.emojiPicker}>
-            <EmojiPicker className={style.emojiContainer} onEmojiClick={handleEmojiClick} />
+            <EmojiPicker 
+              onEmojiClick={handleEmojiClick} 
+            />
           </div>
         )}
       </div>
