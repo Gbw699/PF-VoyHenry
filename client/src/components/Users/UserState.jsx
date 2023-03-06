@@ -5,8 +5,9 @@ import UsersSection from "./UsersSection";
 export default function UserState() {
   const user = JSON.parse(localStorage.getItem("user"));
   const [users, setUsers] = useState([]);
-  const [following, setFollowing] = useState([]);
-  const [followed, setFollowed] = useState([]);
+  const [following, setFollowing] = useState({});
+  const [followed, setFollowed] = useState({});
+  
   return (
     <>
       <AxiosUsers

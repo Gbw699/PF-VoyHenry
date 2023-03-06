@@ -19,8 +19,8 @@ export default function UsersProfileSection({ user, plans, blogs, followed, foll
           lastName={user.lastName}
           genre={user.genre}
           nationality={user.nationality ? user.nationality : "Sin nacionalidad"}
-          following={following.length}
-          followed={followed.length}
+          following={following.count}
+          followed={followed.count}
           assistedPlans="12"
           plansCreated={plans.length}
           reviewsCreated={blogs.length}
