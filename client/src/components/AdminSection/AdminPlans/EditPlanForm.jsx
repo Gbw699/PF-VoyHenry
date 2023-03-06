@@ -1,28 +1,28 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
-import { postPlan } from "../../../redux/slices/planSlice/thunk";
+import { editPlan } from "../../../redux/slices/planSlice/thunk";
 import { useState } from "react";
 import * as Yup from "yup";
-import style from "./CreatePlanForm.module.css";
+import style from "./EditPlanForm.module.css";
 import countriesData from "../../../countries.json";
 import UploadWidget from "../../../recycle/UploadWidget/UploadWidget";
-import noPhoto from "../../../assets/noPhoto.jpg";
 
-export default function CreatePlanForm({
+export default function EditPlanForm({
+  plansInfo,
+  setPlansInfo,
   reRender,
   setReRender,
-  setCreateRecord,
+  setEditRecord,
 }) {
   const dispatch = useDispatch();
   const currentDate = new Date();
-  const user = JSON.parse(localStorage.getItem("user"));
   const countries = countriesData.data;
   const greaterDate = `${currentDate.getFullYear()}-${
     currentDate.getMonth() + 1
   }-${currentDate.getDate()}`;
 
   const [provinces, setProvinces] = useState([]);
-  const [url, setUrl] = useState(noPhoto);
+  const [url, setUrl] = useState(plansInfo.col13);
   const [state, setState] = useState({
     showDescription: true,
     showLocation: "",
@@ -47,7 +47,8 @@ export default function CreatePlanForm({
     setProvinces(provincesData.province);
   };
 
-  function handleClickButton(show) {
+  function handleClickButton(show, e) {
+    e.preventDefault();
     setState({
       showDescription: false,
       showLocation: false,
@@ -62,14 +63,16 @@ export default function CreatePlanForm({
       <div>
         <Formik
           initialValues={{
-            title: "",
-            summary: "",
+            title: plansInfo.col2,
+            summary: plansInfo.col3,
+            description: plansInfo.col12,
             images: [],
-            country: "",
-            province: "",
-            city: "",
-            address: "",
-            eventDate: "",
+            mainImage: plansInfo.col12,
+            country: plansInfo.col8,
+            province: plansInfo.col9,
+            city: plansInfo.col10,
+            address: plansInfo.col11,
+            eventDate: plansInfo.col5,
           }}
           validationSchema={Yup.object({
             nickName: Yup.string(),
@@ -94,7 +97,6 @@ export default function CreatePlanForm({
           })}
           onSubmit={async (values) => {
             const obj = {
-              userNickName: user.nickName,
               title: values.title,
               summary: values.summary,
               description: values.description,
@@ -108,8 +110,9 @@ export default function CreatePlanForm({
               state: "En planeacion",
             };
             setUrl("");
-            await dispatch(postPlan(obj));
-            setCreateRecord(false);
+            await dispatch(editPlan(obj, plansInfo.id));
+            setPlansInfo({});
+            setEditRecord(false);
             setReRender(!reRender);
           }}
         >
@@ -118,25 +121,25 @@ export default function CreatePlanForm({
               <div className={style.buttonTitle}>
                 <button
                   className={style.buttons}
-                  onClick={() => handleClickButton("showDescription")}
+                  onClick={(e) => handleClickButton("showDescription", e)}
                 >
                   Description
                 </button>
                 <button
                   className={style.buttons}
-                  onClick={() => handleClickButton("showLocation")}
+                  onClick={(e) => handleClickButton("showLocation", e)}
                 >
                   Location
                 </button>
                 <button
                   className={style.buttons}
-                  onClick={() => handleClickButton("showImage")}
+                  onClick={(e) => handleClickButton("showImage", e)}
                 >
                   Image
                 </button>
                 <button
                   className={style.buttons}
-                  onClick={() => handleClickButton("showDate")}
+                  onClick={(e) => handleClickButton("showDate", e)}
                 >
                   Date
                 </button>
@@ -206,6 +209,7 @@ export default function CreatePlanForm({
                       url={url}
                       setUrl={setUrl}
                     />
+                    <p>{url}</p>
                   </>
                 )}
                 {/* ------------------------------------------------------------------------- */}
@@ -223,7 +227,7 @@ export default function CreatePlanForm({
                       className={style.formInputs}
                       onClick={handleCountryChange}
                     >
-                      <option value="">Selecciona un país</option>
+                      <option value={plansInfo.col8}>{plansInfo.col8}</option>
                       {countries.map((country) => (
                         <option
                           key={country.country}
@@ -245,7 +249,7 @@ export default function CreatePlanForm({
                       as="select"
                       className={style.formInputs}
                     >
-                      <option value="">Selecciona una provincia</option>
+                      <option value={plansInfo.col9}>{plansInfo.col9}</option>
                       {provinces.map((province) => (
                         <option
                           key={province}
@@ -306,14 +310,15 @@ export default function CreatePlanForm({
                 type="submit"
                 className={style.createBtn}
               >
-                Crear Plan
+                Editar Plan
               </button>
             </div>
           </Form>
         </Formik>
         <button
           onClick={() => {
-            setCreateRecord(false);
+            setPlansInfo({});
+            setEditRecord(false);
           }}
           className={style.backBtn}
         >

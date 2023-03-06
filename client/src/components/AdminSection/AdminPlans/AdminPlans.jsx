@@ -2,7 +2,7 @@ import { useState } from "react";
 import AxiosPlans from "./AxiosPlans";
 import PlansGrid from "./PlansGrid";
 import CreatePlanForm from "./CreatePlanForm";
-// import EditUserForm from "./EditUserForm";
+import EditPlanForm from "./EditPlanForm";
 
 export default function AdminPlans() {
   const [plans, setPlans] = useState([]);
@@ -34,15 +34,15 @@ export default function AdminPlans() {
           setCreateRecord={setCreateRecord}
         />
       )}
-      {/* {editRecord && (
-        <EditUserForm
+      {editRecord && (
+        <EditPlanForm
           plansInfo={plansInfo}
           setPlansInfo={setPlansInfo}
           reRender={reRender}
           setReRender={setReRender}
           setEditRecord={setEditRecord}
         />
-      )} */}
+      )}
     </>
   );
 }

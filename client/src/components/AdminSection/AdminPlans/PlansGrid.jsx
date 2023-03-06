@@ -33,7 +33,7 @@ export default function PlansGrid({
           id: plan.id,
           col1: plan.userNickName,
           col2: plan.title,
-          col3: plan.description,
+          col3: plan.summary,
           col4: plan.state,
           col5: plan.eventDate,
           col6: plan.votes,
@@ -42,7 +42,8 @@ export default function PlansGrid({
           col9: plan.province,
           col10: plan.city,
           col11: plan.address,
-          col12: plan.mainImage,
+          col12: plan.description,
+          col13: plan.mainImage,
         };
       }),
     [plans]
@@ -77,7 +78,7 @@ export default function PlansGrid({
     { field: "id", headerName: "Id", width: 75 },
     { field: "col1", headerName: "Nickname", width: 150 },
     { field: "col2", headerName: "Título", width: 150 },
-    { field: "col3", headerName: "Descripción", width: 150 },
+    { field: "col3", headerName: "Breve descripción", width: 150 },
     { field: "col4", headerName: "Estado", width: 150 },
     {
       field: "col5",
@@ -101,8 +102,9 @@ export default function PlansGrid({
     { field: "col9", headerName: "Provincia", width: 200 },
     { field: "col10", headerName: "Ciudad", width: 200 },
     { field: "col11", headerName: "Dirección", width: 200 },
+    { field: "col12", headerName: "Descripción", width: 200 },
     {
-      field: "col12",
+      field: "col13",
       headerName: "Imagen del plan",
       width: 150,
     },
