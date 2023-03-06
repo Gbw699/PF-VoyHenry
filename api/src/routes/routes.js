@@ -3,6 +3,7 @@ const usersRoutes = require("./users.routes")
 const plansRoutes = require("./plans.routes")
 const blogsRoutes = require("./blog.routes")
 const productsRoutes = require("./products.routes")
+const sessionsRoutes = require("./sessions.routes")
 const authRoutes = require("./auth.routes")
 const router = Router()
 
@@ -19,6 +20,8 @@ function routesApi(app) {
   router.use("/products", productsRoutes)
 
   router.use("/auth", authRoutes)
+
+  router.use("/sessions", sessionsRoutes)
 
 }
 

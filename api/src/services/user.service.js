@@ -272,6 +272,10 @@ class UsersService {
   /* user follow user */
 
   async follow(nickName, { userNickName  }) {
+    
+    if(nickName === userNickName){
+      throw new CustomError("Is not allow to follow yourself", 404) 
+    }
 
     const userFollowUserTable = await sequelize.models.user_follow_user.create({
       userid: nickName,
@@ -283,12 +287,6 @@ class UsersService {
 
 
     mailerService.sendUserFollowUserEmail(searchname, nickName)
-
-
-
-
-
-
 
 
     return {
@@ -308,18 +306,24 @@ class UsersService {
     where: { userid: nickName },
   });
 
+ 
+
   const usersId = users.map(
-    (comment) => comment.dataValues.followedUserId
+    (comment) => comment.dataValues.followUserId
   );
 
-  const followed = await usersModel.findAll({
+  console.log(usersId)
+
+/*   const followed = await usersModel.findAll({
     where: { nickName: usersId },
-  });
+  }); */
+
+
   return {
     message: 'Create',
     data: {
 
-      followedUsers: followed,
+      followedUsers: usersId,
 
     },
   };

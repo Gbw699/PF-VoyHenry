@@ -10,6 +10,7 @@ import titleImg from "../../assets/voyHENRY_title(white).svg";
 import googleLogo from "../../assets/google_icon.svg";
 import { useDispatch } from "react-redux";
 import { getLogin } from "../../redux/slices/userSlice/thunks";
+import { Link } from "react-router-dom";
 
 export default function FormLogIn() {
   const query = new URLSearchParams(location.search);
@@ -34,15 +35,15 @@ export default function FormLogIn() {
       email: Yup.string()
         .email("El e-mail es invalido")
         .required("El e-mail es obligatorio"),
-      password: Yup.string().required("La contraseña es obligatoria"),
+      password: Yup.string()
+        .min(8, "Debe tener más de 8 caracteres")
+        .required("La contraseña es obligatoria"),
     }),
-    // !! FALTA LÓGICA DE SI EXISTE QUE INGRESE Y SINO NO.
     onSubmit: async (formData) => {
       await dispatch(getLogin(formData));
       await navigate("/home");
     },
   });
-
   useEffect(() => {
     if (query.get("token") !== null) {
       document.cookie =
@@ -91,7 +92,6 @@ export default function FormLogIn() {
               {formik.touched.email && formik.errors.email ? (
                 <div>{formik.errors.email}</div>
               ) : null}
-
               <h3 className={style.inputTitle}>Contraseña</h3>
               <Form.Input
                 type="password"
@@ -106,12 +106,24 @@ export default function FormLogIn() {
               ) : null}
             </div>
             <div className={style.buttons}>
-              <button
-                type="submit"
-                className={style.btnLogin}
-              >
-                Iniciar sesión
-              </button>
+              {formik.errors.password ||
+              formik.errors.email ||
+              formik.values.email === "" ||
+              formik.values.password === "" ? (
+                <button
+                  className={style.btnLoginDeactivate}
+                  disabled
+                >
+                  Iniciar sesión
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className={style.btnLogin}
+                >
+                  Iniciar sesión
+                </button>
+              )}
               <button
                 onClick={handleLoginWithGoogle}
                 className={style.btnGoogle}
@@ -125,18 +137,23 @@ export default function FormLogIn() {
                   <p>Iniciar sesión con Google</p>
                 </div>
               </button>
+              <div className={style.subButtonsCont}>
+                <button
+                  onClick={handlerRecoveryPass}
+                  className={style.subButtons}
+                >
+                  ¿Olvidaste tu contraseña?
+                </button>
+                <Link to="/signUp">
+                  <button className={style.subButtons}>¿Aún no tienes una cuenta?</button>
+                </Link>
+              </div>
               <div className={style.subBtns}>
                 <button
                   onClick={backHandler}
                   className={style.btnVolver}
                 >
                   Volver
-                </button>
-                <button
-                  onClick={handlerRecoveryPass}
-                  className={style.forgetBtn}
-                >
-                  ¿Olvidaste tu contraseña?
                 </button>
               </div>
             </div>

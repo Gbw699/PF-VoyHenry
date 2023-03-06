@@ -11,7 +11,7 @@ export default function PlanCardListHome() {
   }, []);
 
   const renderPlans = useSelector((state) => state.planStore.renderPlans);
-  const { plans, pageNumber, pages } = renderPlans;
+  const { plans } = renderPlans;
 
   return (
     <div className={style.container}>

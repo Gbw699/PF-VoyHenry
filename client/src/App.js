@@ -24,12 +24,12 @@ import LoadSpinning from "./views/LoadSpinning/LoadSpinning";
 import Favorite from "./views/Favorite/Favorite";
 import FooterSection from "./components/Footer/FooterSection";
 import AdminSection from "./views/AdminSection/AdminSection";
+import SocketIo from "./views/Socket.io/Socket.io";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 const cookie = document.cookie.split("=");
 axios.defaults.headers.common["Authorization"] = `Bearer ${cookie[1]}`;
 const user = JSON.parse(localStorage.getItem("user"));
-console.log(user);
 function App() {
   useEffect(() => {}, [document.cookie]);
 
@@ -42,13 +42,14 @@ function App() {
         location.pathname !== "/signUp" &&
         location.pathname !== "/logIn" && <NavBar />}
       <Auth />
+      <SocketIo />
       <Routes>
-        {/* {user.role === "admin" && (
-          )} */}
+        {user?.role === "admin" && (
           <Route
             path="/admin/*"
             element={<AdminSection />}
           />
+        )}
         <Route
           path="/home"
           element={<Home />}
@@ -85,10 +86,10 @@ function App() {
           path="/profile"
           element={<Profile />}
         />
-        {/* <Route
+        <Route
           path="/marketplace/*"
-          element={<MarketPlace role={user.role} />}
-        /> */}
+          element={<MarketPlace role={user?.role} />}
+        />
         <Route
           path="/aboutUs"
           element={<AboutUs />}

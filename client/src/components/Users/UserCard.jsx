@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./UserCard.module.css";
+import {
+  followUser,
+  getFollowing,
+  unfollowUser,
+} from "../../redux/slices/userSlice/thunks";
 
 export default function UserCard({
   nickName,
@@ -8,8 +13,22 @@ export default function UserCard({
   firstName,
   lastName,
   nationality,
+  following,
+  setFollowing,
+  loginUser,
+  followed,
 }) {
-  const handleClick = () => {};
+  const handleClick = async (event) => {
+    if (event.target.value === "follow") {
+      followUser(loginUser, nickName);
+      const response = await getFollowing(loginUser);
+      setFollowing([...following, response]);
+    } else {
+      unfollowUser(loginUser, nickName);
+      const response = await getFollowing(loginUser);
+      setFollowing([...following, response]);
+    }
+  };
 
   return (
     <div>
@@ -36,20 +55,31 @@ export default function UserCard({
             </div>
             <div className={style.followers}>
               <p className={style.followTitle}>Siguiendo</p>
-              <span className={style.followNum}> 103</span>
+              <span className={style.followNum}>{following.length}</span>
               <p className={style.followTitle}>Seguidores</p>
-              <span className={style.followNum}> 98</span>
+              <span className={style.followNum}>{followed.length}</span>
             </div>
           </div>
         </div>
         <div className={style.buttons}>
-          <button
-            className={style.buttonUnfollow}
-            type="submit"
-            onClick={handleClick}
-          >
-            Seguir
-          </button>
+          {!following?.find((follow) => follow.nickName === nickName) && (
+            <button
+              className={style.buttonUnfollow}
+              onClick={handleClick}
+              value="follow"
+            >
+              Seguir
+            </button>
+          )}
+          {following?.find((follow) => follow.nickName === nickName) && (
+            <button
+              className={style.buttonUnfollow}
+              onClick={handleClick}
+              value="unfollow"
+            >
+              Dejar de Seguir
+            </button>
+          )}
           <Link to={`/users/${nickName}`}>
             <button
               className={style.buttonPerfil}
