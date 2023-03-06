@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import DateFilter from "./DateFilter";
 import OrderFilter from "./OrderFilter";
-// import LimitFilter from "./LimitFilter";
+import LimitFilter from "./LimitFilter";
 import { getBlogs } from "../../redux/slices/blogSlice/thunk";
 import style from "./BlogFilters.module.css";
 

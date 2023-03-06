@@ -6,6 +6,12 @@
   padding: 1.5em;
   height: auto;
 }
+.title {
+  color: #707070;
+  font-weight: 500;
+  font-size: 130%;
+  margin-bottom: 0px;
+}
 
 .inputs {
   border: 1px solid #f1e100;

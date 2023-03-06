@@ -1,4 +1,4 @@
-import style from "./BlogFilters.module.css";
+import style from "./DateFilter.module.css";
 
 export default function DateFilter({ filters, setFilters }) {
   return (
@@ -9,19 +9,13 @@ export default function DateFilter({ filters, setFilters }) {
         color="#f1e100"
       />
       <input
+        className={style.input}
         type="date"
         name="dateInput"
         onChange={(event) =>
           setFilters({ ...filters, date: event.target.value })
         }
-        className={style.inputs}
       />
-      <button className={style.filterBtn}>
-        Nuevos
-      </button>
-      <button className={style.filterBtn}>
-        Antiguos
-      </button>
     </div>
   );
 }
