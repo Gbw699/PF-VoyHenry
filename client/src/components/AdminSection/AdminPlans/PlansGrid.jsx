@@ -7,10 +7,10 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteRecord from "../recycleAdmin/DeleteRecord";
 import CustomToolbar from "../recycleAdmin/CustomToolbar";
 
-export default function UsersGrid({
-  users,
+export default function PlansGrid({
+  plans,
   reRender,
-  setUserInfo,
+  setPlansInfo,
   setReRender,
   setCreateRecord,
   setEditRecord,
@@ -22,27 +22,30 @@ export default function UsersGrid({
   };
 
   const handleEditClick = (row) => {
-    setUserInfo(row);
+    setPlansInfo(row);
     setEditRecord(true);
   };
 
   const rows = useMemo(
     () =>
-      users?.map((user, index) => {
+      plans?.map((plan) => {
         return {
-          id: index,
-          col1: user.nickName,
-          col2: user.firstName,
-          col3: user.lastName,
-          col4: user.email,
-          col5: user.dateOfBirth,
-          col6: user.genre,
-          col7: user.role,
-          col8: user.about,
-          col9: user.image,
+          id: plan.id,
+          col1: plan.userNickName,
+          col2: plan.title,
+          col3: plan.description,
+          col4: plan.state,
+          col5: plan.eventDate,
+          col6: plan.votes,
+          col7: plan.stars,
+          col8: plan.country,
+          col9: plan.province,
+          col10: plan.city,
+          col11: plan.address,
+          col12: plan.mainImage,
         };
       }),
-    [users]
+    [plans]
   );
 
   const columns = [
@@ -58,7 +61,7 @@ export default function UsersGrid({
             key={row.col1 + 1}
             icon={<DeleteIcon />}
             label="Delete"
-            onClick={() => handleDeleteClick(row.col1)}
+            onClick={() => handleDeleteClick(row.id)}
             color="inherit"
           />,
           <GridActionsCellItem
@@ -73,21 +76,34 @@ export default function UsersGrid({
     },
     { field: "id", headerName: "Id", width: 75 },
     { field: "col1", headerName: "Nickname", width: 150 },
-    { field: "col2", headerName: "Nombre", width: 150 },
-    { field: "col3", headerName: "Apellido", width: 150 },
-    { field: "col4", headerName: "Mail", width: 150 },
+    { field: "col2", headerName: "Título", width: 150 },
+    { field: "col3", headerName: "Descripción", width: 150 },
+    { field: "col4", headerName: "Estado", width: 150 },
     {
       field: "col5",
-      headerName: "Fecha de nacimiento",
+      headerName: "Fecha del evento",
       type: "date",
       width: 150,
     },
-    { field: "col6", headerName: "Género", width: 150 },
-    { field: "col7", headerName: "Rol", width: 100 },
-    { field: "col8", headerName: "Descripción", width: 200 },
     {
-      field: "col9",
-      headerName: "Imagen de perfil",
+      field: "col6",
+      headerName: "Cantidad de votos",
+      type: "number",
+      width: 150,
+    },
+    {
+      field: "col7",
+      headerName: "Estrellas",
+      type: "number",
+      width: 100,
+    },
+    { field: "col8", headerName: "País", width: 200 },
+    { field: "col9", headerName: "Provincia", width: 200 },
+    { field: "col10", headerName: "Ciudad", width: 200 },
+    { field: "col11", headerName: "Dirección", width: 200 },
+    {
+      field: "col12",
+      headerName: "Imagen del plan",
       width: 150,
     },
   ];

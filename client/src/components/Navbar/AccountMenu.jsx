@@ -39,7 +39,7 @@ export default function AccountMenu() {
           aria-expanded={open ? "true" : undefined}
         >
           <Avatar
-            srcSet={user.image}
+            srcSet={user?.image}
             sx={{ width: 32, height: 32 }}
           >
             I
@@ -77,7 +77,7 @@ export default function AccountMenu() {
             to={"/profile"}
             style={{ color: "#707070" }}
           >
-            {`${user.firstName} ${user.lastName}`}
+            {`${user?.firstName} ${user?.lastName}`}
           </NavLink>
         </MenuItem>
         <NavLink

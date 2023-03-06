@@ -1,48 +1,48 @@
 import { useState } from "react";
-import AxiosUsers from "../../Users/AxiosUsers";
-import UsersGrid from "./UsersGrid";
-import CreateUserForm from "./CreateUserForm";
-import EditUserForm from "./EditUserForm";
+import AxiosPlans from "./AxiosPlans";
+import PlansGrid from "./PlansGrid";
+// import CreateUserForm from "./CreateUserForm";
+// import EditUserForm from "./EditUserForm";
 
-export default function AdminUsers() {
-  const [users, setUsers] = useState([]);
-  const [userInfo, setUserInfo] = useState({});
+export default function AdminPlans() {
+  const [plans, setPlans] = useState([]);
+  const [plansInfo, setPlansInfo] = useState({});
   const [createRecord, setCreateRecord] = useState(false);
   const [editRecord, setEditRecord] = useState(false);
   const [reRender, setReRender] = useState(false);
 
   return (
     <>
-      <AxiosUsers
-        setUsers={setUsers}
+      <AxiosPlans
+        setPlans={setPlans}
         reRender={reRender}
       />
       {!createRecord && !editRecord && (
-        <UsersGrid
-          users={users}
+        <PlansGrid
+          plans={plans}
           reRender={reRender}
-          setUserInfo={setUserInfo}
+          setPlansInfo={setPlansInfo}
           setReRender={setReRender}
           setCreateRecord={setCreateRecord}
           setEditRecord={setEditRecord}
         />
       )}
-      {createRecord && (
+      {/* {createRecord && (
         <CreateUserForm
           reRender={reRender}
           setReRender={setReRender}
           setCreateRecord={setCreateRecord}
         />
-      )}
-      {editRecord && (
+      )} */}
+      {/* {editRecord && (
         <EditUserForm
-          userInfo={userInfo}
-          setUserInfo={setUserInfo}
+          plansInfo={plansInfo}
+          setPlansInfo={setPlansInfo}
           reRender={reRender}
           setReRender={setReRender}
           setEditRecord={setEditRecord}
         />
-      )}
+      )} */}
     </>
   );
 }
