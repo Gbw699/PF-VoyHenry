@@ -1,6 +1,5 @@
 const { io } = require('../../../app');
 const SessionsService = require('../../services/sessions.service');
-
 const sessionsService = new SessionsService()
 
 const startSocketIo = async() =>{
@@ -14,9 +13,9 @@ const startSocketIo = async() =>{
       socket.id
     )
 
-/*     if(socket.handshake.auth.nickName === "109838909950803434792"){
-      io.emit("welcome", "Tukilando")
-    } */
+    socket.on('mensaje', (data) => {
+      console.log(data)
+    })
 
     socket.on('disconnect', () => {
       console.log("Clientes conectados: ", io.engine.clientsCount)

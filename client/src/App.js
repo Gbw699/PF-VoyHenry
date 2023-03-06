@@ -25,6 +25,7 @@ import Favorite from "./views/Favorite/Favorite";
 import FooterSection from "./components/Footer/FooterSection";
 import AdminSection from "./views/AdminSection/AdminSection";
 import SocketIo from "./views/Socket.io/Socket.io";
+import Messages from "./views/messages/messages";
 
 axios.defaults.baseURL = "http://localhost:3001/";
 const cookie = document.cookie.split("=");
@@ -69,6 +70,10 @@ function App() {
         <Route
           path="/logIn"
           element={<LogIn />}
+        />
+        <Route
+          path="/messages"
+          element={<Messages />}
         />
         <Route
           path="/signUp"

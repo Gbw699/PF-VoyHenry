@@ -12,16 +12,13 @@ export default function Connect() {
           completeName: `${userInfo.firstName} ${userInfo.lastName}`,
         },
       });
+      
       socket.on("connect", () => {
         console.log("Conectado al servidor");
       });
 
       socket.on("disconnect", () => {
         console.log("Desconectado del servidor");
-      });
-
-      socket.on("welcome", (data) => {
-        console.log(data);
       });
 
       return () => {
