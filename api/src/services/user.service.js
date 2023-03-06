@@ -116,9 +116,33 @@ class UsersService {
     }
 
     const users = await usersModel.findAll(options)
-    return {users}
+
+const following = []
+for (let i = 0; i < users.length; i++) {
+
+  following.push(users[i].nickName,
+     await sequelize.models.user_follow_user.count({
+    where: {followUserId:users[i].nickName}})
+  )
+
+}
+
+const followed = []
+for (let i = 0; i < users.length; i++) {
+
+    followed.push(users[i].nickName,
+       await sequelize.models.user_follow_user.count({
+      where: {userid:users[i].nickName}})
+    )
 
   }
+
+return {users,
+following: following,
+followed: followed
+}
+}
+
 
   /* Find one User */
 
