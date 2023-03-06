@@ -1,7 +1,7 @@
 import { useState } from "react";
 import AxiosBlogs from "./AxiosBlogs";
 import BlogsGrid from "./BlogsGrid";
-//import CreateBlogForm from "./CreateBlogForm";
+import CreateBlogForm from "./CreateBlogForm";
 //import EditBlogForm from "./EditBlogForm";
 
 export default function AdminPlans() {
@@ -27,13 +27,13 @@ export default function AdminPlans() {
           setEditRecord={setEditRecord}
         />
       )}
-      {/* {createRecord && (
+      {createRecord && (
         <CreateBlogForm
           reRender={reRender}
           setReRender={setReRender}
           setCreateRecord={setCreateRecord}
         />
-      )} */}
+      )} 
       {/* {editRecord && (
         <EditBlogForm
           blogsInfo={blogsInfo}
