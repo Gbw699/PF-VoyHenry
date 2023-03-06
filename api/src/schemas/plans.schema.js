@@ -50,7 +50,9 @@ const updateSchema = Joi.object({
   state: state,
   eventDate: eventDate,
   country: country,
-  province: province
+  province: province,
+  city: city, 
+  address: address
 })
 
 const deletePlanSchema = Joi.object({

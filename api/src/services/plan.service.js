@@ -327,7 +327,7 @@ class PlansService {
 
   async update(
     id,
-    { title, summary, description, mainImage, images, eventDate, state }
+    { title, summary, description, mainImage, images, eventDate, state, country, province, city, address }
   ) {
     const plan = await plansModel.findOne({
       where: {
@@ -345,6 +345,10 @@ class PlansService {
       (plan.images = images || plan.images),
       (plan.eventDate = eventDate || plan.eventDate),
       (plan.state = state || plan.state);
+      (plan.country = country || plan.country);
+      (plan.province = province || plan.province);
+      (plan.city = city || plan.city);
+      (plan.address = address || plan.address);
 
     await plan.save();
 

@@ -21,7 +21,7 @@ export default function NavBar() {
           className={style.img}
         />
       </NavLink>
-      {user.role === "admin" && (
+      {user?.role === "admin" && (
         <NavLink
           to={"/admin"}
           className={navLinkClassName}

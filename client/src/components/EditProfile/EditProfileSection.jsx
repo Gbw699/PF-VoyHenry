@@ -79,23 +79,24 @@ export const EditProfileSection = ({
   };
   return (
     <div className={style.container}>
-      <form
-        className={style.form}
-        onSubmit={handleSubmit}
-      >
-        <p className={style.title}>Nombre completo</p>
-        <EditProfileInput
-          name="firstName"
-          placeholder="Nombre completo"
-          setState={setFirstName}
-        />
-        <p className={style.title}>Apellido</p>
-        <EditProfileInput
-          name="lastName"
-          placeholder="Apellido"
-          setState={setLastName}
-        />
-        {/* <EditProfileSelectCountry
+      <div className={style.editContainer}>
+        <form
+          className={style.form}
+          onSubmit={handleSubmit}
+        >
+          <p className={style.title}>Nombre completo</p>
+          <EditProfileInput
+            name="firstName"
+            placeholder="Nombre completo"
+            setState={setFirstName}
+          />
+          <p className={style.title}>Apellido</p>
+          <EditProfileInput
+            name="lastName"
+            placeholder="Apellido"
+            setState={setLastName}
+          />
+          {/* <EditProfileSelectCountry
           {...{
             provinces,
             setProvinces,
@@ -105,14 +106,17 @@ export const EditProfileSection = ({
             setSelectedProvince,
           }}
         /> */}
-        <button className={style.buttons}>Guardar cambios</button>
-      </form>
-      <div>
+        </form>
         <div>
-          <EditProfileImage {...{ image, setImage }} />
-        </div>
-        <div>
-          <EditProfileAboutMe setState={setAbout} />
+          <div>
+            <EditProfileImage {...{ image, setImage }} />
+          </div>
+          <div>
+            <EditProfileAboutMe setState={setAbout} />
+          </div>
+          <div className={style.buttonContainer}>
+            <button className={style.buttons}>Guardar cambios</button>
+          </div>
         </div>
       </div>
     </div>

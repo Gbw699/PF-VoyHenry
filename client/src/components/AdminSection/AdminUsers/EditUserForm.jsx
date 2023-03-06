@@ -7,8 +7,6 @@ import { editUser } from "../../../redux/slices/userSlice/thunks";
 import style from "./EditUserForm.module.css";
 
 export default function EditUserForm({
-  //   user,
-  //   setUser,
   userInfo,
   setUserInfo,
   reRender,
@@ -42,10 +40,6 @@ export default function EditUserForm({
       .email("Email no válido")
       .matches(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/, "Email no válido")
       .required("El email es obligatorio"),
-    // nickName: Yup.string()
-    //   .min(3, "Debe tener más de 3 caracteres")
-    //   .max(25, "Debe tener menos de 25 caracteres")
-    //   .required("El nombre de usuario es obligatorio"),
     firstName: Yup.string()
       .min(3, "Debe tener más de 3 caracteres")
       .max(55, "Debe tener menos de 55 caracteres")
@@ -132,27 +126,6 @@ export default function EditUserForm({
                 ) : null}
               </div>
 
-              {/* <div className={style.inputs}>
-                <label
-                  htmlFor="nickName"
-                  className={style.inputTitle}
-                >
-                  Nombre de usuario
-                </label>
-                <Form.Input
-                  placeholder="Nombre de usuario"
-                  id="nickName"
-                  name="nickName"
-                  type="text"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.nickName}
-                />
-                {formik.touched.nickName && formik.errors.nickName ? (
-                  <div>{formik.errors.nickName}</div>
-                ) : null}
-              </div> */}
-
               <div className={style.inputs}>
                 <label
                   htmlFor="email"
@@ -234,7 +207,7 @@ export default function EditUserForm({
 
           <button
             onClick={() => {
-              setUserInfo("");
+              setUserInfo({});
               setEditRecord(false);
             }}
             className={style.btnVolver}

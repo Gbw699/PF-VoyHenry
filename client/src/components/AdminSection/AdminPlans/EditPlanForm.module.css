@@ -1,0 +1,132 @@
+.container {
+  z-index: 1;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 3px 3px 5px 2px #b1b1b1;
+  border: 1px solid #707070;
+  border-radius: 20px;
+  padding: 6%;
+  width: 50rem;
+  height: 45rem;
+}
+
+.title {
+  color: #707070;
+  font-size: 130%;
+  font-weight: 600;
+  margin-bottom: 0px;
+  color: black;
+}
+
+.formSubCont {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.formTitle {
+  color: #707070;
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+}
+
+.formInputs {
+  color: #707070;
+  font-size: 80%;
+  font-weight: 600;
+  color: black;
+  border-radius: 5px;
+}
+
+.formInputDescription {
+  color: #707070;
+  font-size: 80%;
+  font-weight: 600;
+  color: black;
+  border-radius: 5px;
+  resize: none;
+}
+
+.createBtn {
+  background-color: #f1e100;
+  border: 2px solid #f1e100;
+  border-radius: 10px;
+  padding: 1% 2%;
+  color: #707070;
+  width: 20%;
+  align-self: center;
+  margin-top: 3%;
+  cursor: pointer;
+}
+
+.createBtn:disabled {
+  pointer-events: none;
+}
+
+.createBtn:hover {
+  background-color: white;
+}
+
+.createBtn:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.backBtn {
+  background-color: white;
+  border: 2px solid #f1e100;
+  border-radius: 10px;
+  padding: 1% 2%;
+  color: #707070;
+  width: 15%;
+  align-self: center;
+  margin-top: 5%;
+  cursor: pointer;
+}
+
+.backBtn:hover {
+  background-color: #707070;
+  border: 2px solid #707070;
+  color: white;
+}
+
+.imageForm {
+  border-radius: 2em;
+}
+
+.buttons {
+  background-color: #f1e100;
+  border: 1px solid #f1e100;
+  border-radius: 10px;
+  padding: 0.5em;
+  color: #707070;
+  width: 7em;
+  margin-left: 3em;
+  align-self: center;
+  cursor: pointer;
+}
+
+.buttons:disabled {
+  pointer-events: none;
+}
+
+.buttons:hover {
+  color: #707070;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+}

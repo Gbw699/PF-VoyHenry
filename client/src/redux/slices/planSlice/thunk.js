@@ -61,3 +61,15 @@ export const postComment = (id, obj) => {
     }
   };
 };
+
+export const editPlan = (obj, id) => {
+  return async () => {
+    try {
+      await axios.patch(`/api/v1/plans/${id}`, {
+        ...obj,
+      });
+    } catch (error) {
+      return console.error(error.response);
+    }
+  };
+};

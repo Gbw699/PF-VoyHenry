@@ -1,5 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  border-radius: 0.4em;
+
+  color: #000000;
+  box-shadow: 2px 2px 3px 2px #22222296;
+  margin: 0.5em;
+  background-color: white;
+}
+
 .input {
-  background-color: black;
-  color: #f1e100;
-  font-size: 17px;
+  border-radius: 0.4em;
+
+  color: #000000;
+  border: none;
 }
