@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import style from "./UserCard.module.css";
 import {
   followUser,
-  getFollowed,
   getFollowing,
   unfollowUser,
 } from "../../redux/slices/userSlice/thunks";
@@ -19,17 +18,15 @@ export default function UserCard({
   loginUser,
   followed,
 }) {
-  console.log(following.length);
   const handleClick = async (event) => {
     if (event.target.value === "follow") {
       followUser(loginUser, nickName);
       const response = await getFollowing(loginUser);
       setFollowing([...following, response]);
-      console.log(following);
     } else {
       unfollowUser(loginUser, nickName);
       const response = await getFollowing(loginUser);
-      setFollowing([...following, response]);
+      setFollowing([response]);
     }
   };
 
@@ -58,15 +55,14 @@ export default function UserCard({
             </div>
             <div className={style.followers}>
               <p className={style.followTitle}>Siguiendo</p>
-              <span className={style.followNum}>{following.count}</span>
+              <span className={style.followNum}>{following.length}</span>
               <p className={style.followTitle}>Seguidores</p>
-              <span className={style.followNum}>{followed.count}</span>
+              <span className={style.followNum}>{followed.length}</span>
             </div>
           </div>
         </div>
         <div className={style.buttons}>
-          {console.log(following)}
-          {!following?.find((follow) => follow === nickName) && (
+          {!following?.find((follow) => follow.nickName === nickName) ? (
             <button
               className={style.buttonUnfollow}
               onClick={handleClick}
@@ -74,8 +70,7 @@ export default function UserCard({
             >
               Seguir
             </button>
-          )}
-          {following?.find((follow) => follow === nickName) && (
+          ) : (
             <button
               className={style.buttonUnfollow}
               onClick={handleClick}

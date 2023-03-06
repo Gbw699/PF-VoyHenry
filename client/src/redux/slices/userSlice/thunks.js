@@ -96,7 +96,6 @@ export const followUser = async (myNickName, userNickName) => {
       `http://localhost:3001/api/v1/users/${userNickName}/follow`,
       { userNickName: myNickName }
     );
-    alert(`Following ${userNickName}`);
   } catch (error) {
     console.error(error);
   }
@@ -108,7 +107,6 @@ export const unfollowUser = async (myNickName, userNickName) => {
       `http://localhost:3001/api/v1/users/${userNickName}/follow`,
       { data: { userNickName: myNickName } }
     );
-    alert(`Unfollowing ${userNickName}`);
   } catch (error) {
     console.error(error.response.data.message);
   }
