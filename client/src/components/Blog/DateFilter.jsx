@@ -1,4 +1,4 @@
-import style from "./DateFilter.module.css";
+import style from "./BlogFilters.module.css";
 
 export default function DateFilter({ filters, setFilters }) {
   return (
@@ -9,7 +9,7 @@ export default function DateFilter({ filters, setFilters }) {
         color="#f1e100"
       />
       <input
-        className={style.input}
+        className={style.inputs}
         type="date"
         name="dateInput"
         onChange={(event) =>
