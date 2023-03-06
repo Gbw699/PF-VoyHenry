@@ -14,29 +14,18 @@ export default function UserCard({
   firstName,
   lastName,
   nationality,
-  // following,
-  // setFollowing,
+  following,
+  setFollowing,
   loginUser,
-  // followed,
+  followed,
 }) {
-  const [following, setFollowing] = useState({});
-  const [followed, setFollowed] = useState({});
-
-  useEffect(()=>{
-    async function getting(){
-      const followingRes = await getFollowing(nickName);
-      setFollowing(followingRes);
-      const followedRes = await getFollowed(nickName);
-      setFollowed(followedRes);
-    }
-    getting();
-  },[]);
-
+  console.log(following.length);
   const handleClick = async (event) => {
     if (event.target.value === "follow") {
       followUser(loginUser, nickName);
       const response = await getFollowing(loginUser);
       setFollowing([...following, response]);
+      console.log(following);
     } else {
       unfollowUser(loginUser, nickName);
       const response = await getFollowing(loginUser);
@@ -76,7 +65,8 @@ export default function UserCard({
           </div>
         </div>
         <div className={style.buttons}>
-          {/* {!following?.find((follow) => follow.nickName === nickName) && ( */}
+          {console.log(following)}
+          {!following?.find((follow) => follow === nickName) && (
             <button
               className={style.buttonUnfollow}
               onClick={handleClick}
@@ -84,8 +74,8 @@ export default function UserCard({
             >
               Seguir
             </button>
-          {/* )} */}
-          {/* {following?.find((follow) => follow.nickName === nickName) && ( */}
+          )}
+          {following?.find((follow) => follow === nickName) && (
             <button
               className={style.buttonUnfollow}
               onClick={handleClick}
@@ -93,7 +83,7 @@ export default function UserCard({
             >
               Dejar de Seguir
             </button>
-          {/* )} */}
+          )}
           <Link to={`/users/${nickName}`}>
             <button
               className={style.buttonPerfil}
