@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import BlogFilters from "./BlogFilters";
 import BlogReview from "../../recycle/BlogReview/BlogReview";
 import style from "./BlogsReviews.module.css";
 import { Pagination } from "@mui/material";
@@ -16,7 +17,8 @@ export default function BlogsReviews() {
 
   return (
     <div className={style.container}>
-      <div className={style.reviewCont}>
+      <BlogFilters pagePagination={pagePagination} />
+      <div className={style.subCont}>
         {blogs?.blogs.map((blog) => {
           return (
             <BlogReview
