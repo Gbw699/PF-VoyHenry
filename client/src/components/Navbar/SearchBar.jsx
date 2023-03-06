@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getBlogsSearch } from "../../redux/slices/blogSlice/thunk";
-import { getPlansSearch } from "../../redux/slices/planSlice/thunk";
+import { getPlansbyOrder, getPlansSearch } from "../../redux/slices/planSlice/thunk";
 import { useState } from "react";
 import style from "./SearchBar.module.css";
 
@@ -13,7 +13,7 @@ export default function SearchBar() {
 
   const handleSearch = (input) => {
     if (location.pathname === "/blog") dispatch(getBlogsSearch(input));
-    if (location.pathname === "/plans") dispatch(getPlansSearch(input));
+    if (location.pathname === "/plans") dispatch(getPlansbyOrder("contains", input));
   };
 
   return (
