@@ -4,6 +4,7 @@ import style from "./EditProfileImage.module.css";
 export default function EditProfileImage({ image, setImage }) {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
+
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
     widgetRef.current = cloudinaryRef.current.createUploadWidget(
@@ -18,6 +19,7 @@ export default function EditProfileImage({ image, setImage }) {
       }
     );
   }, []);
+  
   return (
     <div className={style.container}>
       <div className={style.subContainer}>
