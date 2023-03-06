@@ -2,27 +2,36 @@ import { useState } from "react";
 import MailInput from "./MailInput";
 import Submit from "./Submit";
 import HandlerErrorInput from "./HandlerErrorInput";
+import style from "./RecoveryState.module.css";
+import titleImg from "../../assets/voyHENRY_title(white).png";
 
 export default function RecoveryState() {
   const [mailInput, setMailInput] = useState();
   const [isValidEmail, setIsValidEmail] = useState();
 
   return (
-    <>
-      <MailInput
-        data={{ mailInput }}
-        setMailInput={setMailInput}
-      ></MailInput>
-      <Submit
-        isValidEmail={isValidEmail}
-        data={{
-          email: mailInput,
-        }}
-      ></Submit>
-      <HandlerErrorInput
-        setIsValidEmail={setIsValidEmail}
-        email={mailInput}
-      ></HandlerErrorInput>
-    </>
+    <div className={style.landing}>
+      <img
+        src={titleImg}
+        className={style.logo}
+        alt="voyHENRY logo"
+      />
+      <div className={style.container}>
+        <MailInput
+          data={{ mailInput }}
+          setMailInput={setMailInput}
+        />
+        <Submit
+          isValidEmail={isValidEmail}
+          data={{
+            email: mailInput,
+          }}
+        />
+        <HandlerErrorInput
+          setIsValidEmail={setIsValidEmail}
+          email={mailInput}
+        />
+      </div>
+    </div>
   );
 }

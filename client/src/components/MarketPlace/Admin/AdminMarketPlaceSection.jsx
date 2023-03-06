@@ -2,6 +2,8 @@ import React from "react";
 import AdminMarketPlaceDeactivate from "./AdminMarketPlaceDeactivate";
 import AdminMarketPlaceEdit from "./AdminMarketPlaceEdit";
 import AdminMarketPlaceCreate from "./AdminMarketPlaceCreate";
+import style from "./AdminMarketPlaceSection.module.css";
+
 export default function AdminMarketPlaceSection({
   setProducts,
   productName,
@@ -28,8 +30,9 @@ export default function AdminMarketPlaceSection({
   const handleOnClick = (value) => {
     setButtonOption(value);
   };
+
   return (
-    <div>
+    <div className={style.buttons}>
       <button onClick={() => handleOnClick("create")}>Crear</button>
       <button onClick={() => handleOnClick("edit")}>Editar</button>
       <button onClick={() => handleOnClick("deactivate")}>Desactivar</button>

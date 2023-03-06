@@ -20,21 +20,21 @@ export default function ProfileCard() {
             width="150em"
             color="#F1E100"
           />
-          <h1
+          <p
             className={style.profileName}
-          >{`${user.firstName} ${user.lastName}`}</h1>
+          >{`${user.firstName} ${user.lastName}`}</p>
           <h4 className={style.profileCountry}>
             {user.nationality ? user.nationality : "Sin nacionalidad"}
           </h4>
           <div className={style.followersCont}>
             <div className={style.followers}>
               <p className={style.followTitle}>Siguiendo</p>
-              {/* vv MODIFICAR PARA QUE SE MUESTRE EL N° DE SIGUIENDO vv */}
+              {/* //!! MODIFICAR PARA QUE SE MUESTRE EL N° DE SIGUIENDO */}
               <span className={style.followNum}>300</span>
             </div>
             <div className={style.followers}>
               <p className={style.followTitle}>Seguidores</p>
-              {/* vv MODIFICAR PARA QUE SE MUESTRE EL N° DE SEGUIDORES vv */}
+              {/* //!! MODIFICAR PARA QUE SE MUESTRE EL N° DE SEGUIDORES */}
               <span className={style.followNum}>123</span>
             </div>
           </div>

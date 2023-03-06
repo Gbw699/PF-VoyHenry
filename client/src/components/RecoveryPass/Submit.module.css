@@ -1,20 +1,21 @@
-/* .buttons {
+.sendBtn {
   background-color: #f1e100;
   border: 2px solid #f1e100;
-  width: 150px;
-  padding: 3%;
-  color: #707070;
+  color: #020202;
   border: 0px;
   border-radius: 10px;
-  transition: background-color 0.5s;
-  margin: 3%;
+  transition: filter 0.5s ease-in-out;
+  margin: 1em;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.buttons:hover {
-  background-color: #707070;
-  color: white;
-} */
+.sendBtn:hover {
+  filter: saturate(150%) brightness(80%);
+  transition: filter 0.5s ease-in-out;
+}
 
-.buttons {
-  background-color: black;
+.sendBtn:hover {
+  filter: saturate(150%) brightness(80%);
+  transition: filter 0.5s ease-in-out;
 }

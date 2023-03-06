@@ -6,11 +6,6 @@
   padding-right: 4em;
 }
 
-/* .container:hover {
-  transform: scale(1.1);
-  transition-duration: 1s;
-} */
-
 .profileCont {
   display: flex;
   flex-direction: column;
@@ -35,6 +30,8 @@
 
 .profileName {
   color: #707070;
+  text-align: center;
+  width: 85%;
   font-size: 150%;
   font-weight: 600;
   margin-top: 0.2em;
