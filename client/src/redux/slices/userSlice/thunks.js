@@ -117,11 +117,16 @@ export const unfollowUser = async (myNickName, userNickName) => {
 export const getFollowing = async (myNickName) => {
   try {
     const response = await axios.get(
-      `http://localhost:3001/api/v1/users/${myNickName}/Following`
+      `http://localhost:3001/api/v1/users/${myNickName}/following`
     );
-    return response.data;
+    if(response && response.data){
+      return response.data.data;
+    }
   } catch (error) {
-    console.error(error);
+    if (error.response.data.message === "no user is following you") {
+      return { followedUsers: [], data: [], count: 0 };
+    }
+    console.error(error.response.data.message);
   }
 };
 
@@ -130,9 +135,14 @@ export const getFollowed = async (myNickName) => {
     const response = await axios.get(
       `http://localhost:3001/api/v1/users/${myNickName}/followed`
     );
-    console.log(response.data.data.followedUsers);
-    return response.data.data.followedUsers;
+    if(response && response.data){
+
+      return response.data.data;
+    }
   } catch (error) {
-    console.error(error);
+    if (error.response.data.message === "you don't follow any user") {
+      return { followedUsers: [], data: [], count: 0 };
+    }
+    console.error(error.response.data.message);
   }
 };

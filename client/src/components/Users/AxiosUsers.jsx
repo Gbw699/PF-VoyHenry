@@ -16,23 +16,25 @@ export default function AxiosUsers({
   user,
   following,
   setFollowing,
+  followed,
   setFollowed,
 }) {
+
   useEffect(() => {
     const fetchData = async () => {
       if (!id) {
         try {
-          const response = await axios.get(
-            `http://localhost:3001/api/v1/users/${user}/Following`
-          );
-          setFollowing(response.data);
+          const responseFollowing = await getFollowing(user);
+          setFollowing(responseFollowing);
+          const responseFollowed = await getFollowed(user);
+          setFollowed(responseFollowed);
         } catch (error) {
           console.error(error);
         }
       }
     };
     fetchData();
-  }, [following?.length]);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,6 +43,14 @@ export default function AxiosUsers({
         if (id) {
           const { data: userData } = await axios.get(`/api/v1/users/${id}`);
           setUser(userData);
+          try {
+            const responseFollowing = await getFollowing(id);
+            setFollowing(responseFollowing);
+            const responseFollowed = await getFollowed(id);
+            setFollowed(responseFollowed);
+          } catch (error) {
+            console.error(error);
+          }
           try {
             const { data: plansData } = await axios.get(
               `/api/v1/users/${id}/plans`

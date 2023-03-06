@@ -20,11 +20,12 @@ export default function EditProfileImage({ image, setImage }) {
   }, []);
   return (
     <div className={style.container}>
-      <div className={style.img}>
+      <div className={style.subContainer}>
         <p className={style.title}>Imagen de perfil</p>
       </div>
       <div className={style.imagePerfil}>
         <img
+          className={style.img}
           src={image}
           alt="Imagen de perfil"
         />

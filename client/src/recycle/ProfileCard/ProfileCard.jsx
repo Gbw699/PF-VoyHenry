@@ -1,12 +1,22 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getFollowing } from "../../redux/slices/userSlice/thunks";
+import { getFollowed, getFollowing } from "../../redux/slices/userSlice/thunks";
 import style from "./ProfileCard.module.css";
 
 export default function ProfileCard() {
   const user = JSON.parse(localStorage.getItem("user"));
-  const [following, setFollowing] = useState([]);
-  const [followed, setFollowed] = useState([]);
+  const [following, setFollowing] = useState({});
+  const [followed, setFollowed] = useState({});
+
+  useEffect(()=>{
+    async function fectData(){
+      const following = await getFollowing(user.nickName);
+      setFollowing(following);
+      const followed = await getFollowed(user.nickName);
+      setFollowed(followed);
+    }
+    fectData();
+  },[]);
 
   return (
     <Link to="/profile">
@@ -30,12 +40,12 @@ export default function ProfileCard() {
             <div className={style.followers}>
               <p className={style.followTitle}>Siguiendo</p>
               {/* //!! MODIFICAR PARA QUE SE MUESTRE EL N° DE SIGUIENDO */}
-              <span className={style.followNum}>300</span>
+              <span className={style.followNum}>{following.count}</span>
             </div>
             <div className={style.followers}>
               <p className={style.followTitle}>Seguidores</p>
               {/* //!! MODIFICAR PARA QUE SE MUESTRE EL N° DE SEGUIDORES */}
-              <span className={style.followNum}>123</span>
+              <span className={style.followNum}>{followed.count}</span>
             </div>
           </div>
         </div>
