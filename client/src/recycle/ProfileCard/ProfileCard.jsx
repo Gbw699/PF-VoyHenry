@@ -24,7 +24,7 @@ export default function ProfileCard() {
         <div className={style.profileCont}>
           <div
             className={style.imgCont}
-            style={{ backgroundImage: `url(${user.image})` }}
+            style={{ backgroundImage: `url(${user?.image})` }}
           />
           <hr
             width="150em"
@@ -32,9 +32,9 @@ export default function ProfileCard() {
           />
           <p
             className={style.profileName}
-          >{`${user.firstName} ${user.lastName}`}</p>
+          >{`${user?.firstName} ${user?.lastName}`}</p>
           <h4 className={style.profileCountry}>
-            {user.nationality ? user.nationality : "Sin nacionalidad"}
+            {user?.nationality ? user.nationality : "Sin nacionalidad"}
           </h4>
           <div className={style.followersCont}>
             <div className={style.followers}>

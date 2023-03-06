@@ -20,11 +20,13 @@ export default function ProfileSection() {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
 
-  useEffect(async () => {
-    dispatch(getUserPlans(user.nickName));
-    dispatch(getUserBlogs(user.nickName));
-    setFollowing(await getFollowing(user.nickName));
-    setFollowed(await getFollowed(user.nickName));
+  useEffect(() => {
+    async () => {
+      dispatch(getUserPlans(user?.nickName));
+      dispatch(getUserBlogs(user?.nickName));
+      setFollowing(await getFollowing(user?.nickName));
+      setFollowed(await getFollowed(user?.nickName));
+    };
   }, []);
 
   const userPlans = useSelector((state) => state.userStore.userPlans);

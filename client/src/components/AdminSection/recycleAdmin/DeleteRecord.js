@@ -22,6 +22,7 @@ export default function DeleteRecord(argt, location, renderValue, Set) {
       if (result.isConfirmed) {
         try {
           location === "/admin/users" && axios.delete(`/api/v1/users/${argt}`);
+          location === "/admin/plans" && axios.delete(`/api/v1/plans/${argt}`);
           Set(!renderValue);
         } catch (error) {
           console.error(error.response);
