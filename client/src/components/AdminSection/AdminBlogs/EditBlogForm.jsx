@@ -3,25 +3,26 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import { Form } from "semantic-ui-react";
 import * as Yup from "yup";
-import { postBlog } from "../../../redux/slices/blogSlice/thunk";
+import { editBlog } from "../../../redux/slices/blogSlice/thunk";
 import UploadWidget from "../../../recycle/UploadWidget/UploadWidget";
 import style from "./CreateBlogForm.module.css";
 
-export default function CreateBlogForm({
+export default function EditBlogForm({
+  blogsInfo,
+  setBlogsInfo,
   reRender,
   setReRender,
-  setCreateRecord,
+  setEditRecord,
 }) {
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("user"));
 
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState(blogsInfo.col7);
 
   const initialValues = {
-    userNickName: user.nickName,
-    title: "",
-    content: "",
-    stars: 1,
+    userNickName: blogsInfo.col1,
+    title: blogsInfo.col2,
+    content: blogsInfo.col3,
+    stars: blogsInfo.col6,
   };
 
   const validationSchema = Yup.object({
@@ -40,14 +41,15 @@ export default function CreateBlogForm({
 
   const onSubmit = async (values) => {
     const obj = {
-      userNickName: user.nickName,
+      userNickName: blogsInfo.col1,
       title: values.title,
       content: values.content,
       stars: values.stars,
       image: url,
     };
-    await dispatch(postBlog(obj));
-    setCreateRecord(false);
+    await dispatch(editBlog(obj, blogsInfo.id));
+    setBlogsInfo({});
+    setEditRecord(false);
     setReRender(!reRender);
   };
 
@@ -153,7 +155,10 @@ export default function CreateBlogForm({
           </button>
         </form>
         <button
-          onClick={() => setCreateRecord(false)}
+          onClick={() => {
+            setBlogsInfo({});
+            setEditRecord(false);
+          }}
           className={style.closeBtn}
         >
           Volver
