@@ -2,7 +2,7 @@ import React from "react";
 import EditProfileAboutMe from "./EditProfileAboutMe";
 import EditProfileImage from "./EditProfileImage";
 import EditProfileInput from "./EditProfileInput";
-// import EditProfileSelectCountry from "./EditProfileSelectCountry";
+import EditProfileSelectCountry from "./EditProfileSelectCountry";
 import { useDispatch } from "react-redux";
 import { editUser } from "../../redux/slices/userSlice/thunks";
 import Swal from "sweetalert2";
@@ -106,7 +106,7 @@ export const EditProfileSection = ({
               placeholder="Tu apellido"
               setState={setLastName}
             />
-            {/* <EditProfileSelectCountry
+            <EditProfileSelectCountry
               {...{
                 provinces,
                 setProvinces,
@@ -115,7 +115,7 @@ export const EditProfileSection = ({
                 selectedProvince,
                 setSelectedProvince,
               }}
-            /> */}
+            />
             <p className={style.title}>Sobre mí</p>
             <EditProfileAboutMe setState={setAbout} />
           </form>
