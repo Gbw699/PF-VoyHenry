@@ -1,20 +1,30 @@
+import { useState } from "react";
 import { socket } from "../SocketIo/Connect";
 
 export default function SendMessage({ to }) {
+  const [ message, setMessage ] = useState("");
   const userInfo = JSON.parse(localStorage.getItem("user"));
 
+  const handlerOnChange = (event) => {
+    setMessage(event.target.value);
+  };
+
   const handlerOnClick = () => {
-    socket.emit("mensaje", {
-      from: userInfo.nickName,
-      to: to,
-      mensaje: "Funciono"
-    });
+    if(message !== ""){
+      socket.emit("mensaje", {
+        from: userInfo.nickName,
+        to: to,
+        message: message
+      });
+      setMessage("");
+    }
   };
 
   return (
     <>
       <input
-        type="textArea"
+        value={message}
+        onChange={handlerOnChange}
       >
       </input>
       <button

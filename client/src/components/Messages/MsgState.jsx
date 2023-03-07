@@ -32,9 +32,12 @@ export default function MsgState() {
         to={to}
       />
       <hr></hr>
-      <SendMessage
-        to={to}
-      />
+      { 
+        messageSelect !== null
+        && <SendMessage
+          to={to}
+        />
+      }
     </>
   );
 

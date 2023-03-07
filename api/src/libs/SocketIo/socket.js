@@ -1,6 +1,9 @@
 const { io } = require('../../../app');
 const SessionsService = require('../../services/sessions.service');
+const MessagesService = require('../../services/messages.service')
+
 const sessionsService = new SessionsService()
+const messagesService = new MessagesService()
 
 const startSocketIo = async() =>{
   await sessionsService.resetAllSessions()
@@ -16,7 +19,12 @@ const startSocketIo = async() =>{
     socket.on('mensaje', (data) => {
       console.log("From: " + data.from)
       console.log("To: " + data.to)
-      console.log("Mensaje: " + data.mensaje)
+      console.log("Mensaje: " + data.message)
+      messagesService.create({
+        to: data.to,
+        from: data.from,
+        message: data.message
+      })
     })
 
     socket.on('disconnect', () => {
