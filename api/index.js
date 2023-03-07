@@ -1,6 +1,6 @@
 require('dotenv').config();
-const { server} = require('./app');
-const startSocketIo = require('./src/libs/SocketIo/socket')
+const { server } = require('./app');
+const startSocketIo = require('./src/libs/SocketIo/socket');
 const sequelize = require('./src/libs/database/database');
 
 /* ➖➖🟥🟥🟥
@@ -16,12 +16,12 @@ const { PORT } = process.env;
 
 async function main() {
   try {
-     /* Database */
+    /* Database */
     await sequelize.sync({ force: false, logging: false });
     console.log('Connection has been established successfully.');
 
     /* Socket.io */
-    startSocketIo()
+    startSocketIo();
 
     /* Express server */
     server.listen(PORT, () => {

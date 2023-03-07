@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 export default function MapComponent({ country, province, city, address }) {
   const [coordinates, setCoordinates] = useState(null);
@@ -22,7 +22,9 @@ export default function MapComponent({ country, province, city, address }) {
           mapContainerStyle={{ height: "400px", width: "100%" }}
           center={coordinates}
           zoom={18}
-        ></GoogleMap>
+        >
+          <Marker position={coordinates} />
+        </GoogleMap>
       )}
     </LoadScript>
   );

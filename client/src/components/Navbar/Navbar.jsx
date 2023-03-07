@@ -30,6 +30,7 @@ export default function NavBar() {
         </NavLink>
       )}
       {location.pathname === "/blog" && <SearchBar />}
+      {location.pathname === "/plans" && <SearchBar />}
       <div className={style.linksCont}>
         <NavLink
           to={"/home"}
