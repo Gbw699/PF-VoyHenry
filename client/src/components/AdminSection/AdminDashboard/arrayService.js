@@ -10,9 +10,9 @@ export default function arrayService(argt) {
     "07": [],
     "08": [],
     "09": [],
-    10: [],
-    11: [],
-    12: [],
+    "10": [],
+    "11": [],
+    "12": [],
   };
 
   argt.forEach((arg) => {
