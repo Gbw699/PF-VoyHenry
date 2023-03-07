@@ -166,7 +166,7 @@ export default function FormSignUp(props) {
                       name="summary"
                       type="text"
                       as="textarea"
-                      rows="4"
+                      rows="2"
                       className={style.formInputDescription}
                     />
                     <ErrorMessage name="summary" />
@@ -181,7 +181,7 @@ export default function FormSignUp(props) {
                       name="description"
                       type="text"
                       as="textarea"
-                      rows="12"
+                      rows="5"
                       className={style.formInputDescription}
                     />
                     <ErrorMessage name="description" />
@@ -214,7 +214,7 @@ export default function FormSignUp(props) {
                     <Field
                       name="country"
                       as="select"
-                      className={style.formInputs}
+                      className={style.formInputsSmall}
                       onClick={handleCountryChange}
                     >
                       <option value="">Selecciona un país</option>
@@ -237,7 +237,7 @@ export default function FormSignUp(props) {
                     <Field
                       name="province"
                       as="select"
-                      className={style.formInputs}
+                      className={style.formInputsSmall}
                     >
                       <option value="">Selecciona una provincia</option>
                       {provinces.map((province) => (
@@ -288,7 +288,7 @@ export default function FormSignUp(props) {
                     <Field
                       name="eventDate"
                       type="date"
-                      className={style.formInputs}
+                      className={style.formInputsSmall}
                       min={getDateActually()}
                     />
                     <ErrorMessage name="eventDate" />
