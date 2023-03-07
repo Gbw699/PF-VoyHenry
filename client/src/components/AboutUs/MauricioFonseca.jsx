@@ -3,21 +3,29 @@ import mauricioFonsecaImg from "../../assets/mauricioFonseca.jpg";
 import gitHubImg from "../../assets/github.png";
 import linkedInImg from "../../assets/linkedin.png";
 import style from "./Developers.module.css";
-
+import { useEffect, useState } from "react";
 export default function MauricioFonseca() {
+  const [backgroundImage, setBackgroundImage] = useState("");
+  useEffect(() => {
+    setBackgroundImage(`url(${mauricioFonsecaImg})`);
+  });
   return (
     <div className={style.container}>
+      <div
+        className={style.cardFacu}
+        style={{ backgroundImage: backgroundImage }}
+      ></div>
       <div className={style.card}>
-        <img
+        {/* <img
           src={mauricioFonsecaImg}
           alt="Mauricio Fonseca"
           title="Mauricio Fonseca"
           loading="lazy"
-        />
+        /> */}
       </div>
       <hr
-        width="100%"
-        color="#F1E100"
+        width="0%"
+        color="black"
       />
       <div className={style.container}>
         <div className={style.links}>
@@ -36,13 +44,13 @@ export default function MauricioFonseca() {
             />
           </a>
           <a
-            className={style.img}
+            className={style.img2}
             href="https://github.com/Ephradrax"
             rel="noreferrer"
             target="_blank"
           >
             <img
-              className={style.img}
+              className={style.img2}
               src={gitHubImg}
               alt="GitHub"
               title="GitHub"

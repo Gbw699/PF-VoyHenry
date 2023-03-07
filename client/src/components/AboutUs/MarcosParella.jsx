@@ -4,21 +4,30 @@ import gitHubImg from "../../assets/github.png";
 import linkedInImg from "../../assets/linkedin.png";
 import portFolioImg from "../../assets/portfolio.png";
 import style from "./Developers.module.css";
+import { useEffect, useState } from "react";
 
 export default function MarcosParella() {
+  const [backgroundImage, setBackgroundImage] = useState("");
+  useEffect(() => {
+    setBackgroundImage(`url(${MarcosParellaImg})`);
+  });
   return (
     <div className={style.container}>
+      <div
+        className={style.cardFacu}
+        style={{ backgroundImage: backgroundImage }}
+      ></div>
       <div className={style.card}>
-        <img
+        {/* <img
           src={MarcosParellaImg}
           alt="Marcos Hernan Parella"
           title="Marcos Hernan Parella"
           loading="lazy"
-        />
+        /> */}
       </div>
       <hr
-        width="85%"
-        color="#F1E100"
+        width="0%"
+        color="black"
       />
       <div className={style.container}>
         <div className={style.links}>
@@ -37,13 +46,13 @@ export default function MarcosParella() {
             />
           </a>
           <a
-            className={style.img}
+            className={style.img2}
             href="https://github.com/Markish2000"
             rel="noreferrer"
             target="_blank"
           >
             <img
-              className={style.img}
+              className={style.img2}
               src={gitHubImg}
               alt="GitHub"
               title="GitHub"
@@ -51,13 +60,13 @@ export default function MarcosParella() {
             />
           </a>
           <a
-            className={style.img}
+            className={style.img2}
             href="https://markish2000.github.io/Portfolio/"
             rel="noreferrer"
             target="_blank"
           >
             <img
-              className={style.img}
+              className={style.img2}
               src={portFolioImg}
               alt="Portfolio"
               title="Portfolio"

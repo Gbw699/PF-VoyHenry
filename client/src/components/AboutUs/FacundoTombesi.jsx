@@ -18,8 +18,8 @@ export default function FacundoTombesi() {
         style={{ backgroundImage: backgroundImage }}
       ></div>
       <hr
-        width="85%"
-        color="#F1E100"
+        width="0%"
+        color="black"
       />
       <div className={style.container}>
         <div className={style.links}>
@@ -38,13 +38,13 @@ export default function FacundoTombesi() {
             />
           </a>
           <a
-            className={style.img}
+            className={style.img2}
             href="https://github.com/FacuTombesi"
             rel="noreferrer"
             target="_blank"
           >
             <img
-              className={style.img}
+              className={style.img2}
               src={gitHubImg}
               alt="GitHub"
               title="GitHub"

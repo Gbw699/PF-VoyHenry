@@ -9,6 +9,7 @@ export default function GabrielBarimboim() {
     <div className={style.container}>
       <div className={style.card}>
         <img
+          className={style.cardFacu}
           src={gabrielBarimboimImg}
           alt="Gabriel Barimboim"
           title="Gabriel Barimboim"
@@ -16,8 +17,8 @@ export default function GabrielBarimboim() {
         />
       </div>
       <hr
-        width="100%"
-        color="#F1E100"
+        width="0%"
+        color="black"
       />
       <div className={style.container}>
         <div className={style.links}>
@@ -36,13 +37,13 @@ export default function GabrielBarimboim() {
             />
           </a>
           <a
-            className={style.img}
+            className={style.img2}
             href="https://github.com/Gbw699"
             rel="noreferrer"
             target="_blank"
           >
             <img
-              className={style.img}
+              className={style.img2}
               src={gitHubImg}
               alt="GitHub"
               title="GitHub"
