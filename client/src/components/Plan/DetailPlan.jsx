@@ -65,7 +65,7 @@ export default function DetailPlan() {
       console.error(error);
     }
   }
-  
+
   async function handleStarClick(event, value) {
     const obj = {
       votes: 1,
@@ -198,7 +198,10 @@ export default function DetailPlan() {
                 placeholder="Ingresa el nuevo título"
               />
             )}
-            <hr color="white" width="60%" />
+            <hr
+              color="white"
+              width="60%"
+            />
             <h3 className={style.infoCountry}>{plan.country}</h3>
             {showEditInputs && (
               <input
@@ -266,7 +269,12 @@ export default function DetailPlan() {
             />
           )}
           <div className={style.descValoration}>
-            <label name="rating" className={style.descValTitle}>Valoración:</label>
+            <label
+              name="rating"
+              className={style.descValTitle}
+            >
+              Valoración:
+            </label>
             <Rating
               size="large"
               name="rating"
@@ -277,30 +285,33 @@ export default function DetailPlan() {
         </div>
       </div>
       <div className={style.buttons}>
-          <button className={style.submitBtn}>Unirse</button>
-          {!isFav && (
-            <button
-              onClick={addFavorite}
-              className={style.addBtn}
-            >
-              Agregar a favoritos
-            </button>
-          )}
-          {isFav && (
-            <button
-              onClick={deleteFavorite}
-              className={style.addBtn}
-            >
-              Eliminar de favoritos
-            </button>
-          )}
-          <ButtonShare
-            text={`¡Mira este plan que encontré en voyHENRY! ${plan.title}`}
-          />
+        <button className={style.submitBtn}>Unirse</button>
+        {!isFav && (
+          <button
+            onClick={addFavorite}
+            className={style.addBtn}
+          >
+            Agregar a favoritos
+          </button>
+        )}
+        {isFav && (
+          <button
+            onClick={deleteFavorite}
+            className={style.addBtn}
+          >
+            Eliminar de favoritos
+          </button>
+        )}
+        <ButtonShare
+          text={`¡Mira este plan que encontré en voyHENRY! ${plan.title}`}
+        />
       </div>
       <div className={style.commentsCont}>
         <h2 className={style.commentsTitle}>Comentarios</h2>
-        <hr color="#F1E100" width="100%" />
+        <hr
+          color="#F1E100"
+          width="100%"
+        />
         <div className={style.commentsSection}>
           {/* <h2>Comentarios</h2> */}
           {user && (
@@ -310,9 +321,10 @@ export default function DetailPlan() {
             />
           )}
           {comments.length > 0 ? (
-            <GetComments 
-            getComments={getComments}
-            comments={comments} />
+            <GetComments
+              getComments={getComments}
+              comments={comments}
+            />
           ) : (
             <p className={style.emptyComments}>Aún no hay comentarios</p>
           )}

@@ -9,6 +9,7 @@ export default function FooterImg() {
       <Link to="/home">
         <img
           src={voyHenryImage}
+          width="100%"
           alt="voyHenry"
           title="voyHenry"
           height="40em"

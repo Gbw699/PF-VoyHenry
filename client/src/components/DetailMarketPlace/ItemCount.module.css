@@ -23,6 +23,7 @@
   width: 100px;
   height: 45px;
   transition: 0.3s;
+  font-display: swap;
 }
 
 .buttonMenos:hover {
@@ -39,6 +40,7 @@
   width: 100px;
   height: 45px;
   transition: 0.3s;
+  font-display: swap;
 }
 
 .buttonMas:hover {

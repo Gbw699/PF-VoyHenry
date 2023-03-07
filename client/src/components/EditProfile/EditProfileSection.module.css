@@ -80,6 +80,7 @@
   -webkit-user-select: none;
   touch-action: manipulation;
   will-change: transform;
+  font-display: swap;
 }
 
 .buttons:disabled {

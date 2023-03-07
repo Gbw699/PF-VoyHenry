@@ -40,6 +40,9 @@ export default function AccountMenu() {
         >
           <Avatar
             srcSet={user?.image}
+            alt={`${user?.firstName} ${user?.lastName}`}
+            title={`${user?.firstName} ${user?.lastName}`}
+            loading="lazy"
             sx={{ width: 32, height: 32 }}
           >
             I
