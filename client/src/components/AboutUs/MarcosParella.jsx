@@ -7,23 +7,16 @@ import style from "./Developers.module.css";
 import { useEffect, useState } from "react";
 
 export default function MarcosParella() {
-  const [backgroundImage, setBackgroundImage] = useState("");
-  useEffect(() => {
-    setBackgroundImage(`url(${MarcosParellaImg})`);
-  });
   return (
     <div className={style.container}>
-      <div
-        className={style.cardFacu}
-        style={{ backgroundImage: backgroundImage }}
-      ></div>
       <div className={style.card}>
-        {/* <img
+        <img
+          className={style.cardFacu}
           src={MarcosParellaImg}
           alt="Marcos Hernan Parella"
           title="Marcos Hernan Parella"
           loading="lazy"
-        /> */}
+        />
       </div>
       <hr
         width="0%"

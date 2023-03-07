@@ -5,23 +5,16 @@ import linkedInImg from "../../assets/linkedin.png";
 import style from "./Developers.module.css";
 import { useEffect, useState } from "react";
 export default function MauricioFonseca() {
-  const [backgroundImage, setBackgroundImage] = useState("");
-  useEffect(() => {
-    setBackgroundImage(`url(${mauricioFonsecaImg})`);
-  });
   return (
     <div className={style.container}>
-      <div
-        className={style.cardFacu}
-        style={{ backgroundImage: backgroundImage }}
-      ></div>
       <div className={style.card}>
-        {/* <img
+        <img
+          className={style.cardFacu}
           src={mauricioFonsecaImg}
           alt="Mauricio Fonseca"
           title="Mauricio Fonseca"
           loading="lazy"
-        /> */}
+        />
       </div>
       <hr
         width="0%"
