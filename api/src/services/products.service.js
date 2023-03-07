@@ -115,9 +115,16 @@ class ProductsService {
       throw new CustomError('Product not found', 404);
     }
 
+    let newStock = stock
+
+    if (stock === 0) {
+      newStock = -1
+    }
+
+
     product.title = title || product.title;
     product.price = price || product.price;
-    product.stock = stock || product.stock;
+    product.stock = newStock || product.stock;
     product.detail = detail || product.detail;
     product.mainImage = mainImage || product.mainImage;
     product.availability = availability || product.availability;
