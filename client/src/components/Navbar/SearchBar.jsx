@@ -1,11 +1,12 @@
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getBlogsSearch } from "../../redux/slices/blogSlice/thunk";
-import { getPlansbyOrder, getPlansSearch } from "../../redux/slices/planSlice/thunk";
+import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
 import { useState } from "react";
 import style from "./SearchBar.module.css";
 
-export default function SearchBar() {
+
+export default function SearchBar({placeholder}) {
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -21,7 +22,7 @@ export default function SearchBar() {
       <input
         className={style.searchInput}
         type="search"
-        placeholder="Buscar reseña"
+        placeholder={placeholder}
         onChange={(event) => {
           setInput(event.target.value);
         }}
