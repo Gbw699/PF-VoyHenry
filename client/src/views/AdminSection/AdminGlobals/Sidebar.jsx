@@ -14,7 +14,7 @@ export default function SidebarComponent() {
   return (
     <div
       id="app"
-      style={({ height: "100vh" }, { display: "flex" })}
+      className={style.container}
     >
       <Sidebar style={{ height: "100vh" }}>
         <Menu>
