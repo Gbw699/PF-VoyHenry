@@ -33,7 +33,7 @@ class SessionsService{
   }
 
   async findOne(nickName){
-    const session = sessionModel.findOne({
+    const session = await sessionModel.findOne({
       where: {
         nickName: nickName
       }
