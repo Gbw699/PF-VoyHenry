@@ -4,7 +4,7 @@ import ProductsGrid from "./ProductsGrid";
 import CreateProductForm from "./CreateProductForm";
 import EditProductForm from "./EditProductForm";
 
-export default function AdminPlans() {
+export default function AdminProducts() {
   const [products, setProducts] = useState([]);
   const [productsInfo, setProductsInfo] = useState({});
   const [createRecord, setCreateRecord] = useState(false);
