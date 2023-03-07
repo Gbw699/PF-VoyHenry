@@ -109,11 +109,25 @@ class UsersService {
       order: [['firstName', 'ASC']],
     };
 
-    if (query.order == 'reverso') {
-      options.order = [['firstName', 'DESC']];
+      order: [['firstName', 'ASC']],
+      include: [
+        {
+          model: usersModel,
+          as: 'user'
+        },
+        {
+          model: usersModel,
+          as: 'followUser'
+        },
+
+      ]
     }
 
-    if (query.name) {
+    if (query.order == 'reverso'){
+      options.order = [['firstName', 'DESC']]
+    }
+
+    if (query.name){
       options.where = {
         [Op.or]: [
           {
@@ -132,30 +146,34 @@ class UsersService {
       };
     }
 
-    const users = await usersModel.findAll(options);
+    const users = await usersModel.findAll(options)
 
-    const following = [];
-    for (let i = 0; i < users.length; i++) {
-      following.push(
-        users[i].nickName,
-        await sequelize.models.user_follow_user.count({
-          where: { followUserId: users[i].nickName },
-        })
-      );
-    }
+const following = []
+for (let i = 0; i < users.length; i++) {
 
-    const followed = [];
-    for (let i = 0; i < users.length; i++) {
-      followed.push(
-        users[i].nickName,
-        await sequelize.models.user_follow_user.count({
-          where: { userid: users[i].nickName },
-        })
-      );
-    }
+  following.push(users[i].nickName,
+     await sequelize.models.user_follow_user.count({
+    where: {followUserId:users[i].nickName}})
+  )
 
-    return { users, following: following, followed: followed };
+}
+
+const followed = []
+for (let i = 0; i < users.length; i++) {
+
+    followed.push(users[i].nickName,
+       await sequelize.models.user_follow_user.count({
+      where: {userid:users[i].nickName}})
+    )
+
   }
+
+return {users,
+following: following,
+followed: followed
+}
+}
+
 
   /* Find one User */
 
@@ -392,8 +410,8 @@ class UsersService {
       (comment) => comment.dataValues.userid
     );
 
-    const user = await usersModel.findAll({
-      where: { nickName: followingsUsersId },
+     const user = await usersModel.findAll({
+       where: { nickName: followingsUsersId },
     });
 
     const number = await sequelize.models.user_follow_user.count({
