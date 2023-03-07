@@ -9,6 +9,7 @@ export default function MatiasVarela() {
     <div className={style.container}>
       <div className={style.card}>
         <img
+          className={style.cardFacu}
           src={matiasVarelaImg}
           alt="Matías Varela"
           title="Matías Varela"
@@ -16,8 +17,8 @@ export default function MatiasVarela() {
         />
       </div>
       <hr
-        width="100%"
-        color="#F1E100"
+        width="0%"
+        color="black"
       />
       <div className={style.container}>
         <div className={style.links}>
@@ -36,13 +37,13 @@ export default function MatiasVarela() {
             />
           </a>
           <a
-            className={style.img}
+            className={style.img2}
             href="https://github.com/MatiasxVarela"
             rel="noreferrer"
             target="_blank"
           >
             <img
-              className={style.img}
+              className={style.img2}
               src={gitHubImg}
               alt="GitHub"
               title="GitHub"
