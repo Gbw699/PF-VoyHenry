@@ -1,5 +1,12 @@
 import axios from "axios";
-import { setAllUsers, setUser, setUserPlans, setUserBlogs } from "./userSlice";
+import {
+  setAllUsers,
+  setUser,
+  setUserPlans,
+  setUserBlogs,
+  setUserFollowing,
+  setUserFollowed,
+} from "./userSlice";
 
 export const getLogin = (obj) => {
   return async () => {
@@ -92,10 +99,10 @@ export const editUser = (obj, nickName) => {
 
 export const followUser = async (myNickName, userNickName) => {
   try {
-    const response = await axios.post(
-      `http://localhost:3001/api/v1/users/${userNickName}/follow`,
-      { userNickName: myNickName }
-    );
+    const response = await axios.post(`/api/v1/users/${userNickName}/follow`, {
+      userNickName: myNickName,
+    });
+    alert(`Following ${userNickName}`);
   } catch (error) {
     console.error(error);
   }
@@ -107,39 +114,33 @@ export const unfollowUser = async (myNickName, userNickName) => {
       `http://localhost:3001/api/v1/users/${userNickName}/follow`,
       { data: { userNickName: myNickName } }
     );
+    alert(`Unfollowing ${userNickName}`);
   } catch (error) {
     console.error(error.response.data.message);
   }
 };
 
-export const getFollowing = async (myNickName) => {
-  try {
-    const response = await axios.get(
-      `http://localhost:3001/api/v1/users/${myNickName}/following`
-    );
-    if (response && response.data) {
-      return response.data.data.followingUsers;
+export const getFollowing = (nickName) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/api/v1/users/${nickName}/following`);
+      dispatch(setUserFollowing(response.data.data.followingUsers));
+    } catch (error) {
+      if (error.response.data.message === "no user is following you") {
+        return { followedUsers: [], data: [], count: 0 };
+      }
+      console.error(error.response.data.message);
     }
-  } catch (error) {
-    if (error.response.data.message === "no user is following you") {
-      return { followedUsers: [], data: [], count: 0 };
-    }
-    console.error(error.response.data.message);
-  }
+  };
 };
 
-export const getFollowed = async (myNickName) => {
-  try {
-    const response = await axios.get(
-      `http://localhost:3001/api/v1/users/${myNickName}/followed`
-    );
-    if (response && response.data) {
-      return response.data.data;
+export const getFollowed = (myNickName) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/api/v1/users/${myNickName}/followed`);
+      dispatch(setUserFollowed(response.data.data.followedUsers));
+    } catch (error) {
+      console.error(error.response.data.message);
     }
-  } catch (error) {
-    if (error.response.data.message === "you don't follow any user") {
-      return { followedUsers: [], data: [], count: 0 };
-    }
-    console.error(error.response.data.message);
-  }
+  };
 };

@@ -69,12 +69,12 @@ export default function AxiosUsers({
           }
         } else {
           setUsers(data.users);
+          console.log(data.users);
         }
       } catch (error) {
         console.log(error.message);
       }
     };
     fetchData();
-    console.log(following);
   }, [setUsers, reRender, setUser, setPlans, setBlogs, id]);
 }
