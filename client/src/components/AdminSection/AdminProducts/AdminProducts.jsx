@@ -1,7 +1,7 @@
 import { useState } from "react";
 import AxiosProducts from "./AxiosProducts";
 import ProductsGrid from "./ProductsGrid";
-//import CreateProductForm from "./CreateProductForm";
+import CreateProductForm from "./CreateProductForm";
 //import EditProductForm from "./EditProductForm";
 
 export default function AdminPlans() {
@@ -27,13 +27,13 @@ export default function AdminPlans() {
           setEditRecord={setEditRecord}
         />
       )}
-      {/* {createRecord && (
+      {createRecord && (
         <CreateProductForm
           reRender={reRender}
           setReRender={setReRender}
           setCreateRecord={setCreateRecord}
         />
-      )} */}
+      )} 
       {/* {editRecord && (
         <EditProductForm
           productsInfo={productsInfo}
