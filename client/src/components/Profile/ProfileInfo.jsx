@@ -26,9 +26,12 @@ export default function ProfileInfo({
             </Link>
           )}
         </div>
-        <div
+        <img
           className={style.imgCont}
-          style={{ backgroundImage: `url(${image})` }}
+          src={image}
+          alt={`${firstName} ${lastName}`}
+          title={`${firstName} ${lastName}`}
+          loading="lazy"
         />
         <p className={style.name}>
           {firstName} {lastName}

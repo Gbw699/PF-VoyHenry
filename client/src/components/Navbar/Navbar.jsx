@@ -20,6 +20,8 @@ export default function NavBar() {
           alt="voyHENRY"
           title="voyHENRY"
           className={style.img}
+          width="100%"
+          height="100%"
           loading="lazy"
         />
       </NavLink>
@@ -71,6 +73,7 @@ export default function NavBar() {
           <img
             src={imgCarrito}
             width="20px"
+            height="100%"
             alt="Carrito de compras"
             title="Carrito de compras"
             loading="lazy"
