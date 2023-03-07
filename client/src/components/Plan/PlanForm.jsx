@@ -318,15 +318,6 @@ export default function FormSignUp(props) {
           Volver
         </button>
       </div>
-      {/* <div>
-        <img
-          className={style.imageForm}
-          src={url}
-          alt=""
-          width="600em"
-          height="400em"
-        />
-      </div> */}
     </div>
   );
 }

@@ -19,7 +19,9 @@ export default function LogInSignUp() {
       <img
         src={titleImg}
         className={style.logo}
-        alt="voyHENRY logo"
+        alt="voyHENRY"
+        title="voyHENRY"
+        loading="lazy"
       />
       <div className={style.buttons}>
         <button

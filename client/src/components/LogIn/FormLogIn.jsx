@@ -73,7 +73,9 @@ export default function FormLogIn() {
       <img
         src={titleImg}
         className={style.logo}
-        alt="voyHENRY logo"
+        alt="voyHENRY"
+        title="voyHENRY"
+        loading="lazy"
       />
       <div className={style.container}>
         <div className={style.formContainer}>
@@ -132,7 +134,9 @@ export default function FormLogIn() {
                   <img
                     src={googleLogo}
                     className={style.googleLogo}
-                    alt="voyHENRY logo"
+                    alt="voyHENRY"
+                    title="voyHENRY"
+                    loading="lazy"
                   />
                   <p>Iniciar sesión con Google</p>
                 </div>
@@ -145,7 +149,9 @@ export default function FormLogIn() {
                   ¿Olvidaste tu contraseña?
                 </button>
                 <Link to="/signUp">
-                  <button className={style.subButtons}>¿Aún no tienes una cuenta?</button>
+                  <button className={style.subButtons}>
+                    ¿Aún no tienes una cuenta?
+                  </button>
                 </Link>
               </div>
               <div className={style.subBtns}>

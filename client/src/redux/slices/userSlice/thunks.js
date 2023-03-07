@@ -58,7 +58,6 @@ export const postUser = (obj) => {
       await axios.post("/api/v1/users", {
         ...obj,
       });
-      console.log("Usuario creado");
     } catch (error) {
       console.error(error.response);
     }
