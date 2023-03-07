@@ -22,11 +22,33 @@ export default function ReviewDetail({ setReRender, blog }) {
     }
   }, [user, blog]);
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
     getComments();
   });
+
+  const handleEdit = async () => {
+    try {
+      const response = await axios.patch(`/api/v1/blogs/${id}`, editedBlog);
+      setEditedBlog(response.data); // update state with edited data
+      setReRender(true);
+      setShowEdit(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`/api/v1/blogs/${id}`, { data: blog.userNickName });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setEditedBlog({ ...editedBlog, [name]: value });
+  };
 
   const getComments = async () => {
     try {
@@ -83,7 +105,9 @@ export default function ReviewDetail({ setReRender, blog }) {
               <img
                 className={style.img}
                 src={blog.image}
-                alt="Review image"
+                title={blog.title}
+                alt={blog.title}
+                loading="lazy"
                 height="120px"
               />
               <div className={style.reviewInfo}>
