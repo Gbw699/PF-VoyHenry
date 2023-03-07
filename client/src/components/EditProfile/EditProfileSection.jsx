@@ -63,6 +63,7 @@ export const EditProfileSection = ({
               about: about,
             })
           );
+          location.reload();
           swalWithBootstrapButtons.fire(
             "Perfil actualizado!",
             "Se ha actualizado los datos de tu perfil",
@@ -82,7 +83,10 @@ export const EditProfileSection = ({
     <div className={style.container}>
       <div className={style.editContainer}>
         <p className={style.editTitle}>Editar perfil</p>
-        <hr color="#f1e100" width="100%" />
+        <hr
+          color="#f1e100"
+          width="100%"
+        />
         <div className={style.formContainer}>
           <form
             className={style.form}
@@ -111,16 +115,19 @@ export const EditProfileSection = ({
               }}
             /> */}
             <p className={style.title}>Sobre mí</p>
-            <EditProfileAboutMe 
-              setState={setAbout}
-            />
+            <EditProfileAboutMe setState={setAbout} />
           </form>
           <div>
             <EditProfileImage {...{ image, setImage }} />
           </div>
         </div>
         <div className={style.buttonContainer}>
-          <button className={style.buttons}>Guardar cambios</button>
+          <button
+            onClick={handleSubmit}
+            className={style.buttons}
+          >
+            Guardar cambios
+          </button>
         </div>
       </div>
     </div>
