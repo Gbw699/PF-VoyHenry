@@ -9,7 +9,13 @@ import ProfileLatestAssistedPlans from "../Profile/ProfileLatestAssistedPlans";
 import ProfileLatestReviews from "../Profile/ProfileLatestReviews";
 import style from "./UsersProfileSection.module.css";
 
-export default function UsersProfileSection({ user, plans, blogs, followed, following }) {
+export default function UsersProfileSection({
+  user,
+  plans,
+  blogs,
+  followed,
+  following,
+}) {
   return (
     <div className={style.container}>
       <div className={style.profileCont}>

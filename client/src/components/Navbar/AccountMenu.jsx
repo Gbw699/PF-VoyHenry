@@ -97,7 +97,7 @@ export default function AccountMenu() {
           to="/profile/edit"
           style={{ color: "#707070" }}
         >
-          <MenuItem className={style.menuLinks}>Configuración</MenuItem>
+          <MenuItem className={style.menuLinks}>Editar perfil</MenuItem>
         </NavLink>
         {/* <MenuItem className={style.menuLinks}>🌞 - 🌛</MenuItem> */}
         <Divider />
