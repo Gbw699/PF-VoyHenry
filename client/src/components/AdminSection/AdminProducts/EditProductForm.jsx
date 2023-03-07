@@ -2,28 +2,30 @@ import { useFormik } from "formik";
 import { Form } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
-import { createProduct } from "../../../redux/slices/marketPlaceSlice/thunk";
+import { editProduct } from "../../../redux/slices/marketPlaceSlice/thunk";
 import UploadWidget from "../../../recycle/UploadWidget/UploadWidget";
 import titleImg from "../../../assets/voyHENRY_title.svg";
 import style from "./CreateProductForm.module.css";
 import { useState } from "react";
 
 export default function CreateUserForm({
+  productsInfo,
+  setProductsInfo,
   reRender,
   setReRender,
-  setCreateRecord,
+  setEditRecord,
 }) {
   const dispatch = useDispatch();
 
-  const [url, setUrl] = useState("https://i.ibb.co/86tPY9X/PF-profile-01.png");
+  const [url, setUrl] = useState(productsInfo.col7);
 
   const initialValues = {
-    title: "",
-    detail: "",
-    category: "",
-    price: 0,
-    stock: 0,
-    // availability: null,
+    title: productsInfo.col1,
+    detail: productsInfo.col6,
+    category: productsInfo.col4,
+    price: productsInfo.col5,
+    stock: productsInfo.col3,
+    // availability: productsInfo.col2,
     mainImage: url,
   };
 
@@ -55,8 +57,9 @@ export default function CreateUserForm({
       //availability: values.availability,
       mainImage: values.mainImage,
     };
-    await dispatch(createProduct(obj));
-    setCreateRecord(false);
+    await dispatch(editProduct(productsInfo.id, obj));
+    setProductsInfo({});
+    setEditRecord(false);
     setReRender(!reRender);
   };
 
@@ -220,12 +223,15 @@ export default function CreateUserForm({
               className={style.btnSignup}
               type="submit"
             >
-              Crear producto
+              Editar producto
             </button>
           </form>
 
           <button
-            onClick={() => setCreateRecord(false)}
+            onClick={() => {
+              setProductsInfo({});
+              setEditRecord(false);
+            }}
             className={style.btnVolver}
           >
             Volver

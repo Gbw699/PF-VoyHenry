@@ -2,7 +2,7 @@ import { useState } from "react";
 import AxiosProducts from "./AxiosProducts";
 import ProductsGrid from "./ProductsGrid";
 import CreateProductForm from "./CreateProductForm";
-//import EditProductForm from "./EditProductForm";
+import EditProductForm from "./EditProductForm";
 
 export default function AdminPlans() {
   const [products, setProducts] = useState([]);
@@ -34,7 +34,7 @@ export default function AdminPlans() {
           setCreateRecord={setCreateRecord}
         />
       )} 
-      {/* {editRecord && (
+      {editRecord && (
         <EditProductForm
           productsInfo={productsInfo}
           setProductsInfo={setProductsInfo}
@@ -42,7 +42,7 @@ export default function AdminPlans() {
           setReRender={setReRender}
           setEditRecord={setEditRecord}
         />
-      )} */}
+      )} 
     </>
   );
 }
