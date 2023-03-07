@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AdminMarketPlaceInput from "./AdminMarketPlaceInput";
 import { deactivateProduct } from "../../../redux/slices/marketPlaceSlice/thunk";
-// import style from './AdminMarketPlaceDeactivate.module.css'
+import style from "./AdminMarketPlaceDeactivate.module.css";
 
 export default function AdminMarketPlaceDeactivate({
   setProductDeactivate,
@@ -29,81 +29,101 @@ export default function AdminMarketPlaceDeactivate({
   };
 
   return (
-    <div>
-      {!products ? (
-        <select>
-          <option>No hay productos</option>
-        </select>
-      ) : (
-        <select onChange={handleProductSelection}>
-          <option value="unselected">Seleccionar un producto</option>
-          {products.map((element) => (
-            <option
-              value={element.id}
-              key={element.id}
-            >
-              {element.title}
-            </option>
-          ))}
-        </select>
-      )}
-      <AdminMarketPlaceInput
-        name="title"
-        placeholder="Nombre del producto"
-        value={productDeactivate?.title}
-        disabled
-      />
-      <AdminMarketPlaceInput
-        name="price"
-        placeholder="Precio del producto"
-        value={productDeactivate?.price}
-        disabled
-      />
-      <AdminMarketPlaceInput
-        name="stock"
-        placeholder="Stock del producto"
-        value={productDeactivate?.stock}
-        disabled
-      />
-      <AdminMarketPlaceInput
-        name="category"
-        placeholder="Categoría del producto"
-        value={productDeactivate?.category}
-        disabled
-      />
-      <AdminMarketPlaceInput
-        name="detail"
-        placeholder="Descripción del producto"
-        value={productDeactivate?.detail}
-        disabled
-      />
-      {productDeactivate ? (
-        <img
-          src={productDeactivate.mainImage}
-          alt={productDeactivate.title}
-          title={productDeactivate.title}
-          loading="lazy"
+    <div className={style.deleteInputs}>
+      <p className={style.title}>Desactivar producto</p>
+      <hr color="#f22176" width="80%" />
+      <div className={style.select}>
+        <p className={style.selectTitle}>Seleccionar producto a editar:</p>
+        {!products ? (
+          <select className={style.selectInput}>
+            <option>No hay productos</option>
+          </select>
+        ) : (
+          <select 
+            onChange={handleProductSelection} 
+            className={style.selectInput}
+          >
+            <option value="unselected">Seleccionar un producto</option>
+            {products.map((element) => (
+              <option
+                value={element.id}
+                key={element.id}
+              >
+                {element.title}
+              </option>
+            ))}
+          </select>
+        )}
+      </div>
+      <div className={style.inputs}>
+        <label className={style.inputTitle}>Nombre</label>
+        <AdminMarketPlaceInput
+          name="title"
+          placeholder="Nombre del producto"
+          value={productDeactivate?.title}
+          disabled
         />
-      ) : (
-        <img
-          src=""
-          alt="Sin foto"
-          title="Sin foto"
-          loading="lazy"
+        <label className={style.inputTitle}>Precio</label>
+        <AdminMarketPlaceInput
+          name="price"
+          placeholder="Precio del producto"
+          value={productDeactivate?.price}
+          disabled
         />
-      )}
-      {productDeactivate &&
-        productDeactivate.images.map((image, index) => (
-          <div key={index}>
-            <img
-              src={image}
-              alt={productDeactivate.title}
-              title={productDeactivate.title}
-              loading="lazy"
-            />
-          </div>
-        ))}
-      <button onClick={handleDeactivate}>Desactivar</button>
+        <label className={style.inputTitle}>Stock</label>
+        <AdminMarketPlaceInput
+          name="stock"
+          placeholder="Stock del producto"
+          value={productDeactivate?.stock}
+          disabled
+        />
+        <label className={style.inputTitle}>Categoría</label>
+        <AdminMarketPlaceInput
+          name="category"
+          placeholder="Categoría del producto"
+          value={productDeactivate?.category}
+          disabled
+        />
+        <label className={style.inputTitle}>Descripción</label>
+        <AdminMarketPlaceInput
+          name="detail"
+          placeholder="Descripción del producto"
+          value={productDeactivate?.detail}
+          disabled
+        />
+        <div className={style.images}>
+        {productDeactivate ? (
+          <img
+            src={productDeactivate.mainImage}
+            alt={productDeactivate.title}
+            title={productDeactivate.title}
+            className={style.img}
+            loading="lazy"
+          />
+        ) : (
+          <p>Este producto no tiene imagen</p>
+        )}
+        {productDeactivate &&
+          productDeactivate.images.map((image, index) => (
+            <div key={index}>
+              <img
+                src={image}
+                alt={productDeactivate.title}
+                title={productDeactivate.title}
+                className={style.img}
+                loading="lazy"
+              />
+            </div>
+          ))
+        }
+        </div>
+      </div>
+      <button 
+        onClick={handleDeactivate}
+        className={style.deleteBtn}
+      >
+        Desactivar
+      </button>
     </div>
   );
 }
