@@ -132,12 +132,14 @@ export default function AdminMarketPlaceEdit({
           src={editProducts.mainImage}
           alt={editProducts.title}
           title={editProducts.title}
+          loading="lazy"
         />
       ) : (
         <img
           src=""
           alt="Sin foto"
           title="Sin foto"
+          loading="lazy"
         />
       )}
       {editProducts &&
@@ -147,6 +149,7 @@ export default function AdminMarketPlaceEdit({
               src={image}
               alt={editProducts.title}
               title={editProducts.title}
+              loading="lazy"
             />
           </div>
         ))}

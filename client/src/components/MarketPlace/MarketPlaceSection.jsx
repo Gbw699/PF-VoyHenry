@@ -25,6 +25,7 @@ export default function MarketPlaceSection() {
           src={marketBgImg}
           alt="Tienda"
           title="Tienda"
+          loading="lazy"
         />
       </div>
       <div className={style.container}>

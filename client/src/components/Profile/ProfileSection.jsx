@@ -110,8 +110,8 @@ export default function ProfileSection() {
           </div>
           <div>
             <div>
-              <h6 className={style.title}>Mis planes</h6>
               <div className={style.containerOfButton}>
+                <h6 className={style.title}>Mis planes</h6>
                 {morePlans && (
                   <button
                     onClick={handleMorePlans}

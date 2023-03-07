@@ -12,7 +12,7 @@ export default function ReviewDetail({ blog }) {
 
   useEffect(() => {
     getComments();
-  });
+  }, []);
 
   const getComments = async () => {
     try {
@@ -45,8 +45,10 @@ export default function ReviewDetail({ blog }) {
           <img
             className={style.imgProfile}
             src={blog.userimage}
-            alt="img"
+            alt={blog.title}
+            title={blog.title}
             height="80px"
+            loading="lazy"
           />
           <div className={style.review}>
             <div className={style.nameCont}>
@@ -61,8 +63,10 @@ export default function ReviewDetail({ blog }) {
               <img
                 className={style.img}
                 src={blog.image}
-                alt="Review image"
+                alt={blog.title}
+                title={blog.title}
                 height="120px"
+                loading="lazy"
               />
               <div className={style.reviewInfo}>
                 <p className={style.title}>{blog.title}</p>

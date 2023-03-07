@@ -120,7 +120,7 @@ export const EditProfileSection = ({
             <EditProfileAboutMe setState={setAbout} />
           </form>
           <div>
-            <EditProfileImage {...{ image, setImage }} />
+            <EditProfileImage {...{ image, setImage, firstName, lastName }} />
           </div>
         </div>
         <div className={style.buttonContainer}>

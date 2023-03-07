@@ -53,7 +53,9 @@ export default function CurrentPlans() {
               <img
                 className={style.planImg}
                 src={plan.mainImage}
+                alt={plan.title}
                 title={plan.title}
+                loading="lazy"
               />
             </Link>
           ))}

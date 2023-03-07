@@ -11,6 +11,8 @@ export default function MatiasVarela() {
         <img
           src={matiasVarelaImg}
           alt="Matías Varela"
+          title="Matías Varela"
+          loading="lazy"
         />
       </div>
       <hr
@@ -29,6 +31,8 @@ export default function MatiasVarela() {
               className={style.img}
               src={linkedInImg}
               alt="LinkedIn"
+              title="LinkedIn"
+              loading="lazy"
             />
           </a>
           <a
@@ -41,6 +45,8 @@ export default function MatiasVarela() {
               className={style.img}
               src={gitHubImg}
               alt="GitHub"
+              title="GitHub"
+              loading="lazy"
             />
           </a>
         </div>
