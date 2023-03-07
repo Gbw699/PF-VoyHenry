@@ -19,7 +19,7 @@ export default function ProfileCard() {
         <div className={style.profileCont}>
           <div
             className={style.imgCont}
-            style={{ backgroundImage: `url(${user?.image})` }}
+            style={{backgroundImage: `url(${user?.image})`  }}
           />
           <hr
             width="150em"

@@ -6,7 +6,6 @@ export default function AvailabilityFilter() {
   const dispatch = useDispatch();
 
   const handleChange = (event) => {
-    console.log(event.target.value);
     dispatch(getProductsbyOrder("availability", event.target.value));
   };
 

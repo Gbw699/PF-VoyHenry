@@ -7,17 +7,11 @@ import style from "./Developers.module.css";
 export default function MauricioFonseca() {
   return (
     <div className={style.container}>
-      <div className={style.card}>
-        <img
-          src={mauricioFonsecaImg}
-          alt="Mauricio Fonseca"
-        />
-      </div>
-      <hr
-        width="100%"
-        color="#F1E100"
+      <div
+        className={style.cardImg}
+        style={{ backgroundImage: `url(${mauricioFonsecaImg})` }}
       />
-      <div className={style.container}>
+      <div className={style.cardCont}>
         <div className={style.links}>
           <a
             className={style.img}
@@ -29,24 +23,28 @@ export default function MauricioFonseca() {
               className={style.img}
               src={linkedInImg}
               alt="LinkedIn"
+              title="LinkedIn"
+              loading="lazy"
             />
           </a>
           <a
-            className={style.img}
+            className={style.img2}
             href="https://github.com/Ephradrax"
             rel="noreferrer"
             target="_blank"
           >
             <img
-              className={style.img}
+              className={style.img2}
               src={gitHubImg}
               alt="GitHub"
+              title="GitHub"
+              loading="lazy"
             />
           </a>
         </div>
         <div className={style.description}>
-          <h5>Mauricio Fonseca</h5>
-          <p>Full Stack Web Developer</p>
+          <h5 className={style.name}>Mauricio Fonseca</h5>
+          <p className={style.job}>Full Stack Web Developer</p>
         </div>
       </div>
     </div>

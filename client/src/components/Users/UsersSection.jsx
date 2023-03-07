@@ -17,7 +17,7 @@ export default function UsersSection({
 
   return (
     <div className={style.container}>
-      <UserSearch />
+      <UserSearch setUsers={setUsers}/>
       <div className={style.cardContainer}>
         {users?.map(
           (element) =>

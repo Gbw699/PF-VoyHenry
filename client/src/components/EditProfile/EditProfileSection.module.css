@@ -49,6 +49,22 @@
   margin-bottom: 0em;
 }
 
+.selectInput {
+  margin-top: 1em;
+  padding: 0.5em;
+  outline: none;
+  border: 1px solid #b1b1b1;
+  border-radius: 5px;
+  background-color: white;
+  transition: 0.3s;
+  color: #b1b1b1;
+}
+
+.selectInput:focus {
+  border: 0.5px solid #f1e100;
+  box-shadow: 0 0 0 2px #f1e100;
+}
+
 .buttonContainer {
   display: flex;
   align-items: center;
@@ -80,6 +96,7 @@
   -webkit-user-select: none;
   touch-action: manipulation;
   will-change: transform;
+  font-display: swap;
 }
 
 .buttons:disabled {

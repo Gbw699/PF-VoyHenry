@@ -89,6 +89,7 @@ export default function CreateUserForm({
         src={titleImg}
         className={style.logo}
         alt="voyHENRY logo"
+        loading="lazy"
       />
       <div className={style.container}>
         <div className={style.formContainer}>

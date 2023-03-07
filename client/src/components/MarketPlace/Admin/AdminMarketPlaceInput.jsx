@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import style from "./AdminMarketPlaceInput.module.css";
 
 export default function AdminMarketPlaceInput({
   name,
@@ -16,7 +17,7 @@ export default function AdminMarketPlaceInput({
   );
 
   return (
-    <div>
+    <div className={style.inputCont}>
       <input
         type="text"
         name={name}
@@ -24,6 +25,7 @@ export default function AdminMarketPlaceInput({
         onChange={handleInputChange}
         value={value}
         disabled={disabled}
+        className={style.input}
       />
     </div>
   );

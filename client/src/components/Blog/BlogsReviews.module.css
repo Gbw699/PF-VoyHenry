@@ -37,3 +37,8 @@
   margin-top: 1em;
   cursor: pointer;
 }
+
+.writeBtn:hover {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+}

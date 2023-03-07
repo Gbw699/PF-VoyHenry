@@ -6,7 +6,7 @@ export default function FooterText() {
   return (
     <div>
       <Link to="/aboutUs">
-        <h5 className={style.aboutUs}>Sobre nosotros</h5>
+        <p className={style.aboutUs}>Sobre nosotros</p>
       </Link>
     </div>
   );

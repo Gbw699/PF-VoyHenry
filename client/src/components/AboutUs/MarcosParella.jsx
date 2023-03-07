@@ -8,17 +8,11 @@ import style from "./Developers.module.css";
 export default function MarcosParella() {
   return (
     <div className={style.container}>
-      <div className={style.card}>
-        <img
-          src={MarcosParellaImg}
-          alt="Marcos Hernan Parella"
-        />
-      </div>
-      <hr
-        width="85%"
-        color="#F1E100"
+      <div
+        className={style.cardImg}
+        style={{ backgroundImage: `url(${MarcosParellaImg})` }}
       />
-      <div className={style.container}>
+      <div className={style.cardCont}>
         <div className={style.links}>
           <a
             className={style.img}
@@ -30,36 +24,42 @@ export default function MarcosParella() {
               className={style.img}
               src={linkedInImg}
               alt="LinkedIn"
+              title="LinkedIn"
+              loading="lazy"
             />
           </a>
           <a
-            className={style.img}
+            className={style.img2}
             href="https://github.com/Markish2000"
             rel="noreferrer"
             target="_blank"
           >
             <img
-              className={style.img}
+              className={style.img2}
               src={gitHubImg}
               alt="GitHub"
+              title="GitHub"
+              loading="lazy"
             />
           </a>
           <a
-            className={style.img}
+            className={style.img2}
             href="https://markish2000.github.io/Portfolio/"
             rel="noreferrer"
             target="_blank"
           >
             <img
-              className={style.img}
+              className={style.img2}
               src={portFolioImg}
               alt="Portfolio"
+              title="Portfolio"
+              loading="lazy"
             />
           </a>
         </div>
         <div className={style.description}>
-          <h5>Marcos Hernan Parella</h5>
-          <p>Full Stack Web Developer</p>
+          <h5 className={style.name}>Marcos H. Parella</h5>
+          <p className={style.job}>Full Stack Web Developer</p>
         </div>
       </div>
     </div>
