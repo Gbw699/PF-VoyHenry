@@ -39,7 +39,10 @@ const products = sequelize.define('products', {
   stock: {
     type: DataTypes.INTEGER,
     allowNull: true,
-    defaultValue: 0
+    get() {
+      const stockValue = this.getDataValue('stock');
+      return stockValue < 0 ? 0 : stockValue;
+    },
   },
   availability: {
     type: DataTypes.BOOLEAN,
