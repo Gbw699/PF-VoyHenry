@@ -1,8 +1,9 @@
-export default function MapAllMsg({ allMessage, setMessageSelect }) {
+export default function MapAllMsg({ allMessage, setMessageSelect, setTo }) {
   const userInfo = JSON.parse(localStorage.getItem("user"));
 
-  const handlerOnClick = (chatId) => {
+  const handlerOnClick = (chatId, to) => {
     setMessageSelect(chatId);
+    setTo(to);
   };
 
   return (
@@ -11,7 +12,7 @@ export default function MapAllMsg({ allMessage, setMessageSelect }) {
         allMessage.map((element) => {
 
           if (element.usersInfo[0].nickName === userInfo.nickName){
-
+            let to = element.usersInfo[1].nickName;
             let lastMessage = null;
             if (element?.lastMessage.from === userInfo.nickName){
               lastMessage = `You: ${element.lastMessage.message}`;
@@ -22,7 +23,7 @@ export default function MapAllMsg({ allMessage, setMessageSelect }) {
             return(
               <div 
                 key={element.chat.id}
-                onClick={() => handlerOnClick(element.chat.id)}
+                onClick={() => handlerOnClick(element.chat.id, to)}
               >
                 <img
                   src={element.usersInfo[1].image}
@@ -38,6 +39,7 @@ export default function MapAllMsg({ allMessage, setMessageSelect }) {
 
           } else {
 
+            let to = element.usersInfo[0].nickName;
             let lastMessage = null;
             if (element?.lastMessage.from === userInfo.nickName){
               lastMessage = `You: ${element.lastMessage.message}`;
@@ -47,7 +49,7 @@ export default function MapAllMsg({ allMessage, setMessageSelect }) {
             return(
               <div 
                 key={element.chat.id}
-                onClick={handlerOnClick(element.chat.id)}
+                onClick={handlerOnClick(element.chat.id, to)}
               >
                 <img
                   src={element.usersInfo[0].image}

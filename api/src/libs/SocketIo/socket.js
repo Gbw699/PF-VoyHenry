@@ -14,7 +14,9 @@ const startSocketIo = async() =>{
     )
 
     socket.on('mensaje', (data) => {
-      console.log(data)
+      console.log("From: " + data.from)
+      console.log("To: " + data.to)
+      console.log("Mensaje: " + data.mensaje)
     })
 
     socket.on('disconnect', () => {

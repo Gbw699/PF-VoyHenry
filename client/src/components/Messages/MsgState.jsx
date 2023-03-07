@@ -1,6 +1,7 @@
 import MsgSocketIo from "./MsgSocketIo";
 import AllMessages from "./AllMessages";
 import Conversation from "./Conversation";
+import SendMessage from "./SendMessage";
 import { useState } from "react";
 
 export default function MsgState() {
@@ -8,6 +9,8 @@ export default function MsgState() {
   const [ allMessage, setAllMessage ] = useState([]);
   const [ messageSelect, setMessageSelect ] = useState(null);
   const [ conversation, setConversation ] = useState([]);
+  const [ to, setTo ] = useState(null);
+  
   return (
     <>
       <MsgSocketIo
@@ -19,11 +22,18 @@ export default function MsgState() {
         setMessageSelect={setMessageSelect}
         setAllMessage={setAllMessage}
         setConversation={setConversation}
+        setTo={setTo}
       />
+      <hr></hr>
       <Conversation
         setConversation={setConversation}
         conversation={conversation}
         messageSelect={messageSelect}
+        to={to}
+      />
+      <hr></hr>
+      <SendMessage
+        to={to}
       />
     </>
   );

@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import { io } from "socket.io-client";
 
-export default function Connect() {
-  const userInfo = JSON.parse(localStorage.getItem("user"));
+const userInfo = JSON.parse(localStorage.getItem("user"));
 
+let socket;
+
+export default function Connect() {
   useEffect(() => {
     if (localStorage.getItem("user") && document.cookie !== "") {
-      const socket = io("http://localhost:3001", {
+      socket = io("http://localhost:3001", {
         auth: {
           nickName: userInfo.nickName,
           completeName: `${userInfo.firstName} ${userInfo.lastName}`,
@@ -29,3 +31,5 @@ export default function Connect() {
 
   return <></>;
 }
+
+export { socket };
