@@ -8,7 +8,6 @@ export default function MsgState() {
   const [ allMessage, setAllMessage ] = useState([]);
   const [ messageSelect, setMessageSelect ] = useState(null);
   const [ conversation, setConversation ] = useState([]);
-  console.log(conversation);
   return (
     <>
       <MsgSocketIo
