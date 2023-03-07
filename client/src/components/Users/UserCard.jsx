@@ -20,7 +20,7 @@ export default function UserCard({
   userFollowed,
   userFollowing,
 }) {
-  console.log(userFollowed);
+  console.log();
   const handleClick = async (event) => {
     if (event.target.value === "follow") {
       followUser(loginUser, nickName);
@@ -58,9 +58,9 @@ export default function UserCard({
             </div>
             <div className={style.followers}>
               <p className={style.followTitle}>Siguiendo</p>
-              <span className={style.followNum}>{following.length}</span>
+              <span className={style.followNum}>{userFollowing.length}</span>
               <p className={style.followTitle}>Seguidores</p>
-              <span className={style.followNum}>{followed.length}</span>
+              <span className={style.followNum}>{userFollowed.length}</span>
             </div>
           </div>
         </div>

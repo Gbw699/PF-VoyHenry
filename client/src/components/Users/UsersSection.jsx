@@ -30,14 +30,14 @@ export default function UsersSection({
                   lastName={element.lastName}
                   image={element.image}
                   nationality={element.nationality}
+                  userFollowing={element.followUser}
+                  userFollowed={element.user}
                   setUsers={setUsers}
                   following={following}
                   setFollowing={setFollowing}
                   followed={followed}
                   setFollowed={setFollowed}
                   loginUser={loginUser.nickName}
-                  userFollowed={loginUser.user}
-                  userFollowing={loginUser.followUser}
                 />
               </div>
             )
