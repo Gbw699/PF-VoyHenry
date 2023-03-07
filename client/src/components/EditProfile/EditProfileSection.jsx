@@ -63,12 +63,14 @@ export const EditProfileSection = ({
               about: about,
             })
           );
-          location.reload();
           swalWithBootstrapButtons.fire(
             "Perfil actualizado!",
             "Se ha actualizado los datos de tu perfil",
             "success"
           );
+          setTimeout(() => {
+            location.reload();
+          }, 2500);
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           swalWithBootstrapButtons.fire(
             "Cancelado",
