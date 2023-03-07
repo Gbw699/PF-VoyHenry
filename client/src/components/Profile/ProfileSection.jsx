@@ -112,23 +112,25 @@ export default function ProfileSection() {
           <div>
             <div>
               <div className={style.containerOfButton}>
-                <h6 className={style.title}>Mis planes</h6>
-                {morePlans && (
-                  <button
-                    onClick={handleMorePlans}
-                    className={style.buttons}
-                  >
-                    Mostrar más
-                  </button>
-                )}
-                {!morePlans && (
-                  <button
-                    onClick={handleMorePlans}
-                    className={style.buttons}
-                  >
-                    Mostrar menos
-                  </button>
-                )}
+                <div className={style.myPlansCont}>
+                  <h6 className={style.title}>Mis planes</h6>
+                  {morePlans && (
+                    <button
+                      onClick={handleMorePlans}
+                      className={style.buttons}
+                    >
+                      Mostrar más
+                    </button>
+                  )}
+                  {!morePlans && (
+                    <button
+                      onClick={handleMorePlans}
+                      className={style.buttons}
+                    >
+                      Mostrar menos
+                    </button>
+                  )}
+                </div>
               </div>
               <hr
                 color="#F1E100"
