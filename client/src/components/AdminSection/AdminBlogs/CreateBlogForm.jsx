@@ -140,7 +140,9 @@ export default function CreateBlogForm({
               <img
                 className={style.img}
                 src={url}
-                alt=""
+                alt={formik.values.title}
+                title={formik.values.title}
+                loading="lazy"
               />
             </div>
           </div>

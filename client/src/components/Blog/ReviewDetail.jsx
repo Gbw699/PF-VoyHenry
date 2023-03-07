@@ -22,13 +22,9 @@ export default function ReviewDetail({ setReRender, blog }) {
     }
   }, [user, blog]);
 
-  useEffect(()=>{
-
-  },[]);
-
   useEffect(() => {
     getComments();
-  }, []);
+  });
 
   const handleEdit = async () => {
     try {
@@ -53,7 +49,6 @@ export default function ReviewDetail({ setReRender, blog }) {
     const { name, value } = event.target;
     setEditedBlog({ ...editedBlog, [name]: value });
   };
-
 
   const getComments = async () => {
     try {
@@ -92,8 +87,10 @@ export default function ReviewDetail({ setReRender, blog }) {
           <img
             className={style.imgProfile}
             src={blog.userimage}
-            alt="img"
+            alt={blog.title}
+            title={blog.title}
             height="80px"
+            loading="lazy"
           />
           <div className={style.review}>
             <div className={style.nameCont}>
@@ -105,31 +102,71 @@ export default function ReviewDetail({ setReRender, blog }) {
               color="#f1e100"
             />
             <div className={style.reviewCont}>
-              <div className={style.imgDiv}>
-                <img
-                  className={style.img}
-                  src={blog.image}
-                  alt="Review image"
-                  height="120px"
-                />
-              </div>
+              <img
+                className={style.img}
+                src={blog.image}
+                title={blog.title}
+                alt={blog.title}
+                loading="lazy"
+                height="120px"
+              />
               <div className={style.reviewInfo}>
                 {!showEdit && <h3 className={style.title}>{blog.title}</h3>}
-                {!showEdit && <p className={style.blogContent}>{blog.content}</p>}
-                <Rating name="read-only" value={average} />
-                {isEditable && showEdit &&
-                  <input className={style.inputTitle} placeholder="Editar Título..." name="title" onChange={handleInputChange} />}
-                {isEditable && showEdit &&
-                  <textarea className={style.textareaBlog} rows="7" placeholder="Editar Contenido..." name="content" onChange={handleInputChange} />}
-                {isEditable && showEdit &&
-                  <Rating name="stars" onClick={handleInputChange}/>}
+                {!showEdit && (
+                  <p className={style.blogContent}>{blog.content}</p>
+                )}
+                <Rating
+                  name="read-only"
+                  value={average}
+                />
+                {isEditable && showEdit && (
+                  <input
+                    className={style.inputTitle}
+                    placeholder="Editar Título..."
+                    name="title"
+                    onChange={handleInputChange}
+                  />
+                )}
+                {isEditable && showEdit && (
+                  <textarea
+                    className={style.textareaBlog}
+                    rows="7"
+                    placeholder="Editar Contenido..."
+                    name="content"
+                    onChange={handleInputChange}
+                  />
+                )}
+                {isEditable && showEdit && (
+                  <Rating
+                    name="stars"
+                    onClick={handleInputChange}
+                  />
+                )}
                 <div className={style.divButtons}>
-                  {isEditable && showEdit &&
-                    <button className={style.backBtn} onClick={handleEdit}>Guardar</button>}
-                  {isEditable &&
-                    <button className={style.backBtn} onClick={() => setShowEdit(!showEdit)}>{!showEdit ? "Editar" : "Cancelar"}</button>}
-                  {isEditable && showEdit &&
-                    <button className={style.backBtn} onClick={handleDelete}>Borrar Blog</button>}
+                  {isEditable && showEdit && (
+                    <button
+                      className={style.backBtn}
+                      onClick={handleEdit}
+                    >
+                      Guardar
+                    </button>
+                  )}
+                  {isEditable && (
+                    <button
+                      className={style.backBtn}
+                      onClick={() => setShowEdit(!showEdit)}
+                    >
+                      {!showEdit ? "Editar" : "Cancelar"}
+                    </button>
+                  )}
+                  {isEditable && showEdit && (
+                    <button
+                      className={style.backBtn}
+                      onClick={handleDelete}
+                    >
+                      Borrar Blog
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

@@ -78,7 +78,9 @@ export default function EditUserForm({
       <img
         src={titleImg}
         className={style.logo}
-        alt="voyHENRY logo"
+        alt="voyHENRY"
+        title="voyHENRY"
+        loading="lazy"
       />
       <div className={style.container}>
         <div className={style.formContainer}>

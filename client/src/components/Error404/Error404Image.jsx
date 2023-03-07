@@ -8,7 +8,9 @@ export default function Error404Image() {
       <img
         src={errorImage}
         alt="Error 404"
+        title="Error 404"
         height="500px"
+        loading="lazy"
       />
     </div>
   );

@@ -22,6 +22,8 @@ export default function ShoppingCartCard({
               className={style.img}
               src={image}
               alt={title}
+              title={title}
+              loading="lazy"
             />
           </div>
           <div className={style.infoCont}>

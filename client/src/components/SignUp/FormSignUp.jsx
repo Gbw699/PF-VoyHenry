@@ -115,7 +115,9 @@ export default function FormSignUp() {
       <img
         src={titleImg}
         className={style.logo}
-        alt="voyHENRY logo"
+        alt="voyHENRY"
+        title="voyHENRY"
+        loading="lazy"
       />
       <div className={style.container}>
         <div className={style.formContainer}>
@@ -331,7 +333,9 @@ export default function FormSignUp() {
               <img
                 src={googleLogo}
                 className={style.googleLogo}
-                alt="Imagen de botón para continuar con google"
+                alt="Continuar con Google"
+                title="Continuar con Google"
+                loading="lazy"
               />
               <p>Continuar con Google</p>
             </div>

@@ -9,7 +9,7 @@ export default function AdminMarketPlaceDeactivate({
   productDeactivate,
 }) {
   const dispatch = useDispatch();
-  
+
   const { products } = useSelector(
     (state) => state.marketPlaceStore.filteredProducts
   );
@@ -82,12 +82,14 @@ export default function AdminMarketPlaceDeactivate({
           src={productDeactivate.mainImage}
           alt={productDeactivate.title}
           title={productDeactivate.title}
+          loading="lazy"
         />
       ) : (
         <img
           src=""
           alt="Sin foto"
           title="Sin foto"
+          loading="lazy"
         />
       )}
       {productDeactivate &&
@@ -97,6 +99,7 @@ export default function AdminMarketPlaceDeactivate({
               src={image}
               alt={productDeactivate.title}
               title={productDeactivate.title}
+              loading="lazy"
             />
           </div>
         ))}
