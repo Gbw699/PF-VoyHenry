@@ -18,6 +18,8 @@ export default function ProfileCard() {
     fectData();
   },[]);
 
+  console.log(followed);
+
   return (
     <Link to="/profile">
       <div className={style.container}>

@@ -9,10 +9,43 @@ export default function ReviewDetail({ blog }) {
   const user = JSON.parse(localStorage.getItem("user"));
   const { id } = useParams();
   const [comments, setComments] = useState([]);
+  const [isEditable, setIsEditable] = useState(false);
+  const [editedBlog, setEditedBlog] = useState();
+
+  useEffect(() => {
+    if (user && blog && user.nickName === blog.userNickName) {
+      setIsEditable(true);
+    } else {
+      setIsEditable(false);
+    }
+  }, [user, blog]);
 
   useEffect(() => {
     getComments();
-  });
+  },[]);
+
+  const handleEdit = async () => {
+    try {
+      const response = await axios.patch(`/api/v1/blogs/${id}`, editedBlog);
+      setEditedBlog(response.data); // update state with edited data
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`/api/v1/blogs/${id}`, { data: blog.userNickName });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setEditedBlog({ ...editedBlog, [name]: value });
+  };
+
 
   const getComments = async () => {
     try {
@@ -38,8 +71,11 @@ export default function ReviewDetail({ blog }) {
     }
   }
 
+  console.log(blog);
+
   return (
     <div className={style.container}>
+      {isEditable && <button onClick={handleDelete}>Borrar Blog</button>}
       <div className={style.detailCont}>
         <div className={style.profile}>
           <img
@@ -65,9 +101,13 @@ export default function ReviewDetail({ blog }) {
                 height="120px"
               />
               <div className={style.reviewInfo}>
+              {isEditable && <button onClick={handleEdit}>Editar Blog</button>}
                 <p className={style.title}>{blog.title}</p>
+                {isEditable && <input name="title" onChange={handleInputChange}/>}
                 <p className={style.blogContent}>{blog.content}</p>
-                <p>{blog.rating}</p>
+                {isEditable && <input name="content" onChange={handleInputChange}/>}
+                <p>{blog.average}</p>
+                {isEditable && <input name="stars" onChange={handleInputChange}/>}
               </div>
             </div>
           </div>
