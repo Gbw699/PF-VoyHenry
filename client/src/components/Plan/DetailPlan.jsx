@@ -277,7 +277,7 @@ export default function DetailPlan() {
         </div>
       </div>
       <div className={style.buttons}>
-          <button className={style.submitBtn}>Unirse</button>
+          {/* <button className={style.submitBtn}>Unirse</button> */}
           {!isFav && (
             <button
               onClick={addFavorite}

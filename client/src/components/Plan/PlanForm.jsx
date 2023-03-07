@@ -15,18 +15,22 @@ export default function FormSignUp(props) {
   const [url, setUrl] = useState(noPhoto);
   const dispatch = useDispatch();
   const currentDate = new Date();
+
   const greaterDate = `${currentDate.getFullYear()}-${
     currentDate.getMonth() + 1
   }-${currentDate.getDate()}`;
+
   const handleClick = () => {
     props.setShowPlanForm(false);
   };
+
   const handleCountryChange = (event) => {
     const provincesData = countries.find(
       (country) => country.country === event.target.value
     );
     setProvinces(provincesData.province);
   };
+
   const [state, setState] = useState({
     showDescription: true,
     showLocation: "",
@@ -53,6 +57,7 @@ export default function FormSignUp(props) {
 
     return toDay;
   };
+
   return (
     <div className={style.container}>
       <div>
@@ -105,6 +110,7 @@ export default function FormSignUp(props) {
             };
             setUrl("");
             dispatch(postPlan(obj));
+            handleClick();
           }}
         >
           <Form>

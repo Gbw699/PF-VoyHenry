@@ -102,36 +102,39 @@ export default function ReviewDetail({ setReRender, blog }) {
               color="#f1e100"
             />
             <div className={style.reviewCont}>
-              <img
-                className={style.img}
-                src={blog.image}
-                title={blog.title}
-                alt={blog.title}
-                loading="lazy"
-                height="120px"
-              />
+              <div className={style.imgCont}>
+                <img
+                  className={style.img}
+                  src={blog.image}
+                  title={blog.title}
+                  alt={blog.title}
+                  loading="lazy"
+                  height="120px"
+                />
+              </div>
               <div className={style.reviewInfo}>
                 {!showEdit && <h3 className={style.title}>{blog.title}</h3>}
+                <hr color="#b1b1b1" width="100%" />
                 {!showEdit && (
                   <p className={style.blogContent}>{blog.content}</p>
                 )}
-                <Rating
+                {!showEdit && <Rating
                   name="read-only"
                   value={average}
-                />
+                />}
                 {isEditable && showEdit && (
                   <input
-                    className={style.inputTitle}
-                    placeholder="Editar Título..."
+                    className={style.input}
+                    placeholder="Editar título..."
                     name="title"
                     onChange={handleInputChange}
                   />
                 )}
                 {isEditable && showEdit && (
                   <textarea
-                    className={style.textareaBlog}
+                    className={style.input}
                     rows="7"
-                    placeholder="Editar Contenido..."
+                    placeholder="Editar contenido..."
                     name="content"
                     onChange={handleInputChange}
                   />
@@ -142,10 +145,10 @@ export default function ReviewDetail({ setReRender, blog }) {
                     onClick={handleInputChange}
                   />
                 )}
-                <div className={style.divButtons}>
+                <div className={style.buttonsCont}>
                   {isEditable && showEdit && (
                     <button
-                      className={style.backBtn}
+                      className={style.editBtn}
                       onClick={handleEdit}
                     >
                       Guardar
@@ -153,7 +156,7 @@ export default function ReviewDetail({ setReRender, blog }) {
                   )}
                   {isEditable && (
                     <button
-                      className={style.backBtn}
+                      className={style.editBtn}
                       onClick={() => setShowEdit(!showEdit)}
                     >
                       {!showEdit ? "Editar" : "Cancelar"}
@@ -161,7 +164,7 @@ export default function ReviewDetail({ setReRender, blog }) {
                   )}
                   {isEditable && showEdit && (
                     <button
-                      className={style.backBtn}
+                      className={style.deleteBtn}
                       onClick={handleDelete}
                     >
                       Borrar Blog
