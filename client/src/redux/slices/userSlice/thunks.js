@@ -6,6 +6,8 @@ import {
   setUserBlogs,
   setUserFollowing,
   setUserFollowed,
+  setUserFollowedAdd,
+  setUserFollowedRemoved,
 } from "./userSlice";
 
 export const getLogin = (obj) => {
@@ -135,9 +137,7 @@ export const getFollowing = (nickName) => {
 export const getFollowed = (myNickName) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(
-        `http://localhost:3001/api/v1/users/${myNickName}/followed`
-      );
+      const response = await axios.get(`/api/v1/users/${myNickName}/followed`);
       dispatch(setUserFollowed(response.data.data.followedUsers));
     } catch (error) {
       console.error(error.response.data.message);

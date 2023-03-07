@@ -67,7 +67,6 @@ export default function AxiosUsers({
           }
         } else {
           setUsers(data.users);
-          console.log(data.users);
         }
       } catch (error) {
         console.log(error.message);

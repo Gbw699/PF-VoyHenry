@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./UserCard.module.css";
 import {
@@ -16,20 +16,21 @@ export default function UserCard({
   following,
   setFollowing,
   loginUser,
-  followed,
   userFollowed,
   userFollowing,
 }) {
-  console.log();
+  const [followed, setFollowed] = useState(userFollowed);
   const handleClick = async (event) => {
     if (event.target.value === "follow") {
       followUser(loginUser, nickName);
       const response = await getFollowing(loginUser);
       setFollowing([...following, response]);
+      setFollowed(followed + 1);
     } else {
       unfollowUser(loginUser, nickName);
       const response = await getFollowing(loginUser);
       setFollowing([response]);
+      setFollowed(followed - 1);
     }
   };
 
@@ -58,9 +59,9 @@ export default function UserCard({
             </div>
             <div className={style.followers}>
               <p className={style.followTitle}>Siguiendo</p>
-              <span className={style.followNum}>{userFollowing.length}</span>
+              <span className={style.followNum}>{userFollowing}</span>
               <p className={style.followTitle}>Seguidores</p>
-              <span className={style.followNum}>{userFollowed.length}</span>
+              <span className={style.followNum}>{followed}</span>
             </div>
           </div>
         </div>
