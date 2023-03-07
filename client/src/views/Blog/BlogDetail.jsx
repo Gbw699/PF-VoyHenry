@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ReviewDetail from "../../components/Blog/ReviewDetail";
@@ -8,6 +8,7 @@ import { resetBlogById } from "../../redux/slices/blogSlice/blogSlice";
 export default function BlogDetail() {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [reRender, setReRender] = useState(false);
 
   const blog = useSelector((state) => state.blogStore.blog);
 
@@ -15,11 +16,11 @@ export default function BlogDetail() {
     dispatch(getBlogById(id));
 
     return () => resetBlogById();
-  }, []);
+  }, [reRender]);
 
   return (
     <div>
-      <ReviewDetail blog={blog} />
+      <ReviewDetail setReRender={setReRender} blog={blog} />
     </div>
   );
 }

@@ -42,7 +42,7 @@
 
 .reviewCont {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-top: 1em;
 }
 
@@ -64,14 +64,16 @@
 }
 
 .img {
+  height: 100%;
+  width: 100%;
   border-radius: 20px;
   margin-right: 2em;
 }
 
 .title {
   color: #707070;
-  font-weight: 500;
-  font-size: 140%;
+  /* font-weight: 500; */
+  font-size: 300%;
   margin-bottom: 10px;
 }
 
@@ -111,4 +113,17 @@
   background-color: #707070;
   border: 2px solid #707070;
   color: white;
+}
+
+.inputTitle {
+  font-size: 150%;
+}
+
+.inputBlog {
+  font-size: 150%;
+}
+
+.textareaBlog {
+  font-size: 150%;
+  resize: none
 }
