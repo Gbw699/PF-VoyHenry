@@ -10,3 +10,8 @@
   text-decoration: none;
 }
 
+.pro_sidebar_content>a:focus {
+  color: #f1e100;
+  font-weight: 500;
+  text-decoration: none;
+}
