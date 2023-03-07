@@ -14,6 +14,7 @@
   background-color: #020203;
   transition: 0.7s;
   color: #f1e100;
+  font-display: swap;
 }
 
 .searchInput::placeholder {

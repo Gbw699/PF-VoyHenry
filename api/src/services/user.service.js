@@ -129,14 +129,14 @@ class UsersService {
         [Op.or]: [
           {
             [Op.or]: [
-              { firstName: { [Op.substring]: query.name } },
-              { firstName: { [Op.iLike]: query.name } },
+              { firstName: { [Op.substring]: `%${query.name}%` } },
+              { firstName: { [Op.iLike]: `%${query.name}%` } },
             ],
           },
           {
             [Op.or]: [
-              { lastName: { [Op.iLike]: query.name } },
-              { lastName: { [Op.substring]: query.name } },
+              { lastName: { [Op.iLike]: `%${query.name}%` } },
+              { lastName: { [Op.substring]: `%${query.name}%` } },
             ],
           },
         ],

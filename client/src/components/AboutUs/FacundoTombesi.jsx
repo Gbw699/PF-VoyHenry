@@ -3,20 +3,17 @@ import facundoTombesiImg from "../../assets/facundoTombesi.png";
 import gitHubImg from "../../assets/github.png";
 import linkedInImg from "../../assets/linkedin.png";
 import style from "./Developers.module.css";
-import { useEffect, useState } from "react";
+
 export default function FacundoTombesi() {
-  const [backgroundImage, setBackgroundImage] = useState("");
-
-  useEffect(() => {
-    setBackgroundImage(`url(${facundoTombesiImg})`);
-  });
-
   return (
     <div className={style.container}>
-      <div
+      <img
         className={style.cardFacu}
-        style={{ backgroundImage: backgroundImage }}
-      ></div>
+        src={facundoTombesiImg}
+        alt="Facundo Martín Tombesi"
+        title="Facundo Martín Tombesi"
+        loading="lazy"
+      />
       <hr
         width="0%"
         color="black"

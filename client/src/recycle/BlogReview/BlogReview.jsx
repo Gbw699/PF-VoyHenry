@@ -6,7 +6,10 @@ export default function BlogReview({ blog }) {
   return (
     <div className={style.container}>
       <div className={style.reviewCont}>
-        <Link to={`/users/${blog.userNickName}`}>
+        <Link
+          aria-label="Ver más detalles de esta reseña"
+          to={`/users/${blog.userNickName}`}
+        >
           <div
             className={style.userImg}
             style={{ backgroundImage: `url(${blog.userimage})` }}

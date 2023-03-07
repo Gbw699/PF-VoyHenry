@@ -40,7 +40,10 @@ export default function AdminMarketPlaceCreate({
   return (
     <div className={style.createInputs}>
       <p className={style.title}>Crear producto</p>
-      <hr color="#f1e100" width="80%" />
+      <hr
+        color="#f1e100"
+        width="80%"
+      />
       <div className={style.inputs}>
         <p className={style.inputTitle}>Nombre</p>
         <AdminMarketPlaceInput
@@ -92,8 +95,8 @@ export default function AdminMarketPlaceCreate({
           setState={setProductImages}
         />
       </div>
-      <button 
-        onClick={handleCreate} 
+      <button
+        onClick={handleCreate}
         className={style.editBtn}
       >
         Editar
