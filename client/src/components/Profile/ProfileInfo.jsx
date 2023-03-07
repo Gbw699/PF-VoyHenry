@@ -17,9 +17,9 @@ export default function ProfileInfo({
     <div className={style.container}>
       <div className={style.mainInfo}>
         <div className={style.editarPerfilCont}>
-          {location.pathname !== "/profile" && (
+          {/* {location.pathname !== "/profile" && (
             <button className={style.addBtn}>Agregar amigo</button>
-          )}
+          )} */}
           {location.pathname === "/profile" && (
             <Link to="/profile/edit">
               <button className={style.editBtn}>Editar perfil</button>

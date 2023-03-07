@@ -33,9 +33,11 @@ export default function ProfileSection() {
     dispatch(getFollowing(user?.nickName));
     dispatch(getFollowed(user?.nickName));
   }, []);
+
   const handleMorePlans = () => {
     setMorePlans(!morePlans);
   };
+
   return (
     <div className={style.container}>
       <div className={style.profileCont}>
@@ -74,7 +76,6 @@ export default function ProfileSection() {
             ))
           )}
         </div>
-        {/* //!! FALTA CONECTAR CON EL BACK-END PORQUE NO ESTÁ */}
         <div className={style.activityCont}>
           <div>
             <h6 className={style.title}>Sobre mí</h6>
