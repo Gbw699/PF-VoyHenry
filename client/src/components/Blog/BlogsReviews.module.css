@@ -5,7 +5,7 @@
 }
 
 .filtersContainer {
-  width: 18%;
+  width: 225px;
   display: flex;
   flex-direction: column;
   border-radius: 5px;

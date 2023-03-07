@@ -47,15 +47,19 @@
 
 .formInputs {
   color: #707070;
-  font-size: 80%;
+  font-size: 130%;
   font-weight: 600;
   color: black;
   border-radius: 5px;
 }
 
+.formInputsSmall{
+  font-size: 130%;
+}
+
 .formInputDescription {
   color: #707070;
-  font-size: 80%;
+  font-size: 130%;
   font-weight: 600;
   color: black;
   border-radius: 5px;
