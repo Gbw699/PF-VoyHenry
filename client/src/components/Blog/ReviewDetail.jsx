@@ -4,13 +4,15 @@ import axios from "axios";
 import PostComment from "../../recycle/Comments/PostComment";
 import GetComments from "../../recycle/Comments/GetComments";
 import style from "./ReviewDetail.module.css";
+import { Rating } from "@mui/material";
 
-export default function ReviewDetail({ blog }) {
+export default function ReviewDetail({ setReRender, blog }) {
   const user = JSON.parse(localStorage.getItem("user"));
   const { id } = useParams();
   const [comments, setComments] = useState([]);
   const [isEditable, setIsEditable] = useState(false);
   const [editedBlog, setEditedBlog] = useState();
+  const [showEdit, setShowEdit] = useState(false);
 
   useEffect(() => {
     if (user && blog && user.nickName === blog.userNickName) {
@@ -20,14 +22,20 @@ export default function ReviewDetail({ blog }) {
     }
   }, [user, blog]);
 
+  useEffect(()=>{
+
+  },[]);
+
   useEffect(() => {
     getComments();
-  },[]);
+  }, []);
 
   const handleEdit = async () => {
     try {
       const response = await axios.patch(`/api/v1/blogs/${id}`, editedBlog);
       setEditedBlog(response.data); // update state with edited data
+      setReRender(true);
+      setShowEdit(false);
     } catch (error) {
       console.error(error);
     }
@@ -71,11 +79,14 @@ export default function ReviewDetail({ blog }) {
     }
   }
 
-  console.log(blog);
+  if (!blog.average) {
+    return <div></div>;
+  }
+
+  const average = blog.average;
 
   return (
     <div className={style.container}>
-      {isEditable && <button onClick={handleDelete}>Borrar Blog</button>}
       <div className={style.detailCont}>
         <div className={style.profile}>
           <img
@@ -94,20 +105,32 @@ export default function ReviewDetail({ blog }) {
               color="#f1e100"
             />
             <div className={style.reviewCont}>
-              <img
-                className={style.img}
-                src={blog.image}
-                alt="Review image"
-                height="120px"
-              />
+              <div className={style.imgDiv}>
+                <img
+                  className={style.img}
+                  src={blog.image}
+                  alt="Review image"
+                  height="120px"
+                />
+              </div>
               <div className={style.reviewInfo}>
-              {isEditable && <button onClick={handleEdit}>Editar Blog</button>}
-                <p className={style.title}>{blog.title}</p>
-                {isEditable && <input name="title" onChange={handleInputChange}/>}
-                <p className={style.blogContent}>{blog.content}</p>
-                {isEditable && <input name="content" onChange={handleInputChange}/>}
-                <p>{blog.average}</p>
-                {isEditable && <input name="stars" onChange={handleInputChange}/>}
+                {!showEdit && <h3 className={style.title}>{blog.title}</h3>}
+                {!showEdit && <p className={style.blogContent}>{blog.content}</p>}
+                <Rating name="read-only" value={average} />
+                {isEditable && showEdit &&
+                  <input className={style.inputTitle} placeholder="Editar Título..." name="title" onChange={handleInputChange} />}
+                {isEditable && showEdit &&
+                  <textarea className={style.textareaBlog} rows="7" placeholder="Editar Contenido..." name="content" onChange={handleInputChange} />}
+                {isEditable && showEdit &&
+                  <Rating name="stars" onClick={handleInputChange}/>}
+                <div className={style.divButtons}>
+                  {isEditable && showEdit &&
+                    <button className={style.backBtn} onClick={handleEdit}>Guardar</button>}
+                  {isEditable &&
+                    <button className={style.backBtn} onClick={() => setShowEdit(!showEdit)}>{!showEdit ? "Editar" : "Cancelar"}</button>}
+                  {isEditable && showEdit &&
+                    <button className={style.backBtn} onClick={handleDelete}>Borrar Blog</button>}
+                </div>
               </div>
             </div>
           </div>
