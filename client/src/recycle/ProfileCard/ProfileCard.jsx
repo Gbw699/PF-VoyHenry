@@ -12,8 +12,7 @@ export default function ProfileCard() {
   useEffect(() => {
     dispatch(getFollowing(user?.nickName));
     dispatch(getFollowed(user?.nickName));
-  }, []);
-
+  }, [following.length, followed.length]);
   return (
     <Link to="/profile">
       <div className={style.container}>

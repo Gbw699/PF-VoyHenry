@@ -102,7 +102,6 @@ export const followUser = async (myNickName, userNickName) => {
     const response = await axios.post(`/api/v1/users/${userNickName}/follow`, {
       userNickName: myNickName,
     });
-    alert(`Following ${userNickName}`);
   } catch (error) {
     console.error(error);
   }
@@ -111,10 +110,9 @@ export const followUser = async (myNickName, userNickName) => {
 export const unfollowUser = async (myNickName, userNickName) => {
   try {
     const response = await axios.delete(
-      `http://localhost:3001/api/v1/users/${userNickName}/follow`,
+      `/api/v1/users/${userNickName}/follow`,
       { data: { userNickName: myNickName } }
     );
-    alert(`Unfollowing ${userNickName}`);
   } catch (error) {
     console.error(error.response.data.message);
   }
@@ -137,7 +135,9 @@ export const getFollowing = (nickName) => {
 export const getFollowed = (myNickName) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`/api/v1/users/${myNickName}/followed`);
+      const response = await axios.get(
+        `http://localhost:3001/api/v1/users/${myNickName}/followed`
+      );
       dispatch(setUserFollowed(response.data.data.followedUsers));
     } catch (error) {
       console.error(error.response.data.message);

@@ -23,9 +23,7 @@ export default function AxiosUsers({
     const fetchData = async () => {
       if (!id) {
         try {
-          const response = await axios.get(
-            `http://localhost:3001/api/v1/users/${user}/Following`
-          );
+          const response = await axios.get(`/api/v1/users/${user}/Following`);
           console.log(response.data.data);
           setFollowing(response.data.data.data);
         } catch (error) {
