@@ -2,18 +2,19 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  margin-top: 1em;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  width: 150px;
+  width: 10em;
 }
 
 .links {
   display: flex;
   flex-direction: row;
-  width: 170px;
+  width: 13em;
 }
 .img {
   display: flex;
@@ -22,18 +23,26 @@
   height: 50px;
   background-color: rgba(218, 233, 5, 0);
 }
+.img2 {
+  display: flex;
+  flex-direction: row;
+  width: 50px;
+  height: 50px;
+  background-color: wheat;
+  border-radius: 50%;
+}
 
 .cardFacu {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 190px;
-  width: 150px;
+  height: 10.6em;
+  width: 10.6em;
 }
 
 .description {
   display: flex;
   flex-direction: column;
-  height: 190px;
-  width: 150px;
+  height: 8em;
+  width: 8em;
 }
