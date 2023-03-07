@@ -10,7 +10,9 @@ export default function FooterImg() {
         <img
           src={voyHenryImage}
           alt="voyHenry"
+          title="voyHenry"
           height="40em"
+          loading="lazy"
         />
       </Link>
     </div>

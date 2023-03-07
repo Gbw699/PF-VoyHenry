@@ -1,5 +1,5 @@
 import React from "react";
-// import style from 'EditProfileSelectCountry.module.css'
+import style from "./EditProfileSection.module.css";
 import countriesData from "../../countries.json";
 
 export default function EditProfileSelectCountry({
@@ -27,10 +27,12 @@ export default function EditProfileSelectCountry({
 
   return (
     <>
+      <p className={style.title}>Tu nacionalidad</p>
       <select
         id="country-select"
         value={selectedCountry}
         onChange={handleCountryChange}
+        className={style.selectInput}
       >
         <option value="">Selecciona un país</option>
         {countries.map((country) => (
@@ -47,8 +49,9 @@ export default function EditProfileSelectCountry({
           id="province-select"
           value={selectedProvince}
           onChange={handleProvinceChange}
+          className={style.selectInput}
         >
-          <option>Selecciona una provincia</option>
+          <option value="">Selecciona una provincia</option>
           {provinces.map((province) => (
             <option
               key={province}

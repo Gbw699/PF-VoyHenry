@@ -50,15 +50,15 @@
 
 .containerOfButton {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .buttons {
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
   height: 2em;
   padding: 0.5em 1em;
   appearance: none;

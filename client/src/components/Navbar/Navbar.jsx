@@ -17,8 +17,10 @@ export default function NavBar() {
       <NavLink to="/home">
         <img
           src={img}
-          alt="img"
+          alt="voyHENRY"
+          title="voyHENRY"
           className={style.img}
+          loading="lazy"
         />
       </NavLink>
       {user?.role === "admin" && (
@@ -70,6 +72,8 @@ export default function NavBar() {
             src={imgCarrito}
             width="20px"
             alt="Carrito de compras"
+            title="Carrito de compras"
+            loading="lazy"
           />
         </NavLink>
         <AccountMenu />

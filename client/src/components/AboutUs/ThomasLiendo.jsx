@@ -11,6 +11,8 @@ export default function ThomasLiendo() {
         <img
           src={thomasLiendoImg}
           alt="Thomas Federico Liendo"
+          title="Thomas Federico Liendo"
+          loading="lazy"
         />
       </div>
       <hr
@@ -29,6 +31,8 @@ export default function ThomasLiendo() {
               className={style.img}
               src={linkedInImg}
               alt="LinkedIn"
+              title="LinkedIn"
+              loading="lazy"
             />
           </a>
           <a
@@ -41,6 +45,8 @@ export default function ThomasLiendo() {
               className={style.img}
               src={gitHubImg}
               alt="GitHub"
+              title="GitHub"
+              loading="lazy"
             />
           </a>
         </div>
