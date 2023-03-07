@@ -72,6 +72,14 @@ class ProductsService {
       };
     }
 
+    if (query.limit) {
+      options.limit = query.limit;
+    }
+
+    if (query.offset) {
+      options.offset = (page - 1) * query.offset;
+    }
+
     if (query.page) {
       const page = parseInt(query.page);
       if (isNaN(page) || page < 1) {
@@ -80,6 +88,8 @@ class ProductsService {
       options.offset = (page - 1) * (options.limit || query.limit);
     }
 
+    const productsLimit = options.limit
+
     const productsInFilter = await productModel.count(options);
 
     const products = await productModel.findAll(options);
@@ -87,7 +97,7 @@ class ProductsService {
     if (products === null || products.length === 0) {
       throw new CustomError('Product not found', 404);
     } else {
-      return { products, productsInFilter };
+      return { products, productsInFilter, productsLimit };
     }
   }
 

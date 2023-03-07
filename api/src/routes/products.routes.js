@@ -28,10 +28,10 @@ router.get('/',
       const products = await service.find(req.query, page)
 
       let pages = ''
-      if (products.productsInFilter <= 9){
+      if (products.productsInFilter <= products.productsLimit){
         pages = 1
       } else {
-        pages = Math.ceil(products.productsInFilter / 9);
+        pages = Math.ceil(products.productsInFilter / products.productsLimit);
       }
 
       const pageNumber = parseInt(page)

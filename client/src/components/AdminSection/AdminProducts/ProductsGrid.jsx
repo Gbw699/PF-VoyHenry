@@ -8,9 +8,9 @@ import DeleteRecord from "../recycleAdmin/DeleteRecord";
 import CustomToolbar from "../recycleAdmin/CustomToolbar";
 
 export default function PlansGrid({
-  blogs,
+  products,
   reRender,
-  setBlogsInfo,
+  setProductsInfo,
   setReRender,
   setCreateRecord,
   setEditRecord,
@@ -22,25 +22,31 @@ export default function PlansGrid({
   };
 
   const handleEditClick = (row) => {
-    setBlogsInfo(row);
+    console.log(row);
+    setProductsInfo(row);
     setEditRecord(true);
   };
 
+  const currencyFormatter = new Intl.NumberFormat("de-DE", {
+    style: "currency",
+    currency: "ARS",
+  });
+
   const rows = useMemo(
     () =>
-      blogs?.map((blog) => {
+      products?.map((product) => {
         return {
-          id: blog.id,
-          col1: blog.userNickName,
-          col2: blog.title,
-          col3: blog.content,
-          col4: blog.date,
-          col5: blog.votes,
-          col6: blog.stars,
-          col7: blog.image,
+          id: product.id,
+          col1: product.title,
+          col2: product.availability,
+          col3: product.stock,
+          col4: product.category,
+          col5: product.price,
+          col6: product.detail,
+          col7: product.mainImage,
         };
       }),
-    [blogs]
+    [products]
   );
 
   const columns = [
@@ -70,36 +76,49 @@ export default function PlansGrid({
       },
     },
     { field: "id", headerName: "Id", width: 75 },
-    { field: "col1", headerName: "Nickname", width: 150 },
-    { field: "col2", headerName: "Título", width: 150 },
-    { field: "col3", headerName: "Descripción", width: 400 },
+    { field: "col1", headerName: "Título", width: 150 },
+    {
+      field: "col2",
+      headerName: "Disponibilidad",
+      type: "boolean",
+      width: 100,
+    },
+    { field: "col3", headerName: "Stock", type: "number", width: 100 },
     {
       field: "col4",
-      headerName: "Fecha de creación",
-      type: "date",
+      headerName: "Categoría",
       width: 150,
     },
     {
       field: "col5",
-      headerName: "Cantidad de votos",
+      headerName: "Precio",
       type: "number",
-      width: 150,
+      width: 200,
+      valueFormatter: ({ value }) => currencyFormatter.format(value),
+      cellClassName: "font-tabular-nums",
     },
     {
       field: "col6",
-      headerName: "Estrellas",
-      type: "number",
-      width: 100,
+      headerName: "Detalle",
+      width: 350,
     },
     {
       field: "col7",
-      headerName: "Imagen de la reseña",
+      headerName: "Imagen del producto",
       width: 250,
     },
   ];
 
   return (
-    <Box sx={{ height: "auto", width: "100%" }}>
+    <Box
+      sx={{
+        height: "auto",
+        width: "100%",
+        "& .font-tabular-nums": {
+          fontVariantNumeric: "tabular-nums",
+        },
+      }}
+    >
       <DataGrid
         rows={rows}
         columns={columns}

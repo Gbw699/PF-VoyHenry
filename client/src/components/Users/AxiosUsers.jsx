@@ -31,7 +31,7 @@ export default function AxiosUsers({
       }
     };
     fetchData();
-  }, [following.length]);
+  }, [following?.length]);
 
   useEffect(() => {
     const fetchData = async () => {
