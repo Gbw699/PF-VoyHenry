@@ -89,9 +89,20 @@ class UsersService {
 
     const options = {
 
-      order: [['firstName', 'ASC']]
-    }
+      order: [['firstName', 'ASC']],
+      include: [
+        {
+          model: usersModel,
+          as: 'user'
+        },
+        {
+          model: usersModel,
+          as: 'followUser'
+        },
 
+      ]
+    }
+    
     if (query.order == 'reverso'){
       options.order = [['firstName', 'DESC']]
     }
@@ -115,32 +126,10 @@ class UsersService {
       }
     }
 
-    const users = await usersModel.findAll(options)
 
-const following = []
-for (let i = 0; i < users.length; i++) {
+  const users = await usersModel.findAll(options)
 
-  following.push(users[i].nickName,
-     await sequelize.models.user_follow_user.count({
-    where: {followUserId:users[i].nickName}})
-  )
-
-}
-
-const followed = []
-for (let i = 0; i < users.length; i++) {
-
-    followed.push(users[i].nickName,
-       await sequelize.models.user_follow_user.count({
-      where: {userid:users[i].nickName}})
-    )
-
-  }
-
-return {users,
-following: following,
-followed: followed
-}
+  return {users}
 }
 
 
@@ -371,7 +360,7 @@ followed: followed
       (comment) => comment.dataValues.userid
     );
 
-     const user = await usersModel.findAll({
+    const user = await usersModel.findAll({
        where: { nickName: followingsUsersId },
     });
 
