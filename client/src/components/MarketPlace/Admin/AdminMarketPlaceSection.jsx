@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import AdminMarketPlaceDeactivate from "./AdminMarketPlaceDeactivate";
 import AdminMarketPlaceEdit from "./AdminMarketPlaceEdit";
 import AdminMarketPlaceCreate from "./AdminMarketPlaceCreate";
@@ -27,15 +28,42 @@ export default function AdminMarketPlaceSection({
   productStock,
   setProductStock,
 }) {
+  const navigate = useNavigate();
+
   const handleOnClick = (value) => {
     setButtonOption(value);
   };
 
   return (
-    <div className={style.buttons}>
-      <button onClick={() => handleOnClick("create")}>Crear</button>
-      <button onClick={() => handleOnClick("edit")}>Editar</button>
-      <button onClick={() => handleOnClick("deactivate")}>Desactivar</button>
+    <div className={style.container}>
+      <p className={style.title}>Gestión de productos</p>
+      <hr color="#f1e100" width="100%" />
+      <div className={style.buttons}>
+        {buttonOption !== "create" && (
+        <button 
+          onClick={() => handleOnClick("create")}
+          className={style.createEditBtn}
+        >
+          Crear
+        </button>
+        )}
+        {buttonOption !== "edit" && (
+        <button 
+          onClick={() => handleOnClick("edit")}
+          className={style.createEditBtn}
+        >
+          Editar
+        </button>
+        )}
+        {buttonOption !== "deactivate" && (
+        <button 
+          onClick={() => handleOnClick("deactivate")}
+          className={style.deleteBtn}
+        >
+          Desactivar
+        </button>
+        )}
+      </div>
       {buttonOption === "create" && (
         <AdminMarketPlaceCreate
           {...{
@@ -85,6 +113,12 @@ export default function AdminMarketPlaceSection({
           }}
         />
       )}
+      <button
+        onClick={() => navigate("/marketplace")}
+        className={style.backBtn}
+      >
+        Volver
+      </button>
     </div>
   );
 }

@@ -19,7 +19,9 @@ export default function PostComment(props) {
         <img
           className={style.imgComment}
           src={user.image}
-          alt=""
+          alt={`${user.firstName} ${user.lastName}`}
+          title={`${user.firstName} ${user.lastName}`}
+          loading="lazy"
         />
         <textarea
           className={style.inputComment}
@@ -34,9 +36,7 @@ export default function PostComment(props) {
         ></textarea>
         {showPicker && (
           <div className={style.emojiPicker}>
-            <EmojiPicker 
-              onEmojiClick={handleEmojiClick} 
-            />
+            <EmojiPicker onEmojiClick={handleEmojiClick} />
           </div>
         )}
       </div>
@@ -45,10 +45,12 @@ export default function PostComment(props) {
           className={style.emojiBtn}
           onClick={() => setShowPicker(!showPicker)}
         >
-          <img 
+          <img
             src={emojiIcon}
             alt="Emoji icon"
+            title="Emoji icon"
             height="15px"
+            loading="lazy"
           />
         </button>
         <button

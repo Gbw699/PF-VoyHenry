@@ -37,6 +37,14 @@
   margin-bottom: 10px;
 }
 
+.myPlansCont {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
 .plansCont {
   display: flex;
   flex-direction: row;
@@ -50,15 +58,14 @@
 
 .containerOfButton {
   display: flex;
-  align-items: end;
-  flex-direction: row;
-  justify-content: end;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
 .buttons {
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
   height: 2em;
   padding: 0.5em 1em;
   appearance: none;

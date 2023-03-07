@@ -12,6 +12,8 @@ export default function MarcosParella() {
         <img
           src={MarcosParellaImg}
           alt="Marcos Hernan Parella"
+          title="Marcos Hernan Parella"
+          loading="lazy"
         />
       </div>
       <hr
@@ -30,6 +32,8 @@ export default function MarcosParella() {
               className={style.img}
               src={linkedInImg}
               alt="LinkedIn"
+              title="LinkedIn"
+              loading="lazy"
             />
           </a>
           <a
@@ -42,6 +46,8 @@ export default function MarcosParella() {
               className={style.img}
               src={gitHubImg}
               alt="GitHub"
+              title="GitHub"
+              loading="lazy"
             />
           </a>
           <a
@@ -54,6 +60,8 @@ export default function MarcosParella() {
               className={style.img}
               src={portFolioImg}
               alt="Portfolio"
+              title="Portfolio"
+              loading="lazy"
             />
           </a>
         </div>

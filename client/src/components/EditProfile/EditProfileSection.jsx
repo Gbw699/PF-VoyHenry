@@ -2,7 +2,7 @@ import React from "react";
 import EditProfileAboutMe from "./EditProfileAboutMe";
 import EditProfileImage from "./EditProfileImage";
 import EditProfileInput from "./EditProfileInput";
-// import EditProfileSelectCountry from "./EditProfileSelectCountry";
+import EditProfileSelectCountry from "./EditProfileSelectCountry";
 import { useDispatch } from "react-redux";
 import { editUser } from "../../redux/slices/userSlice/thunks";
 import Swal from "sweetalert2";
@@ -68,6 +68,9 @@ export const EditProfileSection = ({
             "Se ha actualizado los datos de tu perfil",
             "success"
           );
+          setTimeout(() => {
+            location.reload();
+          }, 2500);
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           swalWithBootstrapButtons.fire(
             "Cancelado",
@@ -82,7 +85,10 @@ export const EditProfileSection = ({
     <div className={style.container}>
       <div className={style.editContainer}>
         <p className={style.editTitle}>Editar perfil</p>
-        <hr color="#f1e100" width="100%" />
+        <hr
+          color="#f1e100"
+          width="100%"
+        />
         <div className={style.formContainer}>
           <form
             className={style.form}
@@ -100,7 +106,7 @@ export const EditProfileSection = ({
               placeholder="Tu apellido"
               setState={setLastName}
             />
-            {/* <EditProfileSelectCountry
+            <EditProfileSelectCountry
               {...{
                 provinces,
                 setProvinces,
@@ -109,18 +115,21 @@ export const EditProfileSection = ({
                 selectedProvince,
                 setSelectedProvince,
               }}
-            /> */}
-            <p className={style.title}>Sobre mí</p>
-            <EditProfileAboutMe 
-              setState={setAbout}
             />
+            <p className={style.title}>Sobre mí</p>
+            <EditProfileAboutMe setState={setAbout} />
           </form>
           <div>
-            <EditProfileImage {...{ image, setImage }} />
+            <EditProfileImage {...{ image, setImage, firstName, lastName }} />
           </div>
         </div>
         <div className={style.buttonContainer}>
-          <button className={style.buttons}>Guardar cambios</button>
+          <button
+            onClick={handleSubmit}
+            className={style.buttons}
+          >
+            Guardar cambios
+          </button>
         </div>
       </div>
     </div>

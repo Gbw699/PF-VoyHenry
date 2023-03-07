@@ -101,14 +101,10 @@ export default function BlogForm({ open, close, setState }) {
                 className={style.img}
                 src={url}
                 alt=""
+                title=""
+                loading="lazy"
               />
             </div>
-            {/* <Field
-              name="image"
-              type="url"
-              value={url}
-              />
-            <ErrorMessage name="image" /> */}
             <button
               type="submit"
               className={style.submitBtn}

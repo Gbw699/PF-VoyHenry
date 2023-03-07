@@ -142,7 +142,9 @@ export default function EditBlogForm({
               <img
                 className={style.img}
                 src={url}
-                alt=""
+                alt={formik.values.title}
+                title={formik.values.title}
+                loading="lazy"
               />
             </div>
           </div>

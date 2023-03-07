@@ -11,6 +11,8 @@ export default function GabrielBarimboim() {
         <img
           src={gabrielBarimboimImg}
           alt="Gabriel Barimboim"
+          title="Gabriel Barimboim"
+          loading="lazy"
         />
       </div>
       <hr
@@ -29,6 +31,8 @@ export default function GabrielBarimboim() {
               className={style.img}
               src={linkedInImg}
               alt="LinkedIn"
+              title="LinkedIn"
+              loading="lazy"
             />
           </a>
           <a
@@ -41,6 +45,8 @@ export default function GabrielBarimboim() {
               className={style.img}
               src={gitHubImg}
               alt="GitHub"
+              title="GitHub"
+              loading="lazy"
             />
           </a>
         </div>

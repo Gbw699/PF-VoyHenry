@@ -4,7 +4,6 @@ import style from "./ItemCount.module.css";
 
 const ItemCount = ({ quantity, product, setCounter, stock }) => {
   const productContext = useContext(ProductContext);
-  console.log(stock);
   const updateProduct = (item, quantitySelect) => {
     productContext.updateProductQuantity(item, quantitySelect);
   };
