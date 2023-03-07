@@ -7,20 +7,11 @@ import style from "./Developers.module.css";
 export default function JulianCastro() {
   return (
     <div className={style.container}>
-      <div className={style.card}>
-        <img
-          className={style.cardFacu}
-          src={julianCastroImg}
-          alt="Julián María Castro"
-          title="Julián María Castro"
-          loading="lazy"
-        />
-      </div>
-      <hr
-        width="0%"
-        color="black"
+      <div
+        className={style.cardImg}
+        style={{ backgroundImage: `url(${julianCastroImg})` }}
       />
-      <div className={style.container}>
+      <div className={style.cardCont}>
         <div className={style.links}>
           <a
             className={style.img}
@@ -52,8 +43,8 @@ export default function JulianCastro() {
           </a>
         </div>
         <div className={style.description}>
-          <h5>Julian María Castro</h5>
-          <p>Full Stack Web Developer</p>
+          <h5 className={style.name}>Julian M. Castro</h5>
+          <p className={style.job}>Full Stack Web Developer</p>
         </div>
       </div>
     </div>

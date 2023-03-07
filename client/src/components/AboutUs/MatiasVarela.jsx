@@ -7,20 +7,11 @@ import style from "./Developers.module.css";
 export default function MatiasVarela() {
   return (
     <div className={style.container}>
-      <div className={style.card}>
-        <img
-          className={style.cardFacu}
-          src={matiasVarelaImg}
-          alt="Matías Varela"
-          title="Matías Varela"
-          loading="lazy"
-        />
-      </div>
-      <hr
-        width="0%"
-        color="black"
+      <div
+        className={style.cardImg}
+        style={{ backgroundImage: `url(${matiasVarelaImg})` }}
       />
-      <div className={style.container}>
+      <div className={style.cardCont}>
         <div className={style.links}>
           <a
             className={style.img}
@@ -52,8 +43,8 @@ export default function MatiasVarela() {
           </a>
         </div>
         <div className={style.description}>
-          <h5>Matías Varela</h5>
-          <p>Full Stack Web Developer</p>
+          <h5 className={style.name}>Matías Varela</h5>
+          <p className={style.job}>Full Stack Web Developer</p>
         </div>
       </div>
     </div>
