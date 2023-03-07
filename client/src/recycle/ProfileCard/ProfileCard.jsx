@@ -6,23 +6,6 @@ import style from "./ProfileCard.module.css";
 
 export default function ProfileCard() {
   const user = JSON.parse(localStorage.getItem("user"));
-<<<<<<< HEAD
-  const [following, setFollowing] = useState({});
-  const [followed, setFollowed] = useState({});
-
-  useEffect(()=>{
-    async function fectData(){
-      const following = await getFollowing(user.nickName);
-      setFollowing(following);
-      const followed = await getFollowed(user.nickName);
-      setFollowed(followed);
-    }
-    fectData();
-  },[]);
-
-  console.log(followed);
-
-=======
   const followed = useSelector((state) => state.userStore.userFollowed);
   const following = useSelector((state) => state.userStore.userFollowing);
   const dispatch = useDispatch();
@@ -30,7 +13,6 @@ export default function ProfileCard() {
     dispatch(getFollowing(user?.nickName));
     dispatch(getFollowed(user?.nickName));
   }, [following.length]);
->>>>>>> 2bc278025fa36224bbdc4c29f4819d739cf7d1d1
   return (
     <Link to="/profile">
       <div className={style.container}>

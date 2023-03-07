@@ -120,15 +120,6 @@ export const unfollowUser = async (myNickName, userNickName) => {
   }
 };
 
-<<<<<<< HEAD
-export const getFollowing = async (myNickName) => {
-  try {
-    const response = await axios.get(
-      `/api/v1/users/${myNickName}/following`
-    );
-    if (response && response.data) {
-      return response.data.data;
-=======
 export const getFollowing = (nickName) => {
   return async (dispatch) => {
     try {
@@ -139,7 +130,6 @@ export const getFollowing = (nickName) => {
         return { followedUsers: [], data: [], count: 0 };
       }
       console.error(error.response.data.message);
->>>>>>> 2bc278025fa36224bbdc4c29f4819d739cf7d1d1
     }
   };
 };
