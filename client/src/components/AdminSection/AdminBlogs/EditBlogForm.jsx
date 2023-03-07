@@ -153,7 +153,7 @@ export default function EditBlogForm({
             className={style.submitBtn}
             type="submit"
           >
-            Subir reseña
+            Editar reseña
           </button>
         </form>
         <button

@@ -52,8 +52,9 @@ export default function CreateUserForm({
       category: values.category,
       price: values.price,
       stock: values.stock,
-      //availability: values.availability,
+      availability: true,
       mainImage: values.mainImage,
+      images: [],
     };
     await dispatch(createProduct(obj));
     setCreateRecord(false);
