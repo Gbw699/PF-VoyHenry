@@ -105,7 +105,7 @@ export default function ReviewDetail({ setReRender, blog }) {
               color="#f1e100"
             />
             <div className={style.reviewCont}>
-              <div className={style.imgDiv}>
+              <div className={style.imgCont}>
                 <img
                   className={style.img}
                   src={blog.image}
@@ -115,21 +115,22 @@ export default function ReviewDetail({ setReRender, blog }) {
               </div>
               <div className={style.reviewInfo}>
                 {!showEdit && <h3 className={style.title}>{blog.title}</h3>}
+                <hr color="#b1b1b1" width="100%" />
                 {!showEdit && <p className={style.blogContent}>{blog.content}</p>}
-                <Rating name="read-only" value={average} />
+                {!showEdit && <Rating name="read-only" value={average} />}
                 {isEditable && showEdit &&
-                  <input className={style.inputTitle} placeholder="Editar Título..." name="title" onChange={handleInputChange} />}
+                  <input className={style.input} placeholder="Editar título..." name="title" onChange={handleInputChange} />}
                 {isEditable && showEdit &&
-                  <textarea className={style.textareaBlog} rows="7" placeholder="Editar Contenido..." name="content" onChange={handleInputChange} />}
+                  <textarea className={style.input} rows="7" placeholder="Editar contenido..." name="content" onChange={handleInputChange} />}
                 {isEditable && showEdit &&
                   <Rating name="stars" onClick={handleInputChange}/>}
-                <div className={style.divButtons}>
+                <div className={style.buttonsCont}>
                   {isEditable && showEdit &&
-                    <button className={style.backBtn} onClick={handleEdit}>Guardar</button>}
+                    <button className={style.editBtn} onClick={handleEdit}>Guardar</button>}
                   {isEditable &&
-                    <button className={style.backBtn} onClick={() => setShowEdit(!showEdit)}>{!showEdit ? "Editar" : "Cancelar"}</button>}
+                    <button className={style.editBtn} onClick={() => setShowEdit(!showEdit)}>{!showEdit ? "Editar" : "Cancelar"}</button>}
                   {isEditable && showEdit &&
-                    <button className={style.backBtn} onClick={handleDelete}>Borrar Blog</button>}
+                    <button className={style.deleteBtn} onClick={handleDelete}>Borrar Blog</button>}
                 </div>
               </div>
             </div>
