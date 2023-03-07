@@ -32,6 +32,16 @@ class SessionsService{
 
   }
 
+  async findOne(nickName){
+    const session = sessionModel.findOne({
+      where: {
+        nickName: nickName
+      }
+    })
+
+    return session
+  }
+
   async finishSession(nickName, socketId){
 
     const session = await sessionModel.findByPk(nickName)
