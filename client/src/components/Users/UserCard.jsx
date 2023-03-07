@@ -17,7 +17,10 @@ export default function UserCard({
   setFollowing,
   loginUser,
   followed,
+  userFollowed,
+  userFollowing,
 }) {
+  console.log(userFollowed);
   const handleClick = async (event) => {
     if (event.target.value === "follow") {
       followUser(loginUser, nickName);

@@ -36,6 +36,8 @@ export default function UsersSection({
                   followed={followed}
                   setFollowed={setFollowed}
                   loginUser={loginUser.nickName}
+                  userFollowed={loginUser.user}
+                  userFollowing={loginUser.followUser}
                 />
               </div>
             )
