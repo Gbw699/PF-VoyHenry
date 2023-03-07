@@ -22,10 +22,6 @@ export default function ReviewDetail({ setReRender, blog }) {
     }
   }, [user, blog]);
 
-  useEffect(()=>{
-
-  },[]);
-
   useEffect(() => {
     getComments();
   }, []);
