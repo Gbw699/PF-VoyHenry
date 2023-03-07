@@ -10,6 +10,8 @@ export default function UsersSection({
   setFollowing,
   followed,
   setFollowed,
+  userFollowed,
+  setUserFollowed,
 }) {
   const loginUser = JSON.parse(localStorage.getItem("user"));
 
@@ -30,12 +32,16 @@ export default function UsersSection({
                   lastName={element.lastName}
                   image={element.image}
                   nationality={element.nationality}
+                  userFollowing={element.followUser.length}
+                  userFollowed={element.user.length}
                   setUsers={setUsers}
                   following={following}
                   setFollowing={setFollowing}
                   followed={followed}
                   setFollowed={setFollowed}
                   loginUser={loginUser.nickName}
+                  userFollow={userFollowed}
+                  setUserFollowed={setUserFollowed}
                 />
               </div>
             )

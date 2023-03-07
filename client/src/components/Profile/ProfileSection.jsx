@@ -18,27 +18,24 @@ import {
 
 export default function ProfileSection() {
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("user"));
 
-  useEffect(() => {
-    async () => {
-      dispatch(getUserPlans(user?.nickName));
-      dispatch(getUserBlogs(user?.nickName));
-      setFollowing(await getFollowing(user?.nickName));
-      setFollowed(await getFollowed(user?.nickName));
-    };
-  }, []);
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const userPlans = useSelector((state) => state.userStore.userPlans);
   const userBlogs = useSelector((state) => state.userStore.userBlogs);
+  const followed = useSelector((state) => state.userStore.userFollowed);
+  const following = useSelector((state) => state.userStore.userFollowing);
   const [morePlans, setMorePlans] = useState(true);
-  const [following, setFollowing] = useState([]);
-  const [followed, setFollowed] = useState([]);
 
+  useEffect(() => {
+    dispatch(getUserPlans(user?.nickName));
+    dispatch(getUserBlogs(user?.nickName));
+    dispatch(getFollowing(user?.nickName));
+    dispatch(getFollowed(user?.nickName));
+  }, []);
   const handleMorePlans = () => {
     setMorePlans(!morePlans);
   };
-
   return (
     <div className={style.container}>
       <div className={style.profileCont}>
@@ -110,14 +107,33 @@ export default function ProfileSection() {
                 ))
               )}
             </div>
-            {/* //!! FALTA CONECTAR CON EL BACK-END PORQUE NO ESTÁ */}
           </div>
           <div>
-            <h6 className={style.title}>Mis planes</h6>
-            <hr
-              color="#F1E100"
-              width="100%"
-            />
+            <div>
+              <h6 className={style.title}>Mis planes</h6>
+              <div className={style.containerOfButton}>
+                {morePlans && (
+                  <button
+                    onClick={handleMorePlans}
+                    className={style.buttons}
+                  >
+                    Mostrar más
+                  </button>
+                )}
+                {!morePlans && (
+                  <button
+                    onClick={handleMorePlans}
+                    className={style.buttons}
+                  >
+                    Mostrar menos
+                  </button>
+                )}
+              </div>
+              <hr
+                color="#F1E100"
+                width="100%"
+              />
+            </div>
             <div className={style.plansCont}>
               {morePlans &&
                 userPlans.slice(0, 8).map((element) => (
@@ -145,24 +161,6 @@ export default function ProfileSection() {
                     />
                   </Link>
                 ))}
-              <div className={style.containerOfButton}>
-                {morePlans && (
-                  <button
-                    onClick={handleMorePlans}
-                    className={style.buttons}
-                  >
-                    Mostrar más
-                  </button>
-                )}
-                {!morePlans && (
-                  <button
-                    onClick={handleMorePlans}
-                    className={style.buttons}
-                  >
-                    Mostrar menos
-                  </button>
-                )}
-              </div>
             </div>
           </div>
           <div>
