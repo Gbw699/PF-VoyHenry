@@ -19,20 +19,20 @@ export default function AdminDashboard() {
       <AxiosPlans setDataPlans={setDataPlans} />
       <AxiosBlogs setDataBlogs={setDataBlogs} />
       <AxiosProducts setDataProducts={setDataProducts} />
-      <div>
-        <div className={style.doughtnutContainer}>
+      <div className={style.chartsContainer}>
+        <div className={style.barchartContainer}>
           {dataPlans && dataBlogs && dataProducts && (
-            <DoughnutChart
+            <BarChart
+              users={users}
               dataPlans={dataPlans}
               dataBlogs={dataBlogs}
               dataProducts={dataProducts}
             />
           )}
         </div>
-        <div className={style.barchartContainer}>
+        <div className={style.doughtnutContainer}>
           {dataPlans && dataBlogs && dataProducts && (
-            <BarChart
-              users={users}
+            <DoughnutChart
               dataPlans={dataPlans}
               dataBlogs={dataBlogs}
               dataProducts={dataProducts}

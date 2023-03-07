@@ -1,7 +1,19 @@
-.doughtnutContainer {
-    width: 45vh;
+.chartsContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .barchartContainer {
-    width: 50vw;
+    width: 55vw;
+    align-self: flex-end;
+    margin-bottom: 7.5rem;
+}
+
+.doughtnutContainer {
+    width: 55vh;
+    align-self: flex-start;
+    margin-top: 3rem;
+    margin-right: 2rem;
 }
