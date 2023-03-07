@@ -7,7 +7,7 @@ export default function EditProfileState() {
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
   const [about, setAbout] = useState(
-    user.about === null ? "Sin sobre mí" : user.about
+    user.about === null ? "Este usuario aún no ha escrito nada aquí." : user.about
   );
   const [image, setImage] = useState(user.image);
   const [provinces, setProvinces] = useState([]);
