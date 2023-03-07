@@ -33,8 +33,8 @@ export default function NavBar() {
           <h4>ADMIN</h4>
         </NavLink>
       )}
-      {location.pathname === "/blog" && <SearchBar />}
-      {location.pathname === "/plans" && <SearchBar />}
+      {location.pathname === "/blog" && <SearchBar placeholder="Buscar blog"/>}
+      {location.pathname === "/plans" && <SearchBar placeholder="Buscar plan"/>}
       <div className={style.linksCont}>
         <NavLink
           to={"/home"}
