@@ -4,9 +4,7 @@ import ProfileAboutMe from "./ProfileAboutMe";
 import ProfileInfo from "./ProfileInfo";
 import ProfileLatestAssistedPlans from "./ProfileLatestAssistedPlans";
 import ProfileLatestReviews from "./ProfileLatestReviews";
-import { ProfileMyFriendsActivity } from "./ProfileMyFriendsActivity";
 import ProfileMyPlans from "./ProfileMyPlans";
-import profileData from "../../profileData.json";
 import style from "./ProfileSection.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -65,7 +63,7 @@ export default function ProfileSection() {
           />
           <div className={style.friendsCont}>
             {following.length === 0
-            ? "No tengo ninguna persona de mi interés"
+            ? <p className={style.message}>Aún no sigues a nadie.</p>
             : following.map((element) => (
                   <Link
                     key={element.id}
@@ -100,7 +98,7 @@ export default function ProfileSection() {
             />
             <div className={style.plansCont}>
               {favorites.length === 0
-                ? "No tengo ningún plan en favoritos"
+                ? <p className={style.message}>Aún no has agregado ningún plan en favoritos.</p>
                 : favorites.map((element) => (
                     <Link
                       key={element.id}
@@ -145,7 +143,7 @@ export default function ProfileSection() {
             </div>
             <div className={style.plansCont}>
               {morePlans && userPlans.length === 0
-                ? "No he creado ningún plan."
+                ? <p className={style.message}>Aún no has creado ningún plan.</p>
                 : userPlans.slice(0, 8).map((element) => (
                     <Link
                       key={element.id}
@@ -159,7 +157,7 @@ export default function ProfileSection() {
                     </Link>
                   ))}
               {!morePlans && userPlans.length === 0
-                ? "No he creado ningún plan"
+                ? <p className={style.message}>Aún no has creado ningún plan.</p>
                 : userPlans.map((element) => (
                     <Link
                       key={element.id}
@@ -182,7 +180,7 @@ export default function ProfileSection() {
             />
             <div className={style.plansCont}>
               {userBlogs.length === 0
-                ? "No he realizado ninguna reseña"
+                ? <p className={style.message}>Aún no has realizado ninguna reseña.</p>
                 : userBlogs.map((element) => (
                     <Link
                       key={element.id}
