@@ -15,7 +15,7 @@ export default function BlogDetail() {
   useEffect(() => {
     dispatch(getBlogById(id));
     
-    return () => resetBlogById();
+    return () => dispatch(resetBlogById());
   }, [reRender]);
 
   return (
