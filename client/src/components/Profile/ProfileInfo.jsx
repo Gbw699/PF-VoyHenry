@@ -48,10 +48,6 @@ export default function ProfileInfo({
           <p className={style.infoCount}>{followed}</p>
         </div>
         <div className={style.infoCont}>
-          <p className={style.infoTitle}>Planes asistidos</p>
-          <p className={style.infoCount}>{assistedPlans}</p>
-        </div>
-        <div className={style.infoCont}>
           <p className={style.infoTitle}>Planes creados</p>
           <p className={style.infoCount}>{plansCreated}</p>
         </div>

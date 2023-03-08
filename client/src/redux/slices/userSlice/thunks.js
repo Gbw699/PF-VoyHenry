@@ -113,9 +113,7 @@ export const getFollowing = (nickName) => {
       const response = await axios.get(`/api/v1/users/${nickName}/following`);
       dispatch(setUserFollowing(response.data.data.data));
     } catch (error) {
-      if (error.response.data.message === "no user is following you") {
-        return { followedUsers: [], data: [], count: 0 };
-      }
+      dispatch(setUserFollowing([]));
       console.error(error.response.data.message);
     }
   };
@@ -127,6 +125,7 @@ export const getFollowed = (myNickName) => {
       const response = await axios.get(`/api/v1/users/${myNickName}/followed`);
       dispatch(setUserFollowed(response.data.data.followedUsers));
     } catch (error) {
+      dispatch(setUserFollowed([]));
       console.error(error.response.data.message);
     }
   };
@@ -140,6 +139,7 @@ export const getFavorites = (myNickName) => {
       );
       dispatch(setUserFavorite(response.data));
     } catch (error) {
+      dispatch(setUserFavorite([]));
       console.error(error);
     }
   };
@@ -153,6 +153,7 @@ export const getFavoritesUser = (userNickName) => {
       );
       dispatch(setUsersFavorite(response.data));
     } catch (error) {
+      dispatch(setUsersFavorite([]));
       console.error(error);
     }
   };

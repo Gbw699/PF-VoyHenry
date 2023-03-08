@@ -8,7 +8,6 @@ export default function UserState() {
   const [following, setFollowing] = useState([]);
   const [followed, setFollowed] = useState([]);
   const [userFollowed, setUserFollowed] = useState([]);
-  console.log(following);
 
   return (
     <>
