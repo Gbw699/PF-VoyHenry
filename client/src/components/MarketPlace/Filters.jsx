@@ -10,7 +10,7 @@ export default function Filters() {
       <div className={style.filters}>
         <CategoryFilter />
         <OrderFilter />
-        <AvailabilityFilter />
+        {/* <AvailabilityFilter /> */}
       </div>
     </div>
   );
