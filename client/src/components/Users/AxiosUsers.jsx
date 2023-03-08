@@ -21,8 +21,6 @@ export default function AxiosUsers({
   user,
   following,
   setFollowing,
-  followed,
-  setFollowed,
 }) {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -47,14 +45,6 @@ export default function AxiosUsers({
           const { data: userData } = await axios.get(`/api/v1/users/${id}`);
           setUser(userData);
           try {
-            const responseFollowing = await getFollowing(id);
-            setFollowing(responseFollowing);
-            const responseFollowed = await getFollowed(id);
-            setFollowed(responseFollowed);
-          } catch (error) {
-            console.error(error);
-          }
-          try {
             const { data: plansData } = await axios.get(
               `/api/v1/users/${id}/plans`
             );
@@ -72,6 +62,16 @@ export default function AxiosUsers({
           }
           try {
             dispatch(getFavoritesUser(id));
+          } catch (error) {
+            console.log(error.message);
+          }
+          try {
+            dispatch(getFollowing(id));
+          } catch (error) {
+            console.log(error.message);
+          }
+          try {
+            dispatch(getFollowed(id));
           } catch (error) {
             console.log(error.message);
           }
