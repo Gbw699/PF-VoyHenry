@@ -39,12 +39,9 @@ export default function UserCard({
         <div className={style.subCont}>
           <div className={style.imgCont}>
             <Link to={`/users/${nickName}`}>
-              <img
+              <div
                 className={style.img}
-                src={image}
-                title={`${firstName} ${lastName}`}
-                alt={`${firstName} ${lastName}`}
-                loading="lazy"
+                style={{ backgroundImage: `url(${image})` }}
               />
             </Link>
           </div>

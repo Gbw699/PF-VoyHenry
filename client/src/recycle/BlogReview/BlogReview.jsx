@@ -1,22 +1,9 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { Rating } from "@mui/material";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import style from "./BlogReview.module.css";
 
 export default function BlogReview({ blog }) {
-  const [name, setName] = useState({});
-
-  useEffect(()=>{
-    getNames(blog.id);
-  },[]);
-
-  const getNames = async (id) => {
-    const response = await axios.get(`/api/v1/blogs/${id}`);
-    const {firstName, lastName } = response.data.data.users;
-    setName({firstName: firstName, lastName: lastName});
-  };
-
   return (
     <div className={style.container}>
       <div className={style.reviewCont}>
@@ -31,7 +18,7 @@ export default function BlogReview({ blog }) {
         </Link>
         <div className={style.userCont}>
           <div className={style.nameDate}>
-            <h3 className={style.name}>{name?.firstName} {name?.lastName}</h3>
+            <h3 className={style.name}>{blog.userNickName}</h3>
             <p>{blog.date}</p>
           </div>
           <hr
@@ -51,7 +38,7 @@ export default function BlogReview({ blog }) {
               <p className={style.infoDescription}>{blog.content}</p>
               <p className={style.infoValoration}>
                 Valoración:{" "}
-                <span className={style.infoValNum}>{blog.average}</span>
+                <span className={style.infoValNum}><Rating defaultValue={blog?.average} value={blog?.average}/></span>
               </p>
             </div>
           </NavLink>

@@ -15,16 +15,17 @@ export default function ReviewDetail({ setReRender, blog, user }) {
   const [showEdit, setShowEdit] = useState(false);
 
   useEffect(() => {
-    if (userSession && blog && userSession.nickName === blog.userNickName) {
+    if (userSession && blog && userSession.nickName === blog?.userNickName) {
       setIsEditable(true);
     } else {
       setIsEditable(false);
     }
-  }, []);
+    return () => setIsEditable(false);
+  }, [blog]);
 
   useEffect(() => {
     getComments();
-  });
+  },[]);
 
   const handleEdit = async () => {
     try {
@@ -74,11 +75,9 @@ export default function ReviewDetail({ setReRender, blog, user }) {
     }
   }
 
-  // if (!blog.average) {
-  //   return <div></div>;
-  // }
-
-  // const average = blog.average;
+  if (!blog) {
+    return <div></div>;
+  }
 
   return (
     <div className={style.container}>

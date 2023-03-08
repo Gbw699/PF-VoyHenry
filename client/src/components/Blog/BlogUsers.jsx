@@ -31,8 +31,7 @@ export default function BlogUsers() {
             to={`/users/${user.nickName}`}
           >
             <UserCard
-              nickName={user.nickName}
-              image={user.image}
+              user={user}
             />
           </Link>
         );

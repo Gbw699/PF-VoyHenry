@@ -4,9 +4,7 @@ import ProfileAboutMe from "./ProfileAboutMe";
 import ProfileInfo from "./ProfileInfo";
 import ProfileLatestAssistedPlans from "./ProfileLatestAssistedPlans";
 import ProfileLatestReviews from "./ProfileLatestReviews";
-import { ProfileMyFriendsActivity } from "./ProfileMyFriendsActivity";
 import ProfileMyPlans from "./ProfileMyPlans";
-import profileData from "../../profileData.json";
 import style from "./ProfileSection.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -58,26 +56,29 @@ export default function ProfileSection() {
       </div>
       <div className={style.infoCont}>
         <div className={style.friendsAct}>
-          <h6 className={style.title}>Personas de mi interés</h6>
+          <h6 className={style.title}>Usuarios que sigues</h6>
           <hr
             color="#F1E100"
             width="100%"
           />
-          {following.length === 0
-            ? "No tienes ninguna persona de mi interés"
-            : following.map((element) => (
+          <div className={style.friendsCont}>
+            {following.length === 0 ? (
+              <p className={style.message}>Aún no sigues a nadie.</p>
+            ) : (
+              following.map((element) => (
                 <Link
                   key={element.id}
                   to={`/users/${element.nickName}`}
+                  className={style.friendLink}
                 >
-                  <img
-                    src={element.image}
-                    alt={`${element.firstName} ${element.lastName}`}
-                    title={`${element.firstName} ${element.lastName}`}
-                    loading="lazy"
+                  <div
+                    className={style.friendImg}
+                    style={{ backgroundImage: `url(${element.image})` }}
                   />
                 </Link>
-              ))}
+              ))
+            )}
+          </div>
         </div>
         <div className={style.activityCont}>
           <div>
@@ -95,20 +96,24 @@ export default function ProfileSection() {
               width="100%"
             />
             <div className={style.plansCont}>
-              {favorites.length === 0
-                ? "No tienes ningún plan en favoritos"
-                : favorites.map((element) => (
-                    <Link
-                      key={element.id}
-                      to={`/plans/${element.id}`}
-                      className={style.link}
-                    >
-                      <ProfileLatestAssistedPlans
-                        image={element.mainImage}
-                        name={element.title}
-                      />
-                    </Link>
-                  ))}
+              {favorites.length === 0 ? (
+                <p className={style.message}>
+                  Aún no has agregado ningún plan en favoritos.
+                </p>
+              ) : (
+                favorites.map((element) => (
+                  <Link
+                    key={element.id}
+                    to={`/plans/${element.id}`}
+                    className={style.link}
+                  >
+                    <ProfileLatestAssistedPlans
+                      image={element.mainImage}
+                      name={element.title}
+                    />
+                  </Link>
+                ))
+              )}
             </div>
           </div>
           <div>
@@ -140,34 +145,38 @@ export default function ProfileSection() {
               />
             </div>
             <div className={style.plansCont}>
-              {morePlans && userPlans.length === 0
-                ? "No has creado ningún plan."
-                : userPlans.slice(0, 8).map((element) => (
-                    <Link
-                      key={element.id}
-                      to={`/plans/${element.id}`}
-                      className={style.link}
-                    >
-                      <ProfileMyPlans
-                        myPlansImage={element.mainImage}
-                        myPlansName={element.title}
-                      />
-                    </Link>
-                  ))}
-              {!morePlans && userPlans.length === 0
-                ? "No has creado ningún plan"
-                : userPlans.map((element) => (
-                    <Link
-                      key={element.id}
-                      to={`/plans/${element.id}`}
-                      className={style.link}
-                    >
-                      <ProfileMyPlans
-                        myPlansImage={element.mainImage}
-                        myPlansName={element.title}
-                      />
-                    </Link>
-                  ))}
+              {morePlans && userPlans.length === 0 ? (
+                <p className={style.message}>Aún no has creado ningún plan.</p>
+              ) : (
+                userPlans.slice(0, 8).map((element) => (
+                  <Link
+                    key={element.id}
+                    to={`/plans/${element.id}`}
+                    className={style.link}
+                  >
+                    <ProfileMyPlans
+                      myPlansImage={element.mainImage}
+                      myPlansName={element.title}
+                    />
+                  </Link>
+                ))
+              )}
+              {!morePlans && userPlans.length === 0 ? (
+                <p className={style.message}>Aún no has creado ningún plan.</p>
+              ) : (
+                userPlans.map((element) => (
+                  <Link
+                    key={element.id}
+                    to={`/plans/${element.id}`}
+                    className={style.link}
+                  >
+                    <ProfileMyPlans
+                      myPlansImage={element.mainImage}
+                      myPlansName={element.title}
+                    />
+                  </Link>
+                ))
+              )}
             </div>
           </div>
           <div>
@@ -177,21 +186,25 @@ export default function ProfileSection() {
               width="100%"
             />
             <div className={style.plansCont}>
-              {userBlogs.length === 0
-                ? "No has realizado ninguna reseña"
-                : userBlogs.map((element) => (
-                    <Link
-                      key={element.id}
-                      to={`/blog/${element.id}`}
-                    >
-                      <ProfileLatestReviews
-                        image={element.image}
-                        name={element.title}
-                        description={element.content}
-                        assessment="50"
-                      />
-                    </Link>
-                  ))}
+              {userBlogs.length === 0 ? (
+                <p className={style.message}>
+                  Aún no has realizado una reseña.
+                </p>
+              ) : (
+                userBlogs.map((element) => (
+                  <Link
+                    key={element.id}
+                    to={`/blog/${element.id}`}
+                  >
+                    <ProfileLatestReviews
+                      image={element.image}
+                      name={element.title}
+                      description={element.content}
+                      assessment="50"
+                    />
+                  </Link>
+                ))
+              )}
             </div>
           </div>
         </div>
