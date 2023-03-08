@@ -33,6 +33,10 @@ class blogService {
       options.where.date = { [Op.eq]: `${query.date}` };
     }
 
+    if (query.contains) {
+      options.where.title = { [Op.iLike]: `%${query.contains}%` };
+    }
+
     if (query.order) {
       if (query.order === 'alfabetico') {
         options.order = [['title', 'ASC']];
