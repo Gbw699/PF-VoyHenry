@@ -70,6 +70,7 @@ export default function BlogForm({ open, close, setState }) {
             <Field
               name="content"
               as="textarea"
+              style={{resize: "none"}}
               placeholder="Escribe la reseña"
             />
             <ErrorMessage name="content" />
@@ -79,13 +80,6 @@ export default function BlogForm({ open, close, setState }) {
             >
               Valoración
             </label>
-            {/* <Field
-              name="stars"
-              type="number"
-              min="1"
-              max="5"
-              step="0.25"
-            /> */}
             <RatingField name="stars"/>
             <ErrorMessage name="stars" />
             <label
