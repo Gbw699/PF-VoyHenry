@@ -6,7 +6,12 @@ const sessionsService = new SessionsService()
 const messagesService = new MessagesService()
 
 const startSocketIo = async() =>{
-  await sessionsService.resetAllSessions()
+  try {
+    await sessionsService.resetAllSessions()
+  } catch (error) {
+    console.error(error)
+  }
+
   io.on('connection', (socket) => {
     console.log("Clientes conectados: ", io.engine.clientsCount)
 

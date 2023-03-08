@@ -1,3 +1,8 @@
+.conversationContainer{
+  height: 75.5vh;
+  overflow-y: auto;
+}
+
 .perfileImage{
   width: 6em;
   height: 6em;
@@ -5,10 +10,6 @@
   margin-right: 1.5em;
 }
 
-.conversationContainer{
-  height: 80vh;
-  overflow-y: auto;
-}
 
 .textContainer {
   display: flex;

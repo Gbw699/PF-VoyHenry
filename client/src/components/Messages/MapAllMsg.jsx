@@ -9,14 +9,16 @@ export default function MapAllMsg({ allMessage, setMessageSelect, setTo }) {
   };
 
   return (
-    <div
-      className={style.containerAllChats}
-    >
+    <>
       {
         allMessage.map((element) => {
 
           if (element.usersInfo[0].nickName === userInfo.nickName){
-            let to = element.usersInfo[1].nickName;
+            let to = {
+              nickName: element.usersInfo[1].nickName,
+              fullName: `${element.usersInfo[1].firstName} ${element.usersInfo[1].lastName}`,
+              image: element.usersInfo[1].image
+            };
             let lastMessage = null;
             if (element?.lastMessage.from === userInfo.nickName){
               lastMessage = `You: ${element.lastMessage.message}`;
@@ -49,7 +51,11 @@ export default function MapAllMsg({ allMessage, setMessageSelect, setTo }) {
 
           } else {
 
-            let to = element.usersInfo[0].nickName;
+            let to = {
+              nickName: element.usersInfo[0].nickName,
+              fullName: `${element.usersInfo[0].firstName} ${element.usersInfo[0].lastName}`,
+              image: element.usersInfo[0].image
+            };
             let lastMessage = null;
             if (element?.lastMessage.from === userInfo.nickName){
               lastMessage = `You: ${element.lastMessage.message}`;
@@ -81,7 +87,7 @@ export default function MapAllMsg({ allMessage, setMessageSelect, setTo }) {
           }
         })
       }
-    </div>
+    </>
   );
 
 }

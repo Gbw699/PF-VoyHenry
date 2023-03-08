@@ -2,6 +2,7 @@ import MsgSocketIo from "./MsgSocketIo";
 import AllMessages from "./AllMessages";
 import Conversation from "./Conversation";
 import SendMessage from "./SendMessage";
+import ToInfo from "./ToInfo";
 import { useState } from "react";
 import style from "./MsgState.module.css";
 
@@ -11,7 +12,7 @@ export default function MsgState() {
   const [ messageSelect, setMessageSelect ] = useState(null);
   const [ conversation, setConversation ] = useState([]);
   const [ to, setTo ] = useState(null);
-
+  console.log(messageSelect)
   return (
     <>
       <MsgSocketIo
@@ -32,6 +33,13 @@ export default function MsgState() {
         <div
           className={style.conversationContainer}
         >
+          {
+            to !== null
+            && <ToInfo
+              to={to}
+            >
+            </ToInfo>
+          }
           <Conversation
             setConversation={setConversation}
             conversation={conversation}
@@ -42,6 +50,8 @@ export default function MsgState() {
           { 
             messageSelect !== null
             && <SendMessage
+            messageSelect={messageSelect}
+            setMessageSelect={setMessageSelect}
             to={to}
             />
           }

@@ -1,7 +1,9 @@
 import AllMsgAxios from "./AllMsgAxios";
 import MapAllMsg from "./MapAllMsg";
+import style from "./AllMessages.module.css";
+import CreateNewMessage from "./CreateNewMessage";
 
-export default function AllMessages({ allMessage, setAllMessage, setMessageSelect, setTo, newMenssage}) {
+export default function AllMessages({ allMessage, setAllMessage, setMessageSelect, setTo, newMenssage, setConversation}) {
 
   return (
     <>
@@ -10,13 +12,23 @@ export default function AllMessages({ allMessage, setAllMessage, setMessageSelec
         setAllMessage={setAllMessage}
         newMenssage={newMenssage}
         />
-      <MapAllMsg
-        setTo={setTo}
-        setMessageSelect={setMessageSelect}
-        allMessage={allMessage}
+      <div
+      className={style.containerAllChats}
       >
-
-      </MapAllMsg>
+        <CreateNewMessage
+          setTo={setTo}
+          allMessage={allMessage}
+          setMessageSelect={setMessageSelect}
+          setConversation={setConversation}
+        >
+        </CreateNewMessage>
+        <MapAllMsg
+          setTo={setTo}
+          setMessageSelect={setMessageSelect}
+          allMessage={allMessage}
+        >
+        </MapAllMsg>
+      </div>
     </>
   );
 

@@ -1,0 +1,12 @@
+.inputContainer {
+  height: 4.5em;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  margin: auto;
+  width: 80%;
+  height: 70%;
+  padding-left: 1em;
+}
