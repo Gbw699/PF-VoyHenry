@@ -21,8 +21,6 @@ export const EditProfileSection = ({
   setProvinces,
   selectedCountry,
   setSelectedCountry,
-  selectedProvince,
-  setSelectedProvince,
 }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const nickName = user.nickName;
@@ -50,7 +48,17 @@ export const EditProfileSection = ({
       .then((result) => {
         if (result.isConfirmed) {
           dispatch(
-            editUser({ firstName, lastName, image, about, nickName }, nickName)
+            editUser(
+              {
+                firstName,
+                lastName,
+                image,
+                about,
+                nickName,
+                nationality: selectedCountry,
+              },
+              nickName
+            )
           );
           localStorage.setItem(
             "user",
@@ -61,6 +69,7 @@ export const EditProfileSection = ({
               image: image,
               nickName: nickName,
               about: about,
+              nationality: selectedCountry,
             })
           );
           swalWithBootstrapButtons.fire(
@@ -112,8 +121,6 @@ export const EditProfileSection = ({
                 setProvinces,
                 selectedCountry,
                 setSelectedCountry,
-                selectedProvince,
-                setSelectedProvince,
               }}
             />
             <p className={style.title}>Sobre mí</p>

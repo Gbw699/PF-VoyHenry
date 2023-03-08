@@ -64,7 +64,7 @@ export default function ProfileSection() {
             width="100%"
           />
           {following.length === 0
-            ? "No tengo ninguna persona de mi interés"
+            ? "No tienes ninguna persona de mi interés"
             : following.map((element) => (
                 <Link
                   key={element.id}
@@ -96,7 +96,7 @@ export default function ProfileSection() {
             />
             <div className={style.plansCont}>
               {favorites.length === 0
-                ? "No tengo ningún plan en favoritos"
+                ? "No tienes ningún plan en favoritos"
                 : favorites.map((element) => (
                     <Link
                       key={element.id}
@@ -141,7 +141,7 @@ export default function ProfileSection() {
             </div>
             <div className={style.plansCont}>
               {morePlans && userPlans.length === 0
-                ? "No he creado ningún plan."
+                ? "No has creado ningún plan."
                 : userPlans.slice(0, 8).map((element) => (
                     <Link
                       key={element.id}
@@ -155,7 +155,7 @@ export default function ProfileSection() {
                     </Link>
                   ))}
               {!morePlans && userPlans.length === 0
-                ? "No he creado ningún plan"
+                ? "No has creado ningún plan"
                 : userPlans.map((element) => (
                     <Link
                       key={element.id}
@@ -178,7 +178,7 @@ export default function ProfileSection() {
             />
             <div className={style.plansCont}>
               {userBlogs.length === 0
-                ? "No he realizado ninguna reseña"
+                ? "No has realizado ninguna reseña"
                 : userBlogs.map((element) => (
                     <Link
                       key={element.id}
