@@ -37,7 +37,7 @@ class MailerService {
 
   async sendRecoveryMail(user, token) {
 
-    const link = `http://localhost:3000/changePass?token=${token}`;
+    const link = `https://pf-voy-henry.vercel.app/changePass?token=${token}`;
 
     const mail = {
       from: MAIL,
