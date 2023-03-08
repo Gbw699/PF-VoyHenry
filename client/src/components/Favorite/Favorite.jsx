@@ -15,7 +15,7 @@ export default function Favorite() {
 
   const getFavorites = async () => {
     const response = await axios.get(
-      `http://localhost:3001/api/v1/plans/${user.nickName}/Plansfavorite`
+      `/api/v1/plans/${user.nickName}/Plansfavorite`
     );
     setFavorites(response.data);
   };

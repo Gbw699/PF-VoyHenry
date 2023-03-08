@@ -8,7 +8,7 @@ let socket;
 export default function Connect() {
   useEffect(() => {
     if (localStorage.getItem("user") && document.cookie !== "" && userInfo.nickName !== undefined) {
-      socket = io("http://localhost:3001", {
+      socket = io("https://voyhenry.fly.dev", {
         auth: {
           nickName: userInfo?.nickName,
           completeName: `${userInfo?.firstName} ${userInfo?.lastName}`,

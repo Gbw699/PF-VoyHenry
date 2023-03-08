@@ -19,7 +19,7 @@ export default function ShoppingCartSection() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/v1/products/checkout",
+        "/api/v1/products/checkout",
         data
       );
       window.location.href = response.data;

@@ -138,7 +138,7 @@ export default function DetailPlan() {
 
   async function getFavorites() {
     const response = await axios.get(
-      `http://localhost:3001/api/v1/plans/${userSession.nickName}/Plansfavorite`
+      `/api/v1/plans/${userSession.nickName}/Plansfavorite`
     );
     setFavorites(response.data);
   }
