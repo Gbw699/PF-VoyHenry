@@ -7,20 +7,11 @@ import style from "./Developers.module.css";
 export default function LienSanchez() {
   return (
     <div className={style.container}>
-      <div className={style.card}>
-        <img
-          className={style.cardFacu}
-          src={lienSanchezImg}
-          alt="Lien Silvio Sanchez"
-          title="Lien Silvio Sanchez"
-          loading="lazy"
-        />
-      </div>
-      <hr
-        width="0%"
-        color="black"
+      <div
+        className={style.cardImg}
+        style={{ backgroundImage: `url(${lienSanchezImg})` }}
       />
-      <div className={style.container}>
+      <div className={style.cardCont}>
         <div className={style.links}>
           <a
             className={style.img}
@@ -52,8 +43,8 @@ export default function LienSanchez() {
           </a>
         </div>
         <div className={style.description}>
-          <h5>Lien Silvio Sanchez</h5>
-          <p>Full Stack Web Developer</p>
+          <h5 className={style.name}>Lien S. Sanchez</h5>
+          <p className={style.job}>Full Stack Web Developer</p>
         </div>
       </div>
     </div>

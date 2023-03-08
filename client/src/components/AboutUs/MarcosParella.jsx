@@ -4,25 +4,19 @@ import gitHubImg from "../../assets/github.png";
 import linkedInImg from "../../assets/linkedin.png";
 import portFolioImg from "../../assets/portfolio.png";
 import style from "./Developers.module.css";
-import { useEffect, useState } from "react";
 
 export default function MarcosParella() {
   return (
     <div className={style.container}>
-      <div className={style.card}>
-        <img
-          className={style.cardFacu}
-          src={MarcosParellaImg}
-          alt="Marcos Hernan Parella"
-          title="Marcos Hernan Parella"
-          loading="lazy"
-        />
-      </div>
+      <div
+        className={style.cardImg}
+        style={{ backgroundImage: `url(${MarcosParellaImg})` }}
+      />
       <hr
         width="0%"
         color="black"
       />
-      <div className={style.container}>
+      <div className={style.cardCont}>
         <div className={style.links}>
           <a
             className={style.img}
@@ -68,8 +62,8 @@ export default function MarcosParella() {
           </a>
         </div>
         <div className={style.description}>
-          <h5>Marcos Hernan Parella</h5>
-          <p>Full Stack Web Developer</p>
+          <h5 className={style.name}>Marcos H. Parella</h5>
+          <p className={style.job}>Full Stack Web Developer</p>
         </div>
       </div>
     </div>

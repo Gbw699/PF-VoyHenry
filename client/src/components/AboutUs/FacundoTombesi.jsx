@@ -7,18 +7,11 @@ import style from "./Developers.module.css";
 export default function FacundoTombesi() {
   return (
     <div className={style.container}>
-      <img
-        className={style.cardFacu}
-        src={facundoTombesiImg}
-        alt="Facundo Martín Tombesi"
-        title="Facundo Martín Tombesi"
-        loading="lazy"
+      <div
+        className={style.cardImg}
+        style={{ backgroundImage: `url(${facundoTombesiImg})` }}
       />
-      <hr
-        width="0%"
-        color="black"
-      />
-      <div className={style.container}>
+      <div className={style.cardCont}>
         <div className={style.links}>
           <a
             className={style.img}
@@ -50,8 +43,8 @@ export default function FacundoTombesi() {
           </a>
         </div>
         <div className={style.description}>
-          <h5>Facundo Martín Tombesi</h5>
-          <p>Full Stack Web Developer</p>
+          <h5 className={style.name}>Facundo M. Tombesi</h5>
+          <p className={style.job}>Full Stack Web Developer</p>
         </div>
       </div>
     </div>

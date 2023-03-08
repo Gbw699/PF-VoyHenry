@@ -285,26 +285,6 @@ export default function DetailPlan() {
         </div>
       </div>
       <div className={style.buttons}>
-        <button className={style.submitBtn}>Unirse</button>
-        {!isFav && (
-          <button
-            onClick={addFavorite}
-            className={style.addBtn}
-          >
-            Agregar a favoritos
-          </button>
-        )}
-        {isFav && (
-          <button
-            onClick={deleteFavorite}
-            className={style.addBtn}
-          >
-            Eliminar de favoritos
-          </button>
-        )}
-        <ButtonShare
-          text={`¡Mira este plan que encontré en voyHENRY! ${plan.title}`}
-        />
         {/* <button className={style.submitBtn}>Unirse</button> */}
         {!isFav && (
           <button

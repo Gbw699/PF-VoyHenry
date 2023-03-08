@@ -3,24 +3,21 @@ import mauricioFonsecaImg from "../../assets/mauricioFonseca.jpg";
 import gitHubImg from "../../assets/github.png";
 import linkedInImg from "../../assets/linkedin.png";
 import style from "./Developers.module.css";
-import { useEffect, useState } from "react";
+
 export default function MauricioFonseca() {
   return (
     <div className={style.container}>
-      <div className={style.card}>
-        <img
-          className={style.cardFacu}
-          src={mauricioFonsecaImg}
-          alt="Mauricio Fonseca"
-          title="Mauricio Fonseca"
-          loading="lazy"
+      <div className={style.container}>
+        <div
+          className={style.cardImg}
+          style={{ backgroundImage: `url(${mauricioFonsecaImg})` }}
         />
       </div>
       <hr
         width="0%"
         color="black"
       />
-      <div className={style.container}>
+      <div className={style.cardCont}>
         <div className={style.links}>
           <a
             className={style.img}
@@ -52,8 +49,8 @@ export default function MauricioFonseca() {
           </a>
         </div>
         <div className={style.description}>
-          <h5>Mauricio Fonseca</h5>
-          <p>Full Stack Web Developer</p>
+          <h5 className={style.name}>Mauricio Fonseca</h5>
+          <p className={style.job}>Full Stack Web Developer</p>
         </div>
       </div>
     </div>
