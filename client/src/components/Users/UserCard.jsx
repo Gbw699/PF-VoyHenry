@@ -33,7 +33,6 @@ export default function UserCard({
       setFollowed(followed - 1);
     }
   };
-
   return (
     <div>
       <div className={style.profileCont}>

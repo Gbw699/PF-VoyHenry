@@ -14,6 +14,7 @@ import {
   getUserBlogs,
   getFollowing,
   getFollowed,
+  getFavorites,
 } from "../../redux/slices/userSlice/thunks";
 
 export default function ProfileSection() {
@@ -25,14 +26,17 @@ export default function ProfileSection() {
   const userBlogs = useSelector((state) => state.userStore.userBlogs);
   const followed = useSelector((state) => state.userStore.userFollowed);
   const following = useSelector((state) => state.userStore.userFollowing);
-  const [morePlans, setMorePlans] = useState(true);
+  const favorites = useSelector((state) => state.userStore.userFavorite);
 
+  const [morePlans, setMorePlans] = useState(true);
   useEffect(() => {
+    dispatch(getFavorites(user?.nickName));
     dispatch(getUserPlans(user?.nickName));
     dispatch(getUserBlogs(user?.nickName));
     dispatch(getFollowing(user?.nickName));
     dispatch(getFollowed(user?.nickName));
   }, []);
+  console.log(following);
 
   const handleMorePlans = () => {
     setMorePlans(!morePlans);
@@ -61,20 +65,19 @@ export default function ProfileSection() {
             color="#F1E100"
             width="100%"
           />
-          {/* //!! FALTA CONECTAR CON EL BACK-END PORQUE NO ESTÁ */}
-          {profileData.data.map((element) =>
-            element.myFriends.map((element2) => (
-              <Link
-                key={element2.id}
-                to={`/plans/${element2.id}`}
-              >
-                <ProfileMyFriendsActivity
-                  image={element2.latestAssistedPlansImg}
-                  name={element2.latestAssistedPlansName}
-                />
-              </Link>
-            ))
-          )}
+          {following.map((element) => (
+            <Link
+              key={element.id}
+              to={`/users/${element.nickName}`}
+            >
+              <img
+                src={element.image}
+                alt={`${element.firstName} ${element.lastName}`}
+                title={`${element.firstName} ${element.lastName}`}
+                loading="lazy"
+              />
+            </Link>
+          ))}
         </div>
         <div className={style.activityCont}>
           <div>
@@ -86,27 +89,24 @@ export default function ProfileSection() {
             <ProfileAboutMe aboutMe={user.about} />
           </div>
           <div>
-            <h6 className={style.title}>Últimos planes asistidos</h6>
+            <h6 className={style.title}>Planes en favoritos</h6>
             <hr
               color="#F1E100"
               width="100%"
             />
-            {/* //!! FALTA CONECTAR CON EL BACK-END PORQUE NO ESTÁ */}
             <div className={style.plansCont}>
-              {profileData.data.map((element) =>
-                element.latestAssistedPlans.map((element2) => (
-                  <Link
-                    key={element2.id}
-                    to={`/plans/${element2.id}`}
-                    className={style.link}
-                  >
-                    <ProfileLatestAssistedPlans
-                      image={element2.latestAssistedPlansImg}
-                      name={element2.latestAssistedPlansName}
-                    />
-                  </Link>
-                ))
-              )}
+              {favorites.map((element) => (
+                <Link
+                  key={element.id}
+                  to={`/plans/${element.id}`}
+                  className={style.link}
+                >
+                  <ProfileLatestAssistedPlans
+                    image={element.mainImage}
+                    name={element.title}
+                  />
+                </Link>
+              ))}
             </div>
           </div>
           <div>

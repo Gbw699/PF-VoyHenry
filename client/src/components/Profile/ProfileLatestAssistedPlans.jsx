@@ -8,7 +8,6 @@ export default function ProfileLatestAssistedPlans({ image, name }) {
   useEffect(() => {
     setBackgroundImage(`url(${image})`);
   });
-
   return (
     <div className={style.container}>
       <div
