@@ -1,0 +1,103 @@
+.container {
+  z-index: 1;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 0, 0.7);
+}
+
+.writeCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  box-shadow: 3px 3px 5px 2px #b1b1b1;
+  border: 1px solid #707070;
+  border-radius: 20px;
+  padding: 3%;
+  width: 50%;
+  height: 50em;
+}
+
+.title {
+  color: #707070;
+  font-size: 150%;
+  font-weight: 300;
+  margin-bottom: 0px;
+}
+
+.formCont {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3%;
+}
+
+.formLabel {
+  color: #707070;
+  font-size: 90%;
+  font-weight: 300;
+}
+
+.submitBtnDeactivated {
+  background-color: #4e4d41;
+  border: 2px solid #4e4d41;
+  border-radius: 10px;
+  padding: 1% 2%;
+  color: #ffffff;
+  width: 20%;
+  align-self: center;
+  margin-top: 3%;
+  cursor: no-drop;
+}
+
+.submitBtn {
+  background-color: #f1e100;
+  border: 2px solid #f1e100;
+  border-radius: 10px;
+  padding: 1% 2%;
+  color: #707070;
+  width: 20%;
+  align-self: center;
+  margin-top: 3%;
+  cursor: pointer;
+}
+
+.submitBtn:hover {
+  background-color: #ffee00;
+  border: 2px solid #ffee00;
+}
+
+.closeBtn {
+  background-color: white;
+  border: 2px solid #f1e100;
+  border-radius: 10px;
+  padding: 1% 2%;
+  color: #707070;
+  width: 15%;
+  align-self: center;
+  margin-top: 5%;
+  cursor: pointer;
+}
+
+.closeBtn:hover {
+  background-color: #707070;
+  border: 2px solid #707070;
+  color: white;
+}
+
+.imgContainer {
+  width: 25%;
+  height: 150px;
+  overflow: hidden;
+}
+
+.img {
+  width: auto;
+  height: 150px;
+}

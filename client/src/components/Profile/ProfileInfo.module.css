@@ -8,14 +8,14 @@
   padding: 2em;
   background-color: white;
   background-size: cover;
-  width: 100em;
+  width: 100%;
 }
 
 .mainInfo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .imgCont {

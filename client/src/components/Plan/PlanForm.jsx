@@ -15,18 +15,22 @@ export default function FormSignUp(props) {
   const [url, setUrl] = useState(noPhoto);
   const dispatch = useDispatch();
   const currentDate = new Date();
+
   const greaterDate = `${currentDate.getFullYear()}-${
     currentDate.getMonth() + 1
   }-${currentDate.getDate()}`;
+
   const handleClick = () => {
     props.setShowPlanForm(false);
   };
+
   const handleCountryChange = (event) => {
     const provincesData = countries.find(
       (country) => country.country === event.target.value
     );
     setProvinces(provincesData.province);
   };
+
   const [state, setState] = useState({
     showDescription: true,
     showLocation: "",
@@ -53,6 +57,7 @@ export default function FormSignUp(props) {
 
     return toDay;
   };
+
   return (
     <div className={style.container}>
       <div>
@@ -104,6 +109,7 @@ export default function FormSignUp(props) {
               state: "En planeacion",
             };
             setUrl("");
+            handleClick();
             dispatch(postPlan(obj));
           }}
         >
@@ -166,7 +172,7 @@ export default function FormSignUp(props) {
                       name="summary"
                       type="text"
                       as="textarea"
-                      rows="4"
+                      rows="2"
                       className={style.formInputDescription}
                     />
                     <ErrorMessage name="summary" />
@@ -181,7 +187,7 @@ export default function FormSignUp(props) {
                       name="description"
                       type="text"
                       as="textarea"
-                      rows="12"
+                      rows="5"
                       className={style.formInputDescription}
                     />
                     <ErrorMessage name="description" />
@@ -214,7 +220,7 @@ export default function FormSignUp(props) {
                     <Field
                       name="country"
                       as="select"
-                      className={style.formInputs}
+                      className={style.formInputsSmall}
                       onClick={handleCountryChange}
                     >
                       <option value="">Selecciona un país</option>
@@ -237,7 +243,7 @@ export default function FormSignUp(props) {
                     <Field
                       name="province"
                       as="select"
-                      className={style.formInputs}
+                      className={style.formInputsSmall}
                     >
                       <option value="">Selecciona una provincia</option>
                       {provinces.map((province) => (
@@ -288,7 +294,7 @@ export default function FormSignUp(props) {
                     <Field
                       name="eventDate"
                       type="date"
-                      className={style.formInputs}
+                      className={style.formInputsSmall}
                       min={getDateActually()}
                     />
                     <ErrorMessage name="eventDate" />
@@ -312,15 +318,6 @@ export default function FormSignUp(props) {
           Volver
         </button>
       </div>
-      {/* <div>
-        <img
-          className={style.imageForm}
-          src={url}
-          alt=""
-          width="600em"
-          height="400em"
-        />
-      </div> */}
     </div>
   );
 }

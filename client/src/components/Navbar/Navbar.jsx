@@ -17,11 +17,15 @@ export default function NavBar() {
       <NavLink to="/home">
         <img
           src={img}
-          alt="img"
+          alt="voyHENRY"
+          title="voyHENRY"
           className={style.img}
+          width="100%"
+          height="100%"
+          loading="lazy"
         />
       </NavLink>
-      {user.role === "admin" && (
+      {user?.role === "admin" && (
         <NavLink
           to={"/admin"}
           className={navLinkClassName}
@@ -29,7 +33,8 @@ export default function NavBar() {
           <h4>ADMIN</h4>
         </NavLink>
       )}
-      {location.pathname === "/blog" && <SearchBar />}
+      {location.pathname === "/blog" && <SearchBar placeholder="Buscar blog"/>}
+      {location.pathname === "/plans" && <SearchBar placeholder="Buscar plan"/>}
       <div className={style.linksCont}>
         <NavLink
           to={"/home"}
@@ -68,7 +73,10 @@ export default function NavBar() {
           <img
             src={imgCarrito}
             width="20px"
+            height="100%"
             alt="Carrito de compras"
+            title="Carrito de compras"
+            loading="lazy"
           />
         </NavLink>
         <AccountMenu />

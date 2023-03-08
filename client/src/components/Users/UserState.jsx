@@ -7,6 +7,8 @@ export default function UserState() {
   const [users, setUsers] = useState([]);
   const [following, setFollowing] = useState([]);
   const [followed, setFollowed] = useState([]);
+  const [userFollowed, setUserFollowed] = useState([]);
+
   return (
     <>
       <AxiosUsers
@@ -25,6 +27,8 @@ export default function UserState() {
           followed,
           setFollowed,
           users,
+          userFollowed,
+          setUserFollowed,
         }}
       />
     </>

@@ -118,7 +118,9 @@ export default function DetailMarketPlaceImgPrice({
               <img
                 src={mercadoPagoImg}
                 alt="Mercado Pago"
+                title="Mercado Pago"
                 className={style.methodsImg}
+                loading="lazy"
               />
             </a>
             <a
@@ -130,7 +132,9 @@ export default function DetailMarketPlaceImgPrice({
               <img
                 src={stripeImg}
                 alt="Stripe"
+                title="Stripe"
                 className={style.methodsImg}
+                loading="lazy"
               />
             </a>
           </div>

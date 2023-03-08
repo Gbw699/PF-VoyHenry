@@ -3,25 +3,15 @@ import facundoTombesiImg from "../../assets/facundoTombesi.png";
 import gitHubImg from "../../assets/github.png";
 import linkedInImg from "../../assets/linkedin.png";
 import style from "./Developers.module.css";
-import { useEffect, useState } from "react";
+
 export default function FacundoTombesi() {
-  const [backgroundImage, setBackgroundImage] = useState("");
-
-  useEffect(() => {
-    setBackgroundImage(`url(${facundoTombesiImg})`);
-  });
-
   return (
     <div className={style.container}>
       <div
-        className={style.cardFacu}
-        style={{ backgroundImage: backgroundImage }}
-      ></div>
-      <hr
-        width="85%"
-        color="#F1E100"
+        className={style.cardImg}
+        style={{ backgroundImage: `url(${facundoTombesiImg})` }}
       />
-      <div className={style.container}>
+      <div className={style.cardCont}>
         <div className={style.links}>
           <a
             className={style.img}
@@ -33,24 +23,28 @@ export default function FacundoTombesi() {
               className={style.img}
               src={linkedInImg}
               alt="LinkedIn"
+              title="LinkedIn"
+              loading="lazy"
             />
           </a>
           <a
-            className={style.img}
+            className={style.img2}
             href="https://github.com/FacuTombesi"
             rel="noreferrer"
             target="_blank"
           >
             <img
-              className={style.img}
+              className={style.img2}
               src={gitHubImg}
               alt="GitHub"
+              title="GitHub"
+              loading="lazy"
             />
           </a>
         </div>
         <div className={style.description}>
-          <h5>Facundo Martín Tombesi</h5>
-          <p>Full Stack Web Developer</p>
+          <h5 className={style.name}>Facundo M. Tombesi</h5>
+          <p className={style.job}>Full Stack Web Developer</p>
         </div>
       </div>
     </div>

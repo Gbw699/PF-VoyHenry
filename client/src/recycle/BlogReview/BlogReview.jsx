@@ -1,3 +1,4 @@
+import { Rating } from "@mui/material";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import style from "./BlogReview.module.css";
@@ -6,7 +7,10 @@ export default function BlogReview({ blog }) {
   return (
     <div className={style.container}>
       <div className={style.reviewCont}>
-        <Link to={`/users/${blog.userNickName}`}>
+        <Link
+          aria-label="Ver más detalles de esta reseña"
+          to={`/users/${blog.userNickName}`}
+        >
           <div
             className={style.userImg}
             style={{ backgroundImage: `url(${blog.userimage})` }}
@@ -34,7 +38,7 @@ export default function BlogReview({ blog }) {
               <p className={style.infoDescription}>{blog.content}</p>
               <p className={style.infoValoration}>
                 Valoración:{" "}
-                <span className={style.infoValNum}>{blog.average}</span>
+                <span className={style.infoValNum}><Rating defaultValue={blog?.average} value={blog?.average}/></span>
               </p>
             </div>
           </NavLink>

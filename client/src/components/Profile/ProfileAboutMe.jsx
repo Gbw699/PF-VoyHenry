@@ -4,7 +4,7 @@ import style from "./ProfileAboutMe.module.css";
 export default function ProfileAboutMe({ aboutMe }) {
   return (
     <div className={style.aboutMe}>
-      <p>{aboutMe}</p>
+      {!aboutMe ? <p>No has escrito nada sobre ti.</p> : <p>{aboutMe}</p>}
     </div>
   );
 }

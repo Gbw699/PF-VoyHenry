@@ -46,18 +46,23 @@
 }
 
 .formInputs {
-  color: #707070;
-  font-size: 80%;
-  font-weight: 600;
-  color: black;
+  padding: 0.3em;
+  font-size: 130%;
+  font-weight: 300;
+  color: #b1b1b1;
   border-radius: 5px;
+  resize: none;
+}
+
+.formInputsSmall{
+  font-size: 130%;
 }
 
 .formInputDescription {
-  color: #707070;
-  font-size: 80%;
-  font-weight: 600;
-  color: black;
+  padding: 0.3em;
+  font-size: 130%;
+  font-weight: 300;
+  color: #b1b1b1;
   border-radius: 5px;
   resize: none;
 }

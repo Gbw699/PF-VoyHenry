@@ -1,9 +1,15 @@
 import React, { useEffect, useRef } from "react";
 import style from "./EditProfileImage.module.css";
 
-export default function EditProfileImage({ image, setImage }) {
+export default function EditProfileImage({
+  image,
+  setImage,
+  firstName,
+  lastName,
+}) {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
+
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
     widgetRef.current = cloudinaryRef.current.createUploadWidget(
@@ -18,15 +24,19 @@ export default function EditProfileImage({ image, setImage }) {
       }
     );
   }, []);
+
   return (
     <div className={style.container}>
-      <div className={style.img}>
+      <div className={style.subContainer}>
         <p className={style.title}>Imagen de perfil</p>
       </div>
       <div className={style.imagePerfil}>
         <img
+          className={style.img}
           src={image}
-          alt="Imagen de perfil"
+          alt={`${firstName} ${lastName}`}
+          title={`${firstName} ${lastName}`}
+          loading="lazy"
         />
       </div>
       <div>

@@ -17,7 +17,7 @@ export const getPlanById = (id) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`/api/v1/plans/${id}`);
-      dispatch(setPlanById(response.data.data.plan));
+      dispatch(setPlanById(response.data.data));
     } catch (error) {
       return console.log("No se pudo realizar la petición");
     }
@@ -58,6 +58,18 @@ export const postComment = (id, obj) => {
       window.alert("El comentario se envió correctamente");
     } catch (error) {
       console.error(error.message);
+    }
+  };
+};
+
+export const editPlan = (obj, id) => {
+  return async () => {
+    try {
+      await axios.patch(`/api/v1/plans/${id}`, {
+        ...obj,
+      });
+    } catch (error) {
+      return console.error(error.response);
     }
   };
 };

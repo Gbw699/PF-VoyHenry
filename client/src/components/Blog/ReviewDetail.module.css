@@ -42,7 +42,7 @@
 
 .reviewCont {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-top: 1em;
 }
 
@@ -63,7 +63,13 @@
   font-size: 100%;
 }
 
+.imgCont {
+  margin-bottom: 1em;
+}
+
 .img {
+  height: 100%;
+  width: 100%;
   border-radius: 20px;
   margin-right: 2em;
 }
@@ -71,14 +77,15 @@
 .title {
   color: #707070;
   font-weight: 500;
-  font-size: 140%;
-  margin-bottom: 10px;
+  font-size: 150%;
+  margin-bottom: 0px;
 }
 
 .blogContent {
   color: #707070;
   font-weight: 300;
   font-size: 110%;
+  margin-top: 1em;
 }
 
 .commentsCont {
@@ -86,13 +93,63 @@
   flex-direction: column;
   margin-top: 3em;
   margin-left: 5em;
-  width: 90%;
+  width: 95%;
 }
 
 .commentsTitle {
   color: #707070;
   font-size: 110%;
   font-weight: 500;
+}
+
+.input {
+  border: 1px solid #b1b1b1;
+  border-radius: 5px;
+  padding: 0.4em;
+  margin: 0.5em 0px;
+}
+
+.input::placeholder {
+  color: #b1b1b1;
+}
+
+.buttonsCont {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2em;
+}
+
+.editBtn {
+  align-self: center;
+  background-color: #f1e100;
+  border: 2px solid #f1e100;
+  border-radius: 10px;
+  padding: 0.5% 2%;
+  color: #707070;
+  width: 10%;
+  cursor: pointer;
+  margin-right: 2em;
+}
+
+.editBtn:hover {
+  background-color: white;
+  color: #707070;
+}
+
+.deleteBtn {
+  align-self: center;
+  background-color: #f22176;
+  border: 2px solid #f22176;
+  border-radius: 10px;
+  padding: 0.5% 2%;
+  color: white;
+  width: 15%;
+  cursor: pointer;
+}
+
+.deleteBtn:hover {
+  background-color: white;
+  color: #707070;
 }
 
 .backBtn {
@@ -111,4 +168,17 @@
   background-color: #707070;
   border: 2px solid #707070;
   color: white;
+}
+
+.inputTitle {
+  font-size: 150%;
+}
+
+.inputBlog {
+  font-size: 150%;
+}
+
+.textareaBlog {
+  font-size: 150%;
+  resize: none
 }

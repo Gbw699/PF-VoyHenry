@@ -21,6 +21,7 @@ export default function AccountMenu() {
 
   const handleLogOut = () => {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    localStorage.removeItem("user");
   };
 
   const handleClose = () => {
@@ -38,7 +39,10 @@ export default function AccountMenu() {
           aria-expanded={open ? "true" : undefined}
         >
           <Avatar
-            srcSet={user.image}
+            srcSet={user?.image}
+            alt={`${user?.firstName} ${user?.lastName}`}
+            title={`${user?.firstName} ${user?.lastName}`}
+            loading="lazy"
             sx={{ width: 32, height: 32 }}
           >
             I
@@ -76,7 +80,7 @@ export default function AccountMenu() {
             to={"/profile"}
             style={{ color: "#707070" }}
           >
-            {`${user.firstName} ${user.lastName}`}
+            {`${user?.firstName} ${user?.lastName}`}
           </NavLink>
         </MenuItem>
         <NavLink
@@ -96,7 +100,7 @@ export default function AccountMenu() {
           to="/profile/edit"
           style={{ color: "#707070" }}
         >
-          <MenuItem className={style.menuLinks}>Configuración</MenuItem>
+          <MenuItem className={style.menuLinks}>Editar perfil</MenuItem>
         </NavLink>
         {/* <MenuItem className={style.menuLinks}>🌞 - 🌛</MenuItem> */}
         <Divider />

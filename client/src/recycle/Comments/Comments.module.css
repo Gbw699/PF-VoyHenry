@@ -54,6 +54,12 @@
   cursor: pointer;
 }
 
+.emojiPicker{
+  position: absolute;
+  top: 130%;
+  right: 10rem;
+}
+
 .emojiBtn:hover {
   background-color: #f1e100;
 }

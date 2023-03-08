@@ -1,6 +1,11 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { getFollowed, getFollowing } from "../../redux/slices/userSlice/thunks";
+import { useDispatch } from "react-redux";
+import {
+  getFavoritesUser,
+  getFollowed,
+  getFollowing,
+} from "../../redux/slices/userSlice/thunks";
 
 const getEndpoint = (id) => {
   return id ? `/api/v1/users/${id}` : "/api/v1/users";
@@ -8,6 +13,7 @@ const getEndpoint = (id) => {
 
 export default function AxiosUsers({
   setUsers,
+  reRender,
   setUser,
   setPlans,
   setBlogs,
@@ -15,23 +21,21 @@ export default function AxiosUsers({
   user,
   following,
   setFollowing,
-  setFollowed,
 }) {
+  const dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {
       if (!id) {
         try {
-          const response = await axios.get(
-            `http://localhost:3001/api/v1/users/${user}/Following`
-          );
-          setFollowing(response.data);
+          const response = await axios.get(`/api/v1/users/${user}/following`);
+          setFollowing(response.data.data.data);
         } catch (error) {
           console.error(error);
         }
       }
     };
     fetchData();
-  }, [following.length]);
+  }, [following?.length]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,6 +60,21 @@ export default function AxiosUsers({
           } catch (error) {
             console.log("Error getting blogs: ", error.message);
           }
+          try {
+            dispatch(getFavoritesUser(id));
+          } catch (error) {
+            console.log(error.message);
+          }
+          try {
+            dispatch(getFollowing(id));
+          } catch (error) {
+            console.log(error.message);
+          }
+          try {
+            dispatch(getFollowed(id));
+          } catch (error) {
+            console.log(error.message);
+          }
         } else {
           setUsers(data.users);
         }
@@ -64,5 +83,5 @@ export default function AxiosUsers({
       }
     };
     fetchData();
-  }, [setUsers, setUser, setPlans, setBlogs, id, setFollowing]);
+  }, [setUsers, reRender, setUser, setPlans, setBlogs, id]);
 }

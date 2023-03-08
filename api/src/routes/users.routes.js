@@ -10,23 +10,26 @@ const service = new UsersService()
 
 /* Get all users */
 
-router.get('/', async (req, res, next) => {
+router.get('/', 
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const users = await service.find(req.query)
+      const users = await service.find(req.query)
 
-    res.json(users)
-  } catch (error) {
+      res.json(users)
+    } catch (error) {
 
-    next(error)
-  }
+      next(error)
+    }
 
 });
 
 /* Get user by nickName */
 
 router.get('/:nickName',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -46,6 +49,7 @@ router.get('/:nickName',
 /* Get AllBlogs by nickName */
 
 router.get('/:nickName/blogs',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -75,6 +79,7 @@ router.get('/:nickName/blogs',
 /* Get AllPlans by nickName */
 
 router.get('/:nickName/plans',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -114,9 +119,9 @@ router.post('/',
 /* update user info */
 
 router.patch('/:nickName',
+  passport.authenticate('jwt', {session: false}),
   validatorHandler(getUserSchema, 'params'),
   validatorHandler(updateSchema, "body"),
-  passport.authenticate('jwt', {session: false}),
   checkRoleClosure('nickName'),
   async (req, res, next) => {
 
@@ -137,8 +142,8 @@ router.patch('/:nickName',
 /* Delete user */
 
 router.delete('/:nickName',
-  validatorHandler(getUserSchema, 'params'),
   passport.authenticate('jwt', {session: false}),
+  validatorHandler(getUserSchema, 'params'),
   checkRoleClosure('nickName'),
   async (req, res, next) => {
 
@@ -158,23 +163,24 @@ router.delete('/:nickName',
 /* user follow user */
 
 router.post('/:nickName/follow',
-validatorHandler(getUserSchema, 'params'),
-validatorHandler(userFollowSchema, 'body'),
-  async (req, res, next) => {
+  passport.authenticate('jwt', { session: false }),
+  validatorHandler(getUserSchema, 'params'),
+  validatorHandler(userFollowSchema, 'body'),
+    async (req, res, next) => {
 
-    try {
+      try {
 
-      const {nickName} = req.params
+        const {nickName} = req.params
 
-      const body = req.body;
+        const body = req.body;
 
-      const userFollowUser = await service.follow(nickName,body)
+        const userFollowUser = await service.follow(nickName,body)
 
-      res.json(userFollowUser)
-    } catch (error) {
+        res.json(userFollowUser)
+      } catch (error) {
 
-      next(error)
-    }
+        next(error)
+      }
 
 });
 
@@ -182,6 +188,7 @@ validatorHandler(userFollowSchema, 'body'),
 
 router.get(
   '/:nickName/followed',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -200,6 +207,7 @@ router.get(
 
 router.get(
   '/:nickName/Following',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -218,6 +226,7 @@ router.get(
 
 router.delete(
   '/:nickName/follow',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getUserSchema, 'params'),
   validatorHandler(userFollowSchema, 'body'),
   async (req, res, next) => {

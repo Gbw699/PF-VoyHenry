@@ -1,5 +1,13 @@
 import axios from "axios";
-import { setAllUsers, setUser, setUserPlans, setUserBlogs } from "./userSlice";
+import {
+  setAllUsers,
+  setUserPlans,
+  setUserBlogs,
+  setUserFollowing,
+  setUserFollowed,
+  setUserFavorite,
+  setUsersFavorite,
+} from "./userSlice";
 
 export const getLogin = (obj) => {
   return async () => {
@@ -32,17 +40,6 @@ export const getAllUsers = () => {
   };
 };
 
-// export const getUser = (nickname) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(`/api/v1/users/${nickname}`);
-//       dispatch(setUser(response.data.data.user));
-//     } catch (error) {
-//       return window.alert("No se pudo hacer el pedido");
-//     }
-//   };
-// };
-
 export const postUser = (obj) => {
   return async () => {
     try {
@@ -50,7 +47,7 @@ export const postUser = (obj) => {
         ...obj,
       });
     } catch (error) {
-      console.log(error.message);
+      console.error(error.response);
     }
   };
 };
@@ -91,11 +88,9 @@ export const editUser = (obj, nickName) => {
 
 export const followUser = async (myNickName, userNickName) => {
   try {
-    const response = await axios.post(
-      `http://localhost:3001/api/v1/users/${userNickName}/follow`,
-      { userNickName: myNickName }
-    );
-    alert(`Following ${userNickName}`);
+    const response = await axios.post(`/api/v1/users/${userNickName}/follow`, {
+      userNickName: myNickName,
+    });
   } catch (error) {
     console.error(error);
   }
@@ -104,34 +99,62 @@ export const followUser = async (myNickName, userNickName) => {
 export const unfollowUser = async (myNickName, userNickName) => {
   try {
     const response = await axios.delete(
-      `http://localhost:3001/api/v1/users/${userNickName}/follow`,
+      `/api/v1/users/${userNickName}/follow`,
       { data: { userNickName: myNickName } }
     );
-    alert(`Unfollowing ${userNickName}`);
   } catch (error) {
     console.error(error.response.data.message);
   }
 };
 
-export const getFollowing = async (myNickName) => {
-  try {
-    const response = await axios.get(
-      `http://localhost:3001/api/v1/users/${myNickName}/Following`
-    );
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+export const getFollowing = (nickName) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/api/v1/users/${nickName}/following`);
+      dispatch(setUserFollowing(response.data.data.data));
+    } catch (error) {
+      dispatch(setUserFollowing([]));
+      console.error(error.response.data.message);
+    }
+  };
 };
 
-export const getFollowed = async (myNickName) => {
-  try {
-    const response = await axios.get(
-      `http://localhost:3001/api/v1/users/${myNickName}/followed`
-    );
-    console.log(response.data.data.followedUsers);
-    return response.data.data.followedUsers;
-  } catch (error) {
-    console.error(error);
-  }
+export const getFollowed = (myNickName) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/api/v1/users/${myNickName}/followed`);
+      dispatch(setUserFollowed(response.data.data.followedUsers));
+    } catch (error) {
+      dispatch(setUserFollowed([]));
+      console.error(error.response.data.message);
+    }
+  };
+};
+
+export const getFavorites = (myNickName) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(
+        `/api/v1/plans/${myNickName}/plansfavorite`
+      );
+      dispatch(setUserFavorite(response.data));
+    } catch (error) {
+      dispatch(setUserFavorite([]));
+      console.error(error);
+    }
+  };
+};
+
+export const getFavoritesUser = (userNickName) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(
+        `/api/v1/plans/${userNickName}/plansfavorite`
+      );
+      dispatch(setUsersFavorite(response.data));
+    } catch (error) {
+      dispatch(setUsersFavorite([]));
+      console.error(error);
+    }
+  };
 };

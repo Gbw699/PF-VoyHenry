@@ -11,6 +11,7 @@ export default function DetailMarketPlaceImg({ image, imageExtra, title }) {
           title={title}
           width="100em"
           height="100em"
+          loading="lazy"
         />
         {imageExtra.map((element, index) => (
           <div
@@ -23,6 +24,7 @@ export default function DetailMarketPlaceImg({ image, imageExtra, title }) {
               title={title}
               width="100em"
               height="100em"
+              loading="lazy"
             />
           </div>
         ))}
@@ -35,6 +37,7 @@ export default function DetailMarketPlaceImg({ image, imageExtra, title }) {
           title={title}
           width="90%"
           height="90%"
+          loading="lazy"
         />
       </div>
     </div>

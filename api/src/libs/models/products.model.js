@@ -38,15 +38,19 @@ const products = sequelize.define('products', {
   },
   stock: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    allowNull: true,
+    get() {
+      const stockValue = this.getDataValue('stock');
+      return stockValue < 0 ? 0 : stockValue;
+    },
   },
   availability: {
-    type: DataTypes.VIRTUAL,
+    type: DataTypes.BOOLEAN,
     get() {
-      if (this.stock === 0) {
+      if (this.stock <= 0) {
         return false;
       } else {
-        return true;
+        return this.getDataValue('availability')
       }
     },
   },

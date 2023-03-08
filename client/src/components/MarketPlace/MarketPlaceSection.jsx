@@ -25,32 +25,36 @@ export default function MarketPlaceSection() {
           src={marketBgImg}
           alt="Tienda"
           title="Tienda"
+          loading="lazy"
         />
       </div>
       <div className={style.container}>
         <div className={style.marketCont}>
           <Filters />
-          {user.role === "admin" && (
+          {/* {user.role === "admin" && (
             <div>
               <Link to="/marketplace/admin">
                 <button className={style.buttonAdmin}>Administrar</button>
               </Link>
             </div>
-          )}
+          )} */}
         </div>
         <div className={style.cardsCont}>
           {products ? (
-            products?.map((element) => (
-              <div key={element.id}>
-                <Link to={`/marketplace/${element.id}`}>
-                  <MarketCard
-                    title={element.title}
-                    image={element.mainImage}
-                    price={element.price}
-                  />
-                </Link>
-              </div>
-            ))
+            products?.map(
+              (element) =>
+                element.availability && (
+                  <div key={element.id}>
+                    <Link to={`/marketplace/${element.id}`}>
+                      <MarketCard
+                        title={element.title}
+                        image={element.mainImage}
+                        price={element.price}
+                      />
+                    </Link>
+                  </div>
+                )
+            )
           ) : (
             <h1 className={style.empty}>No hay ningún producto</h1>
           )}

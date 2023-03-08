@@ -5,6 +5,7 @@ import { postBlog } from "../../redux/slices/blogSlice/thunk";
 import style from "./BlogForm.module.css";
 import UploadWidget from "../UploadWidget/UploadWidget";
 import { useState } from "react";
+import RatingField from "./RatingField";
 
 export default function BlogForm({ open, close, setState }) {
   const [url, setUrl] = useState("");
@@ -78,13 +79,14 @@ export default function BlogForm({ open, close, setState }) {
             >
               Valoración
             </label>
-            <Field
+            {/* <Field
               name="stars"
               type="number"
               min="1"
               max="5"
               step="0.25"
-            />
+            /> */}
+            <RatingField name="stars"/>
             <ErrorMessage name="stars" />
             <label
               htmlFor="image"
@@ -101,14 +103,10 @@ export default function BlogForm({ open, close, setState }) {
                 className={style.img}
                 src={url}
                 alt=""
+                title=""
+                loading="lazy"
               />
             </div>
-            {/* <Field
-              name="image"
-              type="url"
-              value={url}
-              />
-            <ErrorMessage name="image" /> */}
             <button
               type="submit"
               className={style.submitBtn}

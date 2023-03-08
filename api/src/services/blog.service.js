@@ -33,6 +33,10 @@ class blogService {
       options.where.date = { [Op.eq]: `${query.date}` };
     }
 
+    if (query.contains) {
+      options.where.title = { [Op.iLike]: `%${query.contains}%` };
+    }
+
     if (query.order) {
       if (query.order === 'alfabetico') {
         options.order = [['title', 'ASC']];
@@ -197,7 +201,7 @@ async create (  {userNickName, title , content, stars, image} ){
 
   /* Update Blog */
 
-async update (id, { title , content, rating, image }) {
+async update (id, { title , content, stars, image }) {
 
   const blog = await blogModel.findOne({
     where: {
@@ -212,7 +216,7 @@ async update (id, { title , content, rating, image }) {
   blog.image = image || blog.image;
   blog.title = title || blog.title;
   blog.content = content || blog.content;
-  blog.rating = rating || blog.rating;
+  blog.stars = stars || blog.stars;
 
   await blog.save()
 

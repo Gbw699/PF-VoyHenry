@@ -8,8 +8,7 @@ export default function ProfileInfo({
   lastName,
   nationality,
   following,
-  followers,
-  assistedPlans,
+  followed,
   plansCreated,
   reviewsCreated,
 }) {
@@ -17,9 +16,9 @@ export default function ProfileInfo({
     <div className={style.container}>
       <div className={style.mainInfo}>
         <div className={style.editarPerfilCont}>
-          {location.pathname !== "/profile" && (
+          {/* {location.pathname !== "/profile" && (
             <button className={style.addBtn}>Agregar amigo</button>
-          )}
+          )} */}
           {location.pathname === "/profile" && (
             <Link to="/profile/edit">
               <button className={style.editBtn}>Editar perfil</button>
@@ -42,11 +41,7 @@ export default function ProfileInfo({
         </div>
         <div className={style.infoCont}>
           <p className={style.infoTitle}>Seguidores</p>
-          <p className={style.infoCount}>{followers}</p>
-        </div>
-        <div className={style.infoCont}>
-          <p className={style.infoTitle}>Planes asistidos</p>
-          <p className={style.infoCount}>{assistedPlans}</p>
+          <p className={style.infoCount}>{followed}</p>
         </div>
         <div className={style.infoCont}>
           <p className={style.infoTitle}>Planes creados</p>

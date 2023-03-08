@@ -1,18 +1,15 @@
 .sendBtn {
   background-color: #f1e100;
   border: 2px solid #f1e100;
-  color: #020202;
+  width: 15em;
+  padding: 1em 0.5em;
+  color: #707070;
   border: 0px;
   border-radius: 10px;
   transition: filter 0.5s ease-in-out;
   margin: 1em;
   cursor: pointer;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.sendBtn:hover {
-  filter: saturate(150%) brightness(80%);
-  transition: filter 0.5s ease-in-out;
 }
 
 .sendBtn:hover {

@@ -1,20 +1,25 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { getFollowing } from "../../redux/slices/userSlice/thunks";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { getFollowed, getFollowing } from "../../redux/slices/userSlice/thunks";
 import style from "./ProfileCard.module.css";
 
 export default function ProfileCard() {
   const user = JSON.parse(localStorage.getItem("user"));
-  const [following, setFollowing] = useState([]);
-  const [followed, setFollowed] = useState([]);
-
+  const followed = useSelector((state) => state.userStore.userFollowed);
+  const following = useSelector((state) => state.userStore.userFollowing);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getFollowing(user?.nickName));
+    dispatch(getFollowed(user?.nickName));
+  }, [following.length]);
   return (
     <Link to="/profile">
       <div className={style.container}>
         <div className={style.profileCont}>
           <div
             className={style.imgCont}
-            style={{ backgroundImage: `url(${user.image})` }}
+            style={{backgroundImage: `url(${user?.image})`  }}
           />
           <hr
             width="150em"
@@ -22,20 +27,18 @@ export default function ProfileCard() {
           />
           <p
             className={style.profileName}
-          >{`${user.firstName} ${user.lastName}`}</p>
+          >{`${user?.firstName} ${user?.lastName}`}</p>
           <h4 className={style.profileCountry}>
-            {user.nationality ? user.nationality : "Sin nacionalidad"}
+            {user?.nationality ? user.nationality : "Sin nacionalidad"}
           </h4>
           <div className={style.followersCont}>
             <div className={style.followers}>
               <p className={style.followTitle}>Siguiendo</p>
-              {/* //!! MODIFICAR PARA QUE SE MUESTRE EL N° DE SIGUIENDO */}
-              <span className={style.followNum}>300</span>
+              <span className={style.followNum}>{following.length}</span>
             </div>
             <div className={style.followers}>
               <p className={style.followTitle}>Seguidores</p>
-              {/* //!! MODIFICAR PARA QUE SE MUESTRE EL N° DE SEGUIDORES */}
-              <span className={style.followNum}>123</span>
+              <span className={style.followNum}>{followed.length}</span>
             </div>
           </div>
         </div>

@@ -9,34 +9,37 @@ const service = new PlansService();
 
 /* Get all plans */
 
-router.get('/', async (req, res, next) => {
+router.get('/', 
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const page = req.query.page || 1
-    const plans = await service.find(req.query, page)
+      const page = req.query.page || 1
+      const plans = await service.find(req.query, page)
 
-    let pages = ''
+      let pages = ''
 
-    if (plans.plansInFilter <= plans.plansLimit){
-      pages = 1
-    } else {
-      pages = Math.ceil(plans.plansInFilter / plans.plansLimit);
+      if (plans.plansInFilter <= plans.plansLimit){
+        pages = 1
+      } else {
+        pages = Math.ceil(plans.plansInFilter / plans.plansLimit);
+      }
+
+      const pageNumber = parseInt(page);
+      const response = { plans, pageNumber, pages }
+      res.json(response)
+    } catch (error) {
+
+      next(error)
     }
-
-    const pageNumber = parseInt(page);
-    const response = { plans, pageNumber, pages }
-    res.json(response)
-  } catch (error) {
-
-    next(error)
-  }
 
 });
 
 /* Get plan by ID */
 
 router.get('/:id',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getPlanSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -56,8 +59,8 @@ router.get('/:id',
 /* Create new plan */
 
 router.post('/',
-  validatorHandler(createPlanSchema, "body"),
   passport.authenticate('jwt', {session: false}),
+  validatorHandler(createPlanSchema, "body"),
   async (req, res, next) => {
 
     try {
@@ -77,7 +80,7 @@ router.post('/',
 /* Create new plan comment*/
 
 router.post('/:id/comment',
-
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
 
     try {
@@ -97,7 +100,7 @@ router.post('/:id/comment',
 /* get plan comment*/
 
 router.get('/:id/comment',
-
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
 
     try {
@@ -118,7 +121,7 @@ router.get('/:id/comment',
 
 router.delete(
   '/comment/:id',
-
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -135,7 +138,7 @@ router.delete(
 /* update comment content */
 
 router.patch('/comment/:id',
-
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
 
     try {
@@ -156,8 +159,8 @@ router.patch('/comment/:id',
 /* update plan info */
 
 router.patch('/:planID',
-  validatorHandler(updateSchema, "body"),
   passport.authenticate('jwt', {session: false}),
+  validatorHandler(updateSchema, "body"),
   async (req, res, next) => {
 
     try {
@@ -178,6 +181,7 @@ router.patch('/:planID',
 /* update plan votes info */
 
 router.patch('/:planID/votes',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(ratingSchema, "body"),
   async (req, res, next) => {
 
@@ -198,9 +202,9 @@ router.patch('/:planID/votes',
 
 /* Delete plan */
 
-router.delete('/:id',
-  validatorHandler(deletePlanSchema, 'params'),
+router.delete('/:id', 
   passport.authenticate('jwt', {session: false}),
+  validatorHandler(deletePlanSchema, 'params'),
   async (req, res, next) => {
 
     try {
@@ -220,6 +224,7 @@ router.delete('/:id',
 
 router.post(
   '/:id/favorite',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(deletePlanSchema, 'params'),
   validatorHandler(followSchema, 'body'),
   async (req, res, next) => {
@@ -241,6 +246,7 @@ router.post(
 
 router.get(
   '/:id/favorite',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(deletePlanSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -259,6 +265,7 @@ router.get(
 
 router.get(
   '/:userNickName/Plansfavorite',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(followSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -277,6 +284,7 @@ router.get(
 
 router.delete(
   '/:id/favorite',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(deletePlanSchema, 'params'),
   validatorHandler(followSchema, 'body'),
   async (req, res, next) => {

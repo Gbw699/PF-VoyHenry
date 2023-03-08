@@ -15,7 +15,6 @@ export default function DetailMarketPlaceSection() {
   }, [dispatch]);
 
   const products = useSelector((state) => state.marketPlaceStore.detailProduct);
-  console.log(products);
   return products.length > 0 ? (
     <div className={style.mainContainer}>
       <div className={style.itemCont}>

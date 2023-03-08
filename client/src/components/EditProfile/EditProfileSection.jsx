@@ -2,11 +2,10 @@ import React from "react";
 import EditProfileAboutMe from "./EditProfileAboutMe";
 import EditProfileImage from "./EditProfileImage";
 import EditProfileInput from "./EditProfileInput";
-// import EditProfileSelectCountry from "./EditProfileSelectCountry";
+import EditProfileSelectCountry from "./EditProfileSelectCountry";
 import { useDispatch } from "react-redux";
 import { editUser } from "../../redux/slices/userSlice/thunks";
 import Swal from "sweetalert2";
-
 import style from "./EditProfileSection.module.css";
 
 export const EditProfileSection = ({
@@ -22,12 +21,11 @@ export const EditProfileSection = ({
   setProvinces,
   selectedCountry,
   setSelectedCountry,
-  selectedProvince,
-  setSelectedProvince,
 }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const nickName = user.nickName;
   const dispatch = useDispatch();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const swalWithBootstrapButtons = Swal.mixin({
@@ -50,7 +48,17 @@ export const EditProfileSection = ({
       .then((result) => {
         if (result.isConfirmed) {
           dispatch(
-            editUser({ firstName, lastName, image, about, nickName }, nickName)
+            editUser(
+              {
+                firstName,
+                lastName,
+                image,
+                about,
+                nickName,
+                nationality: selectedCountry,
+              },
+              nickName
+            )
           );
           localStorage.setItem(
             "user",
@@ -61,6 +69,7 @@ export const EditProfileSection = ({
               image: image,
               nickName: nickName,
               about: about,
+              nationality: selectedCountry,
             })
           );
           swalWithBootstrapButtons.fire(
@@ -68,6 +77,9 @@ export const EditProfileSection = ({
             "Se ha actualizado los datos de tu perfil",
             "success"
           );
+          setTimeout(() => {
+            location.reload();
+          }, 2500);
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           swalWithBootstrapButtons.fire(
             "Cancelado",
@@ -77,42 +89,54 @@ export const EditProfileSection = ({
         }
       });
   };
+
   return (
     <div className={style.container}>
-      <form
-        className={style.form}
-        onSubmit={handleSubmit}
-      >
-        <p className={style.title}>Nombre completo</p>
-        <EditProfileInput
-          name="firstName"
-          placeholder="Nombre completo"
-          setState={setFirstName}
+      <div className={style.editContainer}>
+        <p className={style.editTitle}>Editar perfil</p>
+        <hr
+          color="#f1e100"
+          width="100%"
         />
-        <p className={style.title}>Apellido</p>
-        <EditProfileInput
-          name="lastName"
-          placeholder="Apellido"
-          setState={setLastName}
-        />
-        {/* <EditProfileSelectCountry
-          {...{
-            provinces,
-            setProvinces,
-            selectedCountry,
-            setSelectedCountry,
-            selectedProvince,
-            setSelectedProvince,
-          }}
-        /> */}
-        <button className={style.buttons}>Guardar cambios</button>
-      </form>
-      <div>
-        <div>
-          <EditProfileImage {...{ image, setImage }} />
+        <div className={style.formContainer}>
+          <form
+            className={style.form}
+            onSubmit={handleSubmit}
+          >
+            <p className={style.title}>Nombre</p>
+            <EditProfileInput
+              name="firstName"
+              placeholder="Tu nombre"
+              setState={setFirstName}
+            />
+            <p className={style.title}>Apellido</p>
+            <EditProfileInput
+              name="lastName"
+              placeholder="Tu apellido"
+              setState={setLastName}
+            />
+            <EditProfileSelectCountry
+              {...{
+                provinces,
+                setProvinces,
+                selectedCountry,
+                setSelectedCountry,
+              }}
+            />
+            <p className={style.title}>Sobre mí</p>
+            <EditProfileAboutMe setState={setAbout} />
+          </form>
+          <div>
+            <EditProfileImage {...{ image, setImage, firstName, lastName }} />
+          </div>
         </div>
-        <div>
-          <EditProfileAboutMe setState={setAbout} />
+        <div className={style.buttonContainer}>
+          <button
+            onClick={handleSubmit}
+            className={style.buttons}
+          >
+            Guardar cambios
+          </button>
         </div>
       </div>
     </div>
