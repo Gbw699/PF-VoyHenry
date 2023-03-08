@@ -12,7 +12,7 @@ export default function UserProfileState() {
   const [following, setFollowing] = useState([]);
   const [followed, setFollowed] = useState([]);
   const favorites = useSelector((state) => state.userStore.usersFavorites);
-  console.log(favorites);
+  console.log(following);
 
   return (
     <>

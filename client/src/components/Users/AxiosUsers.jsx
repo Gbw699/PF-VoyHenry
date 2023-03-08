@@ -29,7 +29,7 @@ export default function AxiosUsers({
     const fetchData = async () => {
       if (!id) {
         try {
-          const response = await axios.get(`/api/v1/users/${user}/Following`);
+          const response = await axios.get(`/api/v1/users/${user}/following`);
           setFollowing(response.data.data.data);
         } catch (error) {
           console.error(error);
@@ -85,5 +85,3 @@ export default function AxiosUsers({
     fetchData();
   }, [setUsers, reRender, setUser, setPlans, setBlogs, id]);
 }
-
-// useEffect(() => {}, []);

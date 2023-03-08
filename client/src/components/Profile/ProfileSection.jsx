@@ -89,7 +89,7 @@ export default function ProfileSection() {
             <ProfileAboutMe aboutMe={user.about} />
           </div>
           <div>
-            <h6 className={style.title}>Planes en favoritos</h6>
+            <h6 className={style.title}>Mis planes favoritos</h6>
             <hr
               color="#F1E100"
               width="100%"
