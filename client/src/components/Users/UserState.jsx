@@ -6,8 +6,9 @@ export default function UserState() {
   const user = JSON.parse(localStorage.getItem("user"));
   const [users, setUsers] = useState([]);
   const [following, setFollowing] = useState([]);
-  const [followed, setFollowed] = useState({});
+  const [followed, setFollowed] = useState([]);
   const [userFollowed, setUserFollowed] = useState([]);
+  console.log(following);
 
   return (
     <>
