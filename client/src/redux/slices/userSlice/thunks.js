@@ -6,6 +6,7 @@ import {
   setUserFollowing,
   setUserFollowed,
   setUserFavorite,
+  setUsersFavorite,
 } from "./userSlice";
 
 export const getLogin = (obj) => {
@@ -138,6 +139,19 @@ export const getFavorites = (myNickName) => {
         `/api/v1/plans/${myNickName}/plansfavorite`
       );
       dispatch(setUserFavorite(response.data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+export const getFavoritesUser = (userNickName) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(
+        `/api/v1/plans/${userNickName}/plansfavorite`
+      );
+      dispatch(setUsersFavorite(response.data));
     } catch (error) {
       console.error(error);
     }
