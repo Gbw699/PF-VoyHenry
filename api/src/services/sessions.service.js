@@ -14,7 +14,7 @@ class SessionsService{
     return allSessions
   }
 
-  async initSession(nickName, completeName){
+  async initSession(nickName, completeName, socketId){
 
     const session = await sessionModel.findOrCreate({
       where: {
@@ -23,15 +23,26 @@ class SessionsService{
       defaults: {
         nickName: nickName,
         completeName: completeName,
-        numberOfSessions: 1
+        numberOfSessions: 1,
+        sockets: [socketId]
       }
     })
 
-    this.addOnesession(session)
+    this.addOnesession(session, socketId)
 
   }
 
-  async finishSession(nickName){
+  async findOne(nickName){
+    const session = await sessionModel.findOne({
+      where: {
+        nickName: nickName
+      }
+    })
+
+    return session
+  }
+
+  async finishSession(nickName, socketId){
 
     const session = await sessionModel.findByPk(nickName)
 
@@ -42,20 +53,26 @@ class SessionsService{
         }
       })
     } else {
-      this.finishOneSession(session)
+      this.finishOneSession(session, socketId)
     }
   }
 
-  async addOnesession(session){
+  async addOnesession(session, socketId) {
     if (!session[1]) {
       session[0].numberOfSessions = await session[0].numberOfSessions + 1
-      session[0].save()
+      const newArraySocket = session[0].sockets.slice()
+      newArraySocket.push(socketId)
+      session[0].sockets = newArraySocket
+      await session[0].save()
     }
   }
 
-  async finishOneSession(session){
+  async finishOneSession(session, socketId){
       session.numberOfSessions = await session.numberOfSessions - 1
-      session.save()
+      session.sockets = session.sockets.filter(element => {
+        return (element !== socketId)
+      });
+      await session.save()
   }
 
   async resetAllSessions(){
