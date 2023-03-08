@@ -12,11 +12,11 @@ import MapPlan from "./MapPlan";
 
 export default function DetailPlan() {
   const [value, setValue] = useState();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const userSession = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
-  const plan = useSelector((state) => state.planStore.planById);
+  const {plan,user} = useSelector((state) => state.planStore.planById);
   const [favorites, setFavorites] = useState();
   const [comments, setComments] = useState([]);
   const [isEditable, setIsEditable] = useState(false);
@@ -31,12 +31,12 @@ export default function DetailPlan() {
   }, []);
 
   useEffect(() => {
-    if (user && plan && user.nickName === plan.userNickName) {
+    if (userSession && plan && userSession.nickName === plan.userNickName) {
       setIsEditable(true);
     } else {
       setIsEditable(false);
     }
-  }, [user, plan]);
+  }, [userSession, plan]);
 
   useEffect(() => {
     checkFav();
@@ -54,7 +54,7 @@ export default function DetailPlan() {
   async function handleClick() {
     const text = document.querySelector("#reseña").value;
     const obj = {
-      userNickName: user.nickName,
+      userNickName: userSession.nickName,
       comment: text,
     };
     try {
@@ -70,7 +70,7 @@ export default function DetailPlan() {
     const obj = {
       votes: 1,
       stars: value,
-      userNickName: user.nickName,
+      userNickName: userSession.nickName,
     };
     try {
       await axios.patch(`/api/v1/plans/${id}/votes`, obj);
@@ -112,7 +112,7 @@ export default function DetailPlan() {
 
   async function addFavorite() {
     const body = {
-      userNickName: user.nickName,
+      userNickName: userSession.nickName,
     };
     try {
       await axios.post(`/api/v1/plans/${id}/favorite`, body);
@@ -125,7 +125,7 @@ export default function DetailPlan() {
 
   async function deleteFavorite() {
     const body = {
-      userNickName: user.nickName,
+      userNickName: userSession.nickName,
     };
     try {
       await axios.delete(`/api/v1/plans/${id}/favorite`, { data: body });
@@ -138,7 +138,7 @@ export default function DetailPlan() {
 
   async function getFavorites() {
     const response = await axios.get(
-      `http://localhost:3001/api/v1/plans/${user.nickName}/Plansfavorite`
+      `http://localhost:3001/api/v1/plans/${userSession.nickName}/Plansfavorite`
     );
     setFavorites(response.data);
   }
@@ -250,7 +250,7 @@ export default function DetailPlan() {
         <div className={style.creator}>
           <div className={style.creatorInfo}>
             <p>Creador del plan: </p>
-            <h1 className={style.creatorName}>{plan.userNickName}</h1>
+            <h1 className={style.creatorName}>{`${user.firstName} ${user.lastName}`}</h1>
           </div>
           <hr
             width="100%"
@@ -314,7 +314,7 @@ export default function DetailPlan() {
         />
         <div className={style.commentsSection}>
           {/* <h2>Comentarios</h2> */}
-          {user && (
+          {userSession && (
             <PostComment
               handleClick={handleClick}
               placeholder="Agrega un comentario"
