@@ -3,6 +3,7 @@ import style from "./MapConversation.module.css";
 
 export default function MapConversation({ conversation }) {
   const conversationContainerRef = useRef(null);
+  const userInfo = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     const conversationContainer = conversationContainerRef.current;
@@ -34,17 +35,24 @@ export default function MapConversation({ conversation }) {
           return (
             <div
               key={element.chat.id}
+              className={messageFrom !== userInfo.nickName ? style.messageContainer :style.meMessageContainer  }
             >
               <img 
-                className={style.perfileImage}
+                className={messageFrom !== userInfo.nickName ? style.perfileImage : style.mePerfileImage}
                 src={userImage}
               />
-              <h4>
-                {fullNameUserFrom}
-              </h4>
-              <p>
-                {element.chat.message}
-              </p>
+              <div
+                className={style.textContainer}
+              >
+                <h4
+                  className={messageFrom === userInfo.nickName ? style.meName : undefined}
+                >
+                  {fullNameUserFrom}
+                </h4>
+                <p>
+                  {element.chat.message}
+                </p>
+              </div>
             </div>
           );
         })

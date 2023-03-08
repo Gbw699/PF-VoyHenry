@@ -10,8 +10,8 @@ export default function Connect() {
     if (localStorage.getItem("user") && document.cookie !== "") {
       socket = io("http://localhost:3001", {
         auth: {
-          nickName: userInfo.nickName,
-          completeName: `${userInfo.firstName} ${userInfo.lastName}`,
+          nickName: userInfo?.nickName,
+          completeName: `${userInfo?.firstName} ${userInfo?.lastName}`,
         },
       });
       

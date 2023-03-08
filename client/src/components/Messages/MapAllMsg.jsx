@@ -58,19 +58,24 @@ export default function MapAllMsg({ allMessage, setMessageSelect, setTo }) {
             };
             return(
               <div 
+                className={style.chatContainer}
                 key={element.chat.id}
-                onClick={handlerOnClick(element.chat.id, to)}
+                onClick={() => handlerOnClick(element.chat.id, to)}
               >
                 <img
                   className={style.perfileImage}
                   src={element.usersInfo[0].image}
                 />
-                <h3>
-                  {element.usersInfo[0].firstName + " " + element.usersInfo[0].lastName}
-                </h3>
-                <p>
-                  {lastMessage}
-                </p>
+                <div
+                  className={style.textContainer}
+                >
+                  <h3>
+                    {element.usersInfo[0].firstName + " " + element.usersInfo[0].lastName}
+                  </h3>
+                  <p>
+                    {lastMessage}
+                  </p>
+                </div>
               </div>
             );
           }
