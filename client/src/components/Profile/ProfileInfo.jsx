@@ -9,7 +9,6 @@ export default function ProfileInfo({
   nationality,
   following,
   followed,
-  assistedPlans,
   plansCreated,
   reviewsCreated,
 }) {
@@ -26,12 +25,9 @@ export default function ProfileInfo({
             </Link>
           )}
         </div>
-        <img
+        <div
           className={style.imgCont}
-          src={image}
-          alt={`${firstName} ${lastName}`}
-          title={`${firstName} ${lastName}`}
-          loading="lazy"
+          style={{ backgroundImage: `url(${image})` }}
         />
         <p className={style.name}>
           {firstName} {lastName}

@@ -7,15 +7,9 @@ import style from "./Developers.module.css";
 export default function MauricioFonseca() {
   return (
     <div className={style.container}>
-      <div className={style.container}>
-        <div
-          className={style.cardImg}
-          style={{ backgroundImage: `url(${mauricioFonsecaImg})` }}
-        />
-      </div>
-      <hr
-        width="0%"
-        color="black"
+      <div
+        className={style.cardImg}
+        style={{ backgroundImage: `url(${mauricioFonsecaImg})` }}
       />
       <div className={style.cardCont}>
         <div className={style.links}>
