@@ -46,6 +46,7 @@ class ProductsService {
       order: [['id', 'ASC']],
       limit: 9,
       offset: 0,
+      availability: true
     };
 
     if (query.order) {

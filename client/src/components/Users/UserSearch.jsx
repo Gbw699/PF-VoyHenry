@@ -22,6 +22,7 @@ export default function UserSearch({ setUsers }) {
         type="text"
         placeholder="Buscar"
         onChange={(e) => setInput(e.target.value)}
+        onKeyDown={(event) => event.key === "Enter" && search()}
       />
       <button
         type="button"

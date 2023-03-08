@@ -23,7 +23,7 @@ export default function CreateUserForm({
     category: "",
     price: 0,
     stock: 0,
-    // availability: null,
+    availability: null,
     mainImage: url,
   };
 
@@ -42,7 +42,7 @@ export default function CreateUserForm({
     stock: Yup.number()
       .min(0, "Debe ser mayor o igual que 0")
       .required("El stock es obligatorio"),
-    //availability: Yup.boolean().required("La disponibilidad es obligatoria"),
+    availability: Yup.boolean().required("La disponibilidad es obligatoria"),
   });
 
   const onSubmit = async (values) => {
@@ -52,7 +52,7 @@ export default function CreateUserForm({
       category: values.category,
       price: values.price,
       stock: values.stock,
-      availability: true,
+      availability: values.availability,
       mainImage: values.mainImage,
       images: [],
     };
@@ -185,7 +185,7 @@ export default function CreateUserForm({
                 ) : null}
               </div>
 
-              {/* <div className={style.inputs}>
+              <div className={style.inputs}>
                 <label
                   htmlFor="availability"
                   className={style.inputTitle}
@@ -207,7 +207,7 @@ export default function CreateUserForm({
                 {formik.touched.availability && formik.errors.availability ? (
                   <div>{formik.errors.availability}</div>
                 ) : null}
-              </div> */}
+              </div> 
 
               <div className={style.inputs}>
                 <UploadWidget
