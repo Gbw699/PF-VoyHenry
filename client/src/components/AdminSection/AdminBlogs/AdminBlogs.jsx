@@ -4,7 +4,7 @@ import BlogsGrid from "./BlogsGrid";
 import CreateBlogForm from "./CreateBlogForm";
 import EditBlogForm from "./EditBlogForm";
 
-export default function AdminPlans() {
+export default function AdminBlogs() {
   const [blogs, setBlogs] = useState([]);
   const [blogsInfo, setBlogsInfo] = useState({});
   const [createRecord, setCreateRecord] = useState(false);

@@ -17,12 +17,9 @@ export default function ProfileCard() {
     <Link to="/profile">
       <div className={style.container}>
         <div className={style.profileCont}>
-          <img
+          <div
             className={style.imgCont}
-            src={user.image}
-            alt={`${user.firstName} ${user.lastName}`}
-            title={`${user.firstName} ${user.lastName}`}
-            loading="lazy"
+            style={{backgroundImage: `url(${user?.image})`  }}
           />
           <hr
             width="150em"
