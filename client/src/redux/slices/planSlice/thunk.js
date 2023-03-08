@@ -1,6 +1,7 @@
 import axios from "axios";
 import { queryString } from "./queryStringPlan.js";
 import { setPlansSearch, setPlanById, setPlansbyOrder } from "./planSlice";
+import customAlert from "../../../recycle/Alert/CustomAlert.jsx";
 
 export const getPlansSearch = (content) => {
   return async (dispatch) => {
@@ -30,7 +31,7 @@ export const postPlan = (obj) => {
       await axios.post("/api/v1/plans", {
         ...obj,
       });
-      window.alert("El plan se creó correctamente");
+      customAlert("El plan se creó correctamente");
     } catch (error) {
       console.error(error.response);
     }
