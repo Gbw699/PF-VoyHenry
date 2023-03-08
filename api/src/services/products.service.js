@@ -46,6 +46,7 @@ class ProductsService {
       order: [['id', 'ASC']],
       limit: 9,
       offset: 0,
+      availability: true
     };
 
     if (query.order) {
@@ -63,12 +64,6 @@ class ProductsService {
     if (query.category) {
       options.where = {
         category: query.category,
-      };
-    }
-
-    if (query.availability) {
-      options.where = {
-        availability: query.availability === 'true',
       };
     }
 
@@ -131,13 +126,16 @@ class ProductsService {
       newStock = -1
     }
 
+    let newAvailability = availability
+
+    console.log(newAvailability)
 
     product.title = title || product.title;
     product.price = price || product.price;
     product.stock = newStock || product.stock;
     product.detail = detail || product.detail;
     product.mainImage = mainImage || product.mainImage;
-    product.availability = availability || product.availability;
+    product.availability = newAvailability || product.availability;
     product.category = category || product.category;
     product.images = images || product.images;
 

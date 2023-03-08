@@ -50,7 +50,7 @@ const products = sequelize.define('products', {
       if (this.stock <= 0) {
         return false;
       } else {
-        return true;
+        return this.getDataValue('availability')
       }
     },
   },

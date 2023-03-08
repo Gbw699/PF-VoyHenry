@@ -47,7 +47,6 @@ router.get('/',
 /* Buy success */
 
 router.get('/success', 
-  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
 
     try {
