@@ -56,7 +56,7 @@ export default function ProfileSection() {
       </div>
       <div className={style.infoCont}>
         <div className={style.friendsAct}>
-          <h6 className={style.title}>Personas de mi interés</h6>
+          <h6 className={style.title}>Usuarios que sigues</h6>
           <hr
             color="#F1E100"
             width="100%"
@@ -65,20 +65,20 @@ export default function ProfileSection() {
             {following.length === 0
             ? <p className={style.message}>Aún no sigues a nadie.</p>
             : following.map((element) => (
-                  <Link
-                    key={element.id}
-                    to={`/users/${element.nickName}`}
-                className={style.friendLink}
-                  >
-                    <img
-                  className={style.friendImg}
-                      src={element.image}
-                      alt={`${element.firstName} ${element.lastName}`}
-                      title={`${element.firstName} ${element.lastName}`}
-                      loading="lazy"
-                    />
-                  </Link>
-                ))}
+                <Link
+                  key={element.id}
+                  to={`/users/${element.nickName}`}
+                  className={style.friendLink}
+                >
+                  <img
+                    className={style.friendImg}
+                    src={element.image}
+                    alt={`${element.firstName} ${element.lastName}`}
+                    title={`${element.firstName} ${element.lastName}`}
+                    loading="lazy"
+                  />
+                </Link>
+              ))}
           </div>
         </div>
         <div className={style.activityCont}>

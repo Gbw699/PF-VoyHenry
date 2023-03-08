@@ -26,33 +26,36 @@ export default function UsersProfileSection({
           nationality={user.nationality ? user.nationality : "Sin nacionalidad"}
           following={following.length}
           followed={followed.length}
-          assistedPlans="12"
           plansCreated={plans.length}
           reviewsCreated={blogs.length}
         />
       </div>
       <div className={style.infoCont}>
         <div className={style.friendsAct}>
-          <h6 className={style.title}>Personas de mi interés</h6>
+          <h6 className={style.title}>Usuarios que sigues</h6>
           <hr
             color="#F1E100"
             width="100%"
           />
-          {following.length === 0
-            ? "Este usuario no tiene ninguna persona de su interés."
+          <div className={style.friendsCont}>
+            {following.length === 0
+            ? <p className={style.message}>Este usuario aún no sigue a nadie.</p>
             : following.map((element) => (
-                <Link
-                  key={element.id}
-                  to={`/users/${element.nickName}`}
-                >
-                  <img
-                    src={element.image}
-                    alt={`${element.firstName} ${element.lastName}`}
-                    title={`${element.firstName} ${element.lastName}`}
-                    loading="lazy"
-                  />
-                </Link>
-              ))}
+              <Link
+                key={element.id}
+                to={`/users/${element.nickName}`}
+                className={style.friendLink}
+              >
+                <img
+                  className={style.friendImg}
+                  src={element.image}
+                  alt={`${element.firstName} ${element.lastName}`}
+                  title={`${element.firstName} ${element.lastName}`}
+                  loading="lazy"
+                />
+              </Link>
+            ))}
+          </div>
         </div>
         <div className={style.activityCont}>
           <div>
@@ -71,7 +74,7 @@ export default function UsersProfileSection({
             />
             <div className={style.plansCont}>
               {favorites.length === 0
-                ? "Este usuario no tiene un plan en favoritos."
+                ? <p className={style.message}>Este usuario no tiene un plan en favoritos.</p>
                 : favorites.map((element) => (
                     <Link
                       key={element.id}
@@ -94,7 +97,7 @@ export default function UsersProfileSection({
             />
             <div className={style.plansCont}>
               {plans.length === 0
-                ? "Este usuario aún no ha creado ningún plan."
+                ? <p className={style.message}>Este usuario aún no ha creado ningún plan.</p>
                 : plans?.map((element) => (
                     <Link
                       key={element.id}
@@ -117,7 +120,7 @@ export default function UsersProfileSection({
             />
             <div className={style.plansCont}>
               {blogs.length === 0
-                ? "Este usuario aún no ha hecho ninguna reseña."
+                ? <p className={style.message}>Este usuario aún no ha hecho ninguna reseña.</p>
                 : blogs?.map((element) => (
                     <Link
                       key={element.id}
