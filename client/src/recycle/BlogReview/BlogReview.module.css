@@ -6,6 +6,7 @@
   width: 100%;
 }
 
+
 .reviewCont {
   display: flex;
   justify-content: space-around;
@@ -14,6 +15,7 @@
   width: 100%;
   margin-bottom: 3%;
 }
+
 
 .userImg {
   margin-top: 3em;
@@ -27,12 +29,16 @@
 }
 
 .userCont {
+  transition: transform 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
   margin: 0px 2em;
   width: 80%;
 }
 
+.userCont:hover {
+  transform: scale(1.05);  
+}
 .nameDate {
   display: flex;
   flex-direction: row;
