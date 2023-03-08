@@ -1,5 +1,6 @@
 import axios from "axios";
 import { setBlogsSearch, setBlogs, setBlogById } from "./blogSlice";
+import customAlert from "../../../recycle/Alert/CustomAlert";
 
 export const getBlogs = (page, date = "", order = "") => {
   return async (dispatch) => {
@@ -41,7 +42,7 @@ export const postBlog = (obj) => {
   return async (dispatch) => {
     try {
       await axios.post("/api/v1/blogs", { ...obj });
-      window.alert("La reseña fue creada");
+      customAlert("El blog se creó correctamente")
       dispatch(getBlogs(1));
     } catch (error) {
       console.error(error.response);
