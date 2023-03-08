@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import style from "./ProfileMyFriendsActivity.module.css";
 
 export const ProfileMyFriendsActivity = ({ image, name }) => {

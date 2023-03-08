@@ -1,6 +1,11 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { getFollowed, getFollowing } from "../../redux/slices/userSlice/thunks";
+import { useDispatch } from "react-redux";
+import {
+  getFavoritesUser,
+  getFollowed,
+  getFollowing,
+} from "../../redux/slices/userSlice/thunks";
 
 const getEndpoint = (id) => {
   return id ? `/api/v1/users/${id}` : "/api/v1/users";
@@ -19,11 +24,12 @@ export default function AxiosUsers({
   followed,
   setFollowed,
 }) {
+  const dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {
       if (!id) {
         try {
-          const response = await axios.get(`/api/v1/users/${user}/Following`);
+          const response = await axios.get(`/api/v1/users/${user}/following`);
           setFollowing(response.data.data.data);
         } catch (error) {
           console.error(error);
@@ -63,6 +69,11 @@ export default function AxiosUsers({
             setBlogs(blogsData.blogs.blogs);
           } catch (error) {
             console.log("Error getting blogs: ", error.message);
+          }
+          try {
+            dispatch(getFavoritesUser(id));
+          } catch (error) {
+            console.log(error.message);
           }
         } else {
           setUsers(data.users);

@@ -1,13 +1,12 @@
 import axios from "axios";
 import {
   setAllUsers,
-  setUser,
   setUserPlans,
   setUserBlogs,
   setUserFollowing,
   setUserFollowed,
-  setUserFollowedAdd,
-  setUserFollowedRemoved,
+  setUserFavorite,
+  setUsersFavorite,
 } from "./userSlice";
 
 export const getLogin = (obj) => {
@@ -40,17 +39,6 @@ export const getAllUsers = () => {
     }
   };
 };
-
-// export const getUser = (nickname) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(`/api/v1/users/${nickname}`);
-//       dispatch(setUser(response.data.data.user));
-//     } catch (error) {
-//       return window.alert("No se pudo hacer el pedido");
-//     }
-//   };
-// };
 
 export const postUser = (obj) => {
   return async () => {
@@ -123,7 +111,7 @@ export const getFollowing = (nickName) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`/api/v1/users/${nickName}/following`);
-      dispatch(setUserFollowing(response.data.data.followingUsers));
+      dispatch(setUserFollowing(response.data.data.data));
     } catch (error) {
       if (error.response.data.message === "no user is following you") {
         return { followedUsers: [], data: [], count: 0 };
@@ -140,6 +128,32 @@ export const getFollowed = (myNickName) => {
       dispatch(setUserFollowed(response.data.data.followedUsers));
     } catch (error) {
       console.error(error.response.data.message);
+    }
+  };
+};
+
+export const getFavorites = (myNickName) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(
+        `/api/v1/plans/${myNickName}/plansfavorite`
+      );
+      dispatch(setUserFavorite(response.data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+export const getFavoritesUser = (userNickName) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(
+        `/api/v1/plans/${userNickName}/plansfavorite`
+      );
+      dispatch(setUsersFavorite(response.data));
+    } catch (error) {
+      console.error(error);
     }
   };
 };

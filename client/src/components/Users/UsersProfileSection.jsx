@@ -15,6 +15,7 @@ export default function UsersProfileSection({
   blogs,
   followed,
   following,
+  favorites,
 }) {
   return (
     <div className={style.container}>
@@ -34,7 +35,7 @@ export default function UsersProfileSection({
       </div>
       <div className={style.infoCont}>
         <div className={style.friendsAct}>
-          <h6 className={style.title}>Actividad de mis amigos</h6>
+          <h6 className={style.title}>Personas de mi interés</h6>
           <hr
             color="#F1E100"
             width="100%"
@@ -54,7 +55,6 @@ export default function UsersProfileSection({
             ))
           )}
         </div>
-        {/* //!! FALTA CONECTAR CON EL BACK-END PORQUE NO ESTÁ */}
         <div className={style.activityCont}>
           <div>
             <h6 className={style.title}>Sobre mí</h6>
@@ -65,29 +65,25 @@ export default function UsersProfileSection({
             <ProfileAboutMe aboutMe={user.about} />
           </div>
           <div>
-            <h6 className={style.title}>Últimos planes asistidos</h6>
+            <h6 className={style.title}>Mis planes favoritos</h6>
             <hr
               color="#F1E100"
               width="100%"
             />
-            {/* //!! FALTA CONECTAR CON EL BACK-END PORQUE NO ESTÁ */}
             <div className={style.plansCont}>
-              {profileData.data.map((element) =>
-                element.latestAssistedPlans.map((element2) => (
-                  <Link
-                    key={element2.id}
-                    to={`/plans/${element2.id}`}
-                    className={style.link}
-                  >
-                    <ProfileLatestAssistedPlans
-                      image={element2.latestAssistedPlansImg}
-                      name={element2.latestAssistedPlansName}
-                    />
-                  </Link>
-                ))
-              )}
+              {favorites.map((element) => (
+                <Link
+                  key={element.id}
+                  to={`/plans/${element.id}`}
+                  className={style.link}
+                >
+                  <ProfileLatestAssistedPlans
+                    image={element.mainImage}
+                    name={element.title}
+                  />
+                </Link>
+              ))}
             </div>
-            {/* //!! FALTA CONECTAR CON EL BACK-END PORQUE NO ESTÁ */}
           </div>
           <div>
             <h6 className={style.title}>Mis planes</h6>

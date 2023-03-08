@@ -14,10 +14,10 @@ export const getBlogs = (page, date = "", order = "") => {
   };
 };
 
-export const getBlogsSearch = (nickName) => {
+export const getBlogsSearch = (contains) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`/api/v1/users/${nickName}/blogs`);
+      const response = await axios.get(`/api/v1/blogs?contains=${contains}`);
       dispatch(setBlogsSearch(response.data));
     } catch (error) {
       console.error(error.response);
@@ -29,7 +29,8 @@ export const getBlogById = (id) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`/api/v1/blogs/${id}`);
-      dispatch(setBlogById(response.data));
+      console.log(response.data.data);
+      dispatch(setBlogById(response.data.data));
     } catch (error) {
       console.error(error.response);
     }
