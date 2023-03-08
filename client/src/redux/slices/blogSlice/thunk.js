@@ -29,7 +29,8 @@ export const getBlogById = (id) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`/api/v1/blogs/${id}`);
-      dispatch(setBlogById(response.data));
+      console.log(response.data.data);
+      dispatch(setBlogById(response.data.data));
     } catch (error) {
       console.error(error.response);
     }
