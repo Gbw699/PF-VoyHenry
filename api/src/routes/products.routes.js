@@ -5,32 +5,67 @@ const passport = require('passport')
 const validatorHandler = require('../middlewares/validator.handler')
 const { createProductSchema, getProductSchema, updateProductSchema, buyProductSchema } = require('../schemas/products.schema');
 const { mercadopagoconfig } = require('../libs/mercadopago/mercadopago');
+const MailerService = require('../services/Mailer.service');
+
 
 
 
 mercadopagoconfig()
 const router = Router();
 const service = new ProductsService()
+const mailer = new MailerService()
+
 
 /* Get all products */
 
-router.get('/', async (req, res, next) => {
+router.get('/',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const products = await service.find(req.query)
+      const page = req.query.page || 1
+      const products = await service.find(req.query, page)
 
-    res.json(products)
-  } catch (error) {
+      let pages = ''
+      if (products.productsInFilter <= products.productsLimit){
+        pages = 1
+      } else {
+        pages = Math.ceil(products.productsInFilter / products.productsLimit);
+      }
 
-    next(error)
-  }
+      const pageNumber = parseInt(page)
+      const response = {products, pageNumber, pages}
+      res.json(response)
+    } catch (error) {
+
+      next(error)
+    }
 
 });
+
+/* Buy success */
+
+router.get('/success', 
+  //passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
+
+    try {
+
+      mailer.buySuccess(req.query)
+      res.redirect(`http://localhost:3000/home`)
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
 
 /* Get product by id */
 
 router.get('/:id',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getProductSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -50,8 +85,8 @@ router.get('/:id',
 /* Create new product */
 
 router.post('/',
-  validatorHandler(createProductSchema, 'body'),
   passport.authenticate('jwt', {session: false}),
+  validatorHandler(createProductSchema, 'body'),
   checkAdminRole,
   async (req, res, next) => {
     try {
@@ -71,9 +106,9 @@ router.post('/',
 /* update product info */
 
 router.patch('/:id',
+  passport.authenticate('jwt', {session: false}),
   validatorHandler(getProductSchema, 'params'),
   validatorHandler(updateProductSchema, 'body'),
-  passport.authenticate('jwt', {session: false}),
   checkAdminRole,
   async (req, res, next) => {
     try {
@@ -93,8 +128,8 @@ router.patch('/:id',
 /* Delete product */
 
 router.delete('/:id',
-  validatorHandler(getProductSchema, 'params'),
   passport.authenticate('jwt', {session: false}),
+  validatorHandler(getProductSchema, 'params'),
   checkAdminRole,
   async (req, res, next) => {
 
@@ -115,8 +150,8 @@ router.delete('/:id',
 /* Buy One Product */
 
 router.post('/buy',
-  validatorHandler(buyProductSchema, 'body'),
   passport.authenticate('jwt', {session: false}),
+  validatorHandler(buyProductSchema, 'body'),
   async (req, res, next) => {
     try {
 

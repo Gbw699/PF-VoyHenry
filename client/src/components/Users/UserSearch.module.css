@@ -3,41 +3,40 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 0px;
-  margin: 0px;
 }
+
 .searchInput {
   font-family: monospace;
-  max-width: 190px;
+  width: 290px;
   outline: none;
-  border: 1px solid #dadada;
+  border: 1px solid #f1e100;
   padding: 5px;
   border-radius: 5px;
-  background-color: #020203;
+  background-color: white;
   transition: 0.7s;
   color: #f1e100;
+  font-display: swap;
 }
 
 .searchInput::placeholder {
-  color: #f1e100;
+  color: #c5c5c5;
 }
 
 .searchInput:focus {
-  border: 1px solid #f1e100;
-  box-shadow: 0 0 0 5px #f1e100;
+  box-shadow: 0 0 0 2px #f1e100;
 }
 
 .searchBtn {
   background-color: #f1e100;
-  color: #000000;
-  border: 2px solid #f1e100;
-  border-radius: 3px;
+  color: #707070;
+  border: 1px solid #f1e100;
+  border-radius: 5px;
   padding: 5px;
 }
 
 .searchBtn:hover {
-  background-color: #000000;
+  background-color: #707070;
   color: #f1e100;
-  border: 2px solid #000000;
-  border-radius: 3px;
+  border: 1px solid #707070;
+  border-radius: 5px;
 }

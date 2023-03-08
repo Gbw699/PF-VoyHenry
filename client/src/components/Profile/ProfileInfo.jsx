@@ -1,7 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import style from "./ProfileInfo.module.css";
 
 export default function ProfileInfo({
@@ -10,33 +8,26 @@ export default function ProfileInfo({
   lastName,
   nationality,
   following,
-  followers,
-  assistedPlans,
+  followed,
   plansCreated,
   reviewsCreated,
 }) {
-  const [backgroundImage, setBackgroundImage] = useState("");
-  const location = useLocation();
-  useEffect(() => {
-    setBackgroundImage(`url(${image})`);
-  });
-
   return (
     <div className={style.container}>
       <div className={style.mainInfo}>
         <div className={style.editarPerfilCont}>
-          {location.pathname !== "/profile" && (
-            <button className={style.editarPerfil}>AGREGAR AMIGO</button>
-          )}
+          {/* {location.pathname !== "/profile" && (
+            <button className={style.addBtn}>Agregar amigo</button>
+          )} */}
           {location.pathname === "/profile" && (
             <Link to="/profile/edit">
-              <button className={style.editarPerfil}>EDITAR PERFIL</button>
+              <button className={style.editBtn}>Editar perfil</button>
             </Link>
           )}
         </div>
         <div
           className={style.imgCont}
-          style={{ backgroundImage: backgroundImage }}
+          style={{ backgroundImage: `url(${image})` }}
         />
         <p className={style.name}>
           {firstName} {lastName}
@@ -50,11 +41,7 @@ export default function ProfileInfo({
         </div>
         <div className={style.infoCont}>
           <p className={style.infoTitle}>Seguidores</p>
-          <p className={style.infoCount}>{followers}</p>
-        </div>
-        <div className={style.infoCont}>
-          <p className={style.infoTitle}>Planes asistidos</p>
-          <p className={style.infoCount}>{assistedPlans}</p>
+          <p className={style.infoCount}>{followed}</p>
         </div>
         <div className={style.infoCont}>
           <p className={style.infoTitle}>Planes creados</p>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import GeolocationForm from "./GeolocationForm";
+import FiltersContainer from "./FiltersContainer";
 import PlanCardList from "../../recycle/PlanCardList/PlansCardList";
 import PlansSections from "../../recycle/PlansSections/PlansSections";
 import style from "./Plan.module.css";
@@ -11,15 +11,11 @@ export default function Plan() {
   return (
     <div className={style.container}>
       <div className={style.planForm}>
+        {!showPlanForm && <FiltersContainer setShowPlanForm={setShowPlanForm} />}
         {showPlanForm && <PlanForm setShowPlanForm={setShowPlanForm} />}
       </div>
-      {!showPlanForm && <GeolocationForm setShowPlanForm={setShowPlanForm} />}
-      {!showPlanForm && (
-        <div className={style.plans}>
-          <PlanCardList />
-        </div>
-      )}
-      {!showPlanForm && <PlansSections />}
+      <div className={style.plans}>{!showPlanForm && <PlanCardList />}</div>
+      <div className={style.sections}>{!showPlanForm && <PlansSections />}</div>
     </div>
   );
 }

@@ -1,9 +1,12 @@
 const plansModel = require('../libs/models/plans.model');
 const { CustomError } = require('../middlewares/error.handler');
-const { Op, where } = require('sequelize');
+const { Op } = require('sequelize');
 const users = require('../libs/models/users.model.js');
-const comments = require('../libs/models/comments.users');
+const comments = require('../libs/models/comments.model');
 const sequelize = require('../libs/database/database');
+const MailerService = require('./Mailer.service');
+
+const mailerService = new MailerService()
 
 class PlansService {
   constructor() {}
@@ -29,6 +32,14 @@ class PlansService {
 
     if (query.province) {
       options.where.province = { [Op.like]: query.province };
+    }
+
+    if (query.city) {
+      options.where.city = { [Op.like]: query.city };
+    }
+
+    if (query.address) {
+      options.where.address = { [Op.like]: query.address };
     }
 
     if (query.contains) {
@@ -69,6 +80,8 @@ class PlansService {
       options.offset = (page - 1) * (options.limit || query.limit);
     }
 
+    const plansLimit = options.limit
+
     const plansInFilter = await plansModel.count(options);
 
     const plans = await plansModel.findAll(options);
@@ -76,7 +89,7 @@ class PlansService {
     if (plans === null || plans.length === 0) {
       throw new CustomError('Plan not found', 404);
     } else {
-      return { plans, plansInFilter };
+      return { plans, plansInFilter, plansLimit };
     }
   }
 
@@ -118,6 +131,8 @@ class PlansService {
     userNickName,
     country,
     province,
+    city,
+    address,
   }) {
     eventDate = new Date(eventDate);
     eventDate.setHours(
@@ -140,6 +155,8 @@ class PlansService {
       userNickName: userNickName,
       country: country,
       province: province,
+      city: city,
+      address: address,
     });
 
     const userPlanTable = await sequelize.models.users_votes_plans.create({
@@ -147,6 +164,26 @@ class PlansService {
 
       Planid: newPlan.id,
     });
+
+    mailerService.sendPlanCreateEmail(searchname, newPlan)
+
+    const follow = await sequelize.models.user_follow_user.findAll({
+      where: {followUserId: userNickName}
+    })
+
+     const userid = follow.map(
+      (fo) => fo.dataValues.userid
+     )
+
+    const allUsers = await users .findAll({
+      where: {nickName: userid}
+    })
+
+    const usermail = allUsers.map(
+      (fo) => fo.dataValues.email
+     )
+
+    mailerService.sendFollowingPlanCreateEmail(searchname, newPlan, userid, usermail)
 
     return {
       message: 'Create',
@@ -161,11 +198,9 @@ class PlansService {
   /* Create Comment Plan */
 
   async createComment(id, { userNickName, comment }) {
-    const searchname = await users.findOne({
-      where: { nickName: userNickName },
-    });
+    //const searchname = await users.findOne({where: { nickName: userNickName },});
 
-    const searchplan = await plansModel.findOne({ where: { id: id } });
+  //  const searchplan = await plansModel.findOne({ where: { id: id } });
 
     const newCom = await comments.create({
       content: comment,
@@ -182,6 +217,31 @@ class PlansService {
       commentid: newCom.id,
     });
 
+
+
+    const searchplan = await plansModel.findOne({
+      where: { id: id },
+    });
+
+    const searchname = await users.findOne({
+      where: { nickName: searchplan.userNickName },
+    });
+
+    mailerService.sendPlanCommentEmail(searchname, searchplan, userNickName )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return {
       message: 'Create',
       data: {
@@ -191,37 +251,8 @@ class PlansService {
       },
     };
   }
-  // const plan = await plansModel.findOne({
-  //   where: {
-  //     id: id
-  //   }
-  // })
 
-  // if (plan === null) {
-  //   throw new CustomError("Plan not found", 404)
-  // }
-
-  // plan.comment += comment
-
-  // await plan.save()
-
-  // return plan;
-
-  // const userPlanTable = await sequelize.models.users_commemt_plans.create({
-
-  //   userNickName: userNickName,
-
-  //   Planid: newPlan.id
-  // })
-
-  // return {
-  //   message: "Create",
-  //   data: {
-  //     newPlan,
-  //     user: searchname,
-  //     userPlanTable: userPlanTable
-  //   }
-  // };
+  // Get comment Plan
 
   async getComment(id) {
     const commentsPlans = await sequelize.models.comments_plans.findAll({
@@ -232,22 +263,71 @@ class PlansService {
     );
     const comment = await comments.findAll({
       where: { id: commentIds },
-      include: [{
-        model: sequelize.models.users,
-        through: {
-          model: sequelize.models.comments_users,
-          attributes: []
-        }
-      }]
+      include: [
+        {
+          model: sequelize.models.users,
+          through: {
+            model: sequelize.models.comments_users,
+            attributes: [],
+          },
+        },
+      ],
     });
     return comment;
   }
+
+  /* Delete Plan Comment */
+
+  async deleteComment(commentId) {
+    const deletedComment = await comments.destroy({
+      where: {
+        id: commentId,
+      },
+    });
+
+    if (deletedComment === 0) {
+      throw new CustomError('Plan not found', 404);
+    } else {
+      return {
+        message: 'deleted',
+        data: {
+          id: commentId,
+        },
+      };
+    }
+  }
+
+    /* Update Comment */
+
+    async updateComment(id, { content }) {
+
+      const comment = await comments.findOne({
+        where: {
+          id: id,
+        },
+      });
+
+      if (comment === null) {
+        throw new CustomError('Comment not found', 404);
+      }
+
+      (comment.content = content || comment.content)
+  
+      await comment.save();
+  
+      return {
+        message: 'comment change',
+        data: {
+          comment,
+        },
+      };
+    }
 
   /* Update user */
 
   async update(
     id,
-    { title, summary, description, mainImage, images, eventDate, state }
+    { title, summary, description, mainImage, images, eventDate, state, country, province, city, address }
   ) {
     const plan = await plansModel.findOne({
       where: {
@@ -265,6 +345,10 @@ class PlansService {
       (plan.images = images || plan.images),
       (plan.eventDate = eventDate || plan.eventDate),
       (plan.state = state || plan.state);
+      (plan.country = country || plan.country);
+      (plan.province = province || plan.province);
+      (plan.city = city || plan.city);
+      (plan.address = address || plan.address);
 
     await plan.save();
 
@@ -293,7 +377,30 @@ class PlansService {
 
     await plan.save();
 
-    // return plan;
+    const searchname = await users.findOne({
+      where: { nickName: userNickName },
+    });
+
+    mailerService.sendPlanVoteEmail(searchname, plan)
+
+    const follow = await sequelize.models.user_follow_user.findAll({
+      where: {followUserId: userNickName}
+    })
+
+     const userid = follow.map(
+      (fo) => fo.dataValues.userid
+     )
+
+    const allUsers = await users .findAll({
+      where: {nickName: userid}
+    })
+
+    const usermail = allUsers.map(
+      (fo) => fo.dataValues.email
+     )
+
+    mailerService.sendFollowingPlanVoteEmail(searchname, plan, userid, usermail)
+
     return {
       message: 'voted',
       data: {
@@ -324,6 +431,85 @@ class PlansService {
     }
   }
 
+  /* Create favorite plan */
+
+  async followplan(id, { userNickName }) {
+    const userFavoritePlan = await sequelize.models.user_favorite_plan.create({
+      userid: userNickName,
+
+      planid: id,
+    });
+
+    return {
+      message: 'Create',
+      data: {
+        favoriteBlog: userFavoritePlan,
+      },
+    };
+  }
+
+  /* Get favorite by planid */
+
+  async getFollowPlan(id) {
+    const followingUser = await sequelize.models.user_favorite_plan.findAll({
+      where: { planid: id },
+    });
+
+    const followingUserId = followingUser.map((us) => us.dataValues.userid);
+
+    const user = await users.findAll({
+      where: { nickName: followingUserId },
+    });
+
+    if (user[0] === undefined) {
+      throw new CustomError("this plan don't exist in any user favorite ", 404);
+    } else {
+      return user;
+    }
+  }
+
+  /* Get favorite by nickName */
+
+  async getFollowedPlans(userNickName) {
+    const followedPlan = await sequelize.models.user_favorite_plan.findAll({
+      where: { userid: userNickName },
+    });
+
+    const followedPlanId = followedPlan.map((pl) => pl.dataValues.planid);
+
+    const plans = await plansModel.findAll({
+      where: { id: followedPlanId },
+    });
+
+    if (plans[0] === undefined) {
+      throw new CustomError("this user don't have any plan in favorites", 404);
+    } else {
+      return plans;
+    }
+  }
+
+  /* Delete Plan */
+
+  async deleteFavoritePlan(id, { userNickName }) {
+    const deletedFavoritePlan =
+      await sequelize.models.user_favorite_plan.destroy({
+        where: {
+          planid: id,
+          userid: userNickName,
+        },
+      });
+
+    if (deletedFavoritePlan === 0) {
+      throw new CustomError("this user don't have this plan in favorite", 404);
+    } else {
+      return {
+        message: 'plan favorite deleted',
+        data: {
+          id: deletedFavoritePlan,
+        },
+      };
+    }
+  }
 }
 
 module.exports = PlansService;

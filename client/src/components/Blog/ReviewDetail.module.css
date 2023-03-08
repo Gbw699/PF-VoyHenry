@@ -1,105 +1,184 @@
 .container {
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  height: 100vh;
-}
-.profile {
+  background-color: white;
+  background-size: cover;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
+  padding: 4rem;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.detailCont {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.profile {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 .imgProfile {
-  display: flex;
-  width: 40%;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-radius: 50%;
+  margin-right: 2em;
 }
 
-.titleName {
-  color: #000000;
-  font-weight: 600;
-  font-size: 25px;
-  padding-bottom: 30px;
-}
-
-.fecha {
+.review {
   display: flex;
   flex-direction: column;
-  align-items: end;
-  color: #000000;
-  font-weight: 600;
-  font-size: 25px;
-  margin: 5px;
+  width: 100%;
+}
+
+.nameCont {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: -20px;
+}
+
+.reviewCont {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+}
+
+.reviewInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  color: #707070;
+  font-weight: 500;
+  font-size: 140%;
+}
+
+.date {
+  color: #707070;
+  font-weight: 300;
+  font-size: 100%;
+}
+
+.imgCont {
+  margin-bottom: 1em;
 }
 
 .img {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 10%;
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  margin-right: 2em;
 }
 
 .title {
-  color: #000000;
-  font-weight: 400;
-  font-size: 25px;
-  padding-bottom: 5px;
+  color: #707070;
+  font-weight: 500;
+  font-size: 150%;
+  margin-bottom: 0px;
 }
+
 .blogContent {
+  color: #707070;
+  font-weight: 300;
+  font-size: 110%;
+  margin-top: 1em;
+}
+
+.commentsCont {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border-radius: 2px;
-  box-shadow: 1px 1px 1px 1px gray;
-  margin: 10px;
+  margin-top: 3em;
+  margin-left: 5em;
+  width: 95%;
 }
-.button {
-  appearance: none;
+
+.commentsTitle {
+  color: #707070;
+  font-size: 110%;
+  font-weight: 500;
+}
+
+.input {
+  border: 1px solid #b1b1b1;
+  border-radius: 5px;
+  padding: 0.4em;
+  margin: 0.5em 0px;
+}
+
+.input::placeholder {
+  color: #b1b1b1;
+}
+
+.buttonsCont {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2em;
+}
+
+.editBtn {
+  align-self: center;
   background-color: #f1e100;
-  border: 0.125em solid #1a1a1a;
-  border-radius: 0.9375em;
-  box-sizing: border-box;
-  color: #000000;
+  border: 2px solid #f1e100;
+  border-radius: 10px;
+  padding: 0.5% 2%;
+  color: #707070;
+  width: 10%;
   cursor: pointer;
-  display: inline-block;
-
-  width: 20%;
-  font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 14px;
-  font-weight: 600;
-  line-height: normal;
-  margin-bottom: 10px;
-  outline: none;
-  padding: 10px;
-  text-align: center;
-  text-decoration: none;
-  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  will-change: transform;
+  margin-right: 2em;
 }
 
-.button:disabled {
-  pointer-events: none;
+.editBtn:hover {
+  background-color: white;
+  color: #707070;
 }
 
-.button:hover {
-  color: #f1e100;
-  background-color: #1a1a1a;
-  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-  transform: translateY(-2px);
+.deleteBtn {
+  align-self: center;
+  background-color: #f22176;
+  border: 2px solid #f22176;
+  border-radius: 10px;
+  padding: 0.5% 2%;
+  color: white;
+  width: 15%;
+  cursor: pointer;
 }
 
-.button:active {
-  box-shadow: none;
-  transform: translateY(0);
+.deleteBtn:hover {
+  background-color: white;
+  color: #707070;
+}
+
+.backBtn {
+  align-self: center;
+  background-color: white;
+  border: 2px solid #f1e100;
+  border-radius: 10px;
+  padding: 0.5% 2%;
+  color: #707070;
+  width: 10%;
+  margin-top: 5em;
+  cursor: pointer;
+}
+
+.backBtn:hover {
+  background-color: #707070;
+  border: 2px solid #707070;
+  color: white;
+}
+
+.inputTitle {
+  font-size: 150%;
+}
+
+.inputBlog {
+  font-size: 150%;
+}
+
+.textareaBlog {
+  font-size: 150%;
+  resize: none
 }

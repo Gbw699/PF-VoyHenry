@@ -1,10 +1,7 @@
 import axios from "axios";
 import { queryString } from "./queryStringPlan.js";
-import {
-  setPlansSearch,
-  setPlanById,
-  setPlansbyOrder,
-} from "./planSlice";
+import { setPlansSearch, setPlanById, setPlansbyOrder } from "./planSlice";
+import customAlert from "../../../recycle/Alert/CustomAlert.jsx";
 
 export const getPlansSearch = (content) => {
   return async (dispatch) => {
@@ -21,7 +18,7 @@ export const getPlanById = (id) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`/api/v1/plans/${id}`);
-      dispatch(setPlanById(response.data.data.plan));
+      dispatch(setPlanById(response.data.data));
     } catch (error) {
       return console.log("No se pudo realizar la petición");
     }
@@ -34,7 +31,7 @@ export const postPlan = (obj) => {
       await axios.post("/api/v1/plans", {
         ...obj,
       });
-      window.alert("El plan se creó correctamente");
+      customAlert("El plan se creó correctamente");
     } catch (error) {
       console.error(error.response);
     }
@@ -62,6 +59,18 @@ export const postComment = (id, obj) => {
       window.alert("El comentario se envió correctamente");
     } catch (error) {
       console.error(error.message);
+    }
+  };
+};
+
+export const editPlan = (obj, id) => {
+  return async () => {
+    try {
+      await axios.patch(`/api/v1/plans/${id}`, {
+        ...obj,
+      });
+    } catch (error) {
+      return console.error(error.response);
     }
   };
 };

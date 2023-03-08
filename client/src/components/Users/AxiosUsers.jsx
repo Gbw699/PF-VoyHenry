@@ -1,41 +1,87 @@
 import axios from "axios";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import {
+  getFavoritesUser,
+  getFollowed,
+  getFollowing,
+} from "../../redux/slices/userSlice/thunks";
 
-const getEndpoint = (nickName) => {
-  return nickName ? `/api/v1/users/${nickName}` : "/api/v1/users";
+const getEndpoint = (id) => {
+  return id ? `/api/v1/users/${id}` : "/api/v1/users";
 };
 
 export default function AxiosUsers({
   setUsers,
+  reRender,
   setUser,
   setPlans,
   setBlogs,
-  nickName,
+  id,
+  user,
+  following,
+  setFollowing,
 }) {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!id) {
+        try {
+          const response = await axios.get(`/api/v1/users/${user}/following`);
+          setFollowing(response.data.data.data);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+    fetchData();
+  }, [following?.length]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(getEndpoint(nickName));
-        if (nickName) {
-          const { data: userData } = await axios.get(
-            `/api/v1/users/${nickName}`
-          );
-          const { data: plansData } = await axios.get(
-            `/api/v1/users/${nickName}/plans`
-          );
-          const { data: blogsData } = await axios.get(
-            `/api/v1/users/${nickName}/blogs`
-          );
+        const { data } = await axios.get(getEndpoint(id));
+        if (id) {
+          const { data: userData } = await axios.get(`/api/v1/users/${id}`);
           setUser(userData);
-          setPlans(plansData);
-          setBlogs(blogsData.blogs.blogs);
+          try {
+            const { data: plansData } = await axios.get(
+              `/api/v1/users/${id}/plans`
+            );
+            setPlans(plansData);
+          } catch (error) {
+            console.log("Error getting plans: ", error.message);
+          }
+          try {
+            const { data: blogsData } = await axios.get(
+              `/api/v1/users/${id}/blogs`
+            );
+            setBlogs(blogsData.blogs.blogs);
+          } catch (error) {
+            console.log("Error getting blogs: ", error.message);
+          }
+          try {
+            dispatch(getFavoritesUser(id));
+          } catch (error) {
+            console.log(error.message);
+          }
+          try {
+            dispatch(getFollowing(id));
+          } catch (error) {
+            console.log(error.message);
+          }
+          try {
+            dispatch(getFollowed(id));
+          } catch (error) {
+            console.log(error.message);
+          }
         } else {
           setUsers(data.users);
         }
       } catch (error) {
-        console.log(error.response);
+        console.log(error.message);
       }
     };
     fetchData();
-  }, [setUsers, nickName]);
+  }, [setUsers, reRender, setUser, setPlans, setBlogs, id]);
 }

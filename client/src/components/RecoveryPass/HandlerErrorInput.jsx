@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-
+import style from "./MailInput.module.css";
 export default function HandlerErrorInput({ email, setIsValidEmail }) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const isValidEmail = emailRegex.test(email);
@@ -8,5 +8,9 @@ export default function HandlerErrorInput({ email, setIsValidEmail }) {
     setIsValidEmail(isValidEmail);
   }, [email, setIsValidEmail, isValidEmail]);
 
-  return <>{!isValidEmail && <p>Please enter a valid email address.</p>}</>;
+  return (
+    <div className={style.container}>
+      {!isValidEmail && <p>Please enter a valid email address.</p>}
+    </div>
+  );
 }

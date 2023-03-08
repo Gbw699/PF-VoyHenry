@@ -1,19 +1,23 @@
 .container {
   display: flex;
   flex-direction: column;
-  padding: 1%;
-  width: 100%;
+  padding: 0.5em;
+  width: 40em;
 }
 
 .reviewCont {
   display: flex;
   flex-direction: row;
-  margin-bottom: 2%;
+  width: 120%;
+}
+
+.reviewImg {
+  width: 50%;
 }
 
 .img {
-  width: 150px;
-  height: 150px;
+  width: 19em;
+  height: 10em;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -23,26 +27,26 @@
 .reviewInfo {
   display: flex;
   flex-direction: column;
-  margin-left: 3%;
+  width: 70%;
+  margin-left: 1em;
 }
 
 .title {
   color: #707070;
-  font-size: 100%;
-  font-weight: 400;
-  margin: 0px;
+  font-size: 120%;
+  font-weight: 500;
+  margin: 0em;
 }
 
 .review {
   color: #707070;
-  font-size: 90%;
+  font-size: 100%;
   font-weight: 300;
-  margin: 0px;
 }
 
 .score {
   color: #707070;
-  font-size: 100%;
-  font-weight: 300;
+  font-size: 110%;
+  font-weight: 400;
   margin: 0px;
 }

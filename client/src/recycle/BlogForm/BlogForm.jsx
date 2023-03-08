@@ -5,8 +5,9 @@ import { postBlog } from "../../redux/slices/blogSlice/thunk";
 import style from "./BlogForm.module.css";
 import UploadWidget from "../UploadWidget/UploadWidget";
 import { useState } from "react";
+import RatingField from "./RatingField";
 
-export default function BlogForm({ open, close }) {
+export default function BlogForm({ open, close, setState }) {
   const [url, setUrl] = useState("");
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
@@ -25,7 +26,7 @@ export default function BlogForm({ open, close }) {
             userNickName: user.nickName,
             title: "",
             content: "",
-            stars: 0,
+            stars: 1,
           }}
           validationSchema={Yup.object({
             title: Yup.string()
@@ -40,10 +41,11 @@ export default function BlogForm({ open, close }) {
               .max(5, "Debe ser menor o igual que 5")
               .required("La valoración es obligatoria"),
           })}
-          onSubmit={(values) => {
+          onSubmit={async (values) => {
             values = { ...values, image: url };
             setUrl("");
-            dispatch(postBlog(values));
+            await dispatch(postBlog(values));
+            await setState(false);
           }}
         >
           <Form className={style.formCont}>
@@ -56,9 +58,9 @@ export default function BlogForm({ open, close }) {
             <Field
               name="title"
               type="text"
+              placeholder="Escribe el título de la reseña"
             />
             <ErrorMessage name="title" />
-
             <label
               htmlFor="content"
               className={style.formLabel}
@@ -68,24 +70,18 @@ export default function BlogForm({ open, close }) {
             <Field
               name="content"
               as="textarea"
+              style={{resize: "none"}}
+              placeholder="Escribe la reseña"
             />
             <ErrorMessage name="content" />
-
             <label
               htmlFor="stars"
               className={style.formLabel}
             >
               Valoración
             </label>
-            <Field
-              name="stars"
-              type="number"
-              min="1"
-              max="5"
-              step="0.25"
-            />
+            <RatingField name="stars"/>
             <ErrorMessage name="stars" />
-
             <label
               htmlFor="image"
               className={style.formLabel}
@@ -101,15 +97,10 @@ export default function BlogForm({ open, close }) {
                 className={style.img}
                 src={url}
                 alt=""
+                title=""
+                loading="lazy"
               />
             </div>
-            {/* <Field
-              name="image"
-              type="url"
-              value={url}
-              />
-            <ErrorMessage name="image" /> */}
-
             <button
               type="submit"
               className={style.submitBtn}

@@ -2,41 +2,44 @@ const { Router } = require('express');
 const passport = require('passport')
 const PlansService = require('../services/plan.service')
 const validatorHandler = require('../middlewares/validator.handler')
-const { createPlanSchema, updateSchema, getPlanSchema, deletePlanSchema, ratingSchema } = require('../schemas/plans.schema')
+const { createPlanSchema, updateSchema, getPlanSchema, deletePlanSchema, ratingSchema, followSchema } = require('../schemas/plans.schema')
 
 const router = Router();
 const service = new PlansService();
 
 /* Get all plans */
 
-router.get('/', async (req, res, next) => {
+router.get('/', 
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const page = req.query.page || 1
-    const plans = await service.find(req.query, page)
+      const page = req.query.page || 1
+      const plans = await service.find(req.query, page)
 
-    let pages = ''
+      let pages = ''
 
-    if (plans.plansInFilter <= 9){
-      pages = 1
-    } else {
-      pages = Math.ceil(plans.plansInFilter / 9);
+      if (plans.plansInFilter <= plans.plansLimit){
+        pages = 1
+      } else {
+        pages = Math.ceil(plans.plansInFilter / plans.plansLimit);
+      }
+
+      const pageNumber = parseInt(page);
+      const response = { plans, pageNumber, pages }
+      res.json(response)
+    } catch (error) {
+
+      next(error)
     }
-
-    const pageNumber = parseInt(page);
-    const response = { plans, pageNumber, pages }
-    res.json(response)
-  } catch (error) {
-
-    next(error)
-  }
 
 });
 
 /* Get plan by ID */
 
 router.get('/:id',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getPlanSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -56,8 +59,8 @@ router.get('/:id',
 /* Create new plan */
 
 router.post('/',
-  validatorHandler(createPlanSchema, "body"),
   passport.authenticate('jwt', {session: false}),
+  validatorHandler(createPlanSchema, "body"),
   async (req, res, next) => {
 
     try {
@@ -77,7 +80,7 @@ router.post('/',
 /* Create new plan comment*/
 
 router.post('/:id/comment',
-
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
 
     try {
@@ -94,8 +97,10 @@ router.post('/:id/comment',
 
 });
 
-router.get('/:id/comment',
+/* get plan comment*/
 
+router.get('/:id/comment',
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
 
     try {
@@ -112,11 +117,50 @@ router.get('/:id/comment',
 
 });
 
+/* Delete Plan Comment */
+
+router.delete(
+  '/comment/:id',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+
+      const deletedComment = await service.deleteComment(id);
+
+      res.json(deletedComment);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+/* update comment content */
+
+router.patch('/comment/:id',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
+
+    try {
+
+      const { id } = req.params
+      const body = req.body;
+
+      const updatedComment = await service.updateComment(id, body)
+
+      res.json(updatedComment)
+
+    } catch (error) {
+      next(error)
+    }
+
+});
+
 /* update plan info */
 
 router.patch('/:planID',
-  validatorHandler(updateSchema, "body"),
   passport.authenticate('jwt', {session: false}),
+  validatorHandler(updateSchema, "body"),
   async (req, res, next) => {
 
     try {
@@ -137,6 +181,7 @@ router.patch('/:planID',
 /* update plan votes info */
 
 router.patch('/:planID/votes',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(ratingSchema, "body"),
   async (req, res, next) => {
 
@@ -157,9 +202,9 @@ router.patch('/:planID/votes',
 
 /* Delete plan */
 
-router.delete('/:id',
-  validatorHandler(deletePlanSchema, 'params'),
+router.delete('/:id', 
   passport.authenticate('jwt', {session: false}),
+  validatorHandler(deletePlanSchema, 'params'),
   async (req, res, next) => {
 
     try {
@@ -173,7 +218,99 @@ router.delete('/:id',
 
       next(error)
     }
+  });
 
-});
+  /* Create new plan favorite*/
+
+router.post(
+  '/:id/favorite',
+  passport.authenticate('jwt', { session: false }),
+  validatorHandler(deletePlanSchema, 'params'),
+  validatorHandler(followSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+
+      const body = req.body;
+
+      const createdPlanFollow = await service.followplan(id, body);
+
+      res.json(createdPlanFollow);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+/* Get plans favorite */
+
+router.get(
+  '/:id/favorite',
+  passport.authenticate('jwt', { session: false }),
+  validatorHandler(deletePlanSchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const  {id}  = req.params;
+
+      const createdComment = await service.getFollowPlan(id);
+
+      res.json(createdComment);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+/* Get user plan favorite */
+
+router.get(
+  '/:userNickName/Plansfavorite',
+  passport.authenticate('jwt', { session: false }),
+  validatorHandler(followSchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const  { userNickName }  = req.params;
+
+      const followedPlan = await service.getFollowedPlans(userNickName);
+
+      res.json(followedPlan);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+/* Delete Plan favorite */
+
+router.delete(
+  '/:id/favorite',
+  passport.authenticate('jwt', { session: false }),
+  validatorHandler(deletePlanSchema, 'params'),
+  validatorHandler(followSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+
+      const body = req.body;
+
+      const deletedPlan = await service.deleteFavoritePlan(id, body);
+
+      res.json(deletedPlan);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;

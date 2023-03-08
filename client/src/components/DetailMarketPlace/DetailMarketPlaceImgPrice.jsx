@@ -14,7 +14,10 @@ export default function DetailMarketPlaceImgPrice({
   stock,
   title,
   price,
+  imageExtra,
 }) {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const email = user.email;
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(1);
 
@@ -28,6 +31,13 @@ export default function DetailMarketPlaceImgPrice({
     setProducts({ id, image, stock, title, price });
   };
 
+  const createOption = () => {
+    let optionStock = [];
+    for (let i = 1; i <= stock; i++) {
+      optionStock.push({ value: i });
+    }
+    return optionStock;
+  };
   const changeQuantitySelect = (event) => {
     const quantityValue = event.target.value;
     setQuantity(parseInt(quantityValue));
@@ -44,8 +54,11 @@ export default function DetailMarketPlaceImgPrice({
   const handleNowBuy = async () => {
     try {
       const response = await axios.post("/api/v1/products/buy", {
+        id,
         title,
         price,
+        email,
+        quantity,
       });
       window.location.href = response.data;
     } catch (error) {
@@ -56,7 +69,7 @@ export default function DetailMarketPlaceImgPrice({
   return (
     <div className={style.container}>
       <div className={style.imgCont}>
-        <DetailMarketPlaceImg image={image} />
+        <DetailMarketPlaceImg {...{ image, imageExtra, title }} />
       </div>
       <div className={style.infoCont}>
         <DetailMarketPlacePrice
@@ -69,44 +82,16 @@ export default function DetailMarketPlaceImgPrice({
           onChange={changeQuantitySelect}
           className={style.select}
         >
-          {/* //!! Hay que hacer un map del stock */}
-          {/* <option
-            key={stock}
-            value={stock}
-          >
-            {stock === 1 ? `${stock} unidad` : `${stock} unidades`}
-          </option> */}
-          <option
-            key="1"
-            value="1"
-          >
-            1{/* {stock === 1 ? `${stock} unidad` : `${stock} unidades`} */}
-          </option>
-          <option
-            key="2"
-            value="2"
-          >
-            2
-          </option>
-          <option
-            key="3"
-            value="3"
-          >
-            3
-          </option>
-          <option
-            key="4"
-            value="4"
-          >
-            4
-          </option>
-          <option
-            key="5"
-            value="5"
-          >
-            5
-          </option>
-          {/* //!! Hay que hacer un map del stock */}
+          {createOption().map((option) => (
+            <option
+              key={option.value}
+              value={option.value}
+            >
+              {option.value === 1
+                ? option.value + " unidad"
+                : option.value + " unidades"}
+            </option>
+          ))}
         </select>
         <button
           className={style.addBtn}
@@ -133,7 +118,9 @@ export default function DetailMarketPlaceImgPrice({
               <img
                 src={mercadoPagoImg}
                 alt="Mercado Pago"
+                title="Mercado Pago"
                 className={style.methodsImg}
+                loading="lazy"
               />
             </a>
             <a
@@ -145,7 +132,9 @@ export default function DetailMarketPlaceImgPrice({
               <img
                 src={stripeImg}
                 alt="Stripe"
+                title="Stripe"
                 className={style.methodsImg}
+                loading="lazy"
               />
             </a>
           </div>

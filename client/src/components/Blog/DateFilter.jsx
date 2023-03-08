@@ -1,12 +1,15 @@
-import style from "./DateFilter.module.css";
+import style from "./BlogFilters.module.css";
 
 export default function DateFilter({ filters, setFilters }) {
   return (
-    <div className={style.container}>
-      <h3 className={style.name}>Fecha</h3>
-
+    <div className={style.FilterByDate}>
+      <p className={style.filterTitle}>Fecha</p>
+      <hr
+        width="100%"
+        color="#f1e100"
+      />
       <input
-        className={style.input}
+        className={style.inputs}
         type="date"
         name="dateInput"
         onChange={(event) =>

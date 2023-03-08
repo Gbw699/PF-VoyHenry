@@ -9,6 +9,8 @@ export default function MarketCard({ title, image, price }) {
         className={style.img}
         src={image}
         alt={title}
+        title={title}
+        loading="lazy"
       />
       <hr
         color="#F1E100"

@@ -1,52 +1,44 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getFollowed, getFollowing } from "../../redux/slices/userSlice/thunks";
 import style from "./ProfileCard.module.css";
-
-// BORRAR ESTE IMPORT Y LA VARIABLE CUANDO HAYA IMAGEN DE PERFIL PARA CARGAR
-// import fakeImg from "../../assets/voyHENRY_logo.png";
-const fakeImg =
-  "https://www.clarin.com/img/2021/10/07/dPmbdeT7x_1200x630__1.jpg";
 
 export default function ProfileCard() {
   const user = JSON.parse(localStorage.getItem("user"));
-
-  const [backgroundImage, setBackgroundImage] = useState("");
-
-  // USE EFFECT PARA PODER USAR LA IMAGEN DE PERFIL COMO BG
-  // ARREGLAR PARA CUANDO HAYA IMAGEN DEL BACK
+  const followed = useSelector((state) => state.userStore.userFollowed);
+  const following = useSelector((state) => state.userStore.userFollowing);
+  const dispatch = useDispatch();
   useEffect(() => {
-    if (user.image) {
-      setBackgroundImage(`url(${user.image})`);
-    } else {
-      setBackgroundImage(`url(${fakeImg})`);
-    }
-  }, [user]);
-
+    dispatch(getFollowing(user?.nickName));
+    dispatch(getFollowed(user?.nickName));
+  }, [following.length]);
   return (
     <Link to="/profile">
       <div className={style.container}>
         <div className={style.profileCont}>
           <div
             className={style.imgCont}
-            style={{ backgroundImage: backgroundImage }}
+            style={{backgroundImage: `url(${user?.image})`  }}
           />
           <hr
-            width="80%"
+            width="150em"
             color="#F1E100"
           />
-          <h1 className={style.profileName}>{user.nickName}</h1>
-          {/* vv BORRAR CUANDO HAYA NACIONALIDAD vv */}
-          <h4 className={style.profileCountry}>Argentina</h4>
+          <p
+            className={style.profileName}
+          >{`${user?.firstName} ${user?.lastName}`}</p>
+          <h4 className={style.profileCountry}>
+            {user?.nationality ? user.nationality : "Sin nacionalidad"}
+          </h4>
           <div className={style.followersCont}>
             <div className={style.followers}>
               <p className={style.followTitle}>Siguiendo</p>
-              {/* vv MODIFICAR PARA QUE SE MUESTRE EL N° DE SIGUIENDO/SEGUIDORES vv */}
-              <span className={style.followNum}>300</span>
+              <span className={style.followNum}>{following.length}</span>
             </div>
             <div className={style.followers}>
               <p className={style.followTitle}>Seguidores</p>
-              {/* vv MODIFICAR PARA QUE SE MUESTRE EL N° DE SIGUIENDO/SEGUIDORES vv */}
-              <span className={style.followNum}>123</span>
+              <span className={style.followNum}>{followed.length}</span>
             </div>
           </div>
         </div>

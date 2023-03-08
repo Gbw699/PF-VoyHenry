@@ -1,12 +1,13 @@
 import SearchBar from "./SearchBar";
 import AccountMenu from "./AccountMenu";
 import { NavLink, useLocation } from "react-router-dom";
-import img from "../../assets/voyHENRY_title.png";
+import img from "../../assets/voyHENRY_title.svg";
 import imgCarrito from "../../assets/carrito-de-compras.png";
 import style from "./Navbar.module.css";
 
 export default function NavBar() {
   const location = useLocation();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const navLinkClassName = (navData) =>
     navData.isActive ? style.linkFontActive : style.linkFont;
@@ -16,11 +17,24 @@ export default function NavBar() {
       <NavLink to="/home">
         <img
           src={img}
-          alt="img"
-          height="35px"
+          alt="voyHENRY"
+          title="voyHENRY"
+          className={style.img}
+          width="100%"
+          height="100%"
+          loading="lazy"
         />
       </NavLink>
-      {location.pathname === "/blog" && <SearchBar />}
+      {user?.role === "admin" && (
+        <NavLink
+          to={"/admin"}
+          className={navLinkClassName}
+        >
+          <h4>ADMIN</h4>
+        </NavLink>
+      )}
+      {location.pathname === "/blog" && <SearchBar placeholder="Buscar blog"/>}
+      {location.pathname === "/plans" && <SearchBar placeholder="Buscar plan"/>}
       <div className={style.linksCont}>
         <NavLink
           to={"/home"}
@@ -29,12 +43,11 @@ export default function NavBar() {
           <h4>INICIO</h4>
         </NavLink>
         <NavLink
-          to={"/users"}
+          to={"/plans"}
           className={navLinkClassName}
         >
-          <h4>USERS</h4>
+          <h4>PLANES</h4>
         </NavLink>
-
         <NavLink
           to={"/blog"}
           className={navLinkClassName}
@@ -42,10 +55,16 @@ export default function NavBar() {
           <h4>BLOG</h4>
         </NavLink>
         <NavLink
-          to={"/plans"}
+          to={"/users"}
           className={navLinkClassName}
         >
-          <h4>PLANES</h4>
+          <h4>USUARIOS</h4>
+        </NavLink>
+        <NavLink
+          to={"/messages"}
+          className={navLinkClassName}
+        >
+          <h4>CHAT</h4>
         </NavLink>
         <NavLink
           to={"/marketplace"}
@@ -60,7 +79,10 @@ export default function NavBar() {
           <img
             src={imgCarrito}
             width="20px"
+            height="100%"
             alt="Carrito de compras"
+            title="Carrito de compras"
+            loading="lazy"
           />
         </NavLink>
         <AccountMenu />

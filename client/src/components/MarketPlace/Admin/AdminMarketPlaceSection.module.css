@@ -1,0 +1,65 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2em;
+    width: 70%;
+}
+
+.title {
+    color: #707070;
+    font-weight: 600;
+    font-size: 180%;
+    margin-bottom: 0px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 1em 0px;
+    width: 30%;
+}
+
+.createEditBtn {
+    background-color: #f1e100;
+    border: 2px solid #f1e100;
+    border-radius: 10px;
+    color: #707070;
+    padding: 0.5em 1em;
+    margin-top: 2em;
+}
+
+.createEditBtn:hover {
+    background-color: white;
+    color: #707070;
+}
+
+.deleteBtn {
+    background-color: #f22176;
+    border: 2px solid #f22176;
+    border-radius: 10px;
+    color: white;
+    padding: 0.5em 1em;
+    margin-top: 2em;
+}
+
+.deleteBtn:hover {
+    background-color: white;
+    color: #707070;
+}
+
+.backBtn {
+    background-color: white;
+    border: 2px solid #f1e100;
+    border-radius: 10px;
+    color: #707070;
+    padding: 0.5em 1em;
+    margin-top: 3em;
+}
+
+.backBtn:hover {
+    background-color: #707070;
+    border: 2px solid #707070;
+    color: white;
+}

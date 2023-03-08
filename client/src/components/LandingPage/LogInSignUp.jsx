@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./LogInSignUp.module.css";
 import { useNavigate } from "react-router-dom";
-import titleImg from "../../assets/voyHENRY_title(white).png";
+import titleImg from "../../assets/voyHENRY_title(white).svg";
 
 export default function LogInSignUp() {
   const navigate = useNavigate();
@@ -19,11 +19,13 @@ export default function LogInSignUp() {
       <img
         src={titleImg}
         className={style.logo}
-        alt="voyHENRY logo"
+        alt="voyHENRY"
+        title="voyHENRY"
+        loading="lazy"
       />
       <div className={style.buttons}>
         <button
-          className={style.loginSignup}
+          className={style.login}
           type="submit"
           value="logIn"
           onClick={handleSubmit}
@@ -31,7 +33,7 @@ export default function LogInSignUp() {
           Iniciar sesión
         </button>
         <button
-          className={style.loginSignup}
+          className={style.signup}
           type="submit"
           value="signUp"
           onClick={handleSubmit}

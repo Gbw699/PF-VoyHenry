@@ -1,0 +1,7 @@
+.containerAllChats{
+  height: 86.81vh;
+  width: 35em;
+  min-width: 35em;
+  max-width: 35em;
+  border: solid 1px;
+}

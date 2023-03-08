@@ -1,21 +1,7 @@
-.landing {
-  background-color: black;
-  height: 100vh;
-}
-
-.logo {
-  position: absolute;
-  height: 10%;
-  margin-top: 5%;
-  margin-left: 7%;
-}
-
-.container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.formTitle {
+  color: #585858;
+  font-size: 150%;
+  margin-bottom: 8%;
 }
 
 .formContainer {
@@ -24,19 +10,51 @@
   align-items: center;
   background-color: white;
   border-radius: 25px;
-  padding: 2%;
-  width: 20%;
+  padding: 4em;
+  width: 35em;
 }
 
-.inputTitle {
-  color: #000000;
-  font-weight: 300;
-  font-size: 100%;
-}
-
-.input {
+.formInputs {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 80%;
+  margin-bottom: 1em;
+}
+
+.inputTitle {
+  color: #707070;
+  font-weight: 300;
+  font-size: 100%;
+  margin-bottom: 0px;
+}
+
+.input {
+  border: 0.5px solid #dddddd;
   border-radius: 5px;
+  padding: 1% 3%;
+  height: 35px;
+  width: 100%;
+}
+
+.input::placeholder {
+  color: #b1b1b1;
+}
+
+.btnVolver {
+  background-color: rgb(219, 219, 219);
+  width: 15em;
+  padding: 0.5em;
+  color: #707070;
+  border: 0px;
+  border-radius: 10px;
+  transition: background-color 0.5s;
+  margin: 1em;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btnVolver:hover {
+  background-color: #f1e100;
+  transition: background-color 0.5s;
 }

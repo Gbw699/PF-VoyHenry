@@ -1,28 +1,43 @@
 import React from "react";
 import style from "./DetailMarketPlaceImg.module.css";
 
-export default function DetailMarketPlaceImg({ image }) {
+export default function DetailMarketPlaceImg({ image, imageExtra, title }) {
   return (
     <div className={style.container}>
       <div className={style.extraImg}>
-        <div className={style.extraImgPh}>
-          {/* //!! Comienza imageExtra.map*/}
-          <img
-            // src={element}
-            alt=""
-          />
-          {/* //!! Termina map */}
-        </div>
-        <div className={style.extraImgPh} />
-        <div className={style.extraImgPh} />
+        <img
+          src={image}
+          alt={title}
+          title={title}
+          width="100em"
+          height="100em"
+          loading="lazy"
+        />
+        {imageExtra.map((element, index) => (
+          <div
+            className={style.extraImgMargin}
+            key={index}
+          >
+            <img
+              src={element}
+              alt={title}
+              title={title}
+              width="100em"
+              height="100em"
+              loading="lazy"
+            />
+          </div>
+        ))}
       </div>
-      {/* //TODO Acá iría la imagen grande */}
+
       <div>
         <img
           src={image}
-          alt=""
+          alt={title}
+          title={title}
           width="90%"
           height="90%"
+          loading="lazy"
         />
       </div>
     </div>

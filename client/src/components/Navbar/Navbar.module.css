@@ -10,16 +10,21 @@
   width: 100%;
 }
 
+.img {
+  height: 3em;
+  margin: 0.2em;
+}
+
 .linksCont {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  width: 35%;
+  width: 50em;
 }
 
 .linkFont {
-  color: #707070;
+  color: #b1b1b1;
   font-weight: 300;
   text-decoration: none;
 }
@@ -31,7 +36,7 @@
 }
 
 .linkFontActive {
-  color: #f1e100;
+  color: black;
   font-weight: 300;
   text-decoration: none;
 }

@@ -1,4 +1,4 @@
-const { Router } = require('express');
+const { Router, text } = require('express');
 const UsersBlog = require('../services/blog.service');
 const passport = require('passport');
 const validatorHandler = require('../middlewares/validator.handler');
@@ -7,6 +7,8 @@ const {
   updateSchema,
   getBlogSchema,
   ratingSchema,
+  favorites,
+  coments,
 } = require('../schemas/blog.schema');
 
 const router = Router();
@@ -14,27 +16,35 @@ const service = new UsersBlog();
 
 /* Get all Blogs */
 
-router.get('/', async (req, res, next) => {
-  try {
-    const page = req.query.page || 1;
+router.get('/', 
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
+    try {
 
-    const blogs = await service.find(req.query, page);
-    const count = await service.count(req.query);
-    const pages = Math.ceil(count / 3);
+      const page = req.query.page || 1;
+      const blogs = await service.find(req.query, page);
 
-    const pageNumber = parseInt(page);
+      let pages = ''
 
-    const response = { blogs, pageNumber, pages };
-    res.json(response);
-  } catch (error) {
-    next(error);
-  }
+      if (blogs.blogsInFilter <= blogs.blogsLimit){
+        pages = 1
+      } else {
+        pages = Math.ceil(blogs.blogsInFilter / blogs.blogsLimit);
+      }
+
+      const pageNumber = parseInt(page);
+      const response = { blogs, pageNumber, pages };
+      res.json(response);
+    } catch (error) {
+      next(error);
+    }
 });
 
 /* Find One Blog */
 
 router.get(
   '/:id',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getBlogSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -53,8 +63,8 @@ router.get(
 
 router.post(
   '/',
-  validatorHandler(createBlogSchema, 'body'),
   passport.authenticate('jwt', { session: false }),
+  validatorHandler(createBlogSchema, 'body'),
   async (req, res, next) => {
     try {
       const body = req.body;
@@ -72,9 +82,9 @@ router.post(
 
 router.patch(
   '/:id',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getBlogSchema, 'params'),
   validatorHandler(updateSchema, 'body'),
-  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -94,8 +104,8 @@ router.patch(
 
 router.patch(
   '/:id/votes',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(ratingSchema, 'body'),
-
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -115,8 +125,8 @@ router.patch(
 
 router.delete(
   '/:id',
-  validatorHandler(getBlogSchema, 'params'),
   passport.authenticate('jwt', { session: false }),
+  validatorHandler(getBlogSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -130,11 +140,13 @@ router.delete(
   }
 );
 
-// Create Comment
+/* Create Comment */
 
 router.post(
   '/:id/comment',
-
+  passport.authenticate('jwt', { session: false }),
+  validatorHandler(getBlogSchema, 'params'),
+  validatorHandler(coments, 'body'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -149,11 +161,12 @@ router.post(
   }
 );
 
-// Get comment
+/* Get comment */
 
 router.get(
   '/:id/comment',
-
+  passport.authenticate('jwt', { session: false }),
+  validatorHandler(getBlogSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -161,6 +174,91 @@ router.get(
       const createdComment = await service.getComment(id);
 
       res.json(createdComment);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+
+
+/* Create favorite blog */
+
+router.post(
+  '/:id/favorite',
+  passport.authenticate('jwt', { session: false }),
+  validatorHandler(getBlogSchema, 'params'),
+  validatorHandler(favorites, 'body'),
+  async (req, res, next) => {
+    try {
+
+      const { id } = req.params;
+
+      const body = req.body;
+
+      const blogAddFavorite = await service.addBlogFavorite(id, body);
+
+      res.json(blogAddFavorite);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+/* Get favorite blogs by nickname */
+
+router.get(
+  '/:userNickName/favorite',
+  passport.authenticate('jwt', { session: false }),
+  validatorHandler(favorites, 'params'),
+  async (req, res, next) => {
+    try {
+      const  {userNickName}  = req.params;
+
+      const favoriteBlogs = await service.getFavoriteBlogs(userNickName);
+
+      res.json(favoriteBlogs);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+/* Get all users with blogid in favorite */
+
+router.get(
+  '/:id/blogfavorite',
+  passport.authenticate('jwt', { session: false }),
+  validatorHandler(getBlogSchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const  { id }  = req.params;
+
+      const createdComment = await service.getFavoriteUsers(id);
+
+      res.json(createdComment);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+/* Delete Blog favorite */
+
+router.delete(
+  '/:id/favorite',
+  passport.authenticate('jwt', { session: false }),
+  validatorHandler(favorites, 'body'),
+  validatorHandler(getBlogSchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+
+      const body = req.body;
+
+      const deletedBlog = await service.deleteFavoriteBlog(id, body);
+
+      res.json(deletedBlog);
     } catch (error) {
       next(error);
     }

@@ -1,0 +1,109 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px 2px #b1b1b1;
+  padding: 1.5em;
+  /* width: 18em; */
+  height: auto;
+}
+
+.title {
+  color: #707070;
+  font-weight: 500;
+  font-size: 130%;
+  margin-bottom: 0px;
+}
+
+.inputs {
+  border: 1px solid #f1e100;
+  color: #b1b1b1;
+  border-radius: 5px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 0.4em;
+}
+
+.btnCont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttons {
+  background-color: #f1e100;
+  border: 1px solid #f1e100;
+  border-radius: 10px;
+  padding: 1em 1.5em;
+  color: #707070;
+  width: 80%;
+  align-self: center;
+  margin-top: 1em;
+  cursor: pointer;
+}
+
+.buttons:disabled {
+  pointer-events: none;
+}
+
+.buttons:hover {
+  color: #707070;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+}
+
+.filterBtn {
+  background-color: white;
+  border: 0px;
+  cursor: pointer;
+  color: #707070;
+  text-align: left;
+  margin-bottom: 0.5em;
+}
+
+.filterBtn:hover {
+  font-size: 110%;
+  color: #f1e100;
+}
+
+.filterBtn:active {
+  color: #f1e100;
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.filtersCont {
+  display: flex;
+  flex-direction: column;
+}
+
+.filterTitle {
+  color: #707070;
+  font-weight: 300;
+  font-size: 110%;
+  margin-bottom: 0px;
+}
+
+.FilterByDate {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+}
+
+.FilterByCountry {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+}
+
+.FilterByRating {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+}
+
+.FilterByTitle {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+}

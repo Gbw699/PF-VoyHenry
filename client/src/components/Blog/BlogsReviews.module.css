@@ -1,11 +1,44 @@
 .container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0px 50px;
+  flex-direction: row;
   width: 100%;
 }
 
-.cardsCont {
+.filtersContainer {
+  width: 225px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px 2px #b1b1b1;
+  padding: 1.5em;
+  height: auto;
+}
+
+.reviewContainer {
+  width: 82%;
+  padding-left: 3rem;
+}
+
+.subCont{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
+}
+
+.writeBtn {
+  background-color: #f1e100;
+  border: 1px solid #f1e100;
+  border-radius: 10px;
+  padding: 1em 1.5em;
+  color: #707070;
+  width: 80%;
+  align-self: center;
+  margin-top: 1em;
+  cursor: pointer;
+}
+
+.writeBtn:hover {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
 }

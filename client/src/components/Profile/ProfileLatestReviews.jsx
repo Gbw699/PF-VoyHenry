@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import style from "./ProfileLatestReviews.module.css";
 
 export default function ProfileLatestReviews({
@@ -8,30 +7,24 @@ export default function ProfileLatestReviews({
   description,
   assessment,
 }) {
-  const [backgroundImage, setBackgroundImage] = useState("");
-
-  useEffect(() => {
-    setBackgroundImage(`url(${image})`);
-  });
-
   return (
     <div className={style.container}>
       <div className={style.reviewCont}>
-        <div>
+        <div className={style.reviewImg}>
           <div
             className={style.img}
-            style={{ backgroundImage: backgroundImage }}
+            style={{ backgroundImage: `url(${image})` }}
           />
         </div>
         <div className={style.reviewInfo}>
           <h6 className={style.title}>{name}</h6>
           <hr
-            color="#707070"
+            color="#b1b1b1"
             width="100%"
           />
           <p className={style.review}>{description}</p>
           <hr
-            color="#707070"
+            color="#b1b1b1"
             width="100%"
           />
           {/* //TODO AGREGAR LÓGICA CON ESTRELLAS */}

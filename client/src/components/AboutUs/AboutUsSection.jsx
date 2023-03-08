@@ -57,14 +57,14 @@ export default function AboutUsSection() {
           color="#F1E100"
         />
         <div className={style.cards}>
-          <MarcosParella />
           <FacundoTombesi />
-          <MauricioFonseca />
-          <JulianCastro />
-          <ThomasLiendo />
-          <MatiasVarela />
           <GabrielBarimboim />
+          <JulianCastro />
           <LienSanchez />
+          <MarcosParella />
+          <MauricioFonseca />
+          <MatiasVarela />
+          <ThomasLiendo />
         </div>
       </div>
     </div>

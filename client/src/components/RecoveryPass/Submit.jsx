@@ -1,5 +1,6 @@
 import axios from "axios";
 import style from "./Submit.module.css";
+
 export default function Submit({ data, isValidEmail }) {
   const handlerOnClick = () => {
     if (isValidEmail) {
@@ -8,8 +9,13 @@ export default function Submit({ data, isValidEmail }) {
   };
 
   return (
-    <div className={style.buttons}>
-      <button onClick={handlerOnClick}>Get Mail</button>
+    <div>
+      <button
+        onClick={handlerOnClick}
+        className={style.sendBtn}
+      >
+        Enviar mail
+      </button>
     </div>
   );
 }

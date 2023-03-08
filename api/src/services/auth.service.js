@@ -1,16 +1,15 @@
 const UsersService = require('./user.service')
+const MailerService = require('./Mailer.service')
 const { CustomError } = require('../middlewares/error.handler')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('dotenv').config();
-const nodemailer = require("nodemailer");
 
 const {
-  JWT_SECRET,
-  MAILER_PASS,
-  MAIL
+  JWT_SECRET
 } = process.env
 
+const mailerService = new MailerService()
 const userService = new UsersService()
 
 class AuthService {
@@ -36,8 +35,8 @@ class AuthService {
     user.recoveryToken = null
 
     const payload = {
-      nick: user.nickName,
-      role: user.role
+      nick: user.nickName || user[0].dataValues.nickName,
+      role: user.role || user[0].dataValues.role
     }
 
     const token = jwt.sign(payload, JWT_SECRET)
@@ -60,14 +59,7 @@ class AuthService {
       const link = `https://pf-voy-henry.vercel.app/changePass?token=${token}`;
       await userService.update( user.nickName, {recoveryToken: token})
 
-      const mail = {
-        from: MAIL,
-        to: user.email,
-        subject: "Recuperación de contraseña.",
-        html:`<b>Haz click en el siguiente Link para recuperar la contraseña: ${link}</b>`,
-      }
-
-      const message = await this.sendMail(mail)
+      const message = await mailerService.sendRecoveryMail(user, token)
 
       return message
     } catch (error) {
@@ -91,30 +83,6 @@ class AuthService {
 
     } catch (error) {
 
-      throw new CustomError("unauthorized", 401)
-    }
-
-  }
-
-  async sendMail(infoEmail) {
-
-    try {
-
-      const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        secure: true, // true for 465, false for other ports
-        port: 465,
-        auth: {
-            user: MAIL,
-            pass: MAILER_PASS
-        },
-      });
-
-      await transporter.sendMail(infoEmail);
-
-      return { message: 'Mail sent'}
-
-    } catch (error) {
       throw new CustomError("unauthorized", 401)
     }
 

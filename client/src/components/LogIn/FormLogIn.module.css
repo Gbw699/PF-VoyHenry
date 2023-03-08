@@ -5,7 +5,7 @@
 
 .logo {
   position: absolute;
-  height: 10%;
+  height: 4em;
   margin-top: 5%;
   margin-left: 7%;
 }
@@ -30,15 +30,8 @@
   align-items: center;
   background-color: white;
   border-radius: 25px;
-  padding: 2%;
-  width: 20%;
-}
-
-.formSubCont {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 4em;
+  width: 35em;
 }
 
 .formInputs {
@@ -51,49 +44,145 @@
   color: #707070;
   font-weight: 300;
   font-size: 100%;
+  margin-bottom: 0px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+.subButtonsCont {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0.5em 0px;
+}
+
+.subButtons {
+  background-color: white;
+  border: 0px;
+  color: #707070;
+  font-weight: 300;
+  font-size: 90%;
+  cursor: pointer;
+}
+
+.subButtons:hover {
+  color: #f1e100;
+}
+
+.btnLoginDeactivate{
+  background-color: #4e4d41;
+  border: 2px solid #4e4d41;
+  width: 15em;
+  padding: 1em 0.5em;
+  color: #ffffff;
+  border: 0px;
+  border-radius: 10px;
+  transition: filter 0.5s ease-in-out;
+  margin: 1em;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.btnLoginDeactivate:hover{
+  cursor:no-drop;
 }
 
 .btnLogin {
   background-color: #f1e100;
   border: 2px solid #f1e100;
-  width: 150px;
-  padding: 3%;
+  width: 15em;
+  padding: 1em 0.5em;
   color: #707070;
   border: 0px;
   border-radius: 10px;
-  transition: background-color 0.5s;
-  margin: 3%;
+  transition: filter 0.5s ease-in-out;
+  margin: 1em;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .btnLogin:hover {
-  background-color: #707070;
-  color: white;
+  filter: saturate(150%) brightness(80%);
+  transition: filter 0.5s ease-in-out;
 }
+
+.googleCont {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.googleLogo {
+  height: 20px;
+}
+
+.btnGoogle {
+  background-color: #f13000;
+  border: 2px solid #f13000;
+  width: 15em;
+  padding: 1em 0.5em;
+  color: #ffffff;
+  font-size: 100%;
+  border: 0px;
+  border-radius: 10px;
+  transition: filter 0.5s ease-in-out;
+  margin: 1em;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.btnGoogle:hover {
+  filter: saturate(150%) brightness(80%);
+  transition: filter 0.5s ease-in-out;
+}
+
+.subBtns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 0.5em;
+}
+
 .btnVolver {
   background-color: rgb(219, 219, 219);
-  width: 100px;
-  padding: 2%;
+  width: 7em;
+  padding: 0.5em;
   color: #707070;
   border: 0px;
   border-radius: 10px;
   transition: background-color 0.5s;
-  margin: 3%;
+  margin: 1em;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .btnVolver:hover {
   background-color: #f1e100;
+  transition: background-color 0.5s;
 }
 
-.button {
+/* .forgetBtn {
   background-color: rgb(219, 219, 219);
-  width: 100px;
-  padding: 2%;
+  width: 14em;
+  padding: 0.5em;
   color: #707070;
   border: 0px;
   border-radius: 10px;
   transition: background-color 0.5s;
-  margin: 3%;
+  margin: 1em;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
-.button:hover {
+
+.forgetBtn:hover {
   background-color: #f1e100;
-}
+  transition: background-color 0.5s;
+} */

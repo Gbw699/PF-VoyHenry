@@ -2,18 +2,17 @@ import { useContext } from "react";
 import ProductContext from "../../context/ProductContext";
 import style from "./ItemCount.module.css";
 
-const ItemCount = ({ quantity, product, setCounter }) => {
+const ItemCount = ({ quantity, product, setCounter, stock }) => {
   const productContext = useContext(ProductContext);
-
   const updateProduct = (item, quantitySelect) => {
     productContext.updateProductQuantity(item, quantitySelect);
   };
 
   const handleClickAdd = () => {
-    // if (quantity < product.stock) {
-    setCounter(quantity + 1);
-    updateProduct(product, quantity + 1);
-    // }
+    if (quantity < stock) {
+      setCounter(quantity + 1);
+      updateProduct(product, quantity + 1);
+    }
   };
   const handleClickDelete = () => {
     if (quantity > 1) {

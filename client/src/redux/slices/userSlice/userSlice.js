@@ -6,6 +6,10 @@ const userSlice = createSlice({
     allUsers: [],
     userPlans: [],
     userBlogs: [],
+    userFollowing: [],
+    userFollowed: [],
+    userFavorite: [],
+    usersFavorites: [],
   },
   reducers: {
     setAllUsers: (state, action) => {
@@ -17,8 +21,28 @@ const userSlice = createSlice({
     setUserBlogs: (state, action) => {
       state.userBlogs = [...action.payload.blogs.blogs];
     },
+    setUserFollowing: (state, action) => {
+      state.userFollowing = [...action.payload];
+    },
+    setUserFollowed: (state, action) => {
+      state.userFollowed = [...action.payload];
+    },
+    setUserFavorite: (state, action) => {
+      state.userFavorite = [...action.payload];
+    },
+    setUsersFavorite: (state, action) => {
+      state.usersFavorites = [...action.payload];
+    },
   },
 });
 
-export const { setAllUsers, setUserPlans, setUserBlogs } = userSlice.actions;
+export const {
+  setAllUsers,
+  setUserPlans,
+  setUserBlogs,
+  setUserFollowing,
+  setUserFollowed,
+  setUserFavorite,
+  setUsersFavorite,
+} = userSlice.actions;
 export default userSlice.reducer;

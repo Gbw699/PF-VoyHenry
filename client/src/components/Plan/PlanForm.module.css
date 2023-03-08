@@ -1,14 +1,12 @@
-.container_flex{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .container {
-  margin-right: 3em;
-  height: 100vh;
+  z-index: 1;
+  position: absolute;
   display: flex;
   flex-direction: column;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   align-items: center;
   justify-content: center;
 }
@@ -17,10 +15,12 @@
   display: flex;
   flex-direction: column;
   background-color: white;
-  box-shadow: 3px 3px 5px 2px #222222;
-  border-radius: 25px;
-  padding: 10%;
-  width: 40rem;
+  box-shadow: 3px 3px 5px 2px #b1b1b1;
+  border: 1px solid #707070;
+  border-radius: 20px;
+  padding: 6%;
+  width: 50rem;
+  height: 45rem;
 }
 
 .title {
@@ -46,39 +46,37 @@
 }
 
 .formInputs {
-  color: #707070;
-  font-size: 80%;
-  font-weight: 600;
-  color: black;
+  padding: 0.3em;
+  font-size: 130%;
+  font-weight: 300;
+  color: #b1b1b1;
   border-radius: 5px;
+  resize: none;
+}
+
+.formInputsSmall{
+  font-size: 130%;
+}
+
+.formInputDescription {
+  padding: 0.3em;
+  font-size: 130%;
+  font-weight: 300;
+  color: #b1b1b1;
+  border-radius: 5px;
+  resize: none;
 }
 
 .createBtn {
-  appearance: none;
   background-color: #f1e100;
-  border: 0.125em solid #1a1a1a;
-  border-radius: 0.9375em;
-  box-sizing: border-box;
-  color: #000000;
+  border: 2px solid #f1e100;
+  border-radius: 10px;
+  padding: 1% 2%;
+  color: #707070;
+  width: 20%;
+  align-self: center;
+  margin-top: 3%;
   cursor: pointer;
-  display: inline-block;
-  font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 14px;
-  font-weight: 600;
-  line-height: normal;
-  margin: 0;
-  min-height: 3.75em;
-  min-width: 0;
-  outline: none;
-  padding: 1em 2.3em;
-  text-align: center;
-  text-decoration: none;
-  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  will-change: transform;
 }
 
 .createBtn:disabled {
@@ -86,10 +84,7 @@
 }
 
 .createBtn:hover {
-  color: #f1e100;
-  background-color: black;
-  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-  transform: translateY(-2px);
+  background-color: white;
 }
 
 .createBtn:active {
@@ -97,25 +92,46 @@
   transform: translateY(0);
 }
 
-.createBtn:hover {
-  background-color: rgb(0, 0, 0);
-}
-
 .backBtn {
-  color: #707070;
   background-color: white;
   border: 2px solid #f1e100;
   border-radius: 10px;
-  padding: 0.5% 2%;
-  margin-top: 3%;
+  padding: 1% 2%;
+  color: #707070;
+  width: 15%;
+  align-self: center;
+  margin-top: 5%;
+  cursor: pointer;
 }
 
 .backBtn:hover {
+  background-color: #707070;
+  border: 2px solid #707070;
   color: white;
-  background-color: #000000;
-  border: 2px solid #f1e100;
 }
 
-.imageForm{
+.imageForm {
   border-radius: 2em;
+}
+
+.buttons {
+  background-color: #f1e100;
+  border: 1px solid #f1e100;
+  border-radius: 10px;
+  padding: 0.5em;
+  color: #707070;
+  width: 7em;
+  margin-left: 3em;
+  align-self: center;
+  cursor: pointer;
+}
+
+.buttons:disabled {
+  pointer-events: none;
+}
+
+.buttons:hover {
+  color: #707070;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
 }
