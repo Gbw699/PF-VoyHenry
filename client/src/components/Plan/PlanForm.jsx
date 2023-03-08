@@ -109,8 +109,8 @@ export default function FormSignUp(props) {
               state: "En planeacion",
             };
             setUrl("");
-            dispatch(postPlan(obj));
             handleClick();
+            dispatch(postPlan(obj));
           }}
         >
           <Form>
