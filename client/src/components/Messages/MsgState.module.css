@@ -1,0 +1,7 @@
+.messagesContainer {
+  display: flex;
+  flex-direction: row;
+}
+.conversationContainer{
+  width: 100vw;
+}

@@ -1,0 +1,43 @@
+.conversationContainer{
+  height: 75.5vh;
+  overflow-y: auto;
+}
+
+.perfileImage{
+  width: 6em;
+  height: 6em;
+  border-radius: 40em;
+  margin-right: 1.5em;
+}
+
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.meMessageContainer{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  margin: 2em 1em 1em 1em;
+}
+
+.messageContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 2em 1em 1em 1em;
+}
+
+.mePerfileImage{
+  width: 6em;
+  height: 6em;
+  border-radius: 40em;
+  margin-left: 1.5em;
+}
+
+.meName{
+  margin-left: auto;
+  text-align: right;
+}
