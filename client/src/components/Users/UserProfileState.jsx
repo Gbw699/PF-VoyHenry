@@ -9,10 +9,10 @@ export default function UserProfileState() {
   const [plans, setPlans] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const { id } = useParams();
-  const [following, setFollowing] = useState([]);
-  const [followed, setFollowed] = useState([]);
+
   const favorites = useSelector((state) => state.userStore.usersFavorites);
-  console.log(following);
+  const following = useSelector((state) => state.userStore.userFollowing);
+  const followed = useSelector((state) => state.userStore.userFollowed);
 
   return (
     <>
@@ -22,18 +22,12 @@ export default function UserProfileState() {
           setUser,
           setPlans,
           setBlogs,
-          followed,
-          setFollowed,
-          following,
-          setFollowing,
         }}
       />
       <UsersProfileSection
         favorites={favorites}
         following={following}
-        setFollowing={setFollowing}
         followed={followed}
-        setFollowed={setFollowed}
         user={user}
         plans={plans}
         blogs={blogs}
