@@ -20,12 +20,12 @@ export default function MarketPlaceRouter({ role }) {
           path="/shoppingCart"
           element={<ShoppingCart />}
         />
-        {role === "admin" && (
+        {/* {role === "admin" && (
           <Route
             path="/admin"
             element={<AdminMarketPlace />}
           />
-        )}
+        )} */}
       </Routes>
     </>
   );

@@ -4,18 +4,16 @@ import style from "./ProfileMyPlans.module.css";
 export default function ProfileMyPlans({ myPlansImage, myPlansName }) {
   return (
     <div className={style.container}>
-      <img
+      <div
         className={style.img}
-        src={myPlansImage}
-        alt={myPlansName}
-        title={myPlansName}
-        loading="lazy"
-      />
-      <hr
-        color="white"
-        width="100%"
-      />
-      <p className={style.title}>{myPlansName}</p>
+        style={{ backgroundImage: `url(${myPlansImage})` }}
+      >
+        <hr
+          color="white"
+          width="100%"
+        />
+        <p className={style.title}>{myPlansName}</p>
+      </div>
     </div>
   );
 }

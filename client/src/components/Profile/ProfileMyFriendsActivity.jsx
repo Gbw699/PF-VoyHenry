@@ -1,21 +1,13 @@
 import React from "react";
 import style from "./ProfileMyFriendsActivity.module.css";
 
-export const ProfileMyFriendsActivity = ({ image, name }) => {
+export const ProfileMyFriendsActivity = ({ image }) => {
   return (
     <div className={style.container}>
-      <div>
-        <img
-          className={style.img}
-          src={image}
-          title={name}
-          alt={name}
-          loading="lazy"
-        />
-      </div>
-      <div>
-        <p className={style.title}>{name}</p>
-      </div>
+      <div
+        className={style.img}
+        style={{ backgroundImage: `url(${image})` }}
+      />
     </div>
   );
 };

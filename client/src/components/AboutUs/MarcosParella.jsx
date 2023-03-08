@@ -12,10 +12,6 @@ export default function MarcosParella() {
         className={style.cardImg}
         style={{ backgroundImage: `url(${MarcosParellaImg})` }}
       />
-      <hr
-        width="0%"
-        color="black"
-      />
       <div className={style.cardCont}>
         <div className={style.links}>
           <a
