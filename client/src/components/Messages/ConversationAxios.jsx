@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import axios from "axios";
 
-export default function ConversationAxios({ messageSelect, setConversation }) {
+export default function ConversationAxios({ messageSelect, setConversation, newMenssage }) {
 
   useEffect(() => {
     (async () => {
@@ -9,7 +9,7 @@ export default function ConversationAxios({ messageSelect, setConversation }) {
       await setConversation(chats.data);
       
     })();
-  }, [messageSelect]);
+  }, [messageSelect, newMenssage]);
 
   return (
     <>

@@ -16,15 +16,30 @@ const startSocketIo = async() =>{
       socket.id
     )
 
-    socket.on('mensaje', (data) => {
-      console.log("From: " + data.from)
-      console.log("To: " + data.to)
-      console.log("Mensaje: " + data.message)
-      messagesService.create({
+    socket.on('mensaje', async (data) => {
+      await messagesService.create({
         to: data.to,
         from: data.from,
         message: data.message
       })
+
+      let firstUserSession = await sessionsService.findOne(data.to)
+      let secondUserSessions = await sessionsService.findOne(data.from)
+
+      if (firstUserSession) {
+        const firstUserSockets = firstUserSession.dataValues.sockets
+        firstUserSockets.forEach(socket => {
+          io.to(socket).emit('newMessage', "Tienes un nuevo mensaje " + socket)
+        });
+      }
+
+      if (secondUserSessions) {
+        const secondUserSockets = secondUserSessions.dataValues.sockets
+        secondUserSockets.forEach(socket => {
+          io.to(socket).emit('newMessage', "Tienes un nuevo mensaje " + socket)
+        });
+      }
+
     })
 
     socket.on('disconnect', () => {

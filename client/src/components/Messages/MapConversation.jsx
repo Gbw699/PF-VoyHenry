@@ -1,6 +1,19 @@
+import { useEffect, useRef } from "react";
+import style from "./MapConversation.module.css";
+
 export default function MapConversation({ conversation }) {
+  const conversationContainerRef = useRef(null);
+
+  useEffect(() => {
+    const conversationContainer = conversationContainerRef.current;
+    conversationContainer.scrollTop = conversationContainer.scrollHeight - conversationContainer.clientHeight;
+  }, [conversation]);
+  
   return (
-    <>
+    <div
+      className={style.conversationContainer}
+      ref={conversationContainerRef}
+    >
       {
         conversation.map((element) => {
 
@@ -23,6 +36,7 @@ export default function MapConversation({ conversation }) {
               key={element.chat.id}
             >
               <img 
+                className={style.perfileImage}
                 src={userImage}
               />
               <h4>
@@ -35,7 +49,7 @@ export default function MapConversation({ conversation }) {
           );
         })
       }
-    </>
+    </div>
   );
 
 }

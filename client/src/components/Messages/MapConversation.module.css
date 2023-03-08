@@ -1,0 +1,10 @@
+.perfileImage{
+  width: 6em;
+  height: 6em;
+  border-radius: 40em;
+}
+
+.conversationContainer{
+  height: 80vh;
+  overflow-y: auto;
+}

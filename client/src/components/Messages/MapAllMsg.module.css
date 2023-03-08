@@ -1,0 +1,23 @@
+.containerAllChats{
+  height: 92vh;
+  width: 25em;
+}
+
+.chatContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: solid 1px;
+}
+
+.perfileImage{
+  width: 6em;
+  height: 6em;
+  border-radius: 40em;
+  margin: 1em;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+}
