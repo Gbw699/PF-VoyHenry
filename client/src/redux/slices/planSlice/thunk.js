@@ -17,7 +17,7 @@ export const getPlanById = (id) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`/api/v1/plans/${id}`);
-      dispatch(setPlanById(response.data.data.plan));
+      dispatch(setPlanById(response.data.data));
     } catch (error) {
       return console.log("No se pudo realizar la petición");
     }

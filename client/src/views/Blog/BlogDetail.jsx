@@ -10,17 +10,17 @@ export default function BlogDetail() {
   const { id } = useParams();
   const [reRender, setReRender] = useState(false);
 
-  const blog = useSelector((state) => state.blogStore.blog);
-
+  const { blog, users} = useSelector((state) => state.blogStore.blog);
+  
   useEffect(() => {
     dispatch(getBlogById(id));
-
+    
     return () => resetBlogById();
   }, [reRender]);
 
   return (
     <div>
-      <ReviewDetail setReRender={setReRender} blog={blog} />
+      <ReviewDetail setReRender={setReRender} blog={blog} user={users}/>
     </div>
   );
 }

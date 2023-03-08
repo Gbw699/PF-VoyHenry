@@ -6,8 +6,8 @@ import GetComments from "../../recycle/Comments/GetComments";
 import style from "./ReviewDetail.module.css";
 import { Rating } from "@mui/material";
 
-export default function ReviewDetail({ setReRender, blog }) {
-  const user = JSON.parse(localStorage.getItem("user"));
+export default function ReviewDetail({ setReRender, blog, user }) {
+  const userSession = JSON.parse(localStorage.getItem("user"));
   const { id } = useParams();
   const [comments, setComments] = useState([]);
   const [isEditable, setIsEditable] = useState(false);
@@ -15,12 +15,12 @@ export default function ReviewDetail({ setReRender, blog }) {
   const [showEdit, setShowEdit] = useState(false);
 
   useEffect(() => {
-    if (user && blog && user.nickName === blog.userNickName) {
+    if (userSession && blog && userSession.nickName === blog.userNickName) {
       setIsEditable(true);
     } else {
       setIsEditable(false);
     }
-  }, [user, blog]);
+  }, []);
 
   useEffect(() => {
     getComments();
@@ -62,7 +62,7 @@ export default function ReviewDetail({ setReRender, blog }) {
   async function handleClick() {
     const text = document.querySelector("#reseña").value;
     const obj = {
-      userNickName: user.nickName,
+      userNickName: userSession.nickName,
       comment: text,
     };
     try {
@@ -74,11 +74,11 @@ export default function ReviewDetail({ setReRender, blog }) {
     }
   }
 
-  if (!blog.average) {
-    return <div></div>;
-  }
+  // if (!blog.average) {
+  //   return <div></div>;
+  // }
 
-  const average = blog.average;
+  // const average = blog.average;
 
   return (
     <div className={style.container}>
@@ -86,16 +86,16 @@ export default function ReviewDetail({ setReRender, blog }) {
         <div className={style.profile}>
           <img
             className={style.imgProfile}
-            src={blog.userimage}
-            alt={blog.title}
-            title={blog.title}
+            src={user?.image}
+            alt={blog?.title}
+            title={blog?.title}
             height="80px"
             loading="lazy"
           />
           <div className={style.review}>
             <div className={style.nameCont}>
-              <p className={style.name}>{blog.userNickName}</p>
-              <p className={style.date}>{blog.createdAt?.slice(0, 10)}</p>
+              <p className={style.name}>{user?.firstName} {user?.lastName}</p>
+              <p className={style.date}>{blog?.createdAt?.slice(0, 10)}</p>
             </div>
             <hr
               width="100%"
@@ -105,22 +105,22 @@ export default function ReviewDetail({ setReRender, blog }) {
               <div className={style.imgCont}>
                 <img
                   className={style.img}
-                  src={blog.image}
-                  title={blog.title}
-                  alt={blog.title}
+                  src={blog?.image}
+                  title={blog?.title}
+                  alt={blog?.title}
                   loading="lazy"
                   height="120px"
                 />
               </div>
               <div className={style.reviewInfo}>
-                {!showEdit && <h3 className={style.title}>{blog.title}</h3>}
+                {!showEdit && <h3 className={style.title}>{blog?.title}</h3>}
                 <hr color="#b1b1b1" width="100%" />
                 {!showEdit && (
-                  <p className={style.blogContent}>{blog.content}</p>
+                  <p className={style.blogContent}>{blog?.content}</p>
                 )}
                 {!showEdit && <Rating
                   name="read-only"
-                  value={average}
+                  value={blog?.average}
                 />}
                 {isEditable && showEdit && (
                   <input

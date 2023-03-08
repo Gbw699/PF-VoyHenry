@@ -14,7 +14,7 @@ const blogSlice = createSlice({
       state.allBlogs = { ...action.payload };
     },
     setBlogById(state, action) {
-      state.blog = { ...action.payload.data.blog };
+      state.blog = { ...action.payload };
     },
     resetBlogById(state) {
       state.blog = {};
