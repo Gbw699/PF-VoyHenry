@@ -46,14 +46,14 @@ router.get('/',
 
 /* Buy success */
 
-router.get('/success', 
+router.get('/success',
   //passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
 
     try {
 
       mailer.buySuccess(req.query)
-      res.redirect(`http://localhost:3000/home`)
+      res.redirect(`https://pf-voy-henry.vercel.app/home`)
     } catch (error) {
 
       next(error)

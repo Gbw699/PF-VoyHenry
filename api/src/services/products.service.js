@@ -181,7 +181,7 @@ class ProductsService {
         },
       ],
       back_urls: {
-        success: `http://localhost:3001/api/v1/products/success?customer=${email}`,
+        success: `https://voyhenry.fly.dev/api/v1/products/success?customer=${email}`,
         failure: '',
         pendig: '',
       },
@@ -210,7 +210,7 @@ class ProductsService {
     let preference = {
       items: [],
       back_urls: {
-        success: `http://localhost:3001/api/v1/products/success?customer=${data.email} `,
+        success: `https://voyhenry.fly.dev/api/v1/products/success?customer=${data.email} `,
         failure: '',
         pendig: '',
       },
@@ -240,12 +240,12 @@ class ProductsService {
 
       product.stock -= productData.quantity;
 
-      await product.save(); 
+      await product.save();
     }
 
     const response = await mercadopago.preferences.create(preference);
 
-    return response.body.init_point; 
+    return response.body.init_point;
   }
 }
 
