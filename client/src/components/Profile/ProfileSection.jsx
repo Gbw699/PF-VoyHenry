@@ -62,9 +62,10 @@ export default function ProfileSection() {
             width="100%"
           />
           <div className={style.friendsCont}>
-            {following.length === 0
-            ? <p className={style.message}>Aún no sigues a nadie.</p>
-            : following.map((element) => (
+            {following.length === 0 ? (
+              <p className={style.message}>Aún no sigues a nadie.</p>
+            ) : (
+              following.map((element) => (
                 <Link
                   key={element.id}
                   to={`/users/${element.nickName}`}
@@ -75,7 +76,8 @@ export default function ProfileSection() {
                     style={{ backgroundImage: `url(${element.image})` }}
                   />
                 </Link>
-              ))}
+              ))
+            )}
           </div>
         </div>
         <div className={style.activityCont}>
@@ -94,20 +96,24 @@ export default function ProfileSection() {
               width="100%"
             />
             <div className={style.plansCont}>
-              {favorites.length === 0
-                ? <p className={style.message}>Aún no has agregado ningún plan en favoritos.</p>
-                : favorites.map((element) => (
-                    <Link
-                      key={element.id}
-                      to={`/plans/${element.id}`}
-                      className={style.link}
-                    >
-                      <ProfileLatestAssistedPlans
-                        image={element.mainImage}
-                        name={element.title}
-                      />
-                    </Link>
-                  ))}
+              {favorites.length === 0 ? (
+                <p className={style.message}>
+                  Aún no has agregado ningún plan en favoritos.
+                </p>
+              ) : (
+                favorites.map((element) => (
+                  <Link
+                    key={element.id}
+                    to={`/plans/${element.id}`}
+                    className={style.link}
+                  >
+                    <ProfileLatestAssistedPlans
+                      image={element.mainImage}
+                      name={element.title}
+                    />
+                  </Link>
+                ))
+              )}
             </div>
           </div>
           <div>
@@ -139,34 +145,38 @@ export default function ProfileSection() {
               />
             </div>
             <div className={style.plansCont}>
-              {morePlans && userPlans.length === 0
-                ? <p className={style.message}>Aún no has creado ningún plan.</p>
-                : userPlans.slice(0, 8).map((element) => (
-                    <Link
-                      key={element.id}
-                      to={`/plans/${element.id}`}
-                      className={style.link}
-                    >
-                      <ProfileMyPlans
-                        myPlansImage={element.mainImage}
-                        myPlansName={element.title}
-                      />
-                    </Link>
-                  ))}
-              {!morePlans && userPlans.length === 0
-                ? <p className={style.message}>Aún no has creado ningún plan.</p>
-                : userPlans.map((element) => (
-                    <Link
-                      key={element.id}
-                      to={`/plans/${element.id}`}
-                      className={style.link}
-                    >
-                      <ProfileMyPlans
-                        myPlansImage={element.mainImage}
-                        myPlansName={element.title}
-                      />
-                    </Link>
-                  ))}
+              {morePlans && userPlans.length === 0 ? (
+                <p className={style.message}>Aún no has creado ningún plan.</p>
+              ) : (
+                userPlans.slice(0, 8).map((element) => (
+                  <Link
+                    key={element.id}
+                    to={`/plans/${element.id}`}
+                    className={style.link}
+                  >
+                    <ProfileMyPlans
+                      myPlansImage={element.mainImage}
+                      myPlansName={element.title}
+                    />
+                  </Link>
+                ))
+              )}
+              {!morePlans && userPlans.length === 0 ? (
+                <p className={style.message}>Aún no has creado ningún plan.</p>
+              ) : (
+                userPlans.map((element) => (
+                  <Link
+                    key={element.id}
+                    to={`/plans/${element.id}`}
+                    className={style.link}
+                  >
+                    <ProfileMyPlans
+                      myPlansImage={element.mainImage}
+                      myPlansName={element.title}
+                    />
+                  </Link>
+                ))
+              )}
             </div>
           </div>
           <div>
@@ -176,21 +186,25 @@ export default function ProfileSection() {
               width="100%"
             />
             <div className={style.plansCont}>
-              {userBlogs.length === 0
-                ? <p className={style.message}>Aún no has realizado ninguna reseña.</p>
-                : userBlogs.map((element) => (
-                    <Link
-                      key={element.id}
-                      to={`/blog/${element.id}`}
-                    >
-                      <ProfileLatestReviews
-                        image={element.image}
-                        name={element.title}
-                        description={element.content}
-                        assessment="50"
-                      />
-                    </Link>
-                  ))}
+              {userBlogs.length === 0 ? (
+                <p className={style.message}>
+                  Aún no has realizado una reseña.
+                </p>
+              ) : (
+                userBlogs.map((element) => (
+                  <Link
+                    key={element.id}
+                    to={`/blog/${element.id}`}
+                  >
+                    <ProfileLatestReviews
+                      image={element.image}
+                      name={element.title}
+                      description={element.content}
+                      assessment="50"
+                    />
+                  </Link>
+                ))
+              )}
             </div>
           </div>
         </div>
