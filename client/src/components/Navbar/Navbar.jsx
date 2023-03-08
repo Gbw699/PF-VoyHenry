@@ -61,6 +61,12 @@ export default function NavBar() {
           <h4>USUARIOS</h4>
         </NavLink>
         <NavLink
+          to={"/messages"}
+          className={navLinkClassName}
+        >
+          <h4>CHAT</h4>
+        </NavLink>
+        <NavLink
           to={"/marketplace"}
           className={navLinkClassName}
         >

@@ -42,6 +42,7 @@ export default function SendMessage({ to, messageSelect, setMessageSelect }) {
       <input
         value={message}
         onChange={handlerOnChange}
+        onKeyDown={(event) => event.key === "Enter" && handlerOnClick()}
       >
       </input>
       <button
