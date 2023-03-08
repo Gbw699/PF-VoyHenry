@@ -9,7 +9,6 @@ export default function ProfileInfo({
   nationality,
   following,
   followed,
-  assistedPlans,
   plansCreated,
   reviewsCreated,
 }) {
@@ -43,10 +42,6 @@ export default function ProfileInfo({
         <div className={style.infoCont}>
           <p className={style.infoTitle}>Seguidores</p>
           <p className={style.infoCount}>{followed}</p>
-        </div>
-        <div className={style.infoCont}>
-          <p className={style.infoTitle}>Planes asistidos</p>
-          <p className={style.infoCount}>{assistedPlans}</p>
         </div>
         <div className={style.infoCont}>
           <p className={style.infoTitle}>Planes creados</p>

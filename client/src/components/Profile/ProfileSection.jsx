@@ -65,19 +65,23 @@ export default function ProfileSection() {
             color="#F1E100"
             width="100%"
           />
-          {following.map((element) => (
-            <Link
-              key={element.id}
-              to={`/users/${element.nickName}`}
-            >
-              <img
-                src={element.image}
-                alt={`${element.firstName} ${element.lastName}`}
-                title={`${element.firstName} ${element.lastName}`}
-                loading="lazy"
-              />
-            </Link>
-          ))}
+          <div className={style.friendsCont}>
+            {following.map((element) => (
+              <Link
+                key={element.id}
+                to={`/users/${element.nickName}`}
+                className={style.friendLink}
+              >
+                <img
+                  className={style.friendImg}
+                  src={element.image}
+                  alt={`${element.firstName} ${element.lastName}`}
+                  title={`${element.firstName} ${element.lastName}`}
+                  loading="lazy"
+                />
+              </Link>
+            ))}
+          </div>
         </div>
         <div className={style.activityCont}>
           <div>
