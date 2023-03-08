@@ -47,6 +47,7 @@ function App() {
         {user?.role === "admin" && (
           <Route
             path="/admin/*"
+            index
             element={<AdminSection />}
           />
         )}
