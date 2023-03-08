@@ -8,6 +8,7 @@ const userSlice = createSlice({
     userBlogs: [],
     userFollowing: [],
     userFollowed: [],
+    userFavorite: [],
   },
   reducers: {
     setAllUsers: (state, action) => {
@@ -25,6 +26,9 @@ const userSlice = createSlice({
     setUserFollowed: (state, action) => {
       state.userFollowed = [...action.payload];
     },
+    setUserFavorite: (state, action) => {
+      state.userFavorite = [...action.payload];
+    },
   },
 });
 
@@ -34,5 +38,6 @@ export const {
   setUserBlogs,
   setUserFollowing,
   setUserFollowed,
+  setUserFavorite,
 } = userSlice.actions;
 export default userSlice.reducer;
