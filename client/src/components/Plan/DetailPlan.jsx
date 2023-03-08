@@ -16,7 +16,7 @@ export default function DetailPlan() {
   const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
-  const {plan,user} = useSelector((state) => state.planStore.planById);
+  const { plan, user } = useSelector((state) => state.planStore.planById);
   const [favorites, setFavorites] = useState();
   const [comments, setComments] = useState([]);
   const [isEditable, setIsEditable] = useState(false);
@@ -229,7 +229,7 @@ export default function DetailPlan() {
                 placeholder="Ingresa la nueva fecha"
               />
             )}
-            {plan.average && (
+            {plan.average >= 0 && (
               <Rating
                 size="large"
                 name="average"
@@ -250,7 +250,9 @@ export default function DetailPlan() {
         <div className={style.creator}>
           <div className={style.creatorInfo}>
             <p>Creador del plan: </p>
-            <h1 className={style.creatorName}>{`${user.firstName} ${user.lastName}`}</h1>
+            <h1
+              className={style.creatorName}
+            >{`${user.firstName} ${user.lastName}`}</h1>
           </div>
           <hr
             width="100%"

@@ -7,12 +7,11 @@ export default function EditProfileState() {
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
   const [about, setAbout] = useState(
-    user.about === null ? "Este usuario aún no ha escrito nada aquí." : user.about
+    user.about === null ? "No has escrito nada sobre ti." : user.about
   );
   const [image, setImage] = useState(user.image);
   const [provinces, setProvinces] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState("");
-  const [selectedProvince, setSelectedProvince] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState(user.nationality);
   return (
     <div>
       <EditProfileSection
@@ -29,8 +28,6 @@ export default function EditProfileState() {
           setProvinces,
           selectedCountry,
           setSelectedCountry,
-          selectedProvince,
-          setSelectedProvince,
         }}
       />
     </div>

@@ -46,12 +46,9 @@ export default function UsersProfileSection({
                 to={`/users/${element.nickName}`}
                 className={style.friendLink}
               >
-                <img
+                <div
                   className={style.friendImg}
-                  src={element.image}
-                  alt={`${element.firstName} ${element.lastName}`}
-                  title={`${element.firstName} ${element.lastName}`}
-                  loading="lazy"
+                  style={{ backgroundImage: `url(${element.image})` }}
                 />
               </Link>
             ))}
