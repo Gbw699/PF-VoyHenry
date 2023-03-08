@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ProfileInfo from "../Profile/ProfileInfo";
 import ProfileMyPlans from "../Profile/ProfileMyPlans";
-import profileData from "../../profileData.json";
-import { ProfileMyFriendsActivity } from "../Profile/ProfileMyFriendsActivity";
 import ProfileAboutMe from "../Profile/ProfileAboutMe";
 import ProfileLatestAssistedPlans from "../Profile/ProfileLatestAssistedPlans";
 import ProfileLatestReviews from "../Profile/ProfileLatestReviews";
@@ -26,8 +24,8 @@ export default function UsersProfileSection({
           lastName={user.lastName}
           genre={user.genre}
           nationality={user.nationality ? user.nationality : "Sin nacionalidad"}
-          following={following.count}
-          followed={followed.count}
+          following={following.length}
+          followed={followed.length}
           assistedPlans="12"
           plansCreated={plans.length}
           reviewsCreated={blogs.length}
@@ -40,20 +38,21 @@ export default function UsersProfileSection({
             color="#F1E100"
             width="100%"
           />
-          {/* //!! FALTA CONECTAR CON EL BACK-END PORQUE NO ESTÁ */}
-          {profileData.data.map((element) =>
-            element.myFriends.map((element2) => (
-              <Link
-                key={element2.id}
-                to={`/plans/${element2.id}`}
-              >
-                <ProfileMyFriendsActivity
-                  image={element2.latestAssistedPlansImg}
-                  name={element2.latestAssistedPlansName}
-                />
-              </Link>
-            ))
-          )}
+          {following.length === 0
+            ? "Este usuario no tiene ninguna persona de su interés."
+            : following.map((element) => (
+                <Link
+                  key={element.id}
+                  to={`/users/${element.nickName}`}
+                >
+                  <img
+                    src={element.image}
+                    alt={`${element.firstName} ${element.lastName}`}
+                    title={`${element.firstName} ${element.lastName}`}
+                    loading="lazy"
+                  />
+                </Link>
+              ))}
         </div>
         <div className={style.activityCont}>
           <div>
@@ -71,18 +70,20 @@ export default function UsersProfileSection({
               width="100%"
             />
             <div className={style.plansCont}>
-              {favorites.map((element) => (
-                <Link
-                  key={element.id}
-                  to={`/plans/${element.id}`}
-                  className={style.link}
-                >
-                  <ProfileLatestAssistedPlans
-                    image={element.mainImage}
-                    name={element.title}
-                  />
-                </Link>
-              ))}
+              {favorites.length === 0
+                ? "Este usuario no tiene un plan en favoritos."
+                : favorites.map((element) => (
+                    <Link
+                      key={element.id}
+                      to={`/plans/${element.id}`}
+                      className={style.link}
+                    >
+                      <ProfileLatestAssistedPlans
+                        image={element.mainImage}
+                        name={element.title}
+                      />
+                    </Link>
+                  ))}
             </div>
           </div>
           <div>
@@ -92,18 +93,20 @@ export default function UsersProfileSection({
               width="100%"
             />
             <div className={style.plansCont}>
-              {plans?.map((element) => (
-                <Link
-                  key={element.id}
-                  to={`/plans/${element.id}`}
-                  className={style.link}
-                >
-                  <ProfileMyPlans
-                    myPlansImage={element.mainImage}
-                    myPlansName={element.title}
-                  />
-                </Link>
-              ))}
+              {plans.length === 0
+                ? "Este usuario aún no ha creado ningún plan."
+                : plans?.map((element) => (
+                    <Link
+                      key={element.id}
+                      to={`/plans/${element.id}`}
+                      className={style.link}
+                    >
+                      <ProfileMyPlans
+                        myPlansImage={element.mainImage}
+                        myPlansName={element.title}
+                      />
+                    </Link>
+                  ))}
             </div>
           </div>
           <div>
@@ -113,19 +116,21 @@ export default function UsersProfileSection({
               width="100%"
             />
             <div className={style.plansCont}>
-              {blogs?.map((element) => (
-                <Link
-                  key={element.id}
-                  to={`/blog/${element.id}`}
-                >
-                  <ProfileLatestReviews
-                    image={element.image}
-                    name={element.title}
-                    description={element.content}
-                    assessment="50"
-                  />
-                </Link>
-              ))}
+              {blogs.length === 0
+                ? "Este usuario aún no ha hecho ninguna reseña."
+                : blogs?.map((element) => (
+                    <Link
+                      key={element.id}
+                      to={`/blog/${element.id}`}
+                    >
+                      <ProfileLatestReviews
+                        image={element.image}
+                        name={element.title}
+                        description={element.content}
+                        assessment="50"
+                      />
+                    </Link>
+                  ))}
             </div>
           </div>
         </div>

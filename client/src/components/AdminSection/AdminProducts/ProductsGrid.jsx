@@ -22,7 +22,6 @@ export default function PlansGrid({
   };
 
   const handleEditClick = (row) => {
-    console.log(row);
     setProductsInfo(row);
     setEditRecord(true);
   };
