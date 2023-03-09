@@ -27,6 +27,9 @@
   .container{
     padding: 4rem 0 0 0;
   }
+  .users{
+    width: 100%;
+  }
 
 }
 
