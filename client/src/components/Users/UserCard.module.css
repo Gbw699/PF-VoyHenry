@@ -121,6 +121,15 @@
   background-color: white;
 }
 
+@media (min-width: 600px) and (max-width: 959.95px) {
+  .profileCont{
+    width: 50em;
+  }
+  .profileInfo{
+    width: 100%;
+  }
+}
+
 @media (max-width: 600px) {
   .subCont {
     width: 200px;

@@ -7,9 +7,11 @@ import getMediaQuery from "../../recycle/MediaQuerys/mediaQuerys.mjs";
 
 export default function Users() {
   const isMobile = useMediaQuery(getMediaQuery("xs"));
+  const isTablet = useMediaQuery(getMediaQuery("sm"));
+  const isTablet2 = useMediaQuery(getMediaQuery("md"));
   return (
     <div className={style.container}>
-      {!isMobile && <div className={style.profileCont}>
+      {!isMobile && !isTablet && !isTablet2 && <div className={style.profileCont}>
         <ProfileCard />
       </div>}
       <div className={style.users}>
