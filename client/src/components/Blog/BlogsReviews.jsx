@@ -19,15 +19,17 @@ export default function BlogsReviews(props) {
 
   return (
     <div className={style.container}>
-      {!isMobile && <div className={style.filtersContainer}>
-         <BlogFilters pagePagination={pagePagination} />
-        <button
-          onClick={() => props.setIsOpen(true)}
-          className={style.writeBtn}
-        >
-          Escribir reseña
-        </button>
-      </div>}
+      {!isMobile && (
+        <div className={style.filtersContainer}>
+          <BlogFilters pagePagination={pagePagination} />
+          <button
+            onClick={() => props.setIsOpen(true)}
+            className={style.writeBtn}
+          >
+            Escribir reseña
+          </button>
+        </div>
+      )}
       <div className={style.reviewContainer}>
         {blogs?.blogs.map((blog) => {
           return (
@@ -35,7 +37,7 @@ export default function BlogsReviews(props) {
               key={blog.id}
               blog={blog}
             />
-            );
+          );
         })}
         <Pagination
           className={style.pagination}
@@ -49,12 +51,14 @@ export default function BlogsReviews(props) {
           onChange={handlePageChange}
         />
       </div>
-          {isMobile && <button
-              onClick={() => props.setIsOpen(true)}
-              className={style.writeBtn}
-            >
-              Escribir reseña
-            </button>}
+      {isMobile && (
+        <button
+          onClick={() => props.setIsOpen(true)}
+          className={style.writeBtn}
+        >
+          Escribir reseña
+        </button>
+      )}
     </div>
   );
 }
