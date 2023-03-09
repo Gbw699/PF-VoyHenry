@@ -103,8 +103,8 @@ export default function FormSignUp(props) {
               images: [],
               country: values.country,
               province: values.province,
-              city: values.province,
-              address: values.province,
+              city: values.city,
+              address: values.address,
               eventDate: values.eventDate,
               state: "En planeacion",
             };

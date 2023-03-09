@@ -11,7 +11,9 @@ export default function Plan() {
   return (
     <div className={style.container}>
       <div className={style.planForm}>
-        {!showPlanForm && <FiltersContainer setShowPlanForm={setShowPlanForm} />}
+        {!showPlanForm && (
+          <FiltersContainer setShowPlanForm={setShowPlanForm} />
+        )}
         {showPlanForm && <PlanForm setShowPlanForm={setShowPlanForm} />}
       </div>
       <div className={style.plans}>{!showPlanForm && <PlanCardList />}</div>
