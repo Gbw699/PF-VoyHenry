@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import PostComment from "../../recycle/Comments/PostComment";
 import GetComments from "../../recycle/Comments/GetComments";
 import style from "./ReviewDetail.module.css";
 import { Rating } from "@mui/material";
+import customAlert from "../../recycle/Alert/CustomAlert";
 
 export default function ReviewDetail({ setReRender, blog, user }) {
+  const navigate = useNavigate();
   const userSession = JSON.parse(localStorage.getItem("user"));
   const { id } = useParams();
   const [comments, setComments] = useState([]);
@@ -41,6 +43,8 @@ export default function ReviewDetail({ setReRender, blog, user }) {
   const handleDelete = async () => {
     try {
       await axios.delete(`/api/v1/blogs/${id}`, { data: blog.userNickName });
+      navigate("/blog");
+      customAlert("Eliminaste el blog");
     } catch (error) {
       console.error(error);
     }
