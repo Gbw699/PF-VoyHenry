@@ -9,7 +9,6 @@ export default function EditProfileSelectCountry({
   const countries = countriesData.data;
 
   const handleCountryChange = ({ target: { value } }) => {
-    console.log(value);
     setSelectedCountry(value);
   };
 
@@ -23,7 +22,6 @@ export default function EditProfileSelectCountry({
         className={style.selectInput}
       >
         <option>Selecciona un país</option>
-        {console.log(countries)}
         {countries.map((country) => (
           <option
             key={country.country}

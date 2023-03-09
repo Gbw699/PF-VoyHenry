@@ -11,7 +11,6 @@ export default function BlogFilters({ pagePagination }) {
     date: "",
     order: "",
   });
-  console.log(pagePagination);
   useEffect(() => {
     dispatch(getBlogs(pagePagination, filters.date, filters.order));
   }, [pagePagination, filters]);
