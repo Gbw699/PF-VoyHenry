@@ -6,6 +6,8 @@ import {
   getFollowing,
   unfollowUser,
 } from "../../redux/slices/userSlice/thunks";
+import { useMediaQuery } from "@mui/material";
+import getMediaQuery from "../../recycle/MediaQuerys/mediaQuerys.mjs";
 
 export default function UserCard({
   role,
@@ -20,6 +22,7 @@ export default function UserCard({
   userFollowed,
   userFollowing,
 }) {
+  const isMobile = useMediaQuery(getMediaQuery("xs"));
   const [followed, setFollowed] = useState(userFollowed);
   const handleClick = async (event) => {
     if (event.target.value === "follow") {
@@ -56,16 +59,16 @@ export default function UserCard({
                 color="#F1E100"
                 width="100%"
               />
-              <p className={style.nacionality}>
+              {!isMobile && <p className={style.nacionality}>
                 {nationality ? nationality : "Sin nacionalidad"}
-              </p>
+              </p>}
             </div>
-            <div className={style.followers}>
+            {!isMobile && <div className={style.followers}>
               <p className={style.followTitle}>Siguiendo</p>
               <span className={style.followNum}>{userFollowing}</span>
               <p className={style.followTitle}>Seguidores</p>
               <span className={style.followNum}>{followed}</span>
-            </div>
+            </div>}
           </div>
         </div>
         <div className={style.buttons}>

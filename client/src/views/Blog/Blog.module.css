@@ -22,3 +22,12 @@
   align-items: center;
   width: 25%;
 } 
+
+@media (max-width: 600px) {
+  .container{
+    padding: 0;
+  }
+  .reviews{
+    width: 100%;
+  }
+}

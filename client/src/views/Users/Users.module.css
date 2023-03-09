@@ -22,3 +22,9 @@
   padding: 0px 3rem;
   width: 82%;
 }
+
+@media (max-width: 600px) {
+  .container{
+    padding: 0;
+  }
+}
