@@ -5,11 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
 
 export default function PlanCardListHome() {
+  const cookie = document.cookie;
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if(cookie !== ""){
       dispatch(getPlansbyOrder("order", "masvotados"));
-  }, [document.cookie]);
+    }
+  }, [cookie,document.cookie]);
 
   const renderPlans = useSelector((state) => state.planStore.renderPlans);
   const { plans } = renderPlans;
