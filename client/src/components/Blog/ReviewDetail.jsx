@@ -8,7 +8,6 @@ import { Rating } from "@mui/material";
 import customAlert from "../../recycle/Alert/CustomAlert";
 
 export default function ReviewDetail({ setReRender, blog, user }) {
-  const navigate = useNavigate();
   const userSession = JSON.parse(localStorage.getItem("user"));
   const { id } = useParams();
   const [comments, setComments] = useState([]);
