@@ -90,6 +90,21 @@
   cursor: pointer;
 }
 
+.pRole{
+  display: inline-block;
+  align-items: center;
+  margin-right: 1200px;
+  border: 2px solid #f1e100;
+  padding: 0.5em 1em;
+  background-color: #f1e100;
+  color: #707070;
+  font-weight: 500;
+  font-size: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 5px;
+}
+
 .editBtn:hover {
   color: white;
   background-color: #707070;

@@ -8,6 +8,7 @@ import {
 } from "../../redux/slices/userSlice/thunks";
 
 export default function UserCard({
+  role,
   nickName,
   image,
   firstName,
@@ -47,7 +48,10 @@ export default function UserCard({
           </div>
           <div className={style.profileInfo}>
             <div>
-              <p className={style.name}>{`${firstName} ${lastName}`}</p>
+              <div className={style.profileInfo_flex}>
+                <p className={style.name}>{`${firstName} ${lastName} `}</p>
+                {role === "admin" && <p className={style.nameRole}>Dueño</p>}
+              </div>
               <hr
                 color="#F1E100"
                 width="100%"
