@@ -26,6 +26,9 @@ export default function ProfileSection() {
   const following = useSelector((state) => state.userStore.userFollowing);
   const favorites = useSelector((state) => state.userStore.userFavorite);
   const [morePlans, setMorePlans] = useState(true);
+  const [moreFavoritesPlans, setMoreFavoritesPlans] = useState(true);
+  const [moreReviewsPlans, setMoreReviewsPlans] = useState(true);
+
   useEffect(() => {
     dispatch(getFavorites(user?.nickName));
     dispatch(getUserPlans(user?.nickName));
@@ -34,8 +37,15 @@ export default function ProfileSection() {
     dispatch(getFollowed(user?.nickName));
   }, []);
 
-  const handleMorePlans = () => {
-    setMorePlans(!morePlans);
+  const handleMorePlans = (value) => {
+    const morePlansValue = value.target.value;
+    if (morePlansValue === "plans") {
+      setMorePlans(!morePlans);
+    } else if (morePlansValue === "favorite") {
+      setMoreFavoritesPlans(!moreFavoritesPlans);
+    } else {
+      setMoreReviewsPlans(!moreReviewsPlans);
+    }
   };
 
   return (
@@ -90,30 +100,72 @@ export default function ProfileSection() {
             <ProfileAboutMe aboutMe={user.about} />
           </div>
           <div>
-            <h6 className={style.title}>Mis planes favoritos</h6>
+            <div className={style.containerOfButton}>
+              <div className={style.myPlansCont}>
+                <h6 className={style.title}>Mis planes favoritos</h6>
+                {moreFavoritesPlans && (
+                  <button
+                    onClick={handleMorePlans}
+                    value="favorite"
+                    className={style.buttons}
+                  >
+                    Mostrar más
+                  </button>
+                )}
+                {!moreFavoritesPlans && (
+                  <button
+                    onClick={handleMorePlans}
+                    value="favorite"
+                    className={style.buttons}
+                  >
+                    Mostrar menos
+                  </button>
+                )}
+              </div>
+            </div>
             <hr
               color="#F1E100"
               width="100%"
             />
             <div className={style.plansCont}>
-              {favorites.length === 0 ? (
-                <p className={style.message}>
-                  Aún no has agregado ningún plan en favoritos.
-                </p>
-              ) : (
-                favorites.map((element) => (
-                  <Link
-                    key={element.id}
-                    to={`/plans/${element.id}`}
-                    className={style.link}
-                  >
-                    <ProfileLatestAssistedPlans
-                      image={element.mainImage}
-                      name={element.title}
-                    />
-                  </Link>
-                ))
-              )}
+              {moreFavoritesPlans &&
+                (favorites.length === 0 ? (
+                  <p className={style.message}>
+                    Aún no has agregado ningún plan en favoritos.
+                  </p>
+                ) : (
+                  favorites.slice(0, 8).map((element) => (
+                    <Link
+                      key={element.id}
+                      to={`/plans/${element.id}`}
+                      className={style.link}
+                    >
+                      <ProfileLatestAssistedPlans
+                        image={element.mainImage}
+                        name={element.title}
+                      />
+                    </Link>
+                  ))
+                ))}
+              {!moreFavoritesPlans &&
+                (favorites.length === 0 ? (
+                  <p className={style.message}>
+                    Aún no has agregado ningún plan en favoritos.
+                  </p>
+                ) : (
+                  favorites.map((element) => (
+                    <Link
+                      key={element.id}
+                      to={`/plans/${element.id}`}
+                      className={style.link}
+                    >
+                      <ProfileLatestAssistedPlans
+                        image={element.mainImage}
+                        name={element.title}
+                      />
+                    </Link>
+                  ))
+                ))}
             </div>
           </div>
           <div>
@@ -125,6 +177,7 @@ export default function ProfileSection() {
                     <button
                       onClick={handleMorePlans}
                       className={style.buttons}
+                      value="plans"
                     >
                       Mostrar más
                     </button>
@@ -133,6 +186,7 @@ export default function ProfileSection() {
                     <button
                       onClick={handleMorePlans}
                       className={style.buttons}
+                      value="plans"
                     >
                       Mostrar menos
                     </button>
@@ -186,31 +240,74 @@ export default function ProfileSection() {
             </div>
           </div>
           <div>
-            <h6 className={style.title}>Últimas reseñas</h6>
+            <div className={style.containerOfButton}>
+              <div className={style.myPlansCont}>
+                <h6 className={style.title}>Últimas reseñas</h6>
+                {moreReviewsPlans && (
+                  <button
+                    onClick={handleMorePlans}
+                    className={style.buttons}
+                    value="reviews"
+                  >
+                    Mostrar más
+                  </button>
+                )}
+                {!moreReviewsPlans && (
+                  <button
+                    onClick={handleMorePlans}
+                    className={style.buttons}
+                    value="reviews"
+                  >
+                    Mostrar menos
+                  </button>
+                )}
+              </div>
+            </div>
             <hr
               color="#F1E100"
               width="100%"
             />
             <div className={style.plansCont}>
-              {userBlogs.length === 0 ? (
-                <p className={style.message}>
-                  Aún no has realizado una reseña.
-                </p>
-              ) : (
-                userBlogs.map((element) => (
-                  <Link
-                    key={element.id}
-                    to={`/blog/${element.id}`}
-                  >
-                    <ProfileLatestReviews
-                      image={element.image}
-                      name={element.title}
-                      description={element.content}
-                      assessment="50"
-                    />
-                  </Link>
-                ))
-              )}
+              {moreReviewsPlans &&
+                (userBlogs.length === 0 ? (
+                  <p className={style.message}>
+                    Aún no has realizado una reseña.
+                  </p>
+                ) : (
+                  userBlogs.slice(0, 5).map((element) => (
+                    <Link
+                      key={element.id}
+                      to={`/blog/${element.id}`}
+                    >
+                      <ProfileLatestReviews
+                        image={element.image}
+                        name={element.title}
+                        description={element.content}
+                        assessment="50"
+                      />
+                    </Link>
+                  ))
+                ))}
+              {!moreReviewsPlans &&
+                (userBlogs.length === 0 ? (
+                  <p className={style.message}>
+                    Aún no has realizado una reseña.
+                  </p>
+                ) : (
+                  userBlogs.map((element) => (
+                    <Link
+                      key={element.id}
+                      to={`/blog/${element.id}`}
+                    >
+                      <ProfileLatestReviews
+                        image={element.image}
+                        name={element.title}
+                        description={element.content}
+                        assessment="50"
+                      />
+                    </Link>
+                  ))
+                ))}
             </div>
           </div>
         </div>
