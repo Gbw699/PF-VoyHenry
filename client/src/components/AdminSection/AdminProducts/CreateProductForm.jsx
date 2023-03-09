@@ -53,7 +53,7 @@ export default function CreateUserForm({
       price: values.price,
       stock: values.stock,
       availability: values.availability,
-      mainImage: values.mainImage,
+      mainImage: url,
       images: [],
     };
     await dispatch(createProduct(obj));
