@@ -12,6 +12,7 @@ import getMediaQuery from "../../recycle/MediaQuerys/mediaQuerys.mjs";
 
 export default function NavBar() {
   const isMobile = useMediaQuery(getMediaQuery("xs"));
+  const isTablet = useMediaQuery(getMediaQuery("sm"));
   const location = useLocation();
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -33,7 +34,7 @@ export default function NavBar() {
   return (
     <header className={style.header}>
       <NavLink to="/home">
-        {!isMobile && <img
+        {!isMobile && !isTablet && <img
           src={img}
           alt="voyHENRY"
           title="voyHENRY"
