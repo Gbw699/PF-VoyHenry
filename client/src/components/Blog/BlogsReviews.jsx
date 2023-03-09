@@ -11,15 +11,15 @@ export default function BlogsReviews(props) {
   const allBlogs = useSelector((state) => state.blogStore.allBlogs);
   let { blogs, page, pages } = allBlogs;
 
-  const handlePageChange = (event, value) => {
+  const handlePageChange = (value) => {
     setPagePagination(value);
   };
 
   return (
     <div className={style.container}>
       <div className={style.filtersContainer}>
-      <BlogFilters pagePagination={pagePagination} />
-      <button
+        <BlogFilters pagePagination={pagePagination} />
+        <button
           onClick={() => props.setIsOpen(true)}
           className={style.writeBtn}
         >
@@ -27,20 +27,18 @@ export default function BlogsReviews(props) {
         </button>
       </div>
       <div className={style.reviewContainer}>
-        {/* <div className={style.subCont}> */}
-          {blogs?.blogs.map((blog) => {
-            return (
-              <BlogReview
-                key={blog.id}
-                blog={blog}
-              />
-            );
-          })}
-        {/* </div> */}
+        {blogs?.blogs.map((blog) => {
+          return (
+            <BlogReview
+              key={blog.id}
+              blog={blog}
+            />
+          );
+        })}
         <Pagination
           style={{
             display: "flex",
-            justifyContent: "center"
+            justifyContent: "center",
           }}
           size="large"
           count={pages}
