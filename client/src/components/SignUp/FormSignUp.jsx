@@ -34,7 +34,7 @@ export default function FormSignUp() {
       localStorage.setItem("user", JSON.stringify(user));
       setTimeout(() => {
         navigate("/home");
-      }, 50);
+      }, 400);
     }
   }, [query]);
 

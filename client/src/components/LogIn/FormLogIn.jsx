@@ -43,7 +43,7 @@ export default function FormLogIn() {
       dispatch(getLogin(formData));
       setTimeout(() => {
         navigate("/home");
-      }, 50);
+      }, 400);
     },
   });
   useEffect( () => {
@@ -56,7 +56,7 @@ export default function FormLogIn() {
       localStorage.setItem("user", JSON.stringify(user));
       setTimeout(() => {
         navigate("/home");
-      }, 50);
+      }, 400);
     }
   }, [query]);
 
