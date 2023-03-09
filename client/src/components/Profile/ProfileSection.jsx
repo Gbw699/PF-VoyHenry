@@ -161,22 +161,6 @@ export default function ProfileSection() {
                   </Link>
                 ))
               )}
-              {!morePlans && userPlans.length === 0 ? (
-                <p className={style.message}>Aún no has creado ningún plan.</p>
-              ) : (
-                userPlans.map((element) => (
-                  <Link
-                    key={element.id}
-                    to={`/plans/${element.id}`}
-                    className={style.link}
-                  >
-                    <ProfileMyPlans
-                      myPlansImage={element.mainImage}
-                      myPlansName={element.title}
-                    />
-                  </Link>
-                ))
-              )}
             </div>
           </div>
           <div>
