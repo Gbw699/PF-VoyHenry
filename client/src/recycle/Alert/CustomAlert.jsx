@@ -6,8 +6,8 @@ export default function customAlert(message) {
 
   // Set the CSS styles for the alert message
   alertDiv.style.backgroundColor = "white";
-  alertDiv.style.border = "1px solid #000";
-  alertDiv.style.color = "#000";
+  alertDiv.style.border = "0px";
+  alertDiv.style.color = "#707070";
   alertDiv.style.padding = "1rem";
   alertDiv.style.width = "20rem";
   alertDiv.style.height = "20rem";
@@ -20,7 +20,7 @@ export default function customAlert(message) {
   alertDiv.style.top = "50%";
   alertDiv.style.left = "50%";
   alertDiv.style.transform = "translate(-50%, -50%)";
-  alertDiv.style.borderRadius = "0.25rem";
+  alertDiv.style.borderRadius = "10px";
   alertDiv.style.boxShadow = "3px 3px 5px 2px #b1b1b1";
 
   // Create a new image element and set its source to the provided imagePath
