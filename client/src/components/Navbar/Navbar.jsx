@@ -101,7 +101,7 @@ export default function NavBar() {
         >
           <h4>TIENDA</h4>
         </NavLink>}
-        {!isMobile && <NavLink
+        <NavLink
           to="/marketplace/shoppingcart"
           className={navLinkClassName}
         >
@@ -114,7 +114,7 @@ export default function NavBar() {
             loading="lazy"
           />
           <span className={style.spanCart}>{totalQuantity()}</span>
-        </NavLink>}
+        </NavLink>
         <AccountMenu isMobile={isMobile} />
       </div>
     </header>
