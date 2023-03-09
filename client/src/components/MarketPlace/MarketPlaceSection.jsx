@@ -6,8 +6,11 @@ import Filters from "./Filters";
 import marketBgImg from "../../assets/marketBg.png";
 import style from "./MarketPlaceSection.module.css";
 import { getProductsbyOrder } from "../../redux/slices/marketPlaceSlice/thunk";
+import { useMediaQuery } from "@mui/material";
+import getMediaQuery from "../../recycle/MediaQuerys/mediaQuerys.mjs";
 
 export default function MarketPlaceSection() {
+  const isMobile = useMediaQuery(getMediaQuery("xs"));
   const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
   useEffect(() => {
@@ -29,7 +32,7 @@ export default function MarketPlaceSection() {
         />
       </div>
       <div className={style.container}>
-        <div className={style.marketCont}>
+        {!isMobile && <div className={style.marketCont}>
           <Filters />
           {/* {user.role === "admin" && (
             <div>
@@ -38,7 +41,7 @@ export default function MarketPlaceSection() {
               </Link>
             </div>
           )} */}
-        </div>
+        </div>}
         <div className={style.cardsCont}>
           {products ? (
             products?.map(

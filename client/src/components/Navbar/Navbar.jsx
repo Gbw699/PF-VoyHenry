@@ -6,8 +6,11 @@ import imgCarrito from "../../assets/carrito-de-compras.png";
 import style from "./Navbar.module.css";
 import { useContext } from "react";
 import ProductContext from "../../context/ProductContext";
+import { useMediaQuery } from "@mui/material";
+import getMediaQuery from "../../recycle/MediaQuerys/mediaQuerys.mjs";
 
 export default function NavBar() {
+  const isMobile = useMediaQuery(getMediaQuery("xs"));
   const location = useLocation();
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -47,8 +50,8 @@ export default function NavBar() {
           <h4>ADMIN</h4>
         </NavLink>
       )}
-      {location.pathname === "/blog" && <SearchBar placeholder="Buscar blog" />}
-      {location.pathname === "/plans" && (
+      {location.pathname === "/blog" && !isMobile && <SearchBar placeholder="Buscar blog" />}
+      {location.pathname === "/plans" && !isMobile && (
         <SearchBar placeholder="Buscar plan" />
       )}
       <div className={style.linksCont}>

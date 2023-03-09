@@ -13,3 +13,16 @@
   width: 100%;
   margin-bottom: 3%;
 }
+
+@media (max-width: 600px) {
+  .container{
+    /* width: 300px; */
+
+  }
+
+  .cardCont {
+    flex-flow: column wrap;
+  }
+
+}
+

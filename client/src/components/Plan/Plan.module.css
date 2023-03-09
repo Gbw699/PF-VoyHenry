@@ -29,3 +29,19 @@
   align-items: center;
   width: 22%;
 }
+
+@media (max-width: 600px) {
+  .container{
+    padding: 0;
+    /* flex-flow: column wrap; */
+  }
+  .planForm{
+    width: auto;
+  }
+
+  .showFiltersButton{
+    position: absolute;
+    left: 0;
+    z-index: 1;
+  }
+}

@@ -61,3 +61,16 @@
   font-size: 110%;
   cursor: pointer;
 }
+
+@media (max-width: 600px) {
+
+  .cardCont {
+    width: 300px;
+    height: 400px;
+  }
+  .detailBtn{
+    padding: 0;
+    width: 300px;
+  }
+
+}
