@@ -11,21 +11,21 @@ export default function BlogFilters({ pagePagination }) {
     date: "",
     order: "",
   });
-
+  console.log(pagePagination);
   useEffect(() => {
     dispatch(getBlogs(pagePagination, filters.date, filters.order));
   }, [pagePagination, filters]);
 
   return (
     <div className={style.container}>
-        <DateFilter
-          filters={filters}
-          setFilters={setFilters}
-        />
-        <OrderFilter
-          filters={filters}
-          setFilters={setFilters}
-        />
+      <DateFilter
+        filters={filters}
+        setFilters={setFilters}
+      />
+      <OrderFilter
+        filters={filters}
+        setFilters={setFilters}
+      />
     </div>
   );
 }
