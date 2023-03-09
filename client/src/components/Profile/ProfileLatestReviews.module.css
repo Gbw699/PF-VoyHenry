@@ -50,3 +50,23 @@
   font-weight: 400;
   margin: 0px;
 }
+
+@media (max-width: 600px) {
+  .img {
+    width: 100px;
+    height: 100px;
+  }
+  .reviewImg{
+    width: auto;
+  }
+  .reviewInfo {
+    width: 220px;
+  }
+  .container {
+    width: auto;
+  }
+  .reviewCont {
+    width: 100%;
+  }
+}
+

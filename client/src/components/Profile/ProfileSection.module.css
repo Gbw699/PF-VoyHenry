@@ -131,3 +131,20 @@
   box-shadow: none;
   transform: translateY(0);
 }
+
+@media (max-width: 600px) {
+  .infoCont {
+    width: 98%;
+    margin: 0;
+  }
+  .activityCont{
+    width: 98%;
+    margin-left: 0;
+  }
+  .plansCont {
+    width: 100%;
+  }
+  .profileCont {
+    width: 100%;
+  }
+}
