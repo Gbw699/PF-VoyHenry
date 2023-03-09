@@ -4,13 +4,16 @@ import BlogReview from "../../recycle/BlogReview/BlogReview";
 import { getBlogs } from "../../redux/slices/blogSlice/thunk";
 
 export default function BlogHome() {
+  const cookie = document.cookie;
   const dispatch = useDispatch();
   const allBlogs = useSelector((state) => state.blogStore.allBlogs);
   const { blogs } = allBlogs;
 
   useEffect(() => {
-    dispatch(getBlogs(1, "", "masvotados"));
-  }, []);
+    if(cookie !== ""){
+      dispatch(getBlogs(1, "", "masvotados"));
+    }
+  }, [cookie,document.cookie]);
 
   return <div>{blogs && <BlogReview blog={blogs.blogs[0]} />}</div>;
 }

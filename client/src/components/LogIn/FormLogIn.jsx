@@ -39,12 +39,12 @@ export default function FormLogIn() {
         .min(8, "Debe tener más de 8 caracteres")
         .required("La contraseña es obligatoria"),
     }),
-    onSubmit: async (formData) => {
-      await dispatch(getLogin(formData));
-      await navigate("/home");
+    onSubmit: (formData) => {
+      dispatch(getLogin(formData));
+        navigate("/home");
     },
   });
-  useEffect(() => {
+  useEffect( () => {
     if (query.get("token") !== null) {
       document.cookie =
         "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -52,7 +52,7 @@ export default function FormLogIn() {
         "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = `token=${query.get("token")}; max-age=604800; path=/;`;
       localStorage.setItem("user", JSON.stringify(user));
-      navigate("/home");
+        navigate("/home");
     }
   }, [query]);
 

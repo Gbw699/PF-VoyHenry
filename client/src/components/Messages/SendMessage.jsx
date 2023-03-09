@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { socket } from "../SocketIo/Connect";
+import style from "./SendMessage.module.css";
 import axios from "axios";
 
 export default function SendMessage({ to, messageSelect, setMessageSelect }) {
@@ -38,19 +39,23 @@ export default function SendMessage({ to, messageSelect, setMessageSelect }) {
   };
 
   return (
-    <>
-      <input
+    <div
+      className={style.container}
+    >
+      <textarea 
         value={message}
+        className={style.input}
         onChange={handlerOnChange}
         onKeyDown={(event) => event.key === "Enter" && handlerOnClick()}
       >
-      </input>
+      </textarea>
       <button
+        className={style.button}
         onClick={handlerOnClick}
       >
         Enviar
       </button>
-    </>
+    </div>
   );
 
 }
