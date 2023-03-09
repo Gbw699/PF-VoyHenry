@@ -44,3 +44,12 @@
 .spanCart{
   color: #000000;
 }
+
+@media (max-width: 600px) {
+  .header {
+    padding: 0;
+  }
+  .linksCont {
+    justify-content: end;
+  }
+}

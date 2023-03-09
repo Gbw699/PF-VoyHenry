@@ -9,6 +9,7 @@ import getMediaQuery from "../../recycle/MediaQuerys/mediaQuerys.mjs";
 export default function BlogsReviews(props) {
   const isMobile = useMediaQuery(getMediaQuery("xs"));
   const [pagePagination, setPagePagination] = useState(1);
+  const [showFilters, setShowFilters] = useState("none");
 
   const allBlogs = useSelector((state) => state.blogStore.allBlogs);
   let { blogs, page, pages } = allBlogs;
@@ -19,17 +20,19 @@ export default function BlogsReviews(props) {
 
   return (
     <div className={style.container}>
-      {!isMobile && (
-        <div className={style.filtersContainer}>
-          <BlogFilters pagePagination={pagePagination} />
-          <button
-            onClick={() => props.setIsOpen(true)}
-            className={style.writeBtn}
-          >
-            Escribir reseña
-          </button>
-        </div>
-      )}
+      {!isMobile && <div className={style.filtersContainer}>
+        <BlogFilters pagePagination={pagePagination} />
+        <button
+          onClick={() => props.setIsOpen(true)}
+          className={style.writeBtn}
+        >
+          Escribir reseña
+        </button>
+      </div>}
+      {isMobile && <div className={style.filtersContainer} style={{ display: `${showFilters}` }}>
+        <BlogFilters pagePagination={pagePagination} />
+      </div>}
+      {isMobile && <button className={style.showFiltersButton} onClick={() => setShowFilters(showFilters == "none" ? "flex" : "none")}>Filtros</button>}
       <div className={style.reviewContainer}>
         {blogs?.blogs.map((blog) => {
           return (
@@ -51,14 +54,12 @@ export default function BlogsReviews(props) {
           onChange={handlePageChange}
         />
       </div>
-      {isMobile && (
-        <button
-          onClick={() => props.setIsOpen(true)}
-          className={style.writeBtn}
-        >
-          Escribir reseña
-        </button>
-      )}
+      {isMobile && <button
+        onClick={() => props.setIsOpen(true)}
+        className={style.writeBtn}
+      >
+        Escribir reseña
+      </button>}
     </div>
   );
 }

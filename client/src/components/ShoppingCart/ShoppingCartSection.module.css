@@ -83,3 +83,17 @@
   margin: 0px 3%;
   width: 200px;
 }
+
+@media (max-width: 600px) {
+  .container{
+    height: auto;
+  }
+  .cartCont{
+    width: 100%;
+  }
+  .btnsCont{
+    margin: 0;
+    margin-top: 10px;
+    width: 100%;
+  }
+}

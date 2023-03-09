@@ -23,11 +23,24 @@
   width: 25%;
 } 
 
+@media (min-width: 600px) and (max-width: 959.95px) {
+  .reviews{
+    width: 100%;
+  }
+
+  .container {
+    padding: 4rem 0 4rem 0;
+  }
+
+}
+
 @media (max-width: 600px) {
   .container{
     padding: 0;
+    /* width: 300px; */
   }
   .reviews{
     width: 100%;
+    padding: 0;
   }
 }

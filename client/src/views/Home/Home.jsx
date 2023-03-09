@@ -10,12 +10,14 @@ import getMediaQuery from "../../recycle/MediaQuerys/mediaQuerys.mjs";
 export default function Home() {
 
   const isMobile = useMediaQuery(getMediaQuery("xs"));
+  const isTablet = useMediaQuery(getMediaQuery("sm"));
 
   console.log(isMobile);
+  console.log(isTablet);
 
   return (
     <div className={style.container}>
-      {!isMobile && <div className={style.profileCont}>
+      {!isMobile && !isTablet && <div className={style.profileCont}>
         <ProfileCard />
       </div>}
       <div className={style.featured}>
@@ -32,7 +34,7 @@ export default function Home() {
         />}
         {!isMobile && <BlogHome />}
       </div>
-      {!isMobile && <div className={style.sections}>
+      {!isMobile && !isTablet && <div className={style.sections}>
         <PlansSections />
       </div>}
     </div>
