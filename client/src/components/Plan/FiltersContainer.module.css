@@ -110,7 +110,9 @@
 
 @media (max-width: 600px) {
   .container{
-    position: fixed;
+    position: absolute;
+    left: 0;
+    top: 55px;
     background-color: white;
   }
 }

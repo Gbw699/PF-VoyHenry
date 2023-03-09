@@ -6,20 +6,12 @@ import { useDispatch } from "react-redux";
 import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
 import FilterByTitle from "./FilterByTitle";
 import FilterByCountry from "./FilterByCountry";
-import { useMediaQuery } from "@mui/material";
-import getMediaQuery from "../../recycle/MediaQuerys/mediaQuerys.mjs";
-// import SearchPlan from "./SearchPlan";
 
-export default function FiltersContainer(props) {
-  const isMobile = useMediaQuery(getMediaQuery("xs"));
+export default function FiltersContainer() {
   const dispatch = useDispatch(event);
 
   const handleClick = () => {
     dispatch(getPlansbyOrder("clean", 1));
-  };
-
-  const handleButtonCreate = () => {
-    props.setShowPlanForm(true);
   };
 
   return (
@@ -38,12 +30,6 @@ export default function FiltersContainer(props) {
             onClick={handleClick}
           >
             Actualizar
-          </button>
-          <button
-            className={style.buttons}
-            onClick={handleButtonCreate}
-          >
-            Crea tu evento
           </button>
         </div>
       </div>

@@ -30,6 +30,18 @@
   width: 22%;
 }
 
+.buttons {
+  background-color: #f1e100;
+  border: 1px solid #f1e100;
+  border-radius: 10px;
+  padding: 1em 1.5em;
+  color: #707070;
+  width: 80%;
+  align-self: center;
+  margin-top: 1em;
+  cursor: pointer;
+}
+
 @media (min-width: 600px) and (max-width: 959.95px) {
   .container {
     padding: 4rem 0 4rem 2rem;
@@ -42,15 +54,17 @@
 @media (max-width: 600px) {
   .container{
     padding: 0;
-    /* flex-flow: column wrap; */
+    align-items: center;
+    flex-direction: column;
   }
   .planForm{
     width: auto;
   }
 
   .showFiltersButton{
-    position: absolute;
-    left: 0;
+    position: relative;
     z-index: 1;
+    display: flex;
+    align-self: flex-start;
   }
 }

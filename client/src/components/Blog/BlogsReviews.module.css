@@ -46,7 +46,6 @@
 @media (max-width: 600px) {
   .container{
     flex-direction: column;
-    margin-top: 70px;
     align-items: center;
   }
   .writeBtn{
@@ -59,15 +58,15 @@
     padding: 0;
   }
   .showFiltersButton{
-    z-index: 1;
+    z-index: 0;
     position: absolute;
     left: 0;
-    top: 72px;
+    top: 53px;
   }
   .filtersContainer{
     position: absolute;
     left: 0;
-    top: 72px;
+    top: 50px;
     background-color: white;
   }
 }
