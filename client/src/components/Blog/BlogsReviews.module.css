@@ -46,7 +46,6 @@
 @media (max-width: 600px) {
   .container{
     flex-direction: column;
-    margin-top: 70px;
     align-items: center;
   }
   .writeBtn{
