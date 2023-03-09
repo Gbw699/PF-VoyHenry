@@ -6,9 +6,12 @@ import { useDispatch } from "react-redux";
 import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
 import FilterByTitle from "./FilterByTitle";
 import FilterByCountry from "./FilterByCountry";
+import { useMediaQuery } from "@mui/material";
+import getMediaQuery from "../../recycle/MediaQuerys/mediaQuerys.mjs";
 // import SearchPlan from "./SearchPlan";
 
 export default function FiltersContainer(props) {
+  const isMobile = useMediaQuery(getMediaQuery("xs"));
   const dispatch = useDispatch(event);
 
   const handleClick = () => {
@@ -22,6 +25,7 @@ export default function FiltersContainer(props) {
   return (
     <div className={style.container}>
       <div className={style.filtersCont}>
+        
         {/* <SearchPlan className={style.inputs} /> */}
         <FilterByDate className={style.inputs} />
         <FilterByCountry className={style.inputs} />

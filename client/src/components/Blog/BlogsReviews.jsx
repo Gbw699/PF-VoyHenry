@@ -3,9 +3,11 @@ import { useSelector } from "react-redux";
 import BlogFilters from "./BlogFilters";
 import BlogReview from "../../recycle/BlogReview/BlogReview";
 import style from "./BlogsReviews.module.css";
-import { Pagination } from "@mui/material";
+import { Pagination, useMediaQuery } from "@mui/material";
+import getMediaQuery from "../../recycle/MediaQuerys/mediaQuerys.mjs";
 
 export default function BlogsReviews(props) {
+  const isMobile = useMediaQuery(getMediaQuery("xs"));
   const [pagePagination, setPagePagination] = useState(1);
 
   const allBlogs = useSelector((state) => state.blogStore.allBlogs);
@@ -17,15 +19,15 @@ export default function BlogsReviews(props) {
 
   return (
     <div className={style.container}>
-      <div className={style.filtersContainer}>
-        <BlogFilters pagePagination={pagePagination} />
+      {!isMobile && <div className={style.filtersContainer}>
+         <BlogFilters pagePagination={pagePagination} />
         <button
           onClick={() => props.setIsOpen(true)}
           className={style.writeBtn}
         >
           Escribir reseña
         </button>
-      </div>
+      </div>}
       <div className={style.reviewContainer}>
         {blogs?.blogs.map((blog) => {
           return (
@@ -33,9 +35,10 @@ export default function BlogsReviews(props) {
               key={blog.id}
               blog={blog}
             />
-          );
+            );
         })}
         <Pagination
+          className={style.pagination}
           style={{
             display: "flex",
             justifyContent: "center",
@@ -46,6 +49,12 @@ export default function BlogsReviews(props) {
           onChange={handlePageChange}
         />
       </div>
+          {isMobile && <button
+              onClick={() => props.setIsOpen(true)}
+              className={style.writeBtn}
+            >
+              Escribir reseña
+            </button>}
     </div>
   );
 }
