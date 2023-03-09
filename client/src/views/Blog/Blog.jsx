@@ -15,7 +15,7 @@ export default function Blog() {
           setState={setIsOpen}
           close={() => setIsOpen(false)}
         />
-        <BlogsReviews setIsOpen={setIsOpen}/>
+        <BlogsReviews setIsOpen={setIsOpen} />
       </div>
       <div className={style.users}>
         <BlogUsers />

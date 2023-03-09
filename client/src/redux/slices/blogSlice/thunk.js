@@ -10,6 +10,7 @@ export const getBlogs = (page, date = "", order = "") => {
       );
       dispatch(setBlogs(response.data));
     } catch (error) {
+      dispatch(setBlogs([]));
       console.error(error.response);
     }
   };
