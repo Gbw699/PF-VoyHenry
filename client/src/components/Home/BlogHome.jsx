@@ -10,6 +10,7 @@ export default function BlogHome() {
   const { blogs } = allBlogs;
 
   useEffect(() => {
+    location.reload();
     dispatch(getBlogs(1, "", "masvotados"));
   }, [userInfo]);
 

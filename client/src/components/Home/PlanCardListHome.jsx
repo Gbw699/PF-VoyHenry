@@ -9,6 +9,7 @@ export default function PlanCardListHome() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    location.reload();
     dispatch(getPlansbyOrder("order", "masvotados"));
   }, [userInfo]);
 
