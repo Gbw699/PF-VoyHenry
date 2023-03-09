@@ -38,6 +38,13 @@ export default function SendMessage({ to, messageSelect, setMessageSelect }) {
     }
   };
 
+  const handlerKeyDown = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handlerOnClick();
+    }
+  };
+
   return (
     <div
       className={style.container}
@@ -46,7 +53,7 @@ export default function SendMessage({ to, messageSelect, setMessageSelect }) {
         value={message}
         className={style.input}
         onChange={handlerOnChange}
-        onKeyDown={(event) => event.key === "Enter" && handlerOnClick()}
+        onKeyDown={handlerKeyDown}
       >
       </textarea>
       <button
