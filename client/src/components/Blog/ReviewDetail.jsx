@@ -5,6 +5,7 @@ import PostComment from "../../recycle/Comments/PostComment";
 import GetComments from "../../recycle/Comments/GetComments";
 import style from "./ReviewDetail.module.css";
 import { Rating } from "@mui/material";
+import customAlert from "../../recycle/Alert/CustomAlert";
 
 export default function ReviewDetail({ setReRender, blog, user }) {
   const userSession = JSON.parse(localStorage.getItem("user"));
@@ -41,6 +42,8 @@ export default function ReviewDetail({ setReRender, blog, user }) {
   const handleDelete = async () => {
     try {
       await axios.delete(`/api/v1/blogs/${id}`, { data: blog.userNickName });
+      navigate("/blog");
+      customAlert("Eliminaste el blog");
     } catch (error) {
       console.error(error);
     }
