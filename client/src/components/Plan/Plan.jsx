@@ -20,7 +20,7 @@ export default function Plan() {
       {isMobile && <button className={style.showFiltersButton} onClick={() => setShowFilters(!showFilters)}>Filtros</button>}
       <div className={style.planForm}>
         {!showPlanForm && showFilters && (
-          <FiltersContainer setShowPlanForm={setShowPlanForm} />
+          <FiltersContainer/>
         )}
         {!showPlanForm && !isMobile && (
           <FiltersContainer setShowPlanForm={setShowPlanForm} />
@@ -28,6 +28,12 @@ export default function Plan() {
         {showPlanForm && <PlanForm setShowPlanForm={setShowPlanForm} />}
       </div>
       <div className={style.plans}>{!showPlanForm && <PlanCardList />}</div>
+      {isMobile && <button
+        className={style.buttons}
+        onClick={()=>setShowPlanForm(true)}
+      >
+        Crea tu evento
+      </button>}
       {!isMobile && !isTablet && <div className={style.sections}>{!showPlanForm && <PlansSections />}</div>}
     </div>
   );

@@ -43,7 +43,7 @@ export default function NavBar() {
           height="100%"
           loading="lazy"
         />}
-        {isMobile && isTablet || <img
+        {isMobile && <img
           src={img2}
           alt="voyHENRY"
           title="voyHENRY"
