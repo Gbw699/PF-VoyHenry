@@ -8,10 +8,8 @@ export default function PlanCardListHome() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setTimeout(function() {
       dispatch(getPlansbyOrder("order", "masvotados"));
-    }, 50);
-  }, []);
+  }, [document.cookie]);
 
   const renderPlans = useSelector((state) => state.planStore.renderPlans);
   const { plans } = renderPlans;
