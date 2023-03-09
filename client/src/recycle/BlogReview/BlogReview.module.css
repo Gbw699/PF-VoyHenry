@@ -104,3 +104,10 @@
   font-size: 110%;
   font-weight: 600;
 }
+
+@media (max-width: 600px) {
+  .userImg{
+    height: 100px;
+    width: 100px;
+  }
+}

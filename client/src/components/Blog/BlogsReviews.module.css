@@ -47,11 +47,27 @@
   .container{
     flex-direction: column;
     margin-top: 70px;
+    align-items: center;
   }
   .writeBtn{
     margin-top: 200px;
   }
   .pagination{
     margin-top: 100px;
+  }
+  .reviewContainer{
+    padding: 0;
+  }
+  .showFiltersButton{
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 72px;
+  }
+  .filtersContainer{
+    position: absolute;
+    left: 0;
+    top: 72px;
+    background-color: white;
   }
 }
