@@ -45,6 +45,7 @@ export const getPlansbyOrder = (filter, order) => {
       const response = await axios.get(`/api/v1/plans?${queryUrl}`);
       dispatch(setPlansbyOrder(response.data));
     } catch (error) {
+      dispatch(setPlansbyOrder([]));
       console.error(error.response);
     }
   };

@@ -10,6 +10,7 @@ export const getBlogs = (page, date = "", order = "") => {
       );
       dispatch(setBlogs(response.data));
     } catch (error) {
+      dispatch(setBlogs([]));
       console.error(error.response);
     }
   };
@@ -42,7 +43,7 @@ export const postBlog = (obj) => {
   return async (dispatch) => {
     try {
       await axios.post("/api/v1/blogs", { ...obj });
-      customAlert("El blog se creó correctamente")
+      customAlert("El blog se creó correctamente");
       dispatch(getBlogs(1));
     } catch (error) {
       console.error(error.response);

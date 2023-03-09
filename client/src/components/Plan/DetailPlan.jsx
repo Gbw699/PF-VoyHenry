@@ -9,6 +9,7 @@ import PostComment from "../../recycle/Comments/PostComment";
 import GetComments from "../../recycle/Comments/GetComments";
 import ButtonShare from "../../recycle/ButtonShare/ButtonShare";
 import MapPlan from "./MapPlan";
+import customAlert from "../../recycle/Alert/CustomAlert";
 
 export default function DetailPlan() {
   const [value, setValue] = useState();
@@ -105,6 +106,7 @@ export default function DetailPlan() {
     try {
       await axios.delete(`/api/v1/plans/${id}`);
       navigate("/plans");
+      customAlert("Eliminaste el plan");
     } catch (error) {
       console.error(error);
     }
@@ -117,7 +119,7 @@ export default function DetailPlan() {
     try {
       await axios.post(`/api/v1/plans/${id}/favorite`, body);
       setIsFav(true);
-      alert("Agregado a favoritos");
+      customAlert("Agregado a favoritos");
     } catch (error) {
       console.error(error.response);
     }
@@ -130,7 +132,7 @@ export default function DetailPlan() {
     try {
       await axios.delete(`/api/v1/plans/${id}/favorite`, { data: body });
       setIsFav(false);
-      alert("Eliminado de favoritos");
+      customAlert("Eliminado a favoritos");
     } catch (error) {
       console.error(error.response.data.message);
     }

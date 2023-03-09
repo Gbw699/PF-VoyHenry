@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import PostComment from "../../recycle/Comments/PostComment";
 import GetComments from "../../recycle/Comments/GetComments";
 import style from "./ReviewDetail.module.css";
 import { Rating } from "@mui/material";
+import customAlert from "../../recycle/Alert/CustomAlert";
 
 export default function ReviewDetail({ setReRender, blog, user }) {
   const userSession = JSON.parse(localStorage.getItem("user"));
@@ -13,7 +14,7 @@ export default function ReviewDetail({ setReRender, blog, user }) {
   const [isEditable, setIsEditable] = useState(false);
   const [editedBlog, setEditedBlog] = useState();
   const [showEdit, setShowEdit] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (userSession && blog && userSession.nickName === blog?.userNickName) {
       setIsEditable(true);
@@ -25,12 +26,12 @@ export default function ReviewDetail({ setReRender, blog, user }) {
 
   useEffect(() => {
     getComments();
-  },[]);
+  }, []);
 
   const handleEdit = async () => {
     try {
       const response = await axios.patch(`/api/v1/blogs/${id}`, editedBlog);
-      setEditedBlog(response.data); // update state with edited data
+      setEditedBlog(response.data);
       setReRender(true);
       setShowEdit(false);
     } catch (error) {
@@ -41,9 +42,12 @@ export default function ReviewDetail({ setReRender, blog, user }) {
   const handleDelete = async () => {
     try {
       await axios.delete(`/api/v1/blogs/${id}`, { data: blog.userNickName });
+      navigate("/blog");
+      customAlert("Eliminaste el blog");
     } catch (error) {
       console.error(error);
     }
+    navigate("/blog");
   };
 
   const handleInputChange = (event) => {
@@ -93,7 +97,9 @@ export default function ReviewDetail({ setReRender, blog, user }) {
           />
           <div className={style.review}>
             <div className={style.nameCont}>
-              <p className={style.name}>{user?.firstName} {user?.lastName}</p>
+              <p className={style.name}>
+                {user?.firstName} {user?.lastName}
+              </p>
               <p className={style.date}>{blog?.createdAt?.slice(0, 10)}</p>
             </div>
             <hr
@@ -113,14 +119,19 @@ export default function ReviewDetail({ setReRender, blog, user }) {
               </div>
               <div className={style.reviewInfo}>
                 {!showEdit && <h3 className={style.title}>{blog?.title}</h3>}
-                <hr color="#b1b1b1" width="100%" />
+                <hr
+                  color="#b1b1b1"
+                  width="100%"
+                />
                 {!showEdit && (
                   <p className={style.blogContent}>{blog?.content}</p>
                 )}
-                {!showEdit && <Rating
-                  name="read-only"
-                  value={blog?.average}
-                />}
+                {!showEdit && (
+                  <Rating
+                    name="read-only"
+                    value={blog?.average}
+                  />
+                )}
                 {isEditable && showEdit && (
                   <input
                     className={style.input}
