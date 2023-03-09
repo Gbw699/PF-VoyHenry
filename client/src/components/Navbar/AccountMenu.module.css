@@ -10,3 +10,7 @@
   font-weight: 300;
   text-decoration: none;
 }
+
+@media (max-width: 600px) {
+
+}

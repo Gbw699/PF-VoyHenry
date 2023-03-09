@@ -2,6 +2,7 @@ import SearchBar from "./SearchBar";
 import AccountMenu from "./AccountMenu";
 import { NavLink, useLocation } from "react-router-dom";
 import img from "../../assets/voyHENRY_title.svg";
+import img2 from "../../assets/voyHENRY_logo.png";
 import imgCarrito from "../../assets/carrito-de-compras.png";
 import style from "./Navbar.module.css";
 import { useContext } from "react";
@@ -32,7 +33,7 @@ export default function NavBar() {
   return (
     <header className={style.header}>
       <NavLink to="/home">
-        <img
+        {!isMobile && <img
           src={img}
           alt="voyHENRY"
           title="voyHENRY"
@@ -40,7 +41,16 @@ export default function NavBar() {
           width="100%"
           height="100%"
           loading="lazy"
-        />
+        />}
+        {isMobile && <img
+          src={img2}
+          alt="voyHENRY"
+          title="voyHENRY"
+          className={style.img}
+          width="100%"
+          height="100%"
+          loading="lazy"
+        />}
       </NavLink>
       {user?.role === "admin" && (
         <NavLink
@@ -55,43 +65,43 @@ export default function NavBar() {
         <SearchBar placeholder="Buscar plan" />
       )}
       <div className={style.linksCont}>
-        <NavLink
+        {!isMobile && <NavLink
           to={"/home"}
           className={navLinkClassName}
         >
           <h4>INICIO</h4>
-        </NavLink>
-        <NavLink
+        </NavLink>}
+        {!isMobile && <NavLink
           to={"/plans"}
           className={navLinkClassName}
         >
           <h4>PLANES</h4>
-        </NavLink>
-        <NavLink
+        </NavLink>}
+        {!isMobile && <NavLink
           to={"/blog"}
           className={navLinkClassName}
         >
           <h4>BLOG</h4>
-        </NavLink>
-        <NavLink
+        </NavLink>}
+        {!isMobile && <NavLink
           to={"/users"}
           className={navLinkClassName}
         >
           <h4>USUARIOS</h4>
-        </NavLink>
+        </NavLink>}
         <NavLink
           to={"/messages"}
           className={navLinkClassName}
         >
           <h4>CHAT</h4>
         </NavLink>
-        <NavLink
+        {!isMobile && <NavLink
           to={"/marketplace"}
           className={navLinkClassName}
         >
           <h4>TIENDA</h4>
-        </NavLink>
-        <NavLink
+        </NavLink>}
+        {!isMobile && <NavLink
           to="/marketplace/shoppingcart"
           className={navLinkClassName}
         >
@@ -104,8 +114,8 @@ export default function NavBar() {
             loading="lazy"
           />
           <span className={style.spanCart}>{totalQuantity()}</span>
-        </NavLink>
-        <AccountMenu />
+        </NavLink>}
+        <AccountMenu isMobile={isMobile} />
       </div>
     </header>
   );
