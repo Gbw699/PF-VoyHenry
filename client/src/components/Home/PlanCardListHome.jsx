@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
 
 export default function PlanCardListHome() {
+  const userInfo = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getPlansbyOrder("order", "masvotados"));
-  }, []);
+  }, [userInfo]);
 
   const renderPlans = useSelector((state) => state.planStore.renderPlans);
   const { plans } = renderPlans;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { socket } from "../SocketIo/Connect";
-import style from "./SendMessage.module.css"
+import style from "./SendMessage.module.css";
 import axios from "axios";
 
 export default function SendMessage({ to, messageSelect, setMessageSelect }) {
