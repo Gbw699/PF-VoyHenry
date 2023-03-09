@@ -1,6 +1,7 @@
 .conversationContainer{
-  height: 75.5vh;
+  height: 65vh;
   overflow-y: auto;
+  padding-bottom: 1.5em;
 }
 
 .perfileImage{
@@ -10,10 +11,15 @@
   margin-right: 1.5em;
 }
 
-
 .textContainer {
   display: flex;
   flex-direction: column;
+  max-width: 40em;
+  padding: 1em;
+  border: 1px solid;
+  border-radius: 1.5em;
+  overflow: hidden;
+  word-wrap: break-word;
 }
 
 .meMessageContainer{
