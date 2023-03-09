@@ -7,7 +7,7 @@ let socket;
 
 export default function Connect() {
   useEffect(() => {
-    if (localStorage.getItem("user") && document.cookie !== "" && userInfo.nickName !== undefined) {
+    if (localStorage.getItem("user") && document.cookie !== "" && userInfo?.nickName !== undefined) {
       socket = io("https://voyhenry.fly.dev/", {
         auth: {
           nickName: userInfo?.nickName,
