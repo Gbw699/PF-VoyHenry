@@ -14,6 +14,8 @@ import {
   getFollowed,
   getFavorites,
 } from "../../redux/slices/userSlice/thunks";
+import { useMediaQuery } from "@mui/material";
+import getMediaQuery from "../../recycle/MediaQuerys/mediaQuerys.mjs";
 
 export default function ProfileSection() {
   const dispatch = useDispatch();
@@ -28,6 +30,7 @@ export default function ProfileSection() {
   const [morePlans, setMorePlans] = useState(true);
   const [moreFavoritesPlans, setMoreFavoritesPlans] = useState(true);
   const [moreReviewsPlans, setMoreReviewsPlans] = useState(true);
+  const isMobile = useMediaQuery(getMediaQuery("xs"));
 
   useEffect(() => {
     dispatch(getFavorites(user?.nickName));
@@ -65,7 +68,7 @@ export default function ProfileSection() {
         />
       </div>
       <div className={style.infoCont}>
-        <div className={style.friendsAct}>
+        {!isMobile && <div className={style.friendsAct}>
           <h6 className={style.title}>Usuarios que sigues</h6>
           <hr
             color="#F1E100"
@@ -89,7 +92,7 @@ export default function ProfileSection() {
               ))
             )}
           </div>
-        </div>
+        </div>}
         <div className={style.activityCont}>
           <div>
             <h6 className={style.title}>Sobre mí</h6>

@@ -131,3 +131,18 @@
   color: #707070;
   background-color: white;
 }
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0;
+    align-items: center;
+    box-shadow: none;
+  }
+  .editBtn {
+    margin-left: 0;
+    position: static;
+  }
+  .infoTitle {
+    font-size: 80%;
+  }
+}
