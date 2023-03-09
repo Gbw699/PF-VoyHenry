@@ -107,7 +107,8 @@ class UsersService {
   async find(query) {
     const options = {
       order: [['firstName', 'ASC']],
-
+      limit: 4,
+      offset: 0,
       include: [
         {
           model: usersModel,
@@ -119,6 +120,8 @@ class UsersService {
         },
       ],
     };
+
+    options.where = {};
 
     if (query.order == 'reverso') {
       options.order = [['firstName', 'DESC']];
@@ -143,7 +146,13 @@ class UsersService {
       };
     }
 
-    const users = await usersModel.findAll(options);
+    if (query.limit) {
+      options.limit = query.limit;
+    }
+
+    if (query.offset) {
+      options.offset = (page - 1) * query.offset;
+    }
 
     const following = [];
     for (let i = 0; i < users.length; i++) {
@@ -165,7 +174,21 @@ class UsersService {
       );
     }
 
-    return { users, following: following, followed: followed };
+    if (query.page) {
+      const page = parseInt(query.page);
+      if (isNaN(page) || page < 1) {
+        throw new CustomError('Invalid page number', 440);
+      }
+      options.offset = (page - 1) * (options.limit || query.limit);
+    }
+
+    const usersLimit = options.limit
+
+    const usersInFilter = await usersModel.count(options);
+
+    const users = await usersModel.findAll(options);
+
+    return { users, following: following, followed: followed, usersLimit, usersInFilter };
   }
 
   /* Find one User */

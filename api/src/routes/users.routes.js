@@ -15,10 +15,20 @@ router.get('/',
   async (req, res, next) => {
 
     try {
+      const page = req.query.page || 1
+      const users = await service.find(req.query, page)
 
-      const users = await service.find(req.query)
+      let pages = ''
 
-      res.json(users)
+      if (users.usersInFilter <= users.usersLimit){
+        pages = 1
+      } else {
+        pages = Math.ceil(users.usersInFilter / users.usersLimit);
+      }
+
+      const pageNumber = parseInt(page);
+      const response = { users, usersNumber, pages }
+      res.json(response)
     } catch (error) {
 
       next(error)
