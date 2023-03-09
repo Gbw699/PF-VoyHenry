@@ -27,11 +27,11 @@ import AdminSection from "./views/AdminSection/AdminSection";
 import SocketIo from "./views/Socket.io/Socket.io";
 import Messages from "./views/messages/messages";
 
-axios.defaults.baseURL = "http://localhost:3001/";
-const cookie = document.cookie.split("=");
-axios.defaults.headers.common["Authorization"] = `Bearer ${cookie[1]}`;
-const user = JSON.parse(localStorage.getItem("user"));
 function App() {
+  axios.defaults.baseURL = "http://localhost:3001/";
+  const cookie = document.cookie.split("=");
+  axios.defaults.headers.common["Authorization"] = `Bearer ${cookie[1]}`;
+  const user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {}, [document.cookie]);
 
   const location = useLocation();
