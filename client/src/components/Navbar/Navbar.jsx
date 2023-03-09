@@ -92,10 +92,6 @@ export default function NavBar() {
           to="/marketplace/shoppingcart"
           className={navLinkClassName}
         >
-          <span className="badge badge-sm indicator-item">
-            {totalQuantity()}
-          </span>
-
           <img
             src={imgCarrito}
             width="20px"
@@ -104,6 +100,7 @@ export default function NavBar() {
             title="Carrito de compras"
             loading="lazy"
           />
+          <span className={style.spanCart}>{totalQuantity()}</span>
         </NavLink>
         <AccountMenu />
       </div>
