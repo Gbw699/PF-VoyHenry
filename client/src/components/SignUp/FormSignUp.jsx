@@ -24,14 +24,14 @@ export default function FormSignUp() {
     google: query.get("google")?.trim(),
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     if (query.get("token") !== null) {
       document.cookie =
         "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie =
         "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = `token=${query.get("token")}; max-age=604800; path=/;`;
-      localStorage.setItem("user", JSON.stringify(user));
+      await localStorage.setItem("user", JSON.stringify(user));
       navigate("/home");
     }
   }, [query]);
@@ -89,7 +89,7 @@ export default function FormSignUp() {
       .required("Debe repetir la contraseña"),
   });
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     const obj = {
       genre: values.genre,
       email: values.email,
@@ -100,7 +100,7 @@ export default function FormSignUp() {
       dateOfBirth: values.dateOfBirth,
       password: values.password,
     };
-    dispatch(postUser(obj));
+    await dispatch(postUser(obj));
     navigate("/logIn");
   };
 
