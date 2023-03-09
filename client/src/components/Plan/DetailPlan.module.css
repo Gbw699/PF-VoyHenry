@@ -266,3 +266,19 @@
   font-weight: 300;
   font-weight: 100%;
 }
+
+@media (max-width: 600px) {
+  .imgCont {
+    width: 100%;
+    margin: 0;
+  }
+  .planData {
+    width: 100%;
+  }
+  .commentsCont{
+    width: 100%;
+  }
+  .buttons {
+    width: 100%;
+  }
+}

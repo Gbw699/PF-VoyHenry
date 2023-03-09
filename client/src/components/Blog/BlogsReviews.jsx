@@ -9,10 +9,16 @@ import getMediaQuery from "../../recycle/MediaQuerys/mediaQuerys.mjs";
 export default function BlogsReviews(props) {
   const isMobile = useMediaQuery(getMediaQuery("xs"));
   const [pagePagination, setPagePagination] = useState(1);
+  // const [showButton, setShowButton] = useState(true);
   const [showFilters, setShowFilters] = useState("none");
 
   const allBlogs = useSelector((state) => state.blogStore.allBlogs);
   let { blogs, page, pages } = allBlogs;
+
+  // const handleClick = () => {
+  //   props.setIsOpen(false);
+  //   setShowButton(false);
+  // };
 
   const handlePageChange = (event, value) => {
     setPagePagination(value);
@@ -54,7 +60,7 @@ export default function BlogsReviews(props) {
           onChange={handlePageChange}
         />
       </div>
-      {isMobile && <button
+      {isMobile && !props.isOpen && <button
         onClick={() => props.setIsOpen(true)}
         className={style.writeBtn}
       >
