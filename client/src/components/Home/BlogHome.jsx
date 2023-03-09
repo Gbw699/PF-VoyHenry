@@ -9,7 +9,9 @@ export default function BlogHome() {
   const { blogs } = allBlogs;
 
   useEffect(() => {
-    dispatch(getBlogs(1, "", "masvotados"));
+    setTimeout(function() {
+      dispatch(getBlogs(1, "", "masvotados"));
+    }, 50);
   }, []);
 
   return <div>{blogs && <BlogReview blog={blogs.blogs[0]} />}</div>;
