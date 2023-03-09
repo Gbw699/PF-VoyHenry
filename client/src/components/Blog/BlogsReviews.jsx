@@ -32,7 +32,7 @@ export default function BlogsReviews(props) {
       {isMobile && <div className={style.filtersContainer} style={{ display: `${showFilters}` }}>
         <BlogFilters pagePagination={pagePagination} />
       </div>}
-      <button className={style.showFiltersButton} onClick={() => setShowFilters(showFilters == "none" ? "flex" : "none")}>Filtros</button>
+      {isMobile && <button className={style.showFiltersButton} onClick={() => setShowFilters(showFilters == "none" ? "flex" : "none")}>Filtros</button>}
       <div className={style.reviewContainer}>
         {blogs?.blogs.map((blog) => {
           return (
