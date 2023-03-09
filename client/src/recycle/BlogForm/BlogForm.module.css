@@ -101,3 +101,17 @@
   width: auto;
   height: 150px;
 }
+
+@media (max-width: 600px) {
+  .writeCont{
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    height: 100vh;
+    box-shadow: none;
+    border: 1px solid white;
+  }
+  .container{
+    background-color: white;
+  }
+}
