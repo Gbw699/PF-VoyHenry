@@ -11,7 +11,7 @@ export default function BlogsReviews(props) {
   const allBlogs = useSelector((state) => state.blogStore.allBlogs);
   let { blogs, page, pages } = allBlogs;
 
-  const handlePageChange = (value) => {
+  const handlePageChange = (event, value) => {
     setPagePagination(value);
   };
 
