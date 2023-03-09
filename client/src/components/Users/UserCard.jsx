@@ -59,16 +59,20 @@ export default function UserCard({
                 color="#F1E100"
                 width="100%"
               />
-              {!isMobile && <p className={style.nacionality}>
-                {nationality ? nationality : "Sin nacionalidad"}
-              </p>}
+              {!isMobile && (
+                <p className={style.nacionality}>
+                  {nationality ? nationality : "Sin nacionalidad"}
+                </p>
+              )}
             </div>
-            {!isMobile && <div className={style.followers}>
-              <p className={style.followTitle}>Siguiendo</p>
-              <span className={style.followNum}>{userFollowing}</span>
-              <p className={style.followTitle}>Seguidores</p>
-              <span className={style.followNum}>{followed}</span>
-            </div>}
+            {!isMobile && (
+              <div className={style.followers}>
+                <p className={style.followTitle}>Siguiendo</p>
+                <span className={style.followNum}>{userFollowing}</span>
+                <p className={style.followTitle}>Seguidores</p>
+                <span className={style.followNum}>{followed}</span>
+              </div>
+            )}
           </div>
         </div>
         <div className={style.buttons}>
