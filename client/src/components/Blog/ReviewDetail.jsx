@@ -4,8 +4,9 @@ import axios from "axios";
 import PostComment from "../../recycle/Comments/PostComment";
 import GetComments from "../../recycle/Comments/GetComments";
 import style from "./ReviewDetail.module.css";
-import { Rating } from "@mui/material";
+import { Rating, useMediaQuery } from "@mui/material";
 import customAlert from "../../recycle/Alert/CustomAlert";
+import getMediaQuery from "../../recycle/MediaQuerys/mediaQuerys.mjs";
 
 export default function ReviewDetail({ setReRender, blog, user }) {
   const userSession = JSON.parse(localStorage.getItem("user"));
@@ -14,6 +15,8 @@ export default function ReviewDetail({ setReRender, blog, user }) {
   const [isEditable, setIsEditable] = useState(false);
   const [editedBlog, setEditedBlog] = useState();
   const [showEdit, setShowEdit] = useState(false);
+  const isMobile = useMediaQuery(getMediaQuery("xs"));
+
   const navigate = useNavigate();
   useEffect(() => {
     if (userSession && blog && userSession.nickName === blog?.userNickName) {
@@ -87,14 +90,14 @@ export default function ReviewDetail({ setReRender, blog, user }) {
     <div className={style.container}>
       <div className={style.detailCont}>
         <div className={style.profile}>
-          <img
+          {!isMobile && <img
             className={style.imgProfile}
             src={user?.image}
             alt={blog?.title}
             title={blog?.title}
             height="80px"
             loading="lazy"
-          />
+          />}
           <div className={style.review}>
             <div className={style.nameCont}>
               <p className={style.name}>
