@@ -24,6 +24,7 @@ export default function MsgState() {
           setMessageSelect={setMessageSelect}
           setAllMessage={setAllMessage}
           setConversation={setConversation}
+          messageSelect={messageSelect}
           setTo={setTo}
           newMenssage={newMenssage}
         />

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import axios from "axios";
 
-export default function AllMsgAxios( { setAllMessage, newMenssage }) {
+export default function AllMsgAxios( { setAllMessage, newMenssage, messageSelect }) {
   const userInfo = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
@@ -11,7 +11,7 @@ export default function AllMsgAxios( { setAllMessage, newMenssage }) {
       await setAllMessage(chats.data);
     })();
 
-  }, [newMenssage]);
+  }, [newMenssage, messageSelect]);
 
   return (
     <>
