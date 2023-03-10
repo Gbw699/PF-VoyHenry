@@ -75,6 +75,12 @@ class MailerService {
   async buySuccess(info) {
     const email = info.customer
 
+    const payment = info.payment_id
+
+    
+
+    console.log(payment)
+
     const mail = {
       from: MAIL,
       to: email,

@@ -61,6 +61,40 @@ router.get('/success',
 
 });
 
+/* Buy failure */
+
+router.get('/fail', 
+  //passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
+
+    try {
+
+      mailer.buySuccess(req.query)
+      res.redirect(`http://localhost:3000/home`)
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
+/* Buy  pendig*/
+
+router.get('/pendig', 
+  //passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
+
+    try {
+
+      mailer.buySuccess(req.query)
+      res.redirect(`http://localhost:3000/home`)
+    } catch (error) {
+
+      next(error)
+    }
+
+});
+
 
 /* Get product by id */
 
@@ -150,8 +184,8 @@ router.delete('/:id',
 /* Buy One Product */
 
 router.post('/buy',
-  passport.authenticate('jwt', {session: false}),
-  validatorHandler(buyProductSchema, 'body'),
+/*   passport.authenticate('jwt', {session: false}),
+  validatorHandler(buyProductSchema, 'body'), */
   async (req, res, next) => {
     try {
 
