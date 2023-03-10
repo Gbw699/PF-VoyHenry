@@ -35,6 +35,10 @@ export default function SendMessage({ to, messageSelect, setMessageSelect }) {
         }
         setMessageSelect(axiosRespuesta.id);
         setMessage("");
+        socket.emit("firstMessage", {
+          from: userInfo.nickName,
+          to: to.nickName,
+        });
       }
     }
   };
