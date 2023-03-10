@@ -4,4 +4,5 @@
   min-width: 35em;
   max-width: 35em;
   border: solid 1px;
+  overflow: scroll;
 }

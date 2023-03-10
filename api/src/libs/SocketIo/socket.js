@@ -55,6 +55,31 @@ const startSocketIo = async() =>{
 
     })
 
+    socket.on('firstMessage', async (data) => {
+      try {
+
+        let firstUserSession = await sessionsService.findOne(data.to)
+        let secondUserSessions = await sessionsService.findOne(data.from)
+
+        if (firstUserSession) {
+          const firstUserSockets = firstUserSession.dataValues.sockets
+          firstUserSockets.forEach(socket => {
+            io.to(socket).emit('newMessage', "Tienes un nuevo mensaje " + socket)
+          });
+        }
+
+        if (secondUserSessions) {
+          const secondUserSockets = secondUserSessions.dataValues.sockets
+          secondUserSockets.forEach(socket => {
+            io.to(socket).emit('newMessage', "Tienes un nuevo mensaje " + socket)
+          });
+        }
+      } catch (error) {
+        console.error(error)
+      }
+
+    })
+
     socket.on('disconnect', () => {
       console.log("Clientes conectados: ", io.engine.clientsCount)
 

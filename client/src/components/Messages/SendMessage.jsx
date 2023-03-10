@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { socket } from "../SocketIo/Connect";
-import style from "./SendMessage.module.css"
+import style from "./SendMessage.module.css";
 import axios from "axios";
 
-export default function SendMessage({ to, messageSelect, setMessageSelect }) {
+export default function SendMessage({ to, messageSelect, setMessageSelect, setNewMenssage, newMenssage }) {
   const [ message, setMessage ] = useState("");
   const userInfo = JSON.parse(localStorage.getItem("user"));
 
@@ -34,7 +34,25 @@ export default function SendMessage({ to, messageSelect, setMessageSelect }) {
           console.error(error);
         }
         setMessageSelect(axiosRespuesta.id);
+        setMessage("");
+        socket.emit("firstMessage", {
+          from: userInfo.nickName,
+          to: to.nickName,
+        });
+
       }
+      if(newMenssage === "cambio"){
+        setNewMenssage("Cambio");
+      }else {
+        setNewMenssage("cambio");
+      }
+    }
+  };
+
+  const handlerKeyDown = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handlerOnClick();
     }
   };
 
@@ -46,7 +64,7 @@ export default function SendMessage({ to, messageSelect, setMessageSelect }) {
         value={message}
         className={style.input}
         onChange={handlerOnChange}
-        onKeyDown={(event) => event.key === "Enter" && handlerOnClick()}
+        onKeyDown={handlerKeyDown}
       >
       </textarea>
       <button

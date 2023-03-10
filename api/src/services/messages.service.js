@@ -114,12 +114,7 @@ class MessagesService {
           chatId: chat.chat.id
         },
         order: [['createdAt', 'DESC']],
-        limit: 1,
-        attributes: [
-          "from",
-          "to",
-          "message"
-        ]
+        limit: 1
       });
       chat.lastMessage = lastMessage
       return chat

@@ -3,7 +3,7 @@ import MapAllMsg from "./MapAllMsg";
 import style from "./AllMessages.module.css";
 import CreateNewMessage from "./CreateNewMessage";
 
-export default function AllMessages({ allMessage, setAllMessage, setMessageSelect, setTo, newMenssage, setConversation}) {
+export default function AllMessages({ allMessage, setAllMessage, setMessageSelect, setTo, newMenssage, setConversation, messageSelect}) {
 
   return (
     <>
@@ -11,6 +11,7 @@ export default function AllMessages({ allMessage, setAllMessage, setMessageSelec
         allMessage={allMessage}
         setAllMessage={setAllMessage}
         newMenssage={newMenssage}
+        messageSelect={messageSelect}
         />
       <div
       className={style.containerAllChats}
@@ -26,6 +27,7 @@ export default function AllMessages({ allMessage, setAllMessage, setMessageSelec
           setTo={setTo}
           setMessageSelect={setMessageSelect}
           allMessage={allMessage}
+          messageSelect={messageSelect}
         >
         </MapAllMsg>
       </div>
