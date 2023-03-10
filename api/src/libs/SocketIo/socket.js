@@ -58,9 +58,6 @@ const startSocketIo = async() =>{
     socket.on('firstMessage', async (data) => {
       try {
 
-          /* to: data.to,
-          from: data.from, */
-
         let firstUserSession = await sessionsService.findOne(data.to)
         let secondUserSessions = await sessionsService.findOne(data.from)
 

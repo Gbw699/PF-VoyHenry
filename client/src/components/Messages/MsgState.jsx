@@ -12,6 +12,7 @@ export default function MsgState() {
   const [messageSelect, setMessageSelect] = useState(null);
   const [conversation, setConversation] = useState([]);
   const [to, setTo] = useState(null);
+
   return (
     <>
       <MsgSocketIo
@@ -36,12 +37,15 @@ export default function MsgState() {
             messageSelect={messageSelect}
             to={to}
             newMenssage={newMenssage}
+            allMessage={allMessage}
           />
           {messageSelect !== null && (
             <SendMessage
               messageSelect={messageSelect}
               setMessageSelect={setMessageSelect}
               to={to}
+              newMenssage={newMenssage}
+              setNewMenssage={setNewMenssage}
             />
           )}
         </div>
