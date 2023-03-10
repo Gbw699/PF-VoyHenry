@@ -27,6 +27,7 @@ export default function AllMessages({ allMessage, setAllMessage, setMessageSelec
           setTo={setTo}
           setMessageSelect={setMessageSelect}
           allMessage={allMessage}
+          messageSelect={messageSelect}
         >
         </MapAllMsg>
       </div>

@@ -1,6 +1,6 @@
 import style from "./MapAllMsg.module.css";
 
-export default function MapAllMsg({ allMessage, setMessageSelect, setTo }) {
+export default function MapAllMsg({ allMessage, setMessageSelect, setTo, messageSelect }) {
   const userInfo = JSON.parse(localStorage.getItem("user"));
 
   const handlerOnClick = (chatId, to) => {
@@ -28,7 +28,7 @@ export default function MapAllMsg({ allMessage, setMessageSelect, setTo }) {
 
             return(
               <div 
-                className={style.chatContainer}
+                className={messageSelect === element.chat.id ? style.chatSelectContainer : style.chatContainer}
                 key={element.chat.id}
                 onClick={() => handlerOnClick(element.chat.id, to)}
               >
@@ -64,7 +64,7 @@ export default function MapAllMsg({ allMessage, setMessageSelect, setTo }) {
             };
             return(
               <div 
-                className={style.chatContainer}
+              className={messageSelect === element.chat.id ? style.chatSelectContainer : style.chatContainer}
                 key={element.chat.id}
                 onClick={() => handlerOnClick(element.chat.id, to)}
               >
