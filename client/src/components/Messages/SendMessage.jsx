@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { socket } from "../SocketIo/Connect";
-import style from "./SendMessage.module.css"
+import style from "./SendMessage.module.css";
 import axios from "axios";
 
 export default function SendMessage({ to, messageSelect, setMessageSelect }) {
@@ -34,7 +34,15 @@ export default function SendMessage({ to, messageSelect, setMessageSelect }) {
           console.error(error);
         }
         setMessageSelect(axiosRespuesta.id);
+        setMessage("");
       }
+    }
+  };
+
+  const handlerKeyDown = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handlerOnClick();
     }
   };
 
@@ -46,7 +54,7 @@ export default function SendMessage({ to, messageSelect, setMessageSelect }) {
         value={message}
         className={style.input}
         onChange={handlerOnChange}
-        onKeyDown={(event) => event.key === "Enter" && handlerOnClick()}
+        onKeyDown={handlerKeyDown}
       >
       </textarea>
       <button
