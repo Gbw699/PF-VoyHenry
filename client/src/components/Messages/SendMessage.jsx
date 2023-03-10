@@ -3,9 +3,11 @@ import { socket } from "../SocketIo/Connect";
 import style from "./SendMessage.module.css";
 import axios from "axios";
 
-export default function SendMessage({ to, messageSelect, setMessageSelect }) {
+export default function SendMessage({ to, messageSelect, setMessageSelect, setNewMenssage, newMenssage }) {
   const [ message, setMessage ] = useState("");
   const userInfo = JSON.parse(localStorage.getItem("user"));
+
+  console.log(newMenssage)
 
   const handlerOnChange = (event) => {
     setMessage(event.target.value);
@@ -35,6 +37,16 @@ export default function SendMessage({ to, messageSelect, setMessageSelect }) {
         }
         setMessageSelect(axiosRespuesta.id);
         setMessage("");
+        socket.emit("firstMessage", {
+          from: userInfo.nickName,
+          to: to.nickName,
+        });
+
+      }
+      if(newMenssage === "cambio"){
+        setNewMenssage("Cambio");
+      }else {
+        setNewMenssage("cambio");
       }
     }
   };

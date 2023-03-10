@@ -1,17 +1,21 @@
 import { useEffect } from "react";
 import axios from "axios";
 
-export default function AllMsgAxios( { setAllMessage, newMenssage }) {
+export default function AllMsgAxios( { setAllMessage, newMenssage, messageSelect }) {
   const userInfo = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
 
     (async () => {
-      const chats = await axios.get(`/api/v1/messages/${userInfo.nickName}/chats`);
-      await setAllMessage(chats.data);
+      let chats = await axios.get(`/api/v1/messages/${userInfo.nickName}/chats`);
+
+      chats = chats.data;
+      chats = chats.sort((a ,b) => new Date(a.lastMessage.updatedAt) - new Date(b.lastMessage.updatedAt)).reverse();
+      console.log(chats);
+      await setAllMessage(chats);
     })();
 
-  }, [newMenssage]);
+  }, [newMenssage, messageSelect]);
 
   return (
     <>
