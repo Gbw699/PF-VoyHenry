@@ -125,3 +125,20 @@
   box-shadow: none;
   transform: translateY(0);
 }
+
+@media (max-width: 600px) {
+  .infoCont {
+    flex-direction: column;
+    width: 100%;
+  }
+  .plansCont {
+    width: 98%;
+  }
+  .friendsAct {
+    width: 98%;
+  }
+  .activityCont {
+    width: 98%;
+    margin: 0;
+  }
+}

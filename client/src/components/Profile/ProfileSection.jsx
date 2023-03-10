@@ -68,7 +68,7 @@ export default function ProfileSection() {
         />
       </div>
       <div className={style.infoCont}>
-        {!isMobile && <div className={style.friendsAct}>
+        <div className={style.friendsAct}>
           <h6 className={style.title}>Usuarios que sigues</h6>
           <hr
             color="#F1E100"
@@ -92,7 +92,7 @@ export default function ProfileSection() {
               ))
             )}
           </div>
-        </div>}
+        </div>
         <div className={style.activityCont}>
           <div>
             <h6 className={style.title}>Sobre mí</h6>
