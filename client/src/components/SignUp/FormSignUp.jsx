@@ -73,6 +73,7 @@ export default function FormSignUp() {
       .max(15, "Debe tener menos de 15 caracteres")
       .required("El nombre de usuario es obligatorio"),
     firstName: Yup.string()
+      .matches(/^[\w]+[^\s]/, "Debe contener letras sin espacios")
       .min(3, "Debe tener más de 3 caracteres")
       .max(55, "Debe tener menos de 55 caracteres")
       .required("El nombre es obligatorio"),
