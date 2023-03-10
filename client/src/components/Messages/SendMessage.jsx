@@ -34,6 +34,7 @@ export default function SendMessage({ to, messageSelect, setMessageSelect }) {
           console.error(error);
         }
         setMessageSelect(axiosRespuesta.id);
+        setMessage("");
       }
     }
   };
