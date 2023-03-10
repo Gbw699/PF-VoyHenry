@@ -11,7 +11,6 @@ export default function AllMsgAxios( { setAllMessage, newMenssage, messageSelect
 
       chats = chats.data;
       chats = chats.sort((a ,b) => new Date(a.lastMessage.updatedAt) - new Date(b.lastMessage.updatedAt)).reverse();
-      console.log(chats);
       await setAllMessage(chats);
     })();
 

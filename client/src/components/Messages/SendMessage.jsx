@@ -7,8 +7,6 @@ export default function SendMessage({ to, messageSelect, setMessageSelect, setNe
   const [ message, setMessage ] = useState("");
   const userInfo = JSON.parse(localStorage.getItem("user"));
 
-  console.log(newMenssage)
-
   const handlerOnChange = (event) => {
     setMessage(event.target.value);
   };
