@@ -136,6 +136,7 @@
   .infoCont {
     width: 98%;
     margin: 0;
+    flex-direction: column;
   }
   .activityCont{
     width: 98%;
@@ -146,5 +147,8 @@
   }
   .profileCont {
     width: 100%;
+  }
+  .friendsAct {
+    width: auto;
   }
 }

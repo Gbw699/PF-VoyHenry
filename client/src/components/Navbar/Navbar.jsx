@@ -11,6 +11,7 @@ import { useMediaQuery } from "@mui/material";
 import getMediaQuery from "../../recycle/MediaQuerys/mediaQuerys.mjs";
 
 export default function NavBar() {
+  const isMobileMenu = useMediaQuery("(max-width: 850.95px)");
   const isMobile = useMediaQuery(getMediaQuery("xs"));
   const isTablet = useMediaQuery(getMediaQuery("sm"));
   const location = useLocation();
@@ -52,6 +53,15 @@ export default function NavBar() {
           height="100%"
           loading="lazy"
         />}
+        {isTablet && <img
+          src={img2}
+          alt="voyHENRY"
+          title="voyHENRY"
+          className={style.img}
+          width="100%"
+          height="100%"
+          loading="lazy"
+        />}
       </NavLink>
       {user?.role === "admin" && (
         <NavLink
@@ -66,25 +76,25 @@ export default function NavBar() {
         <SearchBar placeholder="Buscar plan" />
       )}
       <div className={style.linksCont}>
-        {!isMobile && <NavLink
+        {!isMobileMenu && <NavLink
           to={"/home"}
           className={navLinkClassName}
         >
           <h4>INICIO</h4>
         </NavLink>}
-        {!isMobile && <NavLink
+        {!isMobileMenu && <NavLink
           to={"/plans"}
           className={navLinkClassName}
         >
           <h4>PLANES</h4>
         </NavLink>}
-        {!isMobile && <NavLink
+        {!isMobileMenu && <NavLink
           to={"/blog"}
           className={navLinkClassName}
         >
           <h4>BLOG</h4>
         </NavLink>}
-        {!isMobile && <NavLink
+        {!isMobileMenu && <NavLink
           to={"/users"}
           className={navLinkClassName}
         >
@@ -96,7 +106,7 @@ export default function NavBar() {
         >
           <h4>CHAT</h4>
         </NavLink>
-        {!isMobile && <NavLink
+        {!isMobileMenu && <NavLink
           to={"/marketplace"}
           className={navLinkClassName}
         >
