@@ -1,11 +1,13 @@
 import axios from "axios";
-import { Rating } from "@mui/material";
+import { Rating, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import style from "./BlogReview.module.css";
+import getMediaQuery from "../MediaQuerys/mediaQuerys.mjs";
 
 export default function BlogReview({ blog }) {
+  const isMobile = useMediaQuery(getMediaQuery("xs"));
   const [name, setName] = useState({});
 
   useEffect(()=>{
@@ -26,10 +28,10 @@ export default function BlogReview({ blog }) {
           aria-label="Ver más detalles de esta reseña"
           to={`/users/${blog.userNickName}`}
         >
-          <div
+          {!isMobile && <div
             className={style.userImg}
             style={{ backgroundImage: `url(${blog.userimage})` }}
-          />
+          />}
         </Link>
         <div className={style.userCont}>
           <div className={style.nameDate}>

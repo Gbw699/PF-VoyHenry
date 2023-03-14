@@ -16,19 +16,23 @@ class SessionsService{
 
   async initSession(nickName, completeName, socketId){
 
-    const session = await sessionModel.findOrCreate({
-      where: {
-        nickName: nickName,
-      },
-      defaults: {
-        nickName: nickName,
-        completeName: completeName,
-        numberOfSessions: 1,
-        sockets: [socketId]
-      }
-    })
+    try {
+      const session = await sessionModel.findOrCreate({
+        where: {
+          nickName: nickName,
+        },
+        defaults: {
+          nickName: nickName,
+          completeName: completeName,
+          numberOfSessions: 1,
+          sockets: [socketId]
+        }
+      })
 
-    this.addOnesession(session, socketId)
+      this.addOnesession(session, socketId)
+    } catch (error) {
+      console.error(error.message)
+    }
 
   }
 

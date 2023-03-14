@@ -164,3 +164,19 @@
   border: 2px solid #707070;
   color: white;
 }
+
+@media (max-width: 600px) {
+  .emojiPicker {
+    bottom: 0;
+    right: 0;
+  }
+  .submitBtn {
+    width: 50px;
+  }
+  .imgComment {
+    height: 40px;
+  }
+  .getComment {
+    margin-left: 0;
+  }
+}

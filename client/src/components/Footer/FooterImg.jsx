@@ -4,6 +4,7 @@ import voyHenryImage from "../../assets/voyHENRY_title(white).svg";
 import style from "./FooterImg.module.css";
 
 export default function FooterImg() {
+  
   return (
     <div className={style.footerImg}>
       <Link to="/home">

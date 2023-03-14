@@ -54,7 +54,7 @@
   resize: none;
 }
 
-.formInputsSmall{
+.formInputsSmall {
   font-size: 130%;
 }
 
@@ -134,4 +134,29 @@
   color: #707070;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+}
+@media (max-width: 600px) {
+  .formContainer {
+    width: 100vw;
+    min-height: 80vh;
+    box-shadow: 3px 3px 5px 2px white;
+    border: 1px solid white;
+  }
+  .subContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .buttonTitle {
+  }
+  .buttons {
+    margin-left: 0;
+    width: 100%;
+    /* width: 4em; */
+    /* width: 50px; */
+  }
+  .createBtn {
+    position: absolute;
+    bottom: 20%;
+  }
 }

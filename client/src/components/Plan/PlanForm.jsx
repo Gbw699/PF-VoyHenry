@@ -60,7 +60,7 @@ export default function FormSignUp(props) {
 
   return (
     <div className={style.container}>
-      <div>
+      <div className={style.subContainer}>
         <Formik
           initialValues={{
             title: "",

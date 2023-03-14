@@ -50,3 +50,24 @@
 .createBtn:hover {
   background-color: white;
 } */
+@media (min-width: 600px) and (max-width: 959.95px) {
+  .featured {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .container {
+    padding: 0;
+  }
+  .featured {
+    padding: 0;
+    width: 100%;
+  }
+  .featuredTitle{
+    text-align: center;
+  }
+
+}
+

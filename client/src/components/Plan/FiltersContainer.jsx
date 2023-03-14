@@ -6,22 +6,18 @@ import { useDispatch } from "react-redux";
 import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
 import FilterByTitle from "./FilterByTitle";
 import FilterByCountry from "./FilterByCountry";
-// import SearchPlan from "./SearchPlan";
 
-export default function FiltersContainer(props) {
+export default function FiltersContainer() {
   const dispatch = useDispatch(event);
 
   const handleClick = () => {
     dispatch(getPlansbyOrder("clean", 1));
   };
 
-  const handleButtonCreate = () => {
-    props.setShowPlanForm(true);
-  };
-
   return (
     <div className={style.container}>
       <div className={style.filtersCont}>
+        
         {/* <SearchPlan className={style.inputs} /> */}
         <FilterByDate className={style.inputs} />
         <FilterByCountry className={style.inputs} />
@@ -34,12 +30,6 @@ export default function FiltersContainer(props) {
             onClick={handleClick}
           >
             Actualizar
-          </button>
-          <button
-            className={style.buttons}
-            onClick={handleButtonCreate}
-          >
-            Crea tu evento
           </button>
         </div>
       </div>

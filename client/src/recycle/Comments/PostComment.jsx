@@ -4,6 +4,7 @@ import style from "./Comments.module.css";
 import EmojiPicker from "emoji-picker-react";
 
 export default function PostComment(props) {
+  
   const user = JSON.parse(localStorage.getItem("user"));
   const [text, setText] = useState("");
   const [showPicker, setShowPicker] = useState(false);

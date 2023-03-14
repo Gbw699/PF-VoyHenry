@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 import style from "./AccountMenu.module.css";
 import { useState } from "react";
 
-export default function AccountMenu() {
+export default function AccountMenu(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -90,6 +90,36 @@ export default function AccountMenu() {
           <MenuItem className={style.menuLinks}>Mi perfil</MenuItem>
         </NavLink>
         <Divider />
+        <NavLink
+          to="/messages"
+          style={{ color: "#707070" }}
+        >
+          <MenuItem className={style.menuLinks}>Chat</MenuItem>
+        </NavLink>
+        <NavLink
+          to="/plans"
+          style={{ color: "#707070" }}
+        >
+          <MenuItem className={style.menuLinks}>Planes</MenuItem>
+        </NavLink>
+        <NavLink
+          to="/blog"
+          style={{ color: "#707070" }}
+        >
+          <MenuItem className={style.menuLinks}>Blog</MenuItem>
+        </NavLink>
+        <NavLink
+          to="/users"
+          style={{ color: "#707070" }}
+        >
+          <MenuItem className={style.menuLinks}>Usuarios</MenuItem>
+        </NavLink>
+        <NavLink
+          to="/marketplace"
+          style={{ color: "#707070" }}
+        >
+          <MenuItem className={style.menuLinks}>Tienda</MenuItem>
+        </NavLink>
         <NavLink
           to="/favorite"
           style={{ color: "#707070" }}

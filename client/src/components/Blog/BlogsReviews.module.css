@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+  margin-top: 20px;
 }
 
 .filtersContainer {
@@ -41,4 +42,32 @@
 .writeBtn:hover {
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+}
+
+@media (max-width: 600px) {
+  .container{
+    flex-direction: column;
+    align-items: center;
+  }
+  .writeBtn{
+    margin-top: 200px;
+  }
+  .pagination{
+    margin-top: 100px;
+  }
+  .reviewContainer{
+    padding: 0;
+  }
+  .showFiltersButton{
+    z-index: 0;
+    position: absolute;
+    left: 0;
+    top: 53px;
+  }
+  .filtersContainer{
+    position: absolute;
+    left: 0;
+    top: 50px;
+    background-color: white;
+  }
 }

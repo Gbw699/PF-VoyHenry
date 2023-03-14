@@ -22,3 +22,19 @@
   padding: 0px 3rem;
   width: 82%;
 }
+
+@media (min-width: 600px) and (max-width: 959.95px) {
+  .container{
+    padding: 4rem 0 0 0;
+  }
+  .users{
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .container{
+    padding: 0;
+  }
+}

@@ -98,3 +98,12 @@
   background-color: white;
   color: #707070;
 }
+
+@media (max-width: 600px) {
+  .btnsCont {
+    flex-direction: column;
+  }
+  .mainContainer {
+    box-shadow: 0 4px 2px -2px gray
+  }
+}

@@ -3,8 +3,12 @@ import BlogsReviews from "../../components/Blog/BlogsReviews";
 import BlogForm from "../../recycle/BlogForm/BlogForm";
 import BlogUsers from "../../components/Blog/BlogUsers";
 import style from "./Blog.module.css";
+import { useMediaQuery } from "@mui/material";
+import getMediaQuery from "../../recycle/MediaQuerys/mediaQuerys.mjs";
 
 export default function Blog() {
+  const isMobile = useMediaQuery(getMediaQuery("xs"));
+  const isTablet = useMediaQuery(getMediaQuery("sm"));
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -15,11 +19,11 @@ export default function Blog() {
           setState={setIsOpen}
           close={() => setIsOpen(false)}
         />
-        <BlogsReviews setIsOpen={setIsOpen} />
+        <BlogsReviews isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
-      <div className={style.users}>
+      {!isMobile && !isTablet && <div className={style.users}>
         <BlogUsers />
-      </div>
+      </div>}
     </div>
   );
 }

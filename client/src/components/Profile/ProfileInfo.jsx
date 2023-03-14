@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import style from "./ProfileInfo.module.css";
 
 export default function ProfileInfo({
+  role,
   image,
   firstName,
   lastName,
@@ -25,6 +26,7 @@ export default function ProfileInfo({
             </Link>
           )}
         </div>
+        {role === "admin" && <p className={style.pRole}>Dueño</p>}
         <div
           className={style.imgCont}
           style={{ backgroundImage: `url(${image})` }}
