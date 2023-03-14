@@ -31,6 +31,12 @@ export default function FiltersContainer() {
           >
             Actualizar
           </button>
+          <button
+            className={style.buttons}
+            onClick={() => props.setShowPlanForm(true)}
+          >
+            Crea tu evento
+          </button>
         </div>
       </div>
     </div>
