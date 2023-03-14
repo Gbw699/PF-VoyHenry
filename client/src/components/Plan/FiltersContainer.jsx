@@ -7,7 +7,7 @@ import { getPlansbyOrder } from "../../redux/slices/planSlice/thunk";
 import FilterByTitle from "./FilterByTitle";
 import FilterByCountry from "./FilterByCountry";
 
-export default function FiltersContainer() {
+export default function FiltersContainer(props) {
   const dispatch = useDispatch(event);
 
   const handleClick = () => {
