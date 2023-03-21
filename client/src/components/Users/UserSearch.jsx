@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import style from "./UserSearch.module.css";
 import axios from "axios";
-// import imgSearch from "../../assets/search.png";
 
 export default function UserSearch({ setUsers }) {
   const [input, setInput] = useState();

@@ -34,7 +34,6 @@ export default function AdminMarketPlaceCreate({
         stock: productStock,
       })
     );
-    // : window.alert("No has seleccionado ningún producto para editar");
   };
 
   return (
