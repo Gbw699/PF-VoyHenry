@@ -46,13 +46,9 @@ export default function FormLogIn() {
   });
   
   const token = query.get("token");
-  useEffect(() => {
-    console.log(token);
-    if (token !== null) {
-      document.cookie = token;
-      console.log(token);
-    }
-  }, []);
+  if (token) {
+    document.cookie = token;
+  }
 
   const backHandler = () => {
     navigate("/");
