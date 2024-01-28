@@ -57,7 +57,7 @@ export default function FormLogIn() {
     if (query.get("token") !== null) {
       assingCookie();
       localStorage.setItem("user", JSON.stringify(user));
-      navigate("/home");
+      /* navigate("/home"); */
     }
 
   }, [query]);
