@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import titleImg from "../../assets/voyHENRY_title(white).svg";
 import googleLogo from "../../assets/google_icon.svg";
 import { useDispatch } from "react-redux";
-import { getLogin, getLoginGoogle } from "../../redux/slices/userSlice/thunks";
+import { getLogin } from "../../redux/slices/userSlice/thunks";
 import { Link } from "react-router-dom";
 
 export default function FormLogIn() {
@@ -44,17 +44,31 @@ export default function FormLogIn() {
         navigate("/home");
     },
   });
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          await new Promise(resolve => {
+            setTimeout(() => {
+              if (query.get("token") !== null) {
+                document.cookie =
+                  "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                document.cookie =
+                  "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                document.cookie = `token=${query.get("token")}; max-age=604800; path=/;`;
+                localStorage.setItem("user", JSON.stringify(user));
+
+              }
+              resolve();
+            }, 1000);
+          });
+        } catch (error) {
+          console.error("Error in fake fetch simulation:", error);
+        }
+      };
   
-  useEffect(() => {
-    const fetchData = async () => {
-      if (query.get("token") !== null) {
-        const token = query.get("token");
-        await dispatch(getLoginGoogle(token, user));
-      }
-    };
-  
-    fetchData();
-  }, []);  
+      fetchData();
+    }, []);
 
   const backHandler = () => {
     navigate("/");
