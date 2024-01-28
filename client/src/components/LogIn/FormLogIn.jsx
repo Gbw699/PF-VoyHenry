@@ -48,17 +48,17 @@ export default function FormLogIn() {
 
   useEffect( () => {
     if (query.get("token") !== null) {
-      console.log(query.get("token"))
+      const token = query.get("token");
       document.cookie =
         "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie =
         "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = `token=${query.get("token")}; max-age=604800; path=/;`;
+      document.cookie = `token=${token}; max-age=604800; path=/;`;
       localStorage.setItem("user", JSON.stringify(user));
       /* setTimeout(navigate("/home"), 100); */
     }
 
-  }, []);
+  }, [query]);
 
   const backHandler = () => {
     navigate("/");
