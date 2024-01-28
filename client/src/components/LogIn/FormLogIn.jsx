@@ -45,19 +45,18 @@ export default function FormLogIn() {
     },
   });
 
-  const assingCookie = () => {
-    document.cookie =
-        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie =
-        "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = `token=${query.get("token")}; max-age=604800; path=/;`;
-  };
+  function asingCookie (token) {document.cookie = `token=${token}`; }
 
   useEffect( () => {
     if (query.get("token") !== null) {
-      assingCookie();
+      const token = query.get("token");
+      console.log(token);
+      /* document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; */
+      document.cookie = `token=${token}`;
+      asingCookie(token);
       localStorage.setItem("user", JSON.stringify(user));
-      /* navigate("/home"); */
+      /* setTimeout(navigate("/home"), 100); */
     }
 
   }, [query]);
