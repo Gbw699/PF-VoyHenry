@@ -51,7 +51,7 @@ export default function FormLogIn() {
     if (query.get("token") !== null) {
       const token = query.get("token");
       console.log(token);
-      dispatch(getLogin(token, user));
+      dispatch(getLoginGoogle(token, user));
       console.log(document.cookie);
     }
   }, []);
