@@ -45,10 +45,16 @@ export default function FormLogIn() {
     },
   });
   
-  const token = query.get("token");
-  if (token) {
-    document.cookie = token;
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      if (query.get("token") !== null) {
+        const token = query.get("token");
+        await dispatch(getLoginGoogle(token, user));
+      }
+    };
+  
+    fetchData();
+  }, []);  
 
   const backHandler = () => {
     navigate("/");
