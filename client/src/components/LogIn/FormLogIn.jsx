@@ -45,21 +45,20 @@ export default function FormLogIn() {
     },
   });
 
-  function asingCookie (token) {document.cookie = `token=${token}`; }
-
-  useEffect( () => {
+  function assignCookie(token) {
+    document.cookie = `token=${token}`;
+  }
+  
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+    
     if (query.get("token") !== null) {
       const token = query.get("token");
       console.log(token);
-      /* document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; */
-      document.cookie = `token=${token}`;
-      asingCookie(token);
+      assignCookie(token);
       localStorage.setItem("user", JSON.stringify(user));
-      /* setTimeout(navigate("/home"), 100); */
     }
-
-  }, [query]);
+  }, []);
 
   const backHandler = () => {
     navigate("/");
