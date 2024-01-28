@@ -14,6 +14,16 @@ import { Link } from "react-router-dom";
 
 export default function FormLogIn() {
   const query = new URLSearchParams(location.search);
+  const user = {
+    nickName: query.get("nickName")?.trim(),
+    email: query.get("email")?.trim(),
+    dateOfBirth: query.get("dateOfBirth")?.trim(),
+    firstName: query.get("firstName")?.trim(),
+    lastName: query.get("lastName")?.trim(),
+    image: query.get("image")?.trim(),
+    role: query.get("role")?.trim(),
+    google: query.get("google")?.trim(),
+  };
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const formik = useFormik({
@@ -35,28 +45,18 @@ export default function FormLogIn() {
     },
   });
 
-    let user = {
-      nickName: query.get("nickName")?.trim(),
-      email: query.get("email")?.trim(),
-      dateOfBirth: query.get("dateOfBirth")?.trim(),
-      firstName: query.get("firstName")?.trim(),
-      lastName: query.get("lastName")?.trim(),
-      image: query.get("image")?.trim(),
-      role: query.get("role")?.trim(),
-      google: query.get("google")?.trim(),
-      token: query.get("token")
-    };
-    localStorage.setItem("user", JSON.stringify(user));
-    user = JSON.parse(localStorage.getItem("user"));
-    console.log(user);
-    if (user?.token) {
+  useEffect( () => {
+    if (query.get("token") !== null) {
       document.cookie =
         "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie =
         "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = `token=${user.token}; max-age=604800; path=/;`;
+      document.cookie = `token=${query.get("token")}; max-age=604800; path=/;`;
+      localStorage.setItem("user", JSON.stringify(user));
         navigate("/home");
     }
+
+  }, [query]);
 
   const backHandler = () => {
     navigate("/");
