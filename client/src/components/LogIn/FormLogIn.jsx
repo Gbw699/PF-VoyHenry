@@ -52,7 +52,7 @@ export default function FormLogIn() {
         "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = `token=${query.get("token")}; max-age=604800; path=/;`;
       localStorage.setItem("user", JSON.stringify(user));
-      setTimeout(navigate("/home"), 150);
+      navigate("/home");
     }
 
   }, [query]);
