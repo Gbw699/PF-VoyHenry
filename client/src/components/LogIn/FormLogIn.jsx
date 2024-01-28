@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import titleImg from "../../assets/voyHENRY_title(white).svg";
 import googleLogo from "../../assets/google_icon.svg";
 import { useDispatch } from "react-redux";
-import { getLogin } from "../../redux/slices/userSlice/thunks";
+import { getLogin, getLoginGoogle } from "../../redux/slices/userSlice/thunks";
 import { Link } from "react-router-dom";
 
 export default function FormLogIn() {
@@ -44,10 +44,6 @@ export default function FormLogIn() {
         navigate("/home");
     },
   });
-
-  function assignCookie(token) {
-    document.cookie = `token=${token}`;
-  }
   
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
@@ -55,8 +51,8 @@ export default function FormLogIn() {
     if (query.get("token") !== null) {
       const token = query.get("token");
       console.log(token);
-      assignCookie(token);
-      localStorage.setItem("user", JSON.stringify(user));
+      dispatch(getLogin(token, user));
+      console.log(document.cookie);
     }
   }, []);
 

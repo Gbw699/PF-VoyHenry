@@ -29,6 +29,20 @@ export const getLogin = (obj) => {
   };
 };
 
+export const getLoginGoogle = (token, user) => {
+  return async () => {
+      if (token && user){
+        document.cookie =
+        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie =
+          "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = `token=${token}; max-age=604800; path=/;`;
+
+        localStorage.setItem("user", JSON.stringify(user));
+      }
+  };
+};
+
 export const getAllUsers = () => {
   return async (dispatch) => {
     try {
