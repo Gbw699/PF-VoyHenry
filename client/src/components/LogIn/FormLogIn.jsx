@@ -45,6 +45,7 @@ export default function FormLogIn() {
     },
   });
 
+  function asingCookie (token) {document.cookie = `token=${token}`; }
 
   useEffect( () => {
     if (query.get("token") !== null) {
@@ -52,7 +53,7 @@ export default function FormLogIn() {
       console.log(token);
       /* document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; */
-      document.cookie = `token=${token}`;
+      asingCookie(token);
       localStorage.setItem("user", JSON.stringify(user));
       /* setTimeout(navigate("/home"), 100); */
     }
