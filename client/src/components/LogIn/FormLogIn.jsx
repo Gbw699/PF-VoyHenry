@@ -46,8 +46,7 @@ export default function FormLogIn() {
   });
   
   useEffect(() => {
-    const query = new URLSearchParams(window.location.search);
-    
+    console.log(query.get("token"))
     if (query.get("token") !== null) {
       const token = query.get("token");
       console.log(token);
