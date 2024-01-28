@@ -45,12 +45,13 @@ export default function FormLogIn() {
     },
   });
   
+  const token = query.get("token");
   useEffect(() => {
-    console.log(query.get("token"));
-    if (query.get("token") !== null) {
-      const token = query.get("token");
+    console.log(token);
+    if (token !== null) {
+      const token = token;
       document.cookie = token;
-      console.log(document.cookie)
+      console.log(token);
     }
   }, []);
 
