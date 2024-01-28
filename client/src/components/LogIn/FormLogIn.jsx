@@ -50,9 +50,9 @@ export default function FormLogIn() {
     if (query.get("token") !== null) {
       const token = query.get("token");
       console.log(token);
-      document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = `token=${token}; max-age=604800; path=/;`;
+      /* document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; */
+      document.cookie = `token=${token}`;
       localStorage.setItem("user", JSON.stringify(user));
       /* setTimeout(navigate("/home"), 100); */
     }
