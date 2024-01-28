@@ -49,7 +49,6 @@ export default function FormLogIn() {
   useEffect(() => {
     console.log(token);
     if (token !== null) {
-      const token = token;
       document.cookie = token;
       console.log(token);
     }
