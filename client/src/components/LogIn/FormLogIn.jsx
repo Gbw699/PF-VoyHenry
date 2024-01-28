@@ -35,7 +35,6 @@ export default function FormLogIn() {
     },
   });
 
-  useEffect( () => {
     let user = {
       nickName: query.get("nickName")?.trim(),
       email: query.get("email")?.trim(),
@@ -58,8 +57,6 @@ export default function FormLogIn() {
       document.cookie = `token=${user.token}; max-age=604800; path=/;`;
         navigate("/home");
     }
-
-  }, [query]);
 
   const backHandler = () => {
     navigate("/");
