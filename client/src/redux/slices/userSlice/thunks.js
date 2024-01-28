@@ -30,19 +30,23 @@ export const getLogin = (obj) => {
   };
 };
 
-export const getLoginGoogle = (token, user) => {
-  return async () => {
-      if (token && user){
-        document.cookie =
+export const getLoginGoogle = async (token, user) => {
+  return new Promise((resolve) => {
+    if (token && user) {
+      document.cookie =
         "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        document.cookie =
-          "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        document.cookie = `token=${token}; max-age=604800; path=/;`;
+      document.cookie =
+        "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      const newCookie = `token=${token}; max-age=604800; path=/;`;
+      document.cookie = newCookie;
 
-        localStorage.setItem("user", JSON.stringify(user));
-      }
-  };
+      localStorage.setItem("user", JSON.stringify(user));
+
+      resolve();
+    }
+  });
 };
+
 
 export const getAllUsers = () => {
   return async (dispatch) => {
