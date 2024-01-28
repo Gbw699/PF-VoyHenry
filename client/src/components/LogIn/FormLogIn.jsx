@@ -49,9 +49,7 @@ export default function FormLogIn() {
   useEffect( () => {
     if (query.get("token") !== null) {
       const token = query.get("token");
-      document.cookie =
-        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie =
+      console.log(token);
         "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = `token=${token}; max-age=604800; path=/;`;
       localStorage.setItem("user", JSON.stringify(user));
