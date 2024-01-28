@@ -33,6 +33,7 @@ axios.defaults.headers.common["Authorization"] = `Bearer ${cookie[1]}`;
 const user = JSON.parse(localStorage.getItem("user"));  */
 function App() {
   axios.defaults.baseURL = "https://voyhenry.fly.dev/";
+  /* axios.defaults.baseURL = "http://localhost:3001/"; */
   const cookie = document.cookie.split("=");
   axios.defaults.headers.common["Authorization"] = `Bearer ${cookie[1]}`;
   const user = JSON.parse(localStorage.getItem("user"));

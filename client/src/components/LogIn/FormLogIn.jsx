@@ -44,7 +44,7 @@ export default function FormLogIn() {
         navigate("/home");
     },
   });
-  useEffect( () => {
+/*   useEffect( () => {
     if (query.get("token") !== null) {
       document.cookie =
         "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -54,7 +54,8 @@ export default function FormLogIn() {
       localStorage.setItem("user", JSON.stringify(user));
         navigate("/home");
     }
-  }, [query]);
+
+  }, [query]); */
 
   const backHandler = () => {
     navigate("/");
