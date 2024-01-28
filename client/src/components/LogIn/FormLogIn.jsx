@@ -39,8 +39,8 @@ export default function FormLogIn() {
         .min(8, "Debe tener más de 8 caracteres")
         .required("La contraseña es obligatoria"),
     }),
-    onSubmit: (formData) => {
-      dispatch(getLogin(formData));
+    onSubmit: async (formData) => {
+      await dispatch(getLogin(formData));
         navigate("/home");
     },
   });
