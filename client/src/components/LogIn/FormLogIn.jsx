@@ -11,6 +11,7 @@ import googleLogo from "../../assets/google_icon.svg";
 import { useDispatch } from "react-redux";
 import { getLogin } from "../../redux/slices/userSlice/thunks";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export default function FormLogIn() {
   const query = new URLSearchParams(location.search);
@@ -41,20 +42,19 @@ export default function FormLogIn() {
     }),
     onSubmit: async (formData) => {
       await dispatch(getLogin(formData));
-      await navigate("/home");
+        navigate("/home");
     },
   });
+
   useEffect(() => {
     if (query.get("token") !== null) {
-      document.cookie =
-        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie =
-        "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = `token=${query.get("token")}; max-age=604800; path=/;`;
+      Cookies.remove("token", { path: "/" });
+      Cookies.remove("csrftoken", { path: "/" });
+      Cookies.set("token", query.get("token"), { expires: 7, path: "/" });
       localStorage.setItem("user", JSON.stringify(user));
       navigate("/home");
     }
-  }, [query]);
+  }, [query, user]);
 
   const backHandler = () => {
     navigate("/");
@@ -65,7 +65,7 @@ export default function FormLogIn() {
   };
 
   const handleLoginWithGoogle = () => {
-    window.location.href = "http://localhost:3001/api/v1/auth/login/google";
+    window.location.href = "https://voyhenry.fly.dev/api/v1/auth/login/google";
   };
 
   return (

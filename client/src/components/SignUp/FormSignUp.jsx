@@ -32,12 +32,12 @@ export default function FormSignUp() {
         "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = `token=${query.get("token")}; max-age=604800; path=/;`;
       localStorage.setItem("user", JSON.stringify(user));
-      navigate("/home");
+        navigate("/home");
     }
   }, [query]);
 
   const handleSingUpWithGoogle = () => {
-    window.location.href = "http://localhost:3001/api/v1/auth/login/google";
+    window.location.href = "https://voyhenry.fly.dev/api/v1/auth/login/google";
   };
 
   const getDateActually = () => {

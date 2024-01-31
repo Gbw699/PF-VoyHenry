@@ -46,7 +46,7 @@ export const getPlansbyOrder = (filter, order) => {
       dispatch(setPlansbyOrder(response.data));
     } catch (error) {
       dispatch(setPlansbyOrder([]));
-      console.log("No se pudo realizar la petición:", error.message);
+      console.error(error.response);
     }
   };
 };

@@ -20,7 +20,8 @@ export const getLogin = (obj) => {
         "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie =
         "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = `token=${response.data.token}; max-age=604800; path=/;`;
+      const newCookie = `token=${response.data.token}; max-age=604800; path=/;`;
+      document.cookie = newCookie;
 
       localStorage.setItem("user", JSON.stringify(response.data.user));
     } catch (error) {
